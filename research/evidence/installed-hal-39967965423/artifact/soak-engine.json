@@ -1,0 +1,526 @@
+{
+  "captureFrames" : 37306368,
+  "captureSources" : 24,
+  "counterSamples" : [
+    {
+      "capturedFrames" : 4105728,
+      "droppedFrames" : 0,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 272384,
+      "underrunFrames" : 0,
+      "uptime" : 166.05058833333334
+    },
+    {
+      "capturedFrames" : 4756992,
+      "droppedFrames" : 0,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 316416,
+      "underrunFrames" : 0,
+      "uptime" : 166.62414225000001
+    },
+    {
+      "capturedFrames" : 5432832,
+      "droppedFrames" : 0,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 363008,
+      "underrunFrames" : 0,
+      "uptime" : 167.17016270833335
+    },
+    {
+      "capturedFrames" : 6120960,
+      "droppedFrames" : 0,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 413696,
+      "underrunFrames" : 0,
+      "uptime" : 167.73530162500001
+    },
+    {
+      "capturedFrames" : 6772224,
+      "droppedFrames" : 0,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 465920,
+      "underrunFrames" : 0,
+      "uptime" : 168.30280275000001
+    },
+    {
+      "capturedFrames" : 7337472,
+      "droppedFrames" : 0,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 508416,
+      "underrunFrames" : 0,
+      "uptime" : 168.87732779166669
+    },
+    {
+      "capturedFrames" : 8037888,
+      "droppedFrames" : 0,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 556032,
+      "underrunFrames" : 0,
+      "uptime" : 169.37904520833334
+    },
+    {
+      "capturedFrames" : 8543232,
+      "droppedFrames" : 0,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 589312,
+      "underrunFrames" : 0,
+      "uptime" : 169.90391408333335
+    },
+    {
+      "capturedFrames" : 9315840,
+      "droppedFrames" : 159425,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 638976,
+      "underrunFrames" : 0,
+      "uptime" : 170.47875275000001
+    },
+    {
+      "capturedFrames" : 9807360,
+      "droppedFrames" : 355466,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 670208,
+      "underrunFrames" : 0,
+      "uptime" : 170.98872433333335
+    },
+    {
+      "capturedFrames" : 10507776,
+      "droppedFrames" : 634820,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 717312,
+      "underrunFrames" : 0,
+      "uptime" : 171.55555062500002
+    },
+    {
+      "capturedFrames" : 11134464,
+      "droppedFrames" : 914629,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 757248,
+      "underrunFrames" : 0,
+      "uptime" : 172.13327375
+    },
+    {
+      "capturedFrames" : 11724288,
+      "droppedFrames" : 1133237,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 797184,
+      "underrunFrames" : 0,
+      "uptime" : 172.65355133333335
+    },
+    {
+      "capturedFrames" : 12461568,
+      "droppedFrames" : 1474093,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 844288,
+      "underrunFrames" : 0,
+      "uptime" : 173.21973945833335
+    },
+    {
+      "capturedFrames" : 13002240,
+      "droppedFrames" : 1643274,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 882176,
+      "underrunFrames" : 0,
+      "uptime" : 173.75666645833334
+    },
+    {
+      "capturedFrames" : 13739520,
+      "droppedFrames" : 2057765,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 926208,
+      "underrunFrames" : 0,
+      "uptime" : 174.32944295833335
+    },
+    {
+      "capturedFrames" : 14255616,
+      "droppedFrames" : 2289169,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 959488,
+      "underrunFrames" : 0,
+      "uptime" : 174.83111062500001
+    },
+    {
+      "capturedFrames" : 14889984,
+      "droppedFrames" : 2457769,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1005568,
+      "underrunFrames" : 0,
+      "uptime" : 175.36305704166668
+    },
+    {
+      "capturedFrames" : 15533568,
+      "droppedFrames" : 2701485,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1048064,
+      "underrunFrames" : 0,
+      "uptime" : 175.887423375
+    },
+    {
+      "capturedFrames" : 16084992,
+      "droppedFrames" : 2882427,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1086976,
+      "underrunFrames" : 0,
+      "uptime" : 176.39730158333333
+    },
+    {
+      "capturedFrames" : 16614912,
+      "droppedFrames" : 3064944,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1123328,
+      "underrunFrames" : 0,
+      "uptime" : 176.92033612500001
+    },
+    {
+      "capturedFrames" : 17278464,
+      "droppedFrames" : 3306140,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1168384,
+      "underrunFrames" : 0,
+      "uptime" : 177.44195729166668
+    },
+    {
+      "capturedFrames" : 17806848,
+      "droppedFrames" : 3537177,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1203200,
+      "underrunFrames" : 0,
+      "uptime" : 177.95471012500002
+    },
+    {
+      "capturedFrames" : 18445824,
+      "droppedFrames" : 3793856,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1245184,
+      "underrunFrames" : 0,
+      "uptime" : 178.46199816666669
+    },
+    {
+      "capturedFrames" : 19097088,
+      "droppedFrames" : 4022469,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1290240,
+      "underrunFrames" : 0,
+      "uptime" : 178.996876875
+    },
+    {
+      "capturedFrames" : 19711488,
+      "droppedFrames" : 4240703,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1333248,
+      "underrunFrames" : 0,
+      "uptime" : 179.53712283333334
+    },
+    {
+      "capturedFrames" : 20289024,
+      "droppedFrames" : 4427040,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1372672,
+      "underrunFrames" : 0,
+      "uptime" : 180.05743216666667
+    },
+    {
+      "capturedFrames" : 20928000,
+      "droppedFrames" : 4751513,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1411584,
+      "underrunFrames" : 0,
+      "uptime" : 180.61019816666669
+    },
+    {
+      "capturedFrames" : 21566976,
+      "droppedFrames" : 4932277,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1457152,
+      "underrunFrames" : 0,
+      "uptime" : 181.15400533333334
+    },
+    {
+      "capturedFrames" : 22139392,
+      "droppedFrames" : 5138446,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1496576,
+      "underrunFrames" : 0,
+      "uptime" : 181.68980091666668
+    },
+    {
+      "capturedFrames" : 22832640,
+      "droppedFrames" : 5355823,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1544704,
+      "underrunFrames" : 0,
+      "uptime" : 182.23383508333333
+    },
+    {
+      "capturedFrames" : 23459328,
+      "droppedFrames" : 5622720,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1585664,
+      "underrunFrames" : 0,
+      "uptime" : 182.79755075
+    },
+    {
+      "capturedFrames" : 24036864,
+      "droppedFrames" : 5853863,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1624064,
+      "underrunFrames" : 0,
+      "uptime" : 183.29903325000001
+    },
+    {
+      "capturedFrames" : 24614400,
+      "droppedFrames" : 6084832,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1662976,
+      "underrunFrames" : 0,
+      "uptime" : 183.86449158333335
+    },
+    {
+      "capturedFrames" : 25191936,
+      "droppedFrames" : 6291212,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1701888,
+      "underrunFrames" : 0,
+      "uptime" : 184.37531537500001
+    },
+    {
+      "capturedFrames" : 25892352,
+      "droppedFrames" : 6545689,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1749504,
+      "underrunFrames" : 0,
+      "uptime" : 184.90011325
+    },
+    {
+      "capturedFrames" : 26494464,
+      "droppedFrames" : 6714881,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1793024,
+      "underrunFrames" : 0,
+      "uptime" : 185.47457320833334
+    },
+    {
+      "capturedFrames" : 27158016,
+      "droppedFrames" : 6981562,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1836544,
+      "underrunFrames" : 0,
+      "uptime" : 185.98692783333334
+    },
+    {
+      "capturedFrames" : 27710976,
+      "droppedFrames" : 7139114,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1876480,
+      "underrunFrames" : 0,
+      "uptime" : 186.55287933333335
+    },
+    {
+      "capturedFrames" : 28472832,
+      "droppedFrames" : 7429711,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1927680,
+      "underrunFrames" : 0,
+      "uptime" : 187.12792879166668
+    },
+    {
+      "capturedFrames" : 29111808,
+      "droppedFrames" : 7598458,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 1973760,
+      "underrunFrames" : 0,
+      "uptime" : 187.68304575000002
+    },
+    {
+      "capturedFrames" : 29689344,
+      "droppedFrames" : 7821045,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 2012160,
+      "underrunFrames" : 0,
+      "uptime" : 188.259028
+    },
+    {
+      "capturedFrames" : 30365184,
+      "droppedFrames" : 8011042,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 2060288,
+      "underrunFrames" : 0,
+      "uptime" : 188.770077875
+    },
+    {
+      "capturedFrames" : 30918144,
+      "droppedFrames" : 8253025,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 2097152,
+      "underrunFrames" : 0,
+      "uptime" : 189.27306570833335
+    },
+    {
+      "capturedFrames" : 31562752,
+      "droppedFrames" : 8397071,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 2143744,
+      "underrunFrames" : 0,
+      "uptime" : 189.84745550000002
+    },
+    {
+      "capturedFrames" : 32110080,
+      "droppedFrames" : 8578823,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 2182144,
+      "underrunFrames" : 0,
+      "uptime" : 190.36445258333333
+    },
+    {
+      "capturedFrames" : 32736768,
+      "droppedFrames" : 8887016,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 2221056,
+      "underrunFrames" : 0,
+      "uptime" : 190.87169233333336
+    },
+    {
+      "capturedFrames" : 33314304,
+      "droppedFrames" : 9040761,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 2262016,
+      "underrunFrames" : 0,
+      "uptime" : 191.40041066666669
+    },
+    {
+      "capturedFrames" : 33990144,
+      "droppedFrames" : 9269977,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 2309120,
+      "underrunFrames" : 0,
+      "uptime" : 191.96248200000002
+    },
+    {
+      "capturedFrames" : 34629120,
+      "droppedFrames" : 9414115,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 2356224,
+      "underrunFrames" : 0,
+      "uptime" : 192.48223825000002
+    },
+    {
+      "capturedFrames" : 35218944,
+      "droppedFrames" : 9632170,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 2396672,
+      "underrunFrames" : 0,
+      "uptime" : 192.99529970833333
+    },
+    {
+      "capturedFrames" : 35835392,
+      "droppedFrames" : 9850510,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 2439168,
+      "underrunFrames" : 0,
+      "uptime" : 193.52737370833336
+    },
+    {
+      "capturedFrames" : 36472320,
+      "droppedFrames" : 10031731,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 2484224,
+      "underrunFrames" : 0,
+      "uptime" : 194.07137137500001
+    },
+    {
+      "capturedFrames" : 37049856,
+      "droppedFrames" : 10237488,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 2524160,
+      "underrunFrames" : 0,
+      "uptime" : 194.60506316666667
+    },
+    {
+      "capturedFrames" : 37664768,
+      "droppedFrames" : 10455700,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 2565632,
+      "underrunFrames" : 0,
+      "uptime" : 195.12740962500001
+    },
+    {
+      "capturedFrames" : 38303232,
+      "droppedFrames" : 10636805,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 2611200,
+      "underrunFrames" : 0,
+      "uptime" : 195.69339258333335
+    },
+    {
+      "capturedFrames" : 38954496,
+      "droppedFrames" : 10892048,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 2654208,
+      "underrunFrames" : 0,
+      "uptime" : 196.26078908333335
+    },
+    {
+      "capturedFrames" : 39581184,
+      "droppedFrames" : 11036050,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 2700288,
+      "underrunFrames" : 0,
+      "uptime" : 196.79288033333336
+    },
+    {
+      "capturedFrames" : 40220160,
+      "droppedFrames" : 11303167,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 2742272,
+      "underrunFrames" : 0,
+      "uptime" : 197.32484554166669
+    },
+    {
+      "capturedFrames" : 40797696,
+      "droppedFrames" : 11546018,
+      "oversizedBlocks" : 0,
+      "renderedFrames" : 2780160,
+      "underrunFrames" : 0,
+      "uptime" : 197.84823791666668
+    }
+  ],
+  "cpuCoreEquivalent" : 1.3955247638712582,
+  "cpuSeconds" : 45.127741,
+  "devices" : [
+    {
+      "inputChannels" : 8,
+      "outputChannels" : 8,
+      "sampleRate" : 48000,
+      "uid" : "RaveLink.ci-loopback_UID"
+    },
+    {
+      "inputChannels" : 8,
+      "outputChannels" : 8,
+      "sampleRate" : 48000,
+      "uid" : "RaveLink.ci-mix-a_UID"
+    },
+    {
+      "inputChannels" : 8,
+      "outputChannels" : 8,
+      "sampleRate" : 48000,
+      "uid" : "RaveLink.ci-mix-b_UID"
+    }
+  ],
+  "droppedFrames" : 11546018,
+  "evidence" : "Native device input routing on the named installed virtual devices; host-specific measured envelope",
+  "expandedRoutes" : 192,
+  "logicalProcessors" : 3,
+  "measuredSeconds" : 32.337470583333328,
+  "mixBuses" : 8,
+  "osVersion" : "Version 15.7.9 (Build 24G830)",
+  "oversizedBlocks" : 0,
+  "parentRoutes" : 96,
+  "physicalMemoryBytes" : 7516192768,
+  "physicalOutputs" : 2,
+  "processPeakRSSBytes" : 60489728,
+  "renderFrames" : 2553344,
+  "startupDroppedFrames" : 0,
+  "startupUnderrunFrames" : 0,
+  "underrunFrames" : 0,
+  "visibleInputGroups" : 12,
+  "warmupSeconds" : 3
+}
