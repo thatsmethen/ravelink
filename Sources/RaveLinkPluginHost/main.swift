@@ -8,7 +8,7 @@ import Darwin
 let responseHandle = FileHandle(fileDescriptor: dup(STDOUT_FILENO), closeOnDealloc: true)
 _ = dup2(STDERR_FILENO, STDOUT_FILENO)
 
-struct ComponentID: Codable {
+struct ComponentID: Codable, Equatable {
     let type: UInt32
     let subtype: UInt32
     let manufacturer: UInt32
@@ -23,6 +23,11 @@ struct Request: Decodable {
     let expectedVersion: UInt32?
     let sampleRate: Double?
     let channels: UInt32?
+    let samples: [Float]?
+    let parameters: [ParameterSetting]?
+    let state: UnitState?
+    let bypassed: Bool?
+    let blockFrames: UInt32?
 }
 
 func emit(_ value: [String: Any], exitCode: Int32 = 0) -> Never {
@@ -162,7 +167,7 @@ do {
     var requestBytes = Data()
     while let chunk = try FileHandle.standardInput.read(upToCount: 4096), !chunk.isEmpty {
         requestBytes.append(chunk)
-        guard requestBytes.count <= 16_384 else { failure("unknown", "invalid_request", "Request is too large.") }
+        guard requestBytes.count <= 2 * 1024 * 1024 else { failure("unknown", "invalid_request", "Request is too large.") }
     }
     let request = try JSONDecoder().decode(Request.self, from: requestBytes)
     guard request.protocolVersion == 1 else { failure(request.operation, "unsupported_protocol", "Unsupported helper protocol version.") }
@@ -173,6 +178,10 @@ do {
     if request.operation == "probe" {
         do { try probe(request) }
         catch { failure("probe", "probe_failed", error.localizedDescription) }
+    }
+    if request.operation == "render" {
+        do { try render(request) }
+        catch { failure("render", "render_failed", error.localizedDescription) }
     }
     failure(request.operation, "unsupported_operation", "The helper does not support this operation.")
 } catch {

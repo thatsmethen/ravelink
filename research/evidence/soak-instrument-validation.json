@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-10-23T13:58:04.455280+00:00",
+  "scope": "Instrument-only checks; no local installed-HAL I/O or driver installation",
+  "cCompile": "clang -std=c11 -O2 -Wall -Wextra: pass",
+  "callbackContract": "Synthetic eight-channel capture/feeder ordering, frame bounds, timestamp flags: plain and UBSan executions passed",
+  "pythonControls": {
+    "loopback": 15,
+    "matrix": 16,
+    "deviceSoak": 13,
+    "result": "44 passed"
+  },
+  "swiftSoak": "Compiled; disabled opt-in test skipped locally",
+  "asanAttempt": {
+    "result": "unavailable: process produced no output before timeout",
+    "attemptsSeconds": [
+      10,
+      20
+    ],
+    "detectLeaksDisabledSecondAttempt": true,
+    "interpretation": "No ASan coverage claimed; plain callback contract is the default. ASan/UBSan combined contract is opt-in through RAVELINK_TEST_PROBE_SANITIZER=1; UBSan-only execution separately passed. Does not establish instrument or product memory safety."
+  },
+  "runtimeScope": "Actual 12-group/24-source/eight-mix routing evidence requires a passing disposable CI run with raw captures and all reports."
+}

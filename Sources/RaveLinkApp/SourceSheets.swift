@@ -4,13 +4,14 @@ import RaveLinkAudio
 
 struct InputSheet: View {
     @ObservedObject var studio: StudioModel
-    @ObservedObject var audio: AudioCoordinator
+    @ObservedObject var audio: EngineClient
     @Environment(\.dismiss) private var dismiss
     @State private var kind: SourceKind = .device
     @State private var name = ""
     @State private var deviceUID = ""
     @State private var bundleID = ""
     @State private var channelOffset = 0
+    @State private var validationError: String?
     private var valid: Bool { (kind == .device && !deviceUID.isEmpty) || (kind == .application && !bundleID.isEmpty) || kind == .system || kind == .tone }
     var body: some View {
         VStack(alignment: .leading, spacing: 22) {
@@ -52,7 +53,8 @@ struct InputSheet: View {
                 }
             }.frame(minHeight: 80, alignment: .top)
             if studio.sourceTarget == nil { TextField("Name (optional)", text: $name).textFieldStyle(.roundedBorder) }
-            HStack { Button("Cancel") { dismiss() }.keyboardShortcut(.cancelAction); Spacer(); Button(studio.sourceReplacement == nil ? "Add input" : "Use source") { add() }.buttonStyle(AccentButtonStyle()).disabled(!valid).keyboardShortcut(.defaultAction) }
+            if let validationError { Text(validationError).font(.callout).foregroundStyle(.orange).fixedSize(horizontal: false, vertical: true) }
+            HStack { Button("Cancel") { dismiss() }.keyboardShortcut(.cancelAction); Spacer(); Button(studio.sourceReplacement != nil ? "Use source" : (studio.sourceTarget == nil ? "Add input" : "Add source")) { add() }.buttonStyle(AccentButtonStyle()).disabled(!valid).keyboardShortcut(.defaultAction) }
         }.padding(30).frame(width: 560)
         .onAppear {
             if let target = studio.sourceTarget, let slot = studio.sourceReplacement,
@@ -73,16 +75,20 @@ struct InputSheet: View {
         case .system: suggested = "System audio"
         case .tone: suggested = "Test tone"
         }
-        studio.add(MixerChannel(name: name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? suggested : name, source: InputSource(kind: kind, deviceUID: deviceUID.isEmpty ? nil : deviceUID, bundleID: bundleID.isEmpty ? nil : bundleID, channelOffset: channelOffset)))
-        dismiss()
+        let source = InputSource(kind: kind, deviceUID: deviceUID.isEmpty ? nil : deviceUID, bundleID: bundleID.isEmpty ? nil : bundleID, channelOffset: channelOffset).canonicalized
+        do {
+            try studio.add(MixerChannel(name: name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? suggested : name, source: source))
+            dismiss()
+        } catch { validationError = error.localizedDescription }
     }
 }
 struct MixSheet: View {
     @ObservedObject var studio: StudioModel
-    @ObservedObject var audio: AudioCoordinator
+    @ObservedObject var audio: EngineClient
     @Environment(\.dismiss) private var dismiss
     @State private var name = ""
     @State private var deviceUID: String?
+    @State private var validationError: String?
     var body: some View {
         VStack(alignment: .leading, spacing: 22) {
             Text("Add a mix").font(.title2.weight(.semibold))
@@ -90,36 +96,47 @@ struct MixSheet: View {
             TextField("Mix name", text: $name).textFieldStyle(.roundedBorder)
             Picker("Output", selection: $deviceUID) {
                 Text("Choose later").tag(nil as String?)
-                ForEach(audio.devices.filter { $0.outputChannels > 0 }) { Text($0.name).tag(Optional($0.id)) }
+                ForEach(audio.devices.filter { $0.outputChannels > 1 }) { Text($0.name).tag(Optional($0.id)) }
             }
             Text("For a streaming or chat app, choose a virtual device such as RaveLink Stream or BlackHole. For listening, choose your headphones.").font(.caption).foregroundStyle(.secondary)
-            HStack { Button("Cancel") { dismiss() }.keyboardShortcut(.cancelAction); Spacer(); Button("Add mix") { studio.add(MixBus(name: name, deviceUID: deviceUID)); dismiss() }.buttonStyle(AccentButtonStyle()).disabled(name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty).keyboardShortcut(.defaultAction) }
+            if let validationError { Text(validationError).font(.callout).foregroundStyle(.orange).fixedSize(horizontal: false, vertical: true) }
+            HStack { Button("Cancel") { dismiss() }.keyboardShortcut(.cancelAction); Spacer(); Button("Add mix") {
+                do { try studio.add(MixBus(name: name, deviceUID: deviceUID)); dismiss() }
+                catch { validationError = error.localizedDescription }
+            }.buttonStyle(AccentButtonStyle()).disabled(name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty).keyboardShortcut(.defaultAction) }
         }.padding(30).frame(width: 500)
     }
 }
 
 struct MonitorOutputsSheet: View {
     @ObservedObject var studio: StudioModel
-    @ObservedObject var audio: AudioCoordinator
+    @ObservedObject var audio: EngineClient
     @Environment(\.dismiss) private var dismiss
     @State private var selectedUID = ""
     @State private var offset = 0
+    @State private var validationError: String?
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             Text("Additional outputs").font(.title2.weight(.semibold))
             Text("Play the same mix on more than one device. All destinations follow this mix’s level and mute controls.").foregroundStyle(.secondary)
-            if let index = studio.session.buses.firstIndex(where: { $0.id == studio.outputTarget }) {
-                Text(studio.session.buses[index].name).font(.headline)
-                let outputs = studio.session.buses[index].additionalOutputs
+            if let bus = studio.session.buses.first(where: { $0.id == studio.outputTarget }) {
+                Text(bus.name).font(.headline)
+                let outputs = bus.additionalOutputs
                 if outputs.isEmpty { Text("No additional outputs yet.").font(.callout).foregroundStyle(.secondary) }
-                ForEach(outputs.indices, id: \.self) { slot in
-                    HStack {
-                        Image(systemName: "speaker.wave.2")
-                        Text(audio.devices.first(where: { $0.id == outputs[slot].deviceUID })?.name ?? "Missing device")
-                        Text("\(outputs[slot].channelOffset + 1)–\(outputs[slot].channelOffset + 2)").foregroundStyle(.secondary)
-                        Spacer()
-                        Button("Remove") { studio.session.buses[index].additionalOutputs.remove(at: slot) }
-                    }
+                if !outputs.isEmpty {
+                    ScrollView {
+                        VStack(spacing: 12) {
+                            ForEach(Array(outputs.enumerated()), id: \.offset) { _, output in
+                                HStack {
+                                    Image(systemName: "speaker.wave.2")
+                                    Text(audio.devices.first(where: { $0.id == output.deviceUID })?.name ?? "Missing device")
+                                    Text("\(output.channelOffset + 1)–\(output.channelOffset + 2)").foregroundStyle(.secondary)
+                                    Spacer()
+                                    Button("Remove") { studio.removeOutput(output, from: bus.id) }
+                                }
+                            }
+                        }
+                    }.frame(height: min(CGFloat(outputs.count) * 38, 228))
                 }
                 Divider()
                 Picker("Device", selection: $selectedUID) {
@@ -131,9 +148,13 @@ struct MonitorOutputsSheet: View {
                         ForEach(Array(stride(from: 0, to: device.outputChannels - 1, by: 2)), id: \.self) { value in Text("\(value + 1)–\(value + 2)").tag(value) }
                     }
                 }
-                let duplicate = (studio.session.buses[index].deviceUID == selectedUID && studio.session.buses[index].channelOffset == offset) || outputs.contains { $0.deviceUID == selectedUID && $0.channelOffset == offset }
+                let duplicate = bus.allOutputs.contains { $0.deviceUID == selectedUID && abs($0.channelOffset - offset) < 2 }
+                if let validationError { Text(validationError).font(.callout).foregroundStyle(.orange).fixedSize(horizontal: false, vertical: true) }
                 HStack {
-                    Button("Add output") { studio.session.buses[index].additionalOutputs.append(MixDestination(deviceUID: selectedUID, channelOffset: offset)); selectedUID = "" }.disabled(selectedUID.isEmpty || duplicate)
+                    Button("Add output") {
+                        do { try studio.addOutput(MixDestination(deviceUID: selectedUID, channelOffset: offset), to: bus.id); selectedUID = ""; validationError = nil }
+                        catch { validationError = error.localizedDescription }
+                    }.disabled(selectedUID.isEmpty || duplicate)
                     Spacer()
                     Button("Done") { dismiss() }.keyboardShortcut(.defaultAction)
                 }

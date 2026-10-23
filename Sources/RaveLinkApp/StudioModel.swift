@@ -16,7 +16,7 @@ import RaveLinkAudio
     @Published var showingOutputs = false
     @Published var showingSettings = false
     @Published var showingDiagnostics = false
-    let audio = AudioCoordinator()
+    let audio = EngineClient()
     private let store = SessionStore.standard
     private var pending: Task<Void, Never>?
     private var allowsOverwrite = true
@@ -37,7 +37,6 @@ import RaveLinkAudio
                 }
             }
         } else { session = .initial }
-        audio.refreshDevices()
     }
     private func audioSnapshot(_ value: MixerSession) -> MixerSession {
         var snapshot = value
@@ -49,7 +48,7 @@ import RaveLinkAudio
     private func scheduleSave(previous: MixerSession) {
         pending?.cancel()
         if allowsOverwrite { saveStatus = "Saving…" }
-        if audio.running && audioSnapshot(previous) != audioSnapshot(session) {
+        if (audio.running || audio.starting) && audioSnapshot(previous) != audioSnapshot(session) {
             do { try audio.update(session: audioSnapshot(session)) }
             catch { notice = error.localizedDescription }
         }
@@ -71,17 +70,96 @@ import RaveLinkAudio
     func beginInput(target: UUID? = nil, replacing: Int? = nil) {
         sourceTarget = target; sourceReplacement = replacing; showingInput = true
     }
-    func add(_ input: MixerChannel) {
-        if let target = sourceTarget, let i = session.channels.firstIndex(where: { $0.id == target }) {
-            if let slot = sourceReplacement {
-                if slot == 0 { session.channels[i].source = input.source }
-                else if session.channels[i].additionalSources.indices.contains(slot - 1) { session.channels[i].additionalSources[slot - 1] = input.source }
-            } else { session.channels[i].additionalSources.append(input.source) }
-            selectedChannel = target
-        } else { session.addChannel(input); selectedChannel = nil }
+    /// Publish structural edits once, only after the entire candidate is valid.
+    private func editValidated(_ edit: (inout MixerSession) throws -> Void) throws {
+        var candidate = session
+        try edit(&candidate)
+        session = try candidate.validated()
     }
-    func add(_ bus: MixBus) { session.addBus(bus) }
-    func removeChannel(_ id: UUID) { if selectedChannel == id { selectedChannel = nil }; session.removeChannel(id) }
+    func add(_ input: MixerChannel) throws {
+        try editValidated { candidate in
+            if let target = sourceTarget {
+                guard let i = candidate.channels.firstIndex(where: { $0.id == target }) else {
+                    throw SessionError.invalid("This input was removed. Close this sheet and choose another input.")
+                }
+                if let slot = sourceReplacement {
+                    if slot == 0 { candidate.channels[i].source = input.source.canonicalized }
+                    else if candidate.channels[i].additionalSources.indices.contains(slot - 1) {
+                        candidate.channels[i].additionalSources[slot - 1] = input.source.canonicalized
+                    } else { throw SessionError.invalid("This source was removed. Close this sheet and choose another source.") }
+                } else { candidate.channels[i].additionalSources.append(input.source.canonicalized) }
+            } else {
+                var channel = input
+                channel.source = channel.source.canonicalized
+                channel.additionalSources = channel.additionalSources.map(\.canonicalized)
+                candidate.addChannel(channel)
+            }
+        }
+        selectedChannel = sourceTarget
+    }
+    func add(_ bus: MixBus) throws { try editValidated { $0.addBus(bus) } }
+    func removeChannel(_ id: UUID) {
+        if selectedChannel == id { selectedChannel = nil }
+        var candidate = session; candidate.removeChannel(id); session = candidate
+    }
+    func moveChannel(_ id: UUID, by distance: Int) {
+        var candidate = session
+        if candidate.moveChannel(id, by: distance) { session = candidate }
+    }
+    func moveBus(_ id: UUID, by distance: Int) {
+        var candidate = session
+        if candidate.moveBus(id, by: distance) { session = candidate }
+    }
+    func removeBus(_ id: UUID) {
+        var candidate = session; candidate.removeBus(id); session = candidate
+    }
+    func removeSource(_ source: InputSource, from channelID: UUID) {
+        var candidate = session
+        guard let i = candidate.channels.firstIndex(where: { $0.id == channelID }),
+              candidate.channels[i].allSources.count > 1 else { return }
+        if candidate.channels[i].source == source {
+            candidate.channels[i].source = candidate.channels[i].additionalSources.removeFirst()
+        } else if let slot = candidate.channels[i].additionalSources.firstIndex(of: source) {
+            candidate.channels[i].additionalSources.remove(at: slot)
+        } else { return }
+        session = candidate
+    }
+    func setPrimaryOutput(_ uid: String?, on busID: UUID) throws {
+        try editValidated { candidate in
+            guard let i = candidate.buses.firstIndex(where: { $0.id == busID }) else { return }
+            candidate.buses[i].deviceUID = uid
+            candidate.buses[i].channelOffset = 0
+        }
+    }
+    func setOutputPair(_ offset: Int, on busID: UUID) throws {
+        try editValidated { candidate in
+            guard let i = candidate.buses.firstIndex(where: { $0.id == busID }) else { return }
+            candidate.buses[i].channelOffset = offset
+        }
+    }
+    func addOutput(_ output: MixDestination, to busID: UUID) throws {
+        try editValidated { candidate in
+            guard let i = candidate.buses.firstIndex(where: { $0.id == busID }) else {
+                throw SessionError.invalid("This mix was removed. Close this sheet and choose another mix.")
+            }
+            candidate.buses[i].additionalOutputs.append(output)
+        }
+    }
+    func removeOutput(_ output: MixDestination, from busID: UUID) {
+        var candidate = session
+        guard let i = candidate.buses.firstIndex(where: { $0.id == busID }),
+              let slot = candidate.buses[i].additionalOutputs.firstIndex(of: output) else { return }
+        candidate.buses[i].additionalOutputs.remove(at: slot)
+        session = candidate
+    }
+    func editAudioUnits(on channelID: UUID, _ edit: (inout [AudioUnitEffectSlot]) throws -> Void) throws {
+        try editValidated { candidate in
+            guard let channel = candidate.channels.firstIndex(where: { $0.id == channelID }) else {
+                throw SessionError.invalid("This input was removed. Close the effect editor and choose another input.")
+            }
+            try edit(&candidate.channels[channel].audioUnitEffects)
+        }
+    }
     func exportSession() {
         let panel = NSSavePanel(); panel.nameFieldStringValue = session.name + ".ravelink.json"; panel.allowedContentTypes = [.json]
         guard panel.runModal() == .OK, let url = panel.url else { return }

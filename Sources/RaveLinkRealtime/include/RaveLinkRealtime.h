@@ -42,6 +42,11 @@ AudioDeviceIOProc rl_capture_io_proc(void);
 RLRender *rl_render_create(double sampleRate, uint32_t maxFrames,
                            uint32_t sourceCount, uint32_t busCount);
 void rl_render_destroy(RLRender *render);
+// Install only while stopped. Context must outlive every callback. A nonzero
+// return permanently latches silence for this graph until explicit rebuild.
+typedef int32_t (*RLGroupProcessor)(void *context, uint32_t sourceIndex, float *stereo, uint32_t frames);
+void rl_render_set_group_processor(RLRender *render, RLGroupProcessor processor, void *context);
+int32_t rl_render_processor_error(RLRender *render);
 void rl_render_set_source(RLRender *render, uint32_t index, RLRing *ring,
                           double inputSampleRate, bool tone);
 // Configure while callbacks are stopped. Leaders must be direct roots; invalid

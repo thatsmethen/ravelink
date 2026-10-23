@@ -12,6 +12,9 @@ jobs:
       - name: Swift toolchain
         run: swift --version
       - name: Deterministic tests
+        env:
+          RAVELINK_PLUGIN_RENDER_APPLE: '1'
+          RAVELINK_PLUGIN_PROBE_APPLE: '1'
         run: scripts/test.sh
       - name: Driver source and bundle tests
         run: python3 -m unittest discover -s Drivers/tests -p 'test_*.py' -v
@@ -33,7 +36,9 @@ jobs:
           sw_vers
           uname -m
       - name: Build isolated test device
-        run: python3 scripts/virtual-devices.py build --device ci-loopback:CILoopback --output build/ci-drivers
+        run: |
+          python3 scripts/virtual-devices.py build --channels 8 --device ci-loopback:CILoopback --device ci-mix-a:CIMixA --device ci-mix-b:CIMixB --output build/ci-drivers
+          shasum -a 256 build/ci-drivers/*.driver/Contents/MacOS/* > build/driver-binary-sha256.txt
       - name: Install into disposable runner
         run: |
           sudo python3 scripts/virtual-devices.py install build/ci-drivers/*.driver
@@ -47,6 +52,7 @@ jobs:
           RAVELINK_LOOPBACK_DEVICE_UID: RaveLink.ci-loopback_UID
         run: |
           set -o pipefail
+          rm -f build/receiver-ready
           python3 scripts/audio-device-probe.py --list > build/installed-devices.txt
           python3 scripts/audio-device-probe.py --uid RaveLink.ci-loopback_UID --capture-seconds 12 --wav build/independent-loopback.wav --ready-file build/receiver-ready --timeout 25 > build/receiver.log 2>&1 &
           receiver_pid=$!
@@ -60,6 +66,33 @@ jobs:
           scripts/test.sh --skip-build --filter testBlackHoleLoopbackAndLiveBusControls 2>&1 | tee build/installed-driver-test.log
           wait "$receiver_pid"
           python3 scripts/verify-loopback.py build/independent-loopback.wav | tee build/independent-loopback.json
+      - name: Independent simultaneous mix control recordings
+        env:
+          RAVELINK_TEST_MATRIX: '1'
+          RAVELINK_MATRIX_A_UID: RaveLink.ci-mix-a_UID
+          RAVELINK_MATRIX_B_UID: RaveLink.ci-mix-b_UID
+        run: |
+          set -o pipefail
+          rm -f build/matrix-a-ready build/matrix-b-ready
+          python3 scripts/audio-device-probe.py --uid RaveLink.ci-mix-a_UID --capture-seconds 24 --wav build/matrix-a.wav --ready-file build/matrix-a-ready --timeout 40 > build/matrix-a-recorder.log 2>&1 &
+          receiver_a=$!
+          python3 scripts/audio-device-probe.py --uid RaveLink.ci-mix-b_UID --capture-seconds 24 --wav build/matrix-b.wav --ready-file build/matrix-b-ready --timeout 40 > build/matrix-b-recorder.log 2>&1 &
+          receiver_b=$!
+          trap 'kill "$receiver_a" "$receiver_b" 2>/dev/null || true; wait "$receiver_a" 2>/dev/null || true; wait "$receiver_b" 2>/dev/null || true' EXIT
+          for attempt in {1..15}; do
+            if [ -f build/matrix-a-ready ] && [ -f build/matrix-b-ready ]; then break; fi
+            kill -0 "$receiver_a" && kill -0 "$receiver_b"
+            sleep 1
+          done
+          test -f build/matrix-a-ready && test -f build/matrix-b-ready
+          scripts/test.sh --skip-build --filter installedIndependentMixControlSequence 2>&1 | tee build/matrix-test.log
+          wait "$receiver_a"
+          wait "$receiver_b"
+          python3 scripts/verify-matrix.py build/matrix-a.wav build/matrix-b.wav | tee build/matrix-analysis.json
+      - name: Grouped real input and eight mix soak
+        env:
+          RAVELINK_TEST_DEVICE_SOAK: '1'
+        run: scripts/run-device-soak.sh
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -69,8 +102,15 @@ jobs:
             build/installed-devices.txt
             build/receiver.log
             build/independent-loopback.*
+            build/matrix-*.wav
+            build/matrix-*.log
+            build/matrix-analysis.json
+            build/driver-binary-sha256.txt
+            build/soak-*.wav
+            build/soak-*.json
+            build/soak-*.log
             build/ci-drivers/manifest.json
             build/ci-drivers/*.driver/Contents/Resources/build-info.json
       - name: Remove test device
         if: always()
-        run: sudo python3 scripts/virtual-devices.py uninstall ci-loopback
+        run: sudo python3 scripts/virtual-devices.py uninstall ci-loopback ci-mix-a ci-mix-b

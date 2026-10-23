@@ -1,0 +1,51 @@
+{
+  "recorded_at": "2026-10-23T13:38:53.297967+00:00",
+  "scope": "Native macOS SwiftUI UI transitions, audio stopped throughout; no permission changes or capture",
+  "baseline": "Checkpoint 597be4d GUI before these changes",
+  "baseline_failure": {
+    "sequence": [
+      "Create disposable fourth mix UI Audit Temporary",
+      "Focus name field and edit",
+      "Open Additional outputs and close it",
+      "Select its More > Remove mix"
+    ],
+    "observed": "CUA noWindowsAvailable; app absent from running-app inventory and pgrep. Persisted fourth mix remained. No OS crash report observed."
+  },
+  "fixed_build": {
+    "configuration": "debug",
+    "application": "build/RaveLink.app",
+    "executable_sha256": "43f39e4d847829f8b4639045308e8deffbeb62f8fbfe96ca9423b6a10d190ef3"
+  },
+  "native_regressions": [
+    {
+      "case": "focused mix removal after sheet transition",
+      "result": "pass",
+      "evidence": "Same persisted disposable mix edited while focused, Additional outputs opened and closed, Remove mix selected. Window remained present; footer Audio stopped Saved locally 1 inputs 3 mixes. File contains only original three mixes."
+    },
+    {
+      "case": "duplicate grouped source draft",
+      "result": "pass",
+      "evidence": "Existing Test tone > Effects > Add source > Test tone > Add source showed inline duplicate-source error and retained sheet. Cancel preserved exactly one original source and three routes."
+    },
+    {
+      "case": "mix reordering",
+      "result": "pass",
+      "evidence": "Voice chat moved left, Stream active route followed its stable mix ID to third column. Moved Voice chat right; original order and Stream enabled route restored."
+    }
+  ],
+  "core_tests": "28 tests passed across SourceIdentityAndOrderTests, ExpandedRoutingTests, ReviewTests, SessionTests",
+  "not_exercised": [
+    "Live audio changes during these UI transitions",
+    "Output pair 3-4 to stereo device transition: no multichannel output available in current UI inventory",
+    "Large monitor list scroll behavior"
+  ],
+  "saved_state": {
+    "mixes": [
+      "Personal",
+      "Stream",
+      "Voice chat"
+    ],
+    "inputs": 1,
+    "routes": 3
+  }
+}

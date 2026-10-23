@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "observedAtUTC": "2026-10-23T13:41:51.630288+00:00",
+  "host": {
+    "version": "27.0",
+    "build": "26A5406e",
+    "architecture": "arm64"
+  },
+  "unit": {
+    "component": {
+      "manufacturer": 1634758764,
+      "subtype": 1819112562,
+      "type": 1635083896
+    },
+    "flags": 2,
+    "name": "Apple: AUPeakLimiter",
+    "version": 67072
+  },
+  "stimulus": {
+    "frames": 8192,
+    "channels": 2,
+    "sampleRate": 48000,
+    "frequenciesHz": [
+      317,
+      719
+    ],
+    "peakAmplitudes": [
+      0.01,
+      0.015
+    ],
+    "parameterAddress": 2,
+    "parameterValue": 20,
+    "blockFrames": 257
+  },
+  "expectedDSP": "below-threshold input times 10 (20 dB pre-gain), shifted by reported unit latency",
+  "result": {
+    "reportedLatencyFrames": 96,
+    "maxAbsoluteErrorAfterFrame1024": 0.0,
+    "stateRestorationBitExact": true,
+    "hostBypassBitExact": true,
+    "stateBytes": 175
+  },
+  "tests": {
+    "passed": 12,
+    "failed": 0,
+    "durationSeconds": 2.213,
+    "command": "RAVELINK_PLUGIN_RENDER_APPLE=1 RAVELINK_PLUGIN_PROBE_APPLE=1 scripts/test.sh --filter 'PluginCatalogTests|PluginRenderTests'"
+  },
+  "evidenceBoundary": "One Apple unit in bounded offline helper. No live-engine callback, device, third-party compatibility or real-time scheduling qualification.",
+  "sourceSHA256": {
+    "Sources/RaveLinkPluginHost/Render.swift": "f9a1de447e9c78ecc656b1dbee758bb9f58cd46fc35c3aa467c3d2068a277dce",
+    "Sources/RaveLinkPluginHost/main.swift": "73fee38d90a639560fab1c104fe99680ea35c511b84b337bdd063bdae537347b",
+    "Sources/RaveLinkAudio/PluginRender.swift": "2c9c74f5cdf872b3971da65b3905040c493f7f4d50d7e770680d62e20de60850",
+    "Sources/RaveLinkAudio/PluginCatalog.swift": "7943642a9286679ca8bc6fd1fc98fc196a100dc76123faa9f26e8f5855575e53",
+    "Tests/RaveLinkAudioTests/PluginRenderTests.swift": "8d85ac8b71b479daece3c840e5f9dc956c0b7fd9de1988990f3d594c9723ca3d"
+  }
+}

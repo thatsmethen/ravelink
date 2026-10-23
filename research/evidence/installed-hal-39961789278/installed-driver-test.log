@@ -1,0 +1,10 @@
+[0/1] Planning build
+◇ Test run started.
+↳ Testing Library Version: 124.4
+↳ Target Platform: arm64e-apple-macos14.0
+◇ Suite AudioCoordinatorTests started.
+◇ Test testBlackHoleLoopbackAndLiveBusControls() started.
+VIRTUAL_DRIVER_LIVE_EVIDENCE uid=RaveLink.ci-loopback_UID rate=48000.0 unityPeak=0.12589067 minus12dBPeak=0.031622972 mutedPeak=2.5e-44 capturedFrames=97792 renderedFrames=97280 droppedFrames=0 underrunFrames=0
+✔ Test testBlackHoleLoopbackAndLiveBusControls() passed after 4.677 seconds.
+✔ Suite AudioCoordinatorTests passed after 4.677 seconds.
+✔ Test run with 1 test passed after 4.677 seconds.

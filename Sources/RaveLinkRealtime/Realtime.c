@@ -258,6 +258,8 @@ struct RLRender {
     RLSource *sources; RLBus *buses; RLSend *sends;
     float *sourceScratch, *groupScratch, *busScratch;
     _Atomic uint64_t frames, oversized;
+    RLGroupProcessor processor; void *processorContext;
+    _Atomic int32_t processorError;
 };
 RLRender *rl_render_create(double rate, uint32_t maxFrames, uint32_t sourceCount, uint32_t busCount) {
     if (!atomics_supported() || !maxFrames || !isfinite(rate) || rate < 8000) return NULL;
@@ -268,6 +270,8 @@ RLRender *rl_render_create(double rate, uint32_t maxFrames, uint32_t sourceCount
         (size_t)maxFrames > SIZE_MAX / 2 / sizeof(float) / sources ||
         (size_t)maxFrames > SIZE_MAX / 2 / sizeof(float) / buses) return NULL;
     RLRender *r = calloc(1, sizeof(*r)); if (!r) return NULL;
+    atomic_init(&r->processorError, 0);
+    if (!atomic_is_lock_free(&r->processorError)) { free(r); return NULL; }
     r->sampleRate = rate; r->maxFrames = maxFrames; r->sourceCount = sourceCount; r->busCount = busCount;
     r->sources = calloc(sourceCount ? sourceCount : 1, sizeof(RLSource));
     r->buses = calloc(busCount ? busCount : 1, sizeof(RLBus));
@@ -288,6 +292,10 @@ void rl_render_destroy(RLRender *r) {
     if (r->sources) for (uint32_t i = 0; i < r->sourceCount; i++) rl_dsp_destroy(r->sources[i].dsp);
     free(r->sources); free(r->buses); free(r->sends); free(r->sourceScratch); free(r->groupScratch); free(r->busScratch); free(r);
 }
+void rl_render_set_group_processor(RLRender *r, RLGroupProcessor processor, void *context) {
+    if (!r) return; r->processor = processor; r->processorContext = context;
+}
+int32_t rl_render_processor_error(RLRender *r) { return r ? atomic_load(&r->processorError) : 0; }
 void rl_render_set_source(RLRender *r, uint32_t i, RLRing *ring, double inputRate, bool tone) {
     if (!r || i >= r->sourceCount) return;
     r->sources[i].ring = ring; r->sources[i].ratio = inputRate / r->sampleRate; r->sources[i].tone = tone;
@@ -329,6 +337,7 @@ OSStatus rl_render_callback(AudioObjectID device, const AudioTimeStamp *now, con
     RLRender *r = context; if (!r || !output) return noErr;
     uint32_t frames = list_frames(output);
     for (uint32_t b = 0; b < output->mNumberBuffers; b++) if (output->mBuffers[b].mData) memset(output->mBuffers[b].mData, 0, output->mBuffers[b].mDataByteSize);
+    if (atomic_load(&r->processorError)) return noErr;
     if (frames > r->maxFrames) { atomic_fetch_add(&r->oversized, 1); return noErr; }
     memset(r->busScratch, 0, (size_t)frames * 2 * r->busCount * sizeof(float));
     memset(r->groupScratch, 0, (size_t)frames * 2 * r->sourceCount * sizeof(float));
@@ -355,6 +364,10 @@ OSStatus rl_render_callback(AudioObjectID device, const AudioTimeStamp *now, con
         if (src->leader != s) continue;
         float *group = r->groupScratch + (size_t)s * frames * 2;
         rl_dsp_process(src->dsp, group, frames);
+        if (r->processor) {
+            int32_t status = r->processor(r->processorContext, s, group, frames);
+            if (status) { atomic_store(&r->processorError, status); return noErr; }
+        }
         float peak = 0;
         for (size_t sample = 0; sample < (size_t)frames * 2; sample++) peak = fmaxf(peak, fabsf(group[sample]));
         peak_store(&src->peak, peak);

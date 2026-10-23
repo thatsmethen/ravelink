@@ -1,0 +1,44 @@
+[0/1] Planning build
+Building for debugging...
+[0/9] Write sources
+[1/9] Write swift-version--1AB21518FC5DEDBE.txt
+[3/5] Emitting module RaveLinkAudioTests
+[4/5] Compiling RaveLinkAudioTests EngineClientTests.swift
+[4/6] Write Objects.LinkFileList
+[5/6] Linking RaveLinkPackageTests
+Build complete! (1.63s)
+􀟈  Test run started.
+􀄵  Testing Library Version: 1400
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite EngineClientTests started.
+􀟈  Suite EngineProtocolTests started.
+􀟈  Test boundsPartialLinesAndRejectsVersionMismatch() started.
+􀟈  Test rejectsContradictoryAndNonfiniteState() started.
+􀟈  Test discoveryTimeoutKillsAndReapsUncooperativeChild() started.
+􁁛  Test rejectsContradictoryAndNonfiniteState() passed after 0.001 seconds.
+􁁛  Test boundsPartialLinesAndRejectsVersionMismatch() passed after 0.030 seconds.
+􁁛  Suite EngineProtocolTests passed after 0.030 seconds.
+􁁛  Test discoveryTimeoutKillsAndReapsUncooperativeChild() passed after 1.769 seconds.
+􀟈  Test abruptExitDoesNotRaiseSIGPIPEInClient() started.
+􁁛  Test abruptExitDoesNotRaiseSIGPIPEInClient() passed after 0.290 seconds.
+􀟈  Test malformedFloodIsBoundedAndChildReaped() started.
+􁁛  Test malformedFloodIsBoundedAndChildReaped() passed after 0.632 seconds.
+􀟈  Test stopHasIndependentDeadlineAndReapsHungHelper() started.
+􁁛  Test stopHasIndependentDeadlineAndReapsHungHelper() passed after 0.757 seconds.
+􀟈  Test startHasHardRoutingDeadline() started.
+􁁛  Test startHasHardRoutingDeadline() passed after 1.761 seconds.
+􀟈  Test staleTelemetryCannotRestartStoppedSession() started.
+􁁛  Test staleTelemetryCannotRestartStoppedSession() passed after 0.447 seconds.
+􀟈  Test editDuringStartReplacesOldProcessWithLatestSession() started.
+􁁛  Test editDuringStartReplacesOldProcessWithLatestSession() passed after 0.108 seconds.
+􀟈  Test sustainedControlInputSendsUpdatesBeforeProducerStops() started.
+􁁛  Test sustainedControlInputSendsUpdatesBeforeProducerStops() passed after 0.574 seconds.
+􀟈  Test pendingReplacementCoalescesRapidStartEdits() started.
+􁁛  Test pendingReplacementCoalescesRapidStartEdits() passed after 0.403 seconds.
+􀟈  Test realHelperExitsWhenParentControlPipeCloses() started.
+􁁛  Test realHelperExitsWhenParentControlPipeCloses() passed after 0.310 seconds.
+􀟈  Test realSilentOutputThroughSupervisedProcess() started.
+SUPERVISED_SILENT_OUTPUT uid=BuiltInSpeakerDevice frames=11264 peak=0.0 helperPID=19398
+􁁛  Test realSilentOutputThroughSupervisedProcess() passed after 0.726 seconds.
+􁁛  Suite EngineClientTests passed after 7.783 seconds.
+􁁛  Test run with 13 tests in 2 suites passed after 7.783 seconds.

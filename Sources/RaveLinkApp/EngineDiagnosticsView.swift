@@ -2,7 +2,7 @@ import SwiftUI
 import RaveLinkAudio
 
 struct EngineDiagnosticsView: View {
-    @ObservedObject var audio: AudioCoordinator
+    @ObservedObject var audio: EngineClient
     @Environment(\.dismiss) private var dismiss
     var body: some View {
         VStack(alignment: .leading, spacing: 18) {

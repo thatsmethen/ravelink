@@ -18,9 +18,19 @@ public extension MixerSession {
         for channel in channels {
             try require(!channel.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty, "Input names cannot be empty.")
             let sources = channel.allSources
-            try require(Set(sources).count == sources.count, "An input group contains the same source more than once.")
+            try require(Set(sources.map(\.canonicalized)).count == sources.count, "An input group contains the same source more than once.")
             for source in sources {
                 try require(source.channelOffset >= 0 && source.channelOffset < 4096, "Input channel offset is invalid.")
+            }
+            try require(Set(channel.audioUnitEffects.map(\.id)).count == channel.audioUnitEffects.count, "An input contains duplicate Audio Unit slot identifiers.")
+            for slot in channel.audioUnitEffects {
+                let descriptor = slot.descriptor, component = descriptor.component
+                try require([UInt32(0x61756678), UInt32(0x61756d66)].contains(component.type) && component.subtype != 0 && component.manufacturer != 0,
+                            "An Audio Unit effect identifier is invalid.")
+                try require(!descriptor.name.isEmpty && descriptor.name.count <= 512, "An Audio Unit effect name is invalid.")
+                try require(slot.state?.isValid(for: descriptor) ?? true, "An Audio Unit state exceeds 256 KiB or does not match its component/version.")
+                try require(slot.parameters.count <= 256 && Set(slot.parameters.map(\.address)).count == slot.parameters.count && slot.parameters.allSatisfy({ $0.value.isFinite }),
+                            "Audio Unit parameters must be unique finite values, with at most 256 assignments per effect.")
             }
             let e = channel.effects
             try require(e.gainDB.isFinite && (-60...24).contains(e.gainDB), "Input gain must be between −60 and +24 dB.")
@@ -46,7 +56,12 @@ public extension MixerSession {
             try require(send.gainDB.isFinite && (-60...12).contains(send.gainDB), "Route gain is invalid.")
             try require(send.pan.isFinite && (-1...1).contains(send.pan), "Pan must be between −1 and +1.")
         }
-        return self
+        var normalized = self
+        for index in normalized.channels.indices {
+            normalized.channels[index].source = normalized.channels[index].source.canonicalized
+            normalized.channels[index].additionalSources = normalized.channels[index].additionalSources.map(\.canonicalized)
+        }
+        return normalized
     }
 }
 

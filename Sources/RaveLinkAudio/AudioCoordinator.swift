@@ -6,7 +6,7 @@ import AVFoundation
 import RaveLinkCore
 import RaveLinkRealtime
 
-public struct AudioDeviceInfo: Identifiable, Equatable, Sendable {
+public struct AudioDeviceInfo: Identifiable, Codable, Equatable, Sendable {
     public let id: String
     public let name: String
     public let inputChannels: Int
@@ -14,11 +14,11 @@ public struct AudioDeviceInfo: Identifiable, Equatable, Sendable {
     public let sampleRate: Double
     public let isVirtual: Bool
 }
-public struct AudioApplicationInfo: Identifiable, Equatable, Sendable {
+public struct AudioApplicationInfo: Identifiable, Codable, Equatable, Sendable {
     public let id: String
     public let name: String
 }
-public struct AudioDiagnostics: Equatable, Sendable {
+public struct AudioDiagnostics: Codable, Equatable, Sendable {
     public var capturedFrames: UInt64 = 0
     public var renderedFrames: UInt64 = 0
     public var droppedFrames: UInt64 = 0
@@ -179,6 +179,7 @@ private final class OutputNode {
     let rate: Double
     let buses: [UUID]
     let context: OpaquePointer
+    var audioUnits: LiveAudioUnitGraph?
     var proc: AudioDeviceIOProcID?
     var started = false
     var abandoned = false
@@ -201,10 +202,18 @@ private final class OutputNode {
         proc = nil; started = false
         return true
     }
-    deinit { if !abandoned, stop() { rl_render_destroy(context) } }
+    deinit {
+        if !abandoned, stop() { rl_render_destroy(context) }
+        else if let audioUnits {
+            // A driver that kept an IOProc may still reference the bridge and
+            // cached AU blocks. Keep their Swift owners alive until process exit.
+            _ = Unmanaged.passRetained(audioUnits)
+        }
+    }
 }
 // Ownership transfers worker → main only after configure finishes; it transfers
-// back before stop. Live control/meter access touches only lock-free C atomics.
+// back before stop. Live controls use C atomics and cached AU schedule blocks;
+// meters use C atomics. The GUI never hosts this graph directly.
 private final class AudioGraph: @unchecked Sendable {
     var captures: [CaptureNode] = []
     var outputs: [OutputNode] = []
@@ -239,8 +248,10 @@ private final class AudioGraph: @unchecked Sendable {
         a.channels.map(\.id) == b.channels.map(\.id) && a.channels.map(\.source) == b.channels.map(\.source)
         && a.buses.map(\.id) == b.buses.map(\.id) && a.buses.map(\.deviceUID) == b.buses.map(\.deviceUID)
         && a.buses.map(\.channelOffset) == b.buses.map(\.channelOffset)
+        && LiveAudioUnitGraph.topologyEquivalent(a, b)
     }
-    func controls(_ session: MixerSession) {
+    func controls(_ session: MixerSession) throws {
+        for output in outputs { try output.audioUnits?.updateControls(session: session) }
         let anySolo = session.channels.contains { $0.solo }
         let sendsByChannel = Dictionary(grouping: session.sends, by: \.channelID).mapValues {
             Dictionary(uniqueKeysWithValues: $0.map { ($0.busID, $0) })
@@ -368,8 +379,15 @@ private final class AudioGraph: @unchecked Sendable {
                 guard let leader = indexes[parent] else { throw AudioRoutingError.configuration("An input group is missing its primary source.") }
                 guard rl_render_set_source_group(output.context, UInt32(index), UInt32(leader)) else { throw AudioRoutingError.configuration("An input group has an invalid source ordering.") }
             }
+            if session.channels.contains(where: { !$0.audioUnitEffects.isEmpty }) {
+                try cancellation.check()
+                let effects = try LiveAudioUnitGraph(session: session, channelParents: channelParents, sampleRate: output.rate, maxFrames: Self.maxFrames)
+                try cancellation.check()
+                output.audioUnits = effects
+                effects.install(on: output.context)
+            }
         }
-        controls(session)
+        try controls(session)
         // Prepare/start a silent candidate. A stale or cancelled generation can
         // never broadcast old mix settings after a delayed HAL call returns.
         for output in outputs {
@@ -402,6 +420,7 @@ private final class AudioGraph: @unchecked Sendable {
     @Published public private(set) var channelMeters: [UUID: Float] = [:]
     @Published public private(set) var busMeters: [UUID: Float] = [:]
     @Published public private(set) var diagnostics = AudioDiagnostics()
+    public private(set) var inventoryReady = false
     private var graph: AudioGraph?
     private var routing: ExpandedRouting?
     private var timer: Timer?
@@ -427,7 +446,7 @@ private final class AudioGraph: @unchecked Sendable {
             let apps = Hardware.applications()
             Task { @MainActor [weak self] in
                 guard let self else { return }
-                self.devices = devices; self.applications = apps; self.refreshing = false
+                self.devices = devices; self.applications = apps; self.refreshing = false; self.inventoryReady = true
             }
         }
     }
@@ -470,7 +489,12 @@ private final class AudioGraph: @unchecked Sendable {
                                 Task { @MainActor [weak self] in
                                     guard let self else { controlQueue.async { candidate.stop() }; return }
                                     guard self.generation == request else { controlQueue.async { candidate.stop() }; return }
-                                    candidate.controls(routed)
+                                    do { try candidate.controls(routed) }
+                                    catch {
+                                        controlQueue.async { candidate.stop() }
+                                        self.starting = false; self.pendingStart = nil; self.errorMessage = error.localizedDescription
+                                        return
+                                    }
                                     self.graph = candidate; self.routing = expanded; self.errorMessage = nil; self.diagnostics = .init(); self.starting = false; self.pendingStart = nil; self.running = true
                                 }
                             } catch {
@@ -512,7 +536,7 @@ private final class AudioGraph: @unchecked Sendable {
                 if starting { try start(session: session) }
                 return
             }
-            if AudioGraph.sameTopology(graph.session, routed) { graph.controls(routed); routing = expanded }
+            if AudioGraph.sameTopology(graph.session, routed) { try graph.controls(routed); routing = expanded }
             else { try start(session: session) }
         } catch {
             stop(); errorMessage = error.localizedDescription; throw error
@@ -531,6 +555,11 @@ private final class AudioGraph: @unchecked Sendable {
         }
         graph = nil; routing = nil; running = false; channelMeters = [:]; busMeters = [:]
     }
+    /// Used by the supervised helper to acknowledge stop only after HAL teardown
+    /// finishes. If HAL is hung, the parent kills the helper on its hard deadline.
+    public func finishPendingControlWork() async {
+        await withCheckedContinuation { continuation in worker.async { continuation.resume() } }
+    }
     private func validateFeedback(_ session: MixerSession) throws {
         let virtualIDs = Set(devices.filter(\.isVirtual).map(\.id))
         if hasVirtualFeedbackCycle(session, virtualDeviceUIDs: virtualIDs) {
@@ -541,6 +570,9 @@ private final class AudioGraph: @unchecked Sendable {
         ticks += 1
         if ticks % 40 == 0 { refreshDevices(); checkDeviceHealth() }
         guard let graph else { return }
+        if let failure = graph.outputs.lazy.compactMap({ $0.audioUnits?.failureMessage }).first {
+            stop(); errorMessage = failure; return
+        }
         var channels: [UUID: Float] = [:], buses: [UUID: Float] = [:], stats = AudioDiagnostics()
         for capture in graph.captures {
             _ = rl_capture_take_peak(capture.context)

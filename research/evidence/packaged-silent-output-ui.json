@@ -1,0 +1,33 @@
+{
+  "recordedAt": "2026-10-23T14:02:00.054124+00:00",
+  "scope": "Native hardened-runtime ad-hoc app using bundled supervised engine, silent physical-output lifecycle",
+  "host": {
+    "macOS": "27.0 beta",
+    "build": "26A5406e",
+    "architecture": "arm64"
+  },
+  "binaries": {
+    "RaveLink": "560859d1bdd9e06ff031b82f9babd7d943ab30302b0c24b012763a53c86b2bb1",
+    "RaveLinkEngine": "6e5a2f3dc132194948b51c064313d2947b1ce3190079850226a66b359a916332"
+  },
+  "sequence": [
+    "Mute Test tone input and Stream master before selecting MacBook Pro Speakers",
+    "Start audio in native app",
+    "Observe Audio running and diagnostics",
+    "Stop audio; restore BlackHole destination and original mute states while stopped"
+  ],
+  "observedDiagnostics": {
+    "state": "Running",
+    "capturedFrames": 0,
+    "renderedFrames": 1916928,
+    "droppedFrames": 0,
+    "underrunFrames": 0,
+    "oversizedBlocks": 0
+  },
+  "limitations": [
+    "Output was configured silent at both source and master; no independent physical-output PCM recording was taken",
+    "No microphone or system-audio privacy permission exercised",
+    "No installed virtual-driver success inferred from this physical output result",
+    "No new plugin live audio validation in this UI sequence"
+  ]
+}

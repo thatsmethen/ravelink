@@ -6,7 +6,25 @@ and system capture. It does not change system default devices, device volume, or
 nominal sample rates. Application/system capture requires macOS audio-recording
 consent. Physical input capture requires microphone consent.
 
-`AudioCoordinator` keeps UI state on the main actor. Device discovery, graph
+The GUI uses `EngineClient`, which supervises a separate `RaveLinkEngine` process.
+The GUI performs no HAL calls and writes no blocking pipes. A bounded JSON-lines
+protocol carries complete session snapshots and coalesced 20 Hz telemetry. Each
+line is limited to 4 MiB, requests and replies have checked IDs and generations,
+and invalid or oversized messages stop the helper. Continuous control edits send
+the latest snapshot at intervals of at most 25 ms rather than waiting for the
+user to release a slider. Session topology changes rebuild the native graph;
+ordinary gain, mute, pan, and effect parameter changes retain it.
+
+Device discovery, routing, and stop have separate hard deadlines of 10, 12, and
+2 seconds. After a timeout or crash, the supervisor closes the control pipe,
+sends SIGTERM, escalates to SIGKILL after 250 ms when necessary, and reaps the
+child off the UI thread. A replacement helper starts only after its predecessor
+has exited and been reaped. Failed audio never resumes automatically. An edit
+during a pending start cancels that helper and prepares the latest session in a
+fresh process. Closing the parent pipe also makes the real helper exit, including
+when a driver call is blocked on its control worker.
+
+Inside the helper, `AudioCoordinator` keeps state on its main actor. Device discovery, graph
 preparation, hardware start/stop, and device-health reads run on a dedicated serial
 worker. `starting` describes preparation; `running` becomes true only after all
 IOProcs start and the current request is accepted. A ten-second watchdog rejects
@@ -17,11 +35,12 @@ initially preserve original playback. Only an accepted generation enables
 `mutedWhenTapped`, suppressing original app playback while RaveLink routes it.
 Stopping capture restores that playback.
 
-A blocked CoreAudio call cannot be cancelled in this process. The watchdog keeps
-the UI responsive and requires a new process after a timeout; it does not recover
-the driver. If callback unregistration fails, callback storage is intentionally
-quarantined until exit rather than freed while HAL could still reference it.
-Full process isolation and recovery remain separate work.
+A blocked CoreAudio call cannot be cancelled within the helper; the supervisor
+terminates the process instead. This recovers the application's control boundary,
+not a broken system driver. If callback unregistration fails, callback storage and
+retained Audio Unit owners are intentionally quarantined until process exit rather
+than freed while HAL could still reference them. Direct `AudioCoordinator` tests
+do not have this outer process boundary; hardware tests must use external limits.
 
 ## Real-time graph
 
@@ -34,6 +53,16 @@ contribute silence to their output buffers.
 Each source is converted to the destination rate, then sources belonging to one
 visible input are summed. Gain, one-pole high-pass, gate, and compressor operate
 once on that summed waveform. Source meters report that processed group signal.
+Configured Audio Unit effects then process the group before its sends. Each
+output clock has its own prepared rack instance. The Objective-C bridge uses
+cached render/pull blocks and preallocated planar buffers in 512-frame slices.
+Live parameter assignments use cached scheduling blocks; bypass crossfades the
+dry/wet signal over approximately 5 ms while the effect continues processing.
+Changing effect identity, order, version, or saved state rebuilds the graph.
+A render error or invalid returned waveform latches the output silent and stops
+audio with the effect and input identified. Third-party code may still block,
+allocate, or crash; isolation limits its impact on the GUI rather than making
+arbitrary plugins real-time safe.
 Each send has independent gain, stereo balance, and mute; each bus has independent
 gain and mute. Source mute/solo and send/bus controls use short smoothing ramps.
 Multiple mix destinations preserve the parent bus controls and are rendered on
@@ -71,12 +100,27 @@ source/send/bus smoothing and mute, channel offsets, mono capture, invalid input
 FIFO overflow/underrun, sample-rate conversion stopband controls, memory overflow,
 and virtual feedback cycles. Hardware tests are opt-in.
 
+`EngineClientTests` exercise unexpected exit, oversized output, ignored SIGTERM,
+discovery and stop deadlines, stale telemetry, reaping before replacement, and
+continuous control input. The opt-in supervised silent-output test verifies real
+native rendering through IPC and checks that the helper PID disappears after
+shutdown. See `research/evidence/engine-process-tests.txt` for the recorded run.
+
 On the development host, independent native registration, one second of silent
 physical output, stop, and unregister all succeeded. The independent C probe
 observed 94 callbacks / 48,128 frames at 48 kHz. A separate native coordinator test
 rendered 50,688 silent frames with zero bus peak. See
 `research/evidence/coreaudio-silent-output.txt` and
 `research/evidence/native-silent-output-test.txt`.
+
+The bundled RaveLink HAL driver also passed an installed-device test in a disposable
+GitHub macOS runner at commit `597be4d` (run `39961789278`). Its independent C
+receiver recorded 576,000 stereo frames at 48 kHz: fitted frequency 439.99959 Hz,
+peak 0.12589075, the expected unity / -12 dB / mute phases, and matching stereo
+channels. The coordinator reported zero dropped and underrun frames. Artifacts
+and run provenance are in `research/evidence/installed-hal-39961789278/`. This
+establishes that specific installed-driver lifecycle and waveform path; it does
+not establish long-session, multi-device, or third-party plugin performance.
 
 The installed BlackHole 2ch v0.5.0 (build 595) did not return from
 `AudioDeviceCreateIOProcID`. An independent minimal C probe reproduced this
@@ -93,6 +137,7 @@ Use the following explicit hardware probes:
 scripts/audio-device-probe.py --list
 scripts/audio-device-probe.py --uid BuiltInSpeakerDevice --silent-seconds 1
 RAVELINK_TEST_SILENT_OUTPUT=1 scripts/test.sh --filter testSilentPhysicalOutputLifecycle
+RAVELINK_TEST_SILENT_OUTPUT=1 scripts/test.sh --filter realSilentOutputThroughSupervisedProcess
 RAVELINK_TEST_LOOPBACK=1 RAVELINK_LOOPBACK_DEVICE_UID=BlackHole2ch_UID \
   scripts/test.sh --filter testBlackHoleLoopbackAndLiveBusControls
 ```

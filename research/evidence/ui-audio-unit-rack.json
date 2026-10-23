@@ -1,0 +1,38 @@
+{
+  "recordedAt": "2026-10-23T13:51:24.864828+00:00",
+  "host": {
+    "macOS": "27.0 beta",
+    "build": "26A5406e",
+    "architecture": "arm64"
+  },
+  "scope": "Native app transitions; audio stopped throughout",
+  "appExecutableSHA256": "3d5e6e9179f573a8b6a67d6af930a657356c56585ca431fd8b80b6b30dbc24fe",
+  "checks": [
+    {
+      "action": "Discover installed Audio Units from Add Audio Unit",
+      "observed": "33 available effect entries; selected Apple AUPeakLimiter; helper probe/render completed and slot appeared"
+    },
+    {
+      "action": "Edit Pre-Gain to -6 dB and disable effect",
+      "observed": "Native parameter and enabled toggle reflected changes; on-disk session contained -6 parameter override and isBypassed true"
+    },
+    {
+      "action": "Quit and relaunch, reopen input and effect editor",
+      "observed": "Studio opened audio stopped; bypass remained off; Pre-Gain remained -6 dB"
+    },
+    {
+      "action": "Remove temporary effect",
+      "observed": "Slot disappeared; input and all3mixes/routes remained; app stayed responsive"
+    }
+  ],
+  "notEstablished": [
+    "Live effect processing or parameter/bypass audio result; tested separately",
+    "Custom vendor plugin UI",
+    "Reference mixer visual fidelity; reference EULA remains pending"
+  ],
+  "screenshot": {
+    "path": "ui-audio-unit-rack.png",
+    "sha256": "a444f1801d5221a14aa73613b861d50c8a21e208bb583ae43a3e0065d4a23a1f"
+  },
+  "followup": "Label changed in source from Effect latency to Reported default latency because probe reports fresh-unit defaults, not the active runtime configuration."
+}

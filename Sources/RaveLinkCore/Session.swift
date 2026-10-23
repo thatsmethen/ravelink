@@ -11,6 +11,14 @@ public struct InputSource: Codable, Hashable, Sendable {
     public init(kind: SourceKind = .device, deviceUID: String? = nil, bundleID: String? = nil, channelOffset: Int = 0) {
         self.kind = kind; self.deviceUID = deviceUID; self.bundleID = bundleID; self.channelOffset = channelOffset
     }
+    /// Capture identity ignores fields that do not apply to the selected source kind.
+    public var canonicalized: InputSource {
+        switch kind {
+        case .device: return .init(kind: kind, deviceUID: deviceUID, channelOffset: channelOffset)
+        case .application: return .init(kind: kind, bundleID: bundleID)
+        case .system, .tone: return .init(kind: kind)
+        }
+    }
 }
 public struct ChannelEffects: Codable, Equatable, Sendable {
     public var gainDB: Float = 0
@@ -28,12 +36,13 @@ public struct MixerChannel: Identifiable, Codable, Equatable, Sendable {
     public var muted: Bool
     public var solo: Bool
     public var effects: ChannelEffects
-    public init(id: UUID = UUID(), name: String, source: InputSource = .init(), muted: Bool = false, solo: Bool = false, effects: ChannelEffects = .init(), additionalSources: [InputSource] = []) {
+    public var audioUnitEffects: [AudioUnitEffectSlot]
+    public init(id: UUID = UUID(), name: String, source: InputSource = .init(), muted: Bool = false, solo: Bool = false, effects: ChannelEffects = .init(), additionalSources: [InputSource] = [], audioUnitEffects: [AudioUnitEffectSlot] = []) {
         self.id = id; self.name = name; self.source = source; self.muted = muted; self.solo = solo; self.effects = effects
-        self.additionalSources = additionalSources
+        self.additionalSources = additionalSources; self.audioUnitEffects = audioUnitEffects
     }
     public var allSources: [InputSource] { [source] + additionalSources }
-    private enum CodingKeys: String, CodingKey { case id, name, source, muted, solo, effects, additionalSources }
+    private enum CodingKeys: String, CodingKey { case id, name, source, muted, solo, effects, additionalSources, audioUnitEffects }
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         id = try values.decode(UUID.self, forKey: .id)
@@ -43,6 +52,7 @@ public struct MixerChannel: Identifiable, Codable, Equatable, Sendable {
         solo = try values.decode(Bool.self, forKey: .solo)
         effects = try values.decode(ChannelEffects.self, forKey: .effects)
         additionalSources = try values.decodeIfPresent([InputSource].self, forKey: .additionalSources) ?? []
+        audioUnitEffects = try values.decodeIfPresent([AudioUnitEffectSlot].self, forKey: .audioUnitEffects) ?? []
     }
 }
 public struct MixDestination: Codable, Equatable, Sendable {
@@ -105,6 +115,21 @@ public struct MixerSession: Codable, Equatable, Sendable {
     public mutating func addBus(_ bus: MixBus) {
         buses.append(bus)
         sends += channels.map { MixSend(channelID: $0.id, busID: bus.id, muted: true) }
+    }
+    /// Reorder by identity so stale UI actions never target a different row.
+    @discardableResult public mutating func moveChannel(_ id: UUID, by distance: Int) -> Bool {
+        guard let from = channels.firstIndex(where: { $0.id == id }) else { return false }
+        let destination = from.addingReportingOverflow(distance)
+        guard !destination.overflow, channels.indices.contains(destination.partialValue) else { return false }
+        channels.insert(channels.remove(at: from), at: destination.partialValue)
+        return true
+    }
+    @discardableResult public mutating func moveBus(_ id: UUID, by distance: Int) -> Bool {
+        guard let from = buses.firstIndex(where: { $0.id == id }) else { return false }
+        let destination = from.addingReportingOverflow(distance)
+        guard !destination.overflow, buses.indices.contains(destination.partialValue) else { return false }
+        buses.insert(buses.remove(at: from), at: destination.partialValue)
+        return true
     }
     public mutating func removeChannel(_ id: UUID) { channels.removeAll { $0.id == id }; sends.removeAll { $0.channelID == id } }
     public mutating func removeBus(_ id: UUID) { buses.removeAll { $0.id == id }; sends.removeAll { $0.busID == id } }

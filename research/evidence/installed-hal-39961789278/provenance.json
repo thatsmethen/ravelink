@@ -1,0 +1,39 @@
+{
+  "evidenceClass": "actual installed CoreAudio HAL routing with independent PCM recorder",
+  "revision": "597be4d94a66366f6060433c0e27f9b549e63824",
+  "runURL": "https://github.com/thatsmethen/ravelink/actions/runs/39961789278",
+  "jobID": 120441331110,
+  "host": {
+    "os": "macOS",
+    "version": "15.7.9",
+    "build": "24G830",
+    "architecture": "arm64"
+  },
+  "deviceUID": "RaveLink.ci-loopback_UID",
+  "deviceChannels": 2,
+  "rate": 48000,
+  "procedure": "Ephemeral GitHub runner builds and installs the pinned GPL HAL device. Independent C IOProc receiver starts first. Swift AudioCoordinator routes a 440 Hz tone, changes the bus to -12 dB and then mutes. The recorder captures 12 seconds. A separate Python analyzer checks ordered sustained amplitude/frequency/silence and stereo identity. Three muted stop/restart cycles also pass.",
+  "capture": {
+    "path": "independent-loopback.wav.gz",
+    "uncompressedSHA256": "0b822688dd557ab44269f9223208ec2021e874a2c9f7a51862b6f53c3356e1c8",
+    "uncompressedBytes": 4608044,
+    "frames": 576000,
+    "format": "RIFF stereo IEEE Float32 little endian"
+  },
+  "limitations": [
+    "Short run; does not establish long-term stability, latency, drift or scale.",
+    "No microphone, per-application tap, permissions, AU chain, hotplug or sleep/wake validation.",
+    "Universal bundle built, but this runtime result covers arm64 only.",
+    "No app installer, upgrade, notarization, or independent reference fidelity validation.",
+    "Compiled driver binary hash was not retained in this first run; source revision and build manifest are retained."
+  ],
+  "files": {
+    "driver-build-info.json": "4179730d08c0d355978f7e9d05a785c6d010cb6e4d6554babdfdf650b3a1df65",
+    "independent-loopback.json": "d5165391db4f8bf70fa4e59d37dc9a6da95e4c4a7881d5c50c0465a2aa3a4a0e",
+    "independent-loopback.wav.gz": "636d206e57cc88fa0a6423c0bf379459ab492e9eec783b53a6f2d8a55e3138fb",
+    "installed-devices.txt": "3231a33e0f7f2454fc0ef3bfdf2c4113ba7e7395598ed0ebb899c4f466274e71",
+    "installed-driver-test.log": "b76a1f22fbcf7d890026c235a3112248aed09d75f035c5459d21d46ba6b906df",
+    "receiver.log": "9044a181329ccb8d457c66b2234327b56903bef79d4c0a0977849c9f4c3d3554"
+  },
+  "deviceBufferFrames": "Not explicitly recorded by the first probe; callback totals are retained."
+}

@@ -9,7 +9,7 @@ import AppKit
             StudioView(studio: studio, audio: studio.audio)
                 .preferredColorScheme(.dark)
                 .frame(minWidth: 900, minHeight: 560)
-                .onReceive(NotificationCenter.default.publisher(for: NSApplication.willTerminateNotification)) { _ in studio.flush(); studio.audio.stop() }
+                .onReceive(NotificationCenter.default.publisher(for: NSApplication.willTerminateNotification)) { _ in studio.flush(); studio.audio.shutdown() }
         }
         .defaultSize(width: 1250, height: 780)
         .windowStyle(.hiddenTitleBar)

@@ -1,22 +1,9 @@
 import Foundation
+import RaveLinkCore
 import Darwin
 
-public struct AudioUnitComponentID: Codable, Hashable, Sendable {
-    public let type: UInt32
-    public let subtype: UInt32
-    public let manufacturer: UInt32
-    public init(type: UInt32, subtype: UInt32, manufacturer: UInt32) {
-        self.type = type; self.subtype = subtype; self.manufacturer = manufacturer
-    }
-    public var key: String { String(format: "%08x:%08x:%08x", type, subtype, manufacturer) }
-}
-public struct AudioUnitDescriptor: Codable, Equatable, Identifiable, Sendable {
-    public let component: AudioUnitComponentID
-    public let name: String
-    public let version: UInt32?
-    public let flags: UInt32
-    public var id: String { component.key }
-}
+public typealias AudioUnitComponentID = RaveLinkCore.AudioUnitComponentID
+public typealias AudioUnitDescriptor = RaveLinkCore.AudioUnitDescriptor
 public struct AudioUnitBusReport: Codable, Equatable, Sendable {
     public let index: Int
     public let name: String?
@@ -71,7 +58,7 @@ public enum PluginCatalogError: Error, LocalizedError, Equatable {
         switch self {
         case .helperUnavailable: return "The Audio Unit helper is missing. Reinstall RaveLink or build RaveLinkPluginHost beside the app."
         case .launchFailed(let message): return "Could not start the Audio Unit helper: \(message)"
-        case .invalidRequest: return "The Audio Unit probe request is invalid."
+        case .invalidRequest: return "The Audio Unit request is invalid."
         case .timeout: return "The Audio Unit helper timed out and was stopped."
         case .cancelled: return "Audio Unit inspection was cancelled."
         case .outputLimit: return "The Audio Unit helper exceeded its response limit and was stopped."
@@ -92,6 +79,11 @@ private struct PluginRequest: Encodable {
     var expectedVersion: UInt32?
     var sampleRate: Double?
     var channels: UInt32?
+    var samples: [Float]?
+    var parameters: [AudioUnitParameterSetting]?
+    var state: AudioUnitState?
+    var bypassed: Bool?
+    var blockFrames: UInt32?
 }
 struct PluginResponse: Decodable {
     struct Failure: Decodable { let code: String; let message: String }
@@ -100,6 +92,7 @@ struct PluginResponse: Decodable {
     let status: String
     let components: [AudioUnitDescriptor]?
     let probe: AudioUnitProbeReport?
+    let render: AudioUnitRenderReport?
     let error: Failure?
     let limitations: [String]?
 
@@ -114,11 +107,11 @@ struct PluginResponse: Decodable {
         guard response.status == "ok", response.error == nil else { throw PluginCatalogError.malformedResponse }
         switch operation {
         case "list":
-            guard let entries = response.components, response.probe == nil,
+            guard let entries = response.components, response.probe == nil, response.render == nil,
                   entries.count <= 4096, Set(entries.map(\.id)).count == entries.count,
                   entries.allSatisfy({ isEffect($0.component) && !$0.name.isEmpty && $0.name.count <= 512 }) else { throw PluginCatalogError.malformedResponse }
         case "probe":
-            guard let probe = response.probe, response.components == nil,
+            guard let probe = response.probe, response.components == nil, response.render == nil,
                   isEffect(probe.descriptor.component), probe.parameters.count <= 4096,
                   probe.inputBuses.count <= 64, probe.outputBuses.count <= 64,
                   probe.requestedSampleRate.isFinite, (8_000...384_000).contains(probe.requestedSampleRate),
@@ -128,6 +121,18 @@ struct PluginResponse: Decodable {
                   (probe.inputBuses + probe.outputBuses).allSatisfy({ $0.sampleRate.isFinite && $0.sampleRate > 0 }),
                   probe.latencySeconds?.isFinite ?? true,
                   probe.tailSeconds?.isFinite ?? true else { throw PluginCatalogError.malformedResponse }
+        case "render":
+            guard let rendered = response.render, response.components == nil, response.probe == nil,
+                  isEffect(rendered.descriptor.component), (1...2).contains(rendered.channels),
+                  rendered.sampleRate.isFinite, (8_000...192_000).contains(rendered.sampleRate),
+                  (1...16_384).contains(rendered.frameCount), (1...512).contains(rendered.blockFrames),
+                  rendered.samples.count == rendered.frameCount * Int(rendered.channels),
+                  rendered.samples.allSatisfy({ $0.isFinite && abs($0) <= 1_000_000 }),
+                  rendered.state?.isValid(for: rendered.descriptor) ?? true,
+                  rendered.parameterValues.count <= 4096,
+                  Set(rendered.parameterValues.map(\.address)).count == rendered.parameterValues.count,
+                  rendered.parameterValues.allSatisfy({ $0.value.isFinite }),
+                  rendered.latencySeconds?.isFinite ?? true else { throw PluginCatalogError.malformedResponse }
         default: throw PluginCatalogError.operationMismatch
         }
         return response
@@ -142,6 +147,7 @@ private final class PluginCatalogBundleMarker: NSObject {}
 
 public struct PluginCatalog: Sendable {
     public static let maximumResponseBytes = 4 * 1024 * 1024
+    public static let maximumRequestBytes = 2 * 1024 * 1024
     public let helperURL: URL?
     public init(helperURL: URL? = PluginCatalog.defaultHelperURL()) { self.helperURL = helperURL }
 
@@ -185,6 +191,26 @@ public struct PluginCatalog: Sendable {
               descriptor.version == nil || probe.descriptor.version == descriptor.version else { throw PluginCatalogError.malformedResponse }
         return probe
     }
+    public func render(_ descriptor: AudioUnitDescriptor, samples: [Float], sampleRate: Double = 48_000,
+                       channels: UInt32 = 2, parameters: [AudioUnitParameterSetting] = [], state: AudioUnitState? = nil,
+                       bypassed: Bool = false, blockFrames: UInt32 = 512, timeout: TimeInterval = 10) async throws -> AudioUnitRenderReport {
+        guard isEffect(descriptor.component), sampleRate.isFinite, (8_000...192_000).contains(sampleRate),
+              (1...2).contains(channels), !samples.isEmpty, samples.count % Int(channels) == 0,
+              samples.count / Int(channels) <= 16_384, samples.allSatisfy({ $0.isFinite && abs($0) <= 16 }),
+              (1...512).contains(blockFrames), parameters.count <= 256,
+              parameters.allSatisfy({ $0.value.isFinite }), Set(parameters.map(\.address)).count == parameters.count,
+              state?.isValid(for: descriptor) ?? true else { throw PluginCatalogError.invalidRequest }
+        let query = PluginRequest(operation: "render", component: descriptor.component, expectedVersion: descriptor.version,
+                                  sampleRate: sampleRate, channels: channels, samples: samples, parameters: parameters,
+                                  state: state, bypassed: bypassed, blockFrames: blockFrames)
+        let response = try await request(query, timeout: timeout)
+        guard let report = response.render, report.descriptor.component == descriptor.component,
+              descriptor.version == nil || report.descriptor.version == descriptor.version,
+              report.sampleRate == sampleRate, report.channels == channels, report.samples.count == samples.count,
+              report.blockFrames == blockFrames, report.bypassed == bypassed,
+              !bypassed || report.samples == samples else { throw PluginCatalogError.malformedResponse }
+        return report
+    }
     private func request(_ request: PluginRequest, timeout: TimeInterval) async throws -> PluginResponse {
         guard timeout.isFinite, (0.05...60).contains(timeout) else { throw PluginCatalogError.invalidRequest }
         guard let helperURL, FileManager.default.isExecutableFile(atPath: helperURL.path) else { throw PluginCatalogError.helperUnavailable }
@@ -222,21 +248,27 @@ final class PluginHelperProcess: @unchecked Sendable {
 
     func execute(_ executable: URL, request: Data, timeout: TimeInterval) throws -> PluginHelperResult {
         if isCancelled { throw PluginCatalogError.cancelled }
-        guard request.count <= 4096 else { throw PluginCatalogError.invalidRequest }
-        let process = Process(), input = Pipe(), output = Pipe(), errors = Pipe()
+        guard request.count <= PluginCatalog.maximumRequestBytes else { throw PluginCatalogError.invalidRequest }
+        // A private, immediately unlinked file keeps larger bounded audio/state
+        // requests off pipes, so early helper exits cannot SIGPIPE the parent.
+        var template = Array((NSTemporaryDirectory() + "ravelink-au-XXXXXX").utf8CString)
+        let inputFD = mkstemp(&template)
+        guard inputFD >= 0 else { throw PluginCatalogError.launchFailed("Could not create the private helper input.") }
+        _ = template.withUnsafeBufferPointer { unlink($0.baseAddress!) }
+        let input = FileHandle(fileDescriptor: inputFD, closeOnDealloc: true)
+        defer { try? input.close() }
+        try input.write(contentsOf: request)
+        try input.seek(toOffset: 0)
+        if isCancelled { throw PluginCatalogError.cancelled }
+        let process = Process(), output = Pipe(), errors = Pipe()
         process.executableURL = executable
         process.standardInput = input; process.standardOutput = output; process.standardError = errors
         let exited = DispatchSemaphore(value: 0)
         process.terminationHandler = { _ in exited.signal() }
-        // The bounded request fits in the pipe before launch. Writing while our
-        // read end is open avoids SIGPIPE if a crashing helper exits immediately.
-        try input.fileHandleForWriting.write(contentsOf: request)
-        try input.fileHandleForWriting.close()
         do { try process.run() } catch { throw PluginCatalogError.launchFailed(error.localizedDescription) }
-        try? input.fileHandleForReading.close()
+        try? input.close()
         try? output.fileHandleForWriting.close(); try? errors.fileHandleForWriting.close()
         defer {
-            try? input.fileHandleForWriting.close()
             try? output.fileHandleForReading.close(); try? errors.fileHandleForReading.close()
         }
         let outFD = output.fileHandleForReading.fileDescriptor, errFD = errors.fileHandleForReading.fileDescriptor

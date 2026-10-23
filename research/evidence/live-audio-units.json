@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "observedAtUTC": "2026-10-23T14:01:51.063236+00:00",
+  "baseCommit": "597be4d94a66366f6060433c0e27f9b549e63824",
+  "host": {
+    "version": "27.0",
+    "build": "26A5406e",
+    "architecture": "arm64"
+  },
+  "testCommand": "RAVELINK_PLUGIN_RENDER_MASTER_ME=1 RAVELINK_PLUGIN_RENDER_APPLE=1 RAVELINK_PLUGIN_PROBE_APPLE=1 scripts/test.sh --filter 'ThirdPartyAudioUnitTests|LiveAudioUnitTests|AudioUnitSessionTests|PluginCatalogTests|PluginRenderTests'",
+  "testResult": {
+    "passed": 20,
+    "failed": 0,
+    "durationSeconds": 2.542
+  },
+  "nativeAppleCallback": {
+    "processor": "AUPeakLimiter",
+    "version": 67072,
+    "sampleRate": 48000,
+    "input": "two grouped native 440 Hz tone sources",
+    "verification": "C render hook after grouped input and built-in DSP; expected gain/delay compared to independent dry render",
+    "initialGainDB": 6.0206,
+    "updatedGainDB": -6.0206,
+    "maximumPermittedSampleError": 3e-05,
+    "bypassMaximumPermittedError": 1e-05,
+    "sameGraphForParameterAndBypass": true,
+    "stateSnapshot": true
+  },
+  "thirdParty": {
+    "descriptor": {
+      "component": {
+        "manufacturer": 1265390435,
+        "subtype": 1399743559,
+        "type": 1635083896
+      },
+      "flags": 0,
+      "name": "Klaus Scheuermann: master_me",
+      "version": 66048
+    },
+    "binaryPath": "/Library/Audio/Plug-Ins/Components/master_me.component/Contents/MacOS/master_me",
+    "binarySHA256": "01aeeef1c16a3d6d727262bd460b450acfc671e39cc5b72ad326d9ae7adfd6c7",
+    "reportedLatencySeconds": 0,
+    "parameterCount": 91,
+    "offline": {
+      "sampleRate": 48000,
+      "channels": 2,
+      "frames": 8192,
+      "blockFrames": 257,
+      "inputFrequenciesHz": [
+        317,
+        719
+      ],
+      "parameterAddress": 50,
+      "parameterValue": 0.5,
+      "stateRestorationMaximumPermittedError": 1e-06,
+      "hostBypassFloat32Exact": true,
+      "finiteNonzeroOutput": true
+    },
+    "nativeCallback": {
+      "finiteNonzeroOutput": true,
+      "liveParameterAddress": 50,
+      "liveParameterValue": 0.6,
+      "fullStateRestoredParameterVerified": true,
+      "sameGraphBypassVerified": true
+    },
+    "discoveredLimitation": "AUv2 scheduling-only parameter updates did not persist in fullState despite advertised ramp support; validated AUParameter.value writes on the control queue passed DSP/state tests."
+  },
+  "syntheticFaults": [
+    "render OSStatus silences entire output including preceding sources",
+    "nonfinite output latches silence",
+    "removing callback does not reset the render error latch",
+    "missing second unit after prepared first unit releases safely",
+    "invalid plist state fails without terminating test process",
+    "invalid actual Apple parameter fails without double-free"
+  ],
+  "evidenceBoundary": "Native C callback invoked against generated PCM. No hardware device was started by these tests. One Apple unit and one installed third-party build; no general third-party or long-duration realtime performance qualification. Third-party DSP has no independent numeric oracle.",
+  "sourceSHA256": {
+    "Sources/RaveLinkAudio/LiveAudioUnitGraph.swift": "c418ce30c0721bae1f89c902d37d4737699fcc4f7a032b4e3e9caa7771e342e1",
+    "Sources/RaveLinkAudioUnitBridge/AudioUnitBridge.m": "db047cc01c33d601fc9bfc3c29387d80cc7592092025e8045109f3c68fa77762",
+    "Sources/RaveLinkAudioUnitBridge/include/RaveLinkAudioUnitBridge.h": "92d8d8e51b3ea55582a93762cc21fc57581a884f398d12dea97daf6f2a5b1ec1",
+    "Sources/RaveLinkRealtime/Realtime.c": "35f1f0b8372b07f06fa85ea5240b6227bd6f2d195691dbbaeb2fc86dd86de07f",
+    "Sources/RaveLinkRealtime/include/RaveLinkRealtime.h": "e1cfaebef362aa32948d8ad7c0ee02a60f313700719c77526bc5828c015b9eae",
+    "Sources/RaveLinkCore/AudioUnitEffects.swift": "0a294bfe0dc8927158b5e703679453616ef7d0d386aa7b37d876bb40a58daae7",
+    "Sources/RaveLinkCore/Session.swift": "77f8007ccddb713481d67412b184f82d4dd345b0a313e880b76f598fe6729654",
+    "Sources/RaveLinkCore/SessionStore.swift": "52f11cd34e8b03978877e9a0f01db2d817031f8b3329098ee3727cd8caac1938",
+    "Tests/RaveLinkAudioTests/LiveAudioUnitTests.swift": "2f41fb7532ed76d090ed0cb5a071153f98bcc1fa67655e5a7e6db673d3ab248a",
+    "Tests/RaveLinkAudioTests/ThirdPartyAudioUnitTests.swift": "fb0532d08a02817fc30ef4cef3368876b18d1ebabcc4b686889092529e451f0b",
+    "Tests/RaveLinkCoreTests/AudioUnitSessionTests.swift": "c9ef65dc941806f4cf8930fb77fc498e37df9fd93330e6fcde99ee0f6bdf1722"
+  }
+}
