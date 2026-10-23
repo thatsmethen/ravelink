@@ -1,0 +1,69 @@
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: Product archive /Users/runner/work/ravelink/ravelink/build/driver-lifecycle/build19-lower-marketing.pkg trustLevel=100
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: External component packages (1) trustLevel=100 (trust evaluation failed: Error Domain=PKInstallErrorDomain Code=101 "The package “build19-lower-marketing.pkg” is not signed." UserInfo={NSURL=#ci-lifecycle-a.pkg -- file:///Users/runner/work/ravelink/ravelink/build/driver-lifecycle/build19-lower-marketing.pkg#Distribution, PKInstallPackageIdentifier=au.textual.ravelink.audio.package.ci-lifecycle-a, NSLocalizedDescription=The package “build19-lower-marketing.pkg” is not signed.})
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: -[IFDInstallController(Private) _buildInstallPlanReturningError:]: location = file://localhost
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: -[IFDInstallController(Private) _buildInstallPlanReturningError:]: file://localhost/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/build19-lower-marketing.pkg#ci-lifecycle-a.pkg
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: Set authorization level to root for session
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: Authorization is being checked, waiting until authorization arrives.
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: Administrator authorization granted.
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: Packages have been authorized for installation.
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: Will use PK session
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: Using authorization level of root for IFPKInstallElement
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: PackageKit: Skipping component "au.textual.ravelink.audio.ci-lifecycle-a" (0.1.0-19.0.0-*) because the version 0.3.0-18.0.0-* is already installed at /Library/Audio/Plug-Ins/HAL/RaveLink-ci-lifecycle-a.driver.
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: Starting installation:
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: Configuring volume "Macintosh HD"
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: Preparing disk for local booted install.
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: Free space on "Macintosh HD": 46.23 GB (46225084416 bytes).
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: Create temporary directory "/var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T//Install.16406Bdad4"
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: IFPKInstallElement (1 packages)
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: Current Path: /usr/sbin/installer
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: Current Path: /usr/bin/sudo
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: Adding client PKInstallDaemonClient pid=1640, uid=0 (/usr/sbin/installer)
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: PackageKit: Enqueuing install with framework-specified quality of service (utility)
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: Set reponsibility for install to 932
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: ----- Begin install -----
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: request=PKInstallRequest <1 packages, destination=/>
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: packages=(
+	    "PKLeopardPackage <id=au.textual.ravelink.audio.package.ci-lifecycle-a, version=19, url=file:///Users/runner/work/ravelink/ravelink/build/driver-lifecycle/build19-lower-marketing.pkg#ci-lifecycle-a.pkg>"
+	)
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: Skipping component "au.textual.ravelink.audio.ci-lifecycle-a" (0.1.0-19.0.0-*) because the version 0.3.0-18.0.0-* is already installed at /Library/Audio/Plug-Ins/HAL/RaveLink-ci-lifecycle-a.driver.
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: Extracting file:///Users/runner/work/ravelink/ravelink/build/driver-lifecycle/build19-lower-marketing.pkg#ci-lifecycle-a.pkg (destination=/Library/InstallerSandboxes/.PKInstallSandboxManager/956012B4-48C3-4DFD-B25D-20BFB82E0FB8.activeSandbox/Root/Library/Audio/Plug-Ins/HAL, uid=0)
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: prevent user idle system sleep
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: suspending Spotlight indexing
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: suspending backupd
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit (package_script_service): Preparing to execute script "./preinstall" in /private/tmp/PKInstallSandbox.RLVPzD/Scripts/au.textual.ravelink.audio.package.ci-lifecycle-a.5ImxRe
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE package_script_service[1457]: PackageKit: Preparing to execute script "preinstall" in /tmp/PKInstallSandbox.RLVPzD/Scripts/au.textual.ravelink.audio.package.ci-lifecycle-a.5ImxRe
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE package_script_service[1457]: Set responsibility to pid: 932, responsible_path: /opt/hca/hosted-compute-agent
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE package_script_service[1457]: PackageKit: Executing script "preinstall" in /tmp/PKInstallSandbox.RLVPzD/Scripts/au.textual.ravelink.audio.package.ci-lifecycle-a.5ImxRe
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE install_monitor[1642]: Temporarily excluding: /Applications, /Library, /System, /bin, /private, /sbin, /usr
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE package_script_service[1457]: Responsibility set back to self.
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: Using trashcan path /var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T/PKInstallSandboxTrash/956012B4-48C3-4DFD-B25D-20BFB82E0FB8.sandboxTrash for sandbox /Library/InstallerSandboxes/.PKInstallSandboxManager/956012B4-48C3-4DFD-B25D-20BFB82E0FB8.activeSandbox
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: Shoving /Library/InstallerSandboxes/.PKInstallSandboxManager/956012B4-48C3-4DFD-B25D-20BFB82E0FB8.activeSandbox/Root (1 items) to /
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: Parent bundle au.textual.ravelink.audio.ci-lifecycle-a will be atomically shoved.
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: Writing receipt for au.textual.ravelink.audio.package.ci-lifecycle-a to /
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: No Intel binaries to translate.
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: Installed "RaveLink virtual devices" ()
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: Successfully wrote install history to /Library/Receipts/InstallHistory.plist
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: releasing Spotlight indexing
+2026-10-23 19:28:53+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE install_monitor[1642]: Re-included: /Applications, /Library, /System, /bin, /private, /sbin, /usr
+2026-10-23 19:28:54+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: releasing backupd
+2026-10-23 19:28:54+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: allow user idle system sleep
+2026-10-23 19:28:54+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: ----- End install -----
+2026-10-23 19:28:54+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: 0.6s elapsed install time
+2026-10-23 19:28:54+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: Cleared responsibility for install from 1640.
+2026-10-23 19:28:54+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: Running idle tasks
+2026-10-23 19:28:54+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: Removing client PKInstallDaemonClient pid=1640, uid=0 (/usr/sbin/installer)
+2026-10-23 19:28:54+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installd[539]: PackageKit: Done with sandbox removals
+2026-10-23 19:28:54+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: Running install actions
+2026-10-23 19:28:54+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: Removing temporary directory "/var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T//Install.16406Bdad4"
+2026-10-23 19:28:54+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: Finalize disk "Macintosh HD"
+2026-10-23 19:28:54+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: Notifying system of updated components
+2026-10-23 19:28:54+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: 
+2026-10-23 19:28:54+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: **** Summary Information ****
+2026-10-23 19:28:54+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]:   Operation      Elapsed time
+2026-10-23 19:28:54+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: -----------------------------
+2026-10-23 19:28:54+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]:        disk      0.00 seconds
+2026-10-23 19:28:54+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]:      script      0.00 seconds
+2026-10-23 19:28:54+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]:        zero      0.00 seconds
+2026-10-23 19:28:54+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]:     install      1.17 seconds
+2026-10-23 19:28:54+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]:     -total-      1.17 seconds
+2026-10-23 19:28:54+00 iad20-fj922-cd2394d6-66e5-4011-bb14-7bea0bc82387-361BD7E042DE installer[1640]: 

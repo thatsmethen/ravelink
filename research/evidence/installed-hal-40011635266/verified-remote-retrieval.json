@@ -1,0 +1,28 @@
+{
+  "verifiedAtUTC": "2026-10-23T20:14:20.163372+00:00",
+  "evidence": "Downloaded all 98 numbered parts and manifest from private draft GitHub release; reassembled original gzip and verified decompressed raw WAV bytes. Original failed observation unchanged.",
+  "releaseURL": "https://github.com/thatsmethen/ravelink/releases/tag/untagged-4914eee7527f412d2aa9",
+  "releaseTag": "evidence-784e38f",
+  "releaseID": 422248488,
+  "manifestSHA256": "694f5f4d794f113e3dbbaf0fe1e7f1cdc846b81f94f8105c44e1d1963d3e1588",
+  "downloadedDirectory": "build/evidence-784e38f-downloaded-remote",
+  "restoredDirectory": "build/evidence-784e38f-restored-remote",
+  "files": [
+    {
+      "name": "soak-a.wav.gz",
+      "partsVerified": 50,
+      "gzipBytes": 25795246,
+      "gzipSHA256": "67e26f7e8fb8cf49e72ab5d1584bb709e7d04bdf5031a37dc32cdfeb2179cfec",
+      "rawBytes": 92160044,
+      "rawSHA256": "b2feb0e79d489da25fd947aa86de46d44c6905ac44d4fb5a7ef3db062a093c62"
+    },
+    {
+      "name": "soak-b.wav.gz",
+      "partsVerified": 48,
+      "gzipBytes": 24868344,
+      "gzipSHA256": "049eaa5badeb64fab2a97d84a21180bb3a13f63a9163e3793e4bcd7479eb8d82",
+      "rawBytes": 92160044,
+      "rawSHA256": "2c7fa6cf7107d49a2cd4a5e2592666b6712873f6d1235d2c98a0675f0aa6a9f3"
+    }
+  ]
+}

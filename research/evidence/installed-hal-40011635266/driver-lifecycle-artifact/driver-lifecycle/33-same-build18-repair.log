@@ -1,0 +1,52 @@
+Oct 23 19:28:47  installer[1574] <Debug>: Product archive /Users/runner/work/ravelink/ravelink/build/driver-lifecycle/upgrade18.pkg trustLevel=100
+Oct 23 19:28:47  installer[1574] <Debug>: External component packages (1) trustLevel=100 (trust evaluation failed: Error Domain=PKInstallErrorDomain Code=101 "The package “upgrade18.pkg” is not signed." UserInfo={NSURL=#ci-lifecycle-a.pkg -- file:///Users/runner/work/ravelink/ravelink/build/driver-lifecycle/upgrade18.pkg#Distribution, PKInstallPackageIdentifier=au.textual.ravelink.audio.package.ci-lifecycle-a, NSLocalizedDescription=The package “upgrade18.pkg” is not signed.})
+installer: Package name is RaveLink virtual devices
+installer: Upgrading at base path /
+installer:PHASE:Preparing for installation…
+Oct 23 19:28:47  installer[1574] <Debug>: -[IFDInstallController(Private) _buildInstallPlanReturningError:]: location = file://localhost
+Oct 23 19:28:47  installer[1574] <Debug>: -[IFDInstallController(Private) _buildInstallPlanReturningError:]: file://localhost/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/upgrade18.pkg#ci-lifecycle-a.pkg
+Oct 23 19:28:47  installer[1574] <Info>: Set authorization level to root for session
+Oct 23 19:28:47  installer[1574] <Info>: Administrator authorization granted.
+Oct 23 19:28:47  installer[1574] <Info>: Authorization is being checked, waiting until authorization arrives.
+Oct 23 19:28:47  installer[1574] <Info>: Packages have been authorized for installation.
+Oct 23 19:28:47  installer[1574] <Debug>: Will use PK session
+Oct 23 19:28:47  installer[1574] <Debug>: Using authorization level of root for IFPKInstallElement
+Oct 23 19:28:47  installer[1574] <Info>: Starting installation:
+installer:PHASE:Preparing the disk…
+Oct 23 19:28:47  installer[1574] <Notice>: Configuring volume "Macintosh HD"
+Oct 23 19:28:47  installer[1574] <Info>: Preparing disk for local booted install.
+Oct 23 19:28:47  installer[1574] <Notice>: Free space on "Macintosh HD": 46.23 GB (46226702336 bytes).
+Oct 23 19:28:47  installer[1574] <Notice>: Create temporary directory "/var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T//Install.1574w9ic0Z"
+installer:PHASE:Preparing RaveLink virtual devices…
+Oct 23 19:28:47  installer[1574] <Notice>: IFPKInstallElement (1 packages)
+Oct 23 19:28:47  installer[1574] <Info>: Current Path: /usr/sbin/installer
+Oct 23 19:28:47  installer[1574] <Info>: Current Path: /usr/bin/sudo
+installer:PHASE:Waiting for other installations to complete…
+Oct 23 19:28:47  installer[1574] <Notice>: PackageKit: Enqueuing install with framework-specified quality of service (utility)
+installer:PHASE:Configuring the installation…
+installer:STATUS:
+installer:%2.229250
+installer:PHASE:Validating packages…
+installer:%97.750000
+installer:STATUS:Running installer actions…
+Oct 23 19:28:48  installer[1574] <Notice>: Running install actions
+installer:STATUS:
+installer:PHASE:Finishing the Installation…
+Oct 23 19:28:48  installer[1574] <Notice>: Removing temporary directory "/var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T//Install.1574w9ic0Z"
+Oct 23 19:28:48  installer[1574] <Notice>: Finalize disk "Macintosh HD"
+Oct 23 19:28:48  installer[1574] <Notice>: Notifying system of updated components
+Oct 23 19:28:48  installer[1574] <Notice>: 
+Oct 23 19:28:48  installer[1574] <Notice>: **** Summary Information ****
+Oct 23 19:28:48  installer[1574] <Notice>:   Operation      Elapsed time
+Oct 23 19:28:48  installer[1574] <Notice>: -----------------------------
+Oct 23 19:28:48  installer[1574] <Notice>:        disk      0.00 seconds
+Oct 23 19:28:48  installer[1574] <Notice>:      script      0.00 seconds
+Oct 23 19:28:48  installer[1574] <Notice>:        zero      0.00 seconds
+Oct 23 19:28:48  installer[1574] <Notice>:     install      1.03 seconds
+Oct 23 19:28:48  installer[1574] <Notice>:     -total-      1.03 seconds
+Oct 23 19:28:48  installer[1574] <Notice>: 
+installer:STATUS:
+installer:%100.000000
+installer:PHASE:The software was successfully installed.
+installer: The upgrade was successful.
+installer: The install requires restarting now.

@@ -1,0 +1,697 @@
+{
+  "status": "Post-run diagnosis only. Original FAILED engine/timestamp outcome retained. No alignment or gain fitting.",
+  "measurements": {
+    "a": [
+      {
+        "bus": 0,
+        "expectedComponentAmplitude": 0.01,
+        "originalStrictPCMCheck": {
+          "error": "Bus 0: only 8.950s of uninterrupted valid input routing"
+        },
+        "diagnosticWindows": [
+          {
+            "atSeconds": 8,
+            "componentAmplitudes": [
+              0.010000188844440091,
+              0.009999164219444924
+            ],
+            "relativeToExpected": [
+              1.000018884444009,
+              0.9999164219444924
+            ]
+          },
+          {
+            "atSeconds": 10,
+            "componentAmplitudes": [
+              0.0100015224640249,
+              0.009999633088452895
+            ],
+            "relativeToExpected": [
+              1.0001522464024901,
+              0.9999633088452895
+            ]
+          },
+          {
+            "atSeconds": 15,
+            "componentAmplitudes": [
+              0.009999869609226246,
+              0.009998724634195176
+            ],
+            "relativeToExpected": [
+              0.9999869609226245,
+              0.9998724634195176
+            ]
+          },
+          {
+            "atSeconds": 20,
+            "componentAmplitudes": [
+              0.010001323636356545,
+              0.009998960115906575
+            ],
+            "relativeToExpected": [
+              1.0001323636356545,
+              0.9998960115906576
+            ]
+          },
+          {
+            "atSeconds": 25,
+            "componentAmplitudes": [
+              0.009999713076060228,
+              0.009999895661583881
+            ],
+            "relativeToExpected": [
+              0.9999713076060228,
+              0.9999895661583881
+            ]
+          },
+          {
+            "atSeconds": 30,
+            "componentAmplitudes": [
+              0.010000315162748621,
+              0.009999428785341394
+            ],
+            "relativeToExpected": [
+              1.000031516274862,
+              0.9999428785341393
+            ]
+          },
+          {
+            "atSeconds": 35,
+            "componentAmplitudes": [
+              0.009998573032714068,
+              0.010000197649367997
+            ],
+            "relativeToExpected": [
+              0.9998573032714068,
+              1.0000197649367997
+            ]
+          }
+        ]
+      },
+      {
+        "bus": 1,
+        "expectedComponentAmplitude": 0.0070794578438413795,
+        "originalStrictPCMCheck": {
+          "error": "Bus 1: only 8.950s of uninterrupted valid input routing"
+        },
+        "diagnosticWindows": [
+          {
+            "atSeconds": 8,
+            "componentAmplitudes": [
+              0.007079570454533851,
+              0.007078845078026991
+            ],
+            "relativeToExpected": [
+              1.0000159066831042,
+              0.9999134445281116
+            ]
+          },
+          {
+            "atSeconds": 10,
+            "componentAmplitudes": [
+              0.007080514593878837,
+              0.007079177019273551
+            ],
+            "relativeToExpected": [
+              1.000149269910319,
+              0.999960332475449
+            ]
+          },
+          {
+            "atSeconds": 15,
+            "componentAmplitudes": [
+              0.007079344449241107,
+              0.007078533870805542
+            ],
+            "relativeToExpected": [
+              0.9999839825869759,
+              0.999869485339666
+            ]
+          },
+          {
+            "atSeconds": 20,
+            "componentAmplitudes": [
+              0.007080373817022232,
+              0.00707870057913304
+            ],
+            "relativeToExpected": [
+              1.0001293846507822,
+              0.9998930335168253
+            ]
+          },
+          {
+            "atSeconds": 25,
+            "componentAmplitudes": [
+              0.00707923363454983,
+              0.007079362893201103
+            ],
+            "relativeToExpected": [
+              0.9999683295957833,
+              0.9999865878655724
+            ]
+          },
+          {
+            "atSeconds": 30,
+            "componentAmplitudes": [
+              0.0070796598435948635,
+              0.007079032332080192
+            ],
+            "relativeToExpected": [
+              1.00002853322358,
+              0.9999398948661644
+            ]
+          },
+          {
+            "atSeconds": 35,
+            "componentAmplitudes": [
+              0.007078426526007032,
+              0.007079576662035253
+            ],
+            "relativeToExpected": [
+              0.9998543224838545,
+              1.000016783515983
+            ]
+          }
+        ]
+      },
+      {
+        "bus": 2,
+        "expectedComponentAmplitude": 0.005011872336272723,
+        "originalStrictPCMCheck": {
+          "error": "Bus 2: only 8.950s of uninterrupted valid input routing"
+        },
+        "diagnosticWindows": [
+          {
+            "atSeconds": 8,
+            "componentAmplitudes": [
+              0.0050119310298636,
+              0.005011417505265415
+            ],
+            "relativeToExpected": [
+              1.0000117109110007,
+              0.999909249283144
+            ]
+          },
+          {
+            "atSeconds": 10,
+            "componentAmplitudes": [
+              0.005012599425343254,
+              0.005011652501144577
+            ],
+            "relativeToExpected": [
+              1.0001450733422057,
+              0.9999561371253305
+            ]
+          },
+          {
+            "atSeconds": 15,
+            "componentAmplitudes": [
+              0.005011771027170214,
+              0.00501119718135157
+            ],
+            "relativeToExpected": [
+              0.99997978617656,
+              0.9998652888829058
+            ]
+          },
+          {
+            "atSeconds": 20,
+            "componentAmplitudes": [
+              0.005012499762463791,
+              0.005011315207902135
+            ],
+            "relativeToExpected": [
+              1.0001251879834463,
+              0.9998888382757567
+            ]
+          },
+          {
+            "atSeconds": 25,
+            "componentAmplitudes": [
+              0.005011692578847637,
+              0.0050117840857468975
+            ],
+            "relativeToExpected": [
+              0.9999641336783891,
+              0.9999823917051545
+            ]
+          },
+          {
+            "atSeconds": 30,
+            "componentAmplitudes": [
+              0.0050119943180847795,
+              0.005011550075363181
+            ],
+            "relativeToExpected": [
+              1.0000243385712708,
+              0.9999357004951603
+            ]
+          },
+          {
+            "atSeconds": 35,
+            "componentAmplitudes": [
+              0.0050111211908383,
+              0.005011935422536441
+            ],
+            "relativeToExpected": [
+              0.9998501267821636,
+              1.000012587364459
+            ]
+          }
+        ]
+      },
+      {
+        "bus": 3,
+        "expectedComponentAmplitude": 0.003548133892335755,
+        "originalStrictPCMCheck": {
+          "error": "Bus 3: only 8.950s of uninterrupted valid input routing"
+        },
+        "diagnosticWindows": [
+          {
+            "atSeconds": 8,
+            "componentAmplitudes": [
+              0.0035481908912896364,
+              0.003547827344441317
+            ],
+            "relativeToExpected": [
+              1.000016064487872,
+              0.9999136030646701
+            ]
+          },
+          {
+            "atSeconds": 10,
+            "componentAmplitudes": [
+              0.003548664086314358,
+              0.0035479937143083457
+            ],
+            "relativeToExpected": [
+              1.0001494289659554,
+              0.9999604924640212
+            ]
+          },
+          {
+            "atSeconds": 15,
+            "componentAmplitudes": [
+              0.003548077620441584,
+              0.0035476713666277616
+            ],
+            "relativeToExpected": [
+              0.9999841404253959,
+              0.9998696425439321
+            ]
+          },
+          {
+            "atSeconds": 20,
+            "componentAmplitudes": [
+              0.003548593529865953,
+              0.0035477549271957236
+            ],
+            "relativeToExpected": [
+              1.000129543456968,
+              0.9998931931117792
+            ]
+          },
+          {
+            "atSeconds": 25,
+            "componentAmplitudes": [
+              0.003548022086408805,
+              0.0035480868677593255
+            ],
+            "relativeToExpected": [
+              0.9999684888083871,
+              0.9999867466736442
+            ]
+          },
+          {
+            "atSeconds": 30,
+            "componentAmplitudes": [
+              0.003548235696960953,
+              0.003547921198148679
+            ],
+            "relativeToExpected": [
+              1.0000286924417983,
+              0.9999400546333567
+            ]
+          },
+          {
+            "atSeconds": 35,
+            "componentAmplitudes": [
+              0.003547617570662602,
+              0.0035481940027507685
+            ],
+            "relativeToExpected": [
+              0.9998544807809344,
+              1.0000169414167666
+            ]
+          }
+        ]
+      }
+    ],
+    "b": [
+      {
+        "bus": 4,
+        "expectedComponentAmplitude": 0.0025118864315095803,
+        "originalStrictPCMCheck": {
+          "error": "Bus 4: only 9.000s of uninterrupted valid input routing"
+        },
+        "diagnosticWindows": [
+          {
+            "atSeconds": 8,
+            "componentAmplitudes": [
+              0.002511475841766008,
+              0.002511904537357447
+            ],
+            "relativeToExpected": [
+              0.9998365412789282,
+              1.0000072080678646
+            ]
+          },
+          {
+            "atSeconds": 10,
+            "componentAmplitudes": [
+              0.002511703861540715,
+              0.0025117458224889716
+            ],
+            "relativeToExpected": [
+              0.9999273175862671,
+              0.9999440225406512
+            ]
+          },
+          {
+            "atSeconds": 15,
+            "componentAmplitudes": [
+              0.002511868227112007,
+              0.0025115583298320975
+            ],
+            "relativeToExpected": [
+              0.9999927526987905,
+              0.9998693803695234
+            ]
+          },
+          {
+            "atSeconds": 20,
+            "componentAmplitudes": [
+              0.0025119089199102493,
+              0.002511817402718116
+            ],
+            "relativeToExpected": [
+              1.0000089527935605,
+              0.9999725191431434
+            ]
+          },
+          {
+            "atSeconds": 25,
+            "componentAmplitudes": [
+              0.002511901089867762,
+              0.0025115078045228364
+            ],
+            "relativeToExpected": [
+              1.0000058355975008,
+              0.9998492658816122
+            ]
+          },
+          {
+            "atSeconds": 30,
+            "componentAmplitudes": [
+              0.0025118258374908654,
+              0.0025118055660287093
+            ],
+            "relativeToExpected": [
+              0.9999758770866569,
+              0.999967806872215
+            ]
+          },
+          {
+            "atSeconds": 35,
+            "componentAmplitudes": [
+              0.002511832473274241,
+              0.002511817273241774
+            ],
+            "relativeToExpected": [
+              0.999978518839601,
+              0.9999724675976833
+            ]
+          }
+        ]
+      },
+      {
+        "bus": 5,
+        "expectedComponentAmplitude": 0.001778279410038923,
+        "originalStrictPCMCheck": {
+          "error": "Bus 5: only 9.000s of uninterrupted valid input routing"
+        },
+        "diagnosticWindows": [
+          {
+            "atSeconds": 8,
+            "componentAmplitudes": [
+              0.0017779961462706304,
+              0.001778299637248311
+            ],
+            "relativeToExpected": [
+              0.9998407090771599,
+              1.0000113745957322
+            ]
+          },
+          {
+            "atSeconds": 10,
+            "componentAmplitudes": [
+              0.001778157570122655,
+              0.0017781872770927913
+            ],
+            "relativeToExpected": [
+              0.9999314843800249,
+              0.9999481898369786
+            ]
+          },
+          {
+            "atSeconds": 15,
+            "componentAmplitudes": [
+              0.0017782739367111652,
+              0.0017780545465225482
+            ],
+            "relativeToExpected": [
+              0.9999969221216155,
+              0.9998735499522149
+            ]
+          },
+          {
+            "atSeconds": 20,
+            "componentAmplitudes": [
+              0.0017783027374268171,
+              0.0017782379491304214
+            ],
+            "relativeToExpected": [
+              1.0000131179542215,
+              0.9999766848177696
+            ]
+          },
+          {
+            "atSeconds": 25,
+            "componentAmplitudes": [
+              0.001778297193435949,
+              0.0017780187693251929
+            ],
+            "relativeToExpected": [
+              1.00001000033905,
+              0.9998534309556425
+            ]
+          },
+          {
+            "atSeconds": 30,
+            "componentAmplitudes": [
+              0.0017782439250033635,
+              0.0017782295737246382
+            ],
+            "relativeToExpected": [
+              0.999980045298079,
+              0.9999719749809824
+            ]
+          },
+          {
+            "atSeconds": 35,
+            "componentAmplitudes": [
+              0.0017782486217393602,
+              0.0017782378592376064
+            ],
+            "relativeToExpected": [
+              0.9999826864668235,
+              0.999976634267325
+            ]
+          }
+        ]
+      },
+      {
+        "bus": 6,
+        "expectedComponentAmplitude": 0.0012589254117941673,
+        "originalStrictPCMCheck": {
+          "error": "Bus 6: only 9.000s of uninterrupted valid input routing"
+        },
+        "diagnosticWindows": [
+          {
+            "atSeconds": 8,
+            "componentAmplitudes": [
+              0.001258719796807995,
+              0.001258934653104911
+            ],
+            "relativeToExpected": [
+              0.9998366742110009,
+              1.0000073406340497
+            ]
+          },
+          {
+            "atSeconds": 10,
+            "componentAmplitudes": [
+              0.0012588340750123116,
+              0.0012588551055924134
+            ],
+            "relativeToExpected": [
+              0.9999274486153031,
+              0.9999441537988707
+            ]
+          },
+          {
+            "atSeconds": 15,
+            "componentAmplitudes": [
+              0.0012589164555745606,
+              0.0012587611388219235
+            ],
+            "relativeToExpected": [
+              0.99999288582189,
+              0.9998695133399447
+            ]
+          },
+          {
+            "atSeconds": 20,
+            "componentAmplitudes": [
+              0.001258936845246801,
+              0.0012588909781366597
+            ],
+            "relativeToExpected": [
+              1.0000090819142473,
+              0.9999726483736169
+            ]
+          },
+          {
+            "atSeconds": 25,
+            "componentAmplitudes": [
+              0.001258932923152269,
+              0.0012587358131519338
+            ],
+            "relativeToExpected": [
+              1.0000059664838212,
+              0.9998493964452085
+            ]
+          },
+          {
+            "atSeconds": 30,
+            "componentAmplitudes": [
+              0.0012588952078018325,
+              0.0012588850480192812
+            ],
+            "relativeToExpected": [
+              0.9999760081160871,
+              0.999967937913948
+            ]
+          },
+          {
+            "atSeconds": 35,
+            "componentAmplitudes": [
+              0.0012588985346200841,
+              0.0012588909147237045
+            ],
+            "relativeToExpected": [
+              0.9999786507017562,
+              0.9999725980029162
+            ]
+          }
+        ]
+      },
+      {
+        "bus": 7,
+        "expectedComponentAmplitude": 0.0008912509381337455,
+        "originalStrictPCMCheck": {
+          "error": "Bus 7: only 9.000s of uninterrupted valid input routing"
+        },
+        "diagnosticWindows": [
+          {
+            "atSeconds": 8,
+            "componentAmplitudes": [
+              0.0008911090290260327,
+              0.0008912611358992838
+            ],
+            "relativeToExpected": [
+              0.9998407753623128,
+              1.0000114420811266
+            ]
+          },
+          {
+            "atSeconds": 10,
+            "componentAmplitudes": [
+              0.0008911899335130642,
+              0.000891204821878031
+            ],
+            "relativeToExpected": [
+              0.9999315516897979,
+              0.999948256710045
+            ]
+          },
+          {
+            "atSeconds": 15,
+            "componentAmplitudes": [
+              0.0008912482519215613,
+              0.0008911382952830917
+            ],
+            "relativeToExpected": [
+              0.9999969860203571,
+              0.9998736126428213
+            ]
+          },
+          {
+            "atSeconds": 20,
+            "componentAmplitudes": [
+              0.0008912626897069813,
+              0.000891230217576773
+            ],
+            "relativeToExpected": [
+              1.0000131854820375,
+              0.9999767511526935
+            ]
+          },
+          {
+            "atSeconds": 25,
+            "componentAmplitudes": [
+              0.0008912599107644694,
+              0.0008911203679926074
+            ],
+            "relativeToExpected": [
+              1.0000100674572558,
+              0.9998534978920622
+            ]
+          },
+          {
+            "atSeconds": 30,
+            "componentAmplitudes": [
+              0.0008912332121064835,
+              0.0008912260180227574
+            ],
+            "relativeToExpected": [
+              0.9999801110702906,
+              0.9999720391755881
+            ]
+          },
+          {
+            "atSeconds": 35,
+            "componentAmplitudes": [
+              0.0008912355664280465,
+              0.0008912301722392602
+            ],
+            "relativeToExpected": [
+              0.9999827526625316,
+              0.9999767002831674
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

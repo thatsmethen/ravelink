@@ -1,0 +1,1074 @@
+{
+  "scope": "Disposable runner only; Installer payload/receipt and HAL format lifecycle. No audio IO or universal upgrade atomicity claim.",
+  "revision": "784e38f30a7b51f2fc8d40d58413780ae11e9944",
+  "events": [
+    {
+      "command": "compile-observer",
+      "arguments": [
+        "xcrun",
+        "clang",
+        "-std=c11",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "/Users/runner/work/ravelink/ravelink/scripts/driver-state-probe.c",
+        "-framework",
+        "CoreAudio",
+        "-framework",
+        "CoreFoundation",
+        "-o",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/driver-state-probe"
+      ],
+      "exitCode": 0,
+      "log": "01-compile-observer.log"
+    },
+    {
+      "command": "build-A17",
+      "arguments": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/runner/work/ravelink/ravelink/scripts/virtual-devices.py",
+        "build",
+        "--device",
+        "ci-lifecycle-a:A17",
+        "--channels",
+        "2",
+        "--version",
+        "0.2.0",
+        "--build-number",
+        "17",
+        "--output",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/A17"
+      ],
+      "exitCode": 0,
+      "log": "02-build-A17.log"
+    },
+    {
+      "command": "build-B17",
+      "arguments": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/runner/work/ravelink/ravelink/scripts/virtual-devices.py",
+        "build",
+        "--device",
+        "ci-lifecycle-b:B17",
+        "--channels",
+        "2",
+        "--version",
+        "0.2.0",
+        "--build-number",
+        "17",
+        "--output",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/B17"
+      ],
+      "exitCode": 0,
+      "log": "03-build-B17.log"
+    },
+    {
+      "command": "build-A18",
+      "arguments": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/runner/work/ravelink/ravelink/scripts/virtual-devices.py",
+        "build",
+        "--device",
+        "ci-lifecycle-a:A18",
+        "--channels",
+        "4",
+        "--version",
+        "0.3.0",
+        "--build-number",
+        "18",
+        "--output",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/A18"
+      ],
+      "exitCode": 0,
+      "log": "04-build-A18.log"
+    },
+    {
+      "command": "build-A19",
+      "arguments": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/runner/work/ravelink/ravelink/scripts/virtual-devices.py",
+        "build",
+        "--device",
+        "ci-lifecycle-a:A19",
+        "--channels",
+        "4",
+        "--version",
+        "0.3.0",
+        "--build-number",
+        "19",
+        "--output",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/A19"
+      ],
+      "exitCode": 0,
+      "log": "05-build-A19.log"
+    },
+    {
+      "command": "build-B16",
+      "arguments": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/runner/work/ravelink/ravelink/scripts/virtual-devices.py",
+        "build",
+        "--device",
+        "ci-lifecycle-b:B16",
+        "--channels",
+        "2",
+        "--version",
+        "0.2.0",
+        "--build-number",
+        "16",
+        "--output",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/B16"
+      ],
+      "exitCode": 0,
+      "log": "06-build-B16.log"
+    },
+    {
+      "command": "build-A19LowerMarketing",
+      "arguments": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/runner/work/ravelink/ravelink/scripts/virtual-devices.py",
+        "build",
+        "--device",
+        "ci-lifecycle-a:A19LowerMarketing",
+        "--channels",
+        "4",
+        "--version",
+        "0.1.0",
+        "--build-number",
+        "19",
+        "--output",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/A19LowerMarketing"
+      ],
+      "exitCode": 0,
+      "log": "07-build-A19LowerMarketing.log"
+    },
+    {
+      "command": "package-initial17",
+      "arguments": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/runner/work/ravelink/ravelink/scripts/virtual-devices.py",
+        "package",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/A17/RaveLink-ci-lifecycle-a.driver",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/B17/RaveLink-ci-lifecycle-b.driver",
+        "--output",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/initial17.pkg"
+      ],
+      "exitCode": 0,
+      "log": "08-package-initial17.log"
+    },
+    {
+      "command": "package-upgrade18",
+      "arguments": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/runner/work/ravelink/ravelink/scripts/virtual-devices.py",
+        "package",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/A18/RaveLink-ci-lifecycle-a.driver",
+        "--output",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/upgrade18.pkg"
+      ],
+      "exitCode": 0,
+      "log": "09-package-upgrade18.log"
+    },
+    {
+      "command": "package-mixed-upgrade-downgrade",
+      "arguments": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/runner/work/ravelink/ravelink/scripts/virtual-devices.py",
+        "package",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/A19/RaveLink-ci-lifecycle-a.driver",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/B16/RaveLink-ci-lifecycle-b.driver",
+        "--output",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/mixed-upgrade-downgrade.pkg"
+      ],
+      "exitCode": 0,
+      "log": "10-package-mixed-upgrade-downgrade.log"
+    },
+    {
+      "command": "package-build19-lower-marketing",
+      "arguments": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/runner/work/ravelink/ravelink/scripts/virtual-devices.py",
+        "package",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/A19LowerMarketing/RaveLink-ci-lifecycle-a.driver",
+        "--output",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/build19-lower-marketing.pkg"
+      ],
+      "exitCode": 0,
+      "log": "11-package-build19-lower-marketing.log"
+    },
+    {
+      "command": "package-b-only17",
+      "arguments": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/runner/work/ravelink/ravelink/scripts/virtual-devices.py",
+        "package",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/B17/RaveLink-ci-lifecycle-b.driver",
+        "--output",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/b-only17.pkg"
+      ],
+      "exitCode": 0,
+      "log": "12-package-b-only17.log"
+    },
+    {
+      "command": "install17-log-position",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-c",
+        "import os,json; s=os.stat(\"/var/log/install.log\"); print(json.dumps([s.st_ino,s.st_size]))"
+      ],
+      "exitCode": 0,
+      "log": "13-install17-log-position.log"
+    },
+    {
+      "command": "install17",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/usr/sbin/installer",
+        "-dumplog",
+        "-verboseR",
+        "-pkg",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/initial17.pkg",
+        "-target",
+        "/"
+      ],
+      "exitCode": 0,
+      "log": "14-install17.log"
+    },
+    {
+      "command": "install17-system-log",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-c",
+        "import os,sys,time; time.sleep(0.2); f=open(\"/var/log/install.log\",\"rb\"); s=os.fstat(f.fileno()); assert s.st_ino==int(sys.argv[1]) and s.st_size>=int(sys.argv[2]), \"Installer log rotated; evidence unavailable\"; f.seek(int(sys.argv[2])); data=f.read(8*1024*1024+1); assert len(data)<=8*1024*1024, \"Installer log exceeds instrument limit\"; sys.stdout.buffer.write(data)",
+        "17337",
+        "2126659"
+      ],
+      "exitCode": 0,
+      "log": "15-install17-system-log.log"
+    },
+    {
+      "command": "validate-ci-lifecycle-a",
+      "arguments": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/runner/work/ravelink/ravelink/scripts/virtual-devices.py",
+        "validate",
+        "/Library/Audio/Plug-Ins/HAL/RaveLink-ci-lifecycle-a.driver"
+      ],
+      "exitCode": 0,
+      "log": "16-validate-ci-lifecycle-a.log"
+    },
+    {
+      "command": "validate-ci-lifecycle-b",
+      "arguments": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/runner/work/ravelink/ravelink/scripts/virtual-devices.py",
+        "validate",
+        "/Library/Audio/Plug-Ins/HAL/RaveLink-ci-lifecycle-b.driver"
+      ],
+      "exitCode": 0,
+      "log": "17-validate-ci-lifecycle-b.log"
+    },
+    {
+      "snapshot": "installed17",
+      "state": {
+        "ci-lifecycle-a": {
+          "payloadSHA256": "019e9df9d06b4b4308cec3264afc79efc69160f386ee9923726a491bd892f8c5",
+          "receipt": {
+            "data": {
+              "install-location": "Library/Audio/Plug-Ins/HAL",
+              "install-time": 1792783714,
+              "pkg-version": "17",
+              "pkgid": "au.textual.ravelink.audio.package.ci-lifecycle-a",
+              "receipt-plist-version": 1.0,
+              "volume": "/"
+            },
+            "sha256": "d5ba05329123bf601c833b54c8597e2379140c56972931efd3a71521bb369229"
+          }
+        },
+        "ci-lifecycle-b": {
+          "payloadSHA256": "73be606b011b56fc916eb201c1c0bf48ef0204b4e9fc3e6ef687dac2251b0673",
+          "receipt": {
+            "data": {
+              "install-location": "Library/Audio/Plug-Ins/HAL",
+              "install-time": 1792783714,
+              "pkg-version": "17",
+              "pkgid": "au.textual.ravelink.audio.package.ci-lifecycle-b",
+              "receipt-plist-version": 1.0,
+              "volume": "/"
+            },
+            "sha256": "a089224b3392e6116764d897c9a60ef2b1adad768a333c835a1d89e8d53e7bcc"
+          }
+        }
+      }
+    },
+    {
+      "command": "reload-disposable-audio-service",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/usr/bin/killall",
+        "coreaudiod"
+      ],
+      "exitCode": 0,
+      "log": "18-reload-disposable-audio-service.log"
+    },
+    {
+      "command": "inspect-ci-lifecycle-a",
+      "arguments": [
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/driver-state-probe",
+        "RaveLink.ci-lifecycle-a_UID"
+      ],
+      "exitCode": 0,
+      "log": "19-inspect-ci-lifecycle-a.log"
+    },
+    {
+      "HAL": {
+        "present": true,
+        "uid": "RaveLink.ci-lifecycle-a_UID",
+        "name": "RaveLink A17",
+        "sampleRate": 48000,
+        "inputChannels": 2,
+        "outputChannels": 2,
+        "bufferFrames": 512,
+        "format": "packed native Float32 PCM"
+      }
+    },
+    {
+      "command": "inspect-ci-lifecycle-b",
+      "arguments": [
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/driver-state-probe",
+        "RaveLink.ci-lifecycle-b_UID"
+      ],
+      "exitCode": 0,
+      "log": "20-inspect-ci-lifecycle-b.log"
+    },
+    {
+      "HAL": {
+        "present": true,
+        "uid": "RaveLink.ci-lifecycle-b_UID",
+        "name": "RaveLink B17",
+        "sampleRate": 48000,
+        "inputChannels": 2,
+        "outputChannels": 2,
+        "bufferFrames": 512,
+        "format": "packed native Float32 PCM"
+      }
+    },
+    {
+      "command": "upgrade17-to18-log-position",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-c",
+        "import os,json; s=os.stat(\"/var/log/install.log\"); print(json.dumps([s.st_ino,s.st_size]))"
+      ],
+      "exitCode": 0,
+      "log": "21-upgrade17-to18-log-position.log"
+    },
+    {
+      "command": "upgrade17-to18",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/usr/sbin/installer",
+        "-dumplog",
+        "-verboseR",
+        "-pkg",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/upgrade18.pkg",
+        "-target",
+        "/"
+      ],
+      "exitCode": 0,
+      "log": "22-upgrade17-to18.log"
+    },
+    {
+      "command": "upgrade17-to18-system-log",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-c",
+        "import os,sys,time; time.sleep(0.2); f=open(\"/var/log/install.log\",\"rb\"); s=os.fstat(f.fileno()); assert s.st_ino==int(sys.argv[1]) and s.st_size>=int(sys.argv[2]), \"Installer log rotated; evidence unavailable\"; f.seek(int(sys.argv[2])); data=f.read(8*1024*1024+1); assert len(data)<=8*1024*1024, \"Installer log exceeds instrument limit\"; sys.stdout.buffer.write(data)",
+        "17337",
+        "2140401"
+      ],
+      "exitCode": 0,
+      "log": "23-upgrade17-to18-system-log.log"
+    },
+    {
+      "command": "validate-ci-lifecycle-a",
+      "arguments": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/runner/work/ravelink/ravelink/scripts/virtual-devices.py",
+        "validate",
+        "/Library/Audio/Plug-Ins/HAL/RaveLink-ci-lifecycle-a.driver"
+      ],
+      "exitCode": 0,
+      "log": "24-validate-ci-lifecycle-a.log"
+    },
+    {
+      "command": "validate-ci-lifecycle-b",
+      "arguments": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/runner/work/ravelink/ravelink/scripts/virtual-devices.py",
+        "validate",
+        "/Library/Audio/Plug-Ins/HAL/RaveLink-ci-lifecycle-b.driver"
+      ],
+      "exitCode": 0,
+      "log": "25-validate-ci-lifecycle-b.log"
+    },
+    {
+      "snapshot": "upgraded18",
+      "state": {
+        "ci-lifecycle-a": {
+          "payloadSHA256": "00ed2efcc7308793cbbb32cd8d3d71a1a2d5d2ca54fa77b6be3891bc2099308b",
+          "receipt": {
+            "data": {
+              "install-location": "Library/Audio/Plug-Ins/HAL",
+              "install-time": 1792783720,
+              "pkg-version": "18",
+              "pkgid": "au.textual.ravelink.audio.package.ci-lifecycle-a",
+              "receipt-plist-version": 1.0,
+              "volume": "/"
+            },
+            "sha256": "ecea40b13c39c1e5292c27a5958ea7ec85adc6d83c8b5d832b43022842b50046"
+          }
+        },
+        "ci-lifecycle-b": {
+          "payloadSHA256": "73be606b011b56fc916eb201c1c0bf48ef0204b4e9fc3e6ef687dac2251b0673",
+          "receipt": {
+            "data": {
+              "install-location": "Library/Audio/Plug-Ins/HAL",
+              "install-time": 1792783714,
+              "pkg-version": "17",
+              "pkgid": "au.textual.ravelink.audio.package.ci-lifecycle-b",
+              "receipt-plist-version": 1.0,
+              "volume": "/"
+            },
+            "sha256": "a089224b3392e6116764d897c9a60ef2b1adad768a333c835a1d89e8d53e7bcc"
+          }
+        }
+      }
+    },
+    {
+      "command": "reload-disposable-audio-service",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/usr/bin/killall",
+        "coreaudiod"
+      ],
+      "exitCode": 0,
+      "log": "26-reload-disposable-audio-service.log"
+    },
+    {
+      "command": "inspect-ci-lifecycle-a",
+      "arguments": [
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/driver-state-probe",
+        "RaveLink.ci-lifecycle-a_UID"
+      ],
+      "exitCode": 0,
+      "log": "27-inspect-ci-lifecycle-a.log"
+    },
+    {
+      "HAL": {
+        "present": true,
+        "uid": "RaveLink.ci-lifecycle-a_UID",
+        "name": "RaveLink A18",
+        "sampleRate": 48000,
+        "inputChannels": 4,
+        "outputChannels": 4,
+        "bufferFrames": 512,
+        "format": "packed native Float32 PCM"
+      }
+    },
+    {
+      "command": "inspect-ci-lifecycle-b",
+      "arguments": [
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/driver-state-probe",
+        "RaveLink.ci-lifecycle-b_UID"
+      ],
+      "exitCode": 0,
+      "log": "28-inspect-ci-lifecycle-b.log"
+    },
+    {
+      "HAL": {
+        "present": true,
+        "uid": "RaveLink.ci-lifecycle-b_UID",
+        "name": "RaveLink B17",
+        "sampleRate": 48000,
+        "inputChannels": 2,
+        "outputChannels": 2,
+        "bufferFrames": 512,
+        "format": "packed native Float32 PCM"
+      }
+    },
+    {
+      "command": "inspect-ci-lifecycle-a",
+      "arguments": [
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/driver-state-probe",
+        "RaveLink.ci-lifecycle-a_UID",
+        "44100"
+      ],
+      "exitCode": 0,
+      "log": "29-inspect-ci-lifecycle-a.log"
+    },
+    {
+      "HAL": {
+        "present": true,
+        "uid": "RaveLink.ci-lifecycle-a_UID",
+        "name": "RaveLink A18",
+        "sampleRate": 44100,
+        "inputChannels": 4,
+        "outputChannels": 4,
+        "bufferFrames": 512,
+        "format": "packed native Float32 PCM"
+      }
+    },
+    {
+      "command": "inspect-ci-lifecycle-a",
+      "arguments": [
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/driver-state-probe",
+        "RaveLink.ci-lifecycle-a_UID",
+        "48000"
+      ],
+      "exitCode": 0,
+      "log": "30-inspect-ci-lifecycle-a.log"
+    },
+    {
+      "HAL": {
+        "present": true,
+        "uid": "RaveLink.ci-lifecycle-a_UID",
+        "name": "RaveLink A18",
+        "sampleRate": 48000,
+        "inputChannels": 4,
+        "outputChannels": 4,
+        "bufferFrames": 512,
+        "format": "packed native Float32 PCM"
+      }
+    },
+    {
+      "command": "damage-owned-fixture",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-c",
+        "from pathlib import Path; import sys; p=Path(sys.argv[1]); p.write_bytes(p.read_bytes()+b\"repair-fixture\")",
+        "/Library/Audio/Plug-Ins/HAL/RaveLink-ci-lifecycle-a.driver/Contents/Resources/RaveLink.icns"
+      ],
+      "exitCode": 0,
+      "log": "31-damage-owned-fixture.log"
+    },
+    {
+      "command": "same-build18-repair-log-position",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-c",
+        "import os,json; s=os.stat(\"/var/log/install.log\"); print(json.dumps([s.st_ino,s.st_size]))"
+      ],
+      "exitCode": 0,
+      "log": "32-same-build18-repair-log-position.log"
+    },
+    {
+      "command": "same-build18-repair",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/usr/sbin/installer",
+        "-dumplog",
+        "-verboseR",
+        "-pkg",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/upgrade18.pkg",
+        "-target",
+        "/"
+      ],
+      "exitCode": 0,
+      "log": "33-same-build18-repair.log"
+    },
+    {
+      "command": "same-build18-repair-system-log",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-c",
+        "import os,sys,time; time.sleep(0.2); f=open(\"/var/log/install.log\",\"rb\"); s=os.fstat(f.fileno()); assert s.st_ino==int(sys.argv[1]) and s.st_size>=int(sys.argv[2]), \"Installer log rotated; evidence unavailable\"; f.seek(int(sys.argv[2])); data=f.read(8*1024*1024+1); assert len(data)<=8*1024*1024, \"Installer log exceeds instrument limit\"; sys.stdout.buffer.write(data)",
+        "17337",
+        "2151765"
+      ],
+      "exitCode": 0,
+      "log": "34-same-build18-repair-system-log.log"
+    },
+    {
+      "command": "validate-ci-lifecycle-a",
+      "arguments": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/runner/work/ravelink/ravelink/scripts/virtual-devices.py",
+        "validate",
+        "/Library/Audio/Plug-Ins/HAL/RaveLink-ci-lifecycle-a.driver"
+      ],
+      "exitCode": 0,
+      "log": "35-validate-ci-lifecycle-a.log"
+    },
+    {
+      "snapshot": "before-policy-rejections",
+      "state": {
+        "ci-lifecycle-a": {
+          "payloadSHA256": "00ed2efcc7308793cbbb32cd8d3d71a1a2d5d2ca54fa77b6be3891bc2099308b",
+          "receipt": {
+            "data": {
+              "install-location": "Library/Audio/Plug-Ins/HAL",
+              "install-time": 1792783728,
+              "pkg-version": "18",
+              "pkgid": "au.textual.ravelink.audio.package.ci-lifecycle-a",
+              "receipt-plist-version": 1.0,
+              "volume": "/"
+            },
+            "sha256": "bf7dcf5cf6e530009634e92cbbbf212d5ce7d0fc30a85d33f1cafd42390d3a3f"
+          }
+        },
+        "ci-lifecycle-b": {
+          "payloadSHA256": "73be606b011b56fc916eb201c1c0bf48ef0204b4e9fc3e6ef687dac2251b0673",
+          "receipt": {
+            "data": {
+              "install-location": "Library/Audio/Plug-Ins/HAL",
+              "install-time": 1792783714,
+              "pkg-version": "17",
+              "pkgid": "au.textual.ravelink.audio.package.ci-lifecycle-b",
+              "receipt-plist-version": 1.0,
+              "volume": "/"
+            },
+            "sha256": "a089224b3392e6116764d897c9a60ef2b1adad768a333c835a1d89e8d53e7bcc"
+          }
+        }
+      }
+    },
+    {
+      "command": "reject-downgrade18-to17-log-position",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-c",
+        "import os,json; s=os.stat(\"/var/log/install.log\"); print(json.dumps([s.st_ino,s.st_size]))"
+      ],
+      "exitCode": 0,
+      "log": "36-reject-downgrade18-to17-log-position.log"
+    },
+    {
+      "command": "reject-downgrade18-to17",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/usr/sbin/installer",
+        "-dumplog",
+        "-verboseR",
+        "-pkg",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/initial17.pkg",
+        "-target",
+        "/"
+      ],
+      "exitCode": 1,
+      "log": "37-reject-downgrade18-to17.log"
+    },
+    {
+      "command": "reject-downgrade18-to17-system-log",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-c",
+        "import os,sys,time; time.sleep(0.2); f=open(\"/var/log/install.log\",\"rb\"); s=os.fstat(f.fileno()); assert s.st_ino==int(sys.argv[1]) and s.st_size>=int(sys.argv[2]), \"Installer log rotated; evidence unavailable\"; f.seek(int(sys.argv[2])); data=f.read(8*1024*1024+1); assert len(data)<=8*1024*1024, \"Installer log exceeds instrument limit\"; sys.stdout.buffer.write(data)",
+        "17337",
+        "2163129"
+      ],
+      "exitCode": 0,
+      "log": "38-reject-downgrade18-to17-system-log.log"
+    },
+    {
+      "snapshot": "after-downgrade-rejection",
+      "state": {
+        "ci-lifecycle-a": {
+          "payloadSHA256": "00ed2efcc7308793cbbb32cd8d3d71a1a2d5d2ca54fa77b6be3891bc2099308b",
+          "receipt": {
+            "data": {
+              "install-location": "Library/Audio/Plug-Ins/HAL",
+              "install-time": 1792783728,
+              "pkg-version": "18",
+              "pkgid": "au.textual.ravelink.audio.package.ci-lifecycle-a",
+              "receipt-plist-version": 1.0,
+              "volume": "/"
+            },
+            "sha256": "bf7dcf5cf6e530009634e92cbbbf212d5ce7d0fc30a85d33f1cafd42390d3a3f"
+          }
+        },
+        "ci-lifecycle-b": {
+          "payloadSHA256": "73be606b011b56fc916eb201c1c0bf48ef0204b4e9fc3e6ef687dac2251b0673",
+          "receipt": {
+            "data": {
+              "install-location": "Library/Audio/Plug-Ins/HAL",
+              "install-time": 1792783714,
+              "pkg-version": "17",
+              "pkgid": "au.textual.ravelink.audio.package.ci-lifecycle-b",
+              "receipt-plist-version": 1.0,
+              "volume": "/"
+            },
+            "sha256": "a089224b3392e6116764d897c9a60ef2b1adad768a333c835a1d89e8d53e7bcc"
+          }
+        }
+      }
+    },
+    {
+      "command": "reject-mixed-upgrade-downgrade-log-position",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-c",
+        "import os,json; s=os.stat(\"/var/log/install.log\"); print(json.dumps([s.st_ino,s.st_size]))"
+      ],
+      "exitCode": 0,
+      "log": "39-reject-mixed-upgrade-downgrade-log-position.log"
+    },
+    {
+      "command": "reject-mixed-upgrade-downgrade",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/usr/sbin/installer",
+        "-dumplog",
+        "-verboseR",
+        "-pkg",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/mixed-upgrade-downgrade.pkg",
+        "-target",
+        "/"
+      ],
+      "exitCode": 1,
+      "log": "40-reject-mixed-upgrade-downgrade.log"
+    },
+    {
+      "command": "reject-mixed-upgrade-downgrade-system-log",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-c",
+        "import os,sys,time; time.sleep(0.2); f=open(\"/var/log/install.log\",\"rb\"); s=os.fstat(f.fileno()); assert s.st_ino==int(sys.argv[1]) and s.st_size>=int(sys.argv[2]), \"Installer log rotated; evidence unavailable\"; f.seek(int(sys.argv[2])); data=f.read(8*1024*1024+1); assert len(data)<=8*1024*1024, \"Installer log exceeds instrument limit\"; sys.stdout.buffer.write(data)",
+        "17337",
+        "2174387"
+      ],
+      "exitCode": 0,
+      "log": "41-reject-mixed-upgrade-downgrade-system-log.log"
+    },
+    {
+      "snapshot": "after-mixed-rejection",
+      "state": {
+        "ci-lifecycle-a": {
+          "payloadSHA256": "00ed2efcc7308793cbbb32cd8d3d71a1a2d5d2ca54fa77b6be3891bc2099308b",
+          "receipt": {
+            "data": {
+              "install-location": "Library/Audio/Plug-Ins/HAL",
+              "install-time": 1792783728,
+              "pkg-version": "18",
+              "pkgid": "au.textual.ravelink.audio.package.ci-lifecycle-a",
+              "receipt-plist-version": 1.0,
+              "volume": "/"
+            },
+            "sha256": "bf7dcf5cf6e530009634e92cbbbf212d5ce7d0fc30a85d33f1cafd42390d3a3f"
+          }
+        },
+        "ci-lifecycle-b": {
+          "payloadSHA256": "73be606b011b56fc916eb201c1c0bf48ef0204b4e9fc3e6ef687dac2251b0673",
+          "receipt": {
+            "data": {
+              "install-location": "Library/Audio/Plug-Ins/HAL",
+              "install-time": 1792783714,
+              "pkg-version": "17",
+              "pkgid": "au.textual.ravelink.audio.package.ci-lifecycle-b",
+              "receipt-plist-version": 1.0,
+              "volume": "/"
+            },
+            "sha256": "a089224b3392e6116764d897c9a60ef2b1adad768a333c835a1d89e8d53e7bcc"
+          }
+        }
+      }
+    },
+    {
+      "command": "reject-duplicate-uninstall",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/runner/work/ravelink/ravelink/scripts/virtual-devices.py",
+        "uninstall",
+        "ci-lifecycle-a",
+        "ci-lifecycle-a"
+      ],
+      "exitCode": 1,
+      "log": "42-reject-duplicate-uninstall.log"
+    },
+    {
+      "snapshot": "after-duplicate-uninstall",
+      "state": {
+        "ci-lifecycle-a": {
+          "payloadSHA256": "00ed2efcc7308793cbbb32cd8d3d71a1a2d5d2ca54fa77b6be3891bc2099308b",
+          "receipt": {
+            "data": {
+              "install-location": "Library/Audio/Plug-Ins/HAL",
+              "install-time": 1792783728,
+              "pkg-version": "18",
+              "pkgid": "au.textual.ravelink.audio.package.ci-lifecycle-a",
+              "receipt-plist-version": 1.0,
+              "volume": "/"
+            },
+            "sha256": "bf7dcf5cf6e530009634e92cbbbf212d5ce7d0fc30a85d33f1cafd42390d3a3f"
+          }
+        },
+        "ci-lifecycle-b": {
+          "payloadSHA256": "73be606b011b56fc916eb201c1c0bf48ef0204b4e9fc3e6ef687dac2251b0673",
+          "receipt": {
+            "data": {
+              "install-location": "Library/Audio/Plug-Ins/HAL",
+              "install-time": 1792783714,
+              "pkg-version": "17",
+              "pkgid": "au.textual.ravelink.audio.package.ci-lifecycle-b",
+              "receipt-plist-version": 1.0,
+              "volume": "/"
+            },
+            "sha256": "a089224b3392e6116764d897c9a60ef2b1adad768a333c835a1d89e8d53e7bcc"
+          }
+        }
+      }
+    },
+    {
+      "command": "higher-build-lower-marketing-log-position",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-c",
+        "import os,json; s=os.stat(\"/var/log/install.log\"); print(json.dumps([s.st_ino,s.st_size]))"
+      ],
+      "exitCode": 0,
+      "log": "43-higher-build-lower-marketing-log-position.log"
+    },
+    {
+      "command": "higher-build-lower-marketing",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/usr/sbin/installer",
+        "-dumplog",
+        "-verboseR",
+        "-pkg",
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/build19-lower-marketing.pkg",
+        "-target",
+        "/"
+      ],
+      "exitCode": 0,
+      "log": "44-higher-build-lower-marketing.log"
+    },
+    {
+      "command": "higher-build-lower-marketing-system-log",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-c",
+        "import os,sys,time; time.sleep(0.2); f=open(\"/var/log/install.log\",\"rb\"); s=os.fstat(f.fileno()); assert s.st_ino==int(sys.argv[1]) and s.st_size>=int(sys.argv[2]), \"Installer log rotated; evidence unavailable\"; f.seek(int(sys.argv[2])); data=f.read(8*1024*1024+1); assert len(data)<=8*1024*1024, \"Installer log exceeds instrument limit\"; sys.stdout.buffer.write(data)",
+        "17337",
+        "2185897"
+      ],
+      "exitCode": 0,
+      "log": "45-higher-build-lower-marketing-system-log.log"
+    },
+    {
+      "command": "cleanup-ci-lifecycle-a",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/bin/rm",
+        "-rf",
+        "/Library/Audio/Plug-Ins/HAL/RaveLink-ci-lifecycle-a.driver"
+      ],
+      "exitCode": 0,
+      "log": "46-cleanup-ci-lifecycle-a.log"
+    },
+    {
+      "command": "forget-ci-lifecycle-a",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/usr/sbin/pkgutil",
+        "--forget",
+        "au.textual.ravelink.audio.package.ci-lifecycle-a"
+      ],
+      "exitCode": 0,
+      "log": "47-forget-ci-lifecycle-a.log"
+    },
+    {
+      "command": "cleanup-ci-lifecycle-b",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/bin/rm",
+        "-rf",
+        "/Library/Audio/Plug-Ins/HAL/RaveLink-ci-lifecycle-b.driver"
+      ],
+      "exitCode": 0,
+      "log": "48-cleanup-ci-lifecycle-b.log"
+    },
+    {
+      "command": "forget-ci-lifecycle-b",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/usr/sbin/pkgutil",
+        "--forget",
+        "au.textual.ravelink.audio.package.ci-lifecycle-b"
+      ],
+      "exitCode": 0,
+      "log": "49-forget-ci-lifecycle-b.log"
+    },
+    {
+      "command": "reload-disposable-audio-service",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/usr/bin/killall",
+        "coreaudiod"
+      ],
+      "exitCode": 0,
+      "log": "50-reload-disposable-audio-service.log"
+    },
+    {
+      "command": "inspect-ci-lifecycle-a",
+      "arguments": [
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/driver-state-probe",
+        "RaveLink.ci-lifecycle-a_UID"
+      ],
+      "exitCode": 0,
+      "log": "51-inspect-ci-lifecycle-a.log"
+    },
+    {
+      "HAL": {
+        "present": false
+      }
+    },
+    {
+      "command": "inspect-ci-lifecycle-b",
+      "arguments": [
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/driver-state-probe",
+        "RaveLink.ci-lifecycle-b_UID"
+      ],
+      "exitCode": 0,
+      "log": "52-inspect-ci-lifecycle-b.log"
+    },
+    {
+      "HAL": {
+        "present": false
+      }
+    },
+    {
+      "snapshot": "cleanup-verified",
+      "state": {
+        "ci-lifecycle-a": {
+          "payloadSHA256": null,
+          "receipt": null
+        },
+        "ci-lifecycle-b": {
+          "payloadSHA256": null,
+          "receipt": null
+        }
+      }
+    },
+    {
+      "command": "cleanup-ci-lifecycle-a",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/bin/rm",
+        "-rf",
+        "/Library/Audio/Plug-Ins/HAL/RaveLink-ci-lifecycle-a.driver"
+      ],
+      "exitCode": 0,
+      "log": "53-cleanup-ci-lifecycle-a.log"
+    },
+    {
+      "command": "cleanup-ci-lifecycle-b",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/bin/rm",
+        "-rf",
+        "/Library/Audio/Plug-Ins/HAL/RaveLink-ci-lifecycle-b.driver"
+      ],
+      "exitCode": 0,
+      "log": "54-cleanup-ci-lifecycle-b.log"
+    },
+    {
+      "command": "reload-disposable-audio-service",
+      "arguments": [
+        "sudo",
+        "-n",
+        "/usr/bin/killall",
+        "coreaudiod"
+      ],
+      "exitCode": 0,
+      "log": "55-reload-disposable-audio-service.log"
+    },
+    {
+      "command": "inspect-ci-lifecycle-a",
+      "arguments": [
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/driver-state-probe",
+        "RaveLink.ci-lifecycle-a_UID"
+      ],
+      "exitCode": 0,
+      "log": "56-inspect-ci-lifecycle-a.log"
+    },
+    {
+      "HAL": {
+        "present": false
+      }
+    },
+    {
+      "command": "inspect-ci-lifecycle-b",
+      "arguments": [
+        "/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/driver-state-probe",
+        "RaveLink.ci-lifecycle-b_UID"
+      ],
+      "exitCode": 0,
+      "log": "57-inspect-ci-lifecycle-b.log"
+    },
+    {
+      "HAL": {
+        "present": false
+      }
+    },
+    {
+      "snapshot": "cleanup-verified",
+      "state": {
+        "ci-lifecycle-a": {
+          "payloadSHA256": null,
+          "receipt": null
+        },
+        "ci-lifecycle-b": {
+          "payloadSHA256": null,
+          "receipt": null
+        }
+      }
+    }
+  ],
+  "completed": false,
+  "error": "ci-lifecycle-a: installed bytes differ from package source",
+  "cleanupCompleted": true
+}

@@ -1,0 +1,53 @@
+Oct 23 19:28:53  installer[1640] <Debug>: Product archive /Users/runner/work/ravelink/ravelink/build/driver-lifecycle/build19-lower-marketing.pkg trustLevel=100
+Oct 23 19:28:53  installer[1640] <Debug>: External component packages (1) trustLevel=100 (trust evaluation failed: Error Domain=PKInstallErrorDomain Code=101 "The package “build19-lower-marketing.pkg” is not signed." UserInfo={NSURL=#ci-lifecycle-a.pkg -- file:///Users/runner/work/ravelink/ravelink/build/driver-lifecycle/build19-lower-marketing.pkg#Distribution, PKInstallPackageIdentifier=au.textual.ravelink.audio.package.ci-lifecycle-a, NSLocalizedDescription=The package “build19-lower-marketing.pkg” is not signed.})
+installer: Package name is RaveLink virtual devices
+installer: Upgrading at base path /
+installer:PHASE:Preparing for installation…
+Oct 23 19:28:53  installer[1640] <Debug>: -[IFDInstallController(Private) _buildInstallPlanReturningError:]: location = file://localhost
+Oct 23 19:28:53  installer[1640] <Debug>: -[IFDInstallController(Private) _buildInstallPlanReturningError:]: file://localhost/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/build19-lower-marketing.pkg#ci-lifecycle-a.pkg
+Oct 23 19:28:53  installer[1640] <Info>: Set authorization level to root for session
+Oct 23 19:28:53  installer[1640] <Info>: Authorization is being checked, waiting until authorization arrives.
+Oct 23 19:28:53  installer[1640] <Info>: Administrator authorization granted.
+Oct 23 19:28:53  installer[1640] <Info>: Packages have been authorized for installation.
+Oct 23 19:28:53  installer[1640] <Debug>: Will use PK session
+Oct 23 19:28:53  installer[1640] <Debug>: Using authorization level of root for IFPKInstallElement
+Oct 23 19:28:53  installer[1640] <Info>: PackageKit: Skipping component "au.textual.ravelink.audio.ci-lifecycle-a" (0.1.0-19.0.0-*) because the version 0.3.0-18.0.0-* is already installed at /Library/Audio/Plug-Ins/HAL/RaveLink-ci-lifecycle-a.driver.
+Oct 23 19:28:53  installer[1640] <Info>: Starting installation:
+installer:PHASE:Preparing the disk…
+Oct 23 19:28:53  installer[1640] <Notice>: Configuring volume "Macintosh HD"
+Oct 23 19:28:53  installer[1640] <Info>: Preparing disk for local booted install.
+Oct 23 19:28:53  installer[1640] <Notice>: Free space on "Macintosh HD": 46.23 GB (46225084416 bytes).
+Oct 23 19:28:53  installer[1640] <Notice>: Create temporary directory "/var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T//Install.16406Bdad4"
+Oct 23 19:28:53  installer[1640] <Notice>: IFPKInstallElement (1 packages)
+installer:PHASE:Preparing RaveLink virtual devices…
+Oct 23 19:28:53  installer[1640] <Info>: Current Path: /usr/sbin/installer
+Oct 23 19:28:53  installer[1640] <Info>: Current Path: /usr/bin/sudo
+installer:PHASE:Waiting for other installations to complete…
+Oct 23 19:28:53  installer[1640] <Notice>: PackageKit: Enqueuing install with framework-specified quality of service (utility)
+installer:PHASE:Configuring the installation…
+installer:STATUS:
+installer:%2.229250
+installer:PHASE:Validating packages…
+installer:%97.750000
+installer:STATUS:Running installer actions…
+Oct 23 19:28:54  installer[1640] <Notice>: Running install actions
+installer:STATUS:
+installer:PHASE:Finishing the Installation…
+Oct 23 19:28:54  installer[1640] <Notice>: Removing temporary directory "/var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T//Install.16406Bdad4"
+Oct 23 19:28:54  installer[1640] <Notice>: Finalize disk "Macintosh HD"
+Oct 23 19:28:54  installer[1640] <Notice>: Notifying system of updated components
+Oct 23 19:28:54  installer[1640] <Notice>: 
+Oct 23 19:28:54  installer[1640] <Notice>: **** Summary Information ****
+Oct 23 19:28:54  installer[1640] <Notice>:   Operation      Elapsed time
+Oct 23 19:28:54  installer[1640] <Notice>: -----------------------------
+Oct 23 19:28:54  installer[1640] <Notice>:        disk      0.00 seconds
+Oct 23 19:28:54  installer[1640] <Notice>:      script      0.00 seconds
+Oct 23 19:28:54  installer[1640] <Notice>:        zero      0.00 seconds
+Oct 23 19:28:54  installer[1640] <Notice>:     install      1.17 seconds
+Oct 23 19:28:54  installer[1640] <Notice>:     -total-      1.17 seconds
+Oct 23 19:28:54  installer[1640] <Notice>: 
+installer:STATUS:
+installer:%100.000000
+installer:PHASE:The software was successfully installed.
+installer: The upgrade was successful.
+installer: The install requires restarting now.

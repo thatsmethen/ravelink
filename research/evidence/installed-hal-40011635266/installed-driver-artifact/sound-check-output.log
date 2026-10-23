@@ -1,0 +1,11 @@
+enumerate-size status=0
+device id=111 uid=RaveLink.ci-mix-a_UID name=RaveLink CIMixA
+register-start rate=48000
+register-return status=0
+start-begin
+start-return status=0
+stop-begin
+stop-return status=0
+unregister-return status=0
+telemetry callbacks=2252 outputFrames=1153024 capturedFrames=1152000
+capture-wav /Users/runner/work/ravelink/ravelink/build/sound-check-output.wav

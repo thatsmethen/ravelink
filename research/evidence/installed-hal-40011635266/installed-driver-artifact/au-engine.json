@@ -1,0 +1,32 @@
+{
+  "component" : "61756678:6c6d7472:6170706c",
+  "componentVersion" : 67072,
+  "deviceSampleRate" : 48000,
+  "deviceUID" : "RaveLink.ci-loopback_UID",
+  "enginePID" : 2721,
+  "evidence" : "Control sequence metadata only; independent recording is verified separately.",
+  "oversizedBlocks" : 0,
+  "phases" : [
+    {
+      "hostUptime" : 207.85341516666668,
+      "name" : "active-plus6dB"
+    },
+    {
+      "hostUptime" : 209.87969212500002,
+      "name" : "live-minus6dB"
+    },
+    {
+      "hostUptime" : 211.90388883333335,
+      "name" : "host-bypass"
+    },
+    {
+      "hostUptime" : 213.96740720833336,
+      "name" : "restored-plus12dB"
+    },
+    {
+      "hostUptime" : 216.03455804166668,
+      "name" : "final-mute"
+    }
+  ],
+  "presetBytes" : 175
+}

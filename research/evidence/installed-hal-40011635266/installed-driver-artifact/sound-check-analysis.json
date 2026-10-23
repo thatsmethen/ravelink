@@ -1,0 +1,89 @@
+{
+  "evidence": "Independent installed-HAL Sound Check PCM; absolute expected levels; no waveform alignment, resampling or gain fitting",
+  "limitation": "The guard observes one named stereo pair, not every possible system endpoint. Generated tone input does not establish microphone permissions or hardware recording compatibility.",
+  "engine": {
+    "completed": true,
+    "evidence": "Supervised Sound Check state sequence; independent PCM determines actual silence, dry recording and loop gain",
+    "finalFrames": 0,
+    "finalMode": "empty",
+    "guardUID": "RaveLink.ci-mix-b_UID",
+    "helperReaped": true,
+    "initialGainDB": -12,
+    "mixBuses": 1,
+    "osVersion": "Version 15.7.9 (Build 24G830)",
+    "outputUID": "RaveLink.ci-mix-a_UID",
+    "recordedFrames": 41984,
+    "sampleRate": 48000,
+    "stateEvents": [
+      {
+        "mode": "empty",
+        "recordedFrames": 0,
+        "uptime": 312.7429144166667
+      },
+      {
+        "mode": "recording",
+        "recordedFrames": 512,
+        "uptime": 313.2942775416667
+      },
+      {
+        "mode": "ready",
+        "recordedFrames": 41984,
+        "uptime": 314.22181362500004
+      },
+      {
+        "mode": "playing",
+        "recordedFrames": 41984,
+        "uptime": 315.630690625
+      },
+      {
+        "mode": "ready",
+        "recordedFrames": 41984,
+        "uptime": 322.3499735416667
+      },
+      {
+        "mode": "empty",
+        "recordedFrames": 0,
+        "uptime": 323.65078458333335
+      }
+    ],
+    "visibleInputGroups": 1
+  },
+  "output": {
+    "sampleRate": 48000,
+    "seconds": 24.0,
+    "phases": [
+      {
+        "phase": "unity",
+        "startSeconds": 5.550000000000001,
+        "seconds": 3.55,
+        "frequencyHz": 440.000010021743,
+        "crossingOutlierFraction": 0.002560819462227913,
+        "maximumAdjacentSampleJump": 0.007249706424772739,
+        "jumpLimit": 0.009719302626186687,
+        "minimumPeak": 0.125889852643013,
+        "maximumPeak": 0.125889852643013
+      },
+      {
+        "phase": "minus12dB",
+        "startSeconds": 9.15,
+        "seconds": 3.05,
+        "frequencyHz": 440.0000100972805,
+        "crossingOutlierFraction": 0.0022371364653243847,
+        "maximumAdjacentSampleJump": 0.0018211171263828874,
+        "jumpLimit": 0.0024413784390453766,
+        "minimumPeak": 0.03162277117371559,
+        "maximumPeak": 0.031625062227249146
+      },
+      {
+        "phase": "silence",
+        "startSeconds": 12.25,
+        "seconds": 11.75
+      }
+    ]
+  },
+  "guard": {
+    "sampleRate": 48000,
+    "seconds": 24.0,
+    "peak": 0.0
+  }
+}

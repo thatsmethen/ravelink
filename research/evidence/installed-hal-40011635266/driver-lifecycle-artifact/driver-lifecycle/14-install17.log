@@ -1,0 +1,53 @@
+Oct 23 19:28:33  installer[1454] <Debug>: Product archive /Users/runner/work/ravelink/ravelink/build/driver-lifecycle/initial17.pkg trustLevel=100
+Oct 23 19:28:33  installer[1454] <Debug>: External component packages (2) trustLevel=100 (trust evaluation failed: Error Domain=PKInstallErrorDomain Code=101 "The package “initial17.pkg” is not signed." UserInfo={NSURL=#ci-lifecycle-b.pkg -- file:///Users/runner/work/ravelink/ravelink/build/driver-lifecycle/initial17.pkg#Distribution, PKInstallPackageIdentifier=au.textual.ravelink.audio.package.ci-lifecycle-b, NSLocalizedDescription=The package “initial17.pkg” is not signed.})
+installer: Package name is RaveLink virtual devices
+installer: Installing at base path /
+installer:PHASE:Preparing for installation…
+Oct 23 19:28:33  installer[1454] <Debug>: -[IFDInstallController(Private) _buildInstallPlanReturningError:]: location = file://localhost
+Oct 23 19:28:33  installer[1454] <Debug>: -[IFDInstallController(Private) _buildInstallPlanReturningError:]: file://localhost/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/initial17.pkg#ci-lifecycle-a.pkg
+Oct 23 19:28:33  installer[1454] <Debug>: -[IFDInstallController(Private) _buildInstallPlanReturningError:]: file://localhost/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/initial17.pkg#ci-lifecycle-b.pkg
+Oct 23 19:28:33  installer[1454] <Info>: Set authorization level to root for session
+Oct 23 19:28:33  installer[1454] <Info>: Authorization is being checked, waiting until authorization arrives.
+Oct 23 19:28:33  installer[1454] <Info>: Administrator authorization granted.
+Oct 23 19:28:33  installer[1454] <Info>: Packages have been authorized for installation.
+Oct 23 19:28:33  installer[1454] <Debug>: Will use PK session
+Oct 23 19:28:33  installer[1454] <Debug>: Using authorization level of root for IFPKInstallElement
+Oct 23 19:28:33  installer[1454] <Info>: Starting installation:
+installer:PHASE:Preparing the disk…
+Oct 23 19:28:33  installer[1454] <Notice>: Configuring volume "Macintosh HD"
+Oct 23 19:28:33  installer[1454] <Info>: Preparing disk for local booted install.
+Oct 23 19:28:33  installer[1454] <Notice>: Free space on "Macintosh HD": 46.23 GB (46228611072 bytes).
+Oct 23 19:28:33  installer[1454] <Notice>: Create temporary directory "/var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T//Install.1454mGUjiB"
+installer:PHASE:Preparing RaveLink virtual devices…
+Oct 23 19:28:33  installer[1454] <Notice>: IFPKInstallElement (2 packages)
+Oct 23 19:28:33  installer[1454] <Info>: Current Path: /usr/sbin/installer
+Oct 23 19:28:33  installer[1454] <Info>: Current Path: /usr/bin/sudo
+installer:PHASE:Waiting for other installations to complete…
+Oct 23 19:28:33  installer[1454] <Notice>: PackageKit: Enqueuing install with framework-specified quality of service (utility)
+installer:PHASE:Configuring the installation…
+installer:STATUS:
+installer:%2.229250
+installer:PHASE:Validating packages…
+installer:%97.750000
+installer:STATUS:Running installer actions…
+Oct 23 19:28:34  installer[1454] <Notice>: Running install actions
+installer:STATUS:
+installer:PHASE:Finishing the Installation…
+Oct 23 19:28:34  installer[1454] <Notice>: Removing temporary directory "/var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T//Install.1454mGUjiB"
+Oct 23 19:28:34  installer[1454] <Notice>: Finalize disk "Macintosh HD"
+Oct 23 19:28:34  installer[1454] <Notice>: Notifying system of updated components
+Oct 23 19:28:34  installer[1454] <Notice>: 
+Oct 23 19:28:34  installer[1454] <Notice>: **** Summary Information ****
+Oct 23 19:28:34  installer[1454] <Notice>:   Operation      Elapsed time
+Oct 23 19:28:34  installer[1454] <Notice>: -----------------------------
+Oct 23 19:28:34  installer[1454] <Notice>:        disk      0.00 seconds
+Oct 23 19:28:34  installer[1454] <Notice>:      script      0.00 seconds
+Oct 23 19:28:34  installer[1454] <Notice>:        zero      0.00 seconds
+Oct 23 19:28:34  installer[1454] <Notice>:     install      1.69 seconds
+Oct 23 19:28:34  installer[1454] <Notice>:     -total-      1.70 seconds
+Oct 23 19:28:34  installer[1454] <Notice>: 
+installer:STATUS:
+installer:%100.000000
+installer:PHASE:The software was successfully installed.
+installer: The install was successful.
+installer: The install requires restarting now.

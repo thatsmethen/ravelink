@@ -9,3 +9,5 @@ __pycache__/
 # Original failed release-soak PCM is retained as private GitHub release assets.
 research/evidence/installed-hal-39998798881/artifact/soak-a.wav.gz
 research/evidence/installed-hal-39998798881/artifact/soak-b.wav.gz
+research/evidence/installed-hal-40011635266/installed-driver-artifact/soak-a.wav.gz
+research/evidence/installed-hal-40011635266/installed-driver-artifact/soak-b.wav.gz
