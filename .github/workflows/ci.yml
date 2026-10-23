@@ -1,0 +1,21 @@
+name: Native build and tests
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  macos:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Swift toolchain
+        run: swift --version
+      - name: Deterministic tests
+        run: swift test
+      - name: Build application
+        run: scripts/build-app.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RaveLink-development
+          path: build/RaveLink.app
