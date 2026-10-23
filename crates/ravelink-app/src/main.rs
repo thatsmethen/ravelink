@@ -48,6 +48,7 @@ fn starter() -> Session {
 #[derive(Clone)]
 enum Edit {
     AddInput,
+    AddDevice(String, String),
     AddBus,
     RemoveInput(Uuid),
     RemoveBus(Uuid),
@@ -74,6 +75,8 @@ struct Studio {
     audio: AudioUi,
     search: String,
     active_output: Option<String>,
+    source_picker_open: bool,
+    source_device: Option<String>,
 }
 
 impl Studio {
@@ -114,6 +117,8 @@ impl Studio {
             audio: AudioUi::new(cc.egui_ctx.clone()),
             search: String::new(),
             active_output: None,
+            source_picker_open: false,
+            source_device: None,
         };
         app.reindex();
         app
@@ -172,6 +177,11 @@ impl Studio {
                         amplitude_db: -24.0,
                     },
                 );
+                self.selected_input = Some(input.id);
+                self.session.inputs.push(input);
+            }
+            Edit::AddDevice(device_id, name) => {
+                let input = Input::new(name, InputKind::Hardware { device_id });
                 self.selected_input = Some(input.id);
                 self.session.inputs.push(input);
             }
@@ -289,7 +299,7 @@ impl Studio {
         }
     }
 
-    fn toolbar(&mut self, ctx: &egui::Context, edits: &mut Vec<Edit>) {
+    fn toolbar(&mut self, ctx: &egui::Context) {
         egui::TopBottomPanel::top("toolbar")
             .exact_height(76.0)
             .show(ctx, |ui| {
@@ -362,12 +372,40 @@ impl Studio {
                                 self.history(false);
                             }
                             if ui.button("+ Source").clicked() {
-                                edits.push(Edit::AddInput);
+                                self.source_picker_open = true;
                             }
                         });
                     });
                 });
             });
+    }
+
+    fn source_picker(&mut self, ctx: &egui::Context, edits: &mut Vec<Edit>) {
+        let mut open = self.source_picker_open;
+        let mut added = false;
+        egui::Window::new("Add a source").open(&mut open).collapsible(false).resizable(false).default_width(360.0).show(ctx, |ui| {
+            ui.label("Choose a microphone, interface or virtual audio device.");
+            ui.add_enabled_ui(!self.audio.running() && !self.audio.busy, |ui| {
+                let selected = self.audio.inputs.iter().find(|d| Some(&d.id) == self.source_device.as_ref());
+                egui::ComboBox::from_id_salt("source-device").selected_text(selected.map_or("Select an input…", |d| d.name.as_str())).width(320.0).show_ui(ui, |ui| {
+                    for device in &self.audio.inputs {
+                        ui.selectable_value(&mut self.source_device, Some(device.id.clone()), &device.name);
+                    }
+                });
+                ui.horizontal(|ui| {
+                    if ui.button("Refresh inputs").clicked() {self.audio.send(Request::Refresh);}
+                    let selected = self.audio.inputs.iter().find(|d| Some(&d.id) == self.source_device.as_ref());
+                    if ui.add_enabled(selected.is_some(), egui::Button::new("Add device")).clicked() {
+                        if let Some(device) = selected {edits.push(Edit::AddDevice(device.id.clone(),device.name.clone()));added=true;}
+                    }
+                });
+                ui.label("Capture begins when you start audio. Mono inputs use both stereo channels; interfaces use channels 1–2.");
+                ui.separator();
+                if ui.button("Add a test tone").clicked() {edits.push(Edit::AddInput);added=true;}
+            });
+            if let Some(error) = &self.audio.error {ui.colored_label(Color32::LIGHT_RED,error);}
+        });
+        self.source_picker_open = open && !added;
     }
 
     fn sidebar(&mut self, ctx: &egui::Context, edits: &mut Vec<Edit>) {
@@ -569,64 +607,205 @@ impl Studio {
     }
 
     fn mixer(&mut self, ctx: &egui::Context, edits: &mut Vec<Edit>) {
-        egui::CentralPanel::default().frame(egui::Frame::new().fill(BACKGROUND).inner_margin(22.0)).show(ctx, |ui| {
-            let bus_id=match self.selected_bus { Some(id)=>id,None=> { ui.heading("Create your first mix"); ui.label("Each mix has independent source levels and an output."); return; } };
-            let name=self.session.buses.iter().find(|b| b.id==bus_id).map(|b| b.name.as_str()).unwrap_or("Mix");
-            ui.horizontal(|ui| { ui.heading(RichText::new(name).size(29.0)); ui.with_layout(egui::Layout::right_to_left(egui::Align::Center),|ui| { ui.add(egui::TextEdit::singleline(&mut self.search).hint_text("Find a source").desired_width(170.0)); }); });
-            ui.label(RichText::new("Shape this mix with independent source levels.").color(MUTED)); ui.add_space(24.0);
-            if self.session.inputs.is_empty() {
-                ui.add_space(70.0); ui.heading("Build your first mix"); ui.label("Add a source, include it in this mix, then choose where to listen.");
-                if ui.add_enabled(!self.audio.running() && !self.audio.busy, egui::Button::new("+ Add a test tone")).clicked() { edits.push(Edit::AddInput); }
-                ui.add_space(16.0); ui.label(RichText::new("Hardware and application capture are being implemented for the Rust runtime.").color(MUTED));
-                return;
-            }
-            let needle=self.search.to_lowercase();
-            let inputs:Vec<_>=self.session.inputs.iter().filter(|i| needle.is_empty() || i.name.to_lowercase().contains(&needle)).collect();
-            let count=inputs.len(); let height=(ui.available_height()-30.0).max(340.0);
-            egui::ScrollArea::horizontal().id_salt("source-strips").show_viewport(ui,|ui,viewport| {
-                let width=count as f32*(STRIP_WIDTH+12.0);
-                let origin=ui.min_rect().min;
-                ui.set_min_size(Vec2::new(width,height));
-                let start=(viewport.left()/(STRIP_WIDTH+12.0)).floor().max(0.0) as usize;
-                let end=((viewport.right()/(STRIP_WIDTH+12.0)).ceil() as usize+1).min(count);
-                for (index, input) in inputs.iter().enumerate().take(end).skip(start) {
-                    let rect=egui::Rect::from_min_size(origin+Vec2::new(index as f32*(STRIP_WIDTH+12.0),0.0),Vec2::new(STRIP_WIDTH,height));
-                    ui.scope_builder(egui::UiBuilder::new().max_rect(rect),|ui| {
-                        egui::Frame::new().fill(CARD).corner_radius(12.0).inner_margin(14.0).show(ui,|ui| {
-                            ui.set_min_size(Vec2::new(STRIP_WIDTH-28.0,height-28.0));
-                            ui.set_max_width(STRIP_WIDTH-28.0);
-                            ui.spacing_mut().slider_width=88.0;
-                            let selected=self.selected_input==Some(input.id);
-                            if ui.add_sized([STRIP_WIDTH-28.0,40.0],egui::Button::new(RichText::new(&input.name).strong()).selected(selected)).clicked() { self.selected_input=Some(input.id); }
-                            ui.label(RichText::new(match input.kind { InputKind::TestTone{..}=>"TEST TONE",InputKind::Hardware{..}=>"DEVICE",InputKind::Application{..}=>"APPLICATION",InputKind::Virtual{..}=>"VIRTUAL DEVICE" }).size(10.0).color(MUTED));
-                            ui.add_space(16.0);
-                            ui.add_enabled_ui(!self.audio.busy,|ui| {
-                                let route=self.route_index.get(&(input.id,bus_id)).map(|&idx| &self.session.sends[idx]);
-                                if let Some(route)=route {
-                                    let mut controls=route.controls.clone();
-                                    ui.horizontal(|ui| {
-                                        if ui.selectable_label(controls.muted,"Mute").on_hover_text("Mute this source in this mix").clicked() { controls.muted = !controls.muted; }
-                                        if ui.selectable_label(controls.solo,"Solo").clicked() { controls.solo = !controls.solo; }
-                                    });
-
-                                    ui.add_space(18.0);
-                                    ui.horizontal(|ui| { ui.add_space(48.0); ui.add(egui::Slider::new(&mut controls.gain_db,-60.0..=12.0).vertical().text("dB").show_value(true)); });
-                                    if controls.linked { controls.right_gain_db=controls.gain_db; }
-                                    ui.add_space(20.0); let balance_label=ui.label("Balance"); ui.add(egui::Slider::new(&mut controls.pan,-1.0..=1.0)).labelled_by(balance_label.id);
-                                    if controls!=route.controls { edits.push(Edit::Route(input.id,bus_id,Some(controls))); }
-                                    if ui.add_enabled(!self.audio.running(),egui::Button::new("Remove from mix").small()).clicked() { edits.push(Edit::Route(input.id,bus_id,None)); }
-                                } else {
-                                    ui.add_space(50.0); ui.label(RichText::new("Not in this mix").color(MUTED));
-                                    if ui.add_enabled(!self.audio.running(),egui::Button::new("+ Add to mix")).clicked() { edits.push(Edit::Route(input.id,bus_id,Some(ChannelControls::default()))); }
-                                }
-                            });
-                            ui.add_space(12.0);
-                            meter(ui, "SOURCE LEVEL", self.audio.input_peak(input.id));
-                        });
+        egui::CentralPanel::default()
+            .frame(egui::Frame::new().fill(BACKGROUND).inner_margin(22.0))
+            .show(ctx, |ui| {
+                let bus_id = match self.selected_bus {
+                    Some(id) => id,
+                    None => {
+                        ui.heading("Create your first mix");
+                        ui.label("Each mix has independent source levels and an output.");
+                        return;
+                    }
+                };
+                let name = self
+                    .session
+                    .buses
+                    .iter()
+                    .find(|b| b.id == bus_id)
+                    .map(|b| b.name.as_str())
+                    .unwrap_or("Mix");
+                ui.horizontal(|ui| {
+                    ui.heading(RichText::new(name).size(29.0));
+                    ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                        ui.add(
+                            egui::TextEdit::singleline(&mut self.search)
+                                .hint_text("Find a source")
+                                .desired_width(170.0),
+                        );
                     });
+                });
+                ui.label(
+                    RichText::new("Shape this mix with independent source levels.").color(MUTED),
+                );
+                ui.add_space(24.0);
+                if self.session.inputs.is_empty() {
+                    ui.add_space(70.0);
+                    ui.heading("Build your first mix");
+                    ui.label("Add a source, include it in this mix, then choose where to listen.");
+                    if ui
+                        .add_enabled(
+                            !self.audio.running() && !self.audio.busy,
+                            egui::Button::new("+ Add a source"),
+                        )
+                        .clicked()
+                    {
+                        self.source_picker_open = true;
+                    }
+                    return;
                 }
+                let needle = self.search.to_lowercase();
+                let inputs: Vec<_> = self
+                    .session
+                    .inputs
+                    .iter()
+                    .filter(|i| needle.is_empty() || i.name.to_lowercase().contains(&needle))
+                    .collect();
+                let count = inputs.len();
+                let height = (ui.available_height() - 30.0).max(340.0);
+                egui::ScrollArea::horizontal()
+                    .id_salt("source-strips")
+                    .show_viewport(ui, |ui, viewport| {
+                        let width = count as f32 * (STRIP_WIDTH + 12.0);
+                        let origin = ui.min_rect().min;
+                        ui.set_min_size(Vec2::new(width, height));
+                        let start =
+                            (viewport.left() / (STRIP_WIDTH + 12.0)).floor().max(0.0) as usize;
+                        let end = ((viewport.right() / (STRIP_WIDTH + 12.0)).ceil() as usize + 1)
+                            .min(count);
+                        for (index, input) in inputs.iter().enumerate().take(end).skip(start) {
+                            let rect = egui::Rect::from_min_size(
+                                origin + Vec2::new(index as f32 * (STRIP_WIDTH + 12.0), 0.0),
+                                Vec2::new(STRIP_WIDTH, height),
+                            );
+                            ui.scope_builder(egui::UiBuilder::new().max_rect(rect), |ui| {
+                                egui::Frame::new()
+                                    .fill(CARD)
+                                    .corner_radius(12.0)
+                                    .inner_margin(14.0)
+                                    .show(ui, |ui| {
+                                        ui.set_min_size(Vec2::new(
+                                            STRIP_WIDTH - 28.0,
+                                            height - 28.0,
+                                        ));
+                                        ui.set_max_width(STRIP_WIDTH - 28.0);
+                                        ui.spacing_mut().slider_width = 88.0;
+                                        let selected = self.selected_input == Some(input.id);
+                                        if ui
+                                            .add_sized(
+                                                [STRIP_WIDTH - 28.0, 40.0],
+                                                egui::Button::new(
+                                                    RichText::new(&input.name).strong(),
+                                                )
+                                                .selected(selected),
+                                            )
+                                            .clicked()
+                                        {
+                                            self.selected_input = Some(input.id);
+                                        }
+                                        ui.label(
+                                            RichText::new(match input.kind {
+                                                InputKind::TestTone { .. } => "TEST TONE",
+                                                InputKind::Hardware { .. } => "DEVICE",
+                                                InputKind::Application { .. } => "APPLICATION",
+                                                InputKind::Virtual { .. } => "VIRTUAL DEVICE",
+                                            })
+                                            .size(10.0)
+                                            .color(MUTED),
+                                        );
+                                        ui.add_space(16.0);
+                                        ui.add_enabled_ui(!self.audio.busy, |ui| {
+                                            let route = self
+                                                .route_index
+                                                .get(&(input.id, bus_id))
+                                                .map(|&idx| &self.session.sends[idx]);
+                                            if let Some(route) = route {
+                                                let mut controls = route.controls.clone();
+                                                ui.horizontal(|ui| {
+                                                    if ui
+                                                        .selectable_label(controls.muted, "Mute")
+                                                        .on_hover_text(
+                                                            "Mute this source in this mix",
+                                                        )
+                                                        .clicked()
+                                                    {
+                                                        controls.muted = !controls.muted;
+                                                    }
+                                                    if ui
+                                                        .selectable_label(controls.solo, "Solo")
+                                                        .clicked()
+                                                    {
+                                                        controls.solo = !controls.solo;
+                                                    }
+                                                });
+
+                                                ui.add_space(18.0);
+                                                ui.horizontal(|ui| {
+                                                    ui.add_space(48.0);
+                                                    ui.add(
+                                                        egui::Slider::new(
+                                                            &mut controls.gain_db,
+                                                            -60.0..=12.0,
+                                                        )
+                                                        .vertical()
+                                                        .text("dB")
+                                                        .show_value(true),
+                                                    );
+                                                });
+                                                if controls.linked {
+                                                    controls.right_gain_db = controls.gain_db;
+                                                }
+                                                ui.add_space(20.0);
+                                                let balance_label = ui.label("Balance");
+                                                ui.add(egui::Slider::new(
+                                                    &mut controls.pan,
+                                                    -1.0..=1.0,
+                                                ))
+                                                .labelled_by(balance_label.id);
+                                                if controls != route.controls {
+                                                    edits.push(Edit::Route(
+                                                        input.id,
+                                                        bus_id,
+                                                        Some(controls),
+                                                    ));
+                                                }
+                                                if ui
+                                                    .add_enabled(
+                                                        !self.audio.running(),
+                                                        egui::Button::new("Remove from mix")
+                                                            .small(),
+                                                    )
+                                                    .clicked()
+                                                {
+                                                    edits.push(Edit::Route(input.id, bus_id, None));
+                                                }
+                                            } else {
+                                                ui.add_space(50.0);
+                                                ui.label(
+                                                    RichText::new("Not in this mix").color(MUTED),
+                                                );
+                                                if ui
+                                                    .add_enabled(
+                                                        !self.audio.running(),
+                                                        egui::Button::new("+ Add to mix"),
+                                                    )
+                                                    .clicked()
+                                                {
+                                                    edits.push(Edit::Route(
+                                                        input.id,
+                                                        bus_id,
+                                                        Some(ChannelControls::default()),
+                                                    ));
+                                                }
+                                            }
+                                        });
+                                        ui.add_space(12.0);
+                                        meter(ui, "SOURCE LEVEL", self.audio.input_peak(input.id));
+                                    });
+                            });
+                        }
+                    });
             });
-        });
     }
 }
 
@@ -691,7 +870,7 @@ impl eframe::App for Studio {
             self.history(false);
         }
         let mut edits = Vec::new();
-        self.toolbar(ctx, &mut edits);
+        self.toolbar(ctx);
         egui::TopBottomPanel::bottom("status")
             .exact_height(44.0)
             .show(ctx, |ui| {
@@ -723,6 +902,7 @@ impl eframe::App for Studio {
         self.sidebar(ctx, &mut edits);
         self.inspector(ctx, &mut edits);
         self.mixer(ctx, &mut edits);
+        self.source_picker(ctx, &mut edits);
         for edit in edits {
             self.edit(edit);
         }

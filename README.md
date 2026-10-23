@@ -22,7 +22,7 @@ cargo run -p ravelink-app
 
 Rust is pinned in `rust-toolchain.toml`. Current development targets are macOS and Windows; native builds and installed-driver acceptance are tracked separately. Audio starts stopped and requires an explicitly selected output. No system default audio device is changed.
 
-The current runtime plays test-tone sources into one explicitly selected output. Input, route and mix gain/mute/solo controls can update during playback without rebuilding the graph; callback acknowledgements track applied versions. Stop also cancels a start still queued by the interface. Hardware/application capture, simultaneous outputs, gain smoothing and installed-driver qualification remain required work.
+The current runtime mixes explicitly selected device inputs and test tones into one selected output. Input, route and mix gain/mute/solo controls can update during playback without rebuilding the graph; callback acknowledgements track applied versions. Stop also cancels a start still queued by the interface. Device capture includes a bounded stereo queue and clock compensation; [capture evidence and backend limits](crates/ravelink-audio/CAPTURE.md) distinguish offline tests from native qualification. Application capture, simultaneous outputs, gain smoothing and complete installed-runtime qualification remain required work.
 
 Desktop CI at `01a2222` built release artifacts and passed deterministic tests on Windows Server 2022 and macOS 15 ([run evidence](research/evidence/rust-ci-40034960508/run.json)). The stopped native macOS interface was exercised with 128 sources, 32 mixes and 4,096 routes ([observations](research/evidence/rust-ui-scale/observation.json)); this does not establish audio capacity or Windows interaction quality.
 

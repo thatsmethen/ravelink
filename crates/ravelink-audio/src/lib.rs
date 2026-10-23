@@ -6,12 +6,15 @@
 //! A command deadline cancels late output; it cannot kill a stuck OS call. A
 //! supervising process is still required for hard recovery from driver hangs.
 
+mod capture;
+mod capture_transport;
 mod control_bank;
+use capture::{CaptureRender, CaptureState};
 use control_bank::ControlBank;
 
 use cpal::traits::{DeviceTrait, HostTrait, StreamTrait};
 use ravelink_core::{
-    CompiledMixer, InputKind, MeterReading, PreparedControls, ResourceBudget, Session,
+    CompiledMixer, InputKind, MeterReading, PreparedControls, ResourceBudget, Session, StereoInput,
     StereoOutput, Uuid,
 };
 use std::{
@@ -27,6 +30,8 @@ use std::{
 const COMMAND_TIMEOUT: Duration = Duration::from_secs(5);
 const RENDER_CHUNK: usize = 2048;
 const MAX_CALLBACK_FRAMES: usize = 16384;
+// Physical PCM layouts are bounded independently of logical channel count.
+const MAX_DEVICE_CHANNELS: u16 = 256;
 const GRAPH_BYTES: usize = 64 * 1024 * 1024;
 
 /// CPAL's host-qualified native ID. Stable where the OS/backend permits; never a
@@ -40,9 +45,34 @@ pub struct OutputDevice {
     pub name: String,
 }
 
+/// Host-qualified native input identity, never a display name/default alias.
+#[derive(Clone, Debug, PartialEq, Eq, Hash)]
+pub struct InputId(pub String);
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct InputDevice {
+    pub id: InputId,
+    pub name: String,
+}
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct RunningInput {
+    pub device: InputDevice,
+    /// Several logical channels can share one physical capture stream.
+    pub source_ids: Vec<Uuid>,
+    pub device_channels: u16,
+    /// Mono is duplicated; multichannel input uses channels 1 and 2.
+    pub sample_format: String,
+}
+#[derive(Clone, Debug, PartialEq)]
+pub struct CaptureSnapshot {
+    pub device: InputId,
+    pub captured_frames: u64,
+    pub buffered_frames: u64,
+    pub clock_correction_ppm: f64,
+}
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct RunningConfiguration {
     pub output: OutputDevice,
+    pub inputs: Vec<RunningInput>,
     pub bus_id: Uuid,
     pub sample_rate: u32,
     pub device_channels: u16,
@@ -61,6 +91,12 @@ pub enum AudioError {
     NotRunning,
     InvalidSession(String),
     InvalidOutputId(String),
+    InvalidInputId(String),
+    InputUnavailable(InputId),
+    UnsupportedInputConfiguration {
+        device: String,
+        sample_rate: u32,
+    },
     DeviceUnavailable(OutputId),
     UnsupportedConfiguration {
         device: String,
@@ -83,6 +119,9 @@ impl fmt::Display for AudioError {
             Self::NotRunning => f.write_str("Start audio before updating live controls."),
             Self::AlreadyRunning => f.write_str("Stop audio before starting a different session or output."),
             Self::InvalidSession(reason) => write!(f, "Cannot start this mix: {reason}"),
+            Self::InvalidInputId(id) => write!(f, "The selected input identity is invalid for this platform: {id}"),
+            Self::InputUnavailable(id) => write!(f, "The selected input is unavailable: {}. Reconnect it or explicitly select another input.", id.0),
+            Self::UnsupportedInputConfiguration { device, sample_rate } => write!(f, "{device} does not expose supported PCM input at {sample_rate} Hz. Choose a compatible input or session sample rate."),
             Self::InvalidOutputId(id) => write!(f, "The selected output identity is invalid for this platform: {id}"),
             Self::DeviceUnavailable(id) => write!(f, "The selected output is unavailable: {}. Reconnect it or explicitly select another output.", id.0),
             Self::UnsupportedConfiguration { device, sample_rate } => write!(f, "{device} does not expose a supported stereo PCM output at {sample_rate} Hz. Choose a compatible output or session sample rate."),
@@ -111,6 +150,9 @@ pub enum AudioFault {
     Render = 8,
     RealtimeDenied = 9,
     ResourceExhausted = 10,
+    CaptureUnderflow = 11,
+    CaptureOverflow = 12,
+    CaptureStartup = 13,
 }
 impl AudioFault {
     fn from_code(code: u32) -> Self {
@@ -125,16 +167,22 @@ impl AudioFault {
             8 => Self::Render,
             9 => Self::RealtimeDenied,
             10 => Self::ResourceExhausted,
+            11 => Self::CaptureUnderflow,
+            12 => Self::CaptureOverflow,
+            13 => Self::CaptureStartup,
             _ => Self::Backend,
         }
     }
     pub fn message(self) -> &'static str {
         match self {
             Self::None => "",
-            Self::DeviceUnavailable => "The selected output disconnected. Reconnect it and start explicitly.",
-            Self::DeviceChanged => "The output route changed unexpectedly. Output stopped; select the intended device again.",
+            Self::CaptureUnderflow => "An input could not keep up with output. Audio stopped rather than dropping captured samples; check device clocks and load.",
+            Self::CaptureOverflow => "An input exceeded its capture buffer. Audio stopped rather than overwriting captured samples; check device clocks and load.",
+            Self::CaptureStartup => "A selected input did not deliver audio before its startup deadline. Check input permissions and the selected device.",
+            Self::DeviceUnavailable => "A selected audio device disconnected. Reconnect it and start explicitly.",
+            Self::DeviceChanged => "An audio device route changed unexpectedly. Output stopped; select the intended device again.",
             Self::PermissionDenied => "The operating system denied audio access. Check the app's audio permissions.",
-            Self::StreamInvalidated => "The output format or stream became invalid. Check the device settings and start again.",
+            Self::StreamInvalidated => "An audio device format or stream became invalid. Check the device settings and start again.",
             Self::Xrun => "The device reported a buffer underrun or overrun. Output stopped; reduce audio load before restarting.",
             Self::Backend => "The audio backend reported a stream failure. Check the selected device before restarting.",
             Self::InvalidBuffer => "The device supplied an unsupported callback buffer. Output stopped.",
@@ -152,6 +200,7 @@ pub struct AudioSnapshot {
     pub rendered_frames: u64,
     pub callback_count: u64,
     pub applied_control_version: u64,
+    pub captures: Vec<CaptureSnapshot>,
     pub input_meters: Vec<MeterReading>,
     pub bus_meters: Vec<MeterReading>,
     pub fault: AudioFault,
@@ -206,6 +255,7 @@ struct Telemetry {
     frames: AtomicU64,
     callbacks: AtomicU64,
     applied_control_version: AtomicU64,
+    captures: Vec<(InputId, Arc<capture_transport::Ring>)>,
     inputs: Vec<AtomicMeter>,
     buses: Vec<AtomicMeter>,
 }
@@ -216,6 +266,7 @@ impl Telemetry {
             frames: AtomicU64::new(0),
             callbacks: AtomicU64::new(0),
             applied_control_version: AtomicU64::new(0),
+            captures: Vec::new(),
             inputs: session
                 .inputs
                 .iter()
@@ -257,6 +308,7 @@ impl Shared {
 type Reply<T> = mpsc::SyncSender<Result<T, AudioError>>;
 enum Command {
     Enumerate(Reply<Vec<OutputDevice>>),
+    EnumerateInputs(Reply<Vec<InputDevice>>),
     Start {
         session: Session,
         bus: Uuid,
@@ -321,6 +373,11 @@ impl AudioRuntime {
     pub fn enumerate_output_devices(&self) -> Result<Vec<OutputDevice>, AudioError> {
         let (tx, rx) = mpsc::sync_channel(1);
         self.send(Command::Enumerate(tx))?;
+        receive(rx, "device discovery")
+    }
+    pub fn enumerate_input_devices(&self) -> Result<Vec<InputDevice>, AudioError> {
+        let (tx, rx) = mpsc::sync_channel(1);
+        self.send(Command::EnumerateInputs(tx))?;
         receive(rx, "device discovery")
     }
     pub fn start(
@@ -430,6 +487,19 @@ impl AudioRuntime {
                 .telemetry
                 .as_ref()
                 .map_or(0, |t| t.applied_control_version.load(Ordering::Acquire)),
+            captures: state.telemetry.as_ref().map_or_else(Vec::new, |t| {
+                t.captures
+                    .iter()
+                    .map(|(id, ring)| CaptureSnapshot {
+                        device: id.clone(),
+                        captured_frames: ring.captured.load(Ordering::Relaxed),
+                        buffered_frames: ring.buffered.load(Ordering::Relaxed),
+                        clock_correction_ppm: f64::from_bits(
+                            ring.correction_ppm.load(Ordering::Relaxed),
+                        ),
+                    })
+                    .collect()
+            }),
             input_meters: inputs,
             bus_meters: buses,
             fault,
@@ -517,9 +587,14 @@ fn validate_session(session: &Session, bus: Uuid) -> Result<(), AudioError> {
     if session
         .inputs
         .iter()
-        .any(|i| !matches!(i.kind, InputKind::TestTone { .. }))
+        .any(|i| matches!(i.kind, InputKind::Application { .. }))
     {
-        return Err(AudioError::InvalidSession("this runtime currently supports test-tone inputs only; hardware/application/virtual capture is not implemented".into()));
+        return Err(AudioError::InvalidSession("application capture requires a platform process tap and is not yet implemented; select a hardware or virtual input device".into()));
+    }
+    for id in capture::source_groups(session).keys() {
+        if id.parse::<cpal::DeviceId>().is_err() {
+            return Err(AudioError::InvalidInputId(id.clone()));
+        }
     }
     Ok(())
 }
@@ -557,7 +632,9 @@ fn select_config(
     sample_rate: u32,
 ) -> Option<cpal::SupportedStreamConfig> {
     configs
-        .filter(|c| c.channels() >= 2 && supported_pcm(c.sample_format()))
+        .filter(|c| {
+            (2..=MAX_DEVICE_CHANNELS).contains(&c.channels()) && supported_pcm(c.sample_format())
+        })
         .filter_map(|c| c.try_with_sample_rate(sample_rate))
         .min_by_key(|c| {
             (
@@ -590,12 +667,30 @@ fn supported_pcm(format: cpal::SampleFormat) -> bool {
 
 struct Running {
     _stream: cpal::Stream,
+    _input_streams: InputStreams,
     session: Session,
     controls: Arc<ControlBank>,
     wanted: Arc<AtomicBool>,
     telemetry: Arc<Telemetry>,
     epoch: u64,
 }
+impl Drop for Running {
+    fn drop(&mut self) {
+        self.wanted.store(false, Ordering::Release);
+    }
+}
+/// Revoke publication before dropping native capture resources, including when
+/// a later stream fails to build/start and a driver blocks during destruction.
+struct InputStreams {
+    streams: Vec<cpal::Stream>,
+    wanted: Arc<AtomicBool>,
+}
+impl Drop for InputStreams {
+    fn drop(&mut self) {
+        self.wanted.store(false, Ordering::Release);
+    }
+}
+
 fn runtime_loop(receiver: mpsc::Receiver<Command>, shared: Arc<Shared>) {
     let mut running: Option<Running> = None;
     loop {
@@ -613,6 +708,9 @@ fn runtime_loop(receiver: mpsc::Receiver<Command>, shared: Arc<Shared>) {
         match receiver.recv_timeout(Duration::from_millis(20)) {
             Ok(Command::Enumerate(reply)) => {
                 let _ = reply.send(enumerate());
+            }
+            Ok(Command::EnumerateInputs(reply)) => {
+                let _ = reply.send(capture::enumerate());
             }
             Ok(Command::Start {
                 session,
@@ -747,7 +845,12 @@ fn start_stream(
         device: name.clone(),
         sample_rate: session.sample_rate,
     })?;
+    let selected_inputs = capture::select(&session, &host)?;
     let configuration = RunningConfiguration {
+        inputs: selected_inputs
+            .iter()
+            .map(|s| s.configuration.clone())
+            .collect(),
         output: OutputDevice {
             id: output,
             name: name.clone(),
@@ -765,6 +868,34 @@ fn start_stream(
         wanted.clone(),
         shared.clone(),
     )?;
+    let mut input_streams = InputStreams {
+        streams: Vec::with_capacity(selected_inputs.len()),
+        wanted: wanted.clone(),
+    };
+    for (selected, capture) in selected_inputs.iter().zip(&render.captures) {
+        if !wanted.load(Ordering::Acquire) || shared.epoch.load(Ordering::Acquire) != epoch {
+            return Err(AudioError::Cancelled);
+        }
+        let state = CaptureState::new(
+            capture.consumer.ring.clone(),
+            usize::from(selected.config.channels()),
+            epoch,
+            wanted.clone(),
+            shared.clone(),
+            render.telemetry.clone(),
+        );
+        input_streams
+            .streams
+            .push(capture::make_stream(selected, state)?);
+        let fault = AudioFault::from_code(render.telemetry.fault.load(Ordering::Acquire));
+        if fault != AudioFault::None {
+            return Err(backend(
+                "input stream creation",
+                Some(selected.configuration.device.name.clone()),
+                fault.message(),
+            ));
+        }
+    }
     let telemetry = render.telemetry.clone();
     let controls = render.bank.clone();
     if !render.authorized() {
@@ -808,9 +939,26 @@ fn start_stream(
             initial_fault.message(),
         ));
     }
-    stream
-        .play()
-        .map_err(|e| backend("stream activation", Some(name.clone()), e))?;
+    for (input_stream, input) in input_streams.streams.iter().zip(&configuration.inputs) {
+        if !wanted.load(Ordering::Acquire) || shared.epoch.load(Ordering::Acquire) != epoch {
+            return Err(AudioError::Cancelled);
+        }
+        input_stream
+            .play()
+            .map_err(|e| backend("input activation", Some(input.device.name.clone()), e))?;
+        let fault = AudioFault::from_code(telemetry.fault.load(Ordering::Acquire));
+        if fault != AudioFault::None {
+            return Err(backend(
+                "input activation",
+                Some(input.device.name.clone()),
+                fault.message(),
+            ));
+        }
+    }
+    if let Err(error) = stream.play() {
+        wanted.store(false, Ordering::Release);
+        return Err(backend("stream activation", Some(name.clone()), error));
+    }
     let initial_fault = AudioFault::from_code(telemetry.fault.load(Ordering::Acquire));
     if initial_fault != AudioFault::None {
         return Err(backend(
@@ -825,6 +973,7 @@ fn start_stream(
     Ok((
         Running {
             _stream: stream,
+            _input_streams: input_streams,
             session,
             controls,
             wanted,
@@ -854,21 +1003,24 @@ where
             }
         },
         move |error| {
-            use cpal::ErrorKind;
-            let fault = match error.kind() {
-                ErrorKind::DeviceNotAvailable => AudioFault::DeviceUnavailable,
-                ErrorKind::DeviceChanged => AudioFault::DeviceChanged,
-                ErrorKind::PermissionDenied => AudioFault::PermissionDenied,
-                ErrorKind::StreamInvalidated => AudioFault::StreamInvalidated,
-                ErrorKind::Xrun => AudioFault::Xrun,
-                ErrorKind::RealtimeDenied => AudioFault::RealtimeDenied,
-                ErrorKind::ResourceExhausted => AudioFault::ResourceExhausted,
-                _ => AudioFault::Backend,
-            };
-            telemetry.fail(fault);
+            telemetry.fail(stream_fault(error.kind()));
         },
         Some(COMMAND_TIMEOUT),
     )
+}
+
+fn stream_fault(kind: cpal::ErrorKind) -> AudioFault {
+    use cpal::ErrorKind;
+    match kind {
+        ErrorKind::DeviceNotAvailable => AudioFault::DeviceUnavailable,
+        ErrorKind::DeviceChanged => AudioFault::DeviceChanged,
+        ErrorKind::PermissionDenied => AudioFault::PermissionDenied,
+        ErrorKind::StreamInvalidated => AudioFault::StreamInvalidated,
+        ErrorKind::Xrun => AudioFault::Xrun,
+        ErrorKind::RealtimeDenied => AudioFault::RealtimeDenied,
+        ErrorKind::ResourceExhausted => AudioFault::ResourceExhausted,
+        _ => AudioFault::Backend,
+    }
 }
 
 struct RenderState {
@@ -878,6 +1030,9 @@ struct RenderState {
     applied_version: u64,
     bus: Uuid,
     channels: usize,
+    captures: Vec<CaptureRender>,
+    priming_frames: u64,
+    sample_rate: u32,
     left: Vec<f32>,
     right: Vec<f32>,
     epoch: u64,
@@ -902,6 +1057,26 @@ impl RenderState {
             .ok_or_else(|| AudioError::InvalidSession("control count overflow".into()))?;
         let control_bytes = ControlBank::estimated_bytes(control_records)
             .ok_or_else(|| AudioError::InvalidSession("control memory overflow".into()))?;
+        let capture_ids = capture::source_groups(session);
+        let capture_bytes = capture_ids
+            .len()
+            .checked_mul(capture::bytes_per_capture())
+            .and_then(|n| {
+                n.checked_add(
+                    session
+                        .inputs
+                        .len()
+                        .checked_mul(std::mem::size_of::<Uuid>())?,
+                )
+            })
+            .and_then(|n| {
+                n.checked_add(if capture_ids.is_empty() {
+                    0
+                } else {
+                    capture_transport::Kernel::bytes()
+                })
+            })
+            .ok_or_else(|| AudioError::InvalidSession("capture memory overflow".into()))?;
         let overhead = session
             .inputs
             .len()
@@ -909,6 +1084,7 @@ impl RenderState {
             .and_then(|n| n.checked_mul(std::mem::size_of::<AtomicMeter>()))
             .and_then(|n| n.checked_add(2 * RENDER_CHUNK * std::mem::size_of::<f32>()))
             .and_then(|n| n.checked_add(control_bytes))
+            .and_then(|n| n.checked_add(capture_bytes))
             .and_then(|n| GRAPH_BYTES.checked_sub(n))
             .ok_or_else(|| {
                 AudioError::InvalidSession("the graph exceeds the runtime memory budget".into())
@@ -924,7 +1100,23 @@ impl RenderState {
         let control_scratch = PreparedControls::compile(session, control_bytes)
             .map_err(|e| AudioError::InvalidSession(e.to_string()))?;
         let bank = Arc::new(ControlBank::new(&control_scratch));
-        let telemetry = Arc::new(Telemetry::new(session));
+        let kernel = (!capture_ids.is_empty()).then(capture_transport::Kernel::new);
+        let mut telemetry = Telemetry::new(session);
+        let captures = capture_ids
+            .into_iter()
+            .map(|(device_id, source_ids)| {
+                let capture = CaptureRender::new(
+                    source_ids,
+                    session.sample_rate,
+                    kernel.as_ref().expect("capture kernel").clone(),
+                );
+                telemetry
+                    .captures
+                    .push((InputId(device_id), capture.consumer.ring.clone()));
+                capture
+            })
+            .collect();
+        let telemetry = Arc::new(telemetry);
         Ok(Self {
             mixer,
             bank,
@@ -932,6 +1124,9 @@ impl RenderState {
             applied_version: 0,
             bus,
             channels,
+            captures,
+            priming_frames: 0,
+            sample_rate: session.sample_rate,
             left: vec![0.0; RENDER_CHUNK],
             right: vec![0.0; RENDER_CHUNK],
             epoch,
@@ -971,6 +1166,23 @@ impl RenderState {
                 .store(version, Ordering::Release);
         }
         let frames = output.len() / self.channels;
+        let mut ready = true;
+        for capture in &mut self.captures {
+            match capture.consumer.prepare(frames) {
+                Ok(primed) => ready &= primed,
+                Err(error) => {
+                    self.telemetry.fail(capture::fault(error));
+                    return;
+                }
+            }
+        }
+        if !ready {
+            self.priming_frames += frames as u64;
+            if self.priming_frames > u64::from(self.sample_rate) * 2 {
+                self.telemetry.fail(AudioFault::CaptureStartup);
+            }
+            return;
+        }
         for start in (0..frames).step_by(RENDER_CHUNK) {
             let count = (frames - start).min(RENDER_CHUNK);
             let mut destinations = [StereoOutput {
@@ -978,7 +1190,23 @@ impl RenderState {
                 left: &mut self.left[..count],
                 right: &mut self.right[..count],
             }];
-            if self.mixer.render(&[], &mut destinations, count).is_err() {
+            for capture in &mut self.captures {
+                capture
+                    .consumer
+                    .read(&mut capture.left[..count], &mut capture.right[..count]);
+            }
+            let sources = self.captures.iter().flat_map(|capture| {
+                capture.source_ids.iter().map(move |&id| StereoInput {
+                    id,
+                    left: &capture.left[..count],
+                    right: &capture.right[..count],
+                })
+            });
+            if self
+                .mixer
+                .render_sources(sources, &mut destinations, count)
+                .is_err()
+            {
                 self.telemetry.fail(AudioFault::Render);
                 output.fill(T::EQUILIBRIUM);
                 return;
@@ -1010,3 +1238,6 @@ impl RenderState {
 
 #[cfg(test)]
 mod tests;
+
+#[cfg(test)]
+mod capture_tests;

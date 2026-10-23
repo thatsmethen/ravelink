@@ -1,0 +1,22 @@
+{
+  "observed_utc": "2026-10-23T23:34:01.464268+00:00",
+  "base_revision": "59c2bf7cde4305ac78202cbb622e69af02a37c42",
+  "build_state": "uncommitted capture and source-picker changes",
+  "checks": [
+    "Native source chooser listed actual CoreAudio input devices",
+    "Add device disabled until explicit selection",
+    "Selected MacBook Pro Microphone and added a logical source",
+    "Audio remained stopped and no output was selected",
+    "Undo and Save restored the original session byte-for-byte",
+    "Normal application quit confirmed"
+  ],
+  "session_restored_sha256": "94efd0f900d0d205944bbd291fa87a078ea469d7a3c1b462fedc5b123f3a6615",
+  "workspace_tests": 57,
+  "strict_clippy": "passed",
+  "binary_sha256": "914d148978337c2ae7ae1addf7adcabcb8550b1b33a56fc4a2760fa5e5b92dff",
+  "limitations": "Device discovery and stopped interface only. No microphone was opened, no audio permission granted, no native capture started. Capture DSP/clock tests are offline; Windows capture backend SILENT packet issue remains documented.",
+  "files": {
+    "added-device-ax.txt": "255759a804f25c9498fb4261e0a012074649f62294dabc316c07a4a0dcb521e5",
+    "added-device.png": "399c6d8c2c7e7d63466346b3a9670d9f89e89af9105d9b89f279d96b23f1b504"
+  }
+}

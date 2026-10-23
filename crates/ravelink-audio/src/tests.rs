@@ -7,8 +7,8 @@ use std::{
 
 struct CountingAllocator;
 thread_local! {
-    static COUNTING: Cell<bool> = const { Cell::new(false) };
-    static OPERATIONS: Cell<usize> = const { Cell::new(0) };
+    pub(super) static COUNTING: Cell<bool> = const { Cell::new(false) };
+    pub(super) static OPERATIONS: Cell<usize> = const { Cell::new(0) };
 }
 fn allocation_event() {
     let _ = COUNTING.try_with(|on| {
@@ -55,7 +55,7 @@ fn session() -> (Session, Uuid) {
     session.add_send(Send::new(input_id, bus_id)).unwrap();
     (session, bus_id)
 }
-fn render(session: &Session, bus: Uuid, channels: usize) -> RenderState {
+pub(super) fn render(session: &Session, bus: Uuid, channels: usize) -> RenderState {
     let shared = Arc::new(Shared {
         state: Mutex::new(ControlState::default()),
         epoch: AtomicU64::new(0),
@@ -70,7 +70,7 @@ fn render(session: &Session, bus: Uuid, channels: usize) -> RenderState {
     )
     .unwrap()
 }
-fn config(
+pub(super) fn config(
     channels: u16,
     format: cpal::SampleFormat,
     min: u32,
@@ -287,17 +287,17 @@ fn native_transport_clamps_unlimited_float_mix_before_integer_conversion() {
 }
 
 #[test]
-fn unavailable_capture_features_and_missing_mix_are_explicit_errors() {
+fn unavailable_application_capture_and_missing_mix_are_explicit_errors() {
     let (mut session, bus) = session();
     assert!(matches!(
         validate_session(&session, Uuid::new_v4()),
         Err(AudioError::InvalidSession(_))
     ));
-    session.inputs[0].kind = InputKind::Hardware {
-        device_id: "real-device".into(),
+    session.inputs[0].kind = InputKind::Application {
+        application_id: "not-yet-supported".into(),
     };
     let error = validate_session(&session, bus).unwrap_err();
-    assert!(error.to_string().contains("capture is not implemented"));
+    assert!(error.to_string().contains("not yet implemented"));
     let runtime = AudioRuntime::new().unwrap();
     assert!(matches!(
         runtime.start(session, bus, OutputId("must-not-be-queried".into())),
@@ -431,14 +431,18 @@ fn concurrent_bank_reader_never_observes_mixed_mute_and_gain_records() {
     bank.publish(&a).unwrap();
     let mut scratch = a.clone();
     let writer_bank = bank.clone();
+    let final_controls = b.clone();
+    let barrier = Arc::new(std::sync::Barrier::new(2));
+    let writer_barrier = barrier.clone();
     let writer = thread::spawn(move || {
+        writer_barrier.wait();
         for index in 0..20000 {
             writer_bank
                 .publish(if index % 2 == 0 { &a } else { &b })
                 .unwrap();
         }
     });
-    let mut accepted = 0;
+    barrier.wait();
     for _ in 0..20000 {
         if bank.copy_if_new(&mut scratch, 0).is_some() {
             let expected = if scratch.inputs[0].active {
@@ -456,12 +460,13 @@ fn concurrent_bank_reader_never_observes_mixed_mute_and_gain_records() {
                 assert_eq!(control.active, active);
                 assert_eq!(control.gains, expected);
             }
-            accepted += 1;
         }
     }
     writer.join().unwrap();
     assert!(bank.copy_if_new(&mut scratch, 0).is_some());
-    assert!(accepted > 0);
+    // This nonblocking reader may reject every contended attempt. It must
+    // accept and return the whole final bank once the writer has finished.
+    assert_eq!(scratch, final_controls);
 }
 
 #[test]

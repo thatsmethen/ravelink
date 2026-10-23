@@ -44,6 +44,7 @@ pub struct Device {
 }
 enum Event {
     Devices(Vec<Device>),
+    Inputs(Vec<Device>),
     Snapshot(Box<AudioSnapshot>),
     Finished {
         operation: Operation,
@@ -55,6 +56,7 @@ pub struct AudioUi {
     events: Receiver<Event>,
     runtime: Option<Arc<AudioRuntime>>,
     pub devices: Vec<Device>,
+    pub inputs: Vec<Device>,
     pub busy: bool,
     pub error: Option<String>,
     snapshot: Option<AudioSnapshot>,
@@ -86,7 +88,7 @@ impl AudioUi {
                             let operation = request.operation();
                             let result = match request {
                                 Request::Refresh => {
-                                    owner.enumerate_output_devices().map(|devices| {
+                                    owner.enumerate_output_devices().and_then(|devices| {
                                         let _ = sender.send(Event::Devices(
                                             devices
                                                 .into_iter()
@@ -96,7 +98,18 @@ impl AudioUi {
                                                 })
                                                 .collect(),
                                         ));
-                                        None
+                                        owner.enumerate_input_devices().map(|devices| {
+                                            let _ = sender.send(Event::Inputs(
+                                                devices
+                                                    .into_iter()
+                                                    .map(|d| Device {
+                                                        id: d.id.0,
+                                                        name: d.name,
+                                                    })
+                                                    .collect(),
+                                            ));
+                                            None
+                                        })
                                     })
                                 }
                                 Request::Start(session, bus, output) => owner
@@ -143,6 +156,7 @@ impl AudioUi {
             events,
             runtime,
             devices: vec![],
+            inputs: vec![],
             busy: false,
             error,
             snapshot: None,
@@ -204,7 +218,14 @@ impl AudioUi {
         while let Ok(event) = self.events.try_recv() {
             match event {
                 Event::Devices(devices) => self.devices = devices,
+                Event::Inputs(devices) => self.inputs = devices,
                 Event::Snapshot(snapshot) => {
+                    if !snapshot.running
+                        && (snapshot.error.is_some()
+                            || snapshot.fault != ravelink_audio::AudioFault::None)
+                    {
+                        self.pending_update = None;
+                    }
                     if !self.cancelled {
                         if snapshot.fault != ravelink_audio::AudioFault::None {
                             self.error = Some(snapshot.fault.message().into());
@@ -311,6 +332,7 @@ mod tests {
                 events,
                 runtime: None,
                 devices: vec![],
+                inputs: vec![],
                 busy: false,
                 error: None,
                 snapshot: None,

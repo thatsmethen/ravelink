@@ -12,5 +12,6 @@
 <key>CFBundleVersion</key><string>1</string>
 <key>LSMinimumSystemVersion</key><string>13.0</string>
 <key>NSHighResolutionCapable</key><true/>
+<key>NSMicrophoneUsageDescription</key><string>RaveLink captures the input devices you select to create your audio mixes.</string>
 <key>NSSupportsAutomaticGraphicsSwitching</key><true/>
 </dict></plist>
