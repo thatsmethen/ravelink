@@ -3,7 +3,6 @@
 import argparse
 import hashlib
 import json
-import re
 from pathlib import Path
 import subprocess
 import sys
@@ -24,7 +23,7 @@ def generate():
                 continue
             record = packages.setdefault(package['id'], dict(package, target_features={}))
             record['target_features'][target] = sorted(active[package['id']]['features'])
-    checksums = {(p['name'], p['version']): p.get('checksum') for p in tomllib.loads((ROOT/'Cargo.lock').read_text())['package']}
+    checksums = {(p['name'], p['version']): p.get('checksum') for p in tomllib.loads((ROOT/'Cargo.lock').read_text(encoding="utf-8"))['package']}
     notes = [
         'RaveLink third-party software and font notices',
         'Generated from Cargo.lock and Cargo metadata for the listed targets.',
@@ -54,14 +53,14 @@ def generate():
             cached = ROOT/'docs/third-party-licenses'/f'{package["name"]}-{package["version"]}'
             manifest = cached/'sources.json'
             if manifest.exists():
-                for record in json.loads(manifest.read_text()):
+                for record in json.loads(manifest.read_text(encoding="utf-8")):
                     payload = (cached/record['file']).read_bytes()
                     if hashlib.sha256(payload).hexdigest() != record['sha256']:
                         raise RuntimeError(f'Cached license hash mismatch: {cached.name}')
                     files.append((record['url'], payload.decode('utf-8')))
         if not files and package['license'] in ['MIT', 'CC0-1.0']:
             standard = ROOT/'docs/third-party-licenses/standard'
-            record = next(r for r in json.loads((standard/'sources.json').read_text()) if r['file']==package['license']+'.txt')
+            record = next(r for r in json.loads((standard/'sources.json').read_text(encoding="utf-8")) if r['file']==package['license']+'.txt')
             payload = (standard/record['file']).read_bytes()
             if hashlib.sha256(payload).hexdigest() != record['sha256']:
                 raise RuntimeError('Standard license hash mismatch')
@@ -83,7 +82,7 @@ def generate():
         raise RuntimeError('Missing source license text: '+', '.join(missing))
     # Some upstream license notices link to the standard grant rather than
     # reproducing it. Include the standard MIT text alongside those notices.
-    notes.extend(['\nStandard MIT license text', (ROOT/'docs/third-party-licenses/standard/MIT.txt').read_text()])
+    notes.extend(['\nStandard MIT license text', (ROOT/'docs/third-party-licenses/standard/MIT.txt').read_text(encoding="utf-8")])
     return '\n'.join(notes)+'\n', json.dumps({'schema_version':1,'targets':TARGETS,'dependencies':inventory},indent=2)+'\n'
 
 def main():
@@ -91,10 +90,10 @@ def main():
     notices,inventory=generate()
     for path,content in [(ROOT/'THIRD-PARTY-NOTICES.txt',notices),(ROOT/'docs/dependencies.json',inventory)]:
         if args.check:
-            if not path.exists() or path.read_text()!=content:
+            if not path.exists() or path.read_text(encoding="utf-8")!=content:
                 print(f'Outdated dependency record: {path.name}',file=sys.stderr); return 1
         else:
-            path.write_text(content)
+            path.write_text(content, encoding="utf-8", newline="\n")
     print('Dependency notices verified' if args.check else 'Dependency notices generated')
     return 0
 if __name__=='__main__':
