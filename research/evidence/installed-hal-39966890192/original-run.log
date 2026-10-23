@@ -1,0 +1,776 @@
+macos	Set up job	﻿2026-10-23T14:08:42.3323100Z Current runner version: '2.338.0'
+macos	Set up job	2026-10-23T14:08:42.3381680Z ##[group]Runner Image Provisioner
+macos	Set up job	2026-10-23T14:08:42.3383050Z Hosted Compute Agent
+macos	Set up job	2026-10-23T14:08:42.3383530Z Version: 20260828.587
+macos	Set up job	2026-10-23T14:08:42.3384100Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+macos	Set up job	2026-10-23T14:08:42.3385060Z Build Date: 2026-08-28T16:44:25Z
+macos	Set up job	2026-10-23T14:08:42.3385560Z Worker ID: {85bf45a4-7b7c-48d8-b98f-a5a9ac5818dd}
+macos	Set up job	2026-10-23T14:08:42.3386050Z Azure Region: westus
+macos	Set up job	2026-10-23T14:08:42.3386550Z ##[endgroup]
+macos	Set up job	2026-10-23T14:08:42.3388670Z ##[group]Operating System
+macos	Set up job	2026-10-23T14:08:42.3390380Z macOS
+macos	Set up job	2026-10-23T14:08:42.3391620Z 15.7.9
+macos	Set up job	2026-10-23T14:08:42.3392710Z 24G830
+macos	Set up job	2026-10-23T14:08:42.3396020Z ##[endgroup]
+macos	Set up job	2026-10-23T14:08:42.3397240Z ##[group]Runner Image
+macos	Set up job	2026-10-23T14:08:42.3397860Z Image: macos-15-arm64
+macos	Set up job	2026-10-23T14:08:42.3398570Z Version: 20260907.0337.1
+macos	Set up job	2026-10-23T14:08:42.3400170Z Included Software: https://github.com/actions/runner-images/blob/macos-15-arm64/20260907.0337/images/macos/macos-15-arm64-Readme.md
+macos	Set up job	2026-10-23T14:08:42.3403050Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-15-arm64%2F20260907.0337
+macos	Set up job	2026-10-23T14:08:42.3403980Z ##[endgroup]
+macos	Set up job	2026-10-23T14:08:42.3405200Z ##[group]GITHUB_TOKEN Permissions
+macos	Set up job	2026-10-23T14:08:42.3408310Z Contents: read
+macos	Set up job	2026-10-23T14:08:42.3409000Z Metadata: read
+macos	Set up job	2026-10-23T14:08:42.3409500Z ##[endgroup]
+macos	Set up job	2026-10-23T14:08:42.3412830Z Secret source: Actions
+macos	Set up job	2026-10-23T14:08:42.3413530Z Cache mode: write
+macos	Set up job	2026-10-23T14:08:42.3414060Z Prepare workflow directory
+macos	Set up job	2026-10-23T14:08:42.3723640Z Prepare all required actions
+macos	Set up job	2026-10-23T14:08:42.3762680Z Getting action download info
+macos	Set up job	2026-10-23T14:08:42.7567030Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+macos	Set up job	2026-10-23T14:08:43.0908640Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+macos	Set up job	2026-10-23T14:08:43.3518630Z Complete job name: macos
+macos	Run actions/checkout@v4	﻿2026-10-23T14:08:43.4410110Z ##[group]Run actions/checkout@v4
+macos	Run actions/checkout@v4	2026-10-23T14:08:43.4412600Z with:
+macos	Run actions/checkout@v4	2026-10-23T14:08:43.4413600Z   repository: thatsmethen/ravelink
+macos	Run actions/checkout@v4	2026-10-23T14:08:43.4420630Z   token: ***
+macos	Run actions/checkout@v4	2026-10-23T14:08:43.4421130Z   ssh-strict: true
+macos	Run actions/checkout@v4	2026-10-23T14:08:43.4421500Z   ssh-user: git
+macos	Run actions/checkout@v4	2026-10-23T14:08:43.4421860Z   persist-credentials: true
+macos	Run actions/checkout@v4	2026-10-23T14:08:43.4422270Z   clean: true
+macos	Run actions/checkout@v4	2026-10-23T14:08:43.4422610Z   sparse-checkout-cone-mode: true
+macos	Run actions/checkout@v4	2026-10-23T14:08:43.4423000Z   fetch-depth: 1
+macos	Run actions/checkout@v4	2026-10-23T14:08:43.4423360Z   fetch-tags: false
+macos	Run actions/checkout@v4	2026-10-23T14:08:43.4423740Z   show-progress: true
+macos	Run actions/checkout@v4	2026-10-23T14:08:43.4424180Z   lfs: false
+macos	Run actions/checkout@v4	2026-10-23T14:08:43.4424610Z   submodules: false
+macos	Run actions/checkout@v4	2026-10-23T14:08:43.4425000Z   set-safe-directory: true
+macos	Run actions/checkout@v4	2026-10-23T14:08:43.4425380Z   allow-unsafe-pr-checkout: false
+macos	Run actions/checkout@v4	2026-10-23T14:08:43.4426340Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.0081900Z Syncing repository: thatsmethen/ravelink
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.0102890Z ##[group]Getting Git version info
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.0103760Z Working directory is '/Users/runner/work/ravelink/ravelink'
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.0104920Z [command]/opt/homebrew/bin/git version
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.0661520Z git version 2.55.0
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.0682580Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.0694400Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/d2a31467-368e-44d2-940d-14e891592a2a/.gitconfig'
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.0698370Z Temporarily overriding HOME='/Users/runner/work/_temp/d2a31467-368e-44d2-940d-14e891592a2a' before making global git config changes
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.0701760Z Adding repository directory to the temporary git global config as a safe directory
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.0704630Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.0824900Z Deleting the contents of '/Users/runner/work/ravelink/ravelink'
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.0831860Z ##[group]Initializing the repository
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.0836140Z [command]/opt/homebrew/bin/git init /Users/runner/work/ravelink/ravelink
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.1140420Z hint: Using 'master' as the name for the initial branch. This default branch name
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.1143340Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.1144240Z hint: to use in all of your new repositories, which will suppress this warning,
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.1144850Z hint: call:
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.1145190Z hint:
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.1145630Z hint: 	git config --global init.defaultBranch <name>
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.1146530Z hint:
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.1147100Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.1147910Z hint: 'development'. The just-created branch can be renamed via this command:
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.1148600Z hint:
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.1149060Z hint: 	git branch -m <name>
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.1149460Z hint:
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.1150110Z hint: Disable this message with "git config set advice.defaultBranchName false"
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.1150970Z Initialized empty Git repository in /Users/runner/work/ravelink/ravelink/.git/
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.1157490Z [command]/opt/homebrew/bin/git remote add origin https://github.com/thatsmethen/ravelink
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.1245650Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.1249040Z ##[group]Disabling automatic garbage collection
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.1250260Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.1357700Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.1358680Z ##[group]Setting up auth
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.1375960Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.1462850Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.2715370Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.2859470Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.3788790Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.3866920Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.4906210Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.5041510Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.5043920Z ##[group]Fetching the repository
+macos	Run actions/checkout@v4	2026-10-23T14:08:44.5045520Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +39b0386f8ce2db413428b7f3125424b3b649ba96:refs/remotes/origin/main
+macos	Run actions/checkout@v4	2026-10-23T14:08:45.0177440Z From https://github.com/thatsmethen/ravelink
+macos	Run actions/checkout@v4	2026-10-23T14:08:45.0190220Z  * [new ref]         39b0386f8ce2db413428b7f3125424b3b649ba96 -> origin/main
+macos	Run actions/checkout@v4	2026-10-23T14:08:45.0193410Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T14:08:45.0197170Z ##[group]Determining the checkout info
+macos	Run actions/checkout@v4	2026-10-23T14:08:45.0199700Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T14:08:45.0201420Z [command]/opt/homebrew/bin/git sparse-checkout disable
+macos	Run actions/checkout@v4	2026-10-23T14:08:45.0388310Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+macos	Run actions/checkout@v4	2026-10-23T14:08:45.0481470Z ##[group]Checking out the ref
+macos	Run actions/checkout@v4	2026-10-23T14:08:45.0487150Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+macos	Run actions/checkout@v4	2026-10-23T14:08:45.0791080Z Switched to a new branch 'main'
+macos	Run actions/checkout@v4	2026-10-23T14:08:45.0795460Z branch 'main' set up to track 'origin/main'.
+macos	Run actions/checkout@v4	2026-10-23T14:08:45.0797690Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T14:08:45.0906600Z [command]/opt/homebrew/bin/git log -1 --format=%H
+macos	Run actions/checkout@v4	2026-10-23T14:08:45.0971180Z 39b0386f8ce2db413428b7f3125424b3b649ba96
+macos	Swift toolchain	﻿2026-10-23T14:08:45.1314230Z ##[group]Run swift --version
+macos	Swift toolchain	2026-10-23T14:08:45.1315700Z [36;1mswift --version[0m
+macos	Swift toolchain	2026-10-23T14:08:45.1426710Z shell: /bin/bash -e {0}
+macos	Swift toolchain	2026-10-23T14:08:45.1428100Z ##[endgroup]
+macos	Swift toolchain	2026-10-23T14:08:48.3311060Z Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+macos	Swift toolchain	2026-10-23T14:08:48.3313590Z Target: arm64-apple-macosx15.0
+macos	Swift toolchain	2026-10-23T14:08:48.3418360Z swift-driver version: 1.120.5 
+macos	Deterministic tests	﻿2026-10-23T14:08:48.3518630Z ##[group]Run scripts/test.sh
+macos	Deterministic tests	2026-10-23T14:08:48.3518960Z [36;1mscripts/test.sh[0m
+macos	Deterministic tests	2026-10-23T14:08:48.3576010Z shell: /bin/bash -e {0}
+macos	Deterministic tests	2026-10-23T14:08:48.3576910Z env:
+macos	Deterministic tests	2026-10-23T14:08:48.3577610Z   RAVELINK_PLUGIN_RENDER_APPLE: 1
+macos	Deterministic tests	2026-10-23T14:08:48.3578330Z   RAVELINK_PLUGIN_PROBE_APPLE: 1
+macos	Deterministic tests	2026-10-23T14:08:48.3619440Z ##[endgroup]
+macos	Deterministic tests	2026-10-23T14:08:52.8703400Z Building for debugging...
+macos	Deterministic tests	2026-10-23T14:08:52.8832690Z [0/26] /Users/runner/work/ravelink/ravelink/.build/arm64-apple-macosx/debug/RaveLinkPackageTests.derived/runner.swift
+macos	Deterministic tests	2026-10-23T14:08:52.8859540Z [1/26] Write sources
+macos	Deterministic tests	2026-10-23T14:08:52.8918320Z [1/26] Write RaveLinkPluginHost-entitlement.plist
+macos	Deterministic tests	2026-10-23T14:08:52.8959100Z [1/26] Write sources
+macos	Deterministic tests	2026-10-23T14:08:52.8984210Z [1/26] Write RaveLinkEngine-entitlement.plist
+macos	Deterministic tests	2026-10-23T14:08:52.9055880Z [2/26] Write sources
+macos	Deterministic tests	2026-10-23T14:08:53.1318280Z [8/26] Write swift-version--79AA4F9932D1E87A.txt
+macos	Deterministic tests	2026-10-23T14:08:53.1323270Z [9/26] Write sources
+macos	Deterministic tests	2026-10-23T14:08:55.7303630Z [10/29] Compiling RaveLinkRealtime Realtime.c
+macos	Deterministic tests	2026-10-23T14:09:00.1479770Z [12/33] Emitting module RaveLinkCore
+macos	Deterministic tests	2026-10-23T14:09:00.6871200Z [12/34] Compiling RaveLinkAudioUnitBridge AudioUnitBridge.m
+macos	Deterministic tests	2026-10-23T14:09:00.6973750Z [13/34] Write sources
+macos	Deterministic tests	2026-10-23T14:09:00.7073570Z [13/34] Write RaveLink-entitlement.plist
+macos	Deterministic tests	2026-10-23T14:09:07.6812800Z [17/34] Compiling RaveLinkCore SessionStore.swift
+macos	Deterministic tests	2026-10-23T14:09:07.8659970Z [18/34] Compiling RaveLinkCore AudioUnitEffects.swift
+macos	Deterministic tests	2026-10-23T14:09:07.8716610Z [19/34] Compiling RaveLinkCore ExpandedRouting.swift
+macos	Deterministic tests	2026-10-23T14:09:07.8821570Z [20/34] Compiling RaveLinkCore Session.swift
+macos	Deterministic tests	2026-10-23T14:09:10.4421530Z [21/46] Emitting module RaveLinkPluginHost
+macos	Deterministic tests	2026-10-23T14:09:10.4474300Z [22/46] Compiling RaveLinkPluginHost main.swift
+macos	Deterministic tests	2026-10-23T14:09:10.4629460Z [23/46] Compiling RaveLinkPluginHost Render.swift
+macos	Deterministic tests	2026-10-23T14:09:10.5201450Z [23/46] Write Objects.LinkFileList
+macos	Deterministic tests	2026-10-23T14:09:12.5837540Z [24/46] Linking RaveLinkPluginHost
+macos	Deterministic tests	2026-10-23T14:09:12.6247620Z [25/46] Applying RaveLinkPluginHost
+macos	Deterministic tests	2026-10-23T14:09:15.9583070Z [27/46] Compiling RaveLinkAudio AudioAllocationBudget.swift
+macos	Deterministic tests	2026-10-23T14:09:15.9689350Z [28/46] Compiling RaveLinkAudio AudioCoordinator.swift
+macos	Deterministic tests	2026-10-23T14:09:15.9816510Z [29/46] Compiling RaveLinkAudio EngineClient.swift
+macos	Deterministic tests	2026-10-23T14:09:15.9941920Z [30/46] Compiling RaveLinkAudio EngineProtocol.swift
+macos	Deterministic tests	2026-10-23T14:09:16.0062650Z [31/46] Emitting module RaveLinkCoreTests
+macos	Deterministic tests	2026-10-23T14:09:16.6731990Z [32/47] Emitting module RaveLinkAudio
+macos	Deterministic tests	2026-10-23T14:09:17.5256180Z [33/49] Compiling RaveLinkCoreTests SourceIdentityAndOrderTests.swift
+macos	Deterministic tests	2026-10-23T14:09:18.5358720Z [34/49] Compiling RaveLinkAudio PluginCatalog.swift
+macos	Deterministic tests	2026-10-23T14:09:18.5459990Z [35/49] Compiling RaveLinkAudio PluginRender.swift
+macos	Deterministic tests	2026-10-23T14:09:19.0839270Z [37/49] Compiling RaveLinkAudio FeedbackValidation.swift
+macos	Deterministic tests	2026-10-23T14:09:19.0866040Z [38/49] Compiling RaveLinkAudio LiveAudioUnitGraph.swift
+macos	Deterministic tests	2026-10-23T14:09:23.6501030Z [42/65] Emitting module RaveLinkEngine
+macos	Deterministic tests	2026-10-23T14:09:23.6602900Z [43/65] Compiling RaveLinkEngine EngineMain.swift
+macos	Deterministic tests	2026-10-23T14:09:23.6705190Z [43/65] Write Objects.LinkFileList
+macos	Deterministic tests	2026-10-23T14:09:24.4427670Z [44/65] Linking RaveLinkEngine
+macos	Deterministic tests	2026-10-23T14:09:24.4631230Z [45/65] Applying RaveLinkEngine
+macos	Deterministic tests	2026-10-23T14:09:27.6024830Z [47/65] Compiling RaveLinkAudioTests InstalledDeviceSoakTests.swift
+macos	Deterministic tests	2026-10-23T14:09:27.6129330Z [48/65] Compiling RaveLinkAudioTests InstalledMatrixTests.swift
+macos	Deterministic tests	2026-10-23T14:09:27.6253630Z [49/65] Compiling RaveLinkAudioTests LiveAudioUnitTests.swift
+macos	Deterministic tests	2026-10-23T14:09:27.6289730Z [50/65] Compiling RaveLinkAudioTests PluginCatalogTests.swift
+macos	Deterministic tests	2026-10-23T14:09:27.7571500Z [51/68] Emitting module RaveLinkAudioTests
+macos	Deterministic tests	2026-10-23T14:09:27.7673780Z [52/68] Compiling RaveLinkAudioTests AudioAllocationTests.swift
+macos	Deterministic tests	2026-10-23T14:09:27.7776140Z [53/68] Compiling RaveLinkAudioTests EngineClientTests.swift
+macos	Deterministic tests	2026-10-23T14:09:27.7877890Z [54/68] Compiling RaveLinkAudioTests FeedbackValidationTests.swift
+macos	Deterministic tests	2026-10-23T14:09:27.7979370Z [55/68] Compiling RaveLinkAudioTests GroupedRealtimeTests.swift
+macos	Deterministic tests	2026-10-23T14:09:27.8597680Z [56/68] Emitting module RaveLinkApp
+macos	Deterministic tests	2026-10-23T14:09:32.5655160Z [61/70] Compiling RaveLinkApp StudioModel.swift
+macos	Deterministic tests	2026-10-23T14:09:32.5723590Z [62/70] Compiling RaveLinkApp StudioView.swift
+macos	Deterministic tests	2026-10-23T14:09:32.5910490Z [62/70] Write Objects.LinkFileList
+macos	Deterministic tests	2026-10-23T14:09:33.9314780Z [63/70] Linking RaveLink
+macos	Deterministic tests	2026-10-23T14:09:33.9717210Z [64/70] Applying RaveLink
+macos	Deterministic tests	2026-10-23T14:09:54.0982340Z [66/70] Compiling RaveLinkAudioTests PluginRenderTests.swift
+macos	Deterministic tests	2026-10-23T14:09:54.1042740Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/PluginRenderTests.swift:58:13: error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+macos	Deterministic tests	2026-10-23T14:09:54.1053440Z 56 |         let catalog = PluginCatalog(helperURL: helper)
+macos	Deterministic tests	2026-10-23T14:09:54.1109930Z 57 |         let selected = try #require(try await catalog.discover().first { $0.component == appleID })
+macos	Deterministic tests	2026-10-23T14:09:54.1113320Z 58 |         let samples = (0..<8192).flatMap { frame -> [Float] in
+macos	Deterministic tests	2026-10-23T14:09:54.1116560Z    |             `- error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+macos	Deterministic tests	2026-10-23T14:09:54.1126750Z 59 |             [Float(0.01 * sin(Double(frame) * 2 * .pi * 317 / 48000)), Float(0.015 * sin(Double(frame) * 2 * .pi * 719 / 48000))]
+macos	Deterministic tests	2026-10-23T14:09:54.1135510Z 60 |         }
+macos	Deterministic tests	2026-10-23T14:09:54.1135930Z 
+macos	Deterministic tests	2026-10-23T14:09:54.1136500Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/PluginRenderTests.swift:75:21: warning: no calls to throwing functions occur within 'try' expression
+macos	Deterministic tests	2026-10-23T14:09:54.1137360Z 73 |         #expect(maximumError < 0.000_001)
+macos	Deterministic tests	2026-10-23T14:09:54.1137780Z 74 |         #expect(rendered.samples != samples)
+macos	Deterministic tests	2026-10-23T14:09:54.1138270Z 75 |         let state = try #require(rendered.state)
+macos	Deterministic tests	2026-10-23T14:09:54.1138820Z    |                     `- warning: no calls to throwing functions occur within 'try' expression
+macos	Deterministic tests	2026-10-23T14:09:54.1139580Z 76 |         let restored = try await catalog.render(selected, samples: samples, state: state, blockFrames: 257)
+macos	Deterministic tests	2026-10-23T14:09:54.1140310Z 77 |         #expect(restored.parameterValues.first { $0.address == 2 }?.value == 20)
+macos	Deterministic tests	2026-10-23T14:09:54.1140740Z 
+macos	Deterministic tests	2026-10-23T14:09:54.1141610Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/ThirdPartyAudioUnitTests.swift:31:13: error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+macos	Deterministic tests	2026-10-23T14:09:54.1146210Z 29 |         let id = AudioUnitComponentID(type: 1635083896, subtype: 1399743559, manufacturer: 1265390435)
+macos	Deterministic tests	2026-10-23T14:09:54.1147000Z 30 |         let selected = try #require(try await catalog.discover().first { $0.component == id })
+macos	Deterministic tests	2026-10-23T14:09:54.1147600Z 31 |         let samples = (0..<8192).flatMap { frame -> [Float] in
+macos	Deterministic tests	2026-10-23T14:09:54.1148420Z    |             `- error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+macos	Deterministic tests	2026-10-23T14:09:54.1169520Z 32 |             [Float(0.01 * sin(Double(frame) * 2 * .pi * 317 / 48000)), Float(0.015 * sin(Double(frame) * 2 * .pi * 719 / 48000))]
+macos	Deterministic tests	2026-10-23T14:09:54.1170070Z 33 |         }
+macos	Deterministic tests	2026-10-23T14:09:54.1170230Z 
+macos	Deterministic tests	2026-10-23T14:09:54.1170740Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/ThirdPartyAudioUnitTests.swift:38:21: warning: no calls to throwing functions occur within 'try' expression
+macos	Deterministic tests	2026-10-23T14:09:54.1171470Z 36 |         #expect(rendered.samples.contains { abs($0) > 0.000_001 })
+macos	Deterministic tests	2026-10-23T14:09:54.1171990Z 37 |         #expect(rendered.parameterValues.first { $0.address == 50 }?.value == 0.5)
+macos	Deterministic tests	2026-10-23T14:09:54.1232730Z 38 |         let state = try #require(rendered.state)
+macos	Deterministic tests	2026-10-23T14:09:54.1233320Z    |                     `- warning: no calls to throwing functions occur within 'try' expression
+macos	Deterministic tests	2026-10-23T14:09:54.1248190Z 39 |         let restored = try await catalog.render(selected, samples: samples, state: state, blockFrames: 257)
+macos	Deterministic tests	2026-10-23T14:09:54.1272920Z 40 |         #expect(zip(rendered.samples, restored.samples).allSatisfy { abs($0 - $1) < 0.000_001 })
+macos	Deterministic tests	2026-10-23T14:09:54.1273350Z 
+macos	Deterministic tests	2026-10-23T14:09:54.1274180Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/ThirdPartyAudioUnitTests.swift:62:25: warning: no calls to throwing functions occur within 'try' expression
+macos	Deterministic tests	2026-10-23T14:09:54.1274900Z 60 |         try graph.updateControls(session: session)
+macos	Deterministic tests	2026-10-23T14:09:54.1275430Z 61 |         for _ in 0..<8 { _ = block(render); _ = block(dry) }
+macos	Deterministic tests	2026-10-23T14:09:54.1282500Z 62 |         let liveState = try #require(try graph.snapshotStates()[channel]?[slot.id])
+macos	Deterministic tests	2026-10-23T14:09:54.1291250Z    |                         `- warning: no calls to throwing functions occur within 'try' expression
+macos	Deterministic tests	2026-10-23T14:09:54.1308760Z 63 |         let verified = try await catalog.render(selected, samples: [Float](repeating: 0, count: 1024), state: liveState)
+macos	Deterministic tests	2026-10-23T14:09:54.1315140Z 64 |         #expect(abs((verified.parameterValues.first { $0.address == 50 }?.value ?? -1) - 0.6) < 0.000_001)
+macos	Deterministic tests	2026-10-23T14:09:54.1317610Z [67/70] Compiling RaveLinkAudioTests RealtimeTests.swift
+macos	Deterministic tests	2026-10-23T14:09:54.1320820Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/PluginRenderTests.swift:58:13: error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+macos	Deterministic tests	2026-10-23T14:09:54.1324720Z 56 |         let catalog = PluginCatalog(helperURL: helper)
+macos	Deterministic tests	2026-10-23T14:09:54.1327210Z 57 |         let selected = try #require(try await catalog.discover().first { $0.component == appleID })
+macos	Deterministic tests	2026-10-23T14:09:54.1332920Z 58 |         let samples = (0..<8192).flatMap { frame -> [Float] in
+macos	Deterministic tests	2026-10-23T14:09:54.1333800Z    |             `- error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+macos	Deterministic tests	2026-10-23T14:09:54.1334590Z 59 |             [Float(0.01 * sin(Double(frame) * 2 * .pi * 317 / 48000)), Float(0.015 * sin(Double(frame) * 2 * .pi * 719 / 48000))]
+macos	Deterministic tests	2026-10-23T14:09:54.1335130Z 60 |         }
+macos	Deterministic tests	2026-10-23T14:09:54.1335320Z 
+macos	Deterministic tests	2026-10-23T14:09:54.1335840Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/PluginRenderTests.swift:75:21: warning: no calls to throwing functions occur within 'try' expression
+macos	Deterministic tests	2026-10-23T14:09:54.1336730Z 73 |         #expect(maximumError < 0.000_001)
+macos	Deterministic tests	2026-10-23T14:09:54.1337130Z 74 |         #expect(rendered.samples != samples)
+macos	Deterministic tests	2026-10-23T14:09:54.1337480Z 75 |         let state = try #require(rendered.state)
+macos	Deterministic tests	2026-10-23T14:09:54.1338060Z    |                     `- warning: no calls to throwing functions occur within 'try' expression
+macos	Deterministic tests	2026-10-23T14:09:54.1338650Z 76 |         let restored = try await catalog.render(selected, samples: samples, state: state, blockFrames: 257)
+macos	Deterministic tests	2026-10-23T14:09:54.1339390Z 77 |         #expect(restored.parameterValues.first { $0.address == 2 }?.value == 20)
+macos	Deterministic tests	2026-10-23T14:09:54.1339800Z 
+macos	Deterministic tests	2026-10-23T14:09:54.1346280Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/ThirdPartyAudioUnitTests.swift:31:13: error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+macos	Deterministic tests	2026-10-23T14:09:54.1348860Z 29 |         let id = AudioUnitComponentID(type: 1635083896, subtype: 1399743559, manufacturer: 1265390435)
+macos	Deterministic tests	2026-10-23T14:09:54.1350770Z 30 |         let selected = try #require(try await catalog.discover().first { $0.component == id })
+macos	Deterministic tests	2026-10-23T14:09:54.1352000Z 31 |         let samples = (0..<8192).flatMap { frame -> [Float] in
+macos	Deterministic tests	2026-10-23T14:09:54.1354160Z    |             `- error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+macos	Deterministic tests	2026-10-23T14:09:54.1357910Z 32 |             [Float(0.01 * sin(Double(frame) * 2 * .pi * 317 / 48000)), Float(0.015 * sin(Double(frame) * 2 * .pi * 719 / 48000))]
+macos	Deterministic tests	2026-10-23T14:09:54.1359780Z 33 |         }
+macos	Deterministic tests	2026-10-23T14:09:54.1360140Z 
+macos	Deterministic tests	2026-10-23T14:09:54.1361340Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/ThirdPartyAudioUnitTests.swift:38:21: warning: no calls to throwing functions occur within 'try' expression
+macos	Deterministic tests	2026-10-23T14:09:54.1363510Z 36 |         #expect(rendered.samples.contains { abs($0) > 0.000_001 })
+macos	Deterministic tests	2026-10-23T14:09:54.1368880Z 37 |         #expect(rendered.parameterValues.first { $0.address == 50 }?.value == 0.5)
+macos	Deterministic tests	2026-10-23T14:09:54.1369400Z 38 |         let state = try #require(rendered.state)
+macos	Deterministic tests	2026-10-23T14:09:54.1369950Z    |                     `- warning: no calls to throwing functions occur within 'try' expression
+macos	Deterministic tests	2026-10-23T14:09:54.1370570Z 39 |         let restored = try await catalog.render(selected, samples: samples, state: state, blockFrames: 257)
+macos	Deterministic tests	2026-10-23T14:09:54.1371250Z 40 |         #expect(zip(rendered.samples, restored.samples).allSatisfy { abs($0 - $1) < 0.000_001 })
+macos	Deterministic tests	2026-10-23T14:09:54.1371770Z 
+macos	Deterministic tests	2026-10-23T14:09:54.1385210Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/ThirdPartyAudioUnitTests.swift:62:25: warning: no calls to throwing functions occur within 'try' expression
+macos	Deterministic tests	2026-10-23T14:09:54.1426650Z 60 |         try graph.updateControls(session: session)
+macos	Deterministic tests	2026-10-23T14:09:54.1427830Z 61 |         for _ in 0..<8 { _ = block(render); _ = block(dry) }
+macos	Deterministic tests	2026-10-23T14:09:54.1428900Z 62 |         let liveState = try #require(try graph.snapshotStates()[channel]?[slot.id])
+macos	Deterministic tests	2026-10-23T14:09:54.1446800Z    |                         `- warning: no calls to throwing functions occur within 'try' expression
+macos	Deterministic tests	2026-10-23T14:09:54.1447560Z 63 |         let verified = try await catalog.render(selected, samples: [Float](repeating: 0, count: 1024), state: liveState)
+macos	Deterministic tests	2026-10-23T14:09:54.1448290Z 64 |         #expect(abs((verified.parameterValues.first { $0.address == 50 }?.value ?? -1) - 0.6) < 0.000_001)
+macos	Deterministic tests	2026-10-23T14:09:54.1448900Z [68/70] Compiling RaveLinkAudioTests ThirdPartyAudioUnitTests.swift
+macos	Deterministic tests	2026-10-23T14:09:54.1449830Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/PluginRenderTests.swift:58:13: error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+macos	Deterministic tests	2026-10-23T14:09:54.1450850Z 56 |         let catalog = PluginCatalog(helperURL: helper)
+macos	Deterministic tests	2026-10-23T14:09:54.1451310Z 57 |         let selected = try #require(try await catalog.discover().first { $0.component == appleID })
+macos	Deterministic tests	2026-10-23T14:09:54.1451880Z 58 |         let samples = (0..<8192).flatMap { frame -> [Float] in
+macos	Deterministic tests	2026-10-23T14:09:54.1452590Z    |             `- error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+macos	Deterministic tests	2026-10-23T14:09:54.1453340Z 59 |             [Float(0.01 * sin(Double(frame) * 2 * .pi * 317 / 48000)), Float(0.015 * sin(Double(frame) * 2 * .pi * 719 / 48000))]
+macos	Deterministic tests	2026-10-23T14:09:54.1453880Z 60 |         }
+macos	Deterministic tests	2026-10-23T14:09:54.1454230Z 
+macos	Deterministic tests	2026-10-23T14:09:54.1454710Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/PluginRenderTests.swift:75:21: warning: no calls to throwing functions occur within 'try' expression
+macos	Deterministic tests	2026-10-23T14:09:54.1455410Z 73 |         #expect(maximumError < 0.000_001)
+macos	Deterministic tests	2026-10-23T14:09:54.1455730Z 74 |         #expect(rendered.samples != samples)
+macos	Deterministic tests	2026-10-23T14:09:54.1456140Z 75 |         let state = try #require(rendered.state)
+macos	Deterministic tests	2026-10-23T14:09:54.1456610Z    |                     `- warning: no calls to throwing functions occur within 'try' expression
+macos	Deterministic tests	2026-10-23T14:09:54.1457270Z 76 |         let restored = try await catalog.render(selected, samples: samples, state: state, blockFrames: 257)
+macos	Deterministic tests	2026-10-23T14:09:54.1458840Z 77 |         #expect(restored.parameterValues.first { $0.address == 2 }?.value == 20)
+macos	Deterministic tests	2026-10-23T14:09:54.1466440Z 
+macos	Deterministic tests	2026-10-23T14:09:54.1468830Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/ThirdPartyAudioUnitTests.swift:31:13: error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+macos	Deterministic tests	2026-10-23T14:09:54.1484690Z 29 |         let id = AudioUnitComponentID(type: 1635083896, subtype: 1399743559, manufacturer: 1265390435)
+macos	Deterministic tests	2026-10-23T14:09:54.1485600Z 30 |         let selected = try #require(try await catalog.discover().first { $0.component == id })
+macos	Deterministic tests	2026-10-23T14:09:54.1486270Z 31 |         let samples = (0..<8192).flatMap { frame -> [Float] in
+macos	Deterministic tests	2026-10-23T14:09:54.1487040Z    |             `- error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+macos	Deterministic tests	2026-10-23T14:09:54.1488730Z 32 |             [Float(0.01 * sin(Double(frame) * 2 * .pi * 317 / 48000)), Float(0.015 * sin(Double(frame) * 2 * .pi * 719 / 48000))]
+macos	Deterministic tests	2026-10-23T14:09:54.1490240Z 33 |         }
+macos	Deterministic tests	2026-10-23T14:09:54.1490740Z 
+macos	Deterministic tests	2026-10-23T14:09:54.1492180Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/ThirdPartyAudioUnitTests.swift:38:21: warning: no calls to throwing functions occur within 'try' expression
+macos	Deterministic tests	2026-10-23T14:09:54.1494390Z 36 |         #expect(rendered.samples.contains { abs($0) > 0.000_001 })
+macos	Deterministic tests	2026-10-23T14:09:54.1496630Z 37 |         #expect(rendered.parameterValues.first { $0.address == 50 }?.value == 0.5)
+macos	Deterministic tests	2026-10-23T14:09:54.1498120Z 38 |         let state = try #require(rendered.state)
+macos	Deterministic tests	2026-10-23T14:09:54.1499300Z    |                     `- warning: no calls to throwing functions occur within 'try' expression
+macos	Deterministic tests	2026-10-23T14:09:54.1501550Z 39 |         let restored = try await catalog.render(selected, samples: samples, state: state, blockFrames: 257)
+macos	Deterministic tests	2026-10-23T14:09:54.1516140Z 40 |         #expect(zip(rendered.samples, restored.samples).allSatisfy { abs($0 - $1) < 0.000_001 })
+macos	Deterministic tests	2026-10-23T14:09:54.1517290Z 
+macos	Deterministic tests	2026-10-23T14:09:54.1522810Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/ThirdPartyAudioUnitTests.swift:62:25: warning: no calls to throwing functions occur within 'try' expression
+macos	Deterministic tests	2026-10-23T14:09:54.1523660Z 60 |         try graph.updateControls(session: session)
+macos	Deterministic tests	2026-10-23T14:09:54.1524170Z 61 |         for _ in 0..<8 { _ = block(render); _ = block(dry) }
+macos	Deterministic tests	2026-10-23T14:09:54.1524880Z 62 |         let liveState = try #require(try graph.snapshotStates()[channel]?[slot.id])
+macos	Deterministic tests	2026-10-23T14:09:54.1525410Z    |                         `- warning: no calls to throwing functions occur within 'try' expression
+macos	Deterministic tests	2026-10-23T14:09:54.1526330Z 63 |         let verified = try await catalog.render(selected, samples: [Float](repeating: 0, count: 1024), state: liveState)
+macos	Deterministic tests	2026-10-23T14:09:54.1528630Z 64 |         #expect(abs((verified.parameterValues.first { $0.address == 50 }?.value ?? -1) - 0.6) < 0.000_001)
+macos	Deterministic tests	2026-10-23T14:09:54.1674200Z error: fatalError
+macos	Deterministic tests	2026-10-23T14:09:54.1894020Z ##[error]Process completed with exit code 1.
+macos	Post Run actions/checkout@v4	﻿2026-10-23T14:09:54.2473260Z Post job cleanup.
+macos	Post Run actions/checkout@v4	2026-10-23T14:09:55.0798130Z [command]/opt/homebrew/bin/git version
+macos	Post Run actions/checkout@v4	2026-10-23T14:09:55.1099520Z git version 2.55.0
+macos	Post Run actions/checkout@v4	2026-10-23T14:09:55.1250280Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/47eecf0b-43b1-4d93-a4e5-c81167b515e4/.gitconfig'
+macos	Post Run actions/checkout@v4	2026-10-23T14:09:55.1252220Z Temporarily overriding HOME='/Users/runner/work/_temp/47eecf0b-43b1-4d93-a4e5-c81167b515e4' before making global git config changes
+macos	Post Run actions/checkout@v4	2026-10-23T14:09:55.1256280Z Adding repository directory to the temporary git global config as a safe directory
+macos	Post Run actions/checkout@v4	2026-10-23T14:09:55.1257950Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+macos	Post Run actions/checkout@v4	2026-10-23T14:09:55.1497600Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+macos	Post Run actions/checkout@v4	2026-10-23T14:09:55.1559600Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+macos	Post Run actions/checkout@v4	2026-10-23T14:09:55.3033890Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+macos	Post Run actions/checkout@v4	2026-10-23T14:09:55.3097220Z http.https://github.com/.extraheader
+macos	Post Run actions/checkout@v4	2026-10-23T14:09:55.3110640Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+macos	Post Run actions/checkout@v4	2026-10-23T14:09:55.3179750Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+macos	Post Run actions/checkout@v4	2026-10-23T14:09:55.4354840Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+macos	Post Run actions/checkout@v4	2026-10-23T14:09:55.4401110Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+macos	Complete job	﻿2026-10-23T14:09:55.5699300Z Cleaning up orphan processes
+macos	Complete job	2026-10-23T14:09:55.8813140Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+installed-driver	Set up job	﻿2026-10-23T14:08:44.9290570Z Current runner version: '2.338.0'
+installed-driver	Set up job	2026-10-23T14:08:44.9310730Z ##[group]Runner Image Provisioner
+installed-driver	Set up job	2026-10-23T14:08:44.9311370Z Hosted Compute Agent
+installed-driver	Set up job	2026-10-23T14:08:44.9311780Z Version: 20260828.587
+installed-driver	Set up job	2026-10-23T14:08:44.9312410Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+installed-driver	Set up job	2026-10-23T14:08:44.9313260Z Build Date: 2026-08-28T16:44:25Z
+installed-driver	Set up job	2026-10-23T14:08:44.9313790Z Worker ID: {523110a1-9ee3-4447-b64c-7a0877559736}
+installed-driver	Set up job	2026-10-23T14:08:44.9314340Z Azure Region: westus
+installed-driver	Set up job	2026-10-23T14:08:44.9314740Z ##[endgroup]
+installed-driver	Set up job	2026-10-23T14:08:44.9319210Z ##[group]Operating System
+installed-driver	Set up job	2026-10-23T14:08:44.9319670Z macOS
+installed-driver	Set up job	2026-10-23T14:08:44.9320010Z 15.7.9
+installed-driver	Set up job	2026-10-23T14:08:44.9320360Z 24G830
+installed-driver	Set up job	2026-10-23T14:08:44.9320730Z ##[endgroup]
+installed-driver	Set up job	2026-10-23T14:08:44.9321150Z ##[group]Runner Image
+installed-driver	Set up job	2026-10-23T14:08:44.9321600Z Image: macos-15-arm64
+installed-driver	Set up job	2026-10-23T14:08:44.9321970Z Version: 20260907.0337.1
+installed-driver	Set up job	2026-10-23T14:08:44.9322770Z Included Software: https://github.com/actions/runner-images/blob/macos-15-arm64/20260907.0337/images/macos/macos-15-arm64-Readme.md
+installed-driver	Set up job	2026-10-23T14:08:44.9324010Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-15-arm64%2F20260907.0337
+installed-driver	Set up job	2026-10-23T14:08:44.9324690Z ##[endgroup]
+installed-driver	Set up job	2026-10-23T14:08:44.9325490Z ##[group]GITHUB_TOKEN Permissions
+installed-driver	Set up job	2026-10-23T14:08:44.9327150Z Contents: read
+installed-driver	Set up job	2026-10-23T14:08:44.9327530Z Metadata: read
+installed-driver	Set up job	2026-10-23T14:08:44.9327910Z ##[endgroup]
+installed-driver	Set up job	2026-10-23T14:08:44.9329470Z Secret source: Actions
+installed-driver	Set up job	2026-10-23T14:08:44.9330070Z Cache mode: write
+installed-driver	Set up job	2026-10-23T14:08:44.9330540Z Prepare workflow directory
+installed-driver	Set up job	2026-10-23T14:08:44.9604560Z Prepare all required actions
+installed-driver	Set up job	2026-10-23T14:08:44.9677680Z Getting action download info
+installed-driver	Set up job	2026-10-23T14:08:45.1856110Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+installed-driver	Set up job	2026-10-23T14:08:45.5352290Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+installed-driver	Set up job	2026-10-23T14:08:45.8458840Z Complete job name: installed-driver
+installed-driver	Run actions/checkout@v4	﻿2026-10-23T14:08:45.9418490Z ##[group]Run actions/checkout@v4
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:45.9419330Z with:
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:45.9419740Z   repository: thatsmethen/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:45.9425920Z   token: ***
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:45.9426470Z   ssh-strict: true
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:45.9426940Z   ssh-user: git
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:45.9427860Z   persist-credentials: true
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:45.9428480Z   clean: true
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:45.9429320Z   sparse-checkout-cone-mode: true
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:45.9430020Z   fetch-depth: 1
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:45.9430420Z   fetch-tags: false
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:45.9430880Z   show-progress: true
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:45.9431280Z   lfs: false
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:45.9432740Z   submodules: false
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:45.9433580Z   set-safe-directory: true
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:45.9434350Z   allow-unsafe-pr-checkout: false
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:45.9438910Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.6101540Z Syncing repository: thatsmethen/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.6108260Z ##[group]Getting Git version info
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.6109390Z Working directory is '/Users/runner/work/ravelink/ravelink'
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.6111230Z [command]/opt/homebrew/bin/git version
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.6743160Z git version 2.55.0
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.6749310Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.6776290Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/063d35ff-31e0-4419-ae7d-819820e5288d/.gitconfig'
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.6795650Z Temporarily overriding HOME='/Users/runner/work/_temp/063d35ff-31e0-4419-ae7d-819820e5288d' before making global git config changes
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.6796980Z Adding repository directory to the temporary git global config as a safe directory
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.6805200Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.6977600Z Deleting the contents of '/Users/runner/work/ravelink/ravelink'
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.6980030Z ##[group]Initializing the repository
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.6987350Z [command]/opt/homebrew/bin/git init /Users/runner/work/ravelink/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.7310340Z hint: Using 'master' as the name for the initial branch. This default branch name
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.7313580Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.7314580Z hint: to use in all of your new repositories, which will suppress this warning,
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.7315320Z hint: call:
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.7315820Z hint:
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.7316330Z hint: 	git config --global init.defaultBranch <name>
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.7316930Z hint:
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.7317560Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.7318430Z hint: 'development'. The just-created branch can be renamed via this command:
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.7319060Z hint:
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.7319440Z hint: 	git branch -m <name>
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.7319890Z hint:
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.7320540Z hint: Disable this message with "git config set advice.defaultBranchName false"
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.7322130Z Initialized empty Git repository in /Users/runner/work/ravelink/ravelink/.git/
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.7329610Z [command]/opt/homebrew/bin/git remote add origin https://github.com/thatsmethen/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.7469220Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.7470210Z ##[group]Disabling automatic garbage collection
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.7470950Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.7569430Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.7570350Z ##[group]Setting up auth
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.7571520Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.7644260Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.9209310Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:46.9347730Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:47.1104640Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:47.1166330Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:47.2757810Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:47.2866090Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:47.2870090Z ##[group]Fetching the repository
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:47.2888900Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +39b0386f8ce2db413428b7f3125424b3b649ba96:refs/remotes/origin/main
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:48.2256740Z From https://github.com/thatsmethen/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:48.2356190Z  * [new ref]         39b0386f8ce2db413428b7f3125424b3b649ba96 -> origin/main
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:48.2583340Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:48.2584130Z ##[group]Determining the checkout info
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:48.2584960Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:48.2585540Z [command]/opt/homebrew/bin/git sparse-checkout disable
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:48.2786340Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:48.3115010Z ##[group]Checking out the ref
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:48.3224990Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:48.3559210Z Switched to a new branch 'main'
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:48.3563990Z branch 'main' set up to track 'origin/main'.
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:48.3738000Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:48.3927170Z [command]/opt/homebrew/bin/git log -1 --format=%H
+installed-driver	Run actions/checkout@v4	2026-10-23T14:08:48.4008210Z 39b0386f8ce2db413428b7f3125424b3b649ba96
+installed-driver	Host identity	﻿2026-10-23T14:08:48.5070540Z ##[group]Run sw_vers
+installed-driver	Host identity	2026-10-23T14:08:48.5071250Z [36;1msw_vers[0m
+installed-driver	Host identity	2026-10-23T14:08:48.5071530Z [36;1muname -m[0m
+installed-driver	Host identity	2026-10-23T14:08:48.5264110Z shell: /bin/bash -e {0}
+installed-driver	Host identity	2026-10-23T14:08:48.5264540Z ##[endgroup]
+installed-driver	Host identity	2026-10-23T14:08:48.6599460Z ProductName:		macOS
+installed-driver	Host identity	2026-10-23T14:08:48.6605770Z ProductVersion:		15.7.9
+installed-driver	Host identity	2026-10-23T14:08:48.6708020Z BuildVersion:		24G830
+installed-driver	Host identity	2026-10-23T14:08:48.6738800Z arm64
+installed-driver	Build isolated test device	﻿2026-10-23T14:08:48.7167020Z ##[group]Run python3 scripts/virtual-devices.py build --channels 8 --device ci-loopback:CILoopback --device ci-mix-a:CIMixA --device ci-mix-b:CIMixB --output build/ci-drivers
+installed-driver	Build isolated test device	2026-10-23T14:08:48.7168290Z [36;1mpython3 scripts/virtual-devices.py build --channels 8 --device ci-loopback:CILoopback --device ci-mix-a:CIMixA --device ci-mix-b:CIMixB --output build/ci-drivers[0m
+installed-driver	Build isolated test device	2026-10-23T14:08:48.7169160Z [36;1mshasum -a 256 build/ci-drivers/*.driver/Contents/MacOS/* > build/driver-binary-sha256.txt[0m
+installed-driver	Build isolated test device	2026-10-23T14:08:48.7318590Z shell: /bin/bash -e {0}
+installed-driver	Build isolated test device	2026-10-23T14:08:48.7318900Z ##[endgroup]
+installed-driver	Build isolated test device	2026-10-23T14:08:55.7550250Z /Users/runner/work/ravelink/ravelink/build/ci-drivers/.ravelink-8idlgdj3/RaveLink-ci-loopback.driver: replacing existing signature
+installed-driver	Build isolated test device	2026-10-23T14:08:59.9604170Z /Users/runner/work/ravelink/ravelink/build/ci-drivers/.ravelink-_w49tfp_/RaveLink-ci-mix-a.driver: replacing existing signature
+installed-driver	Build isolated test device	2026-10-23T14:09:02.2359500Z /Users/runner/work/ravelink/ravelink/build/ci-drivers/.ravelink-lktd3h9q/RaveLink-ci-mix-b.driver: replacing existing signature
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3247430Z [
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3280520Z   {
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3284660Z     "id": "ci-loopback",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3298020Z     "name": "RaveLink CILoopback",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3411150Z     "bundle": "RaveLink-ci-loopback.driver",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3477770Z     "bundleID": "au.textual.ravelink.audio.ci-loopback",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3481220Z     "deviceUID": "RaveLink.ci-loopback_UID",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3489840Z     "factoryUUID": "4EE93CF6-9DEC-5D17-AC9E-507705C24D80",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3502610Z     "channels": 8,
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3504170Z     "architectures": [
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3504610Z       "arm64",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3506680Z       "x86_64"
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3515790Z     ],
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3528940Z     "minimumMacOS": "12.0",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3530390Z     "upstream": {
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3530830Z       "repository": "https://github.com/ExistentialAudio/BlackHole",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3531770Z       "commit": "561d934c77a1fa64987e01ccabe890fed30e181f",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3532470Z       "version": "0.7.1",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3533420Z       "license": "GPL-3.0-only",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3533930Z       "files": {
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3534490Z         "BlackHole.c": "05f1fa61e2502072ddbc797717713b20e43e2e55e08d445312aeb55dad879c7b",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3536550Z         "LICENSE": "d5134ba41d942612bdf5ab79b32b3ddc2458f55e16437390bd81be8f2e0811e0",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3539180Z         "VERSION": "902311c7bb38fa1658ff403def6158ee7378fe9d6e2e284fa1c38735c31bd30b"
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3542680Z       }
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3544050Z     },
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3547010Z     "codeSigning": "ad-hoc",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3561530Z     "notarized": false,
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3562670Z     "version": "0.1.0",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3567070Z     "path": "/Users/runner/work/ravelink/ravelink/build/ci-drivers/RaveLink-ci-loopback.driver"
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3568610Z   },
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3569520Z   {
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3570380Z     "id": "ci-mix-a",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3571370Z     "name": "RaveLink CIMixA",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3574650Z     "bundle": "RaveLink-ci-mix-a.driver",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3575690Z     "bundleID": "au.textual.ravelink.audio.ci-mix-a",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3576890Z     "deviceUID": "RaveLink.ci-mix-a_UID",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3577760Z     "factoryUUID": "79BFB084-794D-5178-BC4B-6BD325BAF05D",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3578470Z     "channels": 8,
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3579970Z     "architectures": [
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3587460Z       "arm64",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3588020Z       "x86_64"
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3588800Z     ],
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3589390Z     "minimumMacOS": "12.0",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3591640Z     "upstream": {
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3730560Z       "repository": "https://github.com/ExistentialAudio/BlackHole",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3731760Z       "commit": "561d934c77a1fa64987e01ccabe890fed30e181f",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3732660Z       "version": "0.7.1",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3733420Z       "license": "GPL-3.0-only",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3738430Z       "files": {
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3738930Z         "BlackHole.c": "05f1fa61e2502072ddbc797717713b20e43e2e55e08d445312aeb55dad879c7b",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3740190Z         "LICENSE": "d5134ba41d942612bdf5ab79b32b3ddc2458f55e16437390bd81be8f2e0811e0",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3740770Z         "VERSION": "902311c7bb38fa1658ff403def6158ee7378fe9d6e2e284fa1c38735c31bd30b"
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3741290Z       }
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3741500Z     },
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3741820Z     "codeSigning": "ad-hoc",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3742210Z     "notarized": false,
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3742480Z     "version": "0.1.0",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3742980Z     "path": "/Users/runner/work/ravelink/ravelink/build/ci-drivers/RaveLink-ci-mix-a.driver"
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3743630Z   },
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3744080Z   {
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3744540Z     "id": "ci-mix-b",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3744830Z     "name": "RaveLink CIMixB",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3745200Z     "bundle": "RaveLink-ci-mix-b.driver",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3745600Z     "bundleID": "au.textual.ravelink.audio.ci-mix-b",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3746040Z     "deviceUID": "RaveLink.ci-mix-b_UID",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3746380Z     "factoryUUID": "0B80C012-D957-52EE-AFA4-731C5EEC9694",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3746760Z     "channels": 8,
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3747000Z     "architectures": [
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3747320Z       "arm64",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3747560Z       "x86_64"
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3747860Z     ],
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3748170Z     "minimumMacOS": "12.0",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3748500Z     "upstream": {
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3748920Z       "repository": "https://github.com/ExistentialAudio/BlackHole",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3749420Z       "commit": "561d934c77a1fa64987e01ccabe890fed30e181f",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3749850Z       "version": "0.7.1",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3750140Z       "license": "GPL-3.0-only",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3750500Z       "files": {
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3754220Z         "BlackHole.c": "05f1fa61e2502072ddbc797717713b20e43e2e55e08d445312aeb55dad879c7b",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3755090Z         "LICENSE": "d5134ba41d942612bdf5ab79b32b3ddc2458f55e16437390bd81be8f2e0811e0",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3755690Z         "VERSION": "902311c7bb38fa1658ff403def6158ee7378fe9d6e2e284fa1c38735c31bd30b"
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3756170Z       }
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3756440Z     },
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3756650Z     "codeSigning": "ad-hoc",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3757040Z     "notarized": false,
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3757290Z     "version": "0.1.0",
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3757760Z     "path": "/Users/runner/work/ravelink/ravelink/build/ci-drivers/RaveLink-ci-mix-b.driver"
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3758210Z   }
+installed-driver	Build isolated test device	2026-10-23T14:09:02.3758470Z ]
+installed-driver	Install into disposable runner	﻿2026-10-23T14:09:02.5418060Z ##[group]Run sudo python3 scripts/virtual-devices.py install build/ci-drivers/*.driver
+installed-driver	Install into disposable runner	2026-10-23T14:09:02.5421520Z [36;1msudo python3 scripts/virtual-devices.py install build/ci-drivers/*.driver[0m
+installed-driver	Install into disposable runner	2026-10-23T14:09:02.5423200Z [36;1msudo killall coreaudiod || true[0m
+installed-driver	Install into disposable runner	2026-10-23T14:09:02.5427400Z [36;1msleep 5[0m
+installed-driver	Install into disposable runner	2026-10-23T14:09:02.5957740Z shell: /bin/bash -e {0}
+installed-driver	Install into disposable runner	2026-10-23T14:09:02.5958660Z ##[endgroup]
+installed-driver	Install into disposable runner	2026-10-23T14:09:04.9084880Z Installed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-loopback.driver
+installed-driver	Install into disposable runner	2026-10-23T14:09:04.9099120Z Installed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-mix-a.driver
+installed-driver	Install into disposable runner	2026-10-23T14:09:04.9101050Z Installed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-mix-b.driver
+installed-driver	Install into disposable runner	2026-10-23T14:09:04.9102580Z Restart macOS after closing audio apps to activate these devices. Audio services were not restarted.
+installed-driver	Compile integration tests	﻿2026-10-23T14:09:10.1429830Z ##[group]Run scripts/test.sh --filter testInvalidStartFailsWithActionableErrorAndStaysStopped
+installed-driver	Compile integration tests	2026-10-23T14:09:10.1431760Z [36;1mscripts/test.sh --filter testInvalidStartFailsWithActionableErrorAndStaysStopped[0m
+installed-driver	Compile integration tests	2026-10-23T14:09:10.1567700Z shell: /bin/bash -e {0}
+installed-driver	Compile integration tests	2026-10-23T14:09:10.1568050Z ##[endgroup]
+installed-driver	Compile integration tests	2026-10-23T14:09:16.8170440Z Building for debugging...
+installed-driver	Compile integration tests	2026-10-23T14:09:16.8234680Z [0/26] /Users/runner/work/ravelink/ravelink/.build/arm64-apple-macosx/debug/RaveLinkPackageTests.derived/runner.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:16.8335090Z [1/26] Write sources
+installed-driver	Compile integration tests	2026-10-23T14:09:16.8536330Z [2/26] Write RaveLinkPluginHost-entitlement.plist
+installed-driver	Compile integration tests	2026-10-23T14:09:16.8538070Z [3/26] Write sources
+installed-driver	Compile integration tests	2026-10-23T14:09:16.8555300Z [3/26] Write RaveLinkEngine-entitlement.plist
+installed-driver	Compile integration tests	2026-10-23T14:09:16.8557150Z [3/26] Write sources
+installed-driver	Compile integration tests	2026-10-23T14:09:17.1186820Z [8/26] Write swift-version--79AA4F9932D1E87A.txt
+installed-driver	Compile integration tests	2026-10-23T14:09:17.1338240Z [9/26] Write sources
+installed-driver	Compile integration tests	2026-10-23T14:09:19.6548610Z [10/29] Compiling RaveLinkRealtime Realtime.c
+installed-driver	Compile integration tests	2026-10-23T14:09:23.5743210Z [11/33] Compiling RaveLinkAudioUnitBridge AudioUnitBridge.m
+installed-driver	Compile integration tests	2026-10-23T14:09:23.5845840Z [12/33] Write sources
+installed-driver	Compile integration tests	2026-10-23T14:09:23.5948800Z [12/33] Write RaveLink-entitlement.plist
+installed-driver	Compile integration tests	2026-10-23T14:09:26.8015310Z [16/33] Compiling RaveLinkCore AudioUnitEffects.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:26.8119510Z [17/33] Compiling RaveLinkCore ExpandedRouting.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:26.8221530Z [18/33] Emitting module RaveLinkCore
+installed-driver	Compile integration tests	2026-10-23T14:09:26.8324570Z [19/33] Compiling RaveLinkCore Session.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:27.4798030Z [20/34] Compiling RaveLinkCore SessionStore.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:27.4899510Z [21/34] Emitting module RaveLinkPluginHost
+installed-driver	Compile integration tests	2026-10-23T14:09:27.4963800Z [22/34] Compiling RaveLinkPluginHost main.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:27.5029470Z [23/34] Compiling RaveLinkPluginHost Render.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:27.5272790Z [23/34] Write Objects.LinkFileList
+installed-driver	Compile integration tests	2026-10-23T14:09:28.8934130Z [24/46] Linking RaveLinkPluginHost
+installed-driver	Compile integration tests	2026-10-23T14:09:28.9318500Z [25/46] Applying RaveLinkPluginHost
+installed-driver	Compile integration tests	2026-10-23T14:09:31.5930090Z [27/46] Compiling RaveLinkAudio EngineClient.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:31.6002640Z [28/46] Compiling RaveLinkAudio EngineProtocol.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:31.6003880Z [29/46] Emitting module RaveLinkCoreTests
+installed-driver	Compile integration tests	2026-10-23T14:09:31.6004750Z [30/46] Compiling RaveLinkAudio AudioAllocationBudget.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:31.6005290Z [31/46] Compiling RaveLinkAudio AudioCoordinator.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:31.8832380Z [32/47] Emitting module RaveLinkAudio
+installed-driver	Compile integration tests	2026-10-23T14:09:32.1308320Z [33/49] Compiling RaveLinkCoreTests SourceIdentityAndOrderTests.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:32.7900630Z [34/49] Compiling RaveLinkAudio PluginCatalog.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:32.7956590Z [35/49] Compiling RaveLinkAudio PluginRender.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:33.3820430Z [37/49] Compiling RaveLinkAudio FeedbackValidation.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:33.3821220Z [38/49] Compiling RaveLinkAudio LiveAudioUnitGraph.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:37.1750150Z [42/65] Emitting module RaveLinkEngine
+installed-driver	Compile integration tests	2026-10-23T14:09:37.1852990Z [43/65] Compiling RaveLinkEngine EngineMain.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:37.1953040Z [43/65] Write Objects.LinkFileList
+installed-driver	Compile integration tests	2026-10-23T14:09:37.9372970Z [44/65] Linking RaveLinkEngine
+installed-driver	Compile integration tests	2026-10-23T14:09:37.9571120Z [45/65] Applying RaveLinkEngine
+installed-driver	Compile integration tests	2026-10-23T14:09:40.1404220Z [47/65] Emitting module RaveLinkApp
+installed-driver	Compile integration tests	2026-10-23T14:09:40.3560940Z [48/67] Compiling RaveLinkApp StudioModel.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:40.3662320Z [49/67] Compiling RaveLinkApp StudioView.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:40.3764110Z [50/67] Compiling RaveLinkAudioTests LiveAudioUnitTests.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:40.3876070Z [51/67] Compiling RaveLinkAudioTests PluginCatalogTests.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:40.3979350Z [52/70] Emitting module RaveLinkAudioTests
+installed-driver	Compile integration tests	2026-10-23T14:09:40.3983390Z [53/70] Compiling RaveLinkApp AudioUnitRackView.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:40.3984650Z [54/70] Compiling RaveLinkApp EngineDiagnosticsView.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:40.3989580Z [55/70] Compiling RaveLinkApp RaveLinkApp.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:40.4106170Z [56/70] Compiling RaveLinkApp SourceSheets.swift
+installed-driver	Compile integration tests	2026-10-23T14:09:43.9150860Z [62/70] Write Objects.LinkFileList
+installed-driver	Compile integration tests	2026-10-23T14:09:45.0393120Z [63/70] Linking RaveLink
+installed-driver	Compile integration tests	2026-10-23T14:09:45.0636150Z [64/70] Applying RaveLink
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5879450Z [66/70] Compiling RaveLinkAudioTests PluginRenderTests.swift
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5893810Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/PluginRenderTests.swift:58:13: error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5898610Z 56 |         let catalog = PluginCatalog(helperURL: helper)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5902670Z 57 |         let selected = try #require(try await catalog.discover().first { $0.component == appleID })
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5913530Z 58 |         let samples = (0..<8192).flatMap { frame -> [Float] in
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5917480Z    |             `- error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5972310Z 59 |             [Float(0.01 * sin(Double(frame) * 2 * .pi * 317 / 48000)), Float(0.015 * sin(Double(frame) * 2 * .pi * 719 / 48000))]
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5973000Z 60 |         }
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5973470Z 
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5974140Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/PluginRenderTests.swift:75:21: warning: no calls to throwing functions occur within 'try' expression
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5975090Z 73 |         #expect(maximumError < 0.000_001)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5975450Z 74 |         #expect(rendered.samples != samples)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5975850Z 75 |         let state = try #require(rendered.state)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5976320Z    |                     `- warning: no calls to throwing functions occur within 'try' expression
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5977010Z 76 |         let restored = try await catalog.render(selected, samples: samples, state: state, blockFrames: 257)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5977600Z 77 |         #expect(restored.parameterValues.first { $0.address == 2 }?.value == 20)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5978000Z 
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5978820Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/ThirdPartyAudioUnitTests.swift:31:13: error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5980550Z 29 |         let id = AudioUnitComponentID(type: 1635083896, subtype: 1399743559, manufacturer: 1265390435)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5981410Z 30 |         let selected = try #require(try await catalog.discover().first { $0.component == id })
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5981950Z 31 |         let samples = (0..<8192).flatMap { frame -> [Float] in
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5982760Z    |             `- error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5983540Z 32 |             [Float(0.01 * sin(Double(frame) * 2 * .pi * 317 / 48000)), Float(0.015 * sin(Double(frame) * 2 * .pi * 719 / 48000))]
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5984060Z 33 |         }
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5984210Z 
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5984810Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/ThirdPartyAudioUnitTests.swift:38:21: warning: no calls to throwing functions occur within 'try' expression
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5985650Z 36 |         #expect(rendered.samples.contains { abs($0) > 0.000_001 })
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5986260Z 37 |         #expect(rendered.parameterValues.first { $0.address == 50 }?.value == 0.5)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5986710Z 38 |         let state = try #require(rendered.state)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5987240Z    |                     `- warning: no calls to throwing functions occur within 'try' expression
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5987810Z 39 |         let restored = try await catalog.render(selected, samples: samples, state: state, blockFrames: 257)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5988510Z 40 |         #expect(zip(rendered.samples, restored.samples).allSatisfy { abs($0 - $1) < 0.000_001 })
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5988930Z 
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5995360Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/ThirdPartyAudioUnitTests.swift:62:25: warning: no calls to throwing functions occur within 'try' expression
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5997210Z 60 |         try graph.updateControls(session: session)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5997660Z 61 |         for _ in 0..<8 { _ = block(render); _ = block(dry) }
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5998180Z 62 |         let liveState = try #require(try graph.snapshotStates()[channel]?[slot.id])
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5998870Z    |                         `- warning: no calls to throwing functions occur within 'try' expression
+installed-driver	Compile integration tests	2026-10-23T14:10:02.5999500Z 63 |         let verified = try await catalog.render(selected, samples: [Float](repeating: 0, count: 1024), state: liveState)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6000940Z 64 |         #expect(abs((verified.parameterValues.first { $0.address == 50 }?.value ?? -1) - 0.6) < 0.000_001)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6001560Z [67/70] Compiling RaveLinkAudioTests RealtimeTests.swift
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6002580Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/PluginRenderTests.swift:58:13: error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6003670Z 56 |         let catalog = PluginCatalog(helperURL: helper)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6004310Z 57 |         let selected = try #require(try await catalog.discover().first { $0.component == appleID })
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6005160Z 58 |         let samples = (0..<8192).flatMap { frame -> [Float] in
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6005900Z    |             `- error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6006680Z 59 |             [Float(0.01 * sin(Double(frame) * 2 * .pi * 317 / 48000)), Float(0.015 * sin(Double(frame) * 2 * .pi * 719 / 48000))]
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6007240Z 60 |         }
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6007430Z 
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6007880Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/PluginRenderTests.swift:75:21: warning: no calls to throwing functions occur within 'try' expression
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6011640Z 73 |         #expect(maximumError < 0.000_001)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6012080Z 74 |         #expect(rendered.samples != samples)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6012440Z 75 |         let state = try #require(rendered.state)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6013070Z    |                     `- warning: no calls to throwing functions occur within 'try' expression
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6013710Z 76 |         let restored = try await catalog.render(selected, samples: samples, state: state, blockFrames: 257)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6014550Z 77 |         #expect(restored.parameterValues.first { $0.address == 2 }?.value == 20)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6014920Z 
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6015750Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/ThirdPartyAudioUnitTests.swift:31:13: error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6017760Z 29 |         let id = AudioUnitComponentID(type: 1635083896, subtype: 1399743559, manufacturer: 1265390435)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6018480Z 30 |         let selected = try #require(try await catalog.discover().first { $0.component == id })
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6018980Z 31 |         let samples = (0..<8192).flatMap { frame -> [Float] in
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6019920Z    |             `- error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6020980Z 32 |             [Float(0.01 * sin(Double(frame) * 2 * .pi * 317 / 48000)), Float(0.015 * sin(Double(frame) * 2 * .pi * 719 / 48000))]
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6021610Z 33 |         }
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6021810Z 
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6071420Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/ThirdPartyAudioUnitTests.swift:38:21: warning: no calls to throwing functions occur within 'try' expression
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6072880Z 36 |         #expect(rendered.samples.contains { abs($0) > 0.000_001 })
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6073300Z 37 |         #expect(rendered.parameterValues.first { $0.address == 50 }?.value == 0.5)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6074060Z 38 |         let state = try #require(rendered.state)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6074570Z    |                     `- warning: no calls to throwing functions occur within 'try' expression
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6075220Z 39 |         let restored = try await catalog.render(selected, samples: samples, state: state, blockFrames: 257)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6076560Z 40 |         #expect(zip(rendered.samples, restored.samples).allSatisfy { abs($0 - $1) < 0.000_001 })
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6079180Z 
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6081530Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/ThirdPartyAudioUnitTests.swift:62:25: warning: no calls to throwing functions occur within 'try' expression
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6084310Z 60 |         try graph.updateControls(session: session)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6084770Z 61 |         for _ in 0..<8 { _ = block(render); _ = block(dry) }
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6085260Z 62 |         let liveState = try #require(try graph.snapshotStates()[channel]?[slot.id])
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6087020Z    |                         `- warning: no calls to throwing functions occur within 'try' expression
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6088200Z 63 |         let verified = try await catalog.render(selected, samples: [Float](repeating: 0, count: 1024), state: liveState)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6089010Z 64 |         #expect(abs((verified.parameterValues.first { $0.address == 50 }?.value ?? -1) - 0.6) < 0.000_001)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6089660Z [68/70] Compiling RaveLinkAudioTests ThirdPartyAudioUnitTests.swift
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6092120Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/PluginRenderTests.swift:58:13: error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6093890Z 56 |         let catalog = PluginCatalog(helperURL: helper)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6096730Z 57 |         let selected = try #require(try await catalog.discover().first { $0.component == appleID })
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6097750Z 58 |         let samples = (0..<8192).flatMap { frame -> [Float] in
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6099500Z    |             `- error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6100780Z 59 |             [Float(0.01 * sin(Double(frame) * 2 * .pi * 317 / 48000)), Float(0.015 * sin(Double(frame) * 2 * .pi * 719 / 48000))]
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6101440Z 60 |         }
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6101580Z 
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6103510Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/PluginRenderTests.swift:75:21: warning: no calls to throwing functions occur within 'try' expression
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6105580Z 73 |         #expect(maximumError < 0.000_001)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6106670Z 74 |         #expect(rendered.samples != samples)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6108770Z 75 |         let state = try #require(rendered.state)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6110050Z    |                     `- warning: no calls to throwing functions occur within 'try' expression
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6113110Z 76 |         let restored = try await catalog.render(selected, samples: samples, state: state, blockFrames: 257)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6114730Z 77 |         #expect(restored.parameterValues.first { $0.address == 2 }?.value == 20)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6115380Z 
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6119130Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/ThirdPartyAudioUnitTests.swift:31:13: error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6124570Z 29 |         let id = AudioUnitComponentID(type: 1635083896, subtype: 1399743559, manufacturer: 1265390435)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6127780Z 30 |         let selected = try #require(try await catalog.discover().first { $0.component == id })
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6131650Z 31 |         let samples = (0..<8192).flatMap { frame -> [Float] in
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6133130Z    |             `- error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6135680Z 32 |             [Float(0.01 * sin(Double(frame) * 2 * .pi * 317 / 48000)), Float(0.015 * sin(Double(frame) * 2 * .pi * 719 / 48000))]
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6136590Z 33 |         }
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6137270Z 
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6137980Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/ThirdPartyAudioUnitTests.swift:38:21: warning: no calls to throwing functions occur within 'try' expression
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6140420Z 36 |         #expect(rendered.samples.contains { abs($0) > 0.000_001 })
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6143790Z 37 |         #expect(rendered.parameterValues.first { $0.address == 50 }?.value == 0.5)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6146250Z 38 |         let state = try #require(rendered.state)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6146840Z    |                     `- warning: no calls to throwing functions occur within 'try' expression
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6147580Z 39 |         let restored = try await catalog.render(selected, samples: samples, state: state, blockFrames: 257)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6149890Z 40 |         #expect(zip(rendered.samples, restored.samples).allSatisfy { abs($0 - $1) < 0.000_001 })
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6152010Z 
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6154000Z /Users/runner/work/ravelink/ravelink/Tests/RaveLinkAudioTests/ThirdPartyAudioUnitTests.swift:62:25: warning: no calls to throwing functions occur within 'try' expression
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6154960Z 60 |         try graph.updateControls(session: session)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6155730Z 61 |         for _ in 0..<8 { _ = block(render); _ = block(dry) }
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6159380Z 62 |         let liveState = try #require(try graph.snapshotStates()[channel]?[slot.id])
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6160110Z    |                         `- warning: no calls to throwing functions occur within 'try' expression
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6162670Z 63 |         let verified = try await catalog.render(selected, samples: [Float](repeating: 0, count: 1024), state: liveState)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6165170Z 64 |         #expect(abs((verified.parameterValues.first { $0.address == 50 }?.value ?? -1) - 0.6) < 0.000_001)
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6374720Z error: fatalError
+installed-driver	Compile integration tests	2026-10-23T14:10:02.6462700Z ##[error]Process completed with exit code 1.
+installed-driver	Run actions/upload-artifact@v4	﻿2026-10-23T14:10:02.6648830Z ##[group]Run actions/upload-artifact@v4
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:10:02.6649260Z with:
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:10:02.6649520Z   name: installed-driver-evidence
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:10:02.6650710Z   path: build/installed-driver-test.log
+installed-driver	Run actions/upload-artifact@v4	build/installed-devices.txt
+installed-driver	Run actions/upload-artifact@v4	build/receiver.log
+installed-driver	Run actions/upload-artifact@v4	build/independent-loopback.*
+installed-driver	Run actions/upload-artifact@v4	build/matrix-*.wav
+installed-driver	Run actions/upload-artifact@v4	build/matrix-*.log
+installed-driver	Run actions/upload-artifact@v4	build/matrix-analysis.json
+installed-driver	Run actions/upload-artifact@v4	build/driver-binary-sha256.txt
+installed-driver	Run actions/upload-artifact@v4	build/soak-*.wav
+installed-driver	Run actions/upload-artifact@v4	build/soak-*.json
+installed-driver	Run actions/upload-artifact@v4	build/soak-*.log
+installed-driver	Run actions/upload-artifact@v4	build/ci-drivers/manifest.json
+installed-driver	Run actions/upload-artifact@v4	build/ci-drivers/*.driver/Contents/Resources/build-info.json
+installed-driver	Run actions/upload-artifact@v4	
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:10:02.6651870Z   if-no-files-found: warn
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:10:02.6652090Z   compression-level: 6
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:10:02.6652330Z   overwrite: false
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:10:02.6652560Z   include-hidden-files: false
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:10:02.6652830Z ##[endgroup]
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:10:03.1583860Z (node:1626) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:10:03.1621090Z (Use `node --trace-deprecation ...` to show where the warning was created)
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:10:03.1752430Z With the provided path, there will be 5 files uploaded
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:10:03.1758590Z Artifact name is valid!
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:10:03.1758960Z Root directory input is valid!
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:10:03.4373050Z (node:1626) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:10:03.4435630Z Beginning upload of artifact content to blob storage
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:10:03.4875960Z Uploaded bytes 3583
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:10:03.5041190Z Finished uploading artifact content to blob storage!
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:10:03.5044550Z SHA256 digest of uploaded artifact zip is b5bca6fea1267c965320b450d65837348c7ed35c0f360a0396a23016c1d676d3
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:10:03.5047770Z Finalizing artifact upload
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:10:03.9898650Z Artifact installed-driver-evidence.zip successfully finalized. Artifact ID 12507766205
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:10:03.9899470Z Artifact installed-driver-evidence has been successfully uploaded! Final size is 3583 bytes. Artifact ID is 12507766205
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:10:03.9905050Z Artifact download URL: https://github.com/thatsmethen/ravelink/actions/runs/39966890192/artifacts/12507766205
+installed-driver	Remove test device	﻿2026-10-23T14:10:04.0006670Z ##[group]Run sudo python3 scripts/virtual-devices.py uninstall ci-loopback ci-mix-a ci-mix-b
+installed-driver	Remove test device	2026-10-23T14:10:04.0007310Z [36;1msudo python3 scripts/virtual-devices.py uninstall ci-loopback ci-mix-a ci-mix-b[0m
+installed-driver	Remove test device	2026-10-23T14:10:04.0211250Z shell: /bin/bash -e {0}
+installed-driver	Remove test device	2026-10-23T14:10:04.0211540Z ##[endgroup]
+installed-driver	Remove test device	2026-10-23T14:10:04.3764280Z Removed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-loopback.driver
+installed-driver	Remove test device	2026-10-23T14:10:04.3765150Z Removed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-mix-a.driver
+installed-driver	Remove test device	2026-10-23T14:10:04.3765780Z Removed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-mix-b.driver
+installed-driver	Remove test device	2026-10-23T14:10:04.3766540Z Restart macOS after closing audio apps. Audio services were not restarted.
+installed-driver	Post Run actions/checkout@v4	﻿2026-10-23T14:10:04.3956820Z Post job cleanup.
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:10:04.4831910Z [command]/opt/homebrew/bin/git version
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:10:04.5088760Z git version 2.55.0
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:10:04.5105560Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/83e319ea-ff2f-4d32-94ff-fc8f4db50503/.gitconfig'
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:10:04.5113090Z Temporarily overriding HOME='/Users/runner/work/_temp/83e319ea-ff2f-4d32-94ff-fc8f4db50503' before making global git config changes
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:10:04.5113970Z Adding repository directory to the temporary git global config as a safe directory
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:10:04.5115380Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:10:04.5225810Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:10:04.5300530Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:10:04.6231960Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:10:04.6288030Z http.https://github.com/.extraheader
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:10:04.6296110Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:10:04.6358610Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:10:04.8415940Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:10:04.8478360Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+installed-driver	Complete job	﻿2026-10-23T14:10:04.9370000Z Cleaning up orphan processes
+installed-driver	Complete job	2026-10-23T14:10:05.3441040Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

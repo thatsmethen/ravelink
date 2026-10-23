@@ -1,0 +1,19 @@
+{
+  "recordedAt": "2026-10-23T14:11:34.894042+00:00",
+  "evidenceClass": "Failed CI compiler compatibility checkpoint; no installed-HAL runtime result",
+  "revision": "39b0386f8ce2db413428b7f3125424b3b649ba96",
+  "runURL": "https://github.com/thatsmethen/ravelink/actions/runs/39966890192",
+  "conclusion": "failure",
+  "failure": "The runner compiler timed out type-checking stereo sine flatMap expressions in PluginRenderTests.swift and ThirdPartyAudioUnitTests.swift. Both jobs stopped before requested runtime sequences.",
+  "runtimeSteps": "Skipped: original loopback, simultaneous matrix and device-input soak.",
+  "cleanup": "Installed test drivers removed successfully in always cleanup step.",
+  "files": {
+    "artifact/ci-drivers/RaveLink-ci-loopback.driver/Contents/Resources/build-info.json": "37983ea9e296f5615afd925b742ef2a4c9a3abdf6b76bca64ee645ab617b24c9",
+    "artifact/ci-drivers/RaveLink-ci-mix-a.driver/Contents/Resources/build-info.json": "de3c1f0ea5e47beaba436c2241cd5c09083ff1bb960946f8cae1e74d3e87405d",
+    "artifact/ci-drivers/RaveLink-ci-mix-b.driver/Contents/Resources/build-info.json": "913f35b7e3ed43a58fcd87568c3f1bf0fd55443111f2d0f8ecb1f6a1bef0e74e",
+    "artifact/ci-drivers/manifest.json": "13d54148f5b2fc142adfd9abb52696f9891c5dc71d8bec5f9b432fce2fe6203b",
+    "artifact/driver-binary-sha256.txt": "c40eefab5050a9e821053ec6bd5ce4778039b99f85f25e4aec848f59419e7fea",
+    "original-run.log": "86c8ab88e132915940940ac40ce509d673bbb5a6f344995aa48986d004088ea8",
+    "run.json": "c4eb7b7e6f3f3dd378642b314e2b77b4e1cab1db60f1a95f67eafde60571c63b"
+  }
+}

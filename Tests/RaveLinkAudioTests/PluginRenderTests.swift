@@ -55,8 +55,14 @@ import Testing
         let helper = try #require(PluginCatalog.defaultHelperURL())
         let catalog = PluginCatalog(helperURL: helper)
         let selected = try #require(try await catalog.discover().first { $0.component == appleID })
-        let samples = (0..<8192).flatMap { frame -> [Float] in
-            [Float(0.01 * sin(Double(frame) * 2 * .pi * 317 / 48000)), Float(0.015 * sin(Double(frame) * 2 * .pi * 719 / 48000))]
+        var samples: [Float] = []
+        samples.reserveCapacity(8192 * 2)
+        let leftPhaseStep: Double = 2.0 * Double.pi * 317.0 / 48_000.0
+        let rightPhaseStep: Double = 2.0 * Double.pi * 719.0 / 48_000.0
+        for frame in 0..<8192 {
+            let phase = Double(frame)
+            samples.append(Float(0.01 * sin(phase * leftPhaseStep)))
+            samples.append(Float(0.015 * sin(phase * rightPhaseStep)))
         }
         let rendered = try await catalog.render(selected, samples: samples, parameters: [.init(address: 2, value: 20)], blockFrames: 257)
         let delay = Int((try #require(rendered.latencySeconds) * 48000).rounded())
