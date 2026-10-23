@@ -1,0 +1,44 @@
+{
+  "recordedAtUTC": "2026-10-23T22:02:25.599531+00:00",
+  "scope": "Native reference onboarding only; main mixer and audio remain unobserved",
+  "target": {
+    "bundleID": "com.elgato.WaveLink3",
+    "version": "3.4.0",
+    "build": "3281"
+  },
+  "userApproval": {
+    "threadID": "01a168cb-184f-7803-a97b-c143eb7b59f5",
+    "userMessageID": "01a16aa0-6ba3-7e71-937e-2cbe429ba3e7",
+    "answer": "Accept the Wave Link agreement",
+    "verifiedVia": "read_thread original userMessage"
+  },
+  "actions": [
+    "Launched pinned official read-only mounted app through CUA",
+    "Clicked EULA Accept after verifying human approval",
+    "Observed mandatory Install driver setup with no visible Skip",
+    "Did not click Install driver or grant any permission"
+  ],
+  "nextGate": {
+    "type": "Separate vendor audio-driver installation",
+    "accessibilityID": "button.driverSetup.install",
+    "mainMixerVisible": false,
+    "notCoveredBy": "Approval to open RaveLink-HAL-Test.pkg"
+  },
+  "privateEvidence": {
+    ".tools/evidence/reference-runtime-2026-10-24/vendor-driver-gate-ax.txt": {
+      "sha256": "8613de06d103d6fec9c78924c4966be535a274896f7fd11d2a1ebe00b349c04a",
+      "bytes": 640
+    },
+    ".tools/evidence/reference-runtime-2026-10-24/vendor-driver-gate.png": {
+      "sha256": "209f47697e8a70ed289489603ea190092a9a47affd6c845c3ee071794ec13839",
+      "bytes": 87994
+    }
+  },
+  "existingOlderDriverSHA256": "3af3dec4dc7499e2ab84034f0239cccc022c0a99ee6a89987e7677135fa360b4",
+  "currentVendorDriverPresent": false,
+  "limitations": [
+    "No mixer, routing, effects, capture, onboarding completion or audio comparison observed",
+    "Raw vendor screenshot and AX remain ignored under .tools",
+    "CmdQ requested after observation but process still existed; root subsequently requested leaving setup open pending separate approval"
+  ]
+}

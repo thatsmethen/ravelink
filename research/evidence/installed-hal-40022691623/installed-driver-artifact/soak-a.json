@@ -1,0 +1,1 @@
+{"mode":"record","sampleRate":48000,"channels":8,"configuredBufferFrames":512,"minBlockFrames":512,"maxBlockFrames":512,"frames":2880000,"callbacks":5627,"firstFrameHostSeconds":184.921652750,"firstSignalHostSeconds":190.029756875,"timestampDiscontinuities":0,"invalidTimestamps":0,"complete":true}

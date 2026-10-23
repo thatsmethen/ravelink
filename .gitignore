@@ -11,3 +11,12 @@ research/evidence/installed-hal-39998798881/artifact/soak-a.wav.gz
 research/evidence/installed-hal-39998798881/artifact/soak-b.wav.gz
 research/evidence/installed-hal-40011635266/installed-driver-artifact/soak-a.wav.gz
 research/evidence/installed-hal-40011635266/installed-driver-artifact/soak-b.wav.gz
+
+# New Rust workspace and generated packages.
+/target/
+/dist/
+# Raw failed-run PCM remains locally in custody; upload separately as private release evidence.
+research/evidence/installed-hal-40022691623/installed-driver-artifact/soak-a.wav
+research/evidence/installed-hal-40022691623/installed-driver-artifact/soak-b.wav
+research/evidence/installed-hal-40022691623/installed-driver-artifact/sound-check-guard.wav
+research/evidence/installed-hal-40022691623/installed-driver-artifact/sound-check-output.wav

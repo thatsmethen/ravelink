@@ -1,0 +1,582 @@
+{
+  "sourceCommit": "f733a8c26124b1ace95b85624222f091516e93eb",
+  "ciRun": 40022691623,
+  "evidence": "Descriptive offline analysis of untouched installed-run PCM; no resampling, alignment, gain fit, or threshold changes.",
+  "method": "First stereo pair only. Active bounds use absolute value >1e-7; within those bounds report exact stereo zeros lasting at least8 frames, excluding isolated natural zero crossings. No pass/fail criterion is introduced.",
+  "observed": [
+    {
+      "file": "soak-a.wav",
+      "sha256": "2a772bc6556761733842729d011a5544a2f320d5ba35e5bd3862a7faffb6767a",
+      "sampleRate": 48000,
+      "frames": 2880000,
+      "channels": 8,
+      "firstSignalFrame": 245188,
+      "lastSignalFrameExclusive": 1824015,
+      "firstSignalSeconds": 5.108083333333333,
+      "lastSignalSecondsExclusive": 38.0003125,
+      "maximumAbsoluteSample": 0.020853644236922264,
+      "interiorExactZeroRunsAtLeast8Frames": 736,
+      "interiorExactZeroFramesInThoseRuns": 353463,
+      "longestRunFrames": 961,
+      "commonRunLengths": [
+        [
+          449,
+          599
+        ],
+        [
+          512,
+          105
+        ],
+        [
+          961,
+          32
+        ]
+      ],
+      "commonStartFrameModulo512": [
+        [
+          0,
+          736
+        ]
+      ],
+      "firstThirtyRuns": [
+        {
+          "startFrame": 246272,
+          "startSeconds": 5.1306666666666665,
+          "frames": 512
+        },
+        {
+          "startFrame": 247296,
+          "startSeconds": 5.152,
+          "frames": 449
+        },
+        {
+          "startFrame": 248832,
+          "startSeconds": 5.184,
+          "frames": 449
+        },
+        {
+          "startFrame": 249856,
+          "startSeconds": 5.205333333333333,
+          "frames": 449
+        },
+        {
+          "startFrame": 252416,
+          "startSeconds": 5.258666666666667,
+          "frames": 449
+        },
+        {
+          "startFrame": 255488,
+          "startSeconds": 5.322666666666667,
+          "frames": 449
+        },
+        {
+          "startFrame": 258048,
+          "startSeconds": 5.376,
+          "frames": 449
+        },
+        {
+          "startFrame": 260096,
+          "startSeconds": 5.418666666666667,
+          "frames": 449
+        },
+        {
+          "startFrame": 262144,
+          "startSeconds": 5.461333333333333,
+          "frames": 449
+        },
+        {
+          "startFrame": 263680,
+          "startSeconds": 5.493333333333333,
+          "frames": 449
+        },
+        {
+          "startFrame": 265216,
+          "startSeconds": 5.525333333333333,
+          "frames": 449
+        },
+        {
+          "startFrame": 267776,
+          "startSeconds": 5.578666666666667,
+          "frames": 449
+        },
+        {
+          "startFrame": 268800,
+          "startSeconds": 5.6,
+          "frames": 961
+        },
+        {
+          "startFrame": 270336,
+          "startSeconds": 5.632,
+          "frames": 449
+        },
+        {
+          "startFrame": 272384,
+          "startSeconds": 5.674666666666667,
+          "frames": 449
+        },
+        {
+          "startFrame": 274944,
+          "startSeconds": 5.728,
+          "frames": 512
+        },
+        {
+          "startFrame": 276480,
+          "startSeconds": 5.76,
+          "frames": 512
+        },
+        {
+          "startFrame": 278016,
+          "startSeconds": 5.792,
+          "frames": 449
+        },
+        {
+          "startFrame": 280064,
+          "startSeconds": 5.834666666666666,
+          "frames": 449
+        },
+        {
+          "startFrame": 281600,
+          "startSeconds": 5.866666666666666,
+          "frames": 449
+        },
+        {
+          "startFrame": 283136,
+          "startSeconds": 5.898666666666666,
+          "frames": 449
+        },
+        {
+          "startFrame": 284160,
+          "startSeconds": 5.92,
+          "frames": 449
+        },
+        {
+          "startFrame": 287232,
+          "startSeconds": 5.984,
+          "frames": 449
+        },
+        {
+          "startFrame": 288768,
+          "startSeconds": 6.016,
+          "frames": 449
+        },
+        {
+          "startFrame": 291328,
+          "startSeconds": 6.069333333333334,
+          "frames": 449
+        },
+        {
+          "startFrame": 291840,
+          "startSeconds": 6.08,
+          "frames": 512
+        },
+        {
+          "startFrame": 292864,
+          "startSeconds": 6.101333333333334,
+          "frames": 449
+        },
+        {
+          "startFrame": 295424,
+          "startSeconds": 6.1546666666666665,
+          "frames": 449
+        },
+        {
+          "startFrame": 298496,
+          "startSeconds": 6.218666666666667,
+          "frames": 449
+        },
+        {
+          "startFrame": 299520,
+          "startSeconds": 6.24,
+          "frames": 961
+        }
+      ]
+    },
+    {
+      "file": "soak-b.wav",
+      "sha256": "0bcb0717d4c9ec5967837aa173e578a482c896ba518324610c407c7a49c92ce4",
+      "sampleRate": 48000,
+      "frames": 2880000,
+      "channels": 8,
+      "firstSignalFrame": 245700,
+      "lastSignalFrameExclusive": 1824764,
+      "firstSignalSeconds": 5.11875,
+      "lastSignalSecondsExclusive": 38.01591666666667,
+      "maximumAbsoluteSample": 0.005238161887973547,
+      "interiorExactZeroRunsAtLeast8Frames": 729,
+      "interiorExactZeroFramesInThoseRuns": 348926,
+      "longestRunFrames": 961,
+      "commonRunLengths": [
+        [
+          449,
+          607
+        ],
+        [
+          512,
+          91
+        ],
+        [
+          961,
+          31
+        ]
+      ],
+      "commonStartFrameModulo512": [
+        [
+          0,
+          729
+        ]
+      ],
+      "firstThirtyRuns": [
+        {
+          "startFrame": 246784,
+          "startSeconds": 5.141333333333334,
+          "frames": 449
+        },
+        {
+          "startFrame": 247808,
+          "startSeconds": 5.1626666666666665,
+          "frames": 449
+        },
+        {
+          "startFrame": 249344,
+          "startSeconds": 5.1946666666666665,
+          "frames": 449
+        },
+        {
+          "startFrame": 250368,
+          "startSeconds": 5.216,
+          "frames": 449
+        },
+        {
+          "startFrame": 252416,
+          "startSeconds": 5.258666666666667,
+          "frames": 961
+        },
+        {
+          "startFrame": 256000,
+          "startSeconds": 5.333333333333333,
+          "frames": 449
+        },
+        {
+          "startFrame": 257536,
+          "startSeconds": 5.365333333333333,
+          "frames": 512
+        },
+        {
+          "startFrame": 258560,
+          "startSeconds": 5.386666666666667,
+          "frames": 449
+        },
+        {
+          "startFrame": 260608,
+          "startSeconds": 5.429333333333333,
+          "frames": 449
+        },
+        {
+          "startFrame": 262656,
+          "startSeconds": 5.472,
+          "frames": 449
+        },
+        {
+          "startFrame": 264192,
+          "startSeconds": 5.504,
+          "frames": 449
+        },
+        {
+          "startFrame": 265728,
+          "startSeconds": 5.536,
+          "frames": 449
+        },
+        {
+          "startFrame": 268288,
+          "startSeconds": 5.589333333333333,
+          "frames": 449
+        },
+        {
+          "startFrame": 269824,
+          "startSeconds": 5.621333333333333,
+          "frames": 449
+        },
+        {
+          "startFrame": 270848,
+          "startSeconds": 5.642666666666667,
+          "frames": 449
+        },
+        {
+          "startFrame": 272896,
+          "startSeconds": 5.685333333333333,
+          "frames": 449
+        },
+        {
+          "startFrame": 275456,
+          "startSeconds": 5.738666666666667,
+          "frames": 449
+        },
+        {
+          "startFrame": 276992,
+          "startSeconds": 5.770666666666667,
+          "frames": 512
+        },
+        {
+          "startFrame": 278016,
+          "startSeconds": 5.792,
+          "frames": 961
+        },
+        {
+          "startFrame": 280576,
+          "startSeconds": 5.8453333333333335,
+          "frames": 449
+        },
+        {
+          "startFrame": 282112,
+          "startSeconds": 5.8773333333333335,
+          "frames": 512
+        },
+        {
+          "startFrame": 283648,
+          "startSeconds": 5.9093333333333335,
+          "frames": 449
+        },
+        {
+          "startFrame": 284672,
+          "startSeconds": 5.930666666666666,
+          "frames": 449
+        },
+        {
+          "startFrame": 287744,
+          "startSeconds": 5.994666666666666,
+          "frames": 449
+        },
+        {
+          "startFrame": 289280,
+          "startSeconds": 6.026666666666666,
+          "frames": 449
+        },
+        {
+          "startFrame": 291840,
+          "startSeconds": 6.08,
+          "frames": 512
+        },
+        {
+          "startFrame": 292864,
+          "startSeconds": 6.101333333333334,
+          "frames": 961
+        },
+        {
+          "startFrame": 295936,
+          "startSeconds": 6.165333333333334,
+          "frames": 449
+        },
+        {
+          "startFrame": 299008,
+          "startSeconds": 6.229333333333333,
+          "frames": 449
+        },
+        {
+          "startFrame": 300544,
+          "startSeconds": 6.261333333333333,
+          "frames": 449
+        }
+      ]
+    },
+    {
+      "file": "sound-check-output.wav",
+      "sha256": "1071e0a2ab2911c7f96a974fdb872bcbbdf16ae68656de063e47c2483e78c0d8",
+      "sampleRate": 48000,
+      "frames": 1152000,
+      "channels": 2,
+      "firstSignalFrame": 333313,
+      "lastSignalFrameExclusive": 663552,
+      "firstSignalSeconds": 6.944020833333333,
+      "lastSignalSecondsExclusive": 13.824,
+      "maximumAbsoluteSample": 0.125889852643013,
+      "interiorExactZeroRunsAtLeast8Frames": 144,
+      "interiorExactZeroFramesInThoseRuns": 73732,
+      "longestRunFrames": 513,
+      "commonRunLengths": [
+        [
+          512,
+          140
+        ],
+        [
+          513,
+          4
+        ]
+      ],
+      "commonStartFrameModulo512": [
+        [
+          0,
+          142
+        ],
+        [
+          511,
+          2
+        ]
+      ],
+      "firstThirtyRuns": [
+        {
+          "startFrame": 335360,
+          "startSeconds": 6.986666666666666,
+          "frames": 512
+        },
+        {
+          "startFrame": 336384,
+          "startSeconds": 7.008,
+          "frames": 512
+        },
+        {
+          "startFrame": 338944,
+          "startSeconds": 7.061333333333334,
+          "frames": 512
+        },
+        {
+          "startFrame": 340992,
+          "startSeconds": 7.104,
+          "frames": 512
+        },
+        {
+          "startFrame": 343552,
+          "startSeconds": 7.157333333333334,
+          "frames": 512
+        },
+        {
+          "startFrame": 345088,
+          "startSeconds": 7.189333333333333,
+          "frames": 512
+        },
+        {
+          "startFrame": 346112,
+          "startSeconds": 7.210666666666667,
+          "frames": 512
+        },
+        {
+          "startFrame": 348672,
+          "startSeconds": 7.264,
+          "frames": 512
+        },
+        {
+          "startFrame": 351744,
+          "startSeconds": 7.328,
+          "frames": 512
+        },
+        {
+          "startFrame": 353792,
+          "startSeconds": 7.370666666666667,
+          "frames": 512
+        },
+        {
+          "startFrame": 356864,
+          "startSeconds": 7.434666666666667,
+          "frames": 512
+        },
+        {
+          "startFrame": 361472,
+          "startSeconds": 7.530666666666667,
+          "frames": 512
+        },
+        {
+          "startFrame": 365056,
+          "startSeconds": 7.605333333333333,
+          "frames": 512
+        },
+        {
+          "startFrame": 368640,
+          "startSeconds": 7.68,
+          "frames": 512
+        },
+        {
+          "startFrame": 369664,
+          "startSeconds": 7.701333333333333,
+          "frames": 512
+        },
+        {
+          "startFrame": 371712,
+          "startSeconds": 7.744,
+          "frames": 512
+        },
+        {
+          "startFrame": 373248,
+          "startSeconds": 7.776,
+          "frames": 512
+        },
+        {
+          "startFrame": 374272,
+          "startSeconds": 7.7973333333333334,
+          "frames": 512
+        },
+        {
+          "startFrame": 375808,
+          "startSeconds": 7.8293333333333335,
+          "frames": 513
+        },
+        {
+          "startFrame": 377856,
+          "startSeconds": 7.872,
+          "frames": 512
+        },
+        {
+          "startFrame": 379392,
+          "startSeconds": 7.904,
+          "frames": 512
+        },
+        {
+          "startFrame": 380928,
+          "startSeconds": 7.936,
+          "frames": 512
+        },
+        {
+          "startFrame": 384512,
+          "startSeconds": 8.010666666666667,
+          "frames": 512
+        },
+        {
+          "startFrame": 387072,
+          "startSeconds": 8.064,
+          "frames": 512
+        },
+        {
+          "startFrame": 390144,
+          "startSeconds": 8.128,
+          "frames": 512
+        },
+        {
+          "startFrame": 392192,
+          "startSeconds": 8.170666666666667,
+          "frames": 512
+        },
+        {
+          "startFrame": 393216,
+          "startSeconds": 8.192,
+          "frames": 512
+        },
+        {
+          "startFrame": 394752,
+          "startSeconds": 8.224,
+          "frames": 512
+        },
+        {
+          "startFrame": 396288,
+          "startSeconds": 8.256,
+          "frames": 512
+        },
+        {
+          "startFrame": 398336,
+          "startSeconds": 8.298666666666668,
+          "frames": 512
+        }
+      ]
+    }
+  ],
+  "interpretation": [
+    "Sound Check playback has recurring whole512-frame silent packets. Its selected source was a tone recorded to the dry clip, so its playback path does not read a capture FIFO/SRC.",
+    "Soak recurrent449-frame gaps are consistent with512-frame silent input packets shortened by63 samples of64-tap sinc support; this identifies a candidate mechanism, not a driver trace.",
+    "Continuous HAL timestamp reports and uninterrupted engine frame counters do not imply continuous nonzero audio.",
+    "Driver read/write/generation tracing or a controlled reproduction is required before attributing the holes to a particular validity predicate or changing source."
+  ],
+  "limitations": [
+    "This only describes the retained first stereo pairs and does not replace the strict eight-bus or Sound Check acceptance analyses.",
+    "No loopback WAV was retained because its existing failure trap terminated the receiver after Swift assertions failed.",
+    "No hardware IO, privacy grant, driver installation, default-device change, or audio-service restart is performed by this probe."
+  ],
+  "probeSHA256": "b8687ff38308589fb4813744bc07a5146918102487106a44a473e997625b88c4",
+  "reproduce": "python3 research/evidence/installed-hal-40022691623/audio-zero-packet-probe.py research/evidence/installed-hal-40022691623/installed-driver-artifact"
+}

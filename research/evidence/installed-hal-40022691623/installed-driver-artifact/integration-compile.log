@@ -1,0 +1,35 @@
+Building for production...
+[0/23] /Users/runner/work/ravelink/ravelink/.build/arm64-apple-macosx/release/RaveLinkPackageTests.derived/runner.swift
+[1/23] Write swift-version--79AA4F9932D1E87A.txt
+[2/23] Compiling RaveLinkRealtime SoundCheck.c
+[2/23] Write sources
+[8/23] Compiling RaveLinkRealtime Realtime.c
+[9/23] Compiling RaveLinkRealtime Clock.c
+[10/25] Compiling RaveLinkAudioUnitBridge AudioUnitBridge.m
+[11/25] Write sources
+[16/25] Compiling RaveLinkPluginHost Render.swift
+[16/25] Write Objects.LinkFileList
+[18/25] Compiling RaveLinkCore AudioUnitEffects.swift
+[18/27] Linking RaveLinkPluginHost
+[20/27] Compiling RaveLinkCoreTests AudioUnitSessionTests.swift
+[21/27] Compiling RaveLinkAudio ApplicationIdentity.swift
+[22/30] Compiling RaveLinkEngine EngineMain.swift
+[22/30] Write Objects.LinkFileList
+[23/30] Linking RaveLinkEngine
+[25/30] Compiling RaveLinkApp AudioUnitRackView.swift
+[25/30] Write Objects.LinkFileList
+[26/30] Linking RaveLink
+[28/31] Compiling RaveLinkAppTests SoundCheckIsolationTests.swift
+[29/31] Compiling RaveLinkAudioTests ApplicationMembershipTests.swift
+[30/32] Compiling RaveLinkPackageTests runner.swift
+[30/32] Write Objects.LinkFileList
+[31/32] Linking RaveLinkPackageTests
+Build complete! (74.81s)
+◇ Test run started.
+↳ Testing Library Version: 124.4
+↳ Target Platform: arm64e-apple-macos14.0
+◇ Suite AudioCoordinatorTests started.
+◇ Test testInvalidStartFailsWithActionableErrorAndStaysStopped() started.
+✔ Test testInvalidStartFailsWithActionableErrorAndStaysStopped() passed after 0.006 seconds.
+✔ Suite AudioCoordinatorTests passed after 0.006 seconds.
+✔ Test run with 1 test passed after 0.006 seconds.

@@ -8,6 +8,8 @@ Only the two executables that instantiate third-party Audio Units declare [disab
 
 Audio Unit failure containment is a process-lifecycle boundary, not a sandbox guarantee: installed plugins execute with the helper's user privileges. `RaveLinkPluginHost` has no recording entitlement; `RaveLinkEngine` requires recording access to implement user-selected routes. Helpers load component identities from the installed Audio Component registry, not arbitrary executable paths from a studio file.
 
+Packaged apps resolve helpers only at their expected embedded paths. Missing, non-executable, non-file or symlink-substituted helpers fail closed rather than searching outside the app. SwiftPM/test discovery and explicit developer helper injection remain available outside that default packaged resolution. This path check does not independently authenticate a replacement executable's signature; intact signed bundle verification and Gatekeeper remain separate checks.
+
 Distribution still requires Developer ID signing, notarization/stapling, a properly signed driver installer, and clean-machine privacy/install/upgrade/uninstall checks. Ad-hoc runtime and local signature verification establish none of those release gates. macOS 15/26 privacy attribution for the packaged helper must be exercised with user consent.
 
 ## Build identity and architectures

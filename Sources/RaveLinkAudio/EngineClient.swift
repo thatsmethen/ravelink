@@ -54,18 +54,10 @@ private final class EngineClientBundleMarker: NSObject {}
         if autoDiscover { refreshDevices() }
     }
     deinit { updateTask?.cancel(); transport?.cancel() }
-    nonisolated public static func defaultHelperURL() -> URL? {
-        var candidates: [URL] = []
-        for bundle in [Bundle.main, Bundle(for: EngineClientBundleMarker.self)] {
-            candidates += [bundle.bundleURL.appendingPathComponent("Contents/MacOS/RaveLinkEngine"), bundle.bundleURL.appendingPathComponent("Contents/Helpers/RaveLinkEngine")]
-            if let executable = bundle.executableURL { candidates.append(executable.deletingLastPathComponent().appendingPathComponent("RaveLinkEngine")) }
-            if bundle.bundleURL.pathExtension == "xctest" { candidates.append(bundle.bundleURL.deletingLastPathComponent().appendingPathComponent("RaveLinkEngine")) }
-        }
-        if let command = CommandLine.arguments.first {
-            var ancestor = URL(fileURLWithPath: command).standardizedFileURL.deletingLastPathComponent()
-            for _ in 0..<5 { candidates.append(ancestor.appendingPathComponent("RaveLinkEngine")); ancestor.deleteLastPathComponent() }
-        }
-        return candidates.first { FileManager.default.isExecutableFile(atPath: $0.path) }
+    nonisolated public static func defaultHelperURL(bundle: Bundle = .main) -> URL? {
+        HelperResolution.resolve(.engine,
+            locations: [HelperResolution.Location(bundle), HelperResolution.Location(Bundle(for: EngineClientBundleMarker.self))],
+            command: CommandLine.arguments.first.map { URL(fileURLWithPath: $0) })
     }
     public func refreshDevices() {
         guard !sleeping, discoveryRequest == nil else { return }
@@ -182,35 +174,43 @@ private final class EngineClientBundleMarker: NSObject {}
         case .launched(let pid): helperProcessID = pid
         case .exited(let pid): if helperProcessID == pid { helperProcessID = nil }
         case .failed(let message): fail(message)
-        case .message(let response):
-            if response.id == discoveryRequest { discoveryRequest = nil }
-            guard response.generation == generation else { return }
-            devices = response.snapshot.devices; applications = response.snapshot.applications
-            let isSessionReply = response.kind == .reply && response.id == sessionRequest
-            if isSessionReply { sessionRequest = nil; sessionOperation = nil }
-            if response.kind == .reply && !response.success {
-                fail(userFacing(response.errorMessage ?? "The audio engine rejected this route.")); return
-            }
-            if sessionOperation != .start && sessionOperation != .startSoundCheck && sessionOperation != .stop {
-                running = response.snapshot.running; starting = response.snapshot.starting
-            }
-            channelMeters = response.snapshot.channelMeters; busMeters = response.snapshot.busMeters; diagnostics = response.snapshot.diagnostics
-            if sessionOperation != .stop {
-                if response.snapshot.running, soundCheckChannelID != nil, response.snapshot.soundCheck == nil {
-                    fail("The audio engine stopped reporting its Sound Check clip and was stopped."); return
-                }
-                if let check = response.snapshot.soundCheck, check.channelID != soundCheckChannelID {
-                    fail("The audio engine returned Sound Check data for an unexpected input and was stopped."); return
-                }
-                soundCheck = response.snapshot.soundCheck
-            }
-            if let message = response.errorMessage {
-                // A local HAL watchdog indicates that this helper is unusable;
-                // terminate it so the next manual start gets a fresh process.
-                if !response.snapshot.running && !response.snapshot.starting { fail(userFacing(message)) }
-                else { errorMessage = message }
-            } else if isSessionReply { errorMessage = nil }
+        case .message(let response): receive(response)
         }
+    }
+    // The transport still consumes every validated heartbeat. UI subscribers
+    // only need values that changed; @Published emits even for equal assignments.
+    func receive(_ response: EngineResponse) {
+        if response.id == discoveryRequest { discoveryRequest = nil }
+        guard response.generation == generation else { return }
+        if devices != response.snapshot.devices { devices = response.snapshot.devices }
+        if applications != response.snapshot.applications { applications = response.snapshot.applications }
+        let isSessionReply = response.kind == .reply && response.id == sessionRequest
+        if isSessionReply { sessionRequest = nil; sessionOperation = nil }
+        if response.kind == .reply && !response.success {
+            fail(userFacing(response.errorMessage ?? "The audio engine rejected this route.")); return
+        }
+        if sessionOperation != .start && sessionOperation != .startSoundCheck && sessionOperation != .stop {
+            if running != response.snapshot.running { running = response.snapshot.running }
+            if starting != response.snapshot.starting { starting = response.snapshot.starting }
+        }
+        if channelMeters != response.snapshot.channelMeters { channelMeters = response.snapshot.channelMeters }
+        if busMeters != response.snapshot.busMeters { busMeters = response.snapshot.busMeters }
+        if diagnostics != response.snapshot.diagnostics { diagnostics = response.snapshot.diagnostics }
+        if sessionOperation != .stop {
+            if response.snapshot.running, soundCheckChannelID != nil, response.snapshot.soundCheck == nil {
+                fail("The audio engine stopped reporting its Sound Check clip and was stopped."); return
+            }
+            if let check = response.snapshot.soundCheck, check.channelID != soundCheckChannelID {
+                fail("The audio engine returned Sound Check data for an unexpected input and was stopped."); return
+            }
+            if soundCheck != response.snapshot.soundCheck { soundCheck = response.snapshot.soundCheck }
+        }
+        if let message = response.errorMessage {
+            // A local HAL watchdog indicates that this helper is unusable;
+            // terminate it so the next manual start gets a fresh process.
+            if !response.snapshot.running && !response.snapshot.starting { fail(userFacing(message)) }
+            else if errorMessage != message { errorMessage = message }
+        } else if isSessionReply, errorMessage != nil { errorMessage = nil }
     }
     private func fail(_ message: String) {
         running = false; starting = false; errorMessage = message

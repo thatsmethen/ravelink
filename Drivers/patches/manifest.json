@@ -5,7 +5,14 @@
     {
       "file": "0001-frame-validity.patch",
       "sha256": "6f70030ec75653118eacd8d952b5e1f205dfecb79de27fde282586392962fbdd"
+    },
+    {
+      "file": "0002-bounded-diagnostics.patch",
+      "sha256": "142adb75775a5a1fddd0d39b56fa4511526136a5441bad81e8c1c0d2096f2aef"
     }
   ],
-  "patchedSourceSHA256": "d4b7acf0977adbadca8a3d68f0aa5a019db3e768ab7f23fd0a15bba3d51b22ff"
+  "patchedSourceSHA256": "ed42e7e5be3d1ffcb3e8fda3601b952b706de47a421bb9c671a5da3f60bd3201",
+  "supportFiles": {
+    "RaveLinkDiagnostics.h": "2cf8d2b60e3bb958bf95db96b5ef763c00987c67579ae9cb8d40e7f35bb147b2"
+  }
 }

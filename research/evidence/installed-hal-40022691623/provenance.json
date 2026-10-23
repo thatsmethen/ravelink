@@ -1,0 +1,560 @@
+{
+  "recordedAtUTC": "2026-10-23T21:14:45.753271+00:00",
+  "revision": "f733a8c26124b1ace95b85624222f091516e93eb",
+  "runURL": "https://github.com/thatsmethen/ravelink/actions/runs/40022691623",
+  "conclusion": "failure",
+  "configuration": "release installed-driver, debug deterministic suite",
+  "driverPatch": {
+    "schemaVersion": 1,
+    "upstreamSourceSHA256": "05f1fa61e2502072ddbc797717713b20e43e2e55e08d445312aeb55dad879c7b",
+    "patches": [
+      {
+        "file": "0001-frame-validity.patch",
+        "sha256": "6f70030ec75653118eacd8d952b5e1f205dfecb79de27fde282586392962fbdd"
+      }
+    ],
+    "patchedSourceSHA256": "d4b7acf0977adbadca8a3d68f0aa5a019db3e768ab7f23fd0a15bba3d51b22ff"
+  },
+  "driverLifecycle": {
+    "completed": true,
+    "error": null,
+    "cleanupCompleted": true,
+    "scope": "Actual Installer initial17, upgrade18 exact payload+receipt, same18 repair, downgrade/mixed/duplicate refusal, higherbuild19 with lower marketing exact payload, selected removal, stale-receipt repair, finalabsence, HAL channels/rates and independent sanitizer controls all passed."
+  },
+  "audioSoak": {
+    "captureFrames": 3158016,
+    "cpuCoreEquivalent": 0.08640788269948628,
+    "cpuSeconds": 2.8449370000000003,
+    "devices": [
+      {
+        "inputChannels": 8,
+        "outputChannels": 8,
+        "sampleRate": 48000,
+        "uid": "RaveLink.ci-loopback_UID"
+      },
+      {
+        "inputChannels": 8,
+        "outputChannels": 8,
+        "sampleRate": 48000,
+        "uid": "RaveLink.ci-mix-a_UID"
+      },
+      {
+        "inputChannels": 8,
+        "outputChannels": 8,
+        "sampleRate": 48000,
+        "uid": "RaveLink.ci-mix-b_UID"
+      }
+    ],
+    "droppedFrames": 0,
+    "evidence": "Native device input routing on the named installed virtual devices; host-specific measured envelope",
+    "expandedRoutes": 192,
+    "logicalCaptureSources": 24,
+    "logicalProcessors": 3,
+    "measuredSeconds": 32.92450770833335,
+    "mixBuses": 8,
+    "osVersion": "Version 15.7.9 (Build 24G830)",
+    "oversizedBlocks": 0,
+    "parentRoutes": 96,
+    "physicalCaptureSources": 2,
+    "physicalMemoryBytes": 7516192768,
+    "physicalOutputs": 2,
+    "processPeakRSSBytes": 24936448,
+    "renderFrames": 3158016,
+    "startupDroppedFrames": 0,
+    "startupUnderrunFrames": 0,
+    "underrunFrames": 0,
+    "visibleInputGroups": 12,
+    "warmupSeconds": 3
+  },
+  "outcomes": {
+    "initialLoopback": "Failed internal peak assertions193/201; independent receiver killed by existing trap and no loopback WAV published.",
+    "matrix": "Skipped after loopback failure",
+    "audioUnit": "Skipped after loopback failure",
+    "soak": "Engine/counters/timestamps passed; strict rawPCM verifier failed Bus0 invalid onset or missingtone.",
+    "soundCheck": "Engine sequence passed; strict rawPCM verifier failed unityduration0.200s."
+  },
+  "rawPCM": [
+    {
+      "originalPath": "installed-driver-artifact/soak-a.wav",
+      "bytes": 92160044,
+      "sha256": "2a772bc6556761733842729d011a5544a2f320d5ba35e5bd3862a7faffb6767a"
+    },
+    {
+      "originalPath": "installed-driver-artifact/soak-b.wav",
+      "bytes": 92160044,
+      "sha256": "0bcb0717d4c9ec5967837aa173e578a482c896ba518324610c407c7a49c92ce4"
+    },
+    {
+      "originalPath": "installed-driver-artifact/sound-check-guard.wav",
+      "bytes": 9216044,
+      "sha256": "5446816fb24636246cee553c9e802731d1de7013b1215f102632fe63cb779645"
+    },
+    {
+      "originalPath": "installed-driver-artifact/sound-check-output.wav",
+      "bytes": 9216044,
+      "sha256": "1071e0a2ab2911c7f96a974fdb872bcbbdf16ae68656de063e47c2483e78c0d8"
+    }
+  ],
+  "files": {
+    "driver-lifecycle-artifact/driver-lifecycle/01-compile-observer.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/02-build-A17.log": {
+      "bytes": 1676,
+      "sha256": "113e60ba594d21ae52b72326f55fabf3b8158bd3307361f26e02203ff086379c"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/03-build-B17.log": {
+      "bytes": 1676,
+      "sha256": "e009d5893783800f03db341be82d6344143a8a2fa3159bb493685b78d4c0ab71"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/04-build-A18.log": {
+      "bytes": 1676,
+      "sha256": "813f544e86fac6aee39282e1fe55285e5379e9538a86137fcd02ee1ff8de98bd"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/05-build-A19.log": {
+      "bytes": 1676,
+      "sha256": "ed21af811c4973eed55c0d4482dd97bcde6969d71f5833f170acca965d45b809"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/06-build-B16.log": {
+      "bytes": 1676,
+      "sha256": "38fe3be4c5604ccc4157d206d6510d256682fce288f07492475fe802ac76dfea"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/07-build-A19LowerMarketing.log": {
+      "bytes": 1718,
+      "sha256": "8959750c4f805a09534be1d76665da8c0c145ebd3c621b5c1310220a96140140"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/08-package-initial17.log": {
+      "bytes": 186,
+      "sha256": "b7e1e3c6439667a42af144a489ed5c7a9e5e11289e2053719b7edf9760453486"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/09-package-upgrade18.log": {
+      "bytes": 186,
+      "sha256": "7705f74110da6c64508f6f524600d6584bc850fbeee17558b6744f27f98d8f97"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/10-package-mixed-upgrade-downgrade.log": {
+      "bytes": 200,
+      "sha256": "3a803a3a79b83767f7793c61b4c32464ec6ced48e572bde90ed33fb52e3ded50"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/11-package-build19-lower-marketing.log": {
+      "bytes": 200,
+      "sha256": "80bc0bf5a114be8f3f869f5575d1f2a119f1239c32b3c5d2b03fd6a64af8f1f4"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/12-package-b-only17.log": {
+      "bytes": 185,
+      "sha256": "e15f3dd4d54dee8f46426d951f20c5d8e92fe7f887d2781053883865638b9ed9"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/13-install17-log-position.log": {
+      "bytes": 17,
+      "sha256": "f269263d327f268afd8ce35e94fc6a4fd41dc07238b3a9dad7bc77208ec62bb0"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/14-install17.log": {
+      "bytes": 4312,
+      "sha256": "8d6e7b136a55a91036b1575c11816d73417167255b7015622d0f8ce0a6ba59c8"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/15-install17-system-log.log": {
+      "bytes": 13742,
+      "sha256": "37d88343d014982ed6139ad766f2f0dba18d3a2d07b304baf1d9790c202520dd"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/16-validate-ci-lifecycle-a.log": {
+      "bytes": 1422,
+      "sha256": "6da2daf2a0728ec5d4007fece99f0067cdc32c77e215204e1923465e0bf9fce1"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/17-validate-ci-lifecycle-b.log": {
+      "bytes": 1422,
+      "sha256": "03913e50d2084050bdf00e543ced383b53eb69366355b487add88180d2896456"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/18-reload-disposable-audio-service.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/19-inspect-ci-lifecycle-a.log": {
+      "bytes": 187,
+      "sha256": "23119a00f00edc8dadbe727aeda938fbe9b69b305a7ef32e3e7c2ec50017bfc5"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/20-inspect-ci-lifecycle-b.log": {
+      "bytes": 187,
+      "sha256": "e308e0dd55250790d807ac604ef92d9e88458b185cac6a6fa04024769ac496b1"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/21-upgrade17-to18-log-position.log": {
+      "bytes": 17,
+      "sha256": "1419d9c78b9f1c89d1a3b808a3eaa87d05ee16980875c109713396c21df4d684"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/22-upgrade17-to18.log": {
+      "bytes": 4093,
+      "sha256": "a4d685daf53ac9e1ceef5581ff72d9b46d5d0f388889f7ff7ad1f0d3e2180c8a"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/23-upgrade17-to18-system-log.log": {
+      "bytes": 11364,
+      "sha256": "c136c541203e712141b4e5e6a34cda85fa30065a5106e619a423f59b347ca6ca"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/24-validate-ci-lifecycle-a.log": {
+      "bytes": 1422,
+      "sha256": "91c52a6830f64724086284d0e66f34dd5efb403e63fa7fd93efe4a2c9f00549b"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/25-validate-ci-lifecycle-b.log": {
+      "bytes": 1422,
+      "sha256": "03913e50d2084050bdf00e543ced383b53eb69366355b487add88180d2896456"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/26-reload-disposable-audio-service.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/27-inspect-ci-lifecycle-a.log": {
+      "bytes": 187,
+      "sha256": "49e87ba46428abc2d453566e32ca18b91446f1e96ae628a7f46faf4f7bdf5e6e"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/28-inspect-ci-lifecycle-b.log": {
+      "bytes": 187,
+      "sha256": "e308e0dd55250790d807ac604ef92d9e88458b185cac6a6fa04024769ac496b1"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/29-inspect-ci-lifecycle-a.log": {
+      "bytes": 187,
+      "sha256": "8f7c4b8c866db9bd7d3c2d61b07bf193ca37e83a95a7454e0d7c1e49fe37727e"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/30-inspect-ci-lifecycle-a.log": {
+      "bytes": 187,
+      "sha256": "49e87ba46428abc2d453566e32ca18b91446f1e96ae628a7f46faf4f7bdf5e6e"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/31-damage-owned-fixture.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/32-same-build18-repair-log-position.log": {
+      "bytes": 17,
+      "sha256": "fef7e74aa4a718a7783f6677710c5d05908387e8adcefa793fb5400683f73864"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/33-same-build18-repair.log": {
+      "bytes": 4093,
+      "sha256": "340dbe1edf5549baca1ae1fc7c8a019d7a94833b94dd77aa03fbc97344b3ba03"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/34-same-build18-repair-system-log.log": {
+      "bytes": 11364,
+      "sha256": "cd65a2922200df75d93a2af17f27e8de79f702ae468d84a116a2155ce46d1b3f"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/35-validate-ci-lifecycle-a.log": {
+      "bytes": 1422,
+      "sha256": "91c52a6830f64724086284d0e66f34dd5efb403e63fa7fd93efe4a2c9f00549b"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/36-reject-downgrade18-to17-log-position.log": {
+      "bytes": 17,
+      "sha256": "306accb324944667010c9a574a2330e5d05f2c788ac770d2cc8f76e7b244710a"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/37-reject-downgrade18-to17.log": {
+      "bytes": 3907,
+      "sha256": "2a24709a56a51d71f50fd5135712dff438b67a7af574c26e1707a44d441d50f0"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/38-reject-downgrade18-to17-system-log.log": {
+      "bytes": 10636,
+      "sha256": "70dbc0a300d5bd3d1616a1c26398fa9661771e8e2e8b1d6997799aeb7aa66798"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/39-reject-mixed-upgrade-downgrade-log-position.log": {
+      "bytes": 17,
+      "sha256": "cb475c4b1a68dd78453d936ae3d5e018a7ca66f6c2b3701160d1f6a110e99e6d"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/40-reject-mixed-upgrade-downgrade.log": {
+      "bytes": 4047,
+      "sha256": "5a9e4818eb0e6ce602c59f577616eb8288612c7dc977767400c703096c4828f5"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/41-reject-mixed-upgrade-downgrade-system-log.log": {
+      "bytes": 10888,
+      "sha256": "bf32444c17b9b7c869c73fa30b131509a2f1d9d3bb7072bc0757be41a7534a51"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/42-reject-duplicate-uninstall.log": {
+      "bytes": 58,
+      "sha256": "fbac67a987da80fe5939bbec96b5d6b36ec8bb5fd9fc2b00733e8e9142b5cc23"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/43-higher-build-lower-marketing-log-position.log": {
+      "bytes": 17,
+      "sha256": "fc90de1c8ce5453cf7cfb0aea7c47355c0fda26092039ffbb7750efb77abe2c1"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/44-higher-build-lower-marketing.log": {
+      "bytes": 4104,
+      "sha256": "e393e0b455ec49ff394bbf74f20943dbd42cd0b8a0c4ffe78dab7c86f4e52280"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/45-higher-build-lower-marketing-system-log.log": {
+      "bytes": 11462,
+      "sha256": "fb576b20a40cea7d2f89d4baaf7034e9c523404012ef8495d48676ae537bb6f1"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/46-validate-ci-lifecycle-a.log": {
+      "bytes": 1436,
+      "sha256": "966b74b96c3326dae61c585e644d548076defd5726af97f82bff739268ce3c69"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/47-validate-ci-lifecycle-b.log": {
+      "bytes": 1422,
+      "sha256": "03913e50d2084050bdf00e543ced383b53eb69366355b487add88180d2896456"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/48-remove-a-only.log": {
+      "bytes": 142,
+      "sha256": "9fc06119773c261000218d9032186fdfadbac5af516e4d051dd5978dc95f41e1"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/49-reload-disposable-audio-service.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/50-inspect-ci-lifecycle-a.log": {
+      "bytes": 18,
+      "sha256": "d8074cd96e222180caedebe14ecfec6c05eaf4ff0d324acaaa6cc912a56ce9bb"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/51-inspect-ci-lifecycle-b.log": {
+      "bytes": 187,
+      "sha256": "e308e0dd55250790d807ac604ef92d9e88458b185cac6a6fa04024769ac496b1"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/52-remove-owned-b-payload.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/53-repair-stale-receipt-log-position.log": {
+      "bytes": 17,
+      "sha256": "48d23c2ca216b428e8c9cead3cada91ade7990e2ea844fb513a17428060d5fb2"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/54-repair-stale-receipt.log": {
+      "bytes": 4088,
+      "sha256": "370bb4a58dd35955c9b4384325c50b13d8d08bcead3d9631a3ff65594ddaef0e"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/55-repair-stale-receipt-system-log.log": {
+      "bytes": 11357,
+      "sha256": "edbb0a9ba5c30b419b8ed9a2b3bbd3893118094962523cf32cadca550690be47"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/56-validate-ci-lifecycle-b.log": {
+      "bytes": 1422,
+      "sha256": "03913e50d2084050bdf00e543ced383b53eb69366355b487add88180d2896456"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/57-remove-final-b.log": {
+      "bytes": 142,
+      "sha256": "9666877a0f87033592e09e43e7de3f7b479bede7c1692702f7d08d7ae8e485f1"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/58-reload-disposable-audio-service.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/59-inspect-ci-lifecycle-a.log": {
+      "bytes": 18,
+      "sha256": "d8074cd96e222180caedebe14ecfec6c05eaf4ff0d324acaaa6cc912a56ce9bb"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/60-inspect-ci-lifecycle-b.log": {
+      "bytes": 18,
+      "sha256": "d8074cd96e222180caedebe14ecfec6c05eaf4ff0d324acaaa6cc912a56ce9bb"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/61-cleanup-ci-lifecycle-a.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/62-cleanup-ci-lifecycle-b.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/63-reload-disposable-audio-service.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/64-inspect-ci-lifecycle-a.log": {
+      "bytes": 18,
+      "sha256": "d8074cd96e222180caedebe14ecfec6c05eaf4ff0d324acaaa6cc912a56ce9bb"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/65-inspect-ci-lifecycle-b.log": {
+      "bytes": 18,
+      "sha256": "d8074cd96e222180caedebe14ecfec6c05eaf4ff0d324acaaa6cc912a56ce9bb"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/66-cleanup-ci-lifecycle-a.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/67-cleanup-ci-lifecycle-b.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/68-reload-disposable-audio-service.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/69-inspect-ci-lifecycle-a.log": {
+      "bytes": 18,
+      "sha256": "d8074cd96e222180caedebe14ecfec6c05eaf4ff0d324acaaa6cc912a56ce9bb"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/70-inspect-ci-lifecycle-b.log": {
+      "bytes": 18,
+      "sha256": "d8074cd96e222180caedebe14ecfec6c05eaf4ff0d324acaaa6cc912a56ce9bb"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/A17/manifest.json": {
+      "bytes": 1532,
+      "sha256": "0f0c43afd4d2ab34b29e808500458f0344fa96a73831c70ca8c7c422bd875381"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/A18/manifest.json": {
+      "bytes": 1532,
+      "sha256": "ce488997fd87bfa90b81a96e44ea753ce70b19cee56def1d4261af5ef13dba1c"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/A19/manifest.json": {
+      "bytes": 1532,
+      "sha256": "c9c78778f266a3d8602409141d4b89647edf8227069628233d55d2bdb042ffd7"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/A19LowerMarketing/manifest.json": {
+      "bytes": 1560,
+      "sha256": "948c43b3a1aed73418f4d3ce09ebb4c6353ed1aca93cef6a08255da08412c679"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/B16/manifest.json": {
+      "bytes": 1532,
+      "sha256": "f85d007aa6ac2e729309f9f8c5bfc15ff0b1298c215be1ff05cc7e176b548206"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/B17/manifest.json": {
+      "bytes": 1532,
+      "sha256": "d025feb4d0b61eb7bbe640fe5be2e5e547e8b9a80196699d79c3b6de5b9cdd6a"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/owned-fixtures.json": {
+      "bytes": 70,
+      "sha256": "494333a4d671071a01fc40e8046ad99540ebd99f6cf331e05972ede3546d78fd"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle/report.json": {
+      "bytes": 41298,
+      "sha256": "f682eddedf627299a5578bca14f981e89887378c350c6e57dce3f5af26d89a76"
+    },
+    "driver-lifecycle-artifact/driver-lifecycle-sanitizer.log": {
+      "bytes": 406,
+      "sha256": "c6168953cc894d48679963b31575a0e47d2a663d22661d7f42a48948bb9106ad"
+    },
+    "github-artifacts.json": {
+      "bytes": 2611,
+      "sha256": "7f520a2d377127702ed3c822fc6b2f06525859bda54e0abe122968729d17274e"
+    },
+    "installed-driver-artifact/ci-drivers/RaveLink-ci-loopback.driver/Contents/Resources/build-info.json": {
+      "bytes": 1332,
+      "sha256": "3633827db340eed02b33ee6804fbb568522ffc3f9f5f4afa1a353cb56cf2bf20"
+    },
+    "installed-driver-artifact/ci-drivers/RaveLink-ci-mix-a.driver/Contents/Resources/build-info.json": {
+      "bytes": 1316,
+      "sha256": "d7b9ea756e3160877b00ed758c9039a698de4ef58fd029180d33070dfd17b3c8"
+    },
+    "installed-driver-artifact/ci-drivers/RaveLink-ci-mix-b.driver/Contents/Resources/build-info.json": {
+      "bytes": 1316,
+      "sha256": "448a4784ad7e78d3e1be74094d7e7bc6825ab6032bfb3d1c05717edb4d647c96"
+    },
+    "installed-driver-artifact/ci-drivers/manifest.json": {
+      "bytes": 4495,
+      "sha256": "6b80ab9ab09240837da68f5edcf2698af0a4df3b12b5ddfbf485324385ced7d1"
+    },
+    "installed-driver-artifact/driver-binary-sha256.txt": {
+      "bytes": 414,
+      "sha256": "5ce141ba69b07f811ed2b5344dabb7e551ca0d3b38ac805a77a08938e7d348ef"
+    },
+    "installed-driver-artifact/installed-devices.txt": {
+      "bytes": 395,
+      "sha256": "3f9945abdf52f141490f79813b8f37d183f2f2cc76615f97e25b4ae45026d04c"
+    },
+    "installed-driver-artifact/installed-driver-test.log": {
+      "bytes": 1164,
+      "sha256": "28764db65ac294118548a0a700898952684df8268d6f1b300d657b7d2d363d21"
+    },
+    "installed-driver-artifact/integration-binary-sha256.txt": {
+      "bytes": 341,
+      "sha256": "4307917c2a95e8c578257df6cd7280cbfad3d5f152ce0cab9f9d785483167650"
+    },
+    "installed-driver-artifact/integration-compile.log": {
+      "bytes": 1670,
+      "sha256": "a9feaed0ed732028ef67638916100856e7fffbebc1e52818641d80c9854e978f"
+    },
+    "installed-driver-artifact/integration-configuration.txt": {
+      "bytes": 8,
+      "sha256": "3933e3274b63dc01fd286d6d939a626867c83a4603fc4347e0f8b8856f1b98fd"
+    },
+    "installed-driver-artifact/receiver.log": {
+      "bytes": 71,
+      "sha256": "f7b9c8a30e1eb4b0531ee9f85ff1e633a1bf44536d6cdeff9b797c56fc38bf21"
+    },
+    "installed-driver-artifact/soak-a.json": {
+      "bytes": 299,
+      "sha256": "8da8bcb498da6b089c4dc868343e277545b9b2f5302a7dd1aed56922ee82b535"
+    },
+    "installed-driver-artifact/soak-a.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "installed-driver-artifact/soak-a.wav": {
+      "bytes": 92160044,
+      "sha256": "2a772bc6556761733842729d011a5544a2f320d5ba35e5bd3862a7faffb6767a"
+    },
+    "installed-driver-artifact/soak-analysis.json": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "installed-driver-artifact/soak-analysis.log": {
+      "bytes": 70,
+      "sha256": "5a28d9c97c055e29af83e0494360c651dcfc4b9d12c63e711dbac4bb29d5aeb4"
+    },
+    "installed-driver-artifact/soak-b.json": {
+      "bytes": 299,
+      "sha256": "bf7f5bfaeadbdc27e43e31d52f7fd9aa843b4448553961c93b0f9d0e3586417f"
+    },
+    "installed-driver-artifact/soak-b.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "installed-driver-artifact/soak-b.wav": {
+      "bytes": 92160044,
+      "sha256": "0bcb0717d4c9ec5967837aa173e578a482c896ba518324610c407c7a49c92ce4"
+    },
+    "installed-driver-artifact/soak-engine.json": {
+      "bytes": 15413,
+      "sha256": "8e8387617227003a15774339c8fe817a079dd27f5760c823513ca9d0923b1fd6"
+    },
+    "installed-driver-artifact/soak-exit-status.json": {
+      "bytes": 65,
+      "sha256": "3f23f451cf70b51748d92e07f24c6285eaa31ea97042a1dae42aa4ae9c5e5117"
+    },
+    "installed-driver-artifact/soak-feeder.json": {
+      "bytes": 297,
+      "sha256": "00017058f34bf7b30744ab0a75a551b622038a6442ed5a96f65e43c56d6fdf89"
+    },
+    "installed-driver-artifact/soak-feeder.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "installed-driver-artifact/soak-test.log": {
+      "bytes": 513,
+      "sha256": "76ad36f8024f6568382eefb28f898b18286b4d2b0fc526f6dbe3ac2f3914f18d"
+    },
+    "installed-driver-artifact/sound-check-analysis.json": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "installed-driver-artifact/sound-check-analysis.log": {
+      "bytes": 67,
+      "sha256": "68b89d19f48c75120d68906321dc947e578ebb776c931cd7c81ff1bcea779a00"
+    },
+    "installed-driver-artifact/sound-check-engine.json": {
+      "bytes": 1122,
+      "sha256": "2a2ca0d71729e82137b9b01cf0b18a1e8d3d842ddaeecee25572ee3085dfc70b"
+    },
+    "installed-driver-artifact/sound-check-exit-status.json": {
+      "bytes": 47,
+      "sha256": "d80c2d320e3ca89abd96d74d5830f31c5817d0321408d3a1ac828790358fa900"
+    },
+    "installed-driver-artifact/sound-check-guard.log": {
+      "bytes": 375,
+      "sha256": "342a710741751955ce12e3cd005ff4308a8b05ee8bee38a815dc677f23fd51ec"
+    },
+    "installed-driver-artifact/sound-check-guard.wav": {
+      "bytes": 9216044,
+      "sha256": "5446816fb24636246cee553c9e802731d1de7013b1215f102632fe63cb779645"
+    },
+    "installed-driver-artifact/sound-check-output.log": {
+      "bytes": 376,
+      "sha256": "ab6923db0ada26bc9ff15e2337d26adf124188e085f0d7270f25d229421cae38"
+    },
+    "installed-driver-artifact/sound-check-output.wav": {
+      "bytes": 9216044,
+      "sha256": "1071e0a2ab2911c7f96a974fdb872bcbbdf16ae68656de063e47c2483e78c0d8"
+    },
+    "installed-driver-artifact/sound-check-test.log": {
+      "bytes": 526,
+      "sha256": "4a6a9a6c34857d171281e64df977d5ace576a01c183a2d5ba4a7b56bb2658554"
+    },
+    "original-run.log": {
+      "bytes": 180809,
+      "sha256": "ac1213ebd4c441270547bd1249d2c0e22f28b4045f8b543f55a4f2b34bd8953c"
+    },
+    "run.json": {
+      "bytes": 9544,
+      "sha256": "08307779d4f8ed9fee73476047ffaba99296391900581f5b1eb17e120642a8d7"
+    }
+  }
+}

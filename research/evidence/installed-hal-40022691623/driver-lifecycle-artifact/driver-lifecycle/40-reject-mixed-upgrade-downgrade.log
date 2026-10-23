@@ -1,0 +1,34 @@
+Oct 23 20:54:19  installer[1652] <Debug>: Product archive /Users/runner/work/ravelink/ravelink/build/driver-lifecycle/mixed-upgrade-downgrade.pkg trustLevel=100
+Oct 23 20:54:19  installer[1652] <Debug>: External component packages (2) trustLevel=100 (trust evaluation failed: Error Domain=PKInstallErrorDomain Code=101 "The package “mixed-upgrade-downgrade.pkg” is not signed." UserInfo={NSURL=#ci-lifecycle-b.pkg -- file:///Users/runner/work/ravelink/ravelink/build/driver-lifecycle/mixed-upgrade-downgrade.pkg#Distribution, PKInstallPackageIdentifier=au.textual.ravelink.audio.package.ci-lifecycle-b, NSLocalizedDescription=The package “mixed-upgrade-downgrade.pkg” is not signed.})
+installer: Package name is RaveLink virtual devices
+installer: Upgrading at base path /
+installer:PHASE:Preparing for installation…
+Oct 23 20:54:19  installer[1652] <Debug>: -[IFDInstallController(Private) _buildInstallPlanReturningError:]: location = file://localhost
+Oct 23 20:54:19  installer[1652] <Debug>: -[IFDInstallController(Private) _buildInstallPlanReturningError:]: file://localhost/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/mixed-upgrade-downgrade.pkg#ci-lifecycle-a.pkg
+Oct 23 20:54:19  installer[1652] <Debug>: -[IFDInstallController(Private) _buildInstallPlanReturningError:]: file://localhost/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/mixed-upgrade-downgrade.pkg#ci-lifecycle-b.pkg
+Oct 23 20:54:19  installer[1652] <Info>: Set authorization level to root for session
+Oct 23 20:54:19  installer[1652] <Info>: Authorization is being checked, waiting until authorization arrives.
+Oct 23 20:54:19  installer[1652] <Info>: Administrator authorization granted.
+Oct 23 20:54:19  installer[1652] <Info>: Packages have been authorized for installation.
+Oct 23 20:54:19  installer[1652] <Debug>: Will use PK session
+Oct 23 20:54:19  installer[1652] <Debug>: Using authorization level of root for IFPKInstallElement
+Oct 23 20:54:19  installer[1652] <Info>: Starting installation:
+installer:PHASE:Preparing the disk…
+Oct 23 20:54:19  installer[1652] <Notice>: Configuring volume "Macintosh HD"
+Oct 23 20:54:19  installer[1652] <Info>: Preparing disk for local booted install.
+Oct 23 20:54:19  installer[1652] <Notice>: Free space on "Macintosh HD": 46.22 GB (46217986048 bytes).
+Oct 23 20:54:19  installer[1652] <Notice>: Create temporary directory "/var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T//Install.1652hUytu1"
+installer:PHASE:Preparing RaveLink virtual devices…
+Oct 23 20:54:19  installer[1652] <Notice>: IFPKInstallElement (2 packages)
+Oct 23 20:54:19  installer[1652] <Info>: Current Path: /usr/sbin/installer
+Oct 23 20:54:19  installer[1652] <Info>: Current Path: /usr/bin/sudo
+installer:PHASE:Waiting for other installations to complete…
+Oct 23 20:54:19  installer[1652] <Notice>: PackageKit: Enqueuing install with framework-specified quality of service (utility)
+installer:PHASE:Configuring the installation…
+installer:STATUS:
+installer:%2.229250
+installer:PHASE:Validating packages…
+Oct 23 20:54:20  installer[1652] <Debug>: install:didFailWithError:Error Domain=PKInstallErrorDomain Code=112 "An error occurred while running scripts from the package “mixed-upgrade-downgrade.pkg”." UserInfo={NSFilePath=./preinstall, NSURL=file:///Users/runner/work/ravelink/ravelink/build/driver-lifecycle/mixed-upgrade-downgrade.pkg#ci-lifecycle-a.pkg, PKInstallPackageIdentifier=au.textual.ravelink.audio.package.ci-lifecycle-a, NSLocalizedDescription=An error occurred while running scripts from the package “mixed-upgrade-downgrade.pkg”.}
+installer:%97.750000
+Oct 23 20:54:20  installer[1652] <Error>: Install failed: The Installer encountered an error that caused the installation to fail. Contact the software manufacturer for assistance.
+installer: The upgrade failed. (The Installer encountered an error that caused the installation to fail. Contact the software manufacturer for assistance. An error occurred while running scripts from the package “mixed-upgrade-downgrade.pkg”.)

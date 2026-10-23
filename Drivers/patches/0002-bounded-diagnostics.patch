@@ -1,0 +1,276 @@
+--- RaveLinkAudio.c
++++ RaveLinkAudio.c
+@@ -19,6 +19,7 @@
+ #include <stdint.h>
+ #include <stdatomic.h>
+ #include <math.h>
++#include "RaveLinkDiagnostics.h"
+ 
+ // RaveLink requires native lock-free publication on supported arm64/x86_64 hosts.
+ _Static_assert(ATOMIC_INT_LOCK_FREE == 2 && ATOMIC_LLONG_LOCK_FREE == 2, "Native atomics required");
+@@ -359,6 +360,65 @@
+ static _Atomic(UInt64) gRingWriteEnd = 0;
+ static UInt64 gRingLastWriteStart = 0;
+ static Boolean gRingHasWritten = false;
++
++#if RAVELINK_FRAME_DIAGNOSTICS
++// Diagnostic-only, bounded publication. Each first-event slot has one owner and
++// is immutable after release publication. There is no callback logging, heap
++// allocation, lock, retry or reset. Reason counters intentionally overlap.
++typedef struct {
++    RLDriverDiagnosticEvent event;
++    _Atomic(UInt32) ready;
++} RaveLinkDiagnosticSlot;
++static _Atomic(UInt64) gDiagnosticReadCalls, gDiagnosticWriteCalls;
++static _Atomic(UInt64) gDiagnosticReadFrames, gDiagnosticWriteFrames, gDiagnosticStarts;
++static _Atomic(UInt64) gDiagnosticFrames[RLDiagReasonCount];
++static _Atomic(UInt64) gDiagnosticBlocks[RLDiagReasonCount];
++static RaveLinkDiagnosticSlot gDiagnosticEvents[RLDiagReasonCount][RL_DRIVER_DIAGNOSTIC_SNAPSHOTS];
++
++static Boolean RaveLinkDiagnosticProperty(AudioObjectID object, const AudioObjectPropertyAddress* address)
++{
++    return object == kObjectID_Device && address->mSelector == RL_DRIVER_DIAGNOSTIC_SELECTOR &&
++        address->mScope == kAudioObjectPropertyScopeGlobal && address->mElement == kAudioObjectPropertyElementMain;
++}
++static Boolean RaveLinkDiagnosticListProperty(AudioObjectID object, const AudioObjectPropertyAddress* address)
++{
++    return object == kObjectID_Device && address->mSelector == kAudioObjectPropertyCustomPropertyInfoList &&
++        address->mScope == kAudioObjectPropertyScopeGlobal && address->mElement == kAudioObjectPropertyElementMain;
++}
++static void RaveLinkRecordDiagnostic(UInt32 reason, UInt64 frames, RLDriverDiagnosticEvent event)
++{
++    atomic_fetch_add_explicit(&gDiagnosticFrames[reason], frames, memory_order_relaxed);
++    UInt64 ordinal = atomic_fetch_add_explicit(&gDiagnosticBlocks[reason], 1, memory_order_relaxed);
++    if (ordinal < RL_DRIVER_DIAGNOSTIC_SNAPSHOTS)
++    {
++        event.present = 1; event.reason = reason;
++        gDiagnosticEvents[reason][ordinal].event = event;
++        atomic_store_explicit(&gDiagnosticEvents[reason][ordinal].ready, 1, memory_order_release);
++    }
++}
++static void RaveLinkCopyDiagnostics(RLDriverDiagnostics* result)
++{
++    memset(result, 0, sizeof(*result));
++    result->version = RL_DRIVER_DIAGNOSTIC_VERSION;
++    result->bytes = sizeof(*result);
++    result->channels = kNumber_Of_Channels;
++    result->snapshotsPerReason = RL_DRIVER_DIAGNOSTIC_SNAPSHOTS;
++    result->readCalls = atomic_load_explicit(&gDiagnosticReadCalls, memory_order_relaxed);
++    result->writeCalls = atomic_load_explicit(&gDiagnosticWriteCalls, memory_order_relaxed);
++    result->readFrames = atomic_load_explicit(&gDiagnosticReadFrames, memory_order_relaxed);
++    result->writeFrames = atomic_load_explicit(&gDiagnosticWriteFrames, memory_order_relaxed);
++    result->startAllocations = atomic_load_explicit(&gDiagnosticStarts, memory_order_relaxed);
++    for (UInt32 reason = 0; reason < RLDiagReasonCount; ++reason)
++    {
++        result->frameCounts[reason] = atomic_load_explicit(&gDiagnosticFrames[reason], memory_order_relaxed);
++        result->blockCounts[reason] = atomic_load_explicit(&gDiagnosticBlocks[reason], memory_order_relaxed);
++        for (UInt32 index = 0; index < RL_DRIVER_DIAGNOSTIC_SNAPSHOTS; ++index)
++            if (atomic_load_explicit(&gDiagnosticEvents[reason][index].ready, memory_order_acquire))
++                result->events[reason][index] = gDiagnosticEvents[reason][index].event;
++    }
++}
++#endif
++
+ 
+ 
+ //==================================================================================================
+@@ -996,6 +1056,10 @@
+ 	FailIf(inDriver != gAudioServerPlugInDriverRef, Done, "BlackHole_HasProperty: bad driver reference");
+ 	FailIf(inAddress == NULL, Done, "BlackHole_HasProperty: no address");
+ 	
++#if RAVELINK_FRAME_DIAGNOSTICS
++    if (RaveLinkDiagnosticProperty(inObjectID, inAddress) || RaveLinkDiagnosticListProperty(inObjectID, inAddress)) return true;
++#endif
++
+ 	//	Note that for each object, this driver implements all the required properties plus a few
+ 	//	extras that are useful but not required. There is more detailed commentary about each
+ 	//	property in the BlackHole_GetPropertyData() method.
+@@ -1046,6 +1110,10 @@
+ 	FailWithAction(inAddress == NULL, theAnswer = kAudioHardwareIllegalOperationError, Done, "BlackHole_IsPropertySettable: no address");
+ 	FailWithAction(outIsSettable == NULL, theAnswer = kAudioHardwareIllegalOperationError, Done, "BlackHole_IsPropertySettable: no place to put the return value");
+ 	
++#if RAVELINK_FRAME_DIAGNOSTICS
++    if (RaveLinkDiagnosticProperty(inObjectID, inAddress) || RaveLinkDiagnosticListProperty(inObjectID, inAddress)) { *outIsSettable = false; return noErr; }
++#endif
++
+ 	//	Note that for each object, this driver implements all the required properties plus a few
+ 	//	extras that are useful but not required. There is more detailed commentary about each
+ 	//	property in the BlackHole_GetPropertyData() method.
+@@ -1099,6 +1167,11 @@
+ 	FailWithAction(inAddress == NULL, theAnswer = kAudioHardwareIllegalOperationError, Done, "BlackHole_GetPropertyDataSize: no address");
+ 	FailWithAction(outDataSize == NULL, theAnswer = kAudioHardwareIllegalOperationError, Done, "BlackHole_GetPropertyDataSize: no place to put the return value");
+ 	
++#if RAVELINK_FRAME_DIAGNOSTICS
++    if (RaveLinkDiagnosticProperty(inObjectID, inAddress)) { *outDataSize = sizeof(CFPropertyListRef); return noErr; }
++    if (RaveLinkDiagnosticListProperty(inObjectID, inAddress)) { *outDataSize = sizeof(AudioServerPlugInCustomPropertyInfo); return noErr; }
++#endif
++
+ 	//	Note that for each object, this driver implements all the required properties plus a few
+ 	//	extras that are useful but not required. There is more detailed commentary about each
+ 	//	property in the BlackHole_GetPropertyData() method.
+@@ -1151,6 +1224,26 @@
+ 	FailWithAction(outDataSize == NULL, theAnswer = kAudioHardwareIllegalOperationError, Done, "BlackHole_GetPropertyData: no place to put the return value size");
+ 	FailWithAction(outData == NULL, theAnswer = kAudioHardwareIllegalOperationError, Done, "BlackHole_GetPropertyData: no place to put the return value");
+ 	
++#if RAVELINK_FRAME_DIAGNOSTICS
++    if (RaveLinkDiagnosticProperty(inObjectID, inAddress))
++    {
++        if (inDataSize < sizeof(CFPropertyListRef)) return kAudioHardwareBadPropertySizeError;
++        RLDriverDiagnostics snapshot; RaveLinkCopyDiagnostics(&snapshot);
++        // Property queries are off the IO callback. The HAL marshals this CFData
++        // as a property list; raw C structs are not a supported custom HAL type.
++        CFDataRef data = CFDataCreate(NULL, (const UInt8*)&snapshot, sizeof(snapshot));
++        if (data == NULL) return kAudioHardwareUnspecifiedError;
++        *(CFPropertyListRef*)outData = data; *outDataSize = sizeof(CFPropertyListRef); return noErr;
++    }
++    if (RaveLinkDiagnosticListProperty(inObjectID, inAddress))
++    {
++        if (inDataSize < sizeof(AudioServerPlugInCustomPropertyInfo)) return kAudioHardwareBadPropertySizeError;
++        AudioServerPlugInCustomPropertyInfo info = { RL_DRIVER_DIAGNOSTIC_SELECTOR,
++            kAudioServerPlugInCustomPropertyDataTypeCFPropertyList, kAudioServerPlugInCustomPropertyDataTypeNone };
++        memcpy(outData, &info, sizeof(info)); *outDataSize = sizeof(info); return noErr;
++    }
++#endif
++
+ 	//	Note that for each object, this driver implements all the required properties plus a few
+ 	//	extras that are useful but not required.
+ 	//
+@@ -4387,6 +4480,9 @@
+             atomic_store(&gRingWriteEnd, 0);
+             gRingLastWriteStart = 0;
+             gRingHasWritten = false;
++#if RAVELINK_FRAME_DIAGNOSTICS
++            atomic_fetch_add_explicit(&gDiagnosticStarts, 1, memory_order_relaxed);
++#endif
+         }
+     }
+     
+@@ -4598,6 +4694,17 @@
+         inIOCycleInfo->mCurrentTime.mSampleTime > requested + inIOBufferFrameSize + kLatency_Frame_Size))
+         return kAudioHardwareUnspecifiedError;
+     const UInt64 start = (UInt64)requested;
++#if RAVELINK_FRAME_DIAGNOSTICS
++    atomic_fetch_add_explicit(reading ? &gDiagnosticReadCalls : &gDiagnosticWriteCalls, 1, memory_order_relaxed);
++    atomic_fetch_add_explicit(reading ? &gDiagnosticReadFrames : &gDiagnosticWriteFrames, inIOBufferFrameSize, memory_order_relaxed);
++    RLDriverDiagnosticEvent blockDiagnostic = {
++        .operation = inOperationID, .clientID = inClientID, .cycle = inIOCycleInfo->mIOCycleCounter,
++        .hostTime = reading ? inIOCycleInfo->mInputTime.mHostTime : inIOCycleInfo->mOutputTime.mHostTime,
++        .requestedSampleTime = requested, .requestedFrame = start, .blockFrames = inIOBufferFrameSize,
++        .writeEnd = atomic_load_explicit(&gRingWriteEnd, memory_order_acquire),
++        .driverGeneration = atomic_load_explicit(&gRingGeneration, memory_order_acquire)
++    };
++#endif
+     // The fully mixed writer is authoritative for cycle resynchronization; readers
+     // may legitimately lag behind other clients. Zero is allowed for private
+     // interface clients which do not supply a counter. A backwards write also
+@@ -4606,15 +4713,33 @@
+     if (!reading && inIOCycleInfo->mIOCycleCounter != 0)
+     {
+         UInt64 priorCycle = atomic_exchange_explicit(&gRingLastCycle, inIOCycleInfo->mIOCycleCounter, memory_order_acq_rel);
+-        if (priorCycle > inIOCycleInfo->mIOCycleCounter) resetTimeline = true;
++        if (priorCycle > inIOCycleInfo->mIOCycleCounter)
++        {
++            resetTimeline = true;
++#if RAVELINK_FRAME_DIAGNOSTICS
++            blockDiagnostic.priorCycle = priorCycle; blockDiagnostic.priorWriteStart = gRingLastWriteStart;
++            RaveLinkRecordDiagnostic(RLDiagWriterCycleReset, inIOBufferFrameSize, blockDiagnostic);
++#endif
++        }
+     }
+-    if (!reading && gRingHasWritten && start < gRingLastWriteStart) resetTimeline = true;
++    if (!reading && gRingHasWritten && start < gRingLastWriteStart)
++    {
++        resetTimeline = true;
++#if RAVELINK_FRAME_DIAGNOSTICS
++        blockDiagnostic.priorWriteStart = gRingLastWriteStart;
++        RaveLinkRecordDiagnostic(RLDiagWriterTimeRewind, inIOBufferFrameSize, blockDiagnostic);
++#endif
++    }
+     if (resetTimeline) atomic_fetch_add_explicit(&gRingGeneration, 1, memory_order_acq_rel);
+     const UInt64 generation = atomic_load_explicit(&gRingGeneration, memory_order_acquire);
+     if (generation == 0) return kAudioHardwareIllegalOperationError;
+     Float32* samples = ioMainBuffer;
+     if (reading)
+     {
++#if RAVELINK_FRAME_DIAGNOSTICS
++        UInt64 diagnosticCounts[RLDiagReasonCount] = {0};
++        RLDriverDiagnosticEvent firstDiagnostic[RLDiagReasonCount];
++#endif
+         for (UInt32 frame = 0; frame < inIOBufferFrameSize; ++frame)
+         {
+             const UInt64 position = start + frame;
+@@ -4622,10 +4747,33 @@
+             RaveLinkFrameValidity* validity = &gRingValidity[slot];
+             const UInt64 before = atomic_load_explicit(&validity->sequence, memory_order_acquire);
+             const UInt64 writtenEnd = atomic_load_explicit(&gRingWriteEnd, memory_order_acquire);
++#if RAVELINK_FRAME_DIAGNOSTICS
++            const UInt64 slotSample = atomic_load_explicit(&validity->sample, memory_order_relaxed);
++            const UInt64 slotGeneration = atomic_load_explicit(&validity->generation, memory_order_relaxed);
++            const Boolean reasons[RLDiagReasonCount] = {
++                [RLDiagNoPublishedWrite] = writtenEnd == 0,
++                [RLDiagFutureWindow] = writtenEnd != 0 && position >= writtenEnd,
++                [RLDiagExpiredWindow] = position < writtenEnd && writtenEnd - position > kRing_Buffer_Frame_Size,
++                [RLDiagUnpublishedFrame] = before == 0,
++                [RLDiagSampleMismatch] = before != 0 && slotSample != position,
++                [RLDiagGenerationMismatch] = before != 0 && slotGeneration != generation,
++                [RLDiagFrameInFlight] = (before & 1) != 0,
++                [RLDiagMuted] = gMute_Master_Value
++            };
++            Boolean valid = !gMute_Master_Value && before != 0 && (before & 1) == 0 &&
++                position < writtenEnd && writtenEnd - position <= kRing_Buffer_Frame_Size &&
++                slotSample == position && slotGeneration == generation;
++            RLDriverDiagnosticEvent event = blockDiagnostic;
++            event.requestedFrame = position; event.writeEnd = writtenEnd; event.slotSample = slotSample;
++            event.slotGeneration = slotGeneration; event.beforeSequence = before; event.driverGeneration = generation;
++            for (UInt32 reason = 0; reason < RLDiagReasonCount; ++reason)
++                if (reasons[reason]) { if (diagnosticCounts[reason]++ == 0) firstDiagnostic[reason] = event; }
++#else
+             Boolean valid = !gMute_Master_Value && before != 0 && (before & 1) == 0 &&
+                 position < writtenEnd && writtenEnd - position <= kRing_Buffer_Frame_Size &&
+                 atomic_load_explicit(&validity->sample, memory_order_relaxed) == position &&
+                 atomic_load_explicit(&validity->generation, memory_order_relaxed) == generation;
++#endif
+             for (UInt32 channel = 0; channel < kNumber_Of_Channels; ++channel)
+             {
+                 UInt32 bits = valid ? atomic_load_explicit(&gRingBuffer[(size_t)slot * kNumber_Of_Channels + channel], memory_order_relaxed) : 0;
+@@ -4634,11 +4782,39 @@
+             // Keep sample loads before the second sequence check. All shared
+             // sample accesses are atomic, so concurrent overwrite has no C race.
+             atomic_thread_fence(memory_order_acquire);
+-            if (atomic_load_explicit(&validity->sequence, memory_order_relaxed) != before)
++            const UInt64 after = atomic_load_explicit(&validity->sequence, memory_order_relaxed);
++            if (after != before)
++            {
+                 memset(samples + (size_t)frame * kNumber_Of_Channels, 0, kNumber_Of_Channels * sizeof(Float32));
++#if RAVELINK_FRAME_DIAGNOSTICS
++                event.afterSequence = after;
++                if (diagnosticCounts[RLDiagSequenceChanged]++ == 0) firstDiagnostic[RLDiagSequenceChanged] = event;
++#endif
++            }
++#if RAVELINK_FRAME_DIAGNOSTICS
++            // Isolate an already committed current-generation slot rejected by
++            // the write horizon alone, using the same loads as this read.
++            if (!gMute_Master_Value && before != 0 && (before & 1) == 0 && after == before &&
++                slotSample == position && slotGeneration == generation && position >= writtenEnd)
++            {
++                event.afterSequence = after;
++                if (diagnosticCounts[RLDiagCommittedBeyondWindow]++ == 0)
++                    firstDiagnostic[RLDiagCommittedBeyondWindow] = event;
++            }
++#endif
+         }
+         if (atomic_load_explicit(&gRingGeneration, memory_order_acquire) != generation)
++        {
+             memset(samples, 0, (size_t)inIOBufferFrameSize * kNumber_Of_Channels * sizeof(Float32));
++#if RAVELINK_FRAME_DIAGNOSTICS
++            diagnosticCounts[RLDiagTimelineChanged] = inIOBufferFrameSize;
++            firstDiagnostic[RLDiagTimelineChanged] = blockDiagnostic;
++#endif
++        }
++#if RAVELINK_FRAME_DIAGNOSTICS
++        for (UInt32 reason = 0; reason < RLDiagReasonCount; ++reason)
++            if (diagnosticCounts[reason]) RaveLinkRecordDiagnostic(reason, diagnosticCounts[reason], firstDiagnostic[reason]);
++#endif
+         if (kEnableVolumeControl)
+             vDSP_vsmul(samples, 1, &gVolume_Master_Value, samples, 1, inIOBufferFrameSize * kNumber_Of_Channels);
+     }

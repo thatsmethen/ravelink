@@ -1,0 +1,10 @@
+[0/1] Planning build
+◇ Test run started.
+↳ Testing Library Version: 124.4
+↳ Target Platform: arm64e-apple-macos14.0
+◇ Suite InstalledSoundCheckTests started.
+◇ Test installedSoundCheckDryRecordLoopGainAndSilence() started.
+SOUND_CHECK_EVIDENCE /Users/runner/work/ravelink/ravelink/build/sound-check-engine.json
+✔ Test installedSoundCheckDryRecordLoopGainAndSilence() passed after 12.212 seconds.
+✔ Suite InstalledSoundCheckTests passed after 12.213 seconds.
+✔ Test run with 1 test passed after 12.213 seconds.

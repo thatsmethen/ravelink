@@ -1,0 +1,1420 @@
+macos	Set up job	﻿2026-10-23T20:53:39.5704920Z Current runner version: '2.338.0'
+macos	Set up job	2026-10-23T20:53:39.5721900Z ##[group]Runner Image Provisioner
+macos	Set up job	2026-10-23T20:53:39.5722470Z Hosted Compute Agent
+macos	Set up job	2026-10-23T20:53:39.5722850Z Version: 20260828.587
+macos	Set up job	2026-10-23T20:53:39.5723280Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+macos	Set up job	2026-10-23T20:53:39.5723750Z Build Date: 2026-08-28T16:44:25Z
+macos	Set up job	2026-10-23T20:53:39.5724290Z Worker ID: {1acd9775-314d-4a34-a70b-dc7cc03f7f18}
+macos	Set up job	2026-10-23T20:53:39.5724760Z Azure Region: westus
+macos	Set up job	2026-10-23T20:53:39.5725190Z ##[endgroup]
+macos	Set up job	2026-10-23T20:53:39.5726120Z ##[group]Operating System
+macos	Set up job	2026-10-23T20:53:39.5726540Z macOS
+macos	Set up job	2026-10-23T20:53:39.5726870Z 15.7.9
+macos	Set up job	2026-10-23T20:53:39.5727220Z 24G830
+macos	Set up job	2026-10-23T20:53:39.5727580Z ##[endgroup]
+macos	Set up job	2026-10-23T20:53:39.5727940Z ##[group]Runner Image
+macos	Set up job	2026-10-23T20:53:39.5728340Z Image: macos-15-arm64
+macos	Set up job	2026-10-23T20:53:39.5728720Z Version: 20260907.0337.1
+macos	Set up job	2026-10-23T20:53:39.5729480Z Included Software: https://github.com/actions/runner-images/blob/macos-15-arm64/20260907.0337/images/macos/macos-15-arm64-Readme.md
+macos	Set up job	2026-10-23T20:53:39.5730650Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-15-arm64%2F20260907.0337
+macos	Set up job	2026-10-23T20:53:39.5731340Z ##[endgroup]
+macos	Set up job	2026-10-23T20:53:39.5732070Z ##[group]GITHUB_TOKEN Permissions
+macos	Set up job	2026-10-23T20:53:39.5733170Z Contents: read
+macos	Set up job	2026-10-23T20:53:39.5733540Z Metadata: read
+macos	Set up job	2026-10-23T20:53:39.5733920Z ##[endgroup]
+macos	Set up job	2026-10-23T20:53:39.5735410Z Secret source: Actions
+macos	Set up job	2026-10-23T20:53:39.5736030Z Cache mode: write
+macos	Set up job	2026-10-23T20:53:39.5736470Z Prepare workflow directory
+macos	Set up job	2026-10-23T20:53:39.5977190Z Prepare all required actions
+macos	Set up job	2026-10-23T20:53:39.6016090Z Getting action download info
+macos	Set up job	2026-10-23T20:53:39.8970430Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+macos	Set up job	2026-10-23T20:53:40.2713990Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+macos	Set up job	2026-10-23T20:53:40.5344680Z Complete job name: macos
+macos	Run actions/checkout@v4	﻿2026-10-23T20:53:40.6022210Z ##[group]Run actions/checkout@v4
+macos	Run actions/checkout@v4	2026-10-23T20:53:40.6023070Z with:
+macos	Run actions/checkout@v4	2026-10-23T20:53:40.6023410Z   repository: thatsmethen/ravelink
+macos	Run actions/checkout@v4	2026-10-23T20:53:40.6026240Z   token: ***
+macos	Run actions/checkout@v4	2026-10-23T20:53:40.6026570Z   ssh-strict: true
+macos	Run actions/checkout@v4	2026-10-23T20:53:40.6026890Z   ssh-user: git
+macos	Run actions/checkout@v4	2026-10-23T20:53:40.6027310Z   persist-credentials: true
+macos	Run actions/checkout@v4	2026-10-23T20:53:40.6027680Z   clean: true
+macos	Run actions/checkout@v4	2026-10-23T20:53:40.6028090Z   sparse-checkout-cone-mode: true
+macos	Run actions/checkout@v4	2026-10-23T20:53:40.6028510Z   fetch-depth: 1
+macos	Run actions/checkout@v4	2026-10-23T20:53:40.6028850Z   fetch-tags: false
+macos	Run actions/checkout@v4	2026-10-23T20:53:40.6029280Z   show-progress: true
+macos	Run actions/checkout@v4	2026-10-23T20:53:40.6029630Z   lfs: false
+macos	Run actions/checkout@v4	2026-10-23T20:53:40.6029940Z   submodules: false
+macos	Run actions/checkout@v4	2026-10-23T20:53:40.6030290Z   set-safe-directory: true
+macos	Run actions/checkout@v4	2026-10-23T20:53:40.6030660Z   allow-unsafe-pr-checkout: false
+macos	Run actions/checkout@v4	2026-10-23T20:53:40.6031260Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.0852020Z Syncing repository: thatsmethen/ravelink
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.0853390Z ##[group]Getting Git version info
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.0853900Z Working directory is '/Users/runner/work/ravelink/ravelink'
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.0856040Z [command]/opt/homebrew/bin/git version
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.1565320Z git version 2.55.0
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.1595510Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.1608090Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/5c57d3cf-326c-40fd-85c0-e831e9bb446f/.gitconfig'
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.1615400Z Temporarily overriding HOME='/Users/runner/work/_temp/5c57d3cf-326c-40fd-85c0-e831e9bb446f' before making global git config changes
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.1619830Z Adding repository directory to the temporary git global config as a safe directory
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.1620930Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.1875370Z Deleting the contents of '/Users/runner/work/ravelink/ravelink'
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.1878370Z ##[group]Initializing the repository
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.1879090Z [command]/opt/homebrew/bin/git init /Users/runner/work/ravelink/ravelink
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.2074900Z hint: Using 'master' as the name for the initial branch. This default branch name
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.2087510Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.2183310Z hint: to use in all of your new repositories, which will suppress this warning,
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.2185650Z hint: call:
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.2186910Z hint:
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.2188250Z hint: 	git config --global init.defaultBranch <name>
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.2190990Z hint:
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.2192800Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.2194060Z hint: 'development'. The just-created branch can be renamed via this command:
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.2194730Z hint:
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.2195160Z hint: 	git branch -m <name>
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.2195750Z hint:
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.2196370Z hint: Disable this message with "git config set advice.defaultBranchName false"
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.2197400Z Initialized empty Git repository in /Users/runner/work/ravelink/ravelink/.git/
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.2199140Z [command]/opt/homebrew/bin/git remote add origin https://github.com/thatsmethen/ravelink
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.2428240Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.2499560Z ##[group]Disabling automatic garbage collection
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.2500440Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.2502360Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.2504380Z ##[group]Setting up auth
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.2506420Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.2508370Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.4243780Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.4311520Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.5047470Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.5105850Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.5973890Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.6050550Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.6052250Z ##[group]Fetching the repository
+macos	Run actions/checkout@v4	2026-10-23T20:53:41.6056990Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +f733a8c26124b1ace95b85624222f091516e93eb:refs/remotes/origin/main
+macos	Run actions/checkout@v4	2026-10-23T20:53:42.8353900Z From https://github.com/thatsmethen/ravelink
+macos	Run actions/checkout@v4	2026-10-23T20:53:42.8357210Z  * [new ref]         f733a8c26124b1ace95b85624222f091516e93eb -> origin/main
+macos	Run actions/checkout@v4	2026-10-23T20:53:42.8362830Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T20:53:42.8363980Z ##[group]Determining the checkout info
+macos	Run actions/checkout@v4	2026-10-23T20:53:42.8365120Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T20:53:42.8365930Z [command]/opt/homebrew/bin/git sparse-checkout disable
+macos	Run actions/checkout@v4	2026-10-23T20:53:42.8473850Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+macos	Run actions/checkout@v4	2026-10-23T20:53:42.8496100Z ##[group]Checking out the ref
+macos	Run actions/checkout@v4	2026-10-23T20:53:42.8499180Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+macos	Run actions/checkout@v4	2026-10-23T20:53:42.9588480Z Switched to a new branch 'main'
+macos	Run actions/checkout@v4	2026-10-23T20:53:42.9606020Z branch 'main' set up to track 'origin/main'.
+macos	Run actions/checkout@v4	2026-10-23T20:53:42.9612740Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T20:53:42.9768190Z [command]/opt/homebrew/bin/git log -1 --format=%H
+macos	Run actions/checkout@v4	2026-10-23T20:53:42.9874860Z f733a8c26124b1ace95b85624222f091516e93eb
+macos	Swift toolchain	﻿2026-10-23T20:53:43.0225300Z ##[group]Run swift --version
+macos	Swift toolchain	2026-10-23T20:53:43.0226320Z [36;1mswift --version[0m
+macos	Swift toolchain	2026-10-23T20:53:43.0279860Z shell: /bin/bash -e {0}
+macos	Swift toolchain	2026-10-23T20:53:43.0282680Z ##[endgroup]
+macos	Swift toolchain	2026-10-23T20:53:45.7789400Z Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+macos	Swift toolchain	2026-10-23T20:53:45.7790940Z Target: arm64-apple-macosx15.0
+macos	Swift toolchain	2026-10-23T20:53:45.7846350Z swift-driver version: 1.120.5 
+macos	Deterministic tests	﻿2026-10-23T20:53:45.7896730Z ##[group]Run scripts/test.sh
+macos	Deterministic tests	2026-10-23T20:53:45.7897150Z [36;1mscripts/test.sh[0m
+macos	Deterministic tests	2026-10-23T20:53:45.7932710Z shell: /bin/bash -e {0}
+macos	Deterministic tests	2026-10-23T20:53:45.7932970Z env:
+macos	Deterministic tests	2026-10-23T20:53:45.7933340Z   RAVELINK_PLUGIN_RENDER_APPLE: 1
+macos	Deterministic tests	2026-10-23T20:53:45.7933660Z   RAVELINK_PLUGIN_PROBE_APPLE: 1
+macos	Deterministic tests	2026-10-23T20:53:45.7933940Z ##[endgroup]
+macos	Deterministic tests	2026-10-23T20:53:49.1230310Z Building for debugging...
+macos	Deterministic tests	2026-10-23T20:53:49.1291210Z [0/29] /Users/runner/work/ravelink/ravelink/.build/arm64-apple-macosx/debug/RaveLinkPackageTests.derived/runner.swift
+macos	Deterministic tests	2026-10-23T20:53:49.3536550Z [1/29] Write swift-version--79AA4F9932D1E87A.txt
+macos	Deterministic tests	2026-10-23T20:53:50.1401190Z [2/29] Compiling RaveLinkRealtime SoundCheck.c
+macos	Deterministic tests	2026-10-23T20:53:50.1408540Z [3/29] Write sources
+macos	Deterministic tests	2026-10-23T20:53:50.1506270Z [3/29] Write RaveLinkPluginHost-entitlement.plist
+macos	Deterministic tests	2026-10-23T20:53:50.1508160Z [3/29] Write sources
+macos	Deterministic tests	2026-10-23T20:53:50.1552100Z [7/29] Write RaveLinkEngine-entitlement.plist
+macos	Deterministic tests	2026-10-23T20:53:50.1565230Z [7/29] Write sources
+macos	Deterministic tests	2026-10-23T20:53:51.4031440Z [10/29] Compiling RaveLinkRealtime Clock.c
+macos	Deterministic tests	2026-10-23T20:53:51.4718410Z [11/29] Compiling RaveLinkRealtime Realtime.c
+macos	Deterministic tests	2026-10-23T20:53:54.7520970Z [12/37] Compiling RaveLinkAudioUnitBridge AudioUnitBridge.m
+macos	Deterministic tests	2026-10-23T20:53:54.7619150Z [13/37] Write sources
+macos	Deterministic tests	2026-10-23T20:53:54.7685640Z [13/37] Write RaveLink-entitlement.plist
+macos	Deterministic tests	2026-10-23T20:54:00.3528900Z [19/37] Compiling RaveLinkCore Session.swift
+macos	Deterministic tests	2026-10-23T20:54:00.3633780Z [20/37] Compiling RaveLinkCore SessionStore.swift
+macos	Deterministic tests	2026-10-23T20:54:00.5564320Z [21/38] Emitting module RaveLinkCore
+macos	Deterministic tests	2026-10-23T20:54:00.5664010Z [22/38] Compiling RaveLinkCore AudioUnitEffects.swift
+macos	Deterministic tests	2026-10-23T20:54:00.5764390Z [23/38] Compiling RaveLinkCore ExpandedRouting.swift
+macos	Deterministic tests	2026-10-23T20:54:01.0433870Z [24/38] Compiling RaveLinkCore SoundCheck.swift
+macos	Deterministic tests	2026-10-23T20:54:01.9891200Z [25/58] Compiling RaveLinkPluginHost Render.swift
+macos	Deterministic tests	2026-10-23T20:54:02.0014410Z [26/58] Emitting module RaveLinkPluginHost
+macos	Deterministic tests	2026-10-23T20:54:02.0127530Z [27/58] Compiling RaveLinkPluginHost main.swift
+macos	Deterministic tests	2026-10-23T20:54:02.0255290Z [27/58] Write Objects.LinkFileList
+macos	Deterministic tests	2026-10-23T20:54:02.8821210Z [28/58] Linking RaveLinkPluginHost
+macos	Deterministic tests	2026-10-23T20:54:02.9461190Z [29/58] Applying RaveLinkPluginHost
+macos	Deterministic tests	2026-10-23T20:54:04.7090480Z [31/58] Compiling RaveLinkCoreTests ReviewTests.swift
+macos	Deterministic tests	2026-10-23T20:54:04.7190940Z [32/58] Compiling RaveLinkCoreTests SessionTests.swift
+macos	Deterministic tests	2026-10-23T20:54:05.4977180Z [33/60] Emitting module RaveLinkAudio
+macos	Deterministic tests	2026-10-23T20:54:06.2608390Z [34/66] Compiling RaveLinkCoreTests SoundCheckSessionTests.swift
+macos	Deterministic tests	2026-10-23T20:54:06.2709750Z [35/66] Compiling RaveLinkCoreTests SourceIdentityAndOrderTests.swift
+macos	Deterministic tests	2026-10-23T20:54:06.6061930Z [36/66] Compiling RaveLinkCoreTests AudioUnitSessionTests.swift
+macos	Deterministic tests	2026-10-23T20:54:06.6162110Z [37/66] Compiling RaveLinkCoreTests ExpandedRoutingTests.swift
+macos	Deterministic tests	2026-10-23T20:54:06.6262750Z [38/66] Emitting module RaveLinkCoreTests
+macos	Deterministic tests	2026-10-23T20:54:07.4901190Z [39/66] Compiling RaveLinkAudio PluginCatalog.swift
+macos	Deterministic tests	2026-10-23T20:54:07.5004520Z [40/66] Compiling RaveLinkAudio PluginRender.swift
+macos	Deterministic tests	2026-10-23T20:54:07.5111910Z [41/66] Compiling RaveLinkAudio RealtimeDeviceLimits.swift
+macos	Deterministic tests	2026-10-23T20:54:07.5224360Z [42/66] Compiling RaveLinkAudio RenderProgressMonitor.swift
+macos	Deterministic tests	2026-10-23T20:54:07.5332910Z [43/66] Compiling RaveLinkAudio SoundCheckSupport.swift
+macos	Deterministic tests	2026-10-23T20:54:07.5434280Z [44/66] Compiling RaveLinkAudio TapRetargetTransaction.swift
+macos	Deterministic tests	2026-10-23T20:54:08.5037620Z [45/66] Compiling RaveLinkAudio DeviceCaptureProgressMonitor.swift
+macos	Deterministic tests	2026-10-23T20:54:08.5038550Z [46/66] Compiling RaveLinkAudio EngineClient.swift
+macos	Deterministic tests	2026-10-23T20:54:08.5039110Z [47/66] Compiling RaveLinkAudio EngineProtocol.swift
+macos	Deterministic tests	2026-10-23T20:54:08.5039750Z [48/66] Compiling RaveLinkAudio FeedbackValidation.swift
+macos	Deterministic tests	2026-10-23T20:54:08.5047680Z [49/66] Compiling RaveLinkAudio HardwareEventMonitor.swift
+macos	Deterministic tests	2026-10-23T20:54:08.5048090Z [50/66] Compiling RaveLinkAudio LiveAudioUnitGraph.swift
+macos	Deterministic tests	2026-10-23T20:54:08.5048530Z [51/66] Compiling RaveLinkAudio NativeTapRestoration.swift
+macos	Deterministic tests	2026-10-23T20:54:09.5828430Z [58/66] Compiling RaveLinkAudio CaptureSourcePlan.swift
+macos	Deterministic tests	2026-10-23T20:54:10.9314230Z [59/92] Emitting module RaveLinkEngine
+macos	Deterministic tests	2026-10-23T20:54:10.9415440Z [60/92] Compiling RaveLinkEngine EngineMain.swift
+macos	Deterministic tests	2026-10-23T20:54:10.9515400Z [60/92] Write Objects.LinkFileList
+macos	Deterministic tests	2026-10-23T20:54:11.6063560Z [61/92] Linking RaveLinkEngine
+macos	Deterministic tests	2026-10-23T20:54:11.6402630Z [62/92] Applying RaveLinkEngine
+macos	Deterministic tests	2026-10-23T20:54:11.6958560Z [64/92] Emitting module RaveLinkAudioTests
+macos	Deterministic tests	2026-10-23T20:54:15.2038820Z [65/99] Compiling RaveLinkAudioTests ApplicationMembershipTests.swift
+macos	Deterministic tests	2026-10-23T20:54:15.2140790Z [66/99] Compiling RaveLinkAudioTests AudioAllocationTests.swift
+macos	Deterministic tests	2026-10-23T20:54:15.2241010Z [67/99] Compiling RaveLinkAudioTests AudioLifecycleTests.swift
+macos	Deterministic tests	2026-10-23T20:54:15.2342430Z [68/99] Emitting module RaveLinkApp
+macos	Deterministic tests	2026-10-23T20:54:15.2442900Z [69/99] Compiling RaveLinkAudioTests DSPRecoveryTests.swift
+macos	Deterministic tests	2026-10-23T20:54:15.2543670Z [70/99] Compiling RaveLinkAudioTests DeviceCaptureProgressMonitorTests.swift
+macos	Deterministic tests	2026-10-23T20:54:15.2644100Z [71/99] Compiling RaveLinkAudioTests ElasticClockTests.swift
+macos	Deterministic tests	2026-10-23T20:54:19.2203720Z [72/101] Compiling RaveLinkAudioTests PluginRenderTests.swift
+macos	Deterministic tests	2026-10-23T20:54:19.2305680Z [73/101] Compiling RaveLinkAudioTests RealtimeTests.swift
+macos	Deterministic tests	2026-10-23T20:54:19.2407540Z [74/101] Compiling RaveLinkAudioTests RenderProgressMonitorTests.swift
+macos	Deterministic tests	2026-10-23T20:54:19.2511210Z [75/101] Compiling RaveLinkAudioTests SoundCheckBufferTests.swift
+macos	Deterministic tests	2026-10-23T20:54:19.2610200Z [76/101] Compiling RaveLinkAudioTests SoundCheckRoutingTests.swift
+macos	Deterministic tests	2026-10-23T20:54:19.2772480Z [77/101] Compiling RaveLinkAudioTests SourceAliasTests.swift
+macos	Deterministic tests	2026-10-23T20:54:19.2773070Z [78/101] Compiling RaveLinkAudioTests ThirdPartyAudioUnitTests.swift
+macos	Deterministic tests	2026-10-23T20:54:20.5468440Z [79/101] Compiling RaveLinkAudioTests GroupedRealtimeTests.swift
+macos	Deterministic tests	2026-10-23T20:54:20.5572010Z [80/101] Compiling RaveLinkAudioTests HardwareClockTests.swift
+macos	Deterministic tests	2026-10-23T20:54:20.5696880Z [81/101] Compiling RaveLinkAudioTests InstalledAudioUnitAcceptanceTests.swift
+macos	Deterministic tests	2026-10-23T20:54:20.5803610Z [82/101] Compiling RaveLinkAudioTests InstalledDeviceSoakTests.swift
+macos	Deterministic tests	2026-10-23T20:54:20.5906150Z [83/101] Compiling RaveLinkAudioTests InstalledMatrixTests.swift
+macos	Deterministic tests	2026-10-23T20:54:20.6006970Z [84/101] Compiling RaveLinkAudioTests InstalledSoundCheckTests.swift
+macos	Deterministic tests	2026-10-23T20:54:20.6107690Z [85/101] Compiling RaveLinkAudioTests LiveAudioUnitTests.swift
+macos	Deterministic tests	2026-10-23T20:54:20.6209520Z [86/101] Compiling RaveLinkAudioTests PluginCatalogTests.swift
+macos	Deterministic tests	2026-10-23T20:54:20.6311530Z [93/101] Compiling RaveLinkApp StudioModel.swift
+macos	Deterministic tests	2026-10-23T20:54:20.6429350Z [94/101] Compiling RaveLinkApp StudioView.swift
+macos	Deterministic tests	2026-10-23T20:54:21.0223630Z [96/101] Write Objects.LinkFileList
+macos	Deterministic tests	2026-10-23T20:54:21.9114060Z [97/101] Linking RaveLink
+macos	Deterministic tests	2026-10-23T20:54:21.9621900Z [98/101] Applying RaveLink
+macos	Deterministic tests	2026-10-23T20:54:22.7325410Z [100/104] Compiling RaveLinkAppTests SoundCheckIsolationTests.swift
+macos	Deterministic tests	2026-10-23T20:54:22.7342260Z [101/104] Emitting module RaveLinkAppTests
+macos	Deterministic tests	2026-10-23T20:54:22.7345380Z [102/104] Compiling RaveLinkAppTests StudioIndexTests.swift
+macos	Deterministic tests	2026-10-23T20:54:23.0052950Z [103/106] Compiling RaveLinkPackageTests runner.swift
+macos	Deterministic tests	2026-10-23T20:54:23.0053770Z [104/106] Emitting module RaveLinkPackageTests
+macos	Deterministic tests	2026-10-23T20:54:23.0093440Z [104/106] Write Objects.LinkFileList
+macos	Deterministic tests	2026-10-23T20:54:23.9677500Z [105/106] Linking RaveLinkPackageTests
+macos	Deterministic tests	2026-10-23T20:54:23.9732340Z Build complete! (34.94s)
+macos	Deterministic tests	2026-10-23T20:54:25.0497650Z ◇ Test run started.
+macos	Deterministic tests	2026-10-23T20:54:25.0624940Z ↳ Testing Library Version: 124.4
+macos	Deterministic tests	2026-10-23T20:54:25.0740980Z ↳ Target Platform: arm64e-apple-macos14.0
+macos	Deterministic tests	2026-10-23T20:54:25.0843010Z ◇ Suite SoundCheckIsolationTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.0953480Z ◇ Suite SessionTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.1056080Z ◇ Suite StudioIndexTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.1338280Z ◇ Suite SoundCheckSessionTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.1444410Z ◇ Suite SourceIdentityAndOrderTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.1546330Z ◇ Suite ReviewTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.1650300Z ◇ Suite AudioUnitSessionTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.2711880Z ◇ Suite ExpandedRoutingTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.2820790Z ◇ Suite GroupedRealtimeTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.2940770Z ◇ Suite DSPRecoveryTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.3052010Z ◇ Suite ThirdPartyAudioUnitTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.3195060Z ◇ Suite NativeTapRestorationTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.3317500Z ◇ Suite ElasticClockTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.3424850Z ◇ Suite FeedbackValidationTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.3567460Z ◇ Suite InstalledMatrixTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.3679180Z ◇ Suite SourceAliasTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.3794170Z ◇ Suite AudioAllocationTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.3900090Z ◇ Suite LiveAudioUnitTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.4007740Z ◇ Suite EngineClientTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.4111750Z ◇ Suite DeviceCaptureProgressMonitorTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.4335810Z ◇ Suite SoundCheckBufferTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.4449010Z ◇ Suite RenderProgressMonitorTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.4798840Z ◇ Suite AudioLifecycleTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.4907970Z ◇ Suite PluginCatalogTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.5009660Z ◇ Suite RealtimeTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.5127010Z ◇ Suite EngineProtocolTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.5397240Z ◇ Suite TapRetargetTransactionTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.5504820Z ◇ Suite AudioCoordinatorTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.5608440Z ◇ Suite HardwareClockTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.5719680Z ◇ Suite ApplicationMembershipTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.5854610Z ◇ Suite SoundCheckRoutingTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.6022830Z ◇ Suite InstalledAudioUnitAcceptanceTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.6127810Z ◇ Suite PluginRenderTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.6229280Z ◇ Suite InstalledDeviceSoakTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.6331290Z ◇ Test globalAudioCommandCannotStartStudioInsideSoundCheck() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6432540Z ◇ Suite InstalledSoundCheckTests started.
+macos	Deterministic tests	2026-10-23T20:54:25.6439690Z ◇ Test openingAndClosingAuditionKeepsStudioRoutesAndMutes() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6440420Z ◇ Test testRejectUnknownSchemaAndInvalidEffects() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6441030Z ◇ Test testDynamicMatrixBeyondReferenceLimits() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6441710Z ◇ Test testRejectDanglingDuplicateAndNonfiniteRoutes() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6442290Z ◇ Test listeningOutputMustBeExplicitAndValid() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6443030Z ◇ Test auditionPreservesSourcesAndEffectsWithOnlyExplicitDestination() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6443700Z ◇ Test routeValuesDoNotInvalidateStructureButRebindingDoes() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6444440Z ◇ Test testPersistenceRoundTripAndAtomicReplacement() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6445360Z ◇ Test testInvalidSavePreservesPreviousSession() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6446160Z ◇ Test singleLegacySourceRemainsLoadableAndRawBoundsAreChecked() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6446850Z ◇ Test importedStaleMetadataCannotDisguiseDuplicateCapture() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6447720Z ◇ Test staleOrOutOfRangeReorderDoesNotMutate() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6451860Z ◇ Test canonicalCaptureIdentityDropsIrrelevantFields() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6452610Z ◇ Test reorderingPreservesRouteIdentityAndControls() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6453360Z ◇ Test indexedEditsFollowIdentityAcrossReorderRemovalAndReplacement() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6454210Z ◇ Test testOversizedSparseImportIsRejectedWithoutChangingOriginal() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6454910Z ◇ Test testIncompleteImportedMatrixIsRejectedAndEmptyAxesAreAllowed() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6455650Z ◇ Test testOutputOverlapRejectedButDistinctDevicesAndPairsAllowed() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6456290Z ◇ Test testNewRoutesRemainMutedAfterRoundTripAndChannelRemoval() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6457410Z ◇ Test testInvalidImportDoesNotRewriteSource() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6457950Z ◇ Test testOversizedSavePreservesExistingReadableSession() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6458610Z ◇ Test testGroupedSourceValidationIncludesAdditionalSources() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6459570Z ◇ Test oldSessionDefaultsToEmptyRackAndRackRoundTrips() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6460190Z ◇ Test groupedSourcesAndDestinationsPreserveIndependentMixes() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6460930Z ◇ Test capacityBudgetBoundaryIsExplicitAndConfigurable() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6461540Z ◇ Test generatedIdentitiesStayStableAcrossControlAndLabelEdits() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6462290Z ◇ Test capacityRejectsOverflowAndNegativeCountsWithoutAllocatingMatrix() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6463030Z ◇ Test rejectsDuplicatedSlotsInvalidIdentityStateAndParameters() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6463660Z ◇ Test additionalOutputWorksWhenPrimaryIsUnassigned() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6464370Z ◇ Test groupsRoundTripThroughPersistence() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6465010Z ◇ Test compactMillionRouteExpansionFailsBeforeMaterialization() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6465870Z ◇ Test sameVisibleCountsCanRequireDifferentExpansionBudgets() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6466460Z ◇ Test captureSilencesItsDuplexOutputContribution() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6467120Z ◇ Test compressorProcessesSummedWaveformOnce() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6467900Z ◇ Test oldSchemaOneSessionsDecodeWithoutNewFields() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6468740Z ◇ Test defaultGroupsRemainIndependentAndInvalidGraphsAreRejected() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6469510Z ◇ Test generatedIDCollisionFailsClosed() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6470170Z ◇ Test sumsGroupOnceAndUsesOnlyParentSendsForIndependentBuses() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6470980Z ◇ Test meterMappingUsesGreatestMemberAndDoesNotInventSummedPeak() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6471520Z ◇ Test toneGroupReceivesGainExactlyOnce() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6472270Z ✘ Test installedMasterMeRendersRestoresAndRunsThroughNativeHook() skipped.
+macos	Deterministic tests	2026-10-23T20:54:25.6473020Z ◇ Test malformedControlUpdatesPreservePriorValidSettings() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6473650Z ◇ Test bothClockDirectionsRemainContinuous(ppm:) started.
+macos	Deterministic tests	2026-10-23T20:54:25.6474330Z ◇ Test unequalAndVaryingBlocksKeepStableHeadroom() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6474880Z ◇ Test detectsMultiDeviceCycleAndAllowsMutedBreak() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6475590Z ✘ Test installedIndependentMixControlSequence() skipped.
+macos	Deterministic tests	2026-10-23T20:54:25.6476670Z ◇ Test separatesStereoPairsAndRejectsOverlap() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6477390Z ◇ Test capturePlanSharesCanonicalSelectorsWithoutMergingDifferentPairsOrApps() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6478330Z ◇ Test clockConfigurationRejectsUnsupportedRatesWithoutLosingValidConfiguration() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6479050Z ◇ Test rejectsBudgetOverflowBeforeAllocating() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6481560Z ◇ Test finiteOverflowSpikeDoesNotPoisonFollowingAudio() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6484890Z ◇ Test aliasGraphRejectsChainsCyclesReparentingAndConfiguredAliases() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6485730Z ◇ Test rateExtremesReserveEnoughFramesAndFilterSpace() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6492910Z ◇ Test resampledSharedCaptureIsIdenticalAcrossIndependentGroups() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6495030Z ◇ Test optionalPublicSettersAreCheckedWithoutCreatingAnAudioTap() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6496730Z ◇ Test effectTopologyExcludesSafeLiveControls() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6498680Z ◇ Test anotherDeviceAndIdleApplicationCannotHideStalledCapture() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6506400Z ◇ Test diagnosticsRetainLegacyDecodingAndReportPhysicalCaptureCount() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6508390Z ◇ Test neverStartedCallbackHasBoundedGraceAndFreshGraphResetsIt() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6511310Z ◇ Test silentDeviceProgressIsHealthyAndApplicationPauseIsExempt() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6690550Z ◇ Test stoppedRecordingAndPlaybackSuppressEffectTails() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6695970Z ◇ Test allocationBoundsRejectMalformedRatesAndDurations() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6696610Z ◇ Test sharedRawAudioKeepsGroupSumEffectsMuteAndSendsIndependent() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6697180Z ◇ Test dryStereoRecordingLoopsIndependentlyOfNewInput() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6697920Z ◇ Test capacityStopsRecordingAndNeverAutomaticallyPlays() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6698360Z ◇ Test progressingOutputCannotHideAnotherStalledDevice() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6698810Z ◇ Test rapidCommandsKeepOrderAndMailboxIsBounded() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6699210Z ◇ Test maximumBufferDurationAndGraphResetAreRespected() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6699650Z ◇ Test consumerResetDiscardsOldAudioAndReprimesWithFreshCapture() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6700420Z ◇ Test suspensionCannotBeOverriddenByLiveControlsAndDoesNotFreezeProcessing() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6701000Z ◇ Test childResponseIsDecodedWithoutLoadingAnAudioUnit() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6701450Z ◇ Test nativeStreamValidationRejectsChangedStridesFlagsAndRate() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6702030Z ◇ Test largestSupportedDeviceBlockReceivesFourCompleteDurations() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6702470Z ◇ Test crashedChildAndOutputFloodAreContained() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6702770Z ◇ Test cancellationStopsChild() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6703310Z ◇ Test timedOutChildIgnoringTerminationIsKilled() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6703780Z ◇ Test typedHelperErrorsSurviveNonzeroExit() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6704130Z ◇ Test duplicateOrNonEffectMetadataIsRejected() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6704610Z ◇ Test strictProtocolRejectsVersionOperationAndCorruptPayload() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6705120Z ◇ Test testNonFiniteInputIsContainedAndInvalidConfigurationRejected() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6705750Z ◇ Test testGainChangesRampAndMuteReachesSilence() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6706230Z ◇ Test selectedAppleLimiterAcceptsStereoOfflineAllocation() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6706620Z ◇ Test testDSPGainHighPassGateAndCompression() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6707040Z ◇ Test testIndependentBusGainPanMuteAndOffsets() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6707530Z ◇ Test testBandLimitedDownsamplingRejectsAliasedHighFrequency() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6708060Z ◇ Test rejectsContradictoryAndNonfiniteState() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6708480Z ◇ Test testCaptureMonoDuplicationAndMeter() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6708890Z ◇ Test boundsPartialLinesAndRejectsVersionMismatch() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6709360Z ◇ Test testRingIsBoundedAndReportsOverflowAndUnderrun() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6709890Z ◇ Test allExclusionsAreUpdatedBeforeAnyCaptureRestarts() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6710370Z ◇ Test failedExclusionUpdateNeverRestartsAnyCapture() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6710990Z ◇ Test independentlyMeasuresBothHardwareClocks() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6711530Z ◇ Test testInvalidStartFailsWithActionableErrorAndStaysStopped() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6712110Z ◇ Test laterClockEstimatesHaveBoundedSlew() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6712680Z ◇ Test declaredHeadroomSupportsSmallFirstCallbackThenLargerBlocks() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6713300Z ◇ Test declaredBufferAndActualOversizeBothFailClosed() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6713730Z ◇ Test cancellationAfterDescriptionChangePreventsLateRestart() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6714320Z ◇ Test nativeCallbacksLatchSkippedSampleTimelineAndSilenceOutput() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6714820Z ◇ Test invalidTimingConfigurationIsRejected() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6715300Z ◇ Test idleProcessTapGapRestartsWithoutDeviceFailure() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6715930Z ◇ Test missingFlagsUseFallbackAndRestartObservationWindow() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6716440Z ◇ Test relativeClockMismatchLatchesBeforeReadingInvalidMix() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6717010Z ◇ Test discoveryTimeoutKillsAndReapsUncooperativeChild() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6717540Z ◇ Test invalidDeviceTimelinesLatchUntilExplicitReset() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6717970Z ◇ Test restartAdditionalProcessAndExitChangeExclusions() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6718930Z ◇ Test initiallyAbsentExcludedApplicationRemainsWatched() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6719490Z ◇ Test chromiumHelpersUseOwnerIdentityWithoutPrefixGuessing() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6720070Z ◇ Test inclusionAndCatchAllShareCanonicalHelpersAndOwnProcessExclusions() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6720880Z ✘ Test installedAudioUnitGainBypassAndRestoredState() skipped.
+macos	Deterministic tests	2026-10-23T20:54:25.6721390Z ◇ Test dryGroupIsRecordedBeforeEffectsAndPlaybackReplacesLiveInput() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6722490Z ◇ Test protocolRejectsExtraDestinationsAndInvalidClipTelemetry() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6723030Z ◇ Test savedStateIsBoundToIdentityVersionAndSize() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6723530Z ◇ Test invalidInputIsRejectedBeforeLaunchingAHelper() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6724030Z ◇ Test malformedRenderReportsCannotMasqueradeAsValidAudio() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6724520Z ◇ Test outerApplicationMetadataWinsOverNestedHelper() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6725120Z ◇ Test orderingDuplicatesOwnProcessAndUnrelatedAppsDoNotChangeMembership() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6725740Z ◇ Test appleLimiterRendersIndependentGainReferenceAndRestoresState() started.
+macos	Deterministic tests	2026-10-23T20:54:25.6726300Z ✘ Test installedGroupedDeviceInputThirtySecondSoak() skipped.
+macos	Deterministic tests	2026-10-23T20:54:25.6727560Z ◇ Passing 1 argument ppm → -1000.0 to bothClockDirectionsRemainContinuous(ppm:)
+macos	Deterministic tests	2026-10-23T20:54:25.6728210Z ◇ Passing 1 argument ppm → 1000.0 to bothClockDirectionsRemainContinuous(ppm:)
+macos	Deterministic tests	2026-10-23T20:54:25.6728660Z CAPTURE_ALIAS rawDifference=0.0 cancellationResidual=7.449355e-09
+macos	Deterministic tests	2026-10-23T20:54:25.6729120Z ✘ Test installedSoundCheckDryRecordLoopGainAndSilence() skipped.
+macos	Deterministic tests	2026-10-23T20:54:25.6729680Z ✔ Test testRejectDanglingDuplicateAndNonfiniteRoutes() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6730290Z ✔ Test listeningOutputMustBeExplicitAndValid() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6730920Z ✔ Test auditionPreservesSourcesAndEffectsWithOnlyExplicitDestination() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6731610Z ✔ Test testRejectUnknownSchemaAndInvalidEffects() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6732220Z ✔ Test singleLegacySourceRemainsLoadableAndRawBoundsAreChecked() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6732860Z ✔ Test testInvalidSavePreservesPreviousSession() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6733510Z ✔ Test importedStaleMetadataCannotDisguiseDuplicateCapture() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6734120Z ✔ Test canonicalCaptureIdentityDropsIrrelevantFields() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6734700Z ✔ Test staleOrOutOfRangeReorderDoesNotMutate() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6735260Z ✔ Test reorderingPreservesRouteIdentityAndControls() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6735930Z ✔ Test testOversizedSparseImportIsRejectedWithoutChangingOriginal() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6736560Z ✔ Test testPersistenceRoundTripAndAtomicReplacement() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6737230Z ✔ Test testOutputOverlapRejectedButDistinctDevicesAndPairsAllowed() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6737940Z ✔ Test testIncompleteImportedMatrixIsRejectedAndEmptyAxesAreAllowed() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6738670Z ✔ Test testNewRoutesRemainMutedAfterRoundTripAndChannelRemoval() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6739320Z ✔ Test testInvalidImportDoesNotRewriteSource() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6740040Z ✔ Test testGroupedSourceValidationIncludesAdditionalSources() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6740720Z ✔ Test groupedSourcesAndDestinationsPreserveIndependentMixes() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6741360Z ✔ Test oldSessionDefaultsToEmptyRackAndRackRoundTrips() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6742050Z ✔ Test capacityBudgetBoundaryIsExplicitAndConfigurable() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6742750Z ✔ Test generatedIdentitiesStayStableAcrossControlAndLabelEdits() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6744410Z ✔ Test capacityRejectsOverflowAndNegativeCountsWithoutAllocatingMatrix() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6745380Z ✔ Test rejectsDuplicatedSlotsInvalidIdentityStateAndParameters() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6746330Z ✔ Test additionalOutputWorksWhenPrimaryIsUnassigned() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6747030Z ✔ Test compactMillionRouteExpansionFailsBeforeMaterialization() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6747730Z ✔ Test groupsRoundTripThroughPersistence() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6748370Z ✔ Test sameVisibleCountsCanRequireDifferentExpansionBudgets() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6748980Z ✔ Test captureSilencesItsDuplexOutputContribution() passed after 0.932 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6749570Z ✔ Test testDynamicMatrixBeyondReferenceLimits() passed after 0.933 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6750710Z ✔ Test oldSchemaOneSessionsDecodeWithoutNewFields() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6751270Z ✔ Test generatedIDCollisionFailsClosed() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6751910Z ✔ Test meterMappingUsesGreatestMemberAndDoesNotInventSummedPeak() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6752520Z ✔ Test compressorProcessesSummedWaveformOnce() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6753060Z ✔ Test toneGroupReceivesGainExactlyOnce() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6753510Z ✔ Suite ThirdPartyAudioUnitTests passed after 0.936 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6754070Z ✔ Test malformedControlUpdatesPreservePriorValidSettings() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6754710Z ✔ Test sumsGroupOnceAndUsesOnlyParentSendsForIndependentBuses() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6755340Z ✔ Test bothClockDirectionsRemainContinuous(ppm:) passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6755980Z ✔ Test detectsMultiDeviceCycleAndAllowsMutedBreak() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6756480Z ✔ Suite InstalledMatrixTests passed after 0.936 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6756980Z ✔ Test separatesStereoPairsAndRejectsOverlap() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6757650Z ✔ Test capturePlanSharesCanonicalSelectorsWithoutMergingDifferentPairsOrApps() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6758460Z ✔ Test clockConfigurationRejectsUnsupportedRatesWithoutLosingValidConfiguration() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6759140Z ✔ Test rejectsBudgetOverflowBeforeAllocating() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6759760Z ✔ Test aliasGraphRejectsChainsCyclesReparentingAndConfiguredAliases() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6760440Z ✔ Test finiteOverflowSpikeDoesNotPoisonFollowingAudio() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6761080Z ✔ Test rateExtremesReserveEnoughFramesAndFilterSpace() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6761750Z ✔ Test optionalPublicSettersAreCheckedWithoutCreatingAnAudioTap() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6762450Z ✔ Test resampledSharedCaptureIsIdenticalAcrossIndependentGroups() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6763110Z ✔ Test effectTopologyExcludesSafeLiveControls() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6763670Z ✔ Test anotherDeviceAndIdleApplicationCannotHideStalledCapture() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6764340Z ✔ Test diagnosticsRetainLegacyDecodingAndReportPhysicalCaptureCount() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6765140Z ✔ Test neverStartedCallbackHasBoundedGraceAndFreshGraphResetsIt() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6765860Z ✔ Test stoppedRecordingAndPlaybackSuppressEffectTails() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6766680Z ✔ Test silentDeviceProgressIsHealthyAndApplicationPauseIsExempt() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6768880Z ✔ Test allocationBoundsRejectMalformedRatesAndDurations() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6769530Z ✔ Test sharedRawAudioKeepsGroupSumEffectsMuteAndSendsIndependent() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6770520Z ✔ Test capacityStopsRecordingAndNeverAutomaticallyPlays() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6771060Z ✔ Test dryStereoRecordingLoopsIndependentlyOfNewInput() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6771790Z ✔ Test progressingOutputCannotHideAnotherStalledDevice() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6772320Z ✔ Test rapidCommandsKeepOrderAndMailboxIsBounded() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6772830Z ✔ Test maximumBufferDurationAndGraphResetAreRespected() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6773420Z ✔ Test consumerResetDiscardsOldAudioAndReprimesWithFreshCapture() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6774090Z ✔ Test suspensionCannotBeOverriddenByLiveControlsAndDoesNotFreezeProcessing() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6774770Z ✔ Test nativeStreamValidationRejectsChangedStridesFlagsAndRate() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6775390Z ✔ Test largestSupportedDeviceBlockReceivesFourCompleteDurations() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6776020Z ✔ Test strictProtocolRejectsVersionOperationAndCorruptPayload() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6776620Z ✔ Test duplicateOrNonEffectMetadataIsRejected() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6777210Z ✔ Test testNonFiniteInputIsContainedAndInvalidConfigurationRejected() passed after 0.935 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6777800Z ✔ Test testGainChangesRampAndMuteReachesSilence() passed after 0.967 seconds.
+macos	Deterministic tests	2026-10-23T20:54:25.6778290Z ✔ Test testDSPGainHighPassGateAndCompression() passed after 0.967 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5752580Z ✔ Test unequalAndVaryingBlocksKeepStableHeadroom() passed after 0.971 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5781840Z ✔ Test testIndependentBusGainPanMuteAndOffsets() passed after 0.971 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5783220Z ✔ Test rejectsContradictoryAndNonfiniteState() passed after 0.970 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5784690Z ✔ Test testCaptureMonoDuplicationAndMeter() passed after 0.971 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5785480Z ✔ Test testRingIsBoundedAndReportsOverflowAndUnderrun() passed after 0.970 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5786250Z ✔ Test boundsPartialLinesAndRejectsVersionMismatch() passed after 0.971 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5786990Z ✔ Test allExclusionsAreUpdatedBeforeAnyCaptureRestarts() passed after 0.970 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5787870Z ✔ Test independentlyMeasuresBothHardwareClocks() passed after 0.970 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5788550Z ✔ Test failedExclusionUpdateNeverRestartsAnyCapture() passed after 0.970 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5789220Z ✔ Test laterClockEstimatesHaveBoundedSlew() passed after 0.970 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5789940Z ✔ Test testOversizedSavePreservesExistingReadableSession() passed after 0.972 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5790640Z ✔ Test declaredBufferAndActualOversizeBothFailClosed() passed after 0.970 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5791410Z ✔ Test nativeCallbacksLatchSkippedSampleTimelineAndSilenceOutput() passed after 0.970 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5792050Z ✔ Test cancellationAfterDescriptionChangePreventsLateRestart() passed after 0.970 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5792570Z ✔ Test invalidTimingConfigurationIsRejected() passed after 0.970 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5793070Z ✔ Test missingFlagsUseFallbackAndRestartObservationWindow() passed after 0.970 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5793610Z ✔ Test idleProcessTapGapRestartsWithoutDeviceFailure() passed after 0.970 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5794140Z ✔ Test relativeClockMismatchLatchesBeforeReadingInvalidMix() passed after 0.970 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5794720Z ✔ Test invalidDeviceTimelinesLatchUntilExplicitReset() passed after 0.970 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5795300Z ✔ Test declaredHeadroomSupportsSmallFirstCallbackThenLargerBlocks() passed after 0.971 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5795870Z ✔ Test initiallyAbsentExcludedApplicationRemainsWatched() passed after 0.970 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5796520Z ✔ Test inclusionAndCatchAllShareCanonicalHelpersAndOwnProcessExclusions() passed after 0.970 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5797830Z ✔ Test chromiumHelpersUseOwnerIdentityWithoutPrefixGuessing() passed after 0.970 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5798330Z ✔ Suite InstalledAudioUnitAcceptanceTests passed after 0.973 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5799310Z ✔ Test restartAdditionalProcessAndExitChangeExclusions() passed after 0.971 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5799880Z ✔ Test protocolRejectsExtraDestinationsAndInvalidClipTelemetry() passed after 0.970 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5800460Z ✔ Test savedStateIsBoundToIdentityVersionAndSize() passed after 0.971 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5800960Z ✔ Test invalidInputIsRejectedBeforeLaunchingAHelper() passed after 0.971 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5801530Z ✔ Test malformedRenderReportsCannotMasqueradeAsValidAudio() passed after 0.971 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5802100Z ✔ Test testBandLimitedDownsamplingRejectsAliasedHighFrequency() passed after 0.971 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5802750Z ✔ Test orderingDuplicatesOwnProcessAndUnrelatedAppsDoNotChangeMembership() passed after 0.971 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5803280Z ✔ Suite InstalledDeviceSoakTests passed after 0.974 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5803710Z ✔ Test outerApplicationMetadataWinsOverNestedHelper() passed after 0.971 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5804270Z ✔ Test childResponseIsDecodedWithoutLoadingAnAudioUnit() passed after 0.973 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5804770Z ✔ Test typedHelperErrorsSurviveNonzeroExit() passed after 0.973 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5805390Z ✔ Test testInvalidStartFailsWithActionableErrorAndStaysStopped() passed after 0.972 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5805900Z ✔ Suite InstalledSoundCheckTests passed after 0.975 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5806220Z ✔ Suite SessionTests passed after 0.976 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5806530Z ✔ Suite SoundCheckSessionTests passed after 0.976 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5806890Z ✔ Suite SourceIdentityAndOrderTests passed after 0.976 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5807230Z ✔ Suite ReviewTests passed after 0.976 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5807540Z ✔ Suite ExpandedRoutingTests passed after 0.975 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5807860Z ✔ Suite AudioUnitSessionTests passed after 0.976 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5808240Z ✔ Suite DSPRecoveryTests passed after 0.975 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5808580Z ✔ Suite ElasticClockTests passed after 0.975 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5808950Z ✔ Suite FeedbackValidationTests passed after 0.975 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5809280Z ✔ Suite SourceAliasTests passed after 0.975 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5809580Z ✔ Suite AudioAllocationTests passed after 0.976 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5809970Z ✔ Suite NativeTapRestorationTests passed after 0.976 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5810380Z ✔ Suite DeviceCaptureProgressMonitorTests passed after 0.975 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5810780Z ✔ Suite SoundCheckBufferTests passed after 0.975 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5811170Z ✔ Suite RenderProgressMonitorTests passed after 0.975 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5811600Z ✔ Suite AudioLifecycleTests passed after 0.975 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5812010Z ✔ Suite RealtimeTests passed after 0.975 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5812390Z ✔ Suite EngineProtocolTests passed after 0.975 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5812750Z ✔ Suite TapRetargetTransactionTests passed after 0.975 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5813120Z ✔ Suite HardwareClockTests passed after 1.054 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5813520Z ✔ Suite ApplicationMembershipTests passed after 1.055 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5813970Z ◇ Test hostScratchBudgetCountsRacksOncePerVisibleGroup() started.
+macos	Deterministic tests	2026-10-23T20:54:35.5814400Z ✔ Test crashedChildAndOutputFloodAreContained() passed after 1.059 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5814900Z ✔ Test cancellationStopsChild() passed after 1.060 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5815360Z ✔ Test openingAndClosingAuditionKeepsStudioRoutesAndMutes() passed after 1.062 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5815960Z ✔ Test globalAudioCommandCannotStartStudioInsideSoundCheck() passed after 1.062 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5816760Z ✔ Test routeValuesDoNotInvalidateStructureButRebindingDoes() passed after 1.062 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5817360Z ✔ Test indexedEditsFollowIdentityAcrossReorderRemovalAndReplacement() passed after 1.062 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5817890Z ✘ Test testBlackHoleLoopbackAndLiveBusControls() skipped.
+macos	Deterministic tests	2026-10-23T20:54:35.5818650Z ✔ Test hostScratchBudgetCountsRacksOncePerVisibleGroup() passed after 0.001 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5819090Z ✔ Suite SoundCheckIsolationTests passed after 1.063 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5819420Z ✔ Suite StudioIndexTests passed after 1.063 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5819760Z ✘ Test testSilentPhysicalOutputLifecycle() skipped.
+macos	Deterministic tests	2026-10-23T20:54:35.5820210Z ◇ Test renderErrorLatchesSilenceAcrossTheEntireOutput() started.
+macos	Deterministic tests	2026-10-23T20:54:35.5820590Z ✔ Suite AudioCoordinatorTests passed after 1.063 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5821010Z ✔ Test renderErrorLatchesSilenceAcrossTheEntireOutput() passed after 0.001 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5821440Z ◇ Test malformedEffectOutputLatchesFailure() started.
+macos	Deterministic tests	2026-10-23T20:54:35.5821940Z ✔ Test malformedEffectOutputLatchesFailure() passed after 0.001 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5822480Z ◇ Test appleEffectRunsInNativeCallbackAndChangesWithoutRebuild() started.
+macos	Deterministic tests	2026-10-23T20:54:35.5823190Z ✔ Test defaultGroupsRemainIndependentAndInvalidGraphsAreRejected() passed after 1.064 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5823750Z ✔ Suite GroupedRealtimeTests passed after 1.065 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5824270Z ✔ Test dryGroupIsRecordedBeforeEffectsAndPlaybackReplacesLiveInput() passed after 1.231 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5824790Z ✔ Suite SoundCheckRoutingTests passed after 1.234 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5825350Z ✔ Test appleEffectRunsInNativeCallbackAndChangesWithoutRebuild() passed after 0.690 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5825890Z ◇ Test bypassAndEmptyRackDelaysSurviveIrregularBlockBoundaries() started.
+macos	Deterministic tests	2026-10-23T20:54:35.5826470Z ✔ Test bypassAndEmptyRackDelaysSurviveIrregularBlockBoundaries() passed after 0.002 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5827060Z ◇ Test latencyAndDelayMemoryAreBoundedBeforeRendering() started.
+macos	Deterministic tests	2026-10-23T20:54:35.5827580Z ✔ Test latencyAndDelayMemoryAreBoundedBeforeRendering() passed after 0.001 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5828120Z ◇ Test emptyChannelAlignsWithTwoRealAppleEffects() started.
+macos	Deterministic tests	2026-10-23T20:54:35.5828690Z ✔ Test selectedAppleLimiterAcceptsStereoOfflineAllocation() passed after 1.828 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5829330Z ✔ Test emptyChannelAlignsWithTwoRealAppleEffects() passed after 0.342 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5829900Z ◇ Test changingAppleAttackDelayStopsUntilGraphReconstruction() started.
+macos	Deterministic tests	2026-10-23T20:54:35.5830600Z ✔ Test changingAppleAttackDelayStopsUntilGraphReconstruction() passed after 0.297 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5831150Z ◇ Test remainingGraphBudgetBoundsActualAppleDelayStorage() started.
+macos	Deterministic tests	2026-10-23T20:54:35.5831820Z ✔ Test discoveryTimeoutKillsAndReapsUncooperativeChild() passed after 2.529 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5832340Z ◇ Test abruptExitDoesNotRaiseSIGPIPEInClient() started.
+macos	Deterministic tests	2026-10-23T20:54:35.5832840Z ✔ Test remainingGraphBudgetBoundsActualAppleDelayStorage() passed after 0.491 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5833320Z ◇ Test failedPreparationCanReleasePartlyCreatedGraph() started.
+macos	Deterministic tests	2026-10-23T20:54:35.5833810Z ✔ Test timedOutChildIgnoringTerminationIsKilled() passed after 2.895 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5834250Z ✔ Suite PluginCatalogTests passed after 2.897 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5834810Z ✔ Test appleLimiterRendersIndependentGainReferenceAndRestoresState() passed after 3.454 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5844370Z ✔ Suite PluginRenderTests passed after 3.457 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5844890Z ✔ Test failedPreparationCanReleasePartlyCreatedGraph() passed after 0.645 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5845390Z ✔ Suite LiveAudioUnitTests passed after 3.533 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5845780Z ✔ Test abruptExitDoesNotRaiseSIGPIPEInClient() passed after 1.730 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5846180Z ◇ Test malformedFloodIsBoundedAndChildReaped() started.
+macos	Deterministic tests	2026-10-23T20:54:35.5846770Z ✔ Test malformedFloodIsBoundedAndChildReaped() passed after 0.603 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5847220Z ◇ Test brokenPipeWhileChildRemainsAliveDoesNotRaiseSIGPIPE() started.
+macos	Deterministic tests	2026-10-23T20:54:35.5847730Z ✔ Test brokenPipeWhileChildRemainsAliveDoesNotRaiseSIGPIPE() passed after 0.365 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5848380Z ◇ Test runningHeartbeatDeadlineCannotBeMaskedByStaleState(_:) started.
+macos	Deterministic tests	2026-10-23T20:54:35.5848930Z ◇ Passing 1 argument mode → "silent_running" to runningHeartbeatDeadlineCannotBeMaskedByStaleState(_:)
+macos	Deterministic tests	2026-10-23T20:54:35.5849560Z ◇ Passing 1 argument mode → "stale_heartbeat" to runningHeartbeatDeadlineCannotBeMaskedByStaleState(_:)
+macos	Deterministic tests	2026-10-23T20:54:35.5850220Z ✔ Test runningHeartbeatDeadlineCannotBeMaskedByStaleState(_:) passed after 1.329 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5850730Z ◇ Test sleepReapsActiveHelperAndWakeDiscoversWithoutResuming() started.
+macos	Deterministic tests	2026-10-23T20:54:35.5851250Z ✔ Test sleepReapsActiveHelperAndWakeDiscoversWithoutResuming() passed after 0.287 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5851740Z ◇ Test missingSoundCheckSnapshotStopsAndReapsHelper() started.
+macos	Deterministic tests	2026-10-23T20:54:35.5852190Z ✔ Test missingSoundCheckSnapshotStopsAndReapsHelper() passed after 0.105 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5852640Z ◇ Test stopHasIndependentDeadlineAndReapsHungHelper() started.
+macos	Deterministic tests	2026-10-23T20:54:35.5853130Z ✔ Test stopHasIndependentDeadlineAndReapsHungHelper() passed after 0.571 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5853540Z ◇ Test startHasHardRoutingDeadline() started.
+macos	Deterministic tests	2026-10-23T20:54:35.5853870Z ✔ Test startHasHardRoutingDeadline() passed after 1.804 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5854240Z ◇ Test staleTelemetryCannotRestartStoppedSession() started.
+macos	Deterministic tests	2026-10-23T20:54:35.5854670Z ✔ Test staleTelemetryCannotRestartStoppedSession() passed after 0.313 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5855130Z ◇ Test editDuringStartReplacesOldProcessWithLatestSession() started.
+macos	Deterministic tests	2026-10-23T20:54:35.5855620Z ✔ Test editDuringStartReplacesOldProcessWithLatestSession() passed after 0.481 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5856150Z ◇ Test sustainedControlInputSendsUpdatesBeforeProducerStops() started.
+macos	Deterministic tests	2026-10-23T20:54:35.5856710Z ✔ Test sustainedControlInputSendsUpdatesBeforeProducerStops() passed after 0.818 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5857180Z ◇ Test pendingReplacementCoalescesRapidStartEdits() started.
+macos	Deterministic tests	2026-10-23T20:54:35.5857630Z ✔ Test pendingReplacementCoalescesRapidStartEdits() passed after 0.512 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5858060Z ◇ Test realHelperExitsWhenParentControlPipeCloses() started.
+macos	Deterministic tests	2026-10-23T20:54:35.5858500Z ✔ Test realHelperExitsWhenParentControlPipeCloses() passed after 0.053 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5858920Z ✘ Test realSilentOutputThroughSupervisedProcess() skipped.
+macos	Deterministic tests	2026-10-23T20:54:35.5859320Z ✘ Test soundCheckCommandsAndLiveEditsThroughSilentDevice() skipped.
+macos	Deterministic tests	2026-10-23T20:54:35.5859700Z ✔ Suite EngineClientTests passed after 11.511 seconds.
+macos	Deterministic tests	2026-10-23T20:54:35.5860000Z ✔ Test run with 147 tests passed after 11.512 seconds.
+macos	Driver source and bundle tests	﻿2026-10-23T20:54:35.5922010Z ##[group]Run python3 -m unittest discover -s Drivers/tests -p 'test_*.py' -v
+macos	Driver source and bundle tests	2026-10-23T20:54:35.5922580Z [36;1mpython3 -m unittest discover -s Drivers/tests -p 'test_*.py' -v[0m
+macos	Driver source and bundle tests	2026-10-23T20:54:35.6205820Z shell: /bin/bash -e {0}
+macos	Driver source and bundle tests	2026-10-23T20:54:35.6207120Z ##[endgroup]
+macos	Driver source and bundle tests	2026-10-23T20:54:36.1956890Z test_external_source_symlink_is_rejected (test_app_build_info.AppBuildInfoTests.test_external_source_symlink_is_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:36.1991410Z test_source_change_refuses_bundle_mutation (test_app_build_info.AppBuildInfoTests.test_source_change_refuses_bundle_mutation) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:36.1993850Z test_versions_reject_ambiguous_or_invalid_values (test_app_build_info.AppBuildInfoTests.test_versions_reject_ambiguous_or_invalid_values) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:36.3519240Z test_expected_ordered_signal_is_accepted (test_au_acceptance.AudioUnitPCMInstrumentTests.test_expected_ordered_signal_is_accepted) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:36.4991620Z test_mid_signal_dropout_is_rejected (test_au_acceptance.AudioUnitPCMInstrumentTests.test_mid_signal_dropout_is_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:36.6329310Z test_swapped_live_and_bypass_phases_are_rejected (test_au_acceptance.AudioUnitPCMInstrumentTests.test_swapped_live_and_bypass_phases_are_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:36.7709630Z test_wrong_restored_state_gain_is_rejected (test_au_acceptance.AudioUnitPCMInstrumentTests.test_wrong_restored_state_gain_is_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:36.9447640Z test_all_eight_separate_bus_levels_pass (test_device_soak_verifier.DeviceSoakVerifierTests.test_all_eight_separate_bus_levels_pass) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:37.0084350Z test_clipping_residual_rejected (test_device_soak_verifier.DeviceSoakVerifierTests.test_clipping_residual_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:37.0709150Z test_default_envelope_rejects_short_run (test_device_soak_verifier.DeviceSoakVerifierTests.test_default_envelope_rejects_short_run) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:37.1157830Z test_midrun_dropout_rejected (test_device_soak_verifier.DeviceSoakVerifierTests.test_midrun_dropout_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:37.1655570Z test_mislabeled_frequency_rejected (test_device_soak_verifier.DeviceSoakVerifierTests.test_mislabeled_frequency_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:37.2137570Z test_missing_second_input_tone_rejected (test_device_soak_verifier.DeviceSoakVerifierTests.test_missing_second_input_tone_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:37.2577600Z test_partial_tail_is_not_discarded (test_device_soak_verifier.DeviceSoakVerifierTests.test_partial_tail_is_not_discarded) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:37.3092210Z test_phase_jump_rejected (test_device_soak_verifier.DeviceSoakVerifierTests.test_phase_jump_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:37.3100960Z test_riff_frame_length_and_nonfinite_rejected (test_device_soak_verifier.DeviceSoakVerifierTests.test_riff_frame_length_and_nonfinite_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:37.3103770Z test_shared_capture_counts_preserve_logical_graph_and_strict_counter_gates (test_device_soak_verifier.DeviceSoakVerifierTests.test_shared_capture_counts_preserve_logical_graph_and_strict_counter_gates) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:37.3561360Z test_signal_return_after_final_mute_rejected (test_device_soak_verifier.DeviceSoakVerifierTests.test_signal_return_after_final_mute_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:37.4115590Z test_stereo_polarity_error_rejected (test_device_soak_verifier.DeviceSoakVerifierTests.test_stereo_polarity_error_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:37.4547410Z test_wrong_bus_pair_assignment_rejected (test_device_soak_verifier.DeviceSoakVerifierTests.test_wrong_bus_pair_assignment_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:37.5270180Z test_wrong_gain_rejected (test_device_soak_verifier.DeviceSoakVerifierTests.test_wrong_gain_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.3335840Z test_query_errors_and_invalid_format_do_not_pass_as_absence (test_driver_state_probe.DriverStateProbeTests.test_query_errors_and_invalid_format_do_not_pass_as_absence) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.3365770Z test_corrupt_part_fails_without_publishing (test_evidence_restore.EvidenceRestoreTests.test_corrupt_part_fails_without_publishing) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.3414820Z test_paths_and_redirected_parts_are_rejected (test_evidence_restore.EvidenceRestoreTests.test_paths_and_redirected_parts_are_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.3447140Z test_restores_exact_original_and_refuses_replacement (test_evidence_restore.EvidenceRestoreTests.test_restores_exact_original_and_refuses_replacement) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.3491210Z test_wrong_raw_digest_fails_without_publishing (test_evidence_restore.EvidenceRestoreTests.test_wrong_raw_digest_fails_without_publishing) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.3497260Z test_cleanup_never_adopts_preexisting_devices (test_lifecycle_harness.LifecycleHarnessTests.test_cleanup_never_adopts_preexisting_devices) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.3520680Z test_cleanup_rejects_another_run_ownership (test_lifecycle_harness.LifecycleHarnessTests.test_cleanup_rejects_another_run_ownership) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.4148050Z test_failed_command_preserves_log_and_outcome (test_lifecycle_harness.LifecycleHarnessTests.test_failed_command_preserves_log_and_outcome) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.4161640Z test_payload_identity_detects_changed_names_and_bytes (test_lifecycle_harness.LifecycleHarnessTests.test_payload_identity_detects_changed_names_and_bytes) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.4164080Z test_receipt_query_errors_are_not_absence (test_lifecycle_harness.LifecycleHarnessTests.test_receipt_query_errors_are_not_absence) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.4959180Z test_rejection_case_cannot_pass_with_successful_command (test_lifecycle_harness.LifecycleHarnessTests.test_rejection_case_cannot_pass_with_successful_command) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.5994390Z test_service_already_absent_requires_specific_exit_and_diagnostic (test_lifecycle_harness.LifecycleHarnessTests.test_service_already_absent_requires_specific_exit_and_diagnostic) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.6995070Z test_timeout_and_unrelated_failure_cannot_satisfy_policy_rejection (test_lifecycle_harness.LifecycleHarnessTests.test_timeout_and_unrelated_failure_cannot_satisfy_policy_rejection) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.6999960Z test_workstation_and_self_hosted_are_refused (test_lifecycle_harness.LifecycleHarnessTests.test_workstation_and_self_hosted_are_refused) ... Refusing: requires explicit lifecycle opt-in on a GitHub-hosted disposable runner.
+macos	Driver source and bundle tests	2026-10-23T20:54:38.7002820Z ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.7123050Z test_analysis_read_is_bounded (test_loopback_verifier.LoopbackVerifierControls.test_analysis_read_is_bounded) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.7319440Z test_dropout_between_settled_phases_is_rejected (test_loopback_verifier.LoopbackVerifierControls.test_dropout_between_settled_phases_is_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.7443280Z test_duplicate_chunks_are_rejected (test_loopback_verifier.LoopbackVerifierControls.test_duplicate_chunks_are_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.7665990Z test_fragmented_signal_does_not_accumulate_into_a_settled_phase (test_loopback_verifier.LoopbackVerifierControls.test_fragmented_signal_does_not_accumulate_into_a_settled_phase) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.7783620Z test_incomplete_stereo_frame_is_rejected_even_with_correct_riff_length (test_loopback_verifier.LoopbackVerifierControls.test_incomplete_stereo_frame_is_rejected_even_with_correct_riff_length) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.8024650Z test_known_signal_is_accepted_without_claiming_capture_provenance (test_loopback_verifier.LoopbackVerifierControls.test_known_signal_is_accepted_without_claiming_capture_provenance) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.8207480Z test_missing_mute_is_rejected (test_loopback_verifier.LoopbackVerifierControls.test_missing_mute_is_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.8503730Z test_nonfinite_and_stereo_mismatch_are_rejected (test_loopback_verifier.LoopbackVerifierControls.test_nonfinite_and_stereo_mismatch_are_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.8686310Z test_signal_after_mute_is_rejected (test_loopback_verifier.LoopbackVerifierControls.test_signal_after_mute_is_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.8807530Z test_truncated_payload_is_rejected (test_loopback_verifier.LoopbackVerifierControls.test_truncated_payload_is_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.8989740Z test_wrong_attenuation_is_rejected (test_loopback_verifier.LoopbackVerifierControls.test_wrong_attenuation_is_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.9232310Z test_wrong_frequency_in_attenuated_phase_is_rejected (test_loopback_verifier.LoopbackVerifierControls.test_wrong_frequency_in_attenuated_phase_is_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.9463590Z test_wrong_frequency_is_rejected (test_loopback_verifier.LoopbackVerifierControls.test_wrong_frequency_is_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.9646350Z test_wrong_gain_is_rejected (test_loopback_verifier.LoopbackVerifierControls.test_wrong_gain_is_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:38.9831300Z test_wrong_phase_order_is_rejected (test_loopback_verifier.LoopbackVerifierControls.test_wrong_phase_order_is_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:39.2966730Z test_correct_ordered_control_sequence (test_matrix_verifier.MatrixVerifierTests.test_correct_ordered_control_sequence) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:39.4398930Z test_later_frequency_rejected (test_matrix_verifier.MatrixVerifierTests.test_later_frequency_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:39.5982530Z test_later_master_level_is_not_skipped (test_matrix_verifier.MatrixVerifierTests.test_later_master_level_is_not_skipped) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:39.7544470Z test_later_source_gain_is_not_skipped (test_matrix_verifier.MatrixVerifierTests.test_later_source_gain_is_not_skipped) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:39.9033860Z test_midphase_dropout_rejected (test_matrix_verifier.MatrixVerifierTests.test_midphase_dropout_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:39.9711660Z test_nonfinite_samples_rejected (test_matrix_verifier.MatrixVerifierTests.test_nonfinite_samples_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:40.1274500Z test_pan_on_wrong_channel_rejected (test_matrix_verifier.MatrixVerifierTests.test_pan_on_wrong_channel_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:40.2704890Z test_partial_silent_tail_is_still_measured (test_matrix_verifier.MatrixVerifierTests.test_partial_silent_tail_is_still_measured) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:40.4174030Z test_partial_tail_signal_after_final_mute_rejected (test_matrix_verifier.MatrixVerifierTests.test_partial_tail_signal_after_final_mute_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:40.5807650Z test_right_channel_polarity_inversion_rejected (test_matrix_verifier.MatrixVerifierTests.test_right_channel_polarity_inversion_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:40.7277420Z test_signal_after_mute_rejected (test_matrix_verifier.MatrixVerifierTests.test_signal_after_mute_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:40.8928350Z test_silent_capture_rejected (test_matrix_verifier.MatrixVerifierTests.test_silent_capture_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:41.0379370Z test_square_wave_with_same_peak_rejected (test_matrix_verifier.MatrixVerifierTests.test_square_wave_with_same_peak_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:41.0871120Z test_truncated_riff_rejected (test_matrix_verifier.MatrixVerifierTests.test_truncated_riff_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:41.2283240Z test_unrelated_mix_level_change_rejected (test_matrix_verifier.MatrixVerifierTests.test_unrelated_mix_level_change_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:41.3710670Z test_wrong_frequency_rejected (test_matrix_verifier.MatrixVerifierTests.test_wrong_frequency_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:42.6789350Z test_all_successful_components_are_required_for_success (test_soak_orchestration.SoakOrchestrationTests.test_all_successful_components_are_required_for_success) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:44.0218210Z test_failed_engine_still_preserves_complete_independent_observation (test_soak_orchestration.SoakOrchestrationTests.test_failed_engine_still_preserves_complete_independent_observation) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:45.3162070Z test_failed_recorder_does_not_skip_remaining_probe_or_hide_failure (test_soak_orchestration.SoakOrchestrationTests.test_failed_recorder_does_not_skip_remaining_probe_or_hide_failure) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:45.3163420Z test_callback_contract_under_sanitizers (test_soak_probe.SoakProbeTests.test_callback_contract_under_sanitizers) ... skipped 'ASan instrumentation is opt-in; unavailable on some macOS beta hosts'
+macos	Driver source and bundle tests	2026-10-23T20:54:45.5398510Z test_eight_channel_capture_feed_bounds_and_timestamp_health (test_soak_probe.SoakProbeTests.test_eight_channel_capture_feed_bounds_and_timestamp_health) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:45.6209530Z test_a_hard_loop_seam_is_rejected (test_sound_check_verifier.SoundCheckVerifierTests.test_a_hard_loop_seam_is_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:45.7042580Z test_dropout_in_loop_playback_is_rejected (test_sound_check_verifier.SoundCheckVerifierTests.test_dropout_in_loop_playback_is_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:45.8333720Z test_guard_output_leak_is_rejected (test_sound_check_verifier.SoundCheckVerifierTests.test_guard_output_leak_is_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:45.9162440Z test_post_effect_instead_of_dry_recording_is_rejected (test_sound_check_verifier.SoundCheckVerifierTests.test_post_effect_instead_of_dry_recording_is_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:46.0050730Z test_recording_leak_before_play_is_rejected (test_sound_check_verifier.SoundCheckVerifierTests.test_recording_leak_before_play_is_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:46.1005400Z test_signal_in_partial_tail_is_rejected (test_sound_check_verifier.SoundCheckVerifierTests.test_signal_in_partial_tail_is_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:46.1864900Z test_stereo_polarity_error_is_rejected (test_sound_check_verifier.SoundCheckVerifierTests.test_stereo_polarity_error_is_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:46.2351500Z test_truncated_capture_is_rejected (test_sound_check_verifier.SoundCheckVerifierTests.test_truncated_capture_is_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:46.3097120Z test_unreaped_helper_or_retained_clip_does_not_pass (test_sound_check_verifier.SoundCheckVerifierTests.test_unreaped_helper_or_retained_clip_does_not_pass) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:46.4345770Z test_valid_dry_clip_repeats_with_edge_fades_and_live_gain (test_sound_check_verifier.SoundCheckVerifierTests.test_valid_dry_clip_repeats_with_edge_fades_and_live_gain) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:46.5293230Z test_wrong_live_effect_gain_is_rejected (test_sound_check_verifier.SoundCheckVerifierTests.test_wrong_live_effect_gain_is_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:46.6173100Z test_wrong_playback_frequency_is_rejected (test_sound_check_verifier.SoundCheckVerifierTests.test_wrong_playback_frequency_is_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:46.6175650Z test_bad_ids_are_rejected (test_virtual_devices.DriverConfigurationTests.test_bad_ids_are_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:48.2046750Z test_built_bundles_and_isolation (test_virtual_devices.DriverConfigurationTests.test_built_bundles_and_isolation) ... /private/var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/ravelink-driver-test-1z3qajbb/devices/.ravelink-ijlii3s2/RaveLink-test-one.driver: replacing existing signature
+macos	Driver source and bundle tests	2026-10-23T20:54:50.5943960Z /private/var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/ravelink-driver-test-1z3qajbb/devices/.ravelink-9eegky2n/RaveLink-test-two.driver: replacing existing signature
+macos	Driver source and bundle tests	2026-10-23T20:54:50.8731950Z PASS: 2 bundles; identity, virtual transport, formats, hidden mirror, malformed request, 4096-block loopback per bundle, ring wrap, silence, clock, instance isolation, client lifecycle.
+macos	Driver source and bundle tests	2026-10-23T20:54:51.0418690Z PASS: actual bundle stale-hole silence, intact adjacent frames, future-reader isolation, variable blocks, partial holes, wrap, overwritten old reads, timestamp/cycle reset, multiple-client lifecycle, malformed bounds, concurrent readers with 100000 writes.
+macos	Driver source and bundle tests	2026-10-23T20:54:51.0608020Z PASS: actual bundle stale-hole silence, intact adjacent frames, future-reader isolation, variable blocks, partial holes, wrap, overwritten old reads, timestamp/cycle reset, multiple-client lifecycle, malformed bounds, concurrent readers with 100000 writes.
+macos	Driver source and bundle tests	2026-10-23T20:54:51.1138210Z /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/ravelink-driver-test-1z3qajbb/devices/RaveLink-test-one.driver: a sealed resource is missing or invalid
+macos	Driver source and bundle tests	2026-10-23T20:54:51.1165610Z ok
+macos	Driver source and bundle tests	2026-10-23T20:54:51.1847240Z test_duplicate_id_fails_before_build (test_virtual_devices.DriverConfigurationTests.test_duplicate_id_fails_before_build) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:51.1983980Z test_exact_local_patch_and_corresponding_source (test_virtual_devices.DriverConfigurationTests.test_exact_local_patch_and_corresponding_source) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:51.1986490Z test_format_injection_and_controls_are_rejected (test_virtual_devices.DriverConfigurationTests.test_format_injection_and_controls_are_rejected) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:51.5254560Z test_invalid_channel_counts_fail_before_build (test_virtual_devices.DriverConfigurationTests.test_invalid_channel_counts_fail_before_build) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:51.5279410Z test_modified_patch_fails_closed (test_virtual_devices.DriverConfigurationTests.test_modified_patch_fails_closed) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:51.5934650Z test_no_admin_install (test_virtual_devices.DriverConfigurationTests.test_no_admin_install) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:51.5939130Z test_pinned_source_hashes (test_virtual_devices.DriverConfigurationTests.test_pinned_source_hashes) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:51.5940030Z test_stable_id_and_editable_label (test_virtual_devices.DriverConfigurationTests.test_stable_id_and_editable_label) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:51.5945200Z test_duplicate_uninstall_aliases_fail_before_root_or_filesystem_work (test_virtual_lifecycle.VirtualLifecycleTests.test_duplicate_uninstall_aliases_fail_before_root_or_filesystem_work) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:51.6183800Z test_every_component_checks_later_downgrade_before_any_payload (test_virtual_lifecycle.VirtualLifecycleTests.test_every_component_checks_later_downgrade_before_any_payload) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:51.6816670Z test_invalid_release_fails_before_creating_output (test_virtual_lifecycle.VirtualLifecycleTests.test_invalid_release_fails_before_creating_output) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:51.7125840Z test_preinstall_allows_fresh_upgrade_and_same_build_repair (test_virtual_lifecycle.VirtualLifecycleTests.test_preinstall_allows_fresh_upgrade_and_same_build_repair) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:51.7186510Z test_preinstall_refuses_redirected_parent_without_following_it (test_virtual_lifecycle.VirtualLifecycleTests.test_preinstall_refuses_redirected_parent_without_following_it) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:51.7251080Z test_preinstall_refuses_symlink_destination (test_virtual_lifecycle.VirtualLifecycleTests.test_preinstall_refuses_symlink_destination) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:51.7705160Z test_preinstall_rejects_downgrade_identity_mismatch_and_unknown_build (test_virtual_lifecycle.VirtualLifecycleTests.test_preinstall_rejects_downgrade_identity_mismatch_and_unknown_build) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:52.5253260Z test_real_product_archive_has_per_device_receipts_and_versioned_payload (test_virtual_lifecycle.VirtualLifecycleTests.test_real_product_archive_has_per_device_receipts_and_versioned_payload) ... /private/var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/tmpmv11_wy2/devices/.ravelink-erm4cjic/RaveLink-receipt-a.driver: replacing existing signature
+macos	Driver source and bundle tests	2026-10-23T20:54:53.4595440Z /private/var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/tmpmv11_wy2/devices/.ravelink-4sz2zeex/RaveLink-receipt-b.driver: replacing existing signature
+macos	Driver source and bundle tests	2026-10-23T20:54:53.5618620Z /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/tmpmv11_wy2/devices/RaveLink-receipt-a.driver: replacing existing signature
+macos	Driver source and bundle tests	2026-10-23T20:54:55.6349900Z ok
+macos	Driver source and bundle tests	2026-10-23T20:54:55.6351430Z test_release_identifiers_and_build_numbers_are_explicit (test_virtual_lifecycle.VirtualLifecycleTests.test_release_identifiers_and_build_numbers_are_explicit) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:55.6369480Z test_uninstall_preflights_all_bundles_and_forgets_only_owned_receipts (test_virtual_lifecycle.VirtualLifecycleTests.test_uninstall_preflights_all_bundles_and_forgets_only_owned_receipts) ... ok
+macos	Driver source and bundle tests	2026-10-23T20:54:55.6370500Z 
+macos	Driver source and bundle tests	2026-10-23T20:54:55.6370880Z ----------------------------------------------------------------------
+macos	Driver source and bundle tests	2026-10-23T20:54:55.6371430Z Ran 103 tests in 19.443s
+macos	Driver source and bundle tests	2026-10-23T20:54:55.6371820Z 
+macos	Driver source and bundle tests	2026-10-23T20:54:55.6372070Z OK (skipped=1)
+macos	Driver source and bundle tests	2026-10-23T20:54:55.6373080Z Created /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/tmpmv11_wy2/devices.pkg. macOS restart required after installation; package never restarts audio services.
+macos	Driver source and bundle tests	2026-10-23T20:54:55.6374530Z Package is unsigned.
+macos	Driver source and bundle tests	2026-10-23T20:54:55.6375120Z Removed /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/tmp0kz1gtma/RaveLink-voice.driver
+macos	Driver source and bundle tests	2026-10-23T20:54:55.6375950Z Removed /var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/tmp0kz1gtma/RaveLink-music.driver
+macos	Driver source and bundle tests	2026-10-23T20:54:55.6376700Z Restart macOS after closing audio apps. Audio services were not restarted.
+macos	Build application	﻿2026-10-23T20:54:55.6950560Z ##[group]Run scripts/build-app.sh
+macos	Build application	2026-10-23T20:54:55.6951190Z [36;1mscripts/build-app.sh[0m
+macos	Build application	2026-10-23T20:54:55.6951680Z [36;1mditto -c -k --sequesterRsrc --keepParent build/RaveLink.app build/RaveLink-development.zip[0m
+macos	Build application	2026-10-23T20:54:55.9125030Z shell: /bin/bash -e {0}
+macos	Build application	2026-10-23T20:54:55.9125330Z ##[endgroup]
+macos	Build application	2026-10-23T20:54:58.5729940Z Building for production...
+macos	Build application	2026-10-23T20:54:58.8619220Z [0/10] Write swift-version--79AA4F9932D1E87A.txt
+macos	Build application	2026-10-23T20:54:59.1910160Z [1/10] Compiling RaveLinkRealtime SoundCheck.c
+macos	Build application	2026-10-23T20:54:59.2017680Z [1/10] Write sources
+macos	Build application	2026-10-23T20:55:00.4146200Z [3/10] Compiling RaveLinkRealtime Clock.c
+macos	Build application	2026-10-23T20:55:00.6461510Z [4/11] Compiling RaveLinkRealtime Realtime.c
+macos	Build application	2026-10-23T20:55:00.6461950Z [5/11] Write sources
+macos	Build application	2026-10-23T20:55:01.9836470Z [7/11] Compiling RaveLinkAudioUnitBridge AudioUnitBridge.m
+macos	Build application	2026-10-23T20:55:07.0320120Z [9/11] Compiling RaveLinkCore AudioUnitEffects.swift
+macos	Build application	2026-10-23T20:55:24.6063910Z [10/12] Compiling RaveLinkAudio ApplicationIdentity.swift
+macos	Build application	2026-10-23T20:55:37.1116990Z [11/13] Compiling RaveLinkApp AudioUnitRackView.swift
+macos	Build application	2026-10-23T20:55:37.1180310Z [11/13] Write Objects.LinkFileList
+macos	Build application	2026-10-23T20:55:38.5369040Z [12/13] Linking RaveLink
+macos	Build application	2026-10-23T20:55:38.5565670Z Build of product 'RaveLink' complete! (40.11s)
+macos	Build application	2026-10-23T20:55:39.5862920Z [0/1] Planning build
+macos	Build application	2026-10-23T20:55:39.5960870Z Building for production...
+macos	Build application	2026-10-23T20:55:39.5984070Z [0/4] Write sources
+macos	Build application	2026-10-23T20:55:39.9289460Z [1/4] Write swift-version--79AA4F9932D1E87A.txt
+macos	Build application	2026-10-23T20:55:41.7227760Z [3/5] Compiling RaveLinkEngine EngineMain.swift
+macos	Build application	2026-10-23T20:55:41.7267540Z [3/5] Write Objects.LinkFileList
+macos	Build application	2026-10-23T20:55:42.4385630Z [4/5] Linking RaveLinkEngine
+macos	Build application	2026-10-23T20:55:42.4413540Z Build of product 'RaveLinkEngine' complete! (2.96s)
+macos	Build application	2026-10-23T20:55:43.2300570Z Building for production...
+macos	Build application	2026-10-23T20:55:43.2400840Z [0/4] Write sources
+macos	Build application	2026-10-23T20:55:43.4242250Z [1/4] Write swift-version--79AA4F9932D1E87A.txt
+macos	Build application	2026-10-23T20:55:45.2462570Z [3/5] Compiling RaveLinkPluginHost Render.swift
+macos	Build application	2026-10-23T20:55:45.2490360Z [3/5] Write Objects.LinkFileList
+macos	Build application	2026-10-23T20:55:45.5669360Z [4/5] Linking RaveLinkPluginHost
+macos	Build application	2026-10-23T20:55:45.5680820Z Build of product 'RaveLinkPluginHost' complete! (2.35s)
+macos	Build application	2026-10-23T20:55:50.9189830Z swift-driver version: 1.120.5 /Users/runner/work/ravelink/ravelink/build/.ravelink-app.9dZ7Iy/RaveLink.app/Contents/MacOS/RaveLinkEngine: replacing existing signature
+macos	Build application	2026-10-23T20:55:50.9376350Z /Users/runner/work/ravelink/ravelink/build/.ravelink-app.9dZ7Iy/RaveLink.app/Contents/Helpers/RaveLinkPluginHost: replacing existing signature
+macos	Build application	2026-10-23T20:55:50.9546450Z /Users/runner/work/ravelink/ravelink/build/.ravelink-app.9dZ7Iy/RaveLink.app: replacing existing signature
+macos	Build application	2026-10-23T20:55:50.9977300Z /Users/runner/work/ravelink/ravelink/build/RaveLink.app
+macos	Run actions/upload-artifact@v4	﻿2026-10-23T20:55:51.2269700Z ##[group]Run actions/upload-artifact@v4
+macos	Run actions/upload-artifact@v4	2026-10-23T20:55:51.2270130Z with:
+macos	Run actions/upload-artifact@v4	2026-10-23T20:55:51.2270370Z   name: RaveLink-development
+macos	Run actions/upload-artifact@v4	2026-10-23T20:55:51.2271130Z   path: build/RaveLink-development.zip
+macos	Run actions/upload-artifact@v4	2026-10-23T20:55:51.2271460Z   if-no-files-found: warn
+macos	Run actions/upload-artifact@v4	2026-10-23T20:55:51.2271800Z   compression-level: 6
+macos	Run actions/upload-artifact@v4	2026-10-23T20:55:51.2272040Z   overwrite: false
+macos	Run actions/upload-artifact@v4	2026-10-23T20:55:51.2272340Z   include-hidden-files: false
+macos	Run actions/upload-artifact@v4	2026-10-23T20:55:51.2272600Z ##[endgroup]
+macos	Run actions/upload-artifact@v4	2026-10-23T20:55:51.5949210Z (node:2967) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+macos	Run actions/upload-artifact@v4	2026-10-23T20:55:51.5951320Z (Use `node --trace-deprecation ...` to show where the warning was created)
+macos	Run actions/upload-artifact@v4	2026-10-23T20:55:51.5997500Z With the provided path, there will be 1 file uploaded
+macos	Run actions/upload-artifact@v4	2026-10-23T20:55:51.6028560Z Artifact name is valid!
+macos	Run actions/upload-artifact@v4	2026-10-23T20:55:51.6029020Z Root directory input is valid!
+macos	Run actions/upload-artifact@v4	2026-10-23T20:55:51.9021660Z Beginning upload of artifact content to blob storage
+macos	Run actions/upload-artifact@v4	2026-10-23T20:55:51.9806500Z (node:2967) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+macos	Run actions/upload-artifact@v4	2026-10-23T20:55:52.5082320Z Uploaded bytes 1599282
+macos	Run actions/upload-artifact@v4	2026-10-23T20:55:52.5552480Z Finished uploading artifact content to blob storage!
+macos	Run actions/upload-artifact@v4	2026-10-23T20:55:52.5554000Z SHA256 digest of uploaded artifact zip is 24c2edf7d47d01110529f6f43fa31094481b071f1f24176d5080e68452c76e8e
+macos	Run actions/upload-artifact@v4	2026-10-23T20:55:52.5558260Z Finalizing artifact upload
+macos	Run actions/upload-artifact@v4	2026-10-23T20:55:53.0188160Z Artifact RaveLink-development.zip successfully finalized. Artifact ID 12530913276
+macos	Run actions/upload-artifact@v4	2026-10-23T20:55:53.0189370Z Artifact RaveLink-development has been successfully uploaded! Final size is 1599282 bytes. Artifact ID is 12530913276
+macos	Run actions/upload-artifact@v4	2026-10-23T20:55:53.0520580Z Artifact download URL: https://github.com/thatsmethen/ravelink/actions/runs/40022691623/artifacts/12530913276
+macos	Post Run actions/checkout@v4	﻿2026-10-23T20:55:53.1466910Z Post job cleanup.
+macos	Post Run actions/checkout@v4	2026-10-23T20:55:53.4136210Z [command]/opt/homebrew/bin/git version
+macos	Post Run actions/checkout@v4	2026-10-23T20:55:53.4353850Z git version 2.55.0
+macos	Post Run actions/checkout@v4	2026-10-23T20:55:53.4389020Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/d0c9291c-a002-4f4a-bc23-9609db368610/.gitconfig'
+macos	Post Run actions/checkout@v4	2026-10-23T20:55:53.4404090Z Temporarily overriding HOME='/Users/runner/work/_temp/d0c9291c-a002-4f4a-bc23-9609db368610' before making global git config changes
+macos	Post Run actions/checkout@v4	2026-10-23T20:55:53.4406730Z Adding repository directory to the temporary git global config as a safe directory
+macos	Post Run actions/checkout@v4	2026-10-23T20:55:53.4409210Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+macos	Post Run actions/checkout@v4	2026-10-23T20:55:53.4564690Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+macos	Post Run actions/checkout@v4	2026-10-23T20:55:53.4655040Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+macos	Post Run actions/checkout@v4	2026-10-23T20:55:53.6486100Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+macos	Post Run actions/checkout@v4	2026-10-23T20:55:53.6582660Z http.https://github.com/.extraheader
+macos	Post Run actions/checkout@v4	2026-10-23T20:55:53.6591080Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+macos	Post Run actions/checkout@v4	2026-10-23T20:55:53.6666760Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+macos	Post Run actions/checkout@v4	2026-10-23T20:55:53.7667420Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+macos	Post Run actions/checkout@v4	2026-10-23T20:55:53.7958480Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+macos	Complete job	﻿2026-10-23T20:55:53.9224140Z Cleaning up orphan processes
+macos	Complete job	2026-10-23T20:55:55.0835240Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+installed-driver	Set up job	﻿2026-10-23T20:53:40.7022890Z Current runner version: '2.338.0'
+installed-driver	Set up job	2026-10-23T20:53:40.7042880Z ##[group]Runner Image Provisioner
+installed-driver	Set up job	2026-10-23T20:53:40.7043680Z Hosted Compute Agent
+installed-driver	Set up job	2026-10-23T20:53:40.7044060Z Version: 20260828.587
+installed-driver	Set up job	2026-10-23T20:53:40.7044460Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+installed-driver	Set up job	2026-10-23T20:53:40.7044930Z Build Date: 2026-08-28T16:44:25Z
+installed-driver	Set up job	2026-10-23T20:53:40.7045360Z Worker ID: {077c63d9-002b-41e2-9cc8-66919aa9f732}
+installed-driver	Set up job	2026-10-23T20:53:40.7045830Z Azure Region: westus
+installed-driver	Set up job	2026-10-23T20:53:40.7046260Z ##[endgroup]
+installed-driver	Set up job	2026-10-23T20:53:40.7047350Z ##[group]Operating System
+installed-driver	Set up job	2026-10-23T20:53:40.7047830Z macOS
+installed-driver	Set up job	2026-10-23T20:53:40.7048150Z 15.7.9
+installed-driver	Set up job	2026-10-23T20:53:40.7048480Z 24G830
+installed-driver	Set up job	2026-10-23T20:53:40.7048910Z ##[endgroup]
+installed-driver	Set up job	2026-10-23T20:53:40.7049270Z ##[group]Runner Image
+installed-driver	Set up job	2026-10-23T20:53:40.7049640Z Image: macos-15-arm64
+installed-driver	Set up job	2026-10-23T20:53:40.7050080Z Version: 20260907.0337.1
+installed-driver	Set up job	2026-10-23T20:53:40.7050870Z Included Software: https://github.com/actions/runner-images/blob/macos-15-arm64/20260907.0337/images/macos/macos-15-arm64-Readme.md
+installed-driver	Set up job	2026-10-23T20:53:40.7052070Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-15-arm64%2F20260907.0337
+installed-driver	Set up job	2026-10-23T20:53:40.7053090Z ##[endgroup]
+installed-driver	Set up job	2026-10-23T20:53:40.7054000Z ##[group]GITHUB_TOKEN Permissions
+installed-driver	Set up job	2026-10-23T20:53:40.7055750Z Contents: read
+installed-driver	Set up job	2026-10-23T20:53:40.7056160Z Metadata: read
+installed-driver	Set up job	2026-10-23T20:53:40.7056790Z ##[endgroup]
+installed-driver	Set up job	2026-10-23T20:53:40.7058530Z Secret source: Actions
+installed-driver	Set up job	2026-10-23T20:53:40.7059150Z Cache mode: write
+installed-driver	Set up job	2026-10-23T20:53:40.7059650Z Prepare workflow directory
+installed-driver	Set up job	2026-10-23T20:53:40.7680680Z Prepare all required actions
+installed-driver	Set up job	2026-10-23T20:53:40.7738010Z Getting action download info
+installed-driver	Set up job	2026-10-23T20:53:41.2339710Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+installed-driver	Set up job	2026-10-23T20:53:41.5173470Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+installed-driver	Set up job	2026-10-23T20:53:41.7833800Z Complete job name: installed-driver
+installed-driver	Run actions/checkout@v4	﻿2026-10-23T20:53:41.8558620Z ##[group]Run actions/checkout@v4
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:41.8563180Z with:
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:41.8563640Z   repository: thatsmethen/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:41.8566890Z   token: ***
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:41.8567290Z   ssh-strict: true
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:41.8567690Z   ssh-user: git
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:41.8568020Z   persist-credentials: true
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:41.8568370Z   clean: true
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:41.8568760Z   sparse-checkout-cone-mode: true
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:41.8569170Z   fetch-depth: 1
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:41.8569480Z   fetch-tags: false
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:41.8569800Z   show-progress: true
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:41.8570190Z   lfs: false
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:41.8570520Z   submodules: false
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:41.8570870Z   set-safe-directory: true
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:41.8571300Z   allow-unsafe-pr-checkout: false
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:41.8572140Z env:
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:41.8572480Z   RAVELINK_TEST_CONFIGURATION: release
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:41.8572860Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.3571840Z Syncing repository: thatsmethen/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.3573850Z ##[group]Getting Git version info
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.3574570Z Working directory is '/Users/runner/work/ravelink/ravelink'
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.3575850Z [command]/opt/homebrew/bin/git version
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.4939560Z git version 2.55.0
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.4956020Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.4962190Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/7dda239b-2b16-4a49-90ab-116ce0de96cc/.gitconfig'
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.4970390Z Temporarily overriding HOME='/Users/runner/work/_temp/7dda239b-2b16-4a49-90ab-116ce0de96cc' before making global git config changes
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.4975090Z Adding repository directory to the temporary git global config as a safe directory
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.4976460Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5103500Z Deleting the contents of '/Users/runner/work/ravelink/ravelink'
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5114390Z ##[group]Initializing the repository
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5131140Z [command]/opt/homebrew/bin/git init /Users/runner/work/ravelink/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5315190Z hint: Using 'master' as the name for the initial branch. This default branch name
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5316280Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5317120Z hint: to use in all of your new repositories, which will suppress this warning,
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5317820Z hint: call:
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5318910Z hint:
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5320950Z hint: 	git config --global init.defaultBranch <name>
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5322410Z hint:
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5322970Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5323750Z hint: 'development'. The just-created branch can be renamed via this command:
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5324350Z hint:
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5324740Z hint: 	git branch -m <name>
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5325150Z hint:
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5325670Z hint: Disable this message with "git config set advice.defaultBranchName false"
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5326680Z Initialized empty Git repository in /Users/runner/work/ravelink/ravelink/.git/
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5332830Z [command]/opt/homebrew/bin/git remote add origin https://github.com/thatsmethen/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5406650Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5407530Z ##[group]Disabling automatic garbage collection
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5409960Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5474850Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5475770Z ##[group]Setting up auth
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5481210Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.5551990Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.6533030Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.6593140Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.7456640Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.7511110Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.8592700Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.8668130Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.8669550Z ##[group]Fetching the repository
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:42.8673980Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +f733a8c26124b1ace95b85624222f091516e93eb:refs/remotes/origin/main
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:43.7858500Z From https://github.com/thatsmethen/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:43.7860080Z  * [new ref]         f733a8c26124b1ace95b85624222f091516e93eb -> origin/main
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:43.7862720Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:43.7865400Z ##[group]Determining the checkout info
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:43.7866850Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:43.7868730Z [command]/opt/homebrew/bin/git sparse-checkout disable
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:43.7990020Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:43.8086100Z ##[group]Checking out the ref
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:43.8092450Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:43.9229200Z Switched to a new branch 'main'
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:43.9243190Z branch 'main' set up to track 'origin/main'.
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:43.9247140Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:43.9366050Z [command]/opt/homebrew/bin/git log -1 --format=%H
+installed-driver	Run actions/checkout@v4	2026-10-23T20:53:43.9481010Z f733a8c26124b1ace95b85624222f091516e93eb
+installed-driver	Host identity	﻿2026-10-23T20:53:44.0201430Z ##[group]Run sw_vers
+installed-driver	Host identity	2026-10-23T20:53:44.0204340Z [36;1msw_vers[0m
+installed-driver	Host identity	2026-10-23T20:53:44.0205810Z [36;1muname -m[0m
+installed-driver	Host identity	2026-10-23T20:53:44.0274280Z shell: /bin/bash -e {0}
+installed-driver	Host identity	2026-10-23T20:53:44.0275200Z env:
+installed-driver	Host identity	2026-10-23T20:53:44.0277290Z   RAVELINK_TEST_CONFIGURATION: release
+installed-driver	Host identity	2026-10-23T20:53:44.0279190Z ##[endgroup]
+installed-driver	Host identity	2026-10-23T20:53:44.0973510Z ProductName:		macOS
+installed-driver	Host identity	2026-10-23T20:53:44.0980640Z ProductVersion:		15.7.9
+installed-driver	Host identity	2026-10-23T20:53:44.0982640Z BuildVersion:		24G830
+installed-driver	Host identity	2026-10-23T20:53:44.1008850Z arm64
+installed-driver	Build isolated test device	﻿2026-10-23T20:53:44.1126180Z ##[group]Run python3 scripts/virtual-devices.py build --channels 8 --device ci-loopback:CILoopback --device ci-mix-a:CIMixA --device ci-mix-b:CIMixB --output build/ci-drivers
+installed-driver	Build isolated test device	2026-10-23T20:53:44.1130610Z [36;1mpython3 scripts/virtual-devices.py build --channels 8 --device ci-loopback:CILoopback --device ci-mix-a:CIMixA --device ci-mix-b:CIMixB --output build/ci-drivers[0m
+installed-driver	Build isolated test device	2026-10-23T20:53:44.1133870Z [36;1mshasum -a 256 build/ci-drivers/*.driver/Contents/MacOS/* > build/driver-binary-sha256.txt[0m
+installed-driver	Build isolated test device	2026-10-23T20:53:44.1178750Z shell: /bin/bash -e {0}
+installed-driver	Build isolated test device	2026-10-23T20:53:44.1179630Z env:
+installed-driver	Build isolated test device	2026-10-23T20:53:44.1181230Z   RAVELINK_TEST_CONFIGURATION: release
+installed-driver	Build isolated test device	2026-10-23T20:53:44.1182520Z ##[endgroup]
+installed-driver	Build isolated test device	2026-10-23T20:53:49.4964110Z /Users/runner/work/ravelink/ravelink/build/ci-drivers/.ravelink-03_3mc7k/RaveLink-ci-loopback.driver: replacing existing signature
+installed-driver	Build isolated test device	2026-10-23T20:53:52.6366300Z /Users/runner/work/ravelink/ravelink/build/ci-drivers/.ravelink-3n8_hutr/RaveLink-ci-mix-a.driver: replacing existing signature
+installed-driver	Build isolated test device	2026-10-23T20:53:54.2672450Z /Users/runner/work/ravelink/ravelink/build/ci-drivers/.ravelink-oa4s6o9_/RaveLink-ci-mix-b.driver: replacing existing signature
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3268270Z [
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3268900Z   {
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3286840Z     "id": "ci-loopback",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3287530Z     "name": "RaveLink CILoopback",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3289010Z     "bundle": "RaveLink-ci-loopback.driver",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3289520Z     "bundleID": "au.textual.ravelink.audio.ci-loopback",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3290230Z     "deviceUID": "RaveLink.ci-loopback_UID",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3292250Z     "factoryUUID": "4EE93CF6-9DEC-5D17-AC9E-507705C24D80",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3292830Z     "channels": 8,
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3293150Z     "architectures": [
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3350250Z       "arm64",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3354160Z       "x86_64"
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3387130Z     ],
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3388080Z     "minimumMacOS": "12.0",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3388530Z     "upstream": {
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3389310Z       "repository": "https://github.com/ExistentialAudio/BlackHole",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3390230Z       "commit": "561d934c77a1fa64987e01ccabe890fed30e181f",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3390720Z       "version": "0.7.1",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3390920Z       "license": "GPL-3.0-only",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3391130Z       "files": {
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3391440Z         "BlackHole.c": "05f1fa61e2502072ddbc797717713b20e43e2e55e08d445312aeb55dad879c7b",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3392310Z         "LICENSE": "d5134ba41d942612bdf5ab79b32b3ddc2458f55e16437390bd81be8f2e0811e0",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3392840Z         "VERSION": "902311c7bb38fa1658ff403def6158ee7378fe9d6e2e284fa1c38735c31bd30b"
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3393170Z       }
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3393310Z     },
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3393500Z     "localPatches": {
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3393740Z       "schemaVersion": 1,
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3394100Z       "upstreamSourceSHA256": "05f1fa61e2502072ddbc797717713b20e43e2e55e08d445312aeb55dad879c7b",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3394610Z       "patches": [
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3394830Z         {
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3395010Z           "file": "0001-frame-validity.patch",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3395380Z           "sha256": "6f70030ec75653118eacd8d952b5e1f205dfecb79de27fde282586392962fbdd"
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3395700Z         }
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3395850Z       ],
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3396240Z       "patchedSourceSHA256": "d4b7acf0977adbadca8a3d68f0aa5a019db3e768ab7f23fd0a15bba3d51b22ff"
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3396620Z     },
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3398000Z     "codeSigning": "ad-hoc",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3402600Z     "notarized": false,
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3402830Z     "version": "0.1.0",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3403040Z     "buildNumber": 1,
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3403410Z     "path": "/Users/runner/work/ravelink/ravelink/build/ci-drivers/RaveLink-ci-loopback.driver"
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3403810Z   },
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3404010Z   {
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3404240Z     "id": "ci-mix-a",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3404450Z     "name": "RaveLink CIMixA",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3404750Z     "bundle": "RaveLink-ci-mix-a.driver",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3405550Z     "bundleID": "au.textual.ravelink.audio.ci-mix-a",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3405880Z     "deviceUID": "RaveLink.ci-mix-a_UID",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3406180Z     "factoryUUID": "79BFB084-794D-5178-BC4B-6BD325BAF05D",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3406490Z     "channels": 8,
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3406660Z     "architectures": [
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3406830Z       "arm64",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3407010Z       "x86_64"
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3407150Z     ],
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3407340Z     "minimumMacOS": "12.0",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3407520Z     "upstream": {
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3407860Z       "repository": "https://github.com/ExistentialAudio/BlackHole",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3408210Z       "commit": "561d934c77a1fa64987e01ccabe890fed30e181f",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3408530Z       "version": "0.7.1",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3408720Z       "license": "GPL-3.0-only",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3408910Z       "files": {
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3409220Z         "BlackHole.c": "05f1fa61e2502072ddbc797717713b20e43e2e55e08d445312aeb55dad879c7b",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3409740Z         "LICENSE": "d5134ba41d942612bdf5ab79b32b3ddc2458f55e16437390bd81be8f2e0811e0",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3410210Z         "VERSION": "902311c7bb38fa1658ff403def6158ee7378fe9d6e2e284fa1c38735c31bd30b"
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3410560Z       }
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3410770Z     },
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3411850Z     "localPatches": {
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3412450Z       "schemaVersion": 1,
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3412830Z       "upstreamSourceSHA256": "05f1fa61e2502072ddbc797717713b20e43e2e55e08d445312aeb55dad879c7b",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3413220Z       "patches": [
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3413390Z         {
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3413550Z           "file": "0001-frame-validity.patch",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3413980Z           "sha256": "6f70030ec75653118eacd8d952b5e1f205dfecb79de27fde282586392962fbdd"
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3414290Z         }
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3414440Z       ],
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3414740Z       "patchedSourceSHA256": "d4b7acf0977adbadca8a3d68f0aa5a019db3e768ab7f23fd0a15bba3d51b22ff"
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3415140Z     },
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3415280Z     "codeSigning": "ad-hoc",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3415490Z     "notarized": false,
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3415760Z     "version": "0.1.0",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3416010Z     "buildNumber": 1,
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3416390Z     "path": "/Users/runner/work/ravelink/ravelink/build/ci-drivers/RaveLink-ci-mix-a.driver"
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3416810Z   },
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3417010Z   {
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3417200Z     "id": "ci-mix-b",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3417410Z     "name": "RaveLink CIMixB",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3417610Z     "bundle": "RaveLink-ci-mix-b.driver",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3417890Z     "bundleID": "au.textual.ravelink.audio.ci-mix-b",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3418170Z     "deviceUID": "RaveLink.ci-mix-b_UID",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3418450Z     "factoryUUID": "0B80C012-D957-52EE-AFA4-731C5EEC9694",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3418710Z     "channels": 8,
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3418890Z     "architectures": [
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3419120Z       "arm64",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3419300Z       "x86_64"
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3419500Z     ],
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3419650Z     "minimumMacOS": "12.0",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3419910Z     "upstream": {
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3420220Z       "repository": "https://github.com/ExistentialAudio/BlackHole",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3420590Z       "commit": "561d934c77a1fa64987e01ccabe890fed30e181f",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3420860Z       "version": "0.7.1",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3421090Z       "license": "GPL-3.0-only",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3421630Z       "files": {
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3421920Z         "BlackHole.c": "05f1fa61e2502072ddbc797717713b20e43e2e55e08d445312aeb55dad879c7b",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3422390Z         "LICENSE": "d5134ba41d942612bdf5ab79b32b3ddc2458f55e16437390bd81be8f2e0811e0",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3422840Z         "VERSION": "902311c7bb38fa1658ff403def6158ee7378fe9d6e2e284fa1c38735c31bd30b"
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3423440Z       }
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3423590Z     },
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3423750Z     "localPatches": {
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3427620Z       "schemaVersion": 1,
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3428110Z       "upstreamSourceSHA256": "05f1fa61e2502072ddbc797717713b20e43e2e55e08d445312aeb55dad879c7b",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3428500Z       "patches": [
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3428660Z         {
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3428850Z           "file": "0001-frame-validity.patch",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3429210Z           "sha256": "6f70030ec75653118eacd8d952b5e1f205dfecb79de27fde282586392962fbdd"
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3429650Z         }
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3429890Z       ],
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3430320Z       "patchedSourceSHA256": "d4b7acf0977adbadca8a3d68f0aa5a019db3e768ab7f23fd0a15bba3d51b22ff"
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3430690Z     },
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3430900Z     "codeSigning": "ad-hoc",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3431150Z     "notarized": false,
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3431340Z     "version": "0.1.0",
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3431540Z     "buildNumber": 1,
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3431950Z     "path": "/Users/runner/work/ravelink/ravelink/build/ci-drivers/RaveLink-ci-mix-b.driver"
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3432400Z   }
+installed-driver	Build isolated test device	2026-10-23T20:53:54.3432550Z ]
+installed-driver	Install into disposable runner	﻿2026-10-23T20:53:54.4630910Z ##[group]Run sudo python3 scripts/virtual-devices.py install build/ci-drivers/*.driver
+installed-driver	Install into disposable runner	2026-10-23T20:53:54.4631850Z [36;1msudo python3 scripts/virtual-devices.py install build/ci-drivers/*.driver[0m
+installed-driver	Install into disposable runner	2026-10-23T20:53:54.4632370Z [36;1msudo killall coreaudiod || true[0m
+installed-driver	Install into disposable runner	2026-10-23T20:53:54.4632690Z [36;1msleep 5[0m
+installed-driver	Install into disposable runner	2026-10-23T20:53:54.5032030Z shell: /bin/bash -e {0}
+installed-driver	Install into disposable runner	2026-10-23T20:53:54.5032430Z env:
+installed-driver	Install into disposable runner	2026-10-23T20:53:54.5032620Z   RAVELINK_TEST_CONFIGURATION: release
+installed-driver	Install into disposable runner	2026-10-23T20:53:54.5032870Z ##[endgroup]
+installed-driver	Install into disposable runner	2026-10-23T20:53:55.9034800Z Installed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-loopback.driver
+installed-driver	Install into disposable runner	2026-10-23T20:53:55.9035370Z Installed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-mix-a.driver
+installed-driver	Install into disposable runner	2026-10-23T20:53:55.9035740Z Installed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-mix-b.driver
+installed-driver	Install into disposable runner	2026-10-23T20:53:55.9036770Z Restart macOS after closing audio apps to activate these devices. Audio services were not restarted.
+installed-driver	Compile integration tests	﻿2026-10-23T20:54:01.0064250Z ##[group]Run set -o pipefail
+installed-driver	Compile integration tests	2026-10-23T20:54:01.0064700Z [36;1mset -o pipefail[0m
+installed-driver	Compile integration tests	2026-10-23T20:54:01.0065100Z [36;1mprintf '%s\n' "$RAVELINK_TEST_CONFIGURATION" > build/integration-configuration.txt[0m
+installed-driver	Compile integration tests	2026-10-23T20:54:01.0065870Z [36;1mscripts/test.sh --filter testInvalidStartFailsWithActionableErrorAndStaysStopped 2>&1 | tee build/integration-compile.log[0m
+installed-driver	Compile integration tests	2026-10-23T20:54:01.0067040Z [36;1mshasum -a 256 .build/release/RaveLinkEngine .build/release/RaveLinkPluginHost .build/release/RaveLinkPackageTests.xctest/Contents/MacOS/RaveLinkPackageTests > build/integration-binary-sha256.txt[0m
+installed-driver	Compile integration tests	2026-10-23T20:54:01.0109210Z shell: /bin/bash -e {0}
+installed-driver	Compile integration tests	2026-10-23T20:54:01.0109520Z env:
+installed-driver	Compile integration tests	2026-10-23T20:54:01.0109770Z   RAVELINK_TEST_CONFIGURATION: release
+installed-driver	Compile integration tests	2026-10-23T20:54:01.0110080Z ##[endgroup]
+installed-driver	Compile integration tests	2026-10-23T20:54:07.5664150Z Building for production...
+installed-driver	Compile integration tests	2026-10-23T20:54:07.5727650Z [0/23] /Users/runner/work/ravelink/ravelink/.build/arm64-apple-macosx/release/RaveLinkPackageTests.derived/runner.swift
+installed-driver	Compile integration tests	2026-10-23T20:54:07.8248620Z [1/23] Write swift-version--79AA4F9932D1E87A.txt
+installed-driver	Compile integration tests	2026-10-23T20:54:08.2679410Z [2/23] Compiling RaveLinkRealtime SoundCheck.c
+installed-driver	Compile integration tests	2026-10-23T20:54:08.2707250Z [2/23] Write sources
+installed-driver	Compile integration tests	2026-10-23T20:54:09.0229910Z [8/23] Compiling RaveLinkRealtime Realtime.c
+installed-driver	Compile integration tests	2026-10-23T20:54:09.0745970Z [9/23] Compiling RaveLinkRealtime Clock.c
+installed-driver	Compile integration tests	2026-10-23T20:54:10.7290450Z [10/25] Compiling RaveLinkAudioUnitBridge AudioUnitBridge.m
+installed-driver	Compile integration tests	2026-10-23T20:54:10.7408500Z [11/25] Write sources
+installed-driver	Compile integration tests	2026-10-23T20:54:17.3895830Z [16/25] Compiling RaveLinkPluginHost Render.swift
+installed-driver	Compile integration tests	2026-10-23T20:54:17.3956890Z [16/25] Write Objects.LinkFileList
+installed-driver	Compile integration tests	2026-10-23T20:54:17.4405250Z [18/25] Compiling RaveLinkCore AudioUnitEffects.swift
+installed-driver	Compile integration tests	2026-10-23T20:54:18.4105300Z [18/27] Linking RaveLinkPluginHost
+installed-driver	Compile integration tests	2026-10-23T20:54:29.3250280Z [20/27] Compiling RaveLinkCoreTests AudioUnitSessionTests.swift
+installed-driver	Compile integration tests	2026-10-23T20:54:46.4844800Z [21/27] Compiling RaveLinkAudio ApplicationIdentity.swift
+installed-driver	Compile integration tests	2026-10-23T20:54:49.5388520Z [22/30] Compiling RaveLinkEngine EngineMain.swift
+installed-driver	Compile integration tests	2026-10-23T20:54:49.5489140Z [22/30] Write Objects.LinkFileList
+installed-driver	Compile integration tests	2026-10-23T20:54:51.0536880Z [23/30] Linking RaveLinkEngine
+installed-driver	Compile integration tests	2026-10-23T20:55:04.9349810Z [25/30] Compiling RaveLinkApp AudioUnitRackView.swift
+installed-driver	Compile integration tests	2026-10-23T20:55:04.9454150Z [25/30] Write Objects.LinkFileList
+installed-driver	Compile integration tests	2026-10-23T20:55:06.1602670Z [26/30] Linking RaveLink
+installed-driver	Compile integration tests	2026-10-23T20:55:07.8145690Z [28/31] Compiling RaveLinkAppTests SoundCheckIsolationTests.swift
+installed-driver	Compile integration tests	2026-10-23T20:55:20.5605450Z [29/31] Compiling RaveLinkAudioTests ApplicationMembershipTests.swift
+installed-driver	Compile integration tests	2026-10-23T20:55:21.0277410Z [30/32] Compiling RaveLinkPackageTests runner.swift
+installed-driver	Compile integration tests	2026-10-23T20:55:21.0366300Z [30/32] Write Objects.LinkFileList
+installed-driver	Compile integration tests	2026-10-23T20:55:22.2946550Z [31/32] Linking RaveLinkPackageTests
+installed-driver	Compile integration tests	2026-10-23T20:55:22.2998860Z Build complete! (74.81s)
+installed-driver	Compile integration tests	2026-10-23T20:55:22.3718920Z ◇ Test run started.
+installed-driver	Compile integration tests	2026-10-23T20:55:22.3719720Z ↳ Testing Library Version: 124.4
+installed-driver	Compile integration tests	2026-10-23T20:55:22.3720450Z ↳ Target Platform: arm64e-apple-macos14.0
+installed-driver	Compile integration tests	2026-10-23T20:55:22.3725540Z ◇ Suite AudioCoordinatorTests started.
+installed-driver	Compile integration tests	2026-10-23T20:55:22.3726310Z ◇ Test testInvalidStartFailsWithActionableErrorAndStaysStopped() started.
+installed-driver	Compile integration tests	2026-10-23T20:55:22.3727230Z ✔ Test testInvalidStartFailsWithActionableErrorAndStaysStopped() passed after 0.006 seconds.
+installed-driver	Compile integration tests	2026-10-23T20:55:22.3727810Z ✔ Suite AudioCoordinatorTests passed after 0.006 seconds.
+installed-driver	Compile integration tests	2026-10-23T20:55:22.3730490Z ✔ Test run with 1 test passed after 0.006 seconds.
+installed-driver	Actual installed HAL loopback	﻿2026-10-23T20:55:22.5335370Z ##[group]Run set -o pipefail
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:22.5335900Z [36;1mset -o pipefail[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:22.5336140Z [36;1mrm -f build/receiver-ready[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:22.5336540Z [36;1mpython3 scripts/audio-device-probe.py --list > build/installed-devices.txt[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:22.5337500Z [36;1mpython3 scripts/audio-device-probe.py --uid RaveLink.ci-loopback_UID --capture-seconds 12 --wav build/independent-loopback.wav --ready-file build/receiver-ready --timeout 25 > build/receiver.log 2>&1 &[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:22.5338200Z [36;1mreceiver_pid=$![0m
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:22.5338670Z [36;1mtrap 'kill "$receiver_pid" 2>/dev/null || true; wait "$receiver_pid" 2>/dev/null || true' EXIT[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:22.5339060Z [36;1mfor attempt in {1..15}; do[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:22.5339400Z [36;1m  if [ -f build/receiver-ready ]; then break; fi[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:22.5339780Z [36;1m  if ! kill -0 "$receiver_pid" 2>/dev/null; then cat build/receiver.log; exit 1; fi[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:22.5340280Z [36;1m  sleep 1[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:22.5340640Z [36;1mdone[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:22.5340950Z [36;1mtest -f build/receiver-ready[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:22.5341440Z [36;1mscripts/test.sh --skip-build --filter testBlackHoleLoopbackAndLiveBusControls 2>&1 | tee build/installed-driver-test.log[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:22.5342230Z [36;1mwait "$receiver_pid"[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:22.5342730Z [36;1mpython3 scripts/verify-loopback.py build/independent-loopback.wav | tee build/independent-loopback.json[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:22.5586150Z shell: /bin/bash -e {0}
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:22.5586480Z env:
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:22.5586810Z   RAVELINK_TEST_CONFIGURATION: release
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:22.5587300Z   RAVELINK_TEST_LOOPBACK: 1
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:22.5587750Z   RAVELINK_LOOPBACK_DEVICE_UID: RaveLink.ci-loopback_UID
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:22.5588110Z ##[endgroup]
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:25.7966790Z [0/1] Planning build
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:30.4827390Z ◇ Test run started.
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:30.4935930Z ↳ Testing Library Version: 124.4
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:30.5152620Z ↳ Target Platform: arm64e-apple-macos14.0
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:30.5260290Z ◇ Suite AudioCoordinatorTests started.
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:30.5493520Z ◇ Test testBlackHoleLoopbackAndLiveBusControls() started.
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:30.5541040Z ✘ Test testBlackHoleLoopbackAndLiveBusControls() recorded an issue at RealtimeTests.swift:193:20: Expectation failed: (abs(a - b) → 0.0060514957) <= (accuracy → 0.003)
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:30.5658120Z ✘ Test testBlackHoleLoopbackAndLiveBusControls() recorded an issue at RealtimeTests.swift:201:20: Expectation failed: (abs(a - b) → 0.03314283) <= (accuracy → 0.003)
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:30.5760440Z VIRTUAL_DRIVER_LIVE_EVIDENCE uid=RaveLink.ci-loopback_UID rate=48000.0 unityPeak=0.131944 minus12dBPeak=0.0 mutedPeak=0.0 capturedFrames=100864 renderedFrames=100864 droppedFrames=0 underrunFrames=0
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:30.5863030Z ✘ Test testBlackHoleLoopbackAndLiveBusControls() failed after 4.642 seconds with 2 issues.
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:30.5927890Z ↳ /// Opt-in because this opens a real driver. It never changes the system default
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:30.5932780Z ↳ /// devices and every return path stops both capture and render IOProcs.
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:30.5934680Z ✘ Suite AudioCoordinatorTests failed after 4.642 seconds with 2 issues.
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:30.5935830Z ✘ Test run with 1 test failed after 4.642 seconds with 2 issues.
+installed-driver	Actual installed HAL loopback	2026-10-23T20:55:30.5968790Z ##[error]Process completed with exit code 1.
+installed-driver	Grouped real input and eight mix soak	﻿2026-10-23T20:55:30.6354890Z ##[group]Run scripts/run-device-soak.sh
+installed-driver	Grouped real input and eight mix soak	2026-10-23T20:55:30.6355540Z [36;1mscripts/run-device-soak.sh[0m
+installed-driver	Grouped real input and eight mix soak	2026-10-23T20:55:30.6432860Z shell: /bin/bash -e {0}
+installed-driver	Grouped real input and eight mix soak	2026-10-23T20:55:30.6433240Z env:
+installed-driver	Grouped real input and eight mix soak	2026-10-23T20:55:30.6433750Z   RAVELINK_TEST_CONFIGURATION: release
+installed-driver	Grouped real input and eight mix soak	2026-10-23T20:55:30.6434430Z   RAVELINK_TEST_DEVICE_SOAK: 1
+installed-driver	Grouped real input and eight mix soak	2026-10-23T20:55:30.6434830Z ##[endgroup]
+installed-driver	Grouped real input and eight mix soak	2026-10-23T20:55:33.0730120Z [0/1] Planning build
+installed-driver	Grouped real input and eight mix soak	2026-10-23T20:56:11.4924620Z ◇ Test run started.
+installed-driver	Grouped real input and eight mix soak	2026-10-23T20:56:11.5033290Z ↳ Testing Library Version: 124.4
+installed-driver	Grouped real input and eight mix soak	2026-10-23T20:56:11.5145980Z ↳ Target Platform: arm64e-apple-macos14.0
+installed-driver	Grouped real input and eight mix soak	2026-10-23T20:56:11.5250650Z ◇ Suite InstalledDeviceSoakTests started.
+installed-driver	Grouped real input and eight mix soak	2026-10-23T20:56:11.5357860Z ◇ Test installedGroupedDeviceInputThirtySecondSoak() started.
+installed-driver	Grouped real input and eight mix soak	2026-10-23T20:56:11.5460790Z DEVICE_SOAK_EVIDENCE /Users/runner/work/ravelink/ravelink/build/soak-engine.json
+installed-driver	Grouped real input and eight mix soak	2026-10-23T20:56:11.5566420Z ✔ Test installedGroupedDeviceInputThirtySecondSoak() passed after 38.341 seconds.
+installed-driver	Grouped real input and eight mix soak	2026-10-23T20:56:11.5631840Z ✔ Suite InstalledDeviceSoakTests passed after 38.341 seconds.
+installed-driver	Grouped real input and eight mix soak	2026-10-23T20:56:11.5721440Z ✔ Test run with 1 test passed after 38.341 seconds.
+installed-driver	Grouped real input and eight mix soak	2026-10-23T20:56:36.4977080Z {"engine":0,"feeder":0,"receiverA":0,"receiverB":0,"analysis":1}
+installed-driver	Grouped real input and eight mix soak	2026-10-23T20:56:36.5014830Z Device soak verification failed: Bus 0: invalid onset or missing tone
+installed-driver	Grouped real input and eight mix soak	2026-10-23T20:56:36.5086350Z ##[error]Process completed with exit code 1.
+installed-driver	Independent installed HAL Sound Check acceptance	﻿2026-10-23T20:56:36.5263570Z ##[group]Run scripts/run-sound-check.sh
+installed-driver	Independent installed HAL Sound Check acceptance	2026-10-23T20:56:36.5265090Z [36;1mscripts/run-sound-check.sh[0m
+installed-driver	Independent installed HAL Sound Check acceptance	2026-10-23T20:56:36.5799630Z shell: /bin/bash -e {0}
+installed-driver	Independent installed HAL Sound Check acceptance	2026-10-23T20:56:36.5800080Z env:
+installed-driver	Independent installed HAL Sound Check acceptance	2026-10-23T20:56:36.5800570Z   RAVELINK_TEST_CONFIGURATION: release
+installed-driver	Independent installed HAL Sound Check acceptance	2026-10-23T20:56:36.5800960Z   RAVELINK_TEST_SOUND_CHECK: 1
+installed-driver	Independent installed HAL Sound Check acceptance	2026-10-23T20:56:36.5801260Z ##[endgroup]
+installed-driver	Independent installed HAL Sound Check acceptance	2026-10-23T20:56:41.1422800Z [0/1] Planning build
+installed-driver	Independent installed HAL Sound Check acceptance	2026-10-23T20:56:53.4375240Z ◇ Test run started.
+installed-driver	Independent installed HAL Sound Check acceptance	2026-10-23T20:56:53.4391740Z ↳ Testing Library Version: 124.4
+installed-driver	Independent installed HAL Sound Check acceptance	2026-10-23T20:56:53.4393370Z ↳ Target Platform: arm64e-apple-macos14.0
+installed-driver	Independent installed HAL Sound Check acceptance	2026-10-23T20:56:53.4394210Z ◇ Suite InstalledSoundCheckTests started.
+installed-driver	Independent installed HAL Sound Check acceptance	2026-10-23T20:56:53.4401590Z ◇ Test installedSoundCheckDryRecordLoopGainAndSilence() started.
+installed-driver	Independent installed HAL Sound Check acceptance	2026-10-23T20:56:53.4404070Z SOUND_CHECK_EVIDENCE /Users/runner/work/ravelink/ravelink/build/sound-check-engine.json
+installed-driver	Independent installed HAL Sound Check acceptance	2026-10-23T20:56:53.4407210Z ✔ Test installedSoundCheckDryRecordLoopGainAndSilence() passed after 12.212 seconds.
+installed-driver	Independent installed HAL Sound Check acceptance	2026-10-23T20:56:53.4447640Z ✔ Suite InstalledSoundCheckTests passed after 12.213 seconds.
+installed-driver	Independent installed HAL Sound Check acceptance	2026-10-23T20:56:53.4461960Z ✔ Test run with 1 test passed after 12.213 seconds.
+installed-driver	Independent installed HAL Sound Check acceptance	2026-10-23T20:57:02.7219550Z {"engine":0,"output":0,"guard":0,"analysis":1}
+installed-driver	Independent installed HAL Sound Check acceptance	2026-10-23T20:57:02.7340950Z Sound Check verification failed: Unexpected unity duration: 0.200s
+installed-driver	Independent installed HAL Sound Check acceptance	2026-10-23T20:57:02.7372910Z ##[error]Process completed with exit code 1.
+installed-driver	Run actions/upload-artifact@v4	﻿2026-10-23T20:57:02.7479150Z ##[group]Run actions/upload-artifact@v4
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:02.7479500Z with:
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:02.7479780Z   name: installed-driver-evidence
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:02.7482560Z   path: build/installed-driver-test.log
+installed-driver	Run actions/upload-artifact@v4	build/integration-configuration.txt
+installed-driver	Run actions/upload-artifact@v4	build/integration-compile.log
+installed-driver	Run actions/upload-artifact@v4	build/integration-binary-sha256.txt
+installed-driver	Run actions/upload-artifact@v4	build/installed-devices.txt
+installed-driver	Run actions/upload-artifact@v4	build/receiver.log
+installed-driver	Run actions/upload-artifact@v4	build/independent-loopback.*
+installed-driver	Run actions/upload-artifact@v4	build/matrix-*.wav
+installed-driver	Run actions/upload-artifact@v4	build/matrix-*.log
+installed-driver	Run actions/upload-artifact@v4	build/matrix-analysis.json
+installed-driver	Run actions/upload-artifact@v4	build/au-*.wav
+installed-driver	Run actions/upload-artifact@v4	build/au-*.log
+installed-driver	Run actions/upload-artifact@v4	build/au-*.json
+installed-driver	Run actions/upload-artifact@v4	build/driver-binary-sha256.txt
+installed-driver	Run actions/upload-artifact@v4	build/soak-*.wav
+installed-driver	Run actions/upload-artifact@v4	build/soak-*.json
+installed-driver	Run actions/upload-artifact@v4	build/soak-*.log
+installed-driver	Run actions/upload-artifact@v4	build/sound-check-*.wav
+installed-driver	Run actions/upload-artifact@v4	build/sound-check-*.json
+installed-driver	Run actions/upload-artifact@v4	build/sound-check-*.log
+installed-driver	Run actions/upload-artifact@v4	build/ci-drivers/manifest.json
+installed-driver	Run actions/upload-artifact@v4	build/ci-drivers/*.driver/Contents/Resources/build-info.json
+installed-driver	Run actions/upload-artifact@v4	
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:02.7484500Z   if-no-files-found: warn
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:02.7484830Z   compression-level: 6
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:02.7485130Z   overwrite: false
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:02.7485680Z   include-hidden-files: false
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:02.7486060Z env:
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:02.7486340Z   RAVELINK_TEST_CONFIGURATION: release
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:02.7486710Z ##[endgroup]
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:03.1285090Z (node:4132) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:03.1285890Z (Use `node --trace-deprecation ...` to show where the warning was created)
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:03.1541870Z With the provided path, there will be 33 files uploaded
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:03.1542460Z Artifact name is valid!
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:03.1542800Z Root directory input is valid!
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:03.5640370Z Beginning upload of artifact content to blob storage
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:04.6557540Z (node:4132) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:05.7066310Z Uploaded bytes 4320231
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:05.7948110Z Finished uploading artifact content to blob storage!
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:05.7980830Z SHA256 digest of uploaded artifact zip is 6c40b0232885fda0adbee3ba08cdeab247a4f15842cc3aa22847bbba973ec6c0
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:05.8003060Z Finalizing artifact upload
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:06.2562570Z Artifact installed-driver-evidence.zip successfully finalized. Artifact ID 12531731035
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:06.2563930Z Artifact installed-driver-evidence has been successfully uploaded! Final size is 4320231 bytes. Artifact ID is 12531731035
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T20:57:06.2574130Z Artifact download URL: https://github.com/thatsmethen/ravelink/actions/runs/40022691623/artifacts/12531731035
+installed-driver	Remove test device	﻿2026-10-23T20:57:06.2689540Z ##[group]Run sudo python3 scripts/virtual-devices.py uninstall ci-loopback ci-mix-a ci-mix-b
+installed-driver	Remove test device	2026-10-23T20:57:06.2690250Z [36;1msudo python3 scripts/virtual-devices.py uninstall ci-loopback ci-mix-a ci-mix-b[0m
+installed-driver	Remove test device	2026-10-23T20:57:06.2730550Z shell: /bin/bash -e {0}
+installed-driver	Remove test device	2026-10-23T20:57:06.2730880Z env:
+installed-driver	Remove test device	2026-10-23T20:57:06.2731150Z   RAVELINK_TEST_CONFIGURATION: release
+installed-driver	Remove test device	2026-10-23T20:57:06.2731440Z ##[endgroup]
+installed-driver	Remove test device	2026-10-23T20:57:06.7481710Z Removed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-loopback.driver
+installed-driver	Remove test device	2026-10-23T20:57:06.7483660Z Removed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-mix-a.driver
+installed-driver	Remove test device	2026-10-23T20:57:06.7485020Z Removed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-mix-b.driver
+installed-driver	Remove test device	2026-10-23T20:57:06.7486390Z Restart macOS after closing audio apps. Audio services were not restarted.
+installed-driver	Post Run actions/checkout@v4	﻿2026-10-23T20:57:06.7716150Z Post job cleanup.
+installed-driver	Post Run actions/checkout@v4	2026-10-23T20:57:06.9072230Z [command]/opt/homebrew/bin/git version
+installed-driver	Post Run actions/checkout@v4	2026-10-23T20:57:06.9242910Z git version 2.55.0
+installed-driver	Post Run actions/checkout@v4	2026-10-23T20:57:06.9265890Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/57cd324d-c487-476d-98b3-a6df3417c212/.gitconfig'
+installed-driver	Post Run actions/checkout@v4	2026-10-23T20:57:06.9282850Z Temporarily overriding HOME='/Users/runner/work/_temp/57cd324d-c487-476d-98b3-a6df3417c212' before making global git config changes
+installed-driver	Post Run actions/checkout@v4	2026-10-23T20:57:06.9301080Z Adding repository directory to the temporary git global config as a safe directory
+installed-driver	Post Run actions/checkout@v4	2026-10-23T20:57:06.9303130Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+installed-driver	Post Run actions/checkout@v4	2026-10-23T20:57:06.9412310Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+installed-driver	Post Run actions/checkout@v4	2026-10-23T20:57:06.9577040Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+installed-driver	Post Run actions/checkout@v4	2026-10-23T20:57:07.0603720Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+installed-driver	Post Run actions/checkout@v4	2026-10-23T20:57:07.0692600Z http.https://github.com/.extraheader
+installed-driver	Post Run actions/checkout@v4	2026-10-23T20:57:07.0763400Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+installed-driver	Post Run actions/checkout@v4	2026-10-23T20:57:07.0854470Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+installed-driver	Post Run actions/checkout@v4	2026-10-23T20:57:07.2207480Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+installed-driver	Post Run actions/checkout@v4	2026-10-23T20:57:07.2600280Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+installed-driver	Complete job	﻿2026-10-23T20:57:07.3947670Z Cleaning up orphan processes
+installed-driver	Complete job	2026-10-23T20:57:09.0822680Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+driver-lifecycle	Set up job	﻿2026-10-23T20:53:40.2164220Z Current runner version: '2.338.0'
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2180770Z ##[group]Runner Image Provisioner
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2181330Z Hosted Compute Agent
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2181790Z Version: 20260828.587
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2182210Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2182790Z Build Date: 2026-08-28T16:44:25Z
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2183240Z Worker ID: {d89af4e0-aa5d-4ac3-bc40-02cc85814951}
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2184380Z Azure Region: westus
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2185120Z ##[endgroup]
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2188500Z ##[group]Operating System
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2188900Z macOS
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2189210Z 15.7.9
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2189530Z 24G830
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2189840Z ##[endgroup]
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2190190Z ##[group]Runner Image
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2190580Z Image: macos-15-arm64
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2191020Z Version: 20260907.0337.1
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2191740Z Included Software: https://github.com/actions/runner-images/blob/macos-15-arm64/20260907.0337/images/macos/macos-15-arm64-Readme.md
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2193460Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-15-arm64%2F20260907.0337
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2194270Z ##[endgroup]
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2195030Z ##[group]GITHUB_TOKEN Permissions
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2196460Z Contents: read
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2196820Z Metadata: read
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2197210Z ##[endgroup]
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2198860Z Secret source: Actions
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2199420Z Cache mode: write
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2200990Z Prepare workflow directory
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2457030Z Prepare all required actions
+driver-lifecycle	Set up job	2026-10-23T20:53:40.2498670Z Getting action download info
+driver-lifecycle	Set up job	2026-10-23T20:53:40.5134570Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+driver-lifecycle	Set up job	2026-10-23T20:53:40.7367940Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+driver-lifecycle	Set up job	2026-10-23T20:53:40.9467980Z Complete job name: driver-lifecycle
+driver-lifecycle	Run actions/checkout@v4	﻿2026-10-23T20:53:41.0247760Z ##[group]Run actions/checkout@v4
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.0248370Z with:
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.0248710Z   repository: thatsmethen/ravelink
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.0251640Z   token: ***
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.0252140Z   ssh-strict: true
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.0252510Z   ssh-user: git
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.0252850Z   persist-credentials: true
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.0253400Z   clean: true
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.0253800Z   sparse-checkout-cone-mode: true
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.0254190Z   fetch-depth: 1
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.0254520Z   fetch-tags: false
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.0254850Z   show-progress: true
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.0255170Z   lfs: false
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.0255480Z   submodules: false
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.0255820Z   set-safe-directory: true
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.0256190Z   allow-unsafe-pr-checkout: false
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.0256840Z ##[endgroup]
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.5638220Z Syncing repository: thatsmethen/ravelink
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.5640350Z ##[group]Getting Git version info
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.5641030Z Working directory is '/Users/runner/work/ravelink/ravelink'
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.5642050Z [command]/opt/homebrew/bin/git version
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6123480Z git version 2.55.0
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6472280Z ##[endgroup]
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6481430Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/a5c7abbc-4509-491f-be48-ad91f7461b8e/.gitconfig'
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6483030Z Temporarily overriding HOME='/Users/runner/work/_temp/a5c7abbc-4509-491f-be48-ad91f7461b8e' before making global git config changes
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6484260Z Adding repository directory to the temporary git global config as a safe directory
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6512980Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6576030Z Deleting the contents of '/Users/runner/work/ravelink/ravelink'
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6583170Z ##[group]Initializing the repository
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6592450Z [command]/opt/homebrew/bin/git init /Users/runner/work/ravelink/ravelink
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6675780Z hint: Using 'master' as the name for the initial branch. This default branch name
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6682220Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6686540Z hint: to use in all of your new repositories, which will suppress this warning,
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6688300Z hint: call:
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6689390Z hint:
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6690530Z hint: 	git config --global init.defaultBranch <name>
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6692000Z hint:
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6693730Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6694630Z hint: 'development'. The just-created branch can be renamed via this command:
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6695310Z hint:
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6695700Z hint: 	git branch -m <name>
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6696170Z hint:
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6696680Z hint: Disable this message with "git config set advice.defaultBranchName false"
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6697640Z Initialized empty Git repository in /Users/runner/work/ravelink/ravelink/.git/
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6699300Z [command]/opt/homebrew/bin/git remote add origin https://github.com/thatsmethen/ravelink
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6769940Z ##[endgroup]
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6771910Z ##[group]Disabling automatic garbage collection
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6774350Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6939890Z ##[endgroup]
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6941100Z ##[group]Setting up auth
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6946680Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.6985380Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.8146270Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.8205960Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.9050590Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:41.9285560Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:42.0090830Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:42.0168390Z ##[endgroup]
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:42.0172730Z ##[group]Fetching the repository
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:42.0173960Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +f733a8c26124b1ace95b85624222f091516e93eb:refs/remotes/origin/main
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:43.4862030Z From https://github.com/thatsmethen/ravelink
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:43.4871810Z  * [new ref]         f733a8c26124b1ace95b85624222f091516e93eb -> origin/main
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:43.4924740Z ##[endgroup]
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:43.4925960Z ##[group]Determining the checkout info
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:43.4927090Z ##[endgroup]
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:43.4927780Z [command]/opt/homebrew/bin/git sparse-checkout disable
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:43.4982820Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:43.5028710Z ##[group]Checking out the ref
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:43.5031010Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:43.6022950Z Switched to a new branch 'main'
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:43.6039870Z branch 'main' set up to track 'origin/main'.
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:43.6046700Z ##[endgroup]
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:43.6122820Z [command]/opt/homebrew/bin/git log -1 --format=%H
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T20:53:43.6190400Z f733a8c26124b1ace95b85624222f091516e93eb
+driver-lifecycle	Installer upgrade, repair, removal and HAL format lifecycle	﻿2026-10-23T20:53:43.6401520Z ##[group]Run python3 scripts/run-driver-lifecycle.py
+driver-lifecycle	Installer upgrade, repair, removal and HAL format lifecycle	2026-10-23T20:53:43.6402740Z [36;1mpython3 scripts/run-driver-lifecycle.py[0m
+driver-lifecycle	Installer upgrade, repair, removal and HAL format lifecycle	2026-10-23T20:53:43.6442990Z shell: /bin/bash -e {0}
+driver-lifecycle	Installer upgrade, repair, removal and HAL format lifecycle	2026-10-23T20:53:43.6443820Z env:
+driver-lifecycle	Installer upgrade, repair, removal and HAL format lifecycle	2026-10-23T20:53:43.6444470Z   RAVELINK_TEST_DRIVER_LIFECYCLE: 1
+driver-lifecycle	Installer upgrade, repair, removal and HAL format lifecycle	2026-10-23T20:53:43.6445360Z ##[endgroup]
+driver-lifecycle	Installer upgrade, repair, removal and HAL format lifecycle	2026-10-23T20:54:47.3814890Z Disposable Installer/receipt/HAL lifecycle acceptance passed.
+driver-lifecycle	Clean up owned lifecycle fixtures	﻿2026-10-23T20:54:47.4086920Z ##[group]Run python3 scripts/run-driver-lifecycle.py --cleanup
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T20:54:47.4087610Z [36;1mpython3 scripts/run-driver-lifecycle.py --cleanup[0m
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T20:54:47.4345130Z shell: /bin/bash -e {0}
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T20:54:47.4345520Z env:
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T20:54:47.4345780Z   RAVELINK_TEST_DRIVER_LIFECYCLE: 1
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T20:54:47.4346060Z ##[endgroup]
+driver-lifecycle	Independent probe callback ASan and UBSan controls	﻿2026-10-23T20:54:57.7998310Z ##[group]Run set -o pipefail
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T20:54:57.7998910Z [36;1mset -o pipefail[0m
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T20:54:57.7999280Z [36;1mmkdir -p build[0m
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T20:54:57.7999850Z [36;1mpython3 -m unittest Drivers.tests.test_soak_probe -v 2>&1 | tee build/driver-lifecycle-sanitizer.log[0m
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T20:54:57.8048010Z shell: /bin/bash -e {0}
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T20:54:57.8052670Z env:
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T20:54:57.8053140Z   RAVELINK_TEST_PROBE_SANITIZER: 1
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T20:54:57.8053420Z ##[endgroup]
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T20:54:59.2685630Z test_callback_contract_under_sanitizers (Drivers.tests.test_soak_probe.SoakProbeTests.test_callback_contract_under_sanitizers) ... ok
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T20:54:59.5992190Z test_eight_channel_capture_feed_bounds_and_timestamp_health (Drivers.tests.test_soak_probe.SoakProbeTests.test_eight_channel_capture_feed_bounds_and_timestamp_health) ... ok
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T20:54:59.6000660Z 
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T20:54:59.6002660Z ----------------------------------------------------------------------
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T20:54:59.6005900Z Ran 2 tests in 1.607s
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T20:54:59.6007830Z 
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T20:54:59.6008840Z OK
+driver-lifecycle	Run actions/upload-artifact@v4	﻿2026-10-23T20:54:59.6492830Z ##[group]Run actions/upload-artifact@v4
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:54:59.6493350Z with:
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:54:59.6493610Z   name: driver-lifecycle-evidence
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:54:59.6494420Z   path: build/driver-lifecycle/report.json
+driver-lifecycle	Run actions/upload-artifact@v4	build/driver-lifecycle/owned-fixtures.json
+driver-lifecycle	Run actions/upload-artifact@v4	build/driver-lifecycle/*.log
+driver-lifecycle	Run actions/upload-artifact@v4	build/driver-lifecycle/*/manifest.json
+driver-lifecycle	Run actions/upload-artifact@v4	build/driver-lifecycle-sanitizer.log
+driver-lifecycle	Run actions/upload-artifact@v4	
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:54:59.6495290Z   if-no-files-found: warn
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:54:59.6495700Z   compression-level: 6
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:54:59.6495930Z   overwrite: false
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:54:59.6496260Z   include-hidden-files: false
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:54:59.6496650Z ##[endgroup]
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:55:00.2399830Z (node:2053) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:55:00.2400670Z (Use `node --trace-deprecation ...` to show where the warning was created)
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:55:00.2751670Z Multiple search paths detected. Calculating the least common ancestor of all paths
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:55:00.2753800Z The least common ancestor is /Users/runner/work/ravelink/ravelink/build. This will be the root directory of the artifact
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:55:00.2755890Z With the provided path, there will be 79 files uploaded
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:55:00.2756450Z Artifact name is valid!
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:55:00.2756890Z Root directory input is valid!
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:55:00.5815400Z Beginning upload of artifact content to blob storage
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:55:00.6659470Z (node:2053) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:55:00.8992030Z Uploaded bytes 56895
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:55:00.9503400Z Finished uploading artifact content to blob storage!
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:55:00.9504320Z SHA256 digest of uploaded artifact zip is 5bc22094620efbeb36035b32faa42a3810f5e18ce88fc6c20e6d26fe7ef6f262
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:55:00.9504770Z Finalizing artifact upload
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:55:01.4532370Z Artifact driver-lifecycle-evidence.zip successfully finalized. Artifact ID 12530893044
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:55:01.4534730Z Artifact driver-lifecycle-evidence has been successfully uploaded! Final size is 56895 bytes. Artifact ID is 12530893044
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T20:55:01.4550360Z Artifact download URL: https://github.com/thatsmethen/ravelink/actions/runs/40022691623/artifacts/12530893044
+driver-lifecycle	Post Run actions/checkout@v4	﻿2026-10-23T20:55:01.4843350Z Post job cleanup.
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T20:55:01.6310100Z [command]/opt/homebrew/bin/git version
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T20:55:01.6592000Z git version 2.55.0
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T20:55:01.6620370Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/c60865a7-1daf-4c78-a208-a1f54b2df40c/.gitconfig'
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T20:55:01.6633850Z Temporarily overriding HOME='/Users/runner/work/_temp/c60865a7-1daf-4c78-a208-a1f54b2df40c' before making global git config changes
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T20:55:01.6636090Z Adding repository directory to the temporary git global config as a safe directory
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T20:55:01.6638340Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T20:55:01.6762630Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T20:55:01.6838870Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T20:55:01.8019900Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T20:55:01.8088400Z http.https://github.com/.extraheader
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T20:55:01.8095380Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T20:55:01.8200090Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T20:55:01.9120580Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T20:55:01.9189010Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+driver-lifecycle	Complete job	﻿2026-10-23T20:55:02.0096740Z Cleaning up orphan processes
+driver-lifecycle	Complete job	2026-10-23T20:55:02.4570180Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -1,0 +1,26 @@
+{
+  "build": "Clean universal Developer ID release build2, native arm64 execution; build evidence universal-developer-id-f733a8c.json",
+  "fixtureSHA256": "767fc793b485915d3feaa3d7a5ac3d72e2840234b6b5b0dab0af1676389460ab",
+  "limitations": [
+    "AX work may amplify view updates; this is not an isolated ordinary rendering benchmark.",
+    "No audio started; no actual production capacity qualification.",
+    "Subsequent publication fix not included in this observation."
+  ],
+  "observedProcess": {
+    "cpuPercent": 100.5,
+    "pid": 20371,
+    "rssKiB": 355088
+  },
+  "profileInterpretation": "Repeated SwiftUI transaction and slider accessibility updates replace the previous dominant send-array scans. Read-only source inspection shows every20Hz engine snapshot republishes unchanged state; a subsequent publication fix is being separately tested.",
+  "recordedAtUTC": "2026-10-23T21:58:53.227608+00:00",
+  "restoration": {
+    "method": "Both test processes exited after approved native force quit; atomically restored verified original bytes, then launched samef733bundle and observed original1input3mixstudio with Startaudio/Audio stopped. CmdQclosednormally.",
+    "nativeAX": "restored-ax.txt",
+    "sessionSHA256": "bbd67c099e4b60ed00b4f33d4ac82b1044341d1f2a3c27bdc8df33f64c7586c1"
+  },
+  "result": "Failed: two getApp/initialAX calls timed out after30seconds; process persisted nearoneCPUcore. Indexed lookup change alone did not make this journey usable.",
+  "sampleCommand": "sample20371 5 1 -file build/ui-matrix-profile/indexed-f733a8c/sample.txt",
+  "sampleSHA256": "4e9dec78b5dc356f7f02b05ac34b4af3f75175048027d26742c8e74d16bf435f",
+  "scope": "Stopped-audio128input32mix4096route native inspection",
+  "sourceRevision": "f733a8c26124b1ace95b85624222f091516e93eb"
+}

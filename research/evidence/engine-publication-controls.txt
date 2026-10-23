@@ -1,0 +1,90 @@
+[0/1] Planning build
+Building for debugging...
+[0/11] Write sources
+[2/11] Write swift-version--1AB21518FC5DEDBE.txt
+[4/11] Compiling RaveLinkAudio EngineClient.swift
+[5/11] Emitting module RaveLinkAudio
+[6/29] Emitting module RaveLinkEngine
+[6/29] Write Objects.LinkFileList
+[7/29] Linking RaveLinkEngine
+[9/29] Compiling RaveLinkAudioTests InstalledSoundCheckTests.swift
+[10/29] Compiling RaveLinkAudioTests HelperResolutionTests.swift
+[10/29] Applying RaveLinkEngine
+[12/29] Compiling RaveLinkAudioTests InstalledMatrixTests.swift
+[13/29] Compiling RaveLinkAudioTests InstalledAudioUnitAcceptanceTests.swift
+[14/29] Compiling RaveLinkAudioTests EnginePublicationTests.swift
+[15/29] Emitting module RaveLinkAudioTests
+[16/29] Compiling RaveLinkAudioTests EngineClientTests.swift
+[17/29] Compiling RaveLinkApp StudioModel.swift
+[18/29] Compiling RaveLinkApp AudioUnitRackView.swift
+[19/29] Emitting module RaveLinkApp
+[20/29] Compiling RaveLinkApp SoundCheckView.swift
+[21/29] Compiling RaveLinkApp EngineDiagnosticsView.swift
+[22/29] Compiling RaveLinkApp SourceSheets.swift
+[23/29] Compiling RaveLinkApp RaveLinkApp.swift
+[24/29] Compiling RaveLinkApp StudioView.swift
+[24/29] Write Objects.LinkFileList
+[25/29] Linking RaveLink
+[26/29] Applying RaveLink
+[28/32] Compiling RaveLinkAppTests StudioIndexTests.swift
+[29/32] Compiling RaveLinkAppTests SoundCheckIsolationTests.swift
+[30/32] Emitting module RaveLinkAppTests
+[30/32] Write Objects.LinkFileList
+[31/32] Linking RaveLinkPackageTests
+Build complete! (5.24s)
+􀟈  Test run started.
+􀄵  Testing Library Version: 1400
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite EngineClientTests started.
+􀟈  Suite EnginePublicationTests started.
+􀟈  Suite EngineProtocolTests started.
+􀟈  Test changedLiveMetersAndDiagnosticsStillReachSubscribers() started.
+􀟈  Test staleGenerationCannotPublishChangedValuesAfterStop() started.
+􀟈  Test boundsPartialLinesAndRejectsVersionMismatch() started.
+􀟈  Test identicalIdleHeartbeatsDoNotInvalidateSubscribers() started.
+􀟈  Test rejectsContradictoryAndNonfiniteState() started.
+􀟈  Test identicalRunningHeartbeatsKeepConnectionAliveWithoutPublishing(soundCheck:) started.
+􀟈  Test case passing 1 argument soundCheck → false to identicalRunningHeartbeatsKeepConnectionAliveWithoutPublishing(soundCheck:) started.
+􁁛  Test rejectsContradictoryAndNonfiniteState() passed after 0.001 seconds.
+􁁛  Test staleGenerationCannotPublishChangedValuesAfterStop() passed after 0.006 seconds.
+􁁛  Test changedLiveMetersAndDiagnosticsStillReachSubscribers() passed after 0.006 seconds.
+􁁛  Test identicalIdleHeartbeatsDoNotInvalidateSubscribers() passed after 0.007 seconds.
+􁁛  Suite EnginePublicationTests passed after 0.007 seconds.
+􁁛  Test boundsPartialLinesAndRejectsVersionMismatch() passed after 0.031 seconds.
+􁁛  Suite EngineProtocolTests passed after 0.031 seconds.
+􀟈  Test case passing 1 argument soundCheck → true to identicalRunningHeartbeatsKeepConnectionAliveWithoutPublishing(soundCheck:) started.
+􁁛  Test identicalRunningHeartbeatsKeepConnectionAliveWithoutPublishing(soundCheck:) with 2 test cases passed after 5.462 seconds.
+􀟈  Test discoveryTimeoutKillsAndReapsUncooperativeChild() started.
+􁁛  Test discoveryTimeoutKillsAndReapsUncooperativeChild() passed after 1.515 seconds.
+􀟈  Test abruptExitDoesNotRaiseSIGPIPEInClient() started.
+􁁛  Test abruptExitDoesNotRaiseSIGPIPEInClient() passed after 0.060 seconds.
+􀟈  Test malformedFloodIsBoundedAndChildReaped() started.
+􁁛  Test malformedFloodIsBoundedAndChildReaped() passed after 0.379 seconds.
+􀟈  Test brokenPipeWhileChildRemainsAliveDoesNotRaiseSIGPIPE() started.
+􁁛  Test brokenPipeWhileChildRemainsAliveDoesNotRaiseSIGPIPE() passed after 0.309 seconds.
+􀟈  Test runningHeartbeatDeadlineCannotBeMaskedByStaleState(_:) started.
+􀟈  Test case passing 1 argument mode → "silent_running" to runningHeartbeatDeadlineCannotBeMaskedByStaleState(_:) started.
+􀟈  Test case passing 1 argument mode → "stale_heartbeat" to runningHeartbeatDeadlineCannotBeMaskedByStaleState(_:) started.
+􁁛  Test runningHeartbeatDeadlineCannotBeMaskedByStaleState(_:) with 2 test cases passed after 1.136 seconds.
+􀟈  Test sleepReapsActiveHelperAndWakeDiscoversWithoutResuming() started.
+􁁛  Test sleepReapsActiveHelperAndWakeDiscoversWithoutResuming() passed after 0.228 seconds.
+􀟈  Test missingSoundCheckSnapshotStopsAndReapsHelper() started.
+􁁛  Test missingSoundCheckSnapshotStopsAndReapsHelper() passed after 0.058 seconds.
+􀟈  Test stopHasIndependentDeadlineAndReapsHungHelper() started.
+􁁛  Test stopHasIndependentDeadlineAndReapsHungHelper() passed after 0.515 seconds.
+􀟈  Test startHasHardRoutingDeadline() started.
+􁁛  Test startHasHardRoutingDeadline() passed after 1.764 seconds.
+􀟈  Test staleTelemetryCannotRestartStoppedSession() started.
+􁁛  Test staleTelemetryCannotRestartStoppedSession() passed after 0.485 seconds.
+􀟈  Test editDuringStartReplacesOldProcessWithLatestSession() started.
+􁁛  Test editDuringStartReplacesOldProcessWithLatestSession() passed after 0.342 seconds.
+􀟈  Test sustainedControlInputSendsUpdatesBeforeProducerStops() started.
+􁁛  Test sustainedControlInputSendsUpdatesBeforeProducerStops() passed after 0.596 seconds.
+􀟈  Test pendingReplacementCoalescesRapidStartEdits() started.
+􁁛  Test pendingReplacementCoalescesRapidStartEdits() passed after 3.382 seconds.
+􀟈  Test realHelperExitsWhenParentControlPipeCloses() started.
+􁁛  Test realHelperExitsWhenParentControlPipeCloses() passed after 0.049 seconds.
+􀙟  Test realSilentOutputThroughSupervisedProcess() skipped.
+􀙟  Test soundCheckCommandsAndLiveEditsThroughSilentDevice() skipped.
+􁁛  Suite EngineClientTests passed after 16.290 seconds.
+􁁛  Test run with 22 tests in 3 suites passed after 16.290 seconds.

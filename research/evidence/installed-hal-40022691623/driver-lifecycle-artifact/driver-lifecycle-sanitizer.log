@@ -1,0 +1,7 @@
+test_callback_contract_under_sanitizers (Drivers.tests.test_soak_probe.SoakProbeTests.test_callback_contract_under_sanitizers) ... ok
+test_eight_channel_capture_feed_bounds_and_timestamp_health (Drivers.tests.test_soak_probe.SoakProbeTests.test_eight_channel_capture_feed_bounds_and_timestamp_health) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 1.607s
+
+OK

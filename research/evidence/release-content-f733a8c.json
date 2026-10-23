@@ -1,0 +1,70 @@
+{
+  "scope": "Independent static release-content/provenance review; no runtime, installation, notarization or legal compliance conclusion",
+  "recordedAtUTC": "2026-10-23T21:12:02.912590+00:00",
+  "sourceRevision": "f733a8c26124b1ace95b85624222f091516e93eb",
+  "appBundle": "/Users/textual/projects/notify/ravelink/build/signed-universal-f733a8c/RaveLink.app",
+  "appBuildNumber": "2",
+  "appSourceModified": false,
+  "appFileSHA256": {
+    "Contents/Helpers/RaveLinkPluginHost": "42b4094f056ba30ce355909724d3be7faa587fb50e1a50331b0beae723d80285",
+    "Contents/Info.plist": "e20dd63477f4a883774f34661c76763d58f728a37b2abc598cb149c11d379e56",
+    "Contents/MacOS/RaveLink": "f6e240e25bad01d47c7c7fb20efad834b7bab0010de08842360e35a9ca8171fe",
+    "Contents/MacOS/RaveLinkEngine": "b0c3f55b668f0399333935581f1f95bf6a062d5015053211b1f10f6ecce9c585",
+    "Contents/Resources/AppIcon.icns": "4c6f45c30808d4de30ebbc53ad5a0b33917147a435d2b38c1b45546d44143115",
+    "Contents/Resources/BuildInfo.json": "606e440867ee4d6ae373f0a43c3c202b180a0891c1357f62d5388285f24889a7",
+    "Contents/Resources/LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+    "Contents/_CodeSignature/CodeResources": "6d010cce7a1da8df73ea8a9068e65b3d2ea13227cb608c3bc0e8df5894ebc0fc"
+  },
+  "driverBundle": "/Users/textual/projects/notify/ravelink/build/driver-validity-frozen/RaveLink-validity-frozen.driver",
+  "driverScope": "Previously frozen local universal bundle with exact current f733 patch and build source; not a newly signed release installer",
+  "driverFileSHA256": {
+    "Contents/Info.plist": "d8f763253b79aa52f6753012677295e1a5fb7d94db48a3caedb31b246be9bc72",
+    "Contents/MacOS/RaveLinkAudio": "a218b5c0b43eaa8772b99bc7e33309c7988a109867385905e8bd50c0a68c1245",
+    "Contents/Resources/LICENSE-BlackHole.txt": "d5134ba41d942612bdf5ab79b32b3ddc2458f55e16437390bd81be8f2e0811e0",
+    "Contents/Resources/RaveLink.icns": "3d6cf891e9b31de65a4c2946cf04b23c0de8dcc181eb1caaf67f36c3cc765ef2",
+    "Contents/Resources/Source/0001-frame-validity.patch": "6f70030ec75653118eacd8d952b5e1f205dfecb79de27fde282586392962fbdd",
+    "Contents/Resources/Source/BUILD.txt": "041c1ccd3fd165bbf8803ec95c7790c0d71295f683a1929c763a09e01ecac227",
+    "Contents/Resources/Source/BlackHole.c": "05f1fa61e2502072ddbc797717713b20e43e2e55e08d445312aeb55dad879c7b",
+    "Contents/Resources/Source/RaveLinkAudio.c": "d4b7acf0977adbadca8a3d68f0aa5a019db3e768ab7f23fd0a15bba3d51b22ff",
+    "Contents/Resources/Source/config.h": "3177af3714750dd79ff505da5e026e4ca5456da362f5b010ea3f9d1b734db755",
+    "Contents/Resources/Source/patches.json": "b52877cb77ccf3db54e65594620e254007018512aa18cd9548d29465ad0f0c1a",
+    "Contents/Resources/Source/upstream.json": "a85b255af83242c1695f00b3d0f13fe7e1f3ed51eae7c1628b642ac427a5cbb2",
+    "Contents/Resources/build-info.json": "b540ab8dc9974cf9a17331590e6a5ba6b939e1c366675a3a8f34429b157e50df",
+    "Contents/_CodeSignature/CodeResources": "5140bcbda8f5948cc1a23626edf1b6bb783e90e7652f918ff6bfb7fc3ec4b581"
+  },
+  "checks": {
+    "appManifestMatchesSigningRecord": true,
+    "appLicenseMatchesRepository": true,
+    "embeddedBuildInfoMatchesRecord": true,
+    "pristineSourceMatchesRepository": true,
+    "patchMatchesRepository": true,
+    "patchManifestMatchesRepository": true,
+    "upstreamManifestMatchesRepository": true,
+    "licenseMatchesPinnedUpstream": true
+  },
+  "appSignatureVerification": {
+    "command": [
+      "codesign",
+      "--verify",
+      "--deep",
+      "--strict",
+      "--all-architectures",
+      "/Users/textual/projects/notify/ravelink/build/signed-universal-f733a8c/RaveLink.app"
+    ],
+    "exitCode": 0,
+    "output": ""
+  },
+  "certificateInventory": {
+    "command": "security find-certificate -a -c Developer ID Installer -Z",
+    "exitCode": 0,
+    "matchingCertificatesReturned": 0,
+    "limitation": "Current default keychain search list only; not proof that another keychain/account lacks signing assets. No secrets or private keys read."
+  },
+  "limitations": [
+    "App includes GPL license and provenance, but no source archive or recipient source-access notice; release source delivery remains to be prepared.",
+    "Engine default resolver at this checkpoint can fall back outside .app if bundled helper is missing.",
+    "No host driver installation, privacy consent, EULA acceptance, default audio mutation, or notarization performed.",
+    "Installed audio CI40022691623 failed; separate driver lifecycle job passed; evidence managed separately.",
+    "Private repository publication does not imply all binary recipients can access source."
+  ]
+}

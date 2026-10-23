@@ -1,0 +1,60 @@
+swift-driver version: 1.127.14.1 Building for production...
+[0/10] Write sources
+[3/10] Write swift-version--1AB21518FC5DEDBE.txt
+[4/10] Compiling RaveLinkRealtime SoundCheck.c
+[5/11] Compiling RaveLinkRealtime Clock.c
+[6/11] Compiling RaveLinkRealtime Realtime.c
+[7/11] Compiling RaveLinkAudioUnitBridge AudioUnitBridge.m
+[9/11] Compiling RaveLinkCore AudioUnitEffects.swift
+[10/12] Compiling RaveLinkAudio ApplicationIdentity.swift
+[11/13] Compiling RaveLinkApp AudioUnitRackView.swift
+[11/13] Write Objects.LinkFileList
+[12/13] Linking RaveLink
+Build of product 'RaveLink' complete! (60.06s)
+[0/1] Planning build
+Building for production...
+[0/4] Write sources
+[1/4] Write swift-version--1AB21518FC5DEDBE.txt
+[3/5] Compiling RaveLinkEngine EngineMain.swift
+[3/5] Write Objects.LinkFileList
+[4/5] Linking RaveLinkEngine
+Build of product 'RaveLinkEngine' complete! (1.30s)
+Building for production...
+[0/4] Write sources
+[1/4] Write swift-version--1AB21518FC5DEDBE.txt
+[3/5] Compiling RaveLinkPluginHost Render.swift
+[3/5] Write Objects.LinkFileList
+[4/5] Linking RaveLinkPluginHost
+Build of product 'RaveLinkPluginHost' complete! (2.16s)
+Building for production...
+[0/10] Write sources
+[3/10] Write swift-version--1AB21518FC5DEDBE.txt
+[4/11] Compiling RaveLinkRealtime SoundCheck.c
+[5/11] Compiling RaveLinkRealtime Clock.c
+[6/11] Compiling RaveLinkRealtime Realtime.c
+[7/11] Compiling RaveLinkAudioUnitBridge AudioUnitBridge.m
+[9/11] Compiling RaveLinkCore AudioUnitEffects.swift
+[10/12] Compiling RaveLinkAudio ApplicationIdentity.swift
+[11/13] Compiling RaveLinkApp AudioUnitRackView.swift
+[11/13] Write Objects.LinkFileList
+[12/13] Linking RaveLink
+Build of product 'RaveLink' complete! (60.45s)
+[0/1] Planning build
+Building for production...
+[0/4] Write sources
+[1/4] Write swift-version--1AB21518FC5DEDBE.txt
+[3/5] Compiling RaveLinkEngine EngineMain.swift
+[3/5] Write Objects.LinkFileList
+[4/5] Linking RaveLinkEngine
+Build of product 'RaveLinkEngine' complete! (1.33s)
+Building for production...
+[0/4] Write sources
+[1/4] Write swift-version--1AB21518FC5DEDBE.txt
+[3/5] Compiling RaveLinkPluginHost Render.swift
+[3/5] Write Objects.LinkFileList
+[4/5] Linking RaveLinkPluginHost
+Build of product 'RaveLinkPluginHost' complete! (2.17s)
+/Users/textual/projects/notify/ravelink/build/.ravelink-app.kfHZ62/RaveLink.app/Contents/MacOS/RaveLinkEngine: replacing existing signature
+/Users/textual/projects/notify/ravelink/build/.ravelink-app.kfHZ62/RaveLink.app/Contents/Helpers/RaveLinkPluginHost: replacing existing signature
+/Users/textual/projects/notify/ravelink/build/.ravelink-app.kfHZ62/RaveLink.app: replacing existing signature
+/Users/textual/projects/notify/ravelink/build/RaveLink.app

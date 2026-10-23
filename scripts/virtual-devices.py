@@ -91,6 +91,13 @@ def prepare_patched_source(source_dir: Path) -> dict:
                        input=patch, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     if hashlib.sha256(generated.read_bytes()).hexdigest() != manifest['patchedSourceSHA256']:
         raise ValueError('Patched source checksum mismatch')
+    for name, digest in manifest.get('supportFiles', {}).items():
+        if Path(name).name != name:
+            raise ValueError('Invalid support filename')
+        content = (PATCHES / name).read_bytes()
+        if hashlib.sha256(content).hexdigest() != digest:
+            raise ValueError(f'Support source checksum mismatch: {name}')
+        (source_dir / name).write_bytes(content)
     (source_dir / 'patches.json').write_text(json.dumps(manifest, indent=2) + '\n')
     return manifest
 
@@ -116,7 +123,8 @@ def icon() -> bytes:
 
 
 def build_one(destination: Path, device: tuple[str, str], channels: int, archs: list[str], identity: str,
-              manifest: dict, version: str = VERSION, build_number: int = BUILD_NUMBER) -> dict:
+              manifest: dict, version: str = VERSION, build_number: int = BUILD_NUMBER,
+              diagnostics: bool = False) -> dict:
     release_version(version, build_number)
     slug, label = device
     bundle_id = PREFIX + slug
@@ -136,6 +144,7 @@ def build_one(destination: Path, device: tuple[str, str], channels: int, archs: 
         executable.parent.mkdir(parents=True)
         source_dir.mkdir(parents=True)
         config = {
+            'RAVELINK_FRAME_DIAGNOSTICS': '1' if diagnostics else '0',
             'BlackHole_Create': 'RaveLink_Create',
             'kDriver_Name': json.dumps(driver_name),
             'kDevice_Name': json.dumps('RaveLink ' + label, ensure_ascii=False),
@@ -186,6 +195,7 @@ def build_one(destination: Path, device: tuple[str, str], channels: int, archs: 
             'minimumMacOS': '12.0', 'upstream': manifest, 'localPatches': patches,
             'codeSigning': 'ad-hoc' if identity == '-' else identity,
             'notarized': False, 'version': version, 'buildNumber': build_number,
+            'frameDiagnostics': diagnostics,
         }
         (resources / 'build-info.json').write_text(json.dumps(metadata, indent=2) + '\n')
         (source_dir / 'BUILD.txt').write_text(
@@ -453,6 +463,7 @@ def main() -> int:
     build.add_argument('--sign', default='-', help='Signing identity; default ad-hoc')
     build.add_argument('--version', default=VERSION, help='Release version, e.g. 0.2.0')
     build.add_argument('--build-number', type=int, default=BUILD_NUMBER, help='Increasing CFBundleVersion and package receipt version (1–9999)')
+    build.add_argument('--diagnostics', action='store_true', help='Opt in to bounded read-only frame diagnostics; changes callback instrumentation and is recorded in provenance')
     for name in ['validate', 'install', 'package']:
         cmd = commands.add_parser(name)
         cmd.add_argument('bundles', nargs='+', type=Path)
@@ -477,7 +488,7 @@ def main() -> int:
                 raise ValueError('An output driver already exists; choose a fresh output directory')
             archs = list(dict.fromkeys(args.arch or ['arm64', 'x86_64']))
             result = [build_one(args.output, device, args.channels, archs, args.sign, manifest,
-                                args.version, args.build_number) for device in devices]
+                                args.version, args.build_number, args.diagnostics) for device in devices]
             (args.output / 'manifest.json').write_text(json.dumps(result, indent=2) + '\n')
             print(json.dumps(result, indent=2))
         elif args.command == 'validate':

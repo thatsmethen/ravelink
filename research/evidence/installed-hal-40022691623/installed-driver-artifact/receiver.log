@@ -1,0 +1,1 @@
+probe-interrupted signal=15; child process group terminated and reaped

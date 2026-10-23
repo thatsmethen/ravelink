@@ -1,0 +1,6 @@
+The following is a diff from the previous accessibility tree for Window: "RaveLink" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+~				15 menu button Options for mix Personal, ID: ellipsis
+~				23 menu button Options for mix Stream, ID: ellipsis
+~				31 menu button Options for mix Voice chat, ID: ellipsis
+~				41 menu button Options for input Test tone, ID: ellipsis
+The focused UI element is 0 standard window RaveLink, Secondary Actions: Raise, ID: SwiftUI.WindowGroup<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<SwiftUI.ModifiedContent<RaveLinkApp.StudioView, SwiftUI._PreferenceWritingModifier<SwiftUI.PreferredColorSchemeKey>>, SwiftUI._FlexFrameLayout>>>-1-AppWindow-1

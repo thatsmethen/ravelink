@@ -1,0 +1,14 @@
+[0/1] Planning build
+◇ Test run started.
+↳ Testing Library Version: 124.4
+↳ Target Platform: arm64e-apple-macos14.0
+◇ Suite AudioCoordinatorTests started.
+◇ Test testBlackHoleLoopbackAndLiveBusControls() started.
+✘ Test testBlackHoleLoopbackAndLiveBusControls() recorded an issue at RealtimeTests.swift:193:20: Expectation failed: (abs(a - b) → 0.0060514957) <= (accuracy → 0.003)
+✘ Test testBlackHoleLoopbackAndLiveBusControls() recorded an issue at RealtimeTests.swift:201:20: Expectation failed: (abs(a - b) → 0.03314283) <= (accuracy → 0.003)
+VIRTUAL_DRIVER_LIVE_EVIDENCE uid=RaveLink.ci-loopback_UID rate=48000.0 unityPeak=0.131944 minus12dBPeak=0.0 mutedPeak=0.0 capturedFrames=100864 renderedFrames=100864 droppedFrames=0 underrunFrames=0
+✘ Test testBlackHoleLoopbackAndLiveBusControls() failed after 4.642 seconds with 2 issues.
+↳ /// Opt-in because this opens a real driver. It never changes the system default
+↳ /// devices and every return path stops both capture and render IOProcs.
+✘ Suite AudioCoordinatorTests failed after 4.642 seconds with 2 issues.
+✘ Test run with 1 test failed after 4.642 seconds with 2 issues.

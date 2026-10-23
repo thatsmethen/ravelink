@@ -152,31 +152,9 @@ public struct PluginCatalog: Sendable {
     public init(helperURL: URL? = PluginCatalog.defaultHelperURL()) { self.helperURL = helperURL }
 
     public static func defaultHelperURL(bundle: Bundle = .main) -> URL? {
-        var candidates: [URL] = []
-        // SwiftPM may execute tests through its own runner. The class bundle
-        // identifies our loaded image instead of that external runner.
-        for source in [bundle, Bundle(for: PluginCatalogBundleMarker.self)] {
-            candidates.append(source.bundleURL.appendingPathComponent("Contents/Helpers/RaveLinkPluginHost"))
-            if source.bundleURL.pathExtension == "xctest" {
-                candidates.append(source.bundleURL.deletingLastPathComponent().appendingPathComponent("RaveLinkPluginHost"))
-            }
-        }
-        if let executable = bundle.executableURL { candidates.append(executable.deletingLastPathComponent().appendingPathComponent("RaveLinkPluginHost")) }
-        if let command = CommandLine.arguments.first {
-            let executable = URL(fileURLWithPath: command).standardizedFileURL
-            candidates.append(executable.deletingLastPathComponent().appendingPathComponent("RaveLinkPluginHost"))
-            // Swift Testing's runner is inside an xctest bundle even when the
-            // Foundation main bundle points at the runner's MacOS directory.
-            var ancestor = executable.deletingLastPathComponent()
-            for _ in 0..<3 {
-                if ancestor.pathExtension == "xctest" {
-                    candidates.append(ancestor.deletingLastPathComponent().appendingPathComponent("RaveLinkPluginHost"))
-                    break
-                }
-                ancestor.deleteLastPathComponent()
-            }
-        }
-        return candidates.first { FileManager.default.isExecutableFile(atPath: $0.path) }
+        HelperResolution.resolve(.pluginHost,
+            locations: [HelperResolution.Location(bundle), HelperResolution.Location(Bundle(for: PluginCatalogBundleMarker.self))],
+            command: CommandLine.arguments.first.map { URL(fileURLWithPath: $0) })
     }
     public func discover(timeout: TimeInterval = 10) async throws -> [AudioUnitDescriptor] {
         let response = try await request(PluginRequest(operation: "list"), timeout: timeout)

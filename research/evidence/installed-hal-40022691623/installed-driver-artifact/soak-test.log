@@ -1,0 +1,10 @@
+[0/1] Planning build
+◇ Test run started.
+↳ Testing Library Version: 124.4
+↳ Target Platform: arm64e-apple-macos14.0
+◇ Suite InstalledDeviceSoakTests started.
+◇ Test installedGroupedDeviceInputThirtySecondSoak() started.
+DEVICE_SOAK_EVIDENCE /Users/runner/work/ravelink/ravelink/build/soak-engine.json
+✔ Test installedGroupedDeviceInputThirtySecondSoak() passed after 38.341 seconds.
+✔ Suite InstalledDeviceSoakTests passed after 38.341 seconds.
+✔ Test run with 1 test passed after 38.341 seconds.

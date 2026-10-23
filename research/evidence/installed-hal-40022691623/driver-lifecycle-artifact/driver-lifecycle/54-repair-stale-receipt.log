@@ -1,0 +1,52 @@
+Oct 23 20:54:28  installer[1772] <Debug>: Product archive /Users/runner/work/ravelink/ravelink/build/driver-lifecycle/b-only17.pkg trustLevel=100
+Oct 23 20:54:28  installer[1772] <Debug>: External component packages (1) trustLevel=100 (trust evaluation failed: Error Domain=PKInstallErrorDomain Code=101 "The package “b-only17.pkg” is not signed." UserInfo={NSURL=#ci-lifecycle-b.pkg -- file:///Users/runner/work/ravelink/ravelink/build/driver-lifecycle/b-only17.pkg#Distribution, PKInstallPackageIdentifier=au.textual.ravelink.audio.package.ci-lifecycle-b, NSLocalizedDescription=The package “b-only17.pkg” is not signed.})
+installer: Package name is RaveLink virtual devices
+installer: Upgrading at base path /
+installer:PHASE:Preparing for installation…
+Oct 23 20:54:28  installer[1772] <Debug>: -[IFDInstallController(Private) _buildInstallPlanReturningError:]: location = file://localhost
+Oct 23 20:54:28  installer[1772] <Debug>: -[IFDInstallController(Private) _buildInstallPlanReturningError:]: file://localhost/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/b-only17.pkg#ci-lifecycle-b.pkg
+Oct 23 20:54:28  installer[1772] <Info>: Set authorization level to root for session
+Oct 23 20:54:28  installer[1772] <Info>: Authorization is being checked, waiting until authorization arrives.
+Oct 23 20:54:28  installer[1772] <Info>: Administrator authorization granted.
+Oct 23 20:54:28  installer[1772] <Info>: Packages have been authorized for installation.
+Oct 23 20:54:28  installer[1772] <Debug>: Will use PK session
+Oct 23 20:54:28  installer[1772] <Debug>: Using authorization level of root for IFPKInstallElement
+Oct 23 20:54:28  installer[1772] <Info>: Starting installation:
+installer:PHASE:Preparing the disk…
+Oct 23 20:54:28  installer[1772] <Notice>: Configuring volume "Macintosh HD"
+Oct 23 20:54:28  installer[1772] <Info>: Preparing disk for local booted install.
+Oct 23 20:54:28  installer[1772] <Notice>: Free space on "Macintosh HD": 46.22 GB (46219370496 bytes).
+Oct 23 20:54:28  installer[1772] <Notice>: Create temporary directory "/var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T//Install.1772DGtkCv"
+Oct 23 20:54:28  installer[1772] <Notice>: IFPKInstallElement (1 packages)
+installer:PHASE:Preparing RaveLink virtual devices…
+Oct 23 20:54:28  installer[1772] <Info>: Current Path: /usr/sbin/installer
+Oct 23 20:54:28  installer[1772] <Info>: Current Path: /usr/bin/sudo
+installer:PHASE:Waiting for other installations to complete…
+Oct 23 20:54:28  installer[1772] <Notice>: PackageKit: Enqueuing install with framework-specified quality of service (utility)
+installer:PHASE:Configuring the installation…
+installer:STATUS:
+installer:%2.229250
+installer:PHASE:Validating packages…
+installer:%97.750000
+installer:STATUS:Running installer actions…
+Oct 23 20:54:29  installer[1772] <Notice>: Running install actions
+installer:STATUS:
+installer:PHASE:Finishing the Installation…
+Oct 23 20:54:29  installer[1772] <Notice>: Removing temporary directory "/var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T//Install.1772DGtkCv"
+Oct 23 20:54:29  installer[1772] <Notice>: Finalize disk "Macintosh HD"
+Oct 23 20:54:29  installer[1772] <Notice>: Notifying system of updated components
+Oct 23 20:54:29  installer[1772] <Notice>: 
+Oct 23 20:54:29  installer[1772] <Notice>: **** Summary Information ****
+Oct 23 20:54:29  installer[1772] <Notice>:   Operation      Elapsed time
+Oct 23 20:54:29  installer[1772] <Notice>: -----------------------------
+Oct 23 20:54:29  installer[1772] <Notice>:        disk      0.00 seconds
+Oct 23 20:54:29  installer[1772] <Notice>:      script      0.00 seconds
+Oct 23 20:54:29  installer[1772] <Notice>:        zero      0.00 seconds
+Oct 23 20:54:29  installer[1772] <Notice>:     install      1.12 seconds
+Oct 23 20:54:29  installer[1772] <Notice>:     -total-      1.13 seconds
+Oct 23 20:54:29  installer[1772] <Notice>: 
+installer:STATUS:
+installer:%100.000000
+installer:PHASE:The software was successfully installed.
+installer: The upgrade was successful.
+installer: The install requires restarting now.

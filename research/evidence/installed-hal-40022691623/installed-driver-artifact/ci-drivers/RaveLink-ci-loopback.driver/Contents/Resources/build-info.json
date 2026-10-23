@@ -1,0 +1,40 @@
+{
+  "id": "ci-loopback",
+  "name": "RaveLink CILoopback",
+  "bundle": "RaveLink-ci-loopback.driver",
+  "bundleID": "au.textual.ravelink.audio.ci-loopback",
+  "deviceUID": "RaveLink.ci-loopback_UID",
+  "factoryUUID": "4EE93CF6-9DEC-5D17-AC9E-507705C24D80",
+  "channels": 8,
+  "architectures": [
+    "arm64",
+    "x86_64"
+  ],
+  "minimumMacOS": "12.0",
+  "upstream": {
+    "repository": "https://github.com/ExistentialAudio/BlackHole",
+    "commit": "561d934c77a1fa64987e01ccabe890fed30e181f",
+    "version": "0.7.1",
+    "license": "GPL-3.0-only",
+    "files": {
+      "BlackHole.c": "05f1fa61e2502072ddbc797717713b20e43e2e55e08d445312aeb55dad879c7b",
+      "LICENSE": "d5134ba41d942612bdf5ab79b32b3ddc2458f55e16437390bd81be8f2e0811e0",
+      "VERSION": "902311c7bb38fa1658ff403def6158ee7378fe9d6e2e284fa1c38735c31bd30b"
+    }
+  },
+  "localPatches": {
+    "schemaVersion": 1,
+    "upstreamSourceSHA256": "05f1fa61e2502072ddbc797717713b20e43e2e55e08d445312aeb55dad879c7b",
+    "patches": [
+      {
+        "file": "0001-frame-validity.patch",
+        "sha256": "6f70030ec75653118eacd8d952b5e1f205dfecb79de27fde282586392962fbdd"
+      }
+    ],
+    "patchedSourceSHA256": "d4b7acf0977adbadca8a3d68f0aa5a019db3e768ab7f23fd0a15bba3d51b22ff"
+  },
+  "codeSigning": "ad-hoc",
+  "notarized": false,
+  "version": "0.1.0",
+  "buildNumber": 1
+}

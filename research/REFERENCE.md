@@ -40,13 +40,15 @@ REA's built-in `native-macos` provider works. Ghidra is unconfigured, Hopper is 
 
 ## Runtime boundary
 
-The downloaded app was launched through CUA from its read-only mount. It displayed an EULA acceptance gate before onboarding. Acceptance requires a user decision, so inspection stopped there; Cancel and Quit closed the inspection process. `.tools/evidence/reference-eula-gate.png` records the actual UI boundary. No driver installation, audio permission approval, default audio change, or main-mixer action occurred. The documentation screenshot is saved separately as `.tools/evidence/reference-documented-matrix.png`.
+The first CUA launch from the read-only mount stopped at an EULA gate; Cancel and Quit closed that original inspection. `.tools/evidence/reference-eula-gate.png` retains that earlier boundary. On 24 October, the user explicitly answered the action-time agreement question with “Accept the Wave Link agreement.” After verifying that original user message, a second native inspection accepted the agreement and reached a mandatory **Install driver** setup screen, with no visible Skip. The [filtered onboarding record](evidence/reference-onboarding-2026-10-24.json) retains the target identity, approval message ID, actions and private evidence hashes.
+
+The current boundary is installation of Elgato's separate Wave Link 3 audio driver. It is distinct from the approved RaveLink test-driver installer, and was not clicked. The older installed WaveLinkVirtualAudio driver retains its original executable hash; WaveLink3VirtualAudio.driver is absent. No vendor driver installation, audio permission approval, default audio change, or main-mixer action occurred. The current screenshot and AX snapshot remain ignored under `.tools/evidence/reference-runtime-2026-10-24/`; the separate documentation screenshot remains `.tools/evidence/reference-documented-matrix.png`.
 
 Consequently, routing, fader curves, mute/solo semantics, effects order, capture, restore behavior, device recovery and audio quality have **not** been observed in the reference runtime. They remain acceptance work. Compilation or synthetic DSP checks in RaveLink cannot close those reference comparisons.
 
 ## Reproduce static inspection
 
-Use the pinned Node executable explicitly; do not silently substitute the host Node version. Acquire the official DMG at the URL above and verify its size/hash before mounting. Never install the reference driver as part of inspection.
+Use the pinned Node executable explicitly; do not silently substitute the host Node version. Acquire the official DMG at the URL above and verify its size/hash before mounting. Static inspection does not require installing the reference driver; any runtime installation is a separate authorized action and must be recorded explicitly.
 
 ```sh
 npm install --prefix .tools/rea-cli --save-exact node@24.22.1 rea-agents@6.7.0

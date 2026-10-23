@@ -1,0 +1,27 @@
+{
+  "evidence": "Combine subscriber and supervised-process controls only; native SwiftUI responsiveness remains separate acceptance.",
+  "sourceBase": "f733a8c26124b1ace95b85624222f091516e93eb",
+  "sourceSHA256": {
+    "Sources/RaveLinkAudio/EngineClient.swift": "dd526bdfcf606812e64ad508176b6af5d6f45cdf1c7e0adceab05fce7138d206",
+    "Tests/RaveLinkAudioTests/EngineClientTests.swift": "0eaa29ed5e5ea782b2e10f4ecebb70144430bab67ecd122586467b6f2543ac5c",
+    "Tests/RaveLinkAudioTests/EnginePublicationTests.swift": "d4d7fba7b1094354c099fac1c1388426d1e7bd0389132d725a4e59f84e33abe1"
+  },
+  "command": "scripts/test.sh --filter 'EnginePublicationTests|EngineClientTests|EngineProtocolTests'",
+  "result": {
+    "tests": 22,
+    "suites": 3,
+    "passed": true,
+    "hardwareOptInsSkipped": 2
+  },
+  "controls": [
+    "200 identical idle snapshots produce zero objectWillChange/inventory publications.",
+    "40 updates to128 channel and32 bus meters plus diagnostics produce40 publications perchanged field; repeated identical copies produce none. State/inventory remain quiet, and an actual inventory change publishes.",
+    "A superseded generation produces no state or inventory publication after stop.",
+    "Identical running snapshots from a real helper fixture keep the transport alive for850ms with250msheartbeat deadline, for both normal andSoundCheck sessions, whileproducing zeropublications.",
+    "Existing supervisor malformed-message, crash, pipe, deadline, stale-generation andprocess cleanup controls pass."
+  ],
+  "limitations": [
+    "No HAL IO or physical audio device was started.",
+    "These tests establish subscriber behavior and heartbeat preservation; only native app interaction/profile can establish responsiveness ofthe128\u00d732studio."
+  ]
+}

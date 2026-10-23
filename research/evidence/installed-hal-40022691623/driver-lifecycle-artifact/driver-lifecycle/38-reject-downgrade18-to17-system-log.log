@@ -1,0 +1,56 @@
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installer[1633]: Product archive /Users/runner/work/ravelink/ravelink/build/driver-lifecycle/initial17.pkg trustLevel=100
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installer[1633]: External component packages (2) trustLevel=100 (trust evaluation failed: Error Domain=PKInstallErrorDomain Code=101 "The package “initial17.pkg” is not signed." UserInfo={NSURL=#ci-lifecycle-b.pkg -- file:///Users/runner/work/ravelink/ravelink/build/driver-lifecycle/initial17.pkg#Distribution, PKInstallPackageIdentifier=au.textual.ravelink.audio.package.ci-lifecycle-b, NSLocalizedDescription=The package “initial17.pkg” is not signed.})
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installer[1633]: -[IFDInstallController(Private) _buildInstallPlanReturningError:]: location = file://localhost
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installer[1633]: -[IFDInstallController(Private) _buildInstallPlanReturningError:]: file://localhost/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/initial17.pkg#ci-lifecycle-a.pkg
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installer[1633]: -[IFDInstallController(Private) _buildInstallPlanReturningError:]: file://localhost/Users/runner/work/ravelink/ravelink/build/driver-lifecycle/initial17.pkg#ci-lifecycle-b.pkg
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installer[1633]: Set authorization level to root for session
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installer[1633]: Authorization is being checked, waiting until authorization arrives.
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installer[1633]: Administrator authorization granted.
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installer[1633]: Packages have been authorized for installation.
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installer[1633]: Will use PK session
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installer[1633]: Using authorization level of root for IFPKInstallElement
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installer[1633]: Starting installation:
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installer[1633]: Configuring volume "Macintosh HD"
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installer[1633]: Preparing disk for local booted install.
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installer[1633]: Free space on "Macintosh HD": 46.22 GB (46218006528 bytes).
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installer[1633]: Create temporary directory "/var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T//Install.16330qzlHZ"
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installer[1633]: IFPKInstallElement (2 packages)
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installer[1633]: Current Path: /usr/sbin/installer
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installer[1633]: Current Path: /usr/bin/sudo
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installd[667]: PackageKit: Adding client PKInstallDaemonClient pid=1633, uid=0 (/usr/sbin/installer)
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installer[1633]: PackageKit: Enqueuing install with framework-specified quality of service (utility)
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installd[667]: PackageKit: Set reponsibility for install to 951
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installd[667]: PackageKit: ----- Begin install -----
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installd[667]: PackageKit: request=PKInstallRequest <2 packages, destination=/>
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installd[667]: PackageKit: packages=(
+	    "PKLeopardPackage <id=au.textual.ravelink.audio.package.ci-lifecycle-a, version=17, url=file:///Users/runner/work/ravelink/ravelink/build/driver-lifecycle/initial17.pkg#ci-lifecycle-a.pkg>",
+	    "PKLeopardPackage <id=au.textual.ravelink.audio.package.ci-lifecycle-b, version=17, url=file:///Users/runner/work/ravelink/ravelink/build/driver-lifecycle/initial17.pkg#ci-lifecycle-b.pkg>"
+	)
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installd[667]: PackageKit: Extracting file:///Users/runner/work/ravelink/ravelink/build/driver-lifecycle/initial17.pkg#ci-lifecycle-a.pkg (destination=/Library/InstallerSandboxes/.PKInstallSandboxManager/44A65282-675B-4521-B2AE-B2B2DECE074D.activeSandbox/Root/Library/Audio/Plug-Ins/HAL, uid=0)
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installd[667]: PackageKit: Extracting file:///Users/runner/work/ravelink/ravelink/build/driver-lifecycle/initial17.pkg#ci-lifecycle-b.pkg (destination=/Library/InstallerSandboxes/.PKInstallSandboxManager/44A65282-675B-4521-B2AE-B2B2DECE074D.activeSandbox/Root/Library/Audio/Plug-Ins/HAL, uid=0)
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installd[667]: PackageKit: prevent user idle system sleep
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installd[667]: PackageKit: suspending Spotlight indexing
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installd[667]: PackageKit: suspending backupd
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installd[667]: PackageKit (package_script_service): Preparing to execute script "./preinstall" in /private/tmp/PKInstallSandbox.ggnQLx/Scripts/au.textual.ravelink.audio.package.ci-lifecycle-a.QRmtXs
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB package_script_service[1420]: PackageKit: Preparing to execute script "preinstall" in /tmp/PKInstallSandbox.ggnQLx/Scripts/au.textual.ravelink.audio.package.ci-lifecycle-a.QRmtXs
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB package_script_service[1420]: Set responsibility to pid: 951, responsible_path: /opt/hca/hosted-compute-agent
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB package_script_service[1420]: PackageKit: Executing script "preinstall" in /tmp/PKInstallSandbox.ggnQLx/Scripts/au.textual.ravelink.audio.package.ci-lifecycle-a.QRmtXs
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB install_monitor[1634]: Temporarily excluding: /Applications, /Library, /System, /bin, /private, /sbin, /usr
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB package_script_service[1420]: ./preinstall: Refusing driver downgrade: ci-lifecycle-a installed build 18, package build 17. Explicitly uninstall first for an intentional downgrade.
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB package_script_service[1420]: Responsibility set back to self.
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installd[667]: PackageKit: releasing Spotlight indexing
+2026-10-23 20:54:17+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB install_monitor[1634]: Re-included: /Applications, /Library, /System, /bin, /private, /sbin, /usr
+2026-10-23 20:54:18+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installd[667]: PackageKit: releasing backupd
+2026-10-23 20:54:18+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installd[667]: PackageKit: allow user idle system sleep
+2026-10-23 20:54:18+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installd[667]: PackageKit: Install Failed: Error Domain=PKInstallErrorDomain Code=112 "An error occurred while running scripts from the package “initial17.pkg”." UserInfo={NSFilePath=./preinstall, NSURL=file:///Users/runner/work/ravelink/ravelink/build/driver-lifecycle/initial17.pkg#ci-lifecycle-a.pkg, PKInstallPackageIdentifier=au.textual.ravelink.audio.package.ci-lifecycle-a, NSLocalizedDescription=An error occurred while running scripts from the package “initial17.pkg”.} {
+	    NSFilePath = "./preinstall";
+	    NSLocalizedDescription = "An error occurred while running scripts from the package \U201cinitial17.pkg\U201d.";
+	    NSURL = "file:///Users/runner/work/ravelink/ravelink/build/driver-lifecycle/initial17.pkg#ci-lifecycle-a.pkg";
+	    PKInstallPackageIdentifier = "au.textual.ravelink.audio.package.ci-lifecycle-a";
+	}
+2026-10-23 20:54:18+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installd[667]: PackageKit: Cleared responsibility for install from 1633.
+2026-10-23 20:54:18+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installd[667]: PackageKit: Running idle tasks
+2026-10-23 20:54:18+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installer[1633]: install:didFailWithError:Error Domain=PKInstallErrorDomain Code=112 "An error occurred while running scripts from the package “initial17.pkg”." UserInfo={NSFilePath=./preinstall, NSURL=file:///Users/runner/work/ravelink/ravelink/build/driver-lifecycle/initial17.pkg#ci-lifecycle-a.pkg, PKInstallPackageIdentifier=au.textual.ravelink.audio.package.ci-lifecycle-a, NSLocalizedDescription=An error occurred while running scripts from the package “initial17.pkg”.}
+2026-10-23 20:54:18+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installd[667]: PackageKit: Removing client PKInstallDaemonClient pid=1633, uid=0 (/usr/sbin/installer)
+2026-10-23 20:54:18+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installd[667]: PackageKit: Done with sandbox removals
+2026-10-23 20:54:18+00 sat12-bq159-9e5a0f87-960e-470d-9636-cc23931df785-5EEEC6235AAB installer[1633]: Install failed: The Installer encountered an error that caused the installation to fail. Contact the software manufacturer for assistance.

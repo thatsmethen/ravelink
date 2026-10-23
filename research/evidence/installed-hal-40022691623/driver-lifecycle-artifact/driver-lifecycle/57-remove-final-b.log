@@ -1,0 +1,2 @@
+Removed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-lifecycle-b.driver
+Restart macOS after closing audio apps. Audio services were not restarted.

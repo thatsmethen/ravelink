@@ -1,0 +1,1 @@
+{"mode":"feed","sampleRate":48000,"channels":8,"configuredBufferFrames":512,"minBlockFrames":512,"maxBlockFrames":512,"frames":1680000,"callbacks":3760,"firstFrameHostSeconds":184.916599125,"firstSignalHostSeconds":189.983265792,"timestampDiscontinuities":0,"invalidTimestamps":0,"complete":true}

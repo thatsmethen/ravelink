@@ -1,4 +1,5 @@
 import Foundation
+import Combine
 import Testing
 import Darwin
 import RaveLinkCore
@@ -54,10 +55,13 @@ private struct EngineFixture {
         if mode == 'flood':
             sys.stdout.write('X' * (5 * 1024 * 1024)); sys.stdout.flush(); time.sleep(30)
         running = False
+        sound_check = None
         def snapshot(active=False):
-            return {'devices': [], 'applications': [], 'running': active, 'starting': False,
+            value = {'devices': [], 'applications': [], 'running': active, 'starting': False,
                     'channelMeters': [], 'busMeters': [],
                     'diagnostics': {'capturedFrames':0,'renderedFrames':0,'droppedFrames':0,'underrunFrames':0,'oversizedBlocks':0}}
+            if sound_check is not None: value['soundCheck'] = sound_check
+            return value
         for line in sys.stdin:
             request = json.loads(line)
             operation = request['operation']
@@ -68,10 +72,18 @@ private struct EngineFixture {
             if operation == 'stop' and mode == 'hang_stop': time.sleep(30)
             if operation == 'start' and mode == 'slow_start' and request['session']['name'] == 'old': time.sleep(30)
             if operation in ('start', 'startSoundCheck'): running = True
+            if operation == 'startSoundCheck' and mode == 'steady_heartbeat':
+                sound_check = {'channelID':request['soundCheckChannelID'],'mode':'empty','recordedFrames':0,
+                               'sampleRate':48000,'maximumSeconds':30,'peak':0}
             if operation == 'stop': running = False
             generation = request['generation']
             reply = {'version':protocol_version,'id':request['id'],'generation':generation,'kind':'reply','success':True,'snapshot':snapshot(running)}
             print(json.dumps(reply), flush=True)
+            if mode == 'steady_heartbeat' and running:
+                for index in range(200):
+                    print(json.dumps({'version':protocol_version,'generation':generation,'kind':'state','success':True,'snapshot':snapshot(True)}),flush=True)
+                    time.sleep(.02)
+                time.sleep(30)
             if mode == 'closed_input':
                 os.close(0)
                 Path(__file__).with_name('input_closed').write_text('yes')
@@ -105,6 +117,30 @@ private func processGone(_ pid: Int32) -> Bool { kill(pid, 0) == -1 && errno == 
 }
 
 @Suite(.serialized) struct EngineClientTests {
+    @Test(arguments: [false, true]) @MainActor func identicalRunningHeartbeatsKeepConnectionAliveWithoutPublishing(soundCheck: Bool) async throws {
+        let fixture = try EngineFixture("steady_heartbeat"); defer { fixture.remove() }
+        let client = EngineClient(helperURL: fixture.executable, timeouts: .init(start: 5, heartbeat: 0.25), autoDiscover: false)
+        defer { client.shutdown() }
+        if soundCheck {
+            let channel = MixerChannel(name: "Check", source: .init(kind: .tone))
+            let session = try SoundCheckSession.make(channel: channel, output: .init(deviceUID: "fixture-output"))
+            try client.startSoundCheck(session: session, channelID: channel.id)
+        } else { try client.start(session: .initial) }
+        try await fixtureRunning(client)
+        let pid = try #require(client.helperProcessID)
+        var invalidations = 0, clipPublications = 0
+        let subscription = client.objectWillChange.sink { invalidations += 1 }
+        let clipSubscription = client.$soundCheck.dropFirst().sink { _ in clipPublications += 1 }
+        // More than three heartbeat deadlines: transport must process identical
+        // state while the GUI receives no redundant publication.
+        try await Task.sleep(for: .milliseconds(850))
+        #expect(client.running && client.errorMessage == nil && client.helperProcessID == pid)
+        #expect(invalidations == 0 && clipPublications == 0)
+        #expect((client.soundCheck != nil) == soundCheck)
+        withExtendedLifetime([subscription, clipSubscription]) {}
+        client.shutdown()
+        try await eventually { processGone(pid) }
+    }
     @Test @MainActor func discoveryTimeoutKillsAndReapsUncooperativeChild() async throws {
         let fixture = try EngineFixture("hang"); defer { fixture.remove() }
         let client = EngineClient(helperURL: fixture.executable, timeouts: .init(discovery: 1.5))

@@ -1,0 +1,6 @@
+test_malformed_properties_fail_and_complete_snapshot_is_preserved (test_driver_diagnostics_observer.DriverDiagnosticsObserverTests.test_malformed_properties_fail_and_complete_snapshot_is_preserved) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 3.293s
+
+OK
