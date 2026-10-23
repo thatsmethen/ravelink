@@ -27,7 +27,7 @@ struct AudioUnitRackView: View {
                             Button("Move later") { move(slot, by: 1) }.disabled(slots.last?.id == slot.id)
                             Divider()
                             Button("Remove effect", role: .destructive) { mutate { $0.removeAll { $0.id == slot.id } } }
-                        } label: { Image(systemName: "ellipsis") }.menuStyle(.borderlessButton).frame(width: 20)
+                        } label: { Label("Options for effect \(slot.descriptor.name)", systemImage: "ellipsis").labelStyle(.iconOnly) }.menuStyle(.borderlessButton).frame(width: 20)
                     }
                     HStack {
                         Toggle("Enabled", isOn: Binding(get: { !(slots.first { $0.id == slot.id }?.isBypassed ?? true) }, set: { enabled in
@@ -37,7 +37,7 @@ struct AudioUnitRackView: View {
                             }
                         })).toggleStyle(.switch).controlSize(.small).accessibilityLabel("Enable \(slot.descriptor.name)")
                         Spacer()
-                        Button("Edit") { editing = slot }.buttonStyle(.bordered).controlSize(.small)
+                        Button("Edit") { editing = slot }.buttonStyle(.bordered).controlSize(.small).accessibilityLabel("Edit \(slot.descriptor.name)")
                     }
                 }.padding(12).background(.white.opacity(0.045), in: RoundedRectangle(cornerRadius: 8))
             }
@@ -153,6 +153,7 @@ private struct AudioUnitParameterEditor: View {
                                     }
                                     Slider(value: Binding(get: { min(upper, max(lower, value(parameter))) }, set: { set(parameter, value: $0) }), in: lower...upper)
                                         .accessibilityLabel(parameter.name)
+                                        .accessibilityValue("\(value(parameter).formatted(.number.precision(.fractionLength(0...5)))) \(parameter.unitName ?? "")")
                                         .disabled(parameter.flags & AudioUnitParameterOptions.flag_IsWritable.rawValue == 0 || slot == nil)
                                 }
                             }

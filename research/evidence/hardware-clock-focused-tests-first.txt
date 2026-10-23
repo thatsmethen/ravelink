@@ -1,0 +1,124 @@
+[0/1] Planning build
+Building for debugging...
+[0/10] Write sources
+[1/10] Write swift-version--1AB21518FC5DEDBE.txt
+[3/6] Compiling RaveLinkAudioTests HardwareClockTests.swift
+[4/6] Emitting module RaveLinkAudioTests
+[4/6] Write Objects.LinkFileList
+[5/6] Linking RaveLinkPackageTests
+Build complete! (1.75s)
+􀟈  Test run started.
+􀄵  Testing Library Version: 1400
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite SourceAliasTests started.
+􀟈  Suite GroupedRealtimeTests started.
+􀟈  Suite AudioLifecycleTests started.
+􀟈  Suite HardwareClockTests started.
+􀟈  Suite DeviceCaptureProgressMonitorTests started.
+􀟈  Suite RealtimeTests started.
+􀟈  Suite ElasticClockTests started.
+􀟈  Suite SoundCheckRoutingTests started.
+􀟈  Suite TapRetargetTransactionTests started.
+􀟈  Suite AudioAllocationTests started.
+􀟈  Suite AudioCoordinatorTests started.
+􀟈  Test aliasGraphRejectsChainsCyclesReparentingAndConfiguredAliases() started.
+􀟈  Test diagnosticsRetainLegacyDecodingAndReportPhysicalCaptureCount() started.
+􀟈  Test compressorProcessesSummedWaveformOnce() started.
+􀟈  Test sumsGroupOnceAndUsesOnlyParentSendsForIndependentBuses() started.
+􀟈  Test resampledSharedCaptureIsIdenticalAcrossIndependentGroups() started.
+􀟈  Test sharedRawAudioKeepsGroupSumEffectsMuteAndSendsIndependent() started.
+􀟈  Test captureSilencesItsDuplexOutputContribution() started.
+􀟈  Test defaultGroupsRemainIndependentAndInvalidGraphsAreRejected() started.
+􀟈  Test capturePlanSharesCanonicalSelectorsWithoutMergingDifferentPairsOrApps() started.
+􀟈  Test laterClockEstimatesHaveBoundedSlew() started.
+􀟈  Test declaredBufferAndActualOversizeBothFailClosed() started.
+􀟈  Test missingFlagsUseFallbackAndRestartObservationWindow() started.
+􀟈  Test neverStartedCallbackHasBoundedGraceAndFreshGraphResetsIt() started.
+􀟈  Test toneGroupReceivesGainExactlyOnce() started.
+􀟈  Test nativeStreamValidationRejectsChangedStridesFlagsAndRate() started.
+􀟈  Test testCaptureMonoDuplicationAndMeter() started.
+􀟈  Test suspensionCannotBeOverriddenByLiveControlsAndDoesNotFreezeProcessing() started.
+􀟈  Test idleProcessTapGapRestartsWithoutDeviceFailure() started.
+􀟈  Test testBandLimitedDownsamplingRejectsAliasedHighFrequency() started.
+􀟈  Test largestSupportedDeviceBlockReceivesFourCompleteDurations() started.
+􀟈  Test clockConfigurationRejectsUnsupportedRatesWithoutLosingValidConfiguration() started.
+􀟈  Test invalidDeviceTimelinesLatchUntilExplicitReset() started.
+􀟈  Test independentlyMeasuresBothHardwareClocks() started.
+􀟈  Test invalidTimingConfigurationIsRejected() started.
+􀟈  Test testDSPGainHighPassGateAndCompression() started.
+􀟈  Test anotherDeviceAndIdleApplicationCannotHideStalledCapture() started.
+􀟈  Test silentDeviceProgressIsHealthyAndApplicationPauseIsExempt() started.
+􀟈  Test dryGroupIsRecordedBeforeEffectsAndPlaybackReplacesLiveInput() started.
+􀟈  Test testIndependentBusGainPanMuteAndOffsets() started.
+􀟈  Test failedExclusionUpdateNeverRestartsAnyCapture() started.
+􀟈  Test unequalAndVaryingBlocksKeepStableHeadroom() started.
+􀟈  Test bothClockDirectionsRemainContinuous(ppm:) started.
+􀟈  Test allExclusionsAreUpdatedBeforeAnyCaptureRestarts() started.
+􀟈  Test testGainChangesRampAndMuteReachesSilence() started.
+􀟈  Test rejectsBudgetOverflowBeforeAllocating() started.
+􀟈  Test rateExtremesReserveEnoughFramesAndFilterSpace() started.
+􀟈  Test testNonFiniteInputIsContainedAndInvalidConfigurationRejected() started.
+􀟈  Test consumerResetDiscardsOldAudioAndReprimesWithFreshCapture() started.
+􀟈  Test testRingIsBoundedAndReportsOverflowAndUnderrun() started.
+􀟈  Test protocolRejectsExtraDestinationsAndInvalidClipTelemetry() started.
+􀟈  Test cancellationAfterDescriptionChangePreventsLateRestart() started.
+􀟈  Test case passing 1 argument ppm → 1000.0 to bothClockDirectionsRemainContinuous(ppm:) started.
+􀟈  Test case passing 1 argument ppm → -1000.0 to bothClockDirectionsRemainContinuous(ppm:) started.
+􀟈  Test testInvalidStartFailsWithActionableErrorAndStaysStopped() started.
+􁁛  Test diagnosticsRetainLegacyDecodingAndReportPhysicalCaptureCount() passed after 0.005 seconds.
+􁁛  Test missingFlagsUseFallbackAndRestartObservationWindow() passed after 0.006 seconds.
+􁁛  Test aliasGraphRejectsChainsCyclesReparentingAndConfiguredAliases() passed after 0.006 seconds.
+􁁛  Test idleProcessTapGapRestartsWithoutDeviceFailure() passed after 0.006 seconds.
+􁁛  Test neverStartedCallbackHasBoundedGraceAndFreshGraphResetsIt() passed after 0.006 seconds.
+􁁛  Test captureSilencesItsDuplexOutputContribution() passed after 0.006 seconds.
+􁁛  Test largestSupportedDeviceBlockReceivesFourCompleteDurations() passed after 0.006 seconds.
+􁁛  Test declaredBufferAndActualOversizeBothFailClosed() passed after 0.006 seconds.
+􁁛  Test invalidTimingConfigurationIsRejected() passed after 0.006 seconds.
+􁁛  Test testCaptureMonoDuplicationAndMeter() passed after 0.006 seconds.
+􁁛  Test anotherDeviceAndIdleApplicationCannotHideStalledCapture() passed after 0.006 seconds.
+􁁛  Test silentDeviceProgressIsHealthyAndApplicationPauseIsExempt() passed after 0.006 seconds.
+􁁛  Test nativeStreamValidationRejectsChangedStridesFlagsAndRate() passed after 0.006 seconds.
+􁁛  Test failedExclusionUpdateNeverRestartsAnyCapture() passed after 0.006 seconds.
+􁁛  Test suspensionCannotBeOverriddenByLiveControlsAndDoesNotFreezeProcessing() passed after 0.006 seconds.
+􁁛  Test independentlyMeasuresBothHardwareClocks() passed after 0.006 seconds.
+􁁛  Test clockConfigurationRejectsUnsupportedRatesWithoutLosingValidConfiguration() passed after 0.006 seconds.
+􁁛  Test testIndependentBusGainPanMuteAndOffsets() passed after 0.006 seconds.
+􁁛  Test allExclusionsAreUpdatedBeforeAnyCaptureRestarts() passed after 0.006 seconds.
+􁁛  Test testDSPGainHighPassGateAndCompression() passed after 0.006 seconds.
+􁁛  Test rejectsBudgetOverflowBeforeAllocating() passed after 0.006 seconds.
+􁁛  Test rateExtremesReserveEnoughFramesAndFilterSpace() passed after 0.006 seconds.
+􁁛  Test testNonFiniteInputIsContainedAndInvalidConfigurationRejected() passed after 0.006 seconds.
+􁁛  Test testGainChangesRampAndMuteReachesSilence() passed after 0.006 seconds.
+􁁛  Test toneGroupReceivesGainExactlyOnce() passed after 0.006 seconds.
+􁁛  Test invalidDeviceTimelinesLatchUntilExplicitReset() passed after 0.006 seconds.
+􁁛  Test cancellationAfterDescriptionChangePreventsLateRestart() passed after 0.006 seconds.
+􁁛  Test testRingIsBoundedAndReportsOverflowAndUnderrun() passed after 0.006 seconds.
+􁁛  Suite DeviceCaptureProgressMonitorTests passed after 0.007 seconds.
+􁁛  Suite AudioAllocationTests passed after 0.007 seconds.
+􁁛  Suite TapRetargetTransactionTests passed after 0.007 seconds.
+􁁛  Test consumerResetDiscardsOldAudioAndReprimesWithFreshCapture() passed after 0.006 seconds.
+􁁛  Suite AudioLifecycleTests passed after 0.007 seconds.
+􁁛  Test capturePlanSharesCanonicalSelectorsWithoutMergingDifferentPairsOrApps() passed after 0.007 seconds.
+􁁛  Test laterClockEstimatesHaveBoundedSlew() passed after 0.007 seconds.
+􁁛  Suite HardwareClockTests passed after 0.007 seconds.
+􁁛  Test protocolRejectsExtraDestinationsAndInvalidClipTelemetry() passed after 0.008 seconds.
+􁁛  Test testInvalidStartFailsWithActionableErrorAndStaysStopped() passed after 0.004 seconds.
+􀙟  Test testBlackHoleLoopbackAndLiveBusControls() skipped.
+􀙟  Test testSilentPhysicalOutputLifecycle() skipped.
+􁁛  Suite AudioCoordinatorTests passed after 0.009 seconds.
+􁁛  Test sharedRawAudioKeepsGroupSumEffectsMuteAndSendsIndependent() passed after 0.016 seconds.
+􁁛  Test dryGroupIsRecordedBeforeEffectsAndPlaybackReplacesLiveInput() passed after 0.017 seconds.
+􁁛  Suite SoundCheckRoutingTests passed after 0.018 seconds.
+􁁛  Test sumsGroupOnceAndUsesOnlyParentSendsForIndependentBuses() passed after 0.022 seconds.
+􁁛  Test defaultGroupsRemainIndependentAndInvalidGraphsAreRejected() passed after 0.026 seconds.
+􁁛  Test compressorProcessesSummedWaveformOnce() passed after 0.026 seconds.
+􁁛  Suite GroupedRealtimeTests passed after 0.027 seconds.
+CAPTURE_ALIAS rawDifference=0.0 cancellationResidual=7.449355e-09
+􁁛  Test resampledSharedCaptureIsIdenticalAcrossIndependentGroups() passed after 0.060 seconds.
+􁁛  Suite SourceAliasTests passed after 0.060 seconds.
+􁁛  Test testBandLimitedDownsamplingRejectsAliasedHighFrequency() passed after 0.081 seconds.
+􁁛  Suite RealtimeTests passed after 0.082 seconds.
+􁁛  Test bothClockDirectionsRemainContinuous(ppm:) with 2 test cases passed after 0.097 seconds.
+􁁛  Test unequalAndVaryingBlocksKeepStableHeadroom() passed after 0.118 seconds.
+􁁛  Suite ElasticClockTests passed after 0.118 seconds.
+􁁛  Test run with 44 tests in 11 suites passed after 0.119 seconds.

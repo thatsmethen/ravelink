@@ -1,0 +1,163 @@
+[0/1] Planning build
+Building for debugging...
+[0/15] Write sources
+[2/15] Compiling RaveLinkRealtime Realtime.c
+[2/15] Write swift-version--1AB21518FC5DEDBE.txt
+[5/24] Compiling RaveLinkCore SoundCheck.swift
+[6/24] Compiling RaveLinkCore SessionStore.swift
+[7/24] Compiling RaveLinkCore AudioUnitEffects.swift
+[8/24] Compiling RaveLinkCore ExpandedRouting.swift
+[9/24] Emitting module RaveLinkCore
+[10/24] Compiling RaveLinkCore Session.swift
+[11/43] Emitting module RaveLinkPluginHost
+[12/43] Compiling RaveLinkPluginHost Render.swift
+[13/43] Compiling RaveLinkPluginHost main.swift
+[13/42] Linking RaveLinkPluginHost
+[14/42] Applying RaveLinkPluginHost
+[16/42] Compiling RaveLinkAudio SoundCheckSupport.swift
+[17/43] Compiling RaveLinkAudio PluginRender.swift
+[18/43] Compiling RaveLinkAudio RenderProgressMonitor.swift
+[19/43] Compiling RaveLinkAudio TapRetargetTransaction.swift
+[20/43] Compiling RaveLinkAudio LiveAudioUnitGraph.swift
+[21/43] Compiling RaveLinkAudio HardwareEventMonitor.swift
+[22/43] Compiling RaveLinkAudio NativeTapRestoration.swift
+[23/43] Compiling RaveLinkAudio FeedbackValidation.swift
+[24/43] Compiling RaveLinkAudio EngineProtocol.swift
+[25/43] Compiling RaveLinkAudio PluginCatalog.swift
+[26/43] Compiling RaveLinkAudio EngineClient.swift
+[27/43] Compiling RaveLinkAudio DeviceCaptureProgressMonitor.swift
+[28/43] Compiling RaveLinkAudio CaptureSourcePlan.swift
+[29/43] Compiling RaveLinkAudio AudioPowerObserver.swift
+[30/43] Compiling RaveLinkAudio AudioStreamValidation.swift
+[31/43] Compiling RaveLinkAudio AudioAllocationBudget.swift
+[32/43] Compiling RaveLinkAudio AudioCoordinator.swift
+[33/43] Compiling RaveLinkAudio ApplicationIdentity.swift
+[34/43] Compiling RaveLinkAudio ApplicationMembership.swift
+[35/43] Emitting module RaveLinkAudio
+[36/75] Emitting module RaveLinkEngine
+[37/75] Compiling RaveLinkEngine EngineMain.swift
+[37/75] Write Objects.LinkFileList
+[38/75] Linking RaveLinkEngine
+[39/75] Applying RaveLinkEngine
+[41/75] Compiling RaveLinkAudioTests SoundCheckRoutingTests.swift
+[42/76] Compiling RaveLinkAudioTests SoundCheckBufferTests.swift
+[43/76] Compiling RaveLinkAudioTests RenderProgressMonitorTests.swift
+[44/76] Compiling RaveLinkAudioTests PluginCatalogTests.swift
+[45/76] Compiling RaveLinkAudioTests ApplicationMembershipTests.swift
+[46/76] Compiling RaveLinkAudioTests AudioAllocationTests.swift
+[47/76] Emitting module RaveLinkAudioTests
+[48/76] Compiling RaveLinkAudioTests SourceAliasTests.swift
+[49/76] Compiling RaveLinkAudioTests DeviceCaptureProgressMonitorTests.swift
+[50/76] Compiling RaveLinkAudioTests ElasticClockTests.swift
+[51/76] Compiling RaveLinkAudioTests AudioLifecycleTests.swift
+[52/76] Compiling RaveLinkAudioTests DSPRecoveryTests.swift
+[53/76] Compiling RaveLinkAudioTests PluginRenderTests.swift
+[54/76] Compiling RaveLinkAudioTests RealtimeTests.swift
+[55/76] Compiling RaveLinkAudioTests ThirdPartyAudioUnitTests.swift
+[56/76] Compiling RaveLinkAudioTests InstalledDeviceSoakTests.swift
+[57/76] Compiling RaveLinkAudioTests InstalledMatrixTests.swift
+[58/76] Compiling RaveLinkAudioTests InstalledSoundCheckTests.swift
+[59/76] Compiling RaveLinkAudioTests LiveAudioUnitTests.swift
+[60/76] Compiling RaveLinkAudioTests GroupedRealtimeTests.swift
+[61/76] Compiling RaveLinkAudioTests InstalledAudioUnitAcceptanceTests.swift
+[62/76] Compiling RaveLinkAudioTests EngineClientTests.swift
+[63/76] Compiling RaveLinkAudioTests FeedbackValidationTests.swift
+[64/76] Compiling RaveLinkApp EngineDiagnosticsView.swift
+[65/76] Compiling RaveLinkApp StudioModel.swift
+[66/76] Compiling RaveLinkApp RaveLinkApp.swift
+[67/76] Compiling RaveLinkApp SourceSheets.swift
+[68/76] Emitting module RaveLinkApp
+[69/76] Compiling RaveLinkApp StudioView.swift
+[70/76] Compiling RaveLinkApp SoundCheckView.swift
+[71/76] Compiling RaveLinkApp AudioUnitRackView.swift
+[71/76] Write Objects.LinkFileList
+[72/76] Linking RaveLink
+[73/76] Applying RaveLink
+[75/78] Emitting module RaveLinkAppTests
+[76/78] Compiling RaveLinkAppTests SoundCheckIsolationTests.swift
+[76/78] Write Objects.LinkFileList
+[77/78] Linking RaveLinkPackageTests
+Build complete! (7.71s)
+􀟈  Test run started.
+􀄵  Testing Library Version: 1400
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite SourceAliasTests started.
+􀟈  Suite ElasticClockTests started.
+􀟈  Suite TapRetargetTransactionTests started.
+􀟈  Suite RealtimeTests started.
+􀟈  Suite GroupedRealtimeTests started.
+􀟈  Test aliasGraphRejectsChainsCyclesReparentingAndConfiguredAliases() started.
+􀟈  Test resampledSharedCaptureIsIdenticalAcrossIndependentGroups() started.
+􀟈  Suite AudioCoordinatorTests started.
+􀟈  Test sharedRawAudioKeepsGroupSumEffectsMuteAndSendsIndependent() started.
+􀟈  Suite AudioLifecycleTests started.
+􀟈  Test unequalAndVaryingBlocksKeepStableHeadroom() started.
+􀟈  Test testGainChangesRampAndMuteReachesSilence() started.
+􀟈  Test capturePlanSharesCanonicalSelectorsWithoutMergingDifferentPairsOrApps() started.
+􀟈  Test testBandLimitedDownsamplingRejectsAliasedHighFrequency() started.
+􀟈  Test clockConfigurationRejectsUnsupportedRatesWithoutLosingValidConfiguration() started.
+􀟈  Test testCaptureMonoDuplicationAndMeter() started.
+􀟈  Test bothClockDirectionsRemainContinuous(ppm:) started.
+􀟈  Test testNonFiniteInputIsContainedAndInvalidConfigurationRejected() started.
+􀟈  Test sumsGroupOnceAndUsesOnlyParentSendsForIndependentBuses() started.
+􀟈  Test testRingIsBoundedAndReportsOverflowAndUnderrun() started.
+􀟈  Test diagnosticsRetainLegacyDecodingAndReportPhysicalCaptureCount() started.
+􀟈  Test toneGroupReceivesGainExactlyOnce() started.
+􀟈  Test testIndependentBusGainPanMuteAndOffsets() started.
+􀟈  Test compressorProcessesSummedWaveformOnce() started.
+􀟈  Test testDSPGainHighPassGateAndCompression() started.
+􀟈  Test failedExclusionUpdateNeverRestartsAnyCapture() started.
+􀟈  Test allExclusionsAreUpdatedBeforeAnyCaptureRestarts() started.
+􀟈  Test defaultGroupsRemainIndependentAndInvalidGraphsAreRejected() started.
+􀟈  Suite SoundCheckRoutingTests started.
+􀟈  Test case passing 1 argument ppm → 1000.0 to bothClockDirectionsRemainContinuous(ppm:) started.
+􀟈  Test cancellationAfterDescriptionChangePreventsLateRestart() started.
+􀟈  Test case passing 1 argument ppm → -1000.0 to bothClockDirectionsRemainContinuous(ppm:) started.
+􀟈  Test captureSilencesItsDuplexOutputContribution() started.
+􀟈  Test testInvalidStartFailsWithActionableErrorAndStaysStopped() started.
+􀟈  Test consumerResetDiscardsOldAudioAndReprimesWithFreshCapture() started.
+􀟈  Test nativeStreamValidationRejectsChangedStridesFlagsAndRate() started.
+􀟈  Test suspensionCannotBeOverriddenByLiveControlsAndDoesNotFreezeProcessing() started.
+􁁛  Test testNonFiniteInputIsContainedAndInvalidConfigurationRejected() passed after 0.001 seconds.
+􁁛  Test diagnosticsRetainLegacyDecodingAndReportPhysicalCaptureCount() passed after 0.002 seconds.
+􁁛  Test capturePlanSharesCanonicalSelectorsWithoutMergingDifferentPairsOrApps() passed after 0.002 seconds.
+􁁛  Test aliasGraphRejectsChainsCyclesReparentingAndConfiguredAliases() passed after 0.003 seconds.
+􁁛  Test testRingIsBoundedAndReportsOverflowAndUnderrun() passed after 0.003 seconds.
+􁁛  Test failedExclusionUpdateNeverRestartsAnyCapture() passed after 0.003 seconds.
+􁁛  Test allExclusionsAreUpdatedBeforeAnyCaptureRestarts() passed after 0.003 seconds.
+􁁛  Test testCaptureMonoDuplicationAndMeter() passed after 0.003 seconds.
+􀟈  Test protocolRejectsExtraDestinationsAndInvalidClipTelemetry() started.
+􀟈  Test dryGroupIsRecordedBeforeEffectsAndPlaybackReplacesLiveInput() started.
+􁁛  Test cancellationAfterDescriptionChangePreventsLateRestart() passed after 0.003 seconds.
+􁁛  Test captureSilencesItsDuplexOutputContribution() passed after 0.003 seconds.
+􁁛  Test consumerResetDiscardsOldAudioAndReprimesWithFreshCapture() passed after 0.003 seconds.
+􁁛  Test testGainChangesRampAndMuteReachesSilence() passed after 0.004 seconds.
+􁁛  Suite TapRetargetTransactionTests passed after 0.005 seconds.
+􁁛  Test suspensionCannotBeOverriddenByLiveControlsAndDoesNotFreezeProcessing() passed after 0.004 seconds.
+􁁛  Test toneGroupReceivesGainExactlyOnce() passed after 0.004 seconds.
+􁁛  Test nativeStreamValidationRejectsChangedStridesFlagsAndRate() passed after 0.004 seconds.
+􁁛  Suite AudioLifecycleTests passed after 0.005 seconds.
+􁁛  Test protocolRejectsExtraDestinationsAndInvalidClipTelemetry() passed after 0.001 seconds.
+􁁛  Test testIndependentBusGainPanMuteAndOffsets() passed after 0.005 seconds.
+􁁛  Test testDSPGainHighPassGateAndCompression() passed after 0.005 seconds.
+􁁛  Test clockConfigurationRejectsUnsupportedRatesWithoutLosingValidConfiguration() passed after 0.006 seconds.
+􁁛  Test testInvalidStartFailsWithActionableErrorAndStaysStopped() passed after 0.007 seconds.
+􀙟  Test testBlackHoleLoopbackAndLiveBusControls() skipped.
+􀙟  Test testSilentPhysicalOutputLifecycle() skipped.
+􁁛  Suite AudioCoordinatorTests passed after 0.008 seconds.
+􁁛  Test sharedRawAudioKeepsGroupSumEffectsMuteAndSendsIndependent() passed after 0.021 seconds.
+􁁛  Test sumsGroupOnceAndUsesOnlyParentSendsForIndependentBuses() passed after 0.023 seconds.
+􁁛  Test dryGroupIsRecordedBeforeEffectsAndPlaybackReplacesLiveInput() passed after 0.019 seconds.
+􁁛  Suite SoundCheckRoutingTests passed after 0.023 seconds.
+􁁛  Test defaultGroupsRemainIndependentAndInvalidGraphsAreRejected() passed after 0.025 seconds.
+􁁛  Test compressorProcessesSummedWaveformOnce() passed after 0.033 seconds.
+􁁛  Suite GroupedRealtimeTests passed after 0.034 seconds.
+CAPTURE_ALIAS rawDifference=0.0 cancellationResidual=7.449355e-09
+􁁛  Test resampledSharedCaptureIsIdenticalAcrossIndependentGroups() passed after 0.060 seconds.
+􁁛  Suite SourceAliasTests passed after 0.060 seconds.
+􁁛  Test testBandLimitedDownsamplingRejectsAliasedHighFrequency() passed after 0.080 seconds.
+􁁛  Suite RealtimeTests passed after 0.080 seconds.
+􁁛  Test bothClockDirectionsRemainContinuous(ppm:) with 2 test cases passed after 0.088 seconds.
+􁁛  Test unequalAndVaryingBlocksKeepStableHeadroom() passed after 0.110 seconds.
+􁁛  Suite ElasticClockTests passed after 0.110 seconds.
+􁁛  Test run with 31 tests in 8 suites passed after 0.110 seconds.

@@ -1,0 +1,1 @@
+{"evidence":"Actual bundle in-process simulated missed write; no HAL installation or real callback scheduling","ringFrames":65536,"blockFrames":512,"channels":8,"skippedReadSample":66048,"staleSentinelSamples":0,"totalSamples":4096,"skippedIntervalPeak":0,"expectedSilence":true,"currentWriteControlPassed":true,"futureReadSilenceControlPassed":true}

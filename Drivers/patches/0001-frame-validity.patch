@@ -1,0 +1,253 @@
+--- BlackHole.c
++++ RaveLinkAudio.c
+@@ -17,6 +17,11 @@
+ #include <mach/mach_time.h>
+ #include <pthread.h>
+ #include <stdint.h>
++#include <stdatomic.h>
++#include <math.h>
++
++// RaveLink requires native lock-free publication on supported arm64/x86_64 hosts.
++_Static_assert(ATOMIC_INT_LOCK_FREE == 2 && ATOMIC_LLONG_LOCK_FREE == 2, "Native atomics required");
+ #include <sys/syslog.h>
+ #include <Accelerate/Accelerate.h>
+ #include <Availability.h>
+@@ -337,7 +342,23 @@
+ #define                             kBytes_Per_Channel                  (kBits_Per_Channel/ 8)
+ #define                             kBytes_Per_Frame                    (kNumber_Of_Channels * kBytes_Per_Channel)
+ #define                             kRing_Buffer_Frame_Size             ((65536 + kLatency_Frame_Size))
+-static Float32*                     gRingBuffer = NULL;
++// RaveLink local patch: the HAL supplies one fully mixed WriteMix stream for this
++// device. Multiple clients read it; the disabled mirror must not be a second writer.
++_Static_assert(kDevice2_HasOutput == 0, "RaveLink frame validity requires mirror output disabled");
++// Atomic sample bits plus per-frame sequence publication make overlapping reads
++// fail closed without a callback mutex, allocation, or retry loop.
++typedef struct {
++    _Atomic(UInt64) sequence;
++    _Atomic(UInt64) sample;
++    _Atomic(UInt64) generation;
++} RaveLinkFrameValidity;
++static _Atomic(UInt32)* gRingBuffer = NULL;
++static RaveLinkFrameValidity* gRingValidity = NULL;
++static _Atomic(UInt64) gRingGeneration = 1;
++static _Atomic(UInt64) gRingLastCycle = 0;
++static _Atomic(UInt64) gRingWriteEnd = 0;
++static UInt64 gRingLastWriteStart = 0;
++static Boolean gRingHasWritten = false;
+ 
+ 
+ //==================================================================================================
+@@ -780,7 +801,7 @@
+ 	//	set the box name directly as a last resort
+ 	if(gBox_Name == NULL)
+ 	{
+-		gBox_Name = CFSTR("BlackHole Box");
++		gBox_Name = CFSTR(kDriver_Name " Box");
+ 	}
+ 	
+ 	//	calculate the host ticks per frame
+@@ -4341,7 +4362,32 @@
+         gDevice_AnchorSampleTime = 0;
+         gDevice_AnchorHostTime = mach_absolute_time();
+         gDevice_PreviousTicks = 0;
+-        gRingBuffer = calloc(kRing_Buffer_Frame_Size * kNumber_Of_Channels, sizeof(Float32));
++        gRingBuffer = calloc((size_t)kRing_Buffer_Frame_Size * kNumber_Of_Channels, sizeof(*gRingBuffer));
++        gRingValidity = calloc(kRing_Buffer_Frame_Size, sizeof(*gRingValidity));
++        if (gRingBuffer == NULL || gRingValidity == NULL)
++        {
++            free(gRingBuffer); free(gRingValidity);
++            gRingBuffer = NULL; gRingValidity = NULL;
++            if (inDeviceObjectID == kObjectID_Device) { gDevice_IOIsRunning -= 1; }
++            if (inDeviceObjectID == kObjectID_Device2) { gDevice2_IOIsRunning -= 1; }
++            theAnswer = kAudioHardwareUnspecifiedError;
++        }
++        else
++        {
++            for (size_t sample = 0; sample < (size_t)kRing_Buffer_Frame_Size * kNumber_Of_Channels; ++sample)
++                atomic_init(&gRingBuffer[sample], 0);
++            for (UInt32 frame = 0; frame < kRing_Buffer_Frame_Size; ++frame)
++            {
++                atomic_init(&gRingValidity[frame].sequence, 0);
++                atomic_init(&gRingValidity[frame].sample, 0);
++                atomic_init(&gRingValidity[frame].generation, 0);
++            }
++            atomic_store(&gRingGeneration, 1);
++            atomic_store(&gRingLastCycle, 0);
++            atomic_store(&gRingWriteEnd, 0);
++            gRingLastWriteStart = 0;
++            gRingHasWritten = false;
++        }
+     }
+     
+     
+@@ -4378,8 +4424,8 @@
+     // free the ring buffer
+     if (!gDevice_IOIsRunning && !gDevice2_IOIsRunning && gRingBuffer != NULL)
+     {
+-        free(gRingBuffer);
+-        gRingBuffer = NULL;
++        free(gRingBuffer); free(gRingValidity);
++        gRingBuffer = NULL; gRingValidity = NULL;
+     }
+ 	
+ 	//	unlock the state lock
+@@ -4531,76 +4577,97 @@
+ 	FailWithAction(inDeviceObjectID != kObjectID_Device && inDeviceObjectID != kObjectID_Device2, theAnswer = kAudioHardwareBadObjectError, Done, "BlackHole_DoIOOperation: bad device ID");
+ 	FailWithAction((inStreamObjectID != kObjectID_Stream_Input) && (inStreamObjectID != kObjectID_Stream_Output), theAnswer = kAudioHardwareBadObjectError, Done, "BlackHole_DoIOOperation: bad stream ID");
+ 
+-    // Calculate the ring buffer offsets and splits.
+-    UInt64 mSampleTime = inOperationID == kAudioServerPlugInIOOperationReadInput ? inIOCycleInfo->mInputTime.mSampleTime : inIOCycleInfo->mOutputTime.mSampleTime;
+-    UInt32 ringBufferFrameLocationStart = mSampleTime % kRing_Buffer_Frame_Size;
+-    UInt32 firstPartFrameSize = kRing_Buffer_Frame_Size - ringBufferFrameLocationStart;
+-    UInt32 secondPartFrameSize = 0;
+-    
+-    if (firstPartFrameSize >= inIOBufferFrameSize)
++    if (inOperationID != kAudioServerPlugInIOOperationReadInput &&
++        inOperationID != kAudioServerPlugInIOOperationWriteMix)
++        return noErr;
++    if (inIOCycleInfo == NULL || (inIOBufferFrameSize != 0 && ioMainBuffer == NULL) ||
++        inIOBufferFrameSize > kRing_Buffer_Frame_Size || gRingBuffer == NULL || gRingValidity == NULL)
++        return kAudioHardwareIllegalOperationError;
++    if (inIOBufferFrameSize == 0) return noErr;
++    if (atomic_load_explicit(&gRingGeneration, memory_order_acquire) == 0)
++        return kAudioHardwareIllegalOperationError; // Generation exhaustion latches until restart.
++
++    const Boolean reading = inOperationID == kAudioServerPlugInIOOperationReadInput;
++    const Float64 requested = reading ? inIOCycleInfo->mInputTime.mSampleTime : inIOCycleInfo->mOutputTime.mSampleTime;
++    // Preserve upstream truncation of finite nonnegative fractional positions.
++    // A Double represents each integer frame exactly only through 2^53. Reject before casts.
++    if (!isfinite(requested) || requested < 0 ||
++        requested > 9007199254740991.0 - inIOBufferFrameSize)
++        return kAudioHardwareIllegalOperationError;
++    if (!reading && (!isfinite(inIOCycleInfo->mCurrentTime.mSampleTime) ||
++        inIOCycleInfo->mCurrentTime.mSampleTime > requested + inIOBufferFrameSize + kLatency_Frame_Size))
++        return kAudioHardwareUnspecifiedError;
++    const UInt64 start = (UInt64)requested;
++    // The fully mixed writer is authoritative for cycle resynchronization; readers
++    // may legitimately lag behind other clients. Zero is allowed for private
++    // interface clients which do not supply a counter. A backwards write also
++    // invalidates the timeline, even when a caller omits that counter.
++    Boolean resetTimeline = false;
++    if (!reading && inIOCycleInfo->mIOCycleCounter != 0)
+     {
+-        firstPartFrameSize = inIOBufferFrameSize;
++        UInt64 priorCycle = atomic_exchange_explicit(&gRingLastCycle, inIOCycleInfo->mIOCycleCounter, memory_order_acq_rel);
++        if (priorCycle > inIOCycleInfo->mIOCycleCounter) resetTimeline = true;
++    }
++    if (!reading && gRingHasWritten && start < gRingLastWriteStart) resetTimeline = true;
++    if (resetTimeline) atomic_fetch_add_explicit(&gRingGeneration, 1, memory_order_acq_rel);
++    const UInt64 generation = atomic_load_explicit(&gRingGeneration, memory_order_acquire);
++    if (generation == 0) return kAudioHardwareIllegalOperationError;
++    Float32* samples = ioMainBuffer;
++    if (reading)
++    {
++        for (UInt32 frame = 0; frame < inIOBufferFrameSize; ++frame)
++        {
++            const UInt64 position = start + frame;
++            const UInt32 slot = position % kRing_Buffer_Frame_Size;
++            RaveLinkFrameValidity* validity = &gRingValidity[slot];
++            const UInt64 before = atomic_load_explicit(&validity->sequence, memory_order_acquire);
++            const UInt64 writtenEnd = atomic_load_explicit(&gRingWriteEnd, memory_order_acquire);
++            Boolean valid = !gMute_Master_Value && before != 0 && (before & 1) == 0 &&
++                position < writtenEnd && writtenEnd - position <= kRing_Buffer_Frame_Size &&
++                atomic_load_explicit(&validity->sample, memory_order_relaxed) == position &&
++                atomic_load_explicit(&validity->generation, memory_order_relaxed) == generation;
++            for (UInt32 channel = 0; channel < kNumber_Of_Channels; ++channel)
++            {
++                UInt32 bits = valid ? atomic_load_explicit(&gRingBuffer[(size_t)slot * kNumber_Of_Channels + channel], memory_order_relaxed) : 0;
++                memcpy(&samples[(size_t)frame * kNumber_Of_Channels + channel], &bits, sizeof(bits));
++            }
++            // Keep sample loads before the second sequence check. All shared
++            // sample accesses are atomic, so concurrent overwrite has no C race.
++            atomic_thread_fence(memory_order_acquire);
++            if (atomic_load_explicit(&validity->sequence, memory_order_relaxed) != before)
++                memset(samples + (size_t)frame * kNumber_Of_Channels, 0, kNumber_Of_Channels * sizeof(Float32));
++        }
++        if (atomic_load_explicit(&gRingGeneration, memory_order_acquire) != generation)
++            memset(samples, 0, (size_t)inIOBufferFrameSize * kNumber_Of_Channels * sizeof(Float32));
++        if (kEnableVolumeControl)
++            vDSP_vsmul(samples, 1, &gVolume_Master_Value, samples, 1, inIOBufferFrameSize * kNumber_Of_Channels);
+     }
+     else
+     {
+-        secondPartFrameSize = inIOBufferFrameSize - firstPartFrameSize;
+-    }
+-    
+-    // Keep track of last outputSampleTime and the cleared buffer status.
+-    static Float64 lastOutputSampleTime = 0;
+-    static Boolean isBufferClear = true;
+-    
+-    // From BlackHole to Application
+-    if(inOperationID == kAudioServerPlugInIOOperationReadInput)
+-    {
+-        // If mute is one let's just fill the buffer with zeros or if there's no apps outputting audio
+-        if (gMute_Master_Value || lastOutputSampleTime - inIOBufferFrameSize < inIOCycleInfo->mInputTime.mSampleTime)
++        for (UInt32 frame = 0; frame < inIOBufferFrameSize; ++frame)
+         {
+-            // Clear the ioMainBuffer
+-            vDSP_vclr(ioMainBuffer, 1, inIOBufferFrameSize * kNumber_Of_Channels);
+-            
+-            // Clear the ring buffer.
+-            if (!isBufferClear)
++            const UInt64 position = start + frame;
++            const UInt32 slot = position % kRing_Buffer_Frame_Size;
++            RaveLinkFrameValidity* validity = &gRingValidity[slot];
++            UInt64 sequence = atomic_load_explicit(&validity->sequence, memory_order_relaxed);
++            if (sequence > UINT64_MAX - 2) return kAudioHardwareIllegalOperationError;
++            atomic_fetch_add_explicit(&validity->sequence, 1, memory_order_acq_rel);
++            // If a reader observes any new relaxed sample/metadata store, this
++            // fence synchronizes with its acquire fence before sequence recheck.
++            atomic_thread_fence(memory_order_release);
++            atomic_store_explicit(&validity->sample, position, memory_order_relaxed);
++            atomic_store_explicit(&validity->generation, generation, memory_order_relaxed);
++            for (UInt32 channel = 0; channel < kNumber_Of_Channels; ++channel)
+             {
+-                vDSP_vclr(gRingBuffer, 1, kRing_Buffer_Frame_Size * kNumber_Of_Channels);
+-                isBufferClear = true;
++                UInt32 bits;
++                memcpy(&bits, &samples[(size_t)frame * kNumber_Of_Channels + channel], sizeof(bits));
++                atomic_store_explicit(&gRingBuffer[(size_t)slot * kNumber_Of_Channels + channel], bits, memory_order_relaxed);
+             }
++            atomic_store_explicit(&validity->sequence, sequence + 2, memory_order_release);
+         }
+-        else
+-        {
+-            // Copy the buffers.
+-            memcpy(ioMainBuffer, gRingBuffer + ringBufferFrameLocationStart * kNumber_Of_Channels, firstPartFrameSize * kNumber_Of_Channels * sizeof(Float32));
+-            memcpy((Float32*)ioMainBuffer + firstPartFrameSize * kNumber_Of_Channels, gRingBuffer, secondPartFrameSize * kNumber_Of_Channels * sizeof(Float32));
+-            
+-            // Finally we'll apply the output volume to the buffer.
+-	    if(kEnableVolumeControl)
+-	    {
+-	 	vDSP_vsmul(ioMainBuffer, 1, &gVolume_Master_Value, ioMainBuffer, 1, inIOBufferFrameSize * kNumber_Of_Channels);
+-	    }
+-
+-        }
+-    }
+-    
+-    // From Application to BlackHole
+-    if(inOperationID == kAudioServerPlugInIOOperationWriteMix)
+-    {
+-        
+-        // Overload error.
+-        if (inIOCycleInfo->mCurrentTime.mSampleTime > inIOCycleInfo->mOutputTime.mSampleTime + inIOBufferFrameSize + kLatency_Frame_Size)
+-        {
+-            DebugMsg("BlackHole overload error. kAudioServerPlugInIOOperationWriteMix was unable to complete operation before the deadline. Try increasing the buffer frame size.");
+-            return kAudioHardwareUnspecifiedError;
+-        }
+-        // TODO: Mix into the buffers but we will need to clear the buffers at some point.
+-        // Issue with outputting from mirrored device and main device at the same time. Not currently mixing. 
+-        
+-        // Copy the buffers.
+-        memcpy(gRingBuffer + ringBufferFrameLocationStart * kNumber_Of_Channels, ioMainBuffer, firstPartFrameSize * kNumber_Of_Channels * sizeof(Float32));
+-        memcpy(gRingBuffer, (Float32*)ioMainBuffer + firstPartFrameSize * kNumber_Of_Channels, secondPartFrameSize * kNumber_Of_Channels * sizeof(Float32));
+-        
+-        // Save the last output time.
+-        lastOutputSampleTime = inIOCycleInfo->mOutputTime.mSampleTime + inIOBufferFrameSize;
+-        isBufferClear = false;
++        atomic_store_explicit(&gRingWriteEnd, start + inIOBufferFrameSize, memory_order_release);
++        gRingLastWriteStart = start;
++        gRingHasWritten = true;
+     }
+ 
+ Done:

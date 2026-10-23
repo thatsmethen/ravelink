@@ -123,6 +123,7 @@ struct SoundCheckView: View {
         return VStack(alignment: .leading, spacing: 8) {
             HStack { Text(title).font(.callout); Spacer(); Text("\(Int(binding.wrappedValue)) \(suffix)").font(.system(.caption, design: .monospaced)).foregroundStyle(.secondary) }
             Slider(value: binding, in: range).accessibilityLabel("Sound Check \(title)")
+                .accessibilityValue(audioControlValue(binding.wrappedValue, unit: suffix))
         }
     }
 }

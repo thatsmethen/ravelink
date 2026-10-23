@@ -7,6 +7,7 @@ import shutil
 import subprocess
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPT = ROOT / 'scripts' / 'virtual-devices.py'
@@ -18,6 +19,27 @@ spec.loader.exec_module(virtual)
 class DriverConfigurationTests(unittest.TestCase):
     def test_pinned_source_hashes(self):
         self.assertEqual(virtual.verify_upstream()['commit'], '561d934c77a1fa64987e01ccabe890fed30e181f')
+
+    def test_exact_local_patch_and_corresponding_source(self):
+        import hashlib
+        with tempfile.TemporaryDirectory() as directory:
+            source = Path(directory)
+            manifest = virtual.prepare_patched_source(source)
+            self.assertEqual((source / 'BlackHole.c').read_bytes(), (virtual.UPSTREAM / 'BlackHole.c').read_bytes())
+            self.assertEqual(hashlib.sha256((source / 'RaveLinkAudio.c').read_bytes()).hexdigest(), manifest['patchedSourceSHA256'])
+            self.assertTrue((source / 'patches.json').is_file())
+            for entry in manifest['patches']:
+                self.assertEqual(hashlib.sha256((source / entry['file']).read_bytes()).hexdigest(), entry['sha256'])
+
+    def test_modified_patch_fails_closed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            shutil.copytree(virtual.PATCHES, root / 'patches')
+            source = root / 'source'; source.mkdir()
+            with (root / 'patches/0001-frame-validity.patch').open('a') as file:
+                file.write('\n')
+            with patch.object(virtual, 'PATCHES', root / 'patches'), self.assertRaisesRegex(ValueError, 'patch checksum'):
+                virtual.prepare_patched_source(source)
 
     def test_stable_id_and_editable_label(self):
         self.assertEqual(virtual.parse_device('podcast:My Show'), ('podcast', 'My Show'))
@@ -69,6 +91,11 @@ class DriverConfigurationTests(unittest.TestCase):
             for bundle, info in zip(bundles, metadata):
                 args += [str(bundle / 'Contents/MacOS/RaveLinkAudio'), info['deviceUID'], str(info['channels'])]
             subprocess.run(args, check=True)
+            validity = directory / 'driver-validity-contract'
+            subprocess.run(['xcrun', 'clang', '-O2', '-Wall', '-Wextra', str(ROOT / 'Drivers/tests/driver_validity_contract.c'), '-framework', 'CoreAudio', '-framework', 'CoreFoundation', '-o', str(validity)], check=True)
+            for bundle, info in zip(bundles, metadata):
+                self.assertEqual(info['localPatches'], json.loads((virtual.PATCHES / 'manifest.json').read_text()))
+                subprocess.run([str(validity), str(bundle / 'Contents/MacOS/RaveLinkAudio'), info['deviceUID'], str(info['channels'])], check=True, timeout=30)
             # Signed bundle tampering must fail validation before install.
             with (bundles[0] / 'Contents/Resources/build-info.json').open('a') as file:
                 file.write(' ')

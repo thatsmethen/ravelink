@@ -10,8 +10,8 @@ Never route a bus back into a virtual device which feeds that same bus. RaveLink
 
 - Source: [ExistentialAudio/BlackHole](https://github.com/ExistentialAudio/BlackHole/tree/561d934c77a1fa64987e01ccabe890fed30e181f), version 0.7.1, commit `561d934c77a1fa64987e01ccabe890fed30e181f`.
 - The vendored `Drivers/BlackHole/BlackHole.c`, `LICENSE`, and `VERSION` are unmodified and checked against `upstream.json` before every build.
-- `scripts/virtual-devices.py` supplies independent RaveLink bundle identifiers, names, persistent UIDs, factory UUIDs, and an original icon. It replaces the upstream fallback box name in the compiled copy. It disables the hidden mirror streams, device gain, and system-alert default eligibility. No proprietary Elgato driver, upstream binary, or upstream artwork is redistributed.
-- Every generated bundle contains the license, complete compiled C source, original upstream C source, configuration header, provenance manifest, and reproduction instructions under `Contents/Resources`. Preserve those when distributing a bundle or installer. RaveLink and the derived driver are GPL-3.0-only. Upstream's trademarks and official binary branding are separate from its source license.
+- `scripts/virtual-devices.py` supplies independent RaveLink bundle identifiers, names, persistent UIDs, factory UUIDs, and an original icon. It applies the explicit local patch in `Drivers/patches/`, verifying the pristine input, patch bytes, and complete resulting source against `manifest.json`. The patch replaces the fallback box name and adds ring-frame validity checks described below. Configuration disables the hidden mirror streams, device gain, and system-alert default eligibility. No proprietary Elgato driver, upstream binary, or upstream artwork is redistributed.
+- Every generated bundle contains the license, complete compiled C source, original upstream C source, exact local patch, patch manifest, configuration header, provenance manifest, and reproduction instructions under `Contents/Resources`. Preserve those when distributing a bundle or installer. RaveLink and the derived driver are GPL-3.0-only. Upstream's trademarks and official binary branding are separate from its source license.
 
 ## Build
 
@@ -54,7 +54,9 @@ python3 scripts/virtual-devices.py build \
   --device matrix:Matrix --channels 16 --output build/matrix
 ```
 
-The application model has no fixed channel-count ceiling. Virtual buses can be added as independently named devices without a fixed product limit on the number of instances. Provisioning another system device requires installation by an administrator and a subsequent audio service reload or macOS restart. The current packaging supports an even 2–256 channels per device; 256 is this build's supported validation envelope, not a claim about the maximum channel count supported by Core Audio. A new device is preferable to inventing an unsupported enormous channel count. The upstream ring buffer consumes `65536 × channels × 4` bytes per active device (512 KiB stereo; 64 MiB at 256 channels), in addition to audio server and app overhead. CPU, memory, device count, sample rate, output hardware, and scheduling impose real limits. Runtime testing must establish a supported operating envelope.
+The application model has no fixed channel-count ceiling. Virtual buses can be added as independently named devices without a fixed product limit on the number of instances. Provisioning another system device requires installation by an administrator and a subsequent audio service reload or macOS restart. The current packaging supports an even 2–256 channels per device; 256 is this build's supported validation envelope, not a claim about the maximum channel count supported by Core Audio. A new device is preferable to inventing an unsupported enormous channel count. Ring samples consume `65536 × channels × 4` bytes per active device (512 KiB stereo; 64 MiB at 256 channels), and the local validity patch adds `65536 × 24` bytes (1.5 MiB), in addition to audio server and app overhead. CPU, memory, device count, sample rate, output hardware, and scheduling impose real limits. Runtime testing must establish a supported operating envelope.
+
+The local frame-validity patch addresses a reproduced corruption case: a skipped write within a ring cycle could otherwise replay samples from the prior cycle. Each frame now carries its absolute sample position and timeline generation. Missing, expired, overwritten or concurrently changing frames read as silence, while valid neighboring frames remain intact. A reader ahead of the writer cannot clear another reader's valid data. Validity is allocated when the first client starts and freed when the last stops; a backward write timestamp or resynchronization of the fully mixed writer's HAL cycle counter invalidates the prior timeline. Reader cycle counters may lag independently and cannot invalidate another client's data. Callback work is bounded by the requested frame/channel count and uses native lock-free atomics without allocation, mutexes or retry loops. HAL supplies one fully mixed `WriteMix` stream for the device; hidden mirror output remains disabled. This prevents stale replay; it cannot recover a callback that macOS did not deliver, and it does not establish uninterrupted real-time scheduling.
 
 The default sample rate is 48 kHz. The upstream device advertises several other rates; real multi-device routing must adapt sample rates and clocks. Passing an in-process loopback test does not prove drift-free physical-device mixing.
 
@@ -74,7 +76,12 @@ Each device has its own stable receipt, `au.textual.ravelink.audio.package.<id>`
 one product archive combines the requested components without sharing receipt
 ownership between unrelated device sets. Component packages install only under
 `/Library/Audio/Plug-Ins/HAL`, with relocation disabled, strict identifiers,
-version checking and complete bundle replacement explicitly enabled.
+and complete bundle replacement explicitly enabled. The mandatory preinstall
+script owns build-number ordering. Installer's separate marketing-version-first
+bundle check is disabled: actual run `40011635266` showed it silently skipped
+build19/version0.1.0 over build18/version0.3.0 while reporting install success.
+The corrected package must pass the same exact payload and receipt checks in a
+new actual Installer run; changing the archive property alone does not prove it.
 
 Before any component payload is installed, its preinstall script checks the
 entire proposed device set. It rejects a lower incoming build number, another
@@ -128,7 +135,9 @@ administrator; the script does not guess which files are safe to delete.
 
 ## Evidence and release gates
 
-Local verification on 23 October 2026 built five stereo devices and a 256-channel device as universal arm64/x86_64 bundles. Native arm64 execution loaded the actual built bundles in a private process and checked identity, two directions of stream format, hidden mirror exclusion, malformed property requests, 4,096 blocks of exact loopback including ring wrap, stale-read silence, clock values, simultaneous independent instance buffers, and multi-client start/stop. The Python suite also checks pinned source hashes, invalid identifiers, channel bounds, format-string rejection, duplicate IDs, non-admin install refusal, payload symlinks, and signature tampering. This does not load the bundles into `coreaudiod`.
+Local verification on 23 October 2026 built five stereo devices and a 256-channel device as universal arm64/x86_64 bundles. Native arm64 execution loaded the actual built bundles in a private process and checked identity, two directions of stream format, hidden mirror exclusion, malformed property requests, 4,096 blocks of exact loopback including ring wrap, future-read silence, clock values, simultaneous independent instance buffers, and multi-client start/stop. The Python suite also checks pinned source hashes, invalid identifiers, channel bounds, format-string rejection, duplicate IDs, non-admin install refusal, payload symlinks, and signature tampering. This does not load the bundles into `coreaudiod`.
+
+On 24 October 2026, a separate actual-bundle probe reproduced stale PCM after an intentionally skipped write in the pinned ring implementation. The original failure remains in `research/evidence/hal-missed-write-original.json`. The local patch then passed the unchanged missed-write probe and additional variable-block, partial-hole, wrap, expired-read, nonzero interleaved-reader, writer-reset, stop/start, fractional-position and concurrent-reader controls. The final eight-channel universal bundle ran natively on arm64 and as x86_64 under Rosetta; the latter is not physical Intel testing. Exact patch/source/binary hashes and results are in `research/evidence/hal-frame-validity-provenance.json`. These private-process controls do not qualify installed-HAL scheduling or the performance cost of per-frame atomic validity; fresh unchanged installed acceptance remains required.
 
 `scripts/run-driver-lifecycle.py` is a separate, explicitly opted-in GitHub-hosted
 runner acceptance. It refuses pre-existing fixture payloads or receipts and uses

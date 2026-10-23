@@ -1,0 +1,45 @@
+Window: "", App: RaveLink.
+0 sheet Secondary Actions: Raise
+	1 container
+		2 text Sound Check
+		3 button Done
+		4 text Test tone Studio audio is paused. Record up to 30 seconds, then loop it while adjusting your effects. Only the listening output below receives playback. Listen through
+		5 pop up button Description: Listening output, Sound Check listening output, Value: Choose output…
+		6 image Description: Audio Waveform, ID: waveform
+		7 text Ready to record Recorded duration 0.0 / 30 s
+		8 progress indicator 0
+		9 unknown Description: Sound Check input level, Details: Stopped
+		10 button (disabled) Record sample
+		11 button (disabled) Play loop
+		12 text Sample stays in memory until this window closes.
+		13 button (disabled) Description: Delete sample, ID: trash
+		14 text Changing the output or effect order clears the sample. Start studio audio again when you finish.
+		15 scroll area Secondary Actions: Scroll Up, Scroll Down
+			16 text Tune your input Input gain 0 dB
+			17 slider (settable, float) Description: Sound Check Input gain, Value: 0, Details: 0 decibels
+			18 text High-pass 0 Hz
+			19 slider (settable, float) Description: Sound Check High-pass, Value: 0, Details: Off
+			20 text Noise gate -80 dB
+			21 slider (settable, float) Description: Sound Check Noise gate, Value: -80, Details: -80 decibels
+			22 text Compressor 0 dB
+			23 slider (settable, float) Description: Sound Check Compressor, Value: 0, Details: 0 decibels
+			24 text Ratio 1 :1
+			25 slider (settable, float) Description: Sound Check Ratio, Value: 1, Details: 1 to 1
+			26 text Audio Units Effects run in order after the built-in processing.
+			27 button Add Audio Unit
+			28 scroll bar (settable, float) 0
+				29 value indicator (settable, float) 0
+				30 increment arrow button
+				31 decrement arrow button
+				32 increment page button
+				33 decrement page button
+34 menu bar
+	35 RaveLink
+	36 File
+	37 Edit
+	38 View
+	39 Audio
+	40 Window
+	41 Help
+
+The focused UI element is 0 sheet Secondary Actions: Raise

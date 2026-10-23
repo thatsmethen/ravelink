@@ -1,0 +1,21 @@
+swift-driver version: 1.127.14.1 [0/1] Planning build
+Building for debugging...
+[0/3] Write swift-version--1AB21518FC5DEDBE.txt
+[1/4] Write sources
+[3/7] Emitting module RaveLinkApp
+[4/7] Compiling RaveLinkApp StudioView.swift
+[5/7] Compiling RaveLinkApp AudioUnitRackView.swift
+[5/8] Write Objects.LinkFileList
+[6/8] Linking RaveLink
+[7/8] Applying RaveLink
+Build of product 'RaveLink' complete! (3.22s)
+Building for debugging...
+[0/3] Write swift-version--1AB21518FC5DEDBE.txt
+Build of product 'RaveLinkEngine' complete! (0.14s)
+Building for debugging...
+[0/3] Write swift-version--1AB21518FC5DEDBE.txt
+Build of product 'RaveLinkPluginHost' complete! (0.13s)
+/Users/textual/projects/notify/ravelink/build/.ravelink-app.IphWcR/RaveLink.app/Contents/MacOS/RaveLinkEngine: replacing existing signature
+/Users/textual/projects/notify/ravelink/build/.ravelink-app.IphWcR/RaveLink.app/Contents/Helpers/RaveLinkPluginHost: replacing existing signature
+/Users/textual/projects/notify/ravelink/build/.ravelink-app.IphWcR/RaveLink.app: replacing existing signature
+/Users/textual/projects/notify/ravelink/build/RaveLink.app

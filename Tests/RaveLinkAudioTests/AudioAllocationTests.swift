@@ -17,8 +17,8 @@ import Testing
     @Test func rateExtremesReserveEnoughFramesAndFilterSpace() throws {
         let normal = try AudioAllocationBudget.ring(ratio: 1, frames: 16384)
         let extreme = try AudioAllocationBudget.ring(ratio: 24, frames: 16384)
-        #expect(normal.capacity == 65536)
-        #expect(extreme.capacity >= 3 * 16384 * 24 + 1536)
+        #expect(normal.capacity == 131072)
+        #expect(extreme.capacity >= 4 * 16384 * 24 + 1536)
         #expect(extreme.bytes > UInt64(extreme.capacity) * 8 + 1536 * 512 * 4)
         #expect(throws: (any Error).self) { try AudioAllocationBudget.ring(ratio: .nan, frames: 16384) }
         #expect(throws: (any Error).self) { try AudioAllocationBudget.ring(ratio: 25, frames: 16384) }

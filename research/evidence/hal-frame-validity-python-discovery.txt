@@ -1,0 +1,28 @@
+..................................Refusing: requires explicit lifecycle opt-in on a GitHub-hosted disposable runner.
+...................................s............../private/var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/ravelink-driver-test-uoe7yooi/devices/.ravelink-23p8104j/RaveLink-test-one.driver: replacing existing signature
+/private/var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/ravelink-driver-test-uoe7yooi/devices/.ravelink-luxwmlzq/RaveLink-test-two.driver: replacing existing signature
+PASS: 2 bundles; identity, virtual transport, formats, hidden mirror, malformed request, 4096-block loopback per bundle, ring wrap, silence, clock, instance isolation, client lifecycle.
+PASS: actual bundle stale-hole silence, intact adjacent frames, future-reader isolation, variable blocks, partial holes, wrap, overwritten old reads, timestamp/cycle reset, multiple-client lifecycle, malformed bounds, concurrent readers with 100000 writes.
+PASS: actual bundle stale-hole silence, intact adjacent frames, future-reader isolation, variable blocks, partial holes, wrap, overwritten old reads, timestamp/cycle reset, multiple-client lifecycle, malformed bounds, concurrent readers with 100000 writes.
+/var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/ravelink-driver-test-uoe7yooi/devices/RaveLink-test-one.driver: a sealed resource is missing or invalid
+................/private/var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/tmpc5mkuy43/devices/.ravelink-dpchtmjp/RaveLink-receipt-a.driver: replacing existing signature
+/private/var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/tmpc5mkuy43/devices/.ravelink-094vv9u0/RaveLink-receipt-b.driver: replacing existing signature
+/var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/tmpc5mkuy43/devices/RaveLink-receipt-a.driver: replacing existing signature
+write: Permission denied
+write: Permission denied
+write: Permission denied
+write: Permission denied
+write: Permission denied
+write: Permission denied
+write: Permission denied
+write: Permission denied
+...
+----------------------------------------------------------------------
+Ran 103 tests in 14.786s
+
+OK (skipped=1)
+Created /var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/tmpc5mkuy43/devices.pkg. macOS restart required after installation; package never restarts audio services.
+Package is unsigned.
+Removed /var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/tmpfyl4i246/RaveLink-voice.driver
+Removed /var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/tmpfyl4i246/RaveLink-music.driver
+Restart macOS after closing audio apps. Audio services were not restarted.

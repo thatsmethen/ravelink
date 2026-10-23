@@ -1,0 +1,189 @@
+{
+  "recordedUTC": "2026-10-23T20:50:56.368221+00:00",
+  "scope": "Generated clock schedules and direct C callbacks; no HAL IO, process tap, microphone, sleep, installed driver, or physical audio device opened by these probes.",
+  "baselineCommit": "784e38f30a7b51f2fc8d40d58413780ae11e9944",
+  "finalSourceState": "Uncommitted source atop baseline; exact final implementation hashes below. Root will publish a combined checkpoint.",
+  "finalSourceSHA256": {
+    "Sources/RaveLinkRealtime/Realtime.c": "cc6eedefcb1a82422eeb1a342e5257b920ca88c97f0171dec11a96c70fb2f155",
+    "Sources/RaveLinkRealtime/Clock.c": "d16e0d663d7524aca43c79bc3d5fc4f06b2032bbd53a5073c2c7f1a9f8a73f0e",
+    "Sources/RaveLinkRealtime/SoundCheck.c": "6118a152c99901b2efe2742419454f5946ac661f4b78becd5afe696ed8f28a38",
+    "Sources/RaveLinkRealtime/include/RaveLinkRealtime.h": "125591694651bf2c7336265cc8beba8e0a67ae28d71a7e3884d5ff63982e0bad",
+    "Sources/RaveLinkRealtime/include/Clock.h": "25d2f4358dc026914eaf5a988eb02e0cb26322e32353cf67d506fa896a3daf39",
+    "Sources/RaveLinkRealtime/include/SoundCheck.h": "09fb9b99cc1100c322189a5b377cf37125b733021927079e573fce788defdd64",
+    "Sources/RaveLinkAudio/AudioCoordinator.swift": "ab166371ac4baa18c2763e26f07e180ada5c196de258569b27d7a3a9b67c897f",
+    "Sources/RaveLinkAudio/AudioAllocationBudget.swift": "02d1798550351534dc05f1926f4cda23c681e5d75c07238821330182052357a2",
+    "Sources/RaveLinkAudio/RealtimeDeviceLimits.swift": "463f7694ad87dc9a6cdcee3ad93da81a5f13aaba08812f8640c242dc08fcd54f",
+    "Sources/RaveLinkAudio/DeviceCaptureProgressMonitor.swift": "34e01f6afd9839991e062c535b6c2afea4a1952ea775003ed500f6dc68bbf64d",
+    "Tests/RaveLinkAudioTests/HardwareClockTests.swift": "e4276f4d005341acec282a24e89da8a10af8ee73caefced6c90b1490256520d6",
+    "Tests/RaveLinkAudioTests/ElasticClockTests.swift": "b1d0bd0a98aaeb4ab5a62e7214f4da3291b31297ccbc38ce35ea3d8dfe33ea02",
+    "Tests/RaveLinkAudioTests/AudioAllocationTests.swift": "f7d6519e15b4629e25f02bb27379e469bf75527702d2736cfd0734221c3e74ec",
+    "Tests/RaveLinkAudioTests/DeviceCaptureProgressMonitorTests.swift": "133e1f99cca178794675373c3212cda8c0f75939ca256ccbf7e4210ee5b30de9",
+    "scripts/elastic-clock-probe.c": "b0626af37fdd5514a2449f276f4cf9e5129a3c55e3beb3f133b341edb26ab0c7",
+    "research/evidence/elastic-clock-baseline-probe.c": "e33ba3a79d4f898f62321eae85f4ebefcd6d2ff378e10822fe99bb04e851b70e"
+  },
+  "baselineSourceSHA256": {
+    "Sources/RaveLinkRealtime/Realtime.c": "6457e9b1421fad609f4abba2e2d28f9e5284d9fa9cf3a2ec1aa974d84b792c15",
+    "Sources/RaveLinkRealtime/SoundCheck.c": "6118a152c99901b2efe2742419454f5946ac661f4b78becd5afe696ed8f28a38",
+    "Sources/RaveLinkRealtime/include/RaveLinkRealtime.h": "3c5980013055c4c502324d6487fe6b24e68f6aad22f62035d5aad81278319fc4",
+    "Sources/RaveLinkRealtime/include/SoundCheck.h": "09fb9b99cc1100c322189a5b377cf37125b733021927079e573fce788defdd64"
+  },
+  "artifactSHA256": {
+    "elastic-clock-extended-before.csv": "b0ec2c3c3bda205f9bd5607916a6551c71cf5fa9bf38e8b9f98871aaf4e53ee4",
+    "elastic-clock-hardware-timestamp-extended-matrix.csv": "fee47441d133494a842a4c6ee96c45b4c84b537f38e59a0c70aa33ba29bf51fa",
+    "elastic-clock-baseline.csv": "8f5969b03350cf94faed1dab437ba4489d3fa9e3fd6db8b107067bb89477ffd1",
+    "elastic-clock-baseline-after.csv": "a93d6dbc598ee5698b15bf7563a5974adb32c9096fac183b36c66a3d7b01aaf0",
+    "elastic-clock-baseline.json": "24eae2b5da5b97f5782be33411ca4cdcea3ec85ad3436499e1b26cbc05b50e0a",
+    "elastic-clock-first-matrix.csv": "c94d0204054640715814a8eaff7cef3628927a16959730be01af33c15d2c6fe5",
+    "elastic-clock-primed-reserve-matrix.csv": "0b1fe55ddcc6494b84f58accc31a0ec02f81147d00d72f3ae9d13b9327e7e52a",
+    "elastic-clock-time-normalized-matrix.csv": "e91028c13e5ecb5b0055ec2f5f3657b185ad38e52165676c4066ff2ad59277e3",
+    "elastic-clock-hardware-timestamp-first-matrix.csv": "76c19f4712abc02f8f2fb8ec2356285d7ac123fd59874629baa72422d1e69ed4",
+    "hardware-clock-focused-tests-final.txt": "68571f0b9f5521fc0be443bebc9d70a78f4bc0e608a4cd7fb6a4d54a9421ea9b"
+  },
+  "compiler": "Apple clang version 17.0.0 (clang-1700.4.4.1)\nTarget: arm64-apple-darwin27.0.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin",
+  "host": "macOS-27.0-arm64-arm-64bit",
+  "finalBuildCommand": "clang -O2 -std=c11 -I Sources/RaveLinkRealtime/include scripts/elastic-clock-probe.c Sources/RaveLinkRealtime/Realtime.c Sources/RaveLinkRealtime/SoundCheck.c Sources/RaveLinkRealtime/Clock.c -framework CoreAudio -o /tmp/ravelink-clock-matrix",
+  "finalRunCommand": "/tmp/ravelink-clock-matrix > research/evidence/elastic-clock-hardware-timestamp-extended-matrix.csv",
+  "baselineExtraction": "For each baselineSourceSHA256 key, write git show 784e38f30a7b51f2fc8d40d58413780ae11e9944:<path> into /tmp/ravelink-clock-frozen-784e38f/, preserving paths relative to Sources/RaveLinkRealtime.",
+  "baselineBuildCommand": "clang -O2 -std=c11 -DRL_LEGACY_CLOCK -I /tmp/ravelink-clock-frozen-784e38f/include scripts/elastic-clock-probe.c /tmp/ravelink-clock-frozen-784e38f/Realtime.c /tmp/ravelink-clock-frozen-784e38f/SoundCheck.c -framework CoreAudio -o /tmp/ravelink-clock-frozen-probe",
+  "baselineRunCommand": "/tmp/ravelink-clock-frozen-probe > research/evidence/elastic-clock-extended-before.csv",
+  "baselineExitCode": 1,
+  "finalExitCode": 0,
+  "baselineResult": {
+    "cases": 55,
+    "passed": 9,
+    "failedCases": [
+      "minus1000",
+      "minus500",
+      "minus250",
+      "minus100",
+      "large-input-slow",
+      "large-input-fast",
+      "large-output-slow",
+      "large-output-fast",
+      "jitter-slow",
+      "jitter-fast",
+      "unequal-jitter-slow",
+      "unequal-jitter-fast",
+      "varying-blocks-slow",
+      "varying-blocks-fast",
+      "drift-step",
+      "drift-sine",
+      "44100-to-48000-slow",
+      "44100-to-48000-fast",
+      "96000-to-44100-slow",
+      "96000-to-44100-fast",
+      "8000-largest-block",
+      "ratio24-slow",
+      "ratio24-fast",
+      "ratio-one24-slow",
+      "ratio-one24-fast",
+      "boundary100ms-8000-slow",
+      "boundary100ms-8000-fast",
+      "boundary100ms-44100-slow",
+      "boundary100ms-44100-fast",
+      "boundary100ms-48000-slow",
+      "boundary100ms-48000-fast",
+      "boundary100ms-96000-slow",
+      "boundary100ms-96000-fast",
+      "boundary100ms-192000-slow",
+      "boundary100ms-192000-fast",
+      "boundary100ms-384000-slow",
+      "boundary100ms-384000-fast",
+      "opposing-clocks-slow-input",
+      "opposing-clocks-fast-input",
+      "output-clock-fast",
+      "output-clock-slow",
+      "opposing100ms-slow-input",
+      "opposing100ms-fast-input",
+      "input-step-output-fast",
+      "late-metadata",
+      "temporary-missing-metadata"
+    ]
+  },
+  "finalResult": {
+    "cases": 55,
+    "passed": 55,
+    "virtualSeconds": 7500.0,
+    "maximumAmplitudeRadiusError": 1.75550375e-07,
+    "maximumMeanFrequencyErrorHz": 0.03265941199998679,
+    "maximumPhaseStepFractionOfAllowedBound": 0.31213128912948207,
+    "sumLateZeroBlocks": 0,
+    "sumPartialBlocks": 0,
+    "sumDroppedFrames": 0,
+    "sumUnderrunFrames": 0,
+    "sumNonfiniteSamples": 0,
+    "sumTimestampFaults": 0
+  },
+  "constantProbeAfter": {
+    "cases": 9,
+    "lateZeroBlocks": 0,
+    "droppedFrames": 0,
+    "underrunFrames": 0,
+    "buildAddition": "Compile elastic-clock-baseline-probe.c against final source including Clock.c; original frozen command and source hashes remain in elastic-clock-baseline.json."
+  },
+  "comparisonControls": [
+    "The same final probe source, signals, schedules, deterministic random seed, capacity calculation, and acceptance gates were used before and after.",
+    "RL_LEGACY_CLOCK only bypasses APIs unavailable in baseline: prepare_clock/buffer seeding and hardware timestamp factor observations; it calls the actual baseline prepare_ratio/read.",
+    "Initial zero-production reads before first production are priming, reported separately; late zero and partial production are failures.",
+    "Source signal time follows physical input clock; expected output tone time follows independently configured physical output clock. Arrival jitter does not alter hardware timestamp truth."
+  ],
+  "criteria": {
+    "lateZeroBlocks": 0,
+    "partialBlocks": 0,
+    "droppedFrames": 0,
+    "underrunFrames": 0,
+    "nonfiniteSamples": 0,
+    "timestampFaults": 0,
+    "maximumAmplitudeRadiusErrorExclusive": 0.0001,
+    "absoluteMeanFrequencyErrorHzExclusive": 0.15,
+    "maximumPhaseStepErrorExclusive": "expectedStep*0.01 + 2*(2*pi*440/inputNominalRate)/512",
+    "frequencyAndPhaseMeasurementBeginsSeconds": 10
+  },
+  "focusedTestCommand": "scripts/test.sh --filter 'HardwareClockTests|ElasticClockTests|AudioAllocationTests|DeviceCaptureProgressMonitorTests|RealtimeTests|SourceAliasTests|GroupedRealtimeTests|AudioLifecycleTests|SoundCheckRoutingTests'",
+  "focusedTests": {
+    "tests": 47,
+    "suites": 11,
+    "passed": true,
+    "log": "hardware-clock-focused-tests-final.txt"
+  },
+  "independentReview": {
+    "reviewer": "reference agent",
+    "result": "No blocking arithmetic/lifetime issue found. Reviewed independent timestamp normalization, flag/reset/failure handling, process-idle exemption, Apple buffer maximum property semantics, ownership, and telemetry. Corrected two nonblocking findings: buffer control-panel guidance and re-preparation latch reset; focused assertion covers reset."
+  },
+  "retainedExploratoryCandidates": [
+    {
+      "artifact": "elastic-clock-first-matrix.csv",
+      "passed": 31,
+      "cases": 33,
+      "description": "Initial occupancy-only larger reserve/controller; jitter and coarse-buffer failures retained."
+    },
+    {
+      "artifact": "elastic-clock-primed-reserve-matrix.csv",
+      "passed": 33,
+      "cases": 45,
+      "description": "Stable rounded priming reserve; coarse frequency and upper-capacity failures retained."
+    },
+    {
+      "artifact": "elastic-clock-time-normalized-matrix.csv",
+      "passed": 36,
+      "cases": 45,
+      "description": "Position feedback in seconds and expanded capacity; coarse frequency failures retained."
+    },
+    {
+      "artifact": "elastic-clock-hardware-timestamp-first-matrix.csv",
+      "passed": 45,
+      "cases": 45,
+      "description": "First timestamp feed-forward matrix before final diagnostics and extended independent-clock cases."
+    }
+  ],
+  "limitations": [
+    "Generated schedules do not qualify physical device clocks, host load, real callback delivery, hardware sleep/hotplug, or long-session behavior.",
+    "This 440 Hz signal instrument does not establish full-band resampler response, perceptual transparency, bit-perfect conversion, or physical end-to-end latency.",
+    "The estimator corrects rate; it does not align absolute source sample time, phase, transport latency, or startup delay between unrelated capture selectors/devices.",
+    "Missing timestamp metadata falls back to bounded occupancy feedback. Indefinite missing metadata at coarse block sizes is not qualified by temporary metadata tests.",
+    "Strict timeline faults now stop audio; this is fail-closed detection, not a repair of missed hardware callbacks.",
+    "Installed run 40011635266 remains a strict failure with independent timestamp gaps and 296 underflow frames. No acceptance thresholds or source amplitudes in that installed test were changed.",
+    "Exploratory candidate CSVs retain observations but do not have complete source snapshots. Baseline and final comparison source hashes are exact.",
+    "Valid configuration spans 8\u2013384 kHz, ratios 1:24 through 24:1 and callbacks at most 16,384 frames; practical latency can be very large at coarse blocks. No provisional duration cutoff was used to discard failed cases."
+  ]
+}

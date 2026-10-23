@@ -147,6 +147,16 @@ class VirtualLifecycleTests(unittest.TestCase):
                         for path in expanded.rglob('PackageInfo')}
             self.assertEqual(receipts, {'au.textual.ravelink.audio.package.receipt-a': '17',
                                         'au.textual.ravelink.audio.package.receipt-b': '17'})
+            for path in expanded.rglob('PackageInfo'):
+                info = ET.parse(path).getroot()
+                # Installer's marketing-version-first comparison must not skip
+                # newer builds. Our mandatory full-set preinstall is authority.
+                self.assertEqual(info.findall('bundle-version/bundle'), [])
+                bundle_id = info.find('bundle').get('id')
+                self.assertEqual(info.find('upgrade-bundle/bundle').get('id'), bundle_id)
+                self.assertEqual(info.find('strict-identifier/bundle').get('id'), bundle_id)
+                self.assertEqual(info.findall('relocate/bundle'), [])
+                self.assertIsNotNone(info.find('scripts/preinstall'))
             archived = sorted(expanded.rglob('*.driver'))
             self.assertEqual(len(archived), 2)
             for bundle in archived:

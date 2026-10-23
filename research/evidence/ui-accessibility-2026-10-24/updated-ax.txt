@@ -1,0 +1,95 @@
+Window: "RaveLink", App: RaveLink.
+0 standard window RaveLink, Secondary Actions: Raise, ID: SwiftUI.WindowGroup<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<SwiftUI.ModifiedContent<RaveLinkApp.StudioView, SwiftUI._PreferenceWritingModifier<SwiftUI.PreferredColorSchemeKey>>, SwiftUI._FlexFrameLayout>>>-1-AppWindow-1
+	1 container
+		2 image Description: Waveform, ID: waveform.path
+		3 text ravelink
+		4 text field (settable) Value: My studio, Placeholder: Studio name
+		5 menu button Studio options, Description: More
+		6 button Start audio
+		7 text YOUR STUDIO Mixes & routing
+		8 button Add input
+		9 scroll area
+			10 list Secondary Actions: AXScrollToTop, AXScrollToBottom
+				11 text INPUTS
+				12 text Choose where each input goes
+				13 image Description: Audiobook, ID: headphones
+				14 text field (settable) Value: Personal, Placeholder: Mix name
+				15 menu button More, ID: ellipsis
+				16 pop up button Description: Output, Personal output, Value: Choose output…
+				17 button Description: Mute mix Personal, Value: Unmuted, ID: speaker.wave.2.fill
+				18 slider (settable, float) Description: Personal master level, Value: 0, Details: 0 decibels
+				19 text +0 dB
+				20 unknown Description: Personal mix level, Details: Stopped
+				21 image Description: Mobile Data, ID: antenna.radiowaves.left.and.right
+				22 text field (settable) Value: Stream, Placeholder: Mix name
+				23 menu button More, ID: ellipsis
+				24 pop up button Description: Output, Stream output, Value: BlackHole 2ch
+				25 button Description: Mute mix Stream, Value: Unmuted, ID: speaker.wave.2.fill
+				26 slider (settable, float) Description: Stream master level, Value: 0, Details: 0 decibels
+				27 text +0 dB
+				28 unknown Description: Stream mix level, Details: Stopped
+				29 image Description: Mobile Data, ID: antenna.radiowaves.left.and.right
+				30 text field (settable) Value: Voice chat, Placeholder: Mix name
+				31 menu button More, ID: ellipsis
+				32 pop up button Description: Output, Voice chat output, Value: Choose output…
+				33 button Description: Mute mix Voice chat, Value: Unmuted, ID: speaker.wave.2.fill
+				34 slider (settable, float) Description: Voice chat master level, Value: 0, Details: 0 decibels
+				35 text +0 dB
+				36 unknown Description: Voice chat mix level, Details: Stopped
+				37 image Description: Mobile Data, ID: antenna.radiowaves.left.and.right
+				38 text field (settable) Value: Accessibility audit, Placeholder: Mix name
+				39 menu button More, ID: ellipsis
+				40 pop up button Description: Output, Accessibility audit output, Value: Choose output…
+				41 button Description: Mute mix Accessibility audit, Value: Unmuted, ID: speaker.wave.2.fill
+				42 slider (settable, float) Description: Accessibility audit master level, Value: 0, Details: 0 decibels
+				43 text +0 dB
+				44 unknown Description: Accessibility audit mix level, Details: Stopped
+				45 button Description: Add mix, ID: plus
+				46 image Description: Audio Waveform, ID: waveform
+				47 text Test tone
+				48 text Test tone · 440 Hz
+				49 menu button More, ID: ellipsis
+				50 unknown Description: Test tone input level, Details: Stopped
+				51 button Description: Mute input Test tone, Value: Unmuted
+				52 button Description: Solo input Test tone, Value: Off
+				53 button Description: Effects for Test tone, Value: Collapsed
+				54 switch Off, Description: Route Test tone to Personal, Value: off
+				55 text +0 dB
+				56 slider (disabled, settable, float) Description: Test tone level in Personal, Value: 0, Details: 0 decibels
+				57 text L
+				58 slider (disabled, settable, float) Description: Test tone pan in Personal, Value: 0, Details: Center
+				59 text R
+				60 switch On, Description: Route Test tone to Stream, Value: on
+				61 text +0 dB
+				62 slider (settable, float) Description: Test tone level in Stream, Value: 0, Details: 0 decibels
+				63 text L
+				64 slider (settable, float) Description: Test tone pan in Stream, Value: 0, Details: Center
+				65 text R
+				66 switch Off, Description: Route Test tone to Voice chat, Value: off
+				67 text +0 dB
+				68 slider (disabled, settable, float) Description: Test tone level in Voice chat, Value: 0, Details: 0 decibels
+				69 text L
+				70 slider (disabled, settable, float) Description: Test tone pan in Voice chat, Value: 0, Details: Center
+				71 text R
+				72 switch Off, Description: Route Test tone to Accessibility audit, Value: off
+				73 text +0 dB
+				74 slider (disabled, settable, float) Description: Test tone level in Accessibility audit, Value: 0, Details: 0 decibels
+				75 text L
+				76 slider (disabled, settable, float) Description: Test tone pan in Accessibility audit, Value: 0, Details: Center
+				77 text R
+				78 button Add input
+		79 text Audio stopped Saved locally 1 inputs  ·  4 mixes
+		80 button Description: Audio setup, ID: questionmark.circle
+	81 close button
+	82 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	83 minimize button
+84 menu bar
+	85 RaveLink
+	86 File
+	87 Edit
+	88 View
+	89 Audio
+	90 Window
+	91 Help
+
+The focused UI element is 0 standard window RaveLink, Secondary Actions: Raise, ID: SwiftUI.WindowGroup<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<SwiftUI.ModifiedContent<RaveLinkApp.StudioView, SwiftUI._PreferenceWritingModifier<SwiftUI.PreferredColorSchemeKey>>, SwiftUI._FlexFrameLayout>>>-1-AppWindow-1

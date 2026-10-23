@@ -1,0 +1,22 @@
+Window: "", App: RaveLink.
+0 sheet Secondary Actions: Raise
+	1 container
+		2 text Apple: AUPeakLimiter Changes are saved with your studio. Reported default latency: 2.00 ms at 48 kHz
+		3 scroll area
+			4 text Attack Time 0.002 Secs
+			5 slider (settable, float) Description: Attack Time, Value: 0.002, Details: 0.002 Secs
+			6 text Release Time 0.005 Secs
+			7 slider (settable, float) Description: Release Time, Value: 0.005, Details: 0.005 Secs
+			8 text Pre-Gain 0 dB
+			9 slider (settable, float) Description: Pre-Gain, Value: 0, Details: 0 dB
+		10 button Done
+11 menu bar
+	12 RaveLink
+	13 File
+	14 Edit
+	15 View
+	16 Audio
+	17 Window
+	18 Help
+
+The focused UI element is 0 sheet Secondary Actions: Raise

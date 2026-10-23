@@ -31,9 +31,11 @@ struct AudioAllocationBudget {
     }
     static func ring(ratio: Double, frames: UInt32) throws -> (capacity: UInt32, bytes: UInt64) {
         guard ratio.isFinite, ratio >= 1 / 24.0, ratio <= 24 else {
-            throw AudioRoutingError.configuration("The input and output sample rates are too far apart. Choose rates between 8 kHz and 192 kHz in Audio MIDI Setup.")
+            throw AudioRoutingError.configuration("The input and output sample rates are too far apart. Use rates from 8 to 384 kHz that differ by no more than 24 times in Audio MIDI Setup.")
         }
-        let requested = UInt64(max(65536, Double(frames) * max(1, ratio) * 3 + 2048))
+        // Retain a rounded-up priming reserve and room for another whole producer
+        // burst while a faster input clock is being corrected.
+        let requested = UInt64(max(65536, Double(frames) * max(1, ratio) * 4 + 2048))
         var capacity: UInt64 = 4
         while capacity < requested { capacity <<= 1 }
         guard capacity <= UInt32.max else { throw AudioRoutingError.configuration("The requested audio buffer is too large.") }

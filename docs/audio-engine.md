@@ -25,8 +25,11 @@ fresh process. Closing the parent pipe also makes the real helper exit, includin
 when a driver call is blocked on its control worker.
 
 A running helper must keep reporting current-generation state within three
-seconds. Each output also has an independent frame-progress watchdog (five
-seconds or four maximum buffer durations, whichever is larger). Sleep stops the
+seconds. Each output and unique device capture also has an independent
+frame-progress watchdog (five seconds or four maximum buffer durations,
+whichever is larger). Device capture progress includes silent buffers; process
+taps are exempt because idle applications may pause their callbacks. A stalled
+device input stops the graph with an input-specific recovery message. Sleep stops the
 helper; wake refreshes devices without resuming audio. These checks cover separate
 failure modes: a live process/control loop does not prove a device callback is
 returning.
@@ -109,10 +112,17 @@ look-ahead or true-peak limiter.
 
 The resampler uses a precomputed Blackman-windowed sinc kernel: 512 phases and
 64 × ceil(max(1, input/output rate)) taps. Its cutoff is 90% of the lower Nyquist
-frequency. An elastic FIFO applies a small bounded clock correction. Rate ratios
-outside 1:24 through 24:1 are rejected. The conservative cutoff trades upper-band
-extension for stopband rejection; full-band response, clock drift, latency, and
-long-session behaviour still need a release qualification protocol. This is not
+frequency. Independent input/output sample-and-host timestamp estimates feed a
+bounded elastic FIFO controller, with occupancy-only fallback when timestamp
+metadata is absent. Declared maximum callback sizes seed stable buffer headroom;
+invalid device timelines and unsupported relative clock mismatch stop the graph.
+Rates outside 8–384 kHz and ratios outside 1:24 through 24:1 are rejected. A retained
+[before/after generated schedule](elastic-clock-controller.md) demonstrates the
+slower-clock correction and a 55-case signal matrix, including independent clocks,
+jitter, coarse blocks, and temporary missing metadata. It does not establish
+physical-device clock or absolute sample-time alignment. The conservative cutoff
+trades upper-band extension for stopband rejection; full-band response, physical
+latency, and long-session behaviour still need release qualification. This is not
 a claim of transparent or bit-perfect conversion.
 
 Devices must expose packed native-endian Float32 virtual streams at their nominal

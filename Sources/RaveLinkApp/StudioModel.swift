@@ -4,7 +4,10 @@ import RaveLinkCore
 import RaveLinkAudio
 
 @MainActor final class StudioModel: ObservableObject {
-    @Published var session: MixerSession { didSet { scheduleSave(previous: oldValue) } }
+    @Published var session: MixerSession { didSet {
+        if !StudioIndex.sameStructure(oldValue, session) { index = StudioIndex(session) }
+        scheduleSave(previous: oldValue)
+    } }
     @Published var selectedChannel: UUID?
     @Published var notice: String?
     @Published var saveStatus = "Saved locally"
@@ -26,6 +29,7 @@ import RaveLinkAudio
     private var allowsOverwrite = true
     private var audition: MixerSession?
     private var auditionTask: Task<Void, Never>?
+    private var index = StudioIndex()
     init(store: SessionStore = .standard, audio: EngineClient? = nil) {
         self.store = store; self.audio = audio ?? EngineClient()
         if FileManager.default.fileExists(atPath: store.url.path) {
@@ -44,6 +48,25 @@ import RaveLinkAudio
                 }
             }
         } else { session = .initial }
+        index = StudioIndex(session)
+    }
+    func channel(_ id: UUID) -> MixerChannel? { index.channels[id].map { session.channels[$0] } }
+    func bus(_ id: UUID) -> MixBus? { index.buses[id].map { session.buses[$0] } }
+    func send(_ id: String) -> MixSend? { index.sends[id].map { session.sends[$0] } }
+    func route(channelID: UUID, busID: UUID) -> MixSend? {
+        index.routes[.init(channelID: channelID, busID: busID)].map { session.sends[$0] }
+    }
+    func setChannel<Value>(_ id: UUID, _ path: WritableKeyPath<MixerChannel, Value>, to value: Value) {
+        guard let offset = index.channels[id] else { return }
+        session.channels[offset][keyPath: path] = value
+    }
+    func setBus<Value>(_ id: UUID, _ path: WritableKeyPath<MixBus, Value>, to value: Value) {
+        guard let offset = index.buses[id] else { return }
+        session.buses[offset][keyPath: path] = value
+    }
+    func setSend<Value>(_ id: String, _ path: WritableKeyPath<MixSend, Value>, to value: Value) {
+        guard let offset = index.sends[id] else { return }
+        session.sends[offset][keyPath: path] = value
     }
     private func audioSnapshot(_ value: MixerSession) -> MixerSession {
         var snapshot = value

@@ -26,10 +26,13 @@ public struct AudioDiagnostics: Codable, Equatable, Sendable {
     public var droppedFrames: UInt64 = 0
     public var underrunFrames: UInt64 = 0
     public var oversizedBlocks: UInt64 = 0
+    public var timestampDiscontinuities: UInt64 = 0
+    public var timestampFallbackNodes: UInt32 = 0
+    public var clockMismatchPairs: UInt32 = 0
     /// AU rack alignment only; excludes device/FIFO/driver latency.
     public var effectAlignmentLatencySeconds: Double = 0
     public init() {}
-    private enum CodingKeys: String, CodingKey { case captureSourceCount, capturedFrames, renderedFrames, droppedFrames, underrunFrames, oversizedBlocks, effectAlignmentLatencySeconds }
+    private enum CodingKeys: String, CodingKey { case captureSourceCount, capturedFrames, renderedFrames, droppedFrames, underrunFrames, oversizedBlocks, timestampDiscontinuities, timestampFallbackNodes, clockMismatchPairs, effectAlignmentLatencySeconds }
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         captureSourceCount = try values.decodeIfPresent(UInt32.self, forKey: .captureSourceCount) ?? 0
@@ -38,6 +41,9 @@ public struct AudioDiagnostics: Codable, Equatable, Sendable {
         droppedFrames = try values.decode(UInt64.self, forKey: .droppedFrames)
         underrunFrames = try values.decode(UInt64.self, forKey: .underrunFrames)
         oversizedBlocks = try values.decode(UInt64.self, forKey: .oversizedBlocks)
+        timestampDiscontinuities = try values.decodeIfPresent(UInt64.self, forKey: .timestampDiscontinuities) ?? 0
+        timestampFallbackNodes = try values.decodeIfPresent(UInt32.self, forKey: .timestampFallbackNodes) ?? 0
+        clockMismatchPairs = try values.decodeIfPresent(UInt32.self, forKey: .clockMismatchPairs) ?? 0
         effectAlignmentLatencySeconds = try values.decodeIfPresent(Double.self, forKey: .effectAlignmentLatencySeconds) ?? 0
     }
 }
@@ -92,8 +98,22 @@ private enum Hardware {
     static func rate(_ object: AudioObjectID) throws -> Double {
         var addr = address(kAudioDevicePropertyNominalSampleRate), result: Double = 0, size = UInt32(MemoryLayout<Double>.size)
         try checked(AudioObjectGetPropertyData(object, &addr, 0, nil, &size, &result), "Read device sample rate")
-        guard result.isFinite, result >= 8000 else { throw AudioRoutingError.configuration("The selected device reports an unsupported sample rate.") }
+        try RealtimeDeviceLimits.validateRate(result)
         return result
+    }
+    static func buffer(_ object: AudioObjectID, rate: Double) throws -> RealtimeDeviceBuffer {
+        var addr = address(kAudioDevicePropertyBufferFrameSize), frames: UInt32 = 0, size = UInt32(MemoryLayout<UInt32>.size)
+        try checked(AudioObjectGetPropertyData(object, &addr, 0, nil, &size, &frames), "Read device buffer size")
+        try RealtimeDeviceLimits.validateBuffer(rate: rate, frames: frames)
+        var maximum = frames
+        addr = address(kAudioDevicePropertyUsesVariableBufferFrameSizes)
+        if AudioObjectHasProperty(object, &addr) {
+            var variable: UInt32 = 0
+            try checked(AudioObjectGetPropertyData(object, &addr, 0, nil, &size, &variable), "Read maximum device buffer size")
+            maximum = max(maximum, variable)
+        }
+        try RealtimeDeviceLimits.validateBuffer(rate: rate, frames: maximum)
+        return .init(minimum: frames, maximum: maximum)
     }
     static func validateAlive(_ object: AudioObjectID) throws {
         var addr = address(kAudioDevicePropertyDeviceIsAlive), alive: UInt32 = 0, size = UInt32(MemoryLayout<UInt32>.size)
@@ -156,6 +176,7 @@ private final class CaptureNode {
     let channelID: UUID
     let device: AudioObjectID
     let rate: Double
+    let buffer: RealtimeDeviceBuffer
     let context: OpaquePointer
     var proc: AudioDeviceIOProcID?
     var tap: AudioObjectID = 0
@@ -165,10 +186,11 @@ private final class CaptureNode {
     var aggregate: AudioObjectID = 0
     var started = false
     var abandoned = false
-    init(channelID: UUID, device: AudioObjectID, rate: Double, context: OpaquePointer) {
-        self.channelID = channelID; self.device = device; self.rate = rate; self.context = context
+    init(channelID: UUID, device: AudioObjectID, rate: Double, buffer: RealtimeDeviceBuffer, context: OpaquePointer) {
+        self.channelID = channelID; self.device = device; self.rate = rate; self.buffer = buffer; self.context = context
     }
     func start() throws {
+        rl_capture_reset_timing(context)
         try checked(AudioDeviceCreateIOProcID(device, rl_capture_io_proc(), UnsafeMutableRawPointer(context), &proc), "Create input callback")
         try checked(AudioDeviceStart(device, proc), "Start input")
         started = true
@@ -220,6 +242,7 @@ private final class OutputNode {
     let device: AudioObjectID
     let uid: String
     let rate: Double
+    let buffer: RealtimeDeviceBuffer
     let buses: [UUID]
     let context: OpaquePointer
     var audioUnits: LiveAudioUnitGraph?
@@ -227,8 +250,8 @@ private final class OutputNode {
     var proc: AudioDeviceIOProcID?
     var started = false
     var abandoned = false
-    init(device: AudioObjectID, uid: String, rate: Double, buses: [UUID], context: OpaquePointer) {
-        self.device = device; self.uid = uid; self.rate = rate; self.buses = buses; self.context = context
+    init(device: AudioObjectID, uid: String, rate: Double, buffer: RealtimeDeviceBuffer, buses: [UUID], context: OpaquePointer) {
+        self.device = device; self.uid = uid; self.rate = rate; self.buffer = buffer; self.buses = buses; self.context = context
     }
     func prepare() throws {
         if proc == nil { try checked(AudioDeviceCreateIOProcID(device, rl_render_io_proc(), UnsafeMutableRawPointer(context), &proc), "Create output callback") }
@@ -350,9 +373,10 @@ private final class AudioGraph: @unchecked Sendable {
             }
             try Hardware.validateFloatStreams(device, scope: kAudioObjectPropertyScopeOutput)
             let rate = try Hardware.rate(device)
+            let buffer = try Hardware.buffer(device, rate: rate)
             try allocation.reserve(try AudioAllocationBudget.output(sources: session.channels.count, buses: buses.count, frames: Self.maxFrames))
-            guard let context = rl_render_create(rate, Self.maxFrames, UInt32(session.channels.count), UInt32(buses.count)) else { throw AudioRoutingError.configuration("Not enough memory to prepare this mix. Reduce channels or mix buses.") }
-            let output = OutputNode(device: device, uid: uid, rate: rate, buses: buses.map(\.id), context: context)
+            guard let context = rl_render_create(rate, buffer.maximum, UInt32(session.channels.count), UInt32(buses.count)) else { throw AudioRoutingError.configuration("Not enough memory to prepare this mix. Reduce channels or mix buses.") }
+            let output = OutputNode(device: device, uid: uid, rate: rate, buffer: buffer, buses: buses.map(\.id), context: context)
             outputs.append(output)
             for (index, bus) in buses.enumerated() { rl_render_set_bus(context, UInt32(index), UInt32(bus.channelOffset)) }
             try output.prepare() // Registers our audio process before creating an exclusion tap.
@@ -421,10 +445,12 @@ private final class AudioGraph: @unchecked Sendable {
                 }
                 try Hardware.validateFloatStreams(device, scope: kAudioObjectPropertyScopeInput)
                 let rate = try Hardware.rate(device)
+                let buffer = try Hardware.buffer(device, rate: rate)
                 try allocation.reserve(UInt64(Self.maxFrames) * 8 + UInt64(outputs.count) * 8 + 4096)
-                guard let context = rl_capture_create(rate, UInt32(channel.source.kind == .device ? channel.source.channelOffset : 0), Self.maxFrames, UInt32(outputs.count)) else { throw AudioRoutingError.configuration("Not enough memory to prepare the input channel.") }
-                let capture = CaptureNode(channelID: channel.id, device: device, rate: rate, context: context)
+                guard let context = rl_capture_create(rate, UInt32(channel.source.kind == .device ? channel.source.channelOffset : 0), buffer.maximum, UInt32(outputs.count)) else { throw AudioRoutingError.configuration("Not enough memory to prepare the input channel.") }
+                let capture = CaptureNode(channelID: channel.id, device: device, rate: rate, buffer: buffer, context: context)
                 capture.tap = tap; capture.aggregate = aggregate; tap = 0; aggregate = 0
+                rl_capture_allow_idle_pauses(context, capture.tap != 0)
                 capture.tapDescription = tapDescription
                 capture.tapApplicationBundleID = channel.source.kind == .application ? channel.source.bundleID : nil
                 captures.append(capture)
@@ -434,7 +460,10 @@ private final class AudioGraph: @unchecked Sendable {
                     guard let ring = rl_ring_create(ringPlan.capacity) else { throw AudioRoutingError.configuration("Not enough memory to prepare audio buffers.") }
                     rings.append(ring)
                     capture.rings.append(ring)
-                    guard rl_ring_prepare_ratio(ring, rate / output.rate) else { throw AudioRoutingError.configuration("The input and output sample rates are too far apart. Choose rates between 8 kHz and 192 kHz in Audio MIDI Setup.") }
+                    guard rl_ring_prepare_clock(ring, rate, output.rate) else { throw AudioRoutingError.configuration("The input and output sample rates are unsupported or too far apart. Use rates from 8 to 384 kHz that differ by no more than 24 times in Audio MIDI Setup.") }
+                    guard rl_ring_prepare_buffers(ring, buffer.maximum, output.buffer.maximum) else {
+                        throw AudioRoutingError.configuration("The input and output device buffers cannot be prepared safely. \(RealtimeDeviceLimits.bufferGuidance)")
+                    }
                     rl_capture_set_destination(context, UInt32(outputIndex), ring)
                     rl_render_set_source(output.context, UInt32(index), ring, rate, false)
                 }
@@ -505,6 +534,8 @@ private final class AudioGraph: @unchecked Sendable {
         for (device, scope) in captures.map({ ($0.device, kAudioObjectPropertyScopeInput) }) + outputs.map({ ($0.device, kAudioObjectPropertyScopeOutput) }) {
             try monitor.add(object: device, selector: kAudioDevicePropertyDeviceIsAlive, event: .deviceConfiguration, callback: callback)
             try monitor.add(object: device, selector: kAudioDevicePropertyNominalSampleRate, event: .deviceConfiguration, callback: callback)
+            try monitor.add(object: device, selector: kAudioDevicePropertyBufferFrameSize, event: .deviceConfiguration, callback: callback)
+            try monitor.add(object: device, selector: kAudioDevicePropertyUsesVariableBufferFrameSizes, event: .deviceConfiguration, callback: callback)
             try monitor.add(object: device, selector: kAudioDevicePropertyStreams, scope: scope, event: .deviceConfiguration, callback: callback)
             try monitor.add(object: device, selector: kAudioDevicePropertyStreamConfiguration, scope: scope, event: .deviceConfiguration, callback: callback)
             for stream in Hardware.ids(device, kAudioDevicePropertyStreams, scope) {
@@ -573,6 +604,7 @@ private final class AudioGraph: @unchecked Sendable {
     private var pendingSoundCheckChannelID: UUID?
     private var pendingExcludedApplications: [String] = []
     private var progressMonitor = RenderProgressMonitor()
+    private var captureProgressMonitor = DeviceCaptureProgressMonitor()
     private var healthCheckID: UUID?
     private var healthCheckRequested = false
     private var healthCancellation: GraphCancellation?
@@ -734,6 +766,7 @@ private final class AudioGraph: @unchecked Sendable {
     }
     public func stop() {
         progressMonitor.reset()
+        captureProgressMonitor.reset()
         healthCancellation?.cancel(); healthCancellation = nil; healthCheckID = nil; healthCheckRequested = false
         pendingStart?.cancel(); pendingStart = nil; pendingSoundCheckChannelID = nil; pendingExcludedApplications = []
         generation &+= 1; starting = false
@@ -762,9 +795,17 @@ private final class AudioGraph: @unchecked Sendable {
         ticks += 1
         if ticks % 40 == 0 { refreshDevices(); checkDeviceHealth() }
         guard let graph else { return }
+        let now = Double(DispatchTime.now().uptimeNanoseconds) / 1_000_000_000
         let progress = graph.outputs.map { OutputProgress(id: $0.uid, frames: rl_render_frames($0.context), sampleRate: $0.rate) }
-        if progressMonitor.observe(progress, at: Double(DispatchTime.now().uptimeNanoseconds) / 1_000_000_000, maxFrames: AudioGraph.maxFrames) != nil {
+        if progressMonitor.observe(progress, at: now, maxFrames: AudioGraph.maxFrames) != nil {
             stop(); errorMessage = "An output device or effect stopped returning audio. Audio has stopped; check the device and effects, then start again."; return
+        }
+        let captureProgress = graph.captures.map {
+            CaptureProgress(id: $0.channelID.uuidString, frames: rl_capture_frames($0.context), sampleRate: $0.rate, isProcessTap: $0.tap != 0)
+        }
+        if let stalled = captureProgressMonitor.observe(captureProgress, at: now, maxFrames: AudioGraph.maxFrames) {
+            let name = graph.session.channels.first { $0.id.uuidString == stalled }?.name ?? "Device input"
+            stop(); errorMessage = "Input “\(name)” stopped returning audio. Check or reconnect its device, then start audio again."; return
         }
         if let failure = graph.outputs.lazy.compactMap({ $0.audioUnits?.failureMessage }).first {
             stop(); errorMessage = failure; return
@@ -774,6 +815,9 @@ private final class AudioGraph: @unchecked Sendable {
         for capture in graph.captures {
             _ = rl_capture_take_peak(capture.context)
             stats.capturedFrames += rl_capture_frames(capture.context)
+            stats.oversizedBlocks += rl_capture_oversized_blocks(capture.context)
+            stats.timestampDiscontinuities += rl_capture_timestamp_discontinuities(capture.context)
+            if rl_capture_clock_factor(capture.context) == 0 { stats.timestampFallbackNodes += 1 }
         }
         for output in graph.outputs {
             stats.effectAlignmentLatencySeconds = max(stats.effectAlignmentLatencySeconds, output.audioUnits?.alignmentLatencySeconds ?? 0)
@@ -783,14 +827,25 @@ private final class AudioGraph: @unchecked Sendable {
             }
             stats.renderedFrames += rl_render_frames(output.context)
             stats.oversizedBlocks += rl_render_oversized_blocks(output.context)
+            stats.timestampDiscontinuities += rl_render_timestamp_discontinuities(output.context)
+            if rl_render_clock_factor(output.context) == 0 { stats.timestampFallbackNodes += 1 }
         }
-        for ring in graph.rings { stats.droppedFrames += rl_ring_dropped(ring); stats.underrunFrames += rl_ring_underruns(ring) }
+        for ring in graph.rings {
+            stats.droppedFrames += rl_ring_dropped(ring); stats.underrunFrames += rl_ring_underruns(ring)
+            if rl_ring_clock_mismatch(ring) { stats.clockMismatchPairs += 1 }
+        }
         channelMeters = routing?.aggregateChannelPeaks(channels) ?? channels
         busMeters = routing?.aggregateBusPeaks(buses) ?? buses
         diagnostics = stats
         soundCheck = graph.outputs.first?.soundCheck?.snapshot()
+        if stats.clockMismatchPairs > 0 {
+            stop(); errorMessage = "The input and output hardware clocks differ beyond the supported correction range. Check their clock configuration or choose different devices, then start again."; return
+        }
+        if stats.timestampDiscontinuities > 0 {
+            stop(); errorMessage = "An audio device's sample timeline skipped or became invalid. Audio stopped to avoid mixing misaligned data. Check the device and system load, then start again."; return
+        }
         if stats.oversizedBlocks > 0 {
-            stop(); errorMessage = "The audio device requested a buffer larger than 16,384 frames. Choose a smaller device buffer in Audio MIDI Setup and restart audio."
+            stop(); errorMessage = "An input or output device requested an unsupported audio buffer. \(RealtimeDeviceLimits.bufferGuidance)"
         }
     }
     private func checkDeviceHealth(suspend: Bool = false) {
@@ -802,8 +857,8 @@ private final class AudioGraph: @unchecked Sendable {
         // Snapshot mutable actor state; worker accesses only immutable graph nodes.
         let session = graph.session, memberships = graph.applicationProcesses
         let needed = session.buses.compactMap(\.deviceUID) + session.channels.filter { $0.source.kind == .device }.compactMap { $0.source.deviceUID }
-        let captures = graph.captures.map { ($0.device, $0.rate) }
-        let outputs = graph.outputs.map { ($0.device, $0.rate) }
+        let captures = graph.captures.map { ($0.device, $0.rate, $0.buffer) }
+        let outputs = graph.outputs.map { ($0.device, $0.rate, $0.buffer) }
         worker.async { [weak self] in
             do {
                 try cancellation.check()
@@ -812,10 +867,13 @@ private final class AudioGraph: @unchecked Sendable {
                     throw AudioRoutingError.configuration("An active audio device was disconnected. Reconnect it or choose another device, then start audio.")
                 }
                 for (nodes, scope) in [(captures, kAudioObjectPropertyScopeInput), (outputs, kAudioObjectPropertyScopeOutput)] {
-                    for (device, rate) in nodes {
+                    for (device, rate, buffer) in nodes {
                         try cancellation.check(); try Hardware.validateAlive(device)
                         guard try Hardware.rate(device) == rate else { throw AudioRoutingError.configuration("An audio device changed sample rate. Start audio again to rebuild its route.") }
                         try Hardware.validateFloatStreams(device, scope: scope)
+                        guard try Hardware.buffer(device, rate: rate) == buffer else {
+                            throw AudioRoutingError.configuration("An audio device changed its buffer size. Start audio again to rebuild its route safely.")
+                        }
                     }
                 }
                 for channel in session.channels where channel.source.kind == .device {

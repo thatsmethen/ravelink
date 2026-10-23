@@ -1,0 +1,1 @@
+PASS: actual bundle stale-hole silence, intact adjacent frames, future-reader isolation, variable blocks, partial holes, wrap, overwritten old reads, timestamp/cycle reset, multiple-client lifecycle, malformed bounds, concurrent readers with 100000 writes.

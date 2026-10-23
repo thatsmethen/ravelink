@@ -15,7 +15,7 @@ Inputs and mix buses are user-created without a product-imposed channel count. A
 - A supervised audio helper with bounded control messages, startup/stop deadlines and process failure recovery. Audio never starts automatically on launch.
 - GPL virtual-device builds from a pinned BlackHole source revision, with distinct device identities and corresponding source included.
 
-Application/system capture, device lifecycle, sustained scale and distribution still have open acceptance gates. The [release ledger](docs/RELEASE-ACCEPTANCE.md) distinguishes implementation, deterministic checks, native UI observations and independent installed-driver recordings. Two debug-build scale tests failed; their original evidence is retained. There is no production capacity guarantee yet.
+Application/system capture, device lifecycle, sustained scale and distribution still have open acceptance gates. The [release ledger](docs/RELEASE-ACCEPTANCE.md) distinguishes implementation, deterministic checks, native UI observations and independent installed-driver recordings. Debug and release scale runs failed; their original evidence is retained. Shared capture corrected the measured duplicate-source level cancellation, but the latest installed run still failed continuous-audio checks. There is no production capacity guarantee yet.
 
 ## Run a development build
 

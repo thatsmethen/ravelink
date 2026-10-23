@@ -23,6 +23,7 @@ import zlib
 
 ROOT = Path(__file__).resolve().parents[1]
 UPSTREAM = ROOT / 'Drivers' / 'BlackHole'
+PATCHES = ROOT / 'Drivers' / 'patches'
 HAL = Path('/Library/Audio/Plug-Ins/HAL')
 PREFIX = 'au.textual.ravelink.audio.'
 PLUGIN_TYPE = '443ABAB8-E7B3-491A-B985-BEB9187030DB'
@@ -66,6 +67,31 @@ def verify_upstream() -> dict:
     for name, digest in manifest['files'].items():
         if hashlib.sha256((UPSTREAM / name).read_bytes()).hexdigest() != digest:
             raise ValueError(f'Pinned upstream checksum mismatch: {name}')
+    return manifest
+
+
+def prepare_patched_source(source_dir: Path) -> dict:
+    """Keep pristine corresponding source and apply only exact, hashed local patches."""
+    manifest = json.loads((PATCHES / 'manifest.json').read_text())
+    original = (UPSTREAM / 'BlackHole.c').read_bytes()
+    if hashlib.sha256(original).hexdigest() != manifest['upstreamSourceSHA256']:
+        raise ValueError('Patch input checksum mismatch')
+    (source_dir / 'BlackHole.c').write_bytes(original)
+    generated = source_dir / 'RaveLinkAudio.c'
+    generated.write_bytes(original)
+    for entry in manifest['patches']:
+        name = entry['file']
+        if Path(name).name != name or not name.endswith('.patch'):
+            raise ValueError('Invalid patch filename')
+        patch = (PATCHES / name).read_bytes()
+        if hashlib.sha256(patch).hexdigest() != entry['sha256']:
+            raise ValueError(f'Local patch checksum mismatch: {name}')
+        (source_dir / name).write_bytes(patch)
+        subprocess.run(['/usr/bin/patch', '--batch', '--fuzz=0', str(generated)],
+                       input=patch, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if hashlib.sha256(generated.read_bytes()).hexdigest() != manifest['patchedSourceSHA256']:
+        raise ValueError('Patched source checksum mismatch')
+    (source_dir / 'patches.json').write_text(json.dumps(manifest, indent=2) + '\n')
     return manifest
 
 
@@ -128,14 +154,7 @@ def build_one(destination: Path, device: tuple[str, str], channels: int, archs: 
         }
         header = ''.join(f'#define {key} {value}\n' for key, value in config.items())
         (source_dir / 'config.h').write_text(header)
-        source = (UPSTREAM / 'BlackHole.c').read_text()
-        # The only source modification removes the upstream box branding; public symbols are renamed via config.
-        needle = 'CFSTR("BlackHole Box")'
-        if source.count(needle) != 1:
-            raise ValueError('Unexpected upstream box definition')
-        source = source.replace(needle, 'CFSTR(kDriver_Name " Box")')
-        (source_dir / 'RaveLinkAudio.c').write_text(source)
-        shutil.copy2(UPSTREAM / 'BlackHole.c', source_dir / 'BlackHole.c')
+        patches = prepare_patched_source(source_dir)
         shutil.copy2(UPSTREAM / 'LICENSE', resources / 'LICENSE-BlackHole.txt')
         shutil.copy2(UPSTREAM / 'upstream.json', source_dir / 'upstream.json')
         plist = {
@@ -164,7 +183,7 @@ def build_one(destination: Path, device: tuple[str, str], channels: int, archs: 
             'id': slug, 'name': plist['CFBundleName'], 'bundle': bundle_name,
             'bundleID': bundle_id, 'deviceUID': driver_name + '_UID',
             'factoryUUID': factory, 'channels': channels, 'architectures': archs,
-            'minimumMacOS': '12.0', 'upstream': manifest,
+            'minimumMacOS': '12.0', 'upstream': manifest, 'localPatches': patches,
             'codeSigning': 'ad-hoc' if identity == '-' else identity,
             'notarized': False, 'version': version, 'buildNumber': build_number,
         }
@@ -180,6 +199,9 @@ def build_one(destination: Path, device: tuple[str, str], channels: int, archs: 
             'then codesign --force --sign - /path/to/RaveLink-ID.driver\n'
             'Changes: independent name, UID, factory, bundle ID; original icon; hidden mirror disabled;\n'
             'device gain disabled; system-alert default eligibility disabled; box name follows driver name.\n'
+            'Hashed local patch also validates each ring frame against its timeline/generation;\n'
+            'missing, overwritten or concurrent in-flight frames are silent. See patches.json.\n'
+            'Pristine BlackHole.c, exact patch, and patched RaveLinkAudio.c are all included.\n'
         )
         sign = ['/usr/bin/codesign', '--force', '--sign', identity]
         if identity != '-':
@@ -352,8 +374,11 @@ def package(bundles: list[Path], output: Path, identity: str | None) -> None:
             run(['/usr/bin/pkgbuild', '--analyze', '--root', str(payload), str(component_plist)])
             definitions = plistlib.loads(component_plist.read_bytes())
             for component in definitions:
+                # Installer compares the marketing version before CFBundleVersion,
+                # which can silently skip a newer build and still advance receipts.
+                # The mandatory full-set preinstall owns monotonic build ordering.
                 component.update(BundleIsRelocatable=False, BundleHasStrictIdentifier=True,
-                                 BundleIsVersionChecked=True, BundleOverwriteAction='upgrade')
+                                 BundleIsVersionChecked=False, BundleOverwriteAction='upgrade')
             component_plist.write_bytes(plistlib.dumps(definitions))
             component_package = components / (data['id'] + '.pkg')
             run(['/usr/bin/pkgbuild', '--root', str(payload), '--component-plist', str(component_plist),

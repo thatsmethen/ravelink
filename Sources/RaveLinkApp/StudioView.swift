@@ -25,7 +25,7 @@ struct StudioView: View {
                     }.padding(24)
                     matrix
                 }
-                if let id = studio.selectedChannel, let channel = studio.session.channels.first(where: { $0.id == id }) {
+                if let id = studio.selectedChannel, let channel = studio.channel(id) {
                     Divider()
                     effects(channel).frame(width: 265)
                 }
@@ -58,7 +58,7 @@ struct StudioView: View {
                 Button("Audio setup…") { studio.showingSettings = true }
                 Button("Engine diagnostics…") { studio.showingDiagnostics = true }
                 Button("Refresh devices") { audio.refreshDevices() }
-            } label: { Image(systemName: "ellipsis.circle").font(.title3) }.menuStyle(.borderlessButton).frame(width: 34).help("Studio options")
+            } label: { Label("Studio options", systemImage: "ellipsis.circle").labelStyle(.iconOnly).font(.title3) }.menuStyle(.borderlessButton).frame(width: 34).help("Studio options")
             Button { studio.toggleAudio() } label: {
                 Label(audio.starting ? "Cancel start" : (audio.running ? "Stop audio" : "Start audio"), systemImage: (audio.running || audio.starting) ? "stop.fill" : "play.fill").frame(width: 105)
             }.buttonStyle(AccentButtonStyle(color: audio.running ? Color(red: 0.7, green: 0.16, blue: 0.2) : accent, foreground: audio.running ? .white : .black))
@@ -73,7 +73,7 @@ struct StudioView: View {
                         Text("Choose where each input goes").font(.caption).foregroundStyle(.secondary)
                     }.frame(width: 260, height: 148, alignment: .leading).padding(.horizontal, 18)
                     ForEach(studio.session.buses) { bus in busHeader(bus) }
-                    Button { studio.showingMix = true } label: { Image(systemName: "plus").frame(width: 42, height: 42) }.buttonStyle(.bordered).help("Add mix").padding(16)
+                    Button { studio.showingMix = true } label: { Image(systemName: "plus").frame(width: 42, height: 42) }.buttonStyle(.bordered).help("Add mix").accessibilityLabel("Add mix").padding(16)
                 }
                 if studio.session.channels.isEmpty {
                     VStack(spacing: 14) {
@@ -104,7 +104,7 @@ struct StudioView: View {
                     Button("Move mix right") { studio.moveBus(bus.id, by: 1) }.disabled(studio.session.buses.last?.id == bus.id)
                     Divider()
                     Button("Remove mix", role: .destructive) { studio.removeBus(bus.id) }
-                } label: { Image(systemName: "ellipsis") }.menuStyle(.borderlessButton).frame(width: 18)
+                } label: { Label("Options for mix \(bus.name)", systemImage: "ellipsis").labelStyle(.iconOnly) }.menuStyle(.borderlessButton).frame(width: 18)
             }
             Picker("Output", selection: Binding(get: { busBinding(bus, \.deviceUID).wrappedValue }, set: { uid in
                 do { try studio.setPrimaryOutput(uid, on: bus.id) } catch { studio.notice = error.localizedDescription }
@@ -114,17 +114,21 @@ struct StudioView: View {
                 if let uid = bus.deviceUID, !audio.devices.contains(where: { $0.id == uid }) { Text("Missing device").tag(Optional(uid)) }
             }.labelsHidden().frame(maxWidth: .infinity).accessibilityLabel("\(bus.name) output")
             HStack(spacing: 6) {
-                Button { mute.wrappedValue.toggle() } label: { Image(systemName: bus.muted ? "speaker.slash.fill" : "speaker.wave.2.fill").foregroundStyle(bus.muted ? .orange : .secondary) }.buttonStyle(.plain).accessibilityLabel("Mute \(bus.name)")
+                Button { mute.wrappedValue.toggle() } label: { Image(systemName: bus.muted ? "speaker.slash.fill" : "speaker.wave.2.fill").foregroundStyle(bus.muted ? .orange : .secondary) }.buttonStyle(.plain)
+                    .accessibilityLabel(bus.muted ? "Unmute mix \(bus.name)" : "Mute mix \(bus.name)")
+                    .accessibilityValue(bus.muted ? "Muted" : "Unmuted")
                 Slider(value: busBinding(bus, \.gainDB), in: -60...12).accessibilityLabel("\(bus.name) master level")
+                    .accessibilityValue(audioControlValue(bus.gainDB, unit: "dB"))
                 Text(db(bus.gainDB)).font(.system(size: 10, design: .monospaced)).frame(width: 38)
             }
-            LevelMeter(level: audio.busMeters[bus.id] ?? 0, active: audio.running && !bus.muted)
+            LevelMeter(level: audio.busMeters[bus.id] ?? 0, active: audio.running && !bus.muted,
+                       label: "\(bus.name) mix level", inactiveStatus: audio.running ? "Muted" : "Stopped")
             if let d = audio.devices.first(where: { $0.id == bus.deviceUID }), d.outputChannels > 2 {
                 Picker("Pair", selection: Binding(get: { busBinding(bus, \.channelOffset).wrappedValue }, set: { offset in
                     do { try studio.setOutputPair(offset, on: bus.id) } catch { studio.notice = error.localizedDescription }
                 })) {
                     ForEach(Array(stride(from: 0, to: d.outputChannels - 1, by: 2)), id: \.self) { offset in Text("\(offset + 1)–\(offset + 2)").tag(offset) }
-                }.font(.caption)
+                }.font(.caption).accessibilityLabel("\(bus.name) output channel pair")
             }
         }.padding(16).frame(width: 196, height: 148, alignment: .top).background(panel)
     }
@@ -148,18 +152,24 @@ struct StudioView: View {
                         Button("Move input down") { studio.moveChannel(channel.id, by: 1) }.disabled(studio.session.channels.last?.id == channel.id)
                         Divider()
                         Button("Remove input", role: .destructive) { studio.removeChannel(channel.id) }
-                    } label: { Image(systemName: "ellipsis") }.menuStyle(.borderlessButton).frame(width: 18)
+                    } label: { Label("Options for input \(channel.name)", systemImage: "ellipsis").labelStyle(.iconOnly) }.menuStyle(.borderlessButton).frame(width: 18)
                 }
-                LevelMeter(level: audio.channelMeters[channel.id] ?? 0, active: audio.running && !channel.muted)
+                LevelMeter(level: audio.channelMeters[channel.id] ?? 0, active: audio.running && !channel.muted,
+                           label: "\(channel.name) input level", inactiveStatus: audio.running ? "Muted" : "Stopped")
                 HStack(spacing: 8) {
-                    Button(channel.muted ? "Muted" : "Mute") { mute.wrappedValue.toggle() }.tint(channel.muted ? .orange : .gray)
+                    Button(channel.muted ? "Unmute" : "Mute") { mute.wrappedValue.toggle() }.tint(channel.muted ? .orange : .gray)
+                        .accessibilityLabel(channel.muted ? "Unmute input \(channel.name)" : "Mute input \(channel.name)")
+                        .accessibilityValue(channel.muted ? "Muted" : "Unmuted")
                     Button("Solo") { solo.wrappedValue.toggle() }.tint(channel.solo ? accent : .gray)
+                        .accessibilityLabel("Solo input \(channel.name)").accessibilityValue(channel.solo ? "On" : "Off")
                     Spacer()
                     Button { studio.selectedChannel = studio.selectedChannel == channel.id ? nil : channel.id } label: { Label("Effects", systemImage: "slider.horizontal.3") }
+                        .accessibilityLabel("Effects for \(channel.name)")
+                        .accessibilityValue(studio.selectedChannel == channel.id ? "Expanded" : "Collapsed")
                 }.buttonStyle(.bordered).controlSize(.small)
             }.padding(18).frame(width: 296, height: 140).background(studio.selectedChannel == channel.id ? panel.opacity(1.5) : panel)
             ForEach(studio.session.buses) { bus in
-                if let route = studio.session.sends.first(where: { $0.channelID == channel.id && $0.busID == bus.id }) { routeCell(route, channel: channel, bus: bus) }
+                if let route = studio.route(channelID: channel.id, busID: bus.id) { routeCell(route, channel: channel, bus: bus) }
                 else { Color.clear.frame(width: 196, height: 140) }
             }
         }
@@ -174,9 +184,11 @@ struct StudioView: View {
                 Text(db(send.gainDB)).font(.system(size: 12, design: .monospaced)).foregroundStyle(send.muted ? .secondary : accent)
             }
             Slider(value: sendBinding(send, \.gainDB), in: -60...12).disabled(send.muted).accessibilityLabel("\(channel.name) level in \(bus.name)")
+                .accessibilityValue(audioControlValue(send.gainDB, unit: "dB"))
             HStack {
                 Text("L").font(.system(size: 9, weight: .medium))
                 Slider(value: sendBinding(send, \.pan), in: -1...1).disabled(send.muted).accessibilityLabel("\(channel.name) pan in \(bus.name)")
+                    .accessibilityValue(send.pan == 0 ? "Center" : "\(send.pan < 0 ? "Left" : "Right") \(Int(abs(send.pan) * 100)) percent")
                 Text("R").font(.system(size: 9, weight: .medium))
             }.foregroundStyle(.secondary).opacity(0.7)
         }.padding(18).frame(width: 196, height: 140).background(send.muted ? panel.opacity(0.4) : panel)
@@ -187,7 +199,7 @@ struct StudioView: View {
                 HStack {
                     Text("INPUT SETTINGS").font(.system(size: 11, weight: .semibold)).foregroundStyle(accent)
                     Spacer()
-                    Button { studio.selectedChannel = nil } label: { Image(systemName: "xmark") }.buttonStyle(.plain).help("Close input settings")
+                    Button { studio.selectedChannel = nil } label: { Image(systemName: "xmark") }.buttonStyle(.plain).help("Close input settings").accessibilityLabel("Close input settings")
                 }
                 TextField("Input name", text: channelBinding(channel, \.name)).font(.title2).textFieldStyle(.plain)
                 sourcesSection(channel)
@@ -222,7 +234,7 @@ struct StudioView: View {
                                 studio.removeSource(source, from: channel.id)
                             }
                         }
-                    } label: { Image(systemName: "ellipsis") }.menuStyle(.borderlessButton).frame(width: 18)
+                    } label: { Label("Options for source \(slot + 1), \(sourceName(source)), in \(channel.name)", systemImage: "ellipsis").labelStyle(.iconOnly) }.menuStyle(.borderlessButton).frame(width: 18)
                 }
             }
             Button { studio.beginInput(target: channel.id) } label: { Label("Add source", systemImage: "plus") }.buttonStyle(.bordered)
@@ -231,22 +243,17 @@ struct StudioView: View {
     // SwiftUI may read a disappearing control's binding after the collection changes.
     // Resolve stable identities on every access; removed controls retain their last value.
     private func busBinding<Value>(_ bus: MixBus, _ path: WritableKeyPath<MixBus, Value>) -> Binding<Value> {
-        Binding(get: { studio.session.buses.first(where: { $0.id == bus.id })?[keyPath: path] ?? bus[keyPath: path] }, set: { value in
-            guard let i = studio.session.buses.firstIndex(where: { $0.id == bus.id }) else { return }
-            studio.session.buses[i][keyPath: path] = value
-        })
+        Binding(get: { studio.bus(bus.id)?[keyPath: path] ?? bus[keyPath: path] },
+                set: { studio.setBus(bus.id, path, to: $0) })
     }
     private func channelBinding<Value>(_ channel: MixerChannel, _ path: WritableKeyPath<MixerChannel, Value>) -> Binding<Value> {
-        Binding(get: { studio.session.channels.first(where: { $0.id == channel.id })?[keyPath: path] ?? channel[keyPath: path] }, set: { value in
-            guard let i = studio.session.channels.firstIndex(where: { $0.id == channel.id }) else { return }
-            studio.session.channels[i][keyPath: path] = value
-        })
+        Binding(get: { studio.channel(channel.id)?[keyPath: path] ?? channel[keyPath: path] },
+                set: { studio.setChannel(channel.id, path, to: $0) })
     }
     private func sendBinding<Value>(_ send: MixSend, _ path: WritableKeyPath<MixSend, Value>) -> Binding<Value> {
-        Binding(get: { studio.session.sends.first(where: { $0.id == send.id })?[keyPath: path] ?? send[keyPath: path] }, set: { value in
-            guard let i = studio.session.sends.firstIndex(where: { $0.id == send.id }) else { return }
-            studio.session.sends[i][keyPath: path] = value
-        })
+        let id = send.id
+        return Binding(get: { studio.send(id)?[keyPath: path] ?? send[keyPath: path] },
+                       set: { studio.setSend(id, path, to: $0) })
     }
     private func sourceName(_ source: InputSource) -> String {
         switch source.kind {
@@ -259,7 +266,7 @@ struct StudioView: View {
     private func effectSlider(_ title: String, value: Binding<Float>, range: ClosedRange<Float>, suffix: String) -> some View {
         VStack(alignment: .leading, spacing: 9) {
             HStack { Text(title).font(.callout); Spacer(); Text("\(Int(value.wrappedValue)) \(suffix)").font(.system(size: 11, design: .monospaced)).foregroundStyle(accent) }
-            Slider(value: value, in: range).accessibilityLabel(title)
+            Slider(value: value, in: range).accessibilityLabel(title).accessibilityValue(audioControlValue(value.wrappedValue, unit: suffix))
         }
     }
     private var footer: some View {
@@ -270,7 +277,7 @@ struct StudioView: View {
             Spacer()
             Text(studio.saveStatus).font(.caption).foregroundStyle(studio.saveStatus.hasPrefix("Not saved") ? .orange : .secondary).lineLimit(1)
             Text("\(studio.session.channels.count) inputs  ·  \(studio.session.buses.count) mixes").font(.system(size: 11, design: .monospaced)).foregroundStyle(.secondary)
-            Button { studio.showingSettings = true } label: { Image(systemName: "questionmark.circle") }.buttonStyle(.plain).help("Audio setup")
+            Button { studio.showingSettings = true } label: { Image(systemName: "questionmark.circle") }.buttonStyle(.plain).help("Audio setup").accessibilityLabel("Audio setup")
         }.padding(.horizontal, 24).padding(.vertical, 14)
     }
     private var setupInfo: some View {
@@ -300,16 +307,27 @@ func sourceIcon(_ kind: SourceKind) -> String {
     switch kind { case .device: return "mic.fill"; case .application: return "app.dashed"; case .system: return "desktopcomputer"; case .tone: return "waveform" }
 }
 func db(_ value: Float) -> String { String(format: "%+.0f dB", value) }
+func audioControlValue(_ value: Float, unit: String) -> String {
+    let number = value.formatted(.number.precision(.fractionLength(0...1)))
+    switch unit {
+    case "dB": return "\(number) decibels"
+    case "Hz": return value == 0 ? "Off" : "\(number) hertz"
+    case ":1": return "\(number) to 1"
+    default: return "\(number) \(unit)"
+    }
+}
 struct LevelMeter: View {
     let level: Float
     let active: Bool
+    var label = "Audio level"
+    var inactiveStatus = "Stopped"
     var body: some View {
         GeometryReader { geo in
             ZStack(alignment: .leading) {
                 Capsule().fill(.white.opacity(0.08))
                 Capsule().fill(level > 0.95 ? Color.orange : accent).frame(width: geo.size.width * CGFloat(active && level.isFinite ? min(1, max(0, (20 * log10(max(level, 0.001)) + 60) / 60)) : 0))
             }
-        }.frame(height: 4).accessibilityLabel("Audio level").accessibilityValue(active ? "\(Int(20 * log10(max(level.isFinite ? level : 0, 0.001)))) decibels" : "Stopped")
+        }.frame(height: 4).accessibilityLabel(label).accessibilityValue(active ? "\(Int(20 * log10(max(level.isFinite ? level : 0, 0.001)))) decibels" : inactiveStatus)
     }
 }
 

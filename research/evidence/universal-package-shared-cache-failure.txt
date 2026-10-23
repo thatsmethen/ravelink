@@ -1,0 +1,25 @@
+swift-driver version: 1.127.14.1 [0/1] Planning build
+Building for production...
+[0/9] Write sources
+[3/9] Compiling RaveLinkRealtime SoundCheck.c
+[4/9] Write swift-version--1AB21518FC5DEDBE.txt
+[5/9] Compiling RaveLinkRealtime Realtime.c
+[6/10] Compiling RaveLinkAudioUnitBridge AudioUnitBridge.m
+[8/10] Compiling RaveLinkCore AudioUnitEffects.swift
+[9/11] Compiling RaveLinkAudio ApplicationIdentity.swift
+[10/12] Compiling RaveLinkApp AudioUnitRackView.swift
+/Users/textual/.codex/worktrees/signed-build/ravelink/Sources/RaveLinkApp/StudioModel.swift:31:24: error: type 'FileManager' has no member 'default'
+ 29 |     init(store: SessionStore = .standard, audio: EngineClient? = nil) {
+ 30 |         self.store = store; self.audio = audio ?? EngineClient()
+ 31 |         if FileManager.default.fileExists(atPath: store.url.path) {
+    |                        `- error: type 'FileManager' has no member 'default'
+ 32 |             do { session = try store.load() }
+ 33 |             catch {
+
+/Users/textual/.codex/worktrees/signed-build/ravelink/Sources/RaveLinkApp/StudioModel.swift:38:37: error: type 'FileManager' has no member 'default'
+ 36 |                 let backup = store.url.deletingLastPathComponent().appendingPathComponent("unreadable-\(UUID().uuidString).json")
+ 37 |                 do {
+ 38 |                     try FileManager.default.copyItem(at: store.url, to: backup)
+    |                                     `- error: type 'FileManager' has no member 'default'
+ 39 |                     notice = "Your saved studio could not be opened. A copy has been preserved at \(backup.path). \(failure)"
+ 40 |                 } catch {

@@ -1,0 +1,31 @@
+{
+  "sourceCommit": "784e38f30a7b51f2fc8d40d58413780ae11e9944",
+  "sourceSHA256": {
+    "Sources/RaveLinkRealtime/Realtime.c": "6457e9b1421fad609f4abba2e2d28f9e5284d9fa9cf3a2ec1aa974d84b792c15",
+    "Sources/RaveLinkRealtime/SoundCheck.c": "6118a152c99901b2efe2742419454f5946ac661f4b78becd5afe696ed8f28a38",
+    "Sources/RaveLinkRealtime/include/RaveLinkRealtime.h": "3c5980013055c4c502324d6487fe6b24e68f6aad22f62035d5aad81278319fc4",
+    "Sources/RaveLinkRealtime/include/SoundCheck.h": "09fb9b99cc1100c322189a5b377cf37125b733021927079e573fce788defdd64",
+    "research/evidence/elastic-clock-baseline-probe.c": "e33ba3a79d4f898f62321eae85f4ebefcd6d2ff378e10822fe99bb04e851b70e"
+  },
+  "compiler": "Apple clang version 17.0.0 (clang-1700.4.4.1)\nTarget: arm64-apple-darwin27.0.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin",
+  "host": "macOS-27.0-arm64-arm-64bit",
+  "buildCommand": "clang -O2 -std=c11 -I Sources/RaveLinkRealtime/include research/evidence/elastic-clock-baseline-probe.c Sources/RaveLinkRealtime/Realtime.c Sources/RaveLinkRealtime/SoundCheck.c -framework CoreAudio -o /tmp/ravelink-clock-audit",
+  "runCommand": "/tmp/ravelink-clock-audit",
+  "nominalSampleRate": 48000,
+  "callbackFrames": 256,
+  "ringFrames": 65536,
+  "virtualSecondsPerCase": 180,
+  "inputSignal": "Constant stereo Float32 0.125; input scheduling rate is 48000*(1+ppm/1e6); output scheduling rate is 48000. Ties schedule capture first.",
+  "metricDefinitions": {
+    "initialPrimingBlocks": "Whole zero-production reads before first nonzero production.",
+    "lateZeroBlocks": "Whole zero-production reads after any nonzero production; partial underflows are counted separately by the ring underrun counter.",
+    "firstLateZeroSeconds": "Virtual output time of first late zero-production block, or -1."
+  },
+  "result": "Synthetic negative clock offsets at -100,-250,-500 ppm produce late underflows; tested -50 and 0 through +500 ppm do not.",
+  "limitations": [
+    "No CoreAudio device, microphone, process tap, hardware timestamps, real jitter, callback contention or physical clocks are exercised.",
+    "This establishes a defect under these deterministic schedules; it is not a physical-device qualification result.",
+    "The constant signal tests continuity counters, not SRC frequency response or audible spectral quality.",
+    "Initial FIFO priming is reported separately and is not treated as a late dropout."
+  ]
+}

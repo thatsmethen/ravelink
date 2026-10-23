@@ -1,0 +1,97 @@
+[0/1] Planning build
+Building for debugging...
+[0/14] Write sources
+[2/14] Write swift-version--1AB21518FC5DEDBE.txt
+[4/23] Compiling RaveLinkCore SoundCheck.swift
+[5/23] Compiling RaveLinkCore SessionStore.swift
+[6/23] Compiling RaveLinkCore AudioUnitEffects.swift
+[7/23] Compiling RaveLinkCore ExpandedRouting.swift
+[8/23] Emitting module RaveLinkCore
+[9/23] Compiling RaveLinkCore Session.swift
+[10/43] Compiling RaveLinkPluginHost main.swift
+[11/43] Emitting module RaveLinkPluginHost
+[12/43] Compiling RaveLinkPluginHost Render.swift
+[13/42] Compiling RaveLinkAudio SoundCheckSupport.swift
+[13/43] Linking RaveLinkPluginHost
+[15/43] Compiling RaveLinkAudio TapRetargetTransaction.swift
+[15/43] Applying RaveLinkPluginHost
+[17/43] Compiling RaveLinkAudio RenderProgressMonitor.swift
+[18/43] Compiling RaveLinkAudio PluginCatalog.swift
+[19/43] Compiling RaveLinkAudio RealtimeDeviceLimits.swift
+[20/43] Compiling RaveLinkAudio NativeTapRestoration.swift
+[21/43] Compiling RaveLinkAudio HardwareEventMonitor.swift
+[22/43] Compiling RaveLinkAudio PluginRender.swift
+[23/43] Compiling RaveLinkAudio FeedbackValidation.swift
+[24/43] Compiling RaveLinkAudio EngineProtocol.swift
+[25/43] Compiling RaveLinkAudio LiveAudioUnitGraph.swift
+[26/43] Compiling RaveLinkAudio EngineClient.swift
+[27/43] Compiling RaveLinkAudio CaptureSourcePlan.swift
+[28/43] Compiling RaveLinkAudio DeviceCaptureProgressMonitor.swift
+[29/43] Compiling RaveLinkAudio AudioPowerObserver.swift
+[30/43] Compiling RaveLinkAudio AudioStreamValidation.swift
+[31/43] Emitting module RaveLinkAudio
+[32/43] Compiling RaveLinkAudio AudioAllocationBudget.swift
+[33/43] Compiling RaveLinkAudio AudioCoordinator.swift
+[34/43] Compiling RaveLinkAudio ApplicationIdentity.swift
+[35/43] Compiling RaveLinkAudio ApplicationMembership.swift
+[36/76] Emitting module RaveLinkEngine
+[37/76] Compiling RaveLinkEngine EngineMain.swift
+[37/75] Linking RaveLinkEngine
+[38/75] Applying RaveLinkEngine
+[40/75] Compiling RaveLinkAudioTests SoundCheckRoutingTests.swift
+[41/76] Compiling RaveLinkAudioTests SoundCheckBufferTests.swift
+[42/76] Compiling RaveLinkAudioTests SourceAliasTests.swift
+[43/76] Compiling RaveLinkAudioTests RenderProgressMonitorTests.swift
+[44/76] Compiling RaveLinkAudioTests RealtimeTests.swift
+[45/76] Compiling RaveLinkAudioTests PluginRenderTests.swift
+[46/76] Compiling RaveLinkAudioTests ThirdPartyAudioUnitTests.swift
+[47/76] Compiling RaveLinkAudioTests PluginCatalogTests.swift
+[48/76] Compiling RaveLinkAudioTests GroupedRealtimeTests.swift
+[49/76] Compiling RaveLinkAudioTests InstalledAudioUnitAcceptanceTests.swift
+[50/76] Compiling RaveLinkAudioTests InstalledSoundCheckTests.swift
+[51/76] Compiling RaveLinkAudioTests AudioLifecycleTests.swift
+[52/76] Compiling RaveLinkAudioTests DSPRecoveryTests.swift
+[53/76] Compiling RaveLinkAudioTests ApplicationMembershipTests.swift
+[54/76] Compiling RaveLinkAudioTests AudioAllocationTests.swift
+[55/76] Compiling RaveLinkAudioTests LiveAudioUnitTests.swift
+[56/76] Compiling RaveLinkAudioTests InstalledDeviceSoakTests.swift
+[57/76] Compiling RaveLinkAudioTests InstalledMatrixTests.swift
+[58/76] Emitting module RaveLinkAudioTests
+[59/76] Compiling RaveLinkAudioTests DeviceCaptureProgressMonitorTests.swift
+[60/76] Compiling RaveLinkAudioTests ElasticClockTests.swift
+[61/76] Compiling RaveLinkAudioTests EngineClientTests.swift
+[62/76] Compiling RaveLinkAudioTests FeedbackValidationTests.swift
+[63/76] Compiling RaveLinkApp AudioUnitRackView.swift
+[64/76] Compiling RaveLinkApp StudioModel.swift
+[65/76] Compiling RaveLinkApp StudioView.swift
+[66/76] Compiling RaveLinkApp SourceSheets.swift
+[67/76] Compiling RaveLinkApp SoundCheckView.swift
+[68/76] Emitting module RaveLinkApp
+[69/76] Compiling RaveLinkApp StudioIndex.swift
+[70/76] Compiling RaveLinkApp RaveLinkApp.swift
+[71/76] Compiling RaveLinkApp EngineDiagnosticsView.swift
+[71/76] Write Objects.LinkFileList
+[72/76] Linking RaveLink
+[73/76] Applying RaveLink
+[75/79] Compiling RaveLinkAppTests StudioIndexTests.swift
+[76/79] Compiling RaveLinkAppTests SoundCheckIsolationTests.swift
+[77/79] Emitting module RaveLinkAppTests
+[77/79] Write Objects.LinkFileList
+[78/79] Linking RaveLinkPackageTests
+Build complete! (7.61s)
+􀟈  Test run started.
+􀄵  Testing Library Version: 1400
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite StudioIndexTests started.
+􀟈  Suite SoundCheckIsolationTests started.
+􀟈  Test globalAudioCommandCannotStartStudioInsideSoundCheck() started.
+􀟈  Test openingAndClosingAuditionKeepsStudioRoutesAndMutes() started.
+􀟈  Test routeValuesDoNotInvalidateStructureButRebindingDoes() started.
+􀟈  Test indexedEditsFollowIdentityAcrossReorderRemovalAndReplacement() started.
+􁁛  Test globalAudioCommandCannotStartStudioInsideSoundCheck() passed after 0.004 seconds.
+􁁛  Test routeValuesDoNotInvalidateStructureButRebindingDoes() passed after 0.006 seconds.
+􁁛  Test indexedEditsFollowIdentityAcrossReorderRemovalAndReplacement() passed after 0.006 seconds.
+􁁛  Test openingAndClosingAuditionKeepsStudioRoutesAndMutes() passed after 0.006 seconds.
+􁁛  Suite StudioIndexTests passed after 0.006 seconds.
+􁁛  Suite SoundCheckIsolationTests passed after 0.006 seconds.
+􁁛  Test run with 4 tests in 2 suites passed after 0.006 seconds.
