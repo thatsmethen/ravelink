@@ -9,8 +9,11 @@ The existing loopback test proves a generated signal reaches the installed HAL.
 This additional case feeds actual device input into the mixer: an independent C
 process writes 400 Hz to `ci-loopback` channels 1–2 and 1 kHz to channels 3–4,
 each at amplitude 0.01. Twelve visible input groups each capture both pairs.
-Their 24 capture nodes feed eight buses through 96 visible routes (192 lowered
-routes). Each bus uses a distinct stereo pair: four on `ci-mix-a`, four on
+Their 24 logical source references share two physical capture contexts, one per
+distinct input pair. Each output resamples each unique capture once and fans the
+same raw block into all referencing groups before their independent effects.
+They feed eight buses through 96 visible routes (192 lowered routes). Each bus
+uses a distinct stereo pair: four on `ci-mix-a`, four on
 `ci-mix-b`. Route gain is 1/12; bus levels are 0, −3, −6, −9, −12, −15, −18 and
 −21 dB. There are no generated tone sources in the mixer graph.
 
@@ -42,6 +45,9 @@ process peak RSS, host identity and per-half-second counters. CPU/RSS are observ
 values for the direct native coordinator in the test process, not isolated GUI
 worker overhead or guaranteed capacity. Startup counters are reported separately;
 there must be no new dropped, underrun, or oversized-block counts after warmup.
+The report separates 24 logical sources from the observed physical capture count,
+which must remain exactly two; expected captured-frame throughput uses that
+runtime physical count. The earlier frozen baselines had 24 physical captures.
 
 The verifier checks all eight stereo pairs independently: at least 29 uninterrupted
 seconds with both expected absolute tone amplitudes within 3%, stereo equality,

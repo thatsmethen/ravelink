@@ -9,6 +9,20 @@ _Static_assert(ATOMIC_INT_LOCK_FREE == 2, "Realtime controls require lock-free a
 _Static_assert(ATOMIC_LLONG_LOCK_FREE == 2, "Realtime counters require lock-free atomics");
 // Atomic float lock freedom is checked when the first graph object is allocated.
 static bool atomics_supported(void) { _Atomic float f = 0; return atomic_is_lock_free(&f); }
+// Prepare writable pages on the control thread. calloc alone can defer backing
+// page allocation until the first render/capture write. This is not an mlock or
+// a promise of residency under later memory pressure.
+static float *audio_samples_create(size_t samples) {
+    if (samples > SIZE_MAX / sizeof(float)) return NULL;
+    float *buffer = calloc(samples, sizeof(float));
+    if (buffer && samples) {
+        volatile float *pages = buffer;
+        // A 4 KiB stride covers macOS 4 KiB and 16 KiB memory pages.
+        for (size_t index = 0; index < samples; index += 1024) pages[index] = 0;
+        pages[samples - 1] = 0;
+    }
+    return buffer;
+}
 static float db_gain(float db) { return powf(10.f, fmaxf(-120.f, fminf(db, 36.f)) / 20.f); }
 static float finite_sample(float x) { return isfinite(x) ? x : 0.f; }
 static void peak_store(_Atomic float *meter, float value) {
@@ -52,7 +66,7 @@ RLRing *rl_ring_create(uint32_t capacity) {
     if (!atomics_supported() || capacity < 4 || capacity > (1u << 25)) return NULL;
     uint32_t size = 4; while (size < capacity) size <<= 1;
     RLRing *r = calloc(1, sizeof(*r)); if (!r) return NULL;
-    r->data = calloc((size_t)size * 2, sizeof(float));
+    r->data = audio_samples_create((size_t)size * 2);
     if (!r->data) { free(r); return NULL; }
     r->capacity = size; r->mask = size - 1;
     if (!rl_ring_prepare_ratio(r, 1)) { rl_ring_destroy(r); return NULL; }
@@ -232,7 +246,7 @@ struct RLCapture {
 RLCapture *rl_capture_create(double rate, uint32_t offset, uint32_t maxFrames, uint32_t destinations) {
     if (!maxFrames || maxFrames > (1u << 20)) return NULL;
     RLCapture *c = calloc(1, sizeof(*c)); if (!c) return NULL;
-    c->dsp = rl_dsp_create(rate); c->scratch = calloc((size_t)maxFrames * 2, sizeof(float));
+    c->dsp = rl_dsp_create(rate); c->scratch = audio_samples_create((size_t)maxFrames * 2);
     c->destinations = calloc(destinations ? destinations : 1, sizeof(RLRing *));
     if (!c->dsp || !c->scratch || !c->destinations) { rl_capture_destroy(c); return NULL; }
     c->channelOffset = offset; c->maxFrames = maxFrames; c->destinationCount = destinations; return c;
@@ -265,7 +279,7 @@ OSStatus rl_capture_callback(AudioObjectID device, const AudioTimeStamp *now, co
     atomic_fetch_add(&c->frames, frames); return noErr;
 }
 
-typedef struct { RLRing *ring; double ratio, phase; uint32_t leader; bool tone; _Atomic bool audible; RLDSP *dsp; _Atomic float peak; } RLSource;
+typedef struct { RLRing *ring; double ratio, phase; uint32_t leader, rawRoot, nextAlias; bool tone; _Atomic bool audible; RLDSP *dsp; _Atomic float peak; } RLSource;
 typedef struct { uint32_t offset; _Atomic float gain; _Atomic bool muted; _Atomic float peak; float smoothedGain; } RLBus;
 typedef struct { _Atomic float left, right; _Atomic bool muted; float smoothLeft, smoothRight; } RLSend;
 struct RLRender {
@@ -296,12 +310,13 @@ RLRender *rl_render_create(double rate, uint32_t maxFrames, uint32_t sourceCount
     r->sources = calloc(sourceCount ? sourceCount : 1, sizeof(RLSource));
     r->buses = calloc(busCount ? busCount : 1, sizeof(RLBus));
     r->sends = calloc((size_t)(sourceCount ? sourceCount : 1) * (busCount ? busCount : 1), sizeof(RLSend));
-    r->sourceScratch = calloc((size_t)maxFrames * 2, sizeof(float));
-    r->groupScratch = calloc((size_t)maxFrames * 2 * sources, sizeof(float));
-    r->busScratch = calloc((size_t)maxFrames * 2 * buses, sizeof(float));
+    r->sourceScratch = audio_samples_create((size_t)maxFrames * 2);
+    r->groupScratch = audio_samples_create((size_t)maxFrames * 2 * sources);
+    r->busScratch = audio_samples_create((size_t)maxFrames * 2 * buses);
     if (!r->sources || !r->buses || !r->sends || !r->sourceScratch || !r->groupScratch || !r->busScratch) { rl_render_destroy(r); return NULL; }
     for (uint32_t i = 0; i < sourceCount; i++) {
         r->sources[i].leader = i;
+        r->sources[i].rawRoot = i; r->sources[i].nextAlias = UINT32_MAX;
         r->sources[i].dsp = rl_dsp_create(rate); if (!r->sources[i].dsp) { rl_render_destroy(r); return NULL; }
     }
     for (size_t i = 0; i < (size_t)sourceCount * busCount; i++) atomic_store(&r->sends[i].muted, true);
@@ -324,8 +339,19 @@ bool rl_render_set_sound_check(RLRender *r, uint32_t leader, RLSoundCheck *check
     r->soundCheck = check; r->soundCheckLeader = leader; return true;
 }
 void rl_render_set_source(RLRender *r, uint32_t i, RLRing *ring, double inputRate, bool tone) {
-    if (!r || i >= r->sourceCount) return;
+    if (!r || i >= r->sourceCount || r->sources[i].rawRoot != i) return;
     r->sources[i].ring = ring; r->sources[i].ratio = inputRate / r->sampleRate; r->sources[i].tone = tone;
+}
+bool rl_render_set_source_alias(RLRender *r, uint32_t source, uint32_t root) {
+    if (!r || source >= r->sourceCount || root >= r->sourceCount) return false;
+    if (source == root) return r->sources[source].rawRoot == source;
+    if (root > source || r->sources[root].rawRoot != root ||
+        (!r->sources[root].ring && !r->sources[root].tone)) return false;
+    RLSource *alias = &r->sources[source], *owner = &r->sources[root];
+    if (alias->rawRoot == root) return true;
+    if (alias->rawRoot != source || alias->nextAlias != UINT32_MAX || alias->ring || alias->tone) return false;
+    alias->rawRoot = root; alias->nextAlias = owner->nextAlias; owner->nextAlias = source;
+    return true;
 }
 bool rl_render_set_source_group(RLRender *r, uint32_t source, uint32_t leader) {
     if (!r || source >= r->sourceCount || leader >= r->sourceCount) return false;
@@ -368,9 +394,12 @@ OSStatus rl_render_callback(AudioObjectID device, const AudioTimeStamp *now, con
     if (frames > r->maxFrames) { atomic_fetch_add(&r->oversized, 1); return noErr; }
     memset(r->busScratch, 0, (size_t)frames * 2 * r->busCount * sizeof(float));
     memset(r->groupScratch, 0, (size_t)frames * 2 * r->sourceCount * sizeof(float));
-    // Resample each member onto this output clock before summing its group.
+    // Read each unique capture once per output clock. Raw aliases fan out that
+    // exact block before independent group DSP, avoiding independent FIFO/SRC
+    // cursors and phase cancellation when repeated inputs are summed.
     for (uint32_t s = 0; s < r->sourceCount; s++) {
         RLSource *src = &r->sources[s];
+        if (src->rawRoot != s) continue;
         if (src->tone) {
             for (uint32_t f = 0; f < frames; f++) {
                 float value = (float)sin(src->phase) * .12589254f; // 440 Hz, -18 dBFS peak.
@@ -381,8 +410,10 @@ OSStatus rl_render_callback(AudioObjectID device, const AudioTimeStamp *now, con
             memset(r->sourceScratch, 0, (size_t)frames * 2 * sizeof(float));
             if (src->ring) rl_ring_read(src->ring, r->sourceScratch, frames, src->ratio);
         }
-        float *group = r->groupScratch + (size_t)src->leader * frames * 2;
-        for (size_t sample = 0; sample < (size_t)frames * 2; sample++) group[sample] += r->sourceScratch[sample];
+        for (uint32_t member = s; member != UINT32_MAX; member = r->sources[member].nextAlias) {
+            float *group = r->groupScratch + (size_t)r->sources[member].leader * frames * 2;
+            for (size_t sample = 0; sample < (size_t)frames * 2; sample++) group[sample] += r->sourceScratch[sample];
+        }
     }
     // The parent owns one effect chain and one set of sends. Child sends are
     // lowering metadata only: routing them again would duplicate the whole mix.

@@ -1,0 +1,243 @@
+[0/1] Planning build
+Building for debugging...
+[0/13] Write sources
+[1/13] Write swift-version--1AB21518FC5DEDBE.txt
+[2/13] Compiling RaveLinkRealtime Realtime.c
+[4/17] Compiling RaveLinkCore SoundCheck.swift
+[5/17] Compiling RaveLinkCore SessionStore.swift
+[6/17] Compiling RaveLinkCore AudioUnitEffects.swift
+[7/17] Compiling RaveLinkCore ExpandedRouting.swift
+[8/17] Emitting module RaveLinkCore
+[9/17] Compiling RaveLinkCore Session.swift
+[10/34] Compiling RaveLinkAudio RenderProgressMonitor.swift
+[11/34] Compiling RaveLinkAudio SoundCheckSupport.swift
+[12/34] Compiling RaveLinkAudio HardwareEventMonitor.swift
+[13/34] Compiling RaveLinkAudio PluginCatalog.swift
+[14/35] Compiling RaveLinkAudio TapRetargetTransaction.swift
+[15/35] Compiling RaveLinkAudio PluginRender.swift
+[16/35] Compiling RaveLinkAudio EngineProtocol.swift
+[17/35] Compiling RaveLinkAudio LiveAudioUnitGraph.swift
+[18/35] Compiling RaveLinkAudio CaptureSourcePlan.swift
+[19/35] Compiling RaveLinkAudio AudioAllocationBudget.swift
+[20/35] Compiling RaveLinkAudio EngineClient.swift
+[21/35] Emitting module RaveLinkAudio
+[22/35] Compiling RaveLinkAudio AudioStreamValidation.swift
+[23/35] Compiling RaveLinkAudio FeedbackValidation.swift
+[24/35] Compiling RaveLinkAudio AudioPowerObserver.swift
+[25/35] Compiling RaveLinkAudio ApplicationIdentity.swift
+[26/35] Compiling RaveLinkAudio ApplicationMembership.swift
+[27/35] Compiling RaveLinkAudio AudioCoordinator.swift
+[28/65] Emitting module RaveLinkEngine
+[29/65] Compiling RaveLinkEngine EngineMain.swift
+[29/65] Write Objects.LinkFileList
+[30/65] Linking RaveLinkEngine
+[31/65] Applying RaveLinkEngine
+[33/65] Compiling RaveLinkAudioTests SourceAliasTests.swift
+[34/65] Compiling RaveLinkAudioTests SoundCheckBufferTests.swift
+[35/65] Compiling RaveLinkAudioTests PluginRenderTests.swift
+[36/65] Compiling RaveLinkAudioTests SoundCheckRoutingTests.swift
+[37/66] Compiling RaveLinkAudioTests RenderProgressMonitorTests.swift
+[38/66] Compiling RaveLinkAudioTests AudioLifecycleTests.swift
+[39/66] Compiling RaveLinkAudioTests DSPRecoveryTests.swift
+[40/66] Emitting module RaveLinkAudioTests
+[41/66] Compiling RaveLinkAudioTests LiveAudioUnitTests.swift
+[42/66] Compiling RaveLinkAudioTests ThirdPartyAudioUnitTests.swift
+[43/66] Compiling RaveLinkAudioTests InstalledSoundCheckTests.swift
+[44/66] Compiling RaveLinkAudioTests RealtimeTests.swift
+[45/66] Compiling RaveLinkAudioTests PluginCatalogTests.swift
+[46/66] Compiling RaveLinkAudioTests GroupedRealtimeTests.swift
+[47/66] Compiling RaveLinkAudioTests InstalledAudioUnitAcceptanceTests.swift
+[48/66] Compiling RaveLinkAudioTests ApplicationMembershipTests.swift
+[49/66] Compiling RaveLinkAudioTests AudioAllocationTests.swift
+[50/66] Compiling RaveLinkAudioTests InstalledMatrixTests.swift
+[51/66] Compiling RaveLinkAudioTests InstalledDeviceSoakTests.swift
+[52/66] Compiling RaveLinkAudioTests EngineClientTests.swift
+[53/66] Compiling RaveLinkAudioTests FeedbackValidationTests.swift
+[54/66] Compiling RaveLinkApp SoundCheckView.swift
+[55/66] Compiling RaveLinkApp StudioView.swift
+[56/66] Compiling RaveLinkApp SourceSheets.swift
+[57/66] Compiling RaveLinkApp AudioUnitRackView.swift
+[58/66] Compiling RaveLinkApp RaveLinkApp.swift
+[59/66] Compiling RaveLinkApp StudioModel.swift
+[60/66] Compiling RaveLinkApp EngineDiagnosticsView.swift
+[61/66] Emitting module RaveLinkApp
+[61/66] Write Objects.LinkFileList
+[62/66] Linking RaveLink
+[63/66] Applying RaveLink
+[65/68] Emitting module RaveLinkAppTests
+[66/68] Compiling RaveLinkAppTests SoundCheckIsolationTests.swift
+[66/68] Write Objects.LinkFileList
+[67/68] Linking RaveLinkPackageTests
+Build complete! (6.23s)
+􀟈  Test run started.
+􀄵  Testing Library Version: 1400
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite SourceAliasTests started.
+􀟈  Suite TapRetargetTransactionTests started.
+􀟈  Suite AudioLifecycleTests started.
+􀟈  Suite GroupedRealtimeTests started.
+􀟈  Suite SoundCheckRoutingTests started.
+􀟈  Suite AudioCoordinatorTests started.
+􀟈  Suite RealtimeTests started.
+􀟈  Test protocolRejectsExtraDestinationsAndInvalidClipTelemetry() started.
+􀟈  Test captureSilencesItsDuplexOutputContribution() started.
+􀟈  Test cancellationAfterDescriptionChangePreventsLateRestart() started.
+􀟈  Test dryGroupIsRecordedBeforeEffectsAndPlaybackReplacesLiveInput() started.
+􀟈  Test consumerResetDiscardsOldAudioAndReprimesWithFreshCapture() started.
+􀟈  Test toneGroupReceivesGainExactlyOnce() started.
+􀟈  Test suspensionCannotBeOverriddenByLiveControlsAndDoesNotFreezeProcessing() started.
+􀟈  Test testIndependentBusGainPanMuteAndOffsets() started.
+􀟈  Test sharedRawAudioKeepsGroupSumEffectsMuteAndSendsIndependent() started.
+􀟈  Test failedExclusionUpdateNeverRestartsAnyCapture() started.
+􀟈  Test defaultGroupsRemainIndependentAndInvalidGraphsAreRejected() started.
+􀟈  Test capturePlanSharesCanonicalSelectorsWithoutMergingDifferentPairsOrApps() started.
+􀟈  Test testDSPGainHighPassGateAndCompression() started.
+􀟈  Test testCaptureMonoDuplicationAndMeter() started.
+􀟈  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() started.
+􀟈  Test testNonFiniteInputIsContainedAndInvalidConfigurationRejected() started.
+􀟈  Test allExclusionsAreUpdatedBeforeAnyCaptureRestarts() started.
+􀟈  Test diagnosticsRetainLegacyDecodingAndReportPhysicalCaptureCount() started.
+􀟈  Test testGainChangesRampAndMuteReachesSilence() started.
+􀟈  Test testBandLimitedDownsamplingRejectsAliasedHighFrequency() started.
+􀟈  Test nativeStreamValidationRejectsChangedStridesFlagsAndRate() started.
+􀟈  Test sumsGroupOnceAndUsesOnlyParentSendsForIndependentBuses() started.
+􀟈  Test testInvalidStartFailsWithActionableErrorAndStaysStopped() started.
+􀟈  Test aliasGraphRejectsChainsCyclesReparentingAndConfiguredAliases() started.
+􀟈  Test testRingIsBoundedAndReportsOverflowAndUnderrun() started.
+􀟈  Test compressorProcessesSummedWaveformOnce() started.
+􁁛  Test failedExclusionUpdateNeverRestartsAnyCapture() passed after 0.001 seconds.
+􁁛  Test cancellationAfterDescriptionChangePreventsLateRestart() passed after 0.001 seconds.
+􁁛  Test captureSilencesItsDuplexOutputContribution() passed after 0.001 seconds.
+􁁛  Test testNonFiniteInputIsContainedAndInvalidConfigurationRejected() passed after 0.001 seconds.
+􁁛  Test allExclusionsAreUpdatedBeforeAnyCaptureRestarts() passed after 0.001 seconds.
+􁁛  Test nativeStreamValidationRejectsChangedStridesFlagsAndRate() passed after 0.001 seconds.
+􁁛  Test diagnosticsRetainLegacyDecodingAndReportPhysicalCaptureCount() passed after 0.001 seconds.
+􁁛  Test testCaptureMonoDuplicationAndMeter() passed after 0.001 seconds.
+􁁛  Test capturePlanSharesCanonicalSelectorsWithoutMergingDifferentPairsOrApps() passed after 0.001 seconds.
+􁁛  Test aliasGraphRejectsChainsCyclesReparentingAndConfiguredAliases() passed after 0.001 seconds.
+􁁛  Suite TapRetargetTransactionTests passed after 0.001 seconds.
+􁁛  Test consumerResetDiscardsOldAudioAndReprimesWithFreshCapture() passed after 0.001 seconds.
+􁁛  Test testRingIsBoundedAndReportsOverflowAndUnderrun() passed after 0.001 seconds.
+􁁛  Test toneGroupReceivesGainExactlyOnce() passed after 0.002 seconds.
+􁁛  Test testIndependentBusGainPanMuteAndOffsets() passed after 0.002 seconds.
+􁁛  Test protocolRejectsExtraDestinationsAndInvalidClipTelemetry() passed after 0.002 seconds.
+􁁛  Test suspensionCannotBeOverriddenByLiveControlsAndDoesNotFreezeProcessing() passed after 0.002 seconds.
+􁁛  Suite AudioLifecycleTests passed after 0.003 seconds.
+􁁛  Test testInvalidStartFailsWithActionableErrorAndStaysStopped() passed after 0.002 seconds.
+􀙟  Test testBlackHoleLoopbackAndLiveBusControls() skipped.
+􀙟  Test testSilentPhysicalOutputLifecycle() skipped.
+􁁛  Suite AudioCoordinatorTests passed after 0.003 seconds.
+􁁛  Test testGainChangesRampAndMuteReachesSilence() passed after 0.003 seconds.
+􁁛  Test testDSPGainHighPassGateAndCompression() passed after 0.004 seconds.
+􁁛  Test dryGroupIsRecordedBeforeEffectsAndPlaybackReplacesLiveInput() passed after 0.016 seconds.
+􁁛  Suite SoundCheckRoutingTests passed after 0.017 seconds.
+􁁛  Test sharedRawAudioKeepsGroupSumEffectsMuteAndSendsIndependent() passed after 0.017 seconds.
+􁁛  Test sumsGroupOnceAndUsesOnlyParentSendsForIndependentBuses() passed after 0.024 seconds.
+􁁛  Test defaultGroupsRemainIndependentAndInvalidGraphsAreRejected() passed after 0.026 seconds.
+􁁛  Test compressorProcessesSummedWaveformOnce() passed after 0.028 seconds.
+􁁛  Suite GroupedRealtimeTests passed after 0.028 seconds.
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() recorded an issue at SourceAliasTests.swift:48:28: Expectation failed: fixture.block().allSatisfy { $0 == 0 }
+􀢄  Test resampledSharedCaptureCancelsExactlyAcrossIndependentGroups() failed after 0.052 seconds with 100 issues.
+􀢄  Suite SourceAliasTests failed after 0.052 seconds with 100 issues.
+􁁛  Test testBandLimitedDownsamplingRejectsAliasedHighFrequency() passed after 0.084 seconds.
+􁁛  Suite RealtimeTests passed after 0.084 seconds.
+􀢄  Test run with 28 tests in 7 suites failed after 0.084 seconds with 100 issues.

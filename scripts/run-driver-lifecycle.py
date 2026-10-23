@@ -46,10 +46,12 @@ class Acceptance:
         self.events = []
         self.counter = 0
         self.owns_devices = False
+        self.report_state = {}
 
     def save(self, **extra):
+        self.report_state.update(extra)
         (OUT / 'report.json').write_text(json.dumps({'scope': 'Disposable runner only; Installer payload/receipt and HAL format lifecycle. No audio IO or universal upgrade atomicity claim.',
-                                                   'revision': os.environ.get('GITHUB_SHA'), 'events': self.events, **extra}, indent=2) + '\n')
+                                                   'revision': os.environ.get('GITHUB_SHA'), 'events': self.events, **self.report_state}, indent=2) + '\n')
 
     @staticmethod
     def terminate(process):
@@ -61,7 +63,7 @@ class Acceptance:
             subprocess.run(['sudo', '-n', '/bin/kill', '-KILL', '--', f'-{process.pid}'], check=False, timeout=5)
             process.wait(timeout=5)
 
-    def command(self, label, args, success=True, timeout=120, expected_refusal=None):
+    def command(self, label, args, success=True, timeout=120, expected_refusal=None, allowed_failures=None):
         self.counter += 1
         log = OUT / f'{self.counter:02d}-{label}.log'
         with log.open('wb') as stream:
@@ -79,7 +81,8 @@ class Acceptance:
         output = log.read_text(errors='replace')
         self.events.append({'command': label, 'arguments': [str(x) for x in args], 'exitCode': code, 'log': log.name})
         self.save(completed=False)
-        if code == 124 or (success and code != 0) or (not success and code == 0):
+        allowed = allowed_failures and code in allowed_failures and allowed_failures[code] in output
+        if code == 124 or (not allowed and ((success and code != 0) or (not success and code == 0))):
             raise AssertionError(f'{label}: unexpected exit {code}; see {log}')
         if expected_refusal and expected_refusal not in output:
             raise AssertionError(f'{label}: expected policy refusal was not observed; see {log}')
@@ -116,8 +119,21 @@ class Acceptance:
         return path
 
     def install(self, name, package, success=True, expected_refusal=None):
-        return self.command(name, ['sudo', '-n', '/usr/sbin/installer', '-dumplog', '-verboseR', '-pkg', package, '-target', '/'],
-                            success=success, expected_refusal=expected_refusal)
+        # Installer -dumplog omits installd's preinstall stdout/stderr on macOS15.
+        # Retain only this invocation's appended system log, never an old match.
+        position = json.loads(self.command(name + '-log-position', ['sudo', '-n', sys.executable, '-c',
+            'import os,json; s=os.stat("/var/log/install.log"); print(json.dumps([s.st_ino,s.st_size]))']))
+        try:
+            output = self.command(name, ['sudo', '-n', '/usr/sbin/installer', '-dumplog', '-verboseR', '-pkg', package, '-target', '/'], success=success)
+        finally:
+            system_log = self.command(name + '-system-log', ['sudo', '-n', sys.executable, '-c',
+                'import os,sys,time; time.sleep(0.2); f=open("/var/log/install.log","rb"); s=os.fstat(f.fileno()); '
+                'assert s.st_ino==int(sys.argv[1]) and s.st_size>=int(sys.argv[2]), "Installer log rotated; evidence unavailable"; '
+                'f.seek(int(sys.argv[2])); data=f.read(8*1024*1024+1); assert len(data)<=8*1024*1024, "Installer log exceeds instrument limit"; '
+                'sys.stdout.buffer.write(data)', *map(str, position)])
+        if expected_refusal and expected_refusal not in output + system_log:
+            raise AssertionError(f'{name}: expected policy refusal was not observed in this invocation')
+        return output
 
     def assert_payload(self, slug, expected, build):
         bundle = HAL / f'RaveLink-{slug}.driver'
@@ -127,7 +143,8 @@ class Acceptance:
         self.command('validate-' + slug, [sys.executable, DRIVER, 'validate', bundle])
 
     def reload(self):
-        self.command('reload-disposable-audio-service', ['sudo', '-n', '/usr/bin/killall', 'coreaudiod'])
+        self.command('reload-disposable-audio-service', ['sudo', '-n', '/usr/bin/killall', 'coreaudiod'],
+                     allowed_failures={1: 'No matching processes were found'})
         time.sleep(3)
 
     def state(self, slug, channels=None, name=None, rate=None, set_rate=False):
@@ -210,6 +227,10 @@ class Acceptance:
             if self.receipt(slug):
                 self.command('forget-' + slug, ['sudo', '-n', '/usr/sbin/pkgutil', '--forget', 'au.textual.ravelink.audio.package.' + slug])
         self.reload()
+        if (OUT / 'driver-state-probe').exists():
+            for slug in IDS: self.state(slug)
+        for value in self.snapshot('cleanup-verified').values():
+            assert value == {'payloadSHA256': None, 'receipt': None}
 
 
 def main():
@@ -223,8 +244,12 @@ def main():
             raise ValueError('Cleanup ownership does not match this runner invocation')
         old = json.loads((OUT / 'report.json').read_text())
         acceptance = Acceptance();acceptance.owns_devices = True;acceptance.events = old['events']
+        acceptance.report_state = {key: value for key, value in old.items() if key not in ('scope', 'revision', 'events')}
         acceptance.counter = sum('command' in event for event in acceptance.events)
-        acceptance.cleanup()
+        try: acceptance.cleanup()
+        except Exception as failure:
+            acceptance.save(completed=False, cleanupCompleted=False, cleanupError=str(failure))
+            print(f'Cleanup failed: {failure}', file=sys.stderr);return 1
         acceptance.save(completed=old.get('completed', False), error=old.get('error'), cleanupCompleted=True)
         return 0
     if sys.argv[1:]:

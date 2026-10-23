@@ -114,13 +114,20 @@ def checked_report(path, mode):
     return data
 
 
+def checked_engine(engine):
+    for name, expected in [('visibleInputGroups', 12), ('logicalCaptureSources', 24), ('physicalCaptureSources', 2),
+                           ('mixBuses', 8), ('physicalOutputs', 2),
+                           ('parentRoutes', 96), ('expandedRoutes', 192), ('droppedFrames', 0), ('underrunFrames', 0), ('oversizedBlocks', 0)]:
+        if engine.get(name) != expected: raise ValueError(f'Unexpected measured engine {name}')
+    if any(sample.get('physicalCaptureSources') != 2 for sample in engine.get('counterSamples', [])):
+        raise ValueError('Physical capture context count changed during the measured interval')
+
+
 def analyze(directory):
     directory = Path(directory)
     feeder = checked_report(directory / 'soak-feeder.json', 'feed')
     engine = json.loads((directory / 'soak-engine.json').read_text())
-    for name, expected in [('visibleInputGroups', 12), ('captureSources', 24), ('mixBuses', 8), ('physicalOutputs', 2),
-                           ('parentRoutes', 96), ('expandedRoutes', 192), ('droppedFrames', 0), ('underrunFrames', 0), ('oversizedBlocks', 0)]:
-        if engine.get(name) != expected: raise ValueError(f'Unexpected measured engine {name}')
+    checked_engine(engine)
     if not 30 <= engine['measuredSeconds'] < 35 or feeder['frames'] / feeder['sampleRate'] < 34:
         raise ValueError('Incomplete sustained run or feeder ended before final mute')
     outputs = []

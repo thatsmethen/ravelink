@@ -1,0 +1,874 @@
+macos	Set up job	﻿2026-10-23T19:01:20.3832510Z Current runner version: '2.338.0'
+macos	Set up job	2026-10-23T19:01:20.3879240Z ##[group]Runner Image Provisioner
+macos	Set up job	2026-10-23T19:01:20.3880920Z Hosted Compute Agent
+macos	Set up job	2026-10-23T19:01:20.3881960Z Version: 20260828.587
+macos	Set up job	2026-10-23T19:01:20.3883090Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+macos	Set up job	2026-10-23T19:01:20.3884390Z Build Date: 2026-08-28T16:44:25Z
+macos	Set up job	2026-10-23T19:01:20.3885580Z Worker ID: {15a7582e-d10b-47a5-8c14-0bf38d3a67d1}
+macos	Set up job	2026-10-23T19:01:20.3886830Z Azure Region: westus
+macos	Set up job	2026-10-23T19:01:20.3887830Z ##[endgroup]
+macos	Set up job	2026-10-23T19:01:20.3891240Z ##[group]Operating System
+macos	Set up job	2026-10-23T19:01:20.3892360Z macOS
+macos	Set up job	2026-10-23T19:01:20.3893200Z 15.7.9
+macos	Set up job	2026-10-23T19:01:20.3894060Z 24G830
+macos	Set up job	2026-10-23T19:01:20.3894970Z ##[endgroup]
+macos	Set up job	2026-10-23T19:01:20.3895920Z ##[group]Runner Image
+macos	Set up job	2026-10-23T19:01:20.3896950Z Image: macos-15-arm64
+macos	Set up job	2026-10-23T19:01:20.3897930Z Version: 20260907.0337.1
+macos	Set up job	2026-10-23T19:01:20.3899970Z Included Software: https://github.com/actions/runner-images/blob/macos-15-arm64/20260907.0337/images/macos/macos-15-arm64-Readme.md
+macos	Set up job	2026-10-23T19:01:20.3903460Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-15-arm64%2F20260907.0337
+macos	Set up job	2026-10-23T19:01:20.3905280Z ##[endgroup]
+macos	Set up job	2026-10-23T19:01:20.3907260Z ##[group]GITHUB_TOKEN Permissions
+macos	Set up job	2026-10-23T19:01:20.3911610Z Contents: read
+macos	Set up job	2026-10-23T19:01:20.3912610Z Metadata: read
+macos	Set up job	2026-10-23T19:01:20.3913530Z ##[endgroup]
+macos	Set up job	2026-10-23T19:01:20.3917400Z Secret source: Actions
+macos	Set up job	2026-10-23T19:01:20.3918970Z Cache mode: write
+macos	Set up job	2026-10-23T19:01:20.3920220Z Prepare workflow directory
+macos	Set up job	2026-10-23T19:01:20.4299740Z Prepare all required actions
+macos	Set up job	2026-10-23T19:01:20.4343710Z Getting action download info
+macos	Set up job	2026-10-23T19:01:20.8852370Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+macos	Set up job	2026-10-23T19:01:21.1695900Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+macos	Set up job	2026-10-23T19:01:21.4452910Z Complete job name: macos
+macos	Run actions/checkout@v4	﻿2026-10-23T19:01:21.5234310Z ##[group]Run actions/checkout@v4
+macos	Run actions/checkout@v4	2026-10-23T19:01:21.5235090Z with:
+macos	Run actions/checkout@v4	2026-10-23T19:01:21.5236880Z   repository: thatsmethen/ravelink
+macos	Run actions/checkout@v4	2026-10-23T19:01:21.5241310Z   token: ***
+macos	Run actions/checkout@v4	2026-10-23T19:01:21.5242180Z   ssh-strict: true
+macos	Run actions/checkout@v4	2026-10-23T19:01:21.5242590Z   ssh-user: git
+macos	Run actions/checkout@v4	2026-10-23T19:01:21.5242980Z   persist-credentials: true
+macos	Run actions/checkout@v4	2026-10-23T19:01:21.5243340Z   clean: true
+macos	Run actions/checkout@v4	2026-10-23T19:01:21.5243680Z   sparse-checkout-cone-mode: true
+macos	Run actions/checkout@v4	2026-10-23T19:01:21.5244060Z   fetch-depth: 1
+macos	Run actions/checkout@v4	2026-10-23T19:01:21.5244390Z   fetch-tags: false
+macos	Run actions/checkout@v4	2026-10-23T19:01:21.5244720Z   show-progress: true
+macos	Run actions/checkout@v4	2026-10-23T19:01:21.5245060Z   lfs: false
+macos	Run actions/checkout@v4	2026-10-23T19:01:21.5245360Z   submodules: false
+macos	Run actions/checkout@v4	2026-10-23T19:01:21.5245700Z   set-safe-directory: true
+macos	Run actions/checkout@v4	2026-10-23T19:01:21.5246740Z   allow-unsafe-pr-checkout: false
+macos	Run actions/checkout@v4	2026-10-23T19:01:21.5248230Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T19:01:21.9600480Z Syncing repository: thatsmethen/ravelink
+macos	Run actions/checkout@v4	2026-10-23T19:01:21.9601990Z ##[group]Getting Git version info
+macos	Run actions/checkout@v4	2026-10-23T19:01:21.9602580Z Working directory is '/Users/runner/work/ravelink/ravelink'
+macos	Run actions/checkout@v4	2026-10-23T19:01:21.9603490Z [command]/opt/homebrew/bin/git version
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0169680Z git version 2.55.0
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0198350Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0206480Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/e2ab7e0f-f993-47db-a56c-acb8b96cd4be/.gitconfig'
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0210240Z Temporarily overriding HOME='/Users/runner/work/_temp/e2ab7e0f-f993-47db-a56c-acb8b96cd4be' before making global git config changes
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0211660Z Adding repository directory to the temporary git global config as a safe directory
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0218530Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0357470Z Deleting the contents of '/Users/runner/work/ravelink/ravelink'
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0364860Z ##[group]Initializing the repository
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0369940Z [command]/opt/homebrew/bin/git init /Users/runner/work/ravelink/ravelink
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0619730Z hint: Using 'master' as the name for the initial branch. This default branch name
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0624330Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0635100Z hint: to use in all of your new repositories, which will suppress this warning,
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0638180Z hint: call:
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0644620Z hint:
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0665790Z hint: 	git config --global init.defaultBranch <name>
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0668190Z hint:
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0669830Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0677640Z hint: 'development'. The just-created branch can be renamed via this command:
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0679500Z hint:
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0686790Z hint: 	git branch -m <name>
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0688530Z hint:
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0690390Z hint: Disable this message with "git config set advice.defaultBranchName false"
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0693230Z Initialized empty Git repository in /Users/runner/work/ravelink/ravelink/.git/
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0698700Z [command]/opt/homebrew/bin/git remote add origin https://github.com/thatsmethen/ravelink
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0778440Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0781190Z ##[group]Disabling automatic garbage collection
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0783130Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0894840Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0895570Z ##[group]Setting up auth
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0898410Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.0969630Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.1949800Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.2021400Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.2860010Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.2923070Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.3803720Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.3884410Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.3886540Z ##[group]Fetching the repository
+macos	Run actions/checkout@v4	2026-10-23T19:01:22.3898210Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +16abe9aedb9cfcb6bce1c9886b901e71a80a830e:refs/remotes/origin/main
+macos	Run actions/checkout@v4	2026-10-23T19:01:23.4966480Z From https://github.com/thatsmethen/ravelink
+macos	Run actions/checkout@v4	2026-10-23T19:01:23.4969790Z  * [new ref]         16abe9aedb9cfcb6bce1c9886b901e71a80a830e -> origin/main
+macos	Run actions/checkout@v4	2026-10-23T19:01:23.4977290Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T19:01:23.4979610Z ##[group]Determining the checkout info
+macos	Run actions/checkout@v4	2026-10-23T19:01:23.4982280Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T19:01:23.4988140Z [command]/opt/homebrew/bin/git sparse-checkout disable
+macos	Run actions/checkout@v4	2026-10-23T19:01:23.5124070Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+macos	Run actions/checkout@v4	2026-10-23T19:01:23.5190280Z ##[group]Checking out the ref
+macos	Run actions/checkout@v4	2026-10-23T19:01:23.5200100Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+macos	Run actions/checkout@v4	2026-10-23T19:01:23.5798860Z Switched to a new branch 'main'
+macos	Run actions/checkout@v4	2026-10-23T19:01:23.5807490Z branch 'main' set up to track 'origin/main'.
+macos	Run actions/checkout@v4	2026-10-23T19:01:23.5816190Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T19:01:23.5913460Z [command]/opt/homebrew/bin/git log -1 --format=%H
+macos	Run actions/checkout@v4	2026-10-23T19:01:23.6039170Z 16abe9aedb9cfcb6bce1c9886b901e71a80a830e
+macos	Swift toolchain	﻿2026-10-23T19:01:23.6319990Z ##[group]Run swift --version
+macos	Swift toolchain	2026-10-23T19:01:23.6321030Z [36;1mswift --version[0m
+macos	Swift toolchain	2026-10-23T19:01:23.6394530Z shell: /bin/bash -e {0}
+macos	Swift toolchain	2026-10-23T19:01:23.6398650Z ##[endgroup]
+macos	Swift toolchain	2026-10-23T19:01:27.4436700Z Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+macos	Swift toolchain	2026-10-23T19:01:27.4437760Z Target: arm64-apple-macosx15.0
+macos	Swift toolchain	2026-10-23T19:01:27.4556900Z swift-driver version: 1.120.5 
+macos	Deterministic tests	﻿2026-10-23T19:01:27.4648750Z ##[group]Run scripts/test.sh
+macos	Deterministic tests	2026-10-23T19:01:27.4650070Z [36;1mscripts/test.sh[0m
+macos	Deterministic tests	2026-10-23T19:01:27.4719060Z shell: /bin/bash -e {0}
+macos	Deterministic tests	2026-10-23T19:01:27.4719460Z env:
+macos	Deterministic tests	2026-10-23T19:01:27.4719750Z   RAVELINK_PLUGIN_RENDER_APPLE: 1
+macos	Deterministic tests	2026-10-23T19:01:27.4720060Z   RAVELINK_PLUGIN_PROBE_APPLE: 1
+macos	Deterministic tests	2026-10-23T19:01:27.4720410Z ##[endgroup]
+macos	Deterministic tests	2026-10-23T19:01:32.9491800Z Building for debugging...
+macos	Deterministic tests	2026-10-23T19:01:32.9616380Z [0/28] /Users/runner/work/ravelink/ravelink/.build/arm64-apple-macosx/debug/RaveLinkPackageTests.derived/runner.swift
+macos	Deterministic tests	2026-10-23T19:01:33.3702490Z [1/28] Write swift-version--79AA4F9932D1E87A.txt
+macos	Deterministic tests	2026-10-23T19:01:33.3714450Z [2/28] Write sources
+macos	Deterministic tests	2026-10-23T19:01:33.3718600Z [3/28] Write RaveLinkPluginHost-entitlement.plist
+macos	Deterministic tests	2026-10-23T19:01:34.8343370Z [4/31] Compiling RaveLinkRealtime SoundCheck.c
+macos	Deterministic tests	2026-10-23T19:01:34.8457320Z [4/31] Write sources
+macos	Deterministic tests	2026-10-23T19:01:34.8577520Z [4/31] Write RaveLinkEngine-entitlement.plist
+macos	Deterministic tests	2026-10-23T19:01:34.8709710Z [4/31] Write sources
+macos	Deterministic tests	2026-10-23T19:01:37.3668130Z [10/31] Compiling RaveLinkRealtime Realtime.c
+macos	Deterministic tests	2026-10-23T19:01:42.1777460Z [11/36] Compiling RaveLinkAudioUnitBridge AudioUnitBridge.m
+macos	Deterministic tests	2026-10-23T19:01:42.1881140Z [12/36] Write sources
+macos	Deterministic tests	2026-10-23T19:01:42.1986800Z [12/36] Write RaveLink-entitlement.plist
+macos	Deterministic tests	2026-10-23T19:01:47.3789520Z [18/36] Compiling RaveLinkCore Session.swift
+macos	Deterministic tests	2026-10-23T19:01:47.3892370Z [19/36] Compiling RaveLinkCore SessionStore.swift
+macos	Deterministic tests	2026-10-23T19:01:47.5121290Z [20/37] Emitting module RaveLinkCore
+macos	Deterministic tests	2026-10-23T19:01:47.5225210Z [21/37] Compiling RaveLinkCore AudioUnitEffects.swift
+macos	Deterministic tests	2026-10-23T19:01:47.5325350Z [22/37] Compiling RaveLinkCore ExpandedRouting.swift
+macos	Deterministic tests	2026-10-23T19:01:48.1772120Z [23/37] Compiling RaveLinkCore SoundCheck.swift
+macos	Deterministic tests	2026-10-23T19:01:49.0790650Z [24/54] Compiling RaveLinkPluginHost Render.swift
+macos	Deterministic tests	2026-10-23T19:01:49.0982510Z [25/54] Compiling RaveLinkPluginHost main.swift
+macos	Deterministic tests	2026-10-23T19:01:49.1009750Z [26/54] Emitting module RaveLinkPluginHost
+macos	Deterministic tests	2026-10-23T19:01:49.1124360Z [26/54] Write Objects.LinkFileList
+macos	Deterministic tests	2026-10-23T19:01:50.6595990Z [27/54] Linking RaveLinkPluginHost
+macos	Deterministic tests	2026-10-23T19:01:50.8114280Z [28/54] Applying RaveLinkPluginHost
+macos	Deterministic tests	2026-10-23T19:01:55.0169320Z [30/54] Compiling RaveLinkAudio AudioAllocationBudget.swift
+macos	Deterministic tests	2026-10-23T19:01:55.0190580Z [31/54] Compiling RaveLinkAudio AudioCoordinator.swift
+macos	Deterministic tests	2026-10-23T19:01:56.8380280Z [32/56] Compiling RaveLinkAudio ApplicationIdentity.swift
+macos	Deterministic tests	2026-10-23T19:01:56.8481780Z [33/56] Compiling RaveLinkAudio ApplicationMembership.swift
+macos	Deterministic tests	2026-10-23T19:01:56.8583410Z [34/56] Emitting module RaveLinkCoreTests
+macos	Deterministic tests	2026-10-23T19:01:57.0305180Z [35/56] Emitting module RaveLinkAudio
+macos	Deterministic tests	2026-10-23T19:01:57.2228380Z [36/61] Compiling RaveLinkCoreTests SoundCheckSessionTests.swift
+macos	Deterministic tests	2026-10-23T19:01:57.2343360Z [37/61] Compiling RaveLinkCoreTests SourceIdentityAndOrderTests.swift
+macos	Deterministic tests	2026-10-23T19:01:58.7582680Z [38/61] Compiling RaveLinkAudio PluginCatalog.swift
+macos	Deterministic tests	2026-10-23T19:01:58.7716540Z [39/61] Compiling RaveLinkAudio PluginRender.swift
+macos	Deterministic tests	2026-10-23T19:01:58.7821880Z [40/61] Compiling RaveLinkAudio RenderProgressMonitor.swift
+macos	Deterministic tests	2026-10-23T19:01:58.7928200Z [41/61] Compiling RaveLinkAudio SoundCheckSupport.swift
+macos	Deterministic tests	2026-10-23T19:01:58.8025300Z [42/61] Compiling RaveLinkAudio TapRetargetTransaction.swift
+macos	Deterministic tests	2026-10-23T19:02:00.5870870Z [43/61] Compiling RaveLinkAudio EngineClient.swift
+macos	Deterministic tests	2026-10-23T19:02:00.5905680Z [44/61] Compiling RaveLinkAudio EngineProtocol.swift
+macos	Deterministic tests	2026-10-23T19:02:00.5982450Z [45/61] Compiling RaveLinkAudio FeedbackValidation.swift
+macos	Deterministic tests	2026-10-23T19:02:00.5984120Z [46/61] Compiling RaveLinkAudio HardwareEventMonitor.swift
+macos	Deterministic tests	2026-10-23T19:02:00.5986960Z [47/61] Compiling RaveLinkAudio LiveAudioUnitGraph.swift
+macos	Deterministic tests	2026-10-23T19:02:01.1883580Z /Users/runner/work/ravelink/ravelink/Sources/RaveLinkAudio/AudioCoordinator.swift:393:37: error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.1927100Z 391 |                     }
+macos	Deterministic tests	2026-10-23T19:02:01.1928900Z 392 |                     if #available(macOS 26.0, *) {
+macos	Deterministic tests	2026-10-23T19:02:01.1932130Z 393 |                         description.bundleIDs = selection.bundleIDs
+macos	Deterministic tests	2026-10-23T19:02:01.1939250Z     |                                     `- error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.1942190Z 394 |                         description.isProcessRestoreEnabled = true
+macos	Deterministic tests	2026-10-23T19:02:01.1943240Z 395 |                     }
+macos	Deterministic tests	2026-10-23T19:02:01.1943900Z 
+macos	Deterministic tests	2026-10-23T19:02:01.1945460Z /Users/runner/work/ravelink/ravelink/Sources/RaveLinkAudio/AudioCoordinator.swift:394:37: error: value of type 'CATapDescription' has no member 'isProcessRestoreEnabled'
+macos	Deterministic tests	2026-10-23T19:02:01.1948710Z 392 |                     if #available(macOS 26.0, *) {
+macos	Deterministic tests	2026-10-23T19:02:01.1951160Z 393 |                         description.bundleIDs = selection.bundleIDs
+macos	Deterministic tests	2026-10-23T19:02:01.1969450Z 394 |                         description.isProcessRestoreEnabled = true
+macos	Deterministic tests	2026-10-23T19:02:01.1999770Z     |                                     `- error: value of type 'CATapDescription' has no member 'isProcessRestoreEnabled'
+macos	Deterministic tests	2026-10-23T19:02:01.2000780Z 395 |                     }
+macos	Deterministic tests	2026-10-23T19:02:01.2003400Z 396 |                     description.name = "RaveLink — \(channel.name)"
+macos	Deterministic tests	2026-10-23T19:02:01.2003930Z 
+macos	Deterministic tests	2026-10-23T19:02:01.2004610Z /Users/runner/work/ravelink/ravelink/Sources/RaveLinkAudio/AudioCoordinator.swift:528:29: error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.2005670Z 526 |             description.processes = selection.processIDs
+macos	Deterministic tests	2026-10-23T19:02:01.2007140Z 527 |             if #available(macOS 26.0, *) {
+macos	Deterministic tests	2026-10-23T19:02:01.2007790Z 528 |                 description.bundleIDs = selection.bundleIDs
+macos	Deterministic tests	2026-10-23T19:02:01.2008390Z     |                             `- error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.2009090Z 529 |                 description.isProcessRestoreEnabled = true
+macos	Deterministic tests	2026-10-23T19:02:01.2009550Z 530 |             }
+macos	Deterministic tests	2026-10-23T19:02:01.2010970Z /Users/runner/work/ravelink/ravelink/Sources/RaveLinkAudio/AudioCoordinator.swift:393:37: error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.2012230Z 391 |                     }
+macos	Deterministic tests	2026-10-23T19:02:01.2012690Z 392 |                     if #available(macOS 26.0, *) {
+macos	Deterministic tests	2026-10-23T19:02:01.2013110Z 393 |                         description.bundleIDs = selection.bundleIDs
+macos	Deterministic tests	2026-10-23T19:02:01.2013730Z     |                                     `- error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.2014390Z 394 |                         description.isProcessRestoreEnabled = true
+macos	Deterministic tests	2026-10-23T19:02:01.2014870Z 395 |                     }
+macos	Deterministic tests	2026-10-23T19:02:01.2015120Z 
+macos	Deterministic tests	2026-10-23T19:02:01.2015730Z /Users/runner/work/ravelink/ravelink/Sources/RaveLinkAudio/AudioCoordinator.swift:394:37: error: value of type 'CATapDescription' has no member 'isProcessRestoreEnabled'
+macos	Deterministic tests	2026-10-23T19:02:01.2016590Z 392 |                     if #available(macOS 26.0, *) {
+macos	Deterministic tests	2026-10-23T19:02:01.2016980Z 393 |                         description.bundleIDs = selection.bundleIDs
+macos	Deterministic tests	2026-10-23T19:02:01.2017530Z 394 |                         description.isProcessRestoreEnabled = true
+macos	Deterministic tests	2026-10-23T19:02:01.2018110Z     |                                     `- error: value of type 'CATapDescription' has no member 'isProcessRestoreEnabled'
+macos	Deterministic tests	2026-10-23T19:02:01.2018880Z 395 |                     }
+macos	Deterministic tests	2026-10-23T19:02:01.2019850Z 396 |                     description.name = "RaveLink — \(channel.name)"
+macos	Deterministic tests	2026-10-23T19:02:01.2020130Z 
+macos	Deterministic tests	2026-10-23T19:02:01.2020890Z /Users/runner/work/ravelink/ravelink/Sources/RaveLinkAudio/AudioCoordinator.swift:528:29: error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.2021620Z 526 |             description.processes = selection.processIDs
+macos	Deterministic tests	2026-10-23T19:02:01.2022680Z 527 |             if #available(macOS 26.0, *) {
+macos	Deterministic tests	2026-10-23T19:02:01.2023070Z 528 |                 description.bundleIDs = selection.bundleIDs
+macos	Deterministic tests	2026-10-23T19:02:01.2023500Z     |                             `- error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.2024320Z 529 |                 description.isProcessRestoreEnabled = true
+macos	Deterministic tests	2026-10-23T19:02:01.2024670Z 530 |             }
+macos	Deterministic tests	2026-10-23T19:02:01.2025220Z /Users/runner/work/ravelink/ravelink/Sources/RaveLinkAudio/AudioCoordinator.swift:393:37: error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.2025840Z 391 |                     }
+macos	Deterministic tests	2026-10-23T19:02:01.2026070Z 392 |                     if #available(macOS 26.0, *) {
+macos	Deterministic tests	2026-10-23T19:02:01.2026440Z 393 |                         description.bundleIDs = selection.bundleIDs
+macos	Deterministic tests	2026-10-23T19:02:01.2026910Z     |                                     `- error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.2027440Z 394 |                         description.isProcessRestoreEnabled = true
+macos	Deterministic tests	2026-10-23T19:02:01.2027760Z 395 |                     }
+macos	Deterministic tests	2026-10-23T19:02:01.2027920Z 
+macos	Deterministic tests	2026-10-23T19:02:01.2028410Z /Users/runner/work/ravelink/ravelink/Sources/RaveLinkAudio/AudioCoordinator.swift:394:37: error: value of type 'CATapDescription' has no member 'isProcessRestoreEnabled'
+macos	Deterministic tests	2026-10-23T19:02:01.2029120Z 392 |                     if #available(macOS 26.0, *) {
+macos	Deterministic tests	2026-10-23T19:02:01.2029990Z 393 |                         description.bundleIDs = selection.bundleIDs
+macos	Deterministic tests	2026-10-23T19:02:01.2030390Z 394 |                         description.isProcessRestoreEnabled = true
+macos	Deterministic tests	2026-10-23T19:02:01.2030850Z     |                                     `- error: value of type 'CATapDescription' has no member 'isProcessRestoreEnabled'
+macos	Deterministic tests	2026-10-23T19:02:01.2031290Z 395 |                     }
+macos	Deterministic tests	2026-10-23T19:02:01.2031800Z 396 |                     description.name = "RaveLink — \(channel.name)"
+macos	Deterministic tests	2026-10-23T19:02:01.2032010Z 
+macos	Deterministic tests	2026-10-23T19:02:01.2032570Z /Users/runner/work/ravelink/ravelink/Sources/RaveLinkAudio/AudioCoordinator.swift:528:29: error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.2033490Z 526 |             description.processes = selection.processIDs
+macos	Deterministic tests	2026-10-23T19:02:01.2033810Z 527 |             if #available(macOS 26.0, *) {
+macos	Deterministic tests	2026-10-23T19:02:01.2034280Z 528 |                 description.bundleIDs = selection.bundleIDs
+macos	Deterministic tests	2026-10-23T19:02:01.2034710Z     |                             `- error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.2035240Z 529 |                 description.isProcessRestoreEnabled = true
+macos	Deterministic tests	2026-10-23T19:02:01.2035650Z 530 |             }
+macos	Deterministic tests	2026-10-23T19:02:01.2036450Z /Users/runner/work/ravelink/ravelink/Sources/RaveLinkAudio/AudioCoordinator.swift:393:37: error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.2037090Z 391 |                     }
+macos	Deterministic tests	2026-10-23T19:02:01.2037420Z 392 |                     if #available(macOS 26.0, *) {
+macos	Deterministic tests	2026-10-23T19:02:01.2037960Z 393 |                         description.bundleIDs = selection.bundleIDs
+macos	Deterministic tests	2026-10-23T19:02:01.2038480Z     |                                     `- error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.2038980Z 394 |                         description.isProcessRestoreEnabled = true
+macos	Deterministic tests	2026-10-23T19:02:01.2039300Z 395 |                     }
+macos	Deterministic tests	2026-10-23T19:02:01.2039480Z 
+macos	Deterministic tests	2026-10-23T19:02:01.2039990Z /Users/runner/work/ravelink/ravelink/Sources/RaveLinkAudio/AudioCoordinator.swift:394:37: error: value of type 'CATapDescription' has no member 'isProcessRestoreEnabled'
+macos	Deterministic tests	2026-10-23T19:02:01.2040800Z 392 |                     if #available(macOS 26.0, *) {
+macos	Deterministic tests	2026-10-23T19:02:01.2041310Z 393 |                         description.bundleIDs = selection.bundleIDs
+macos	Deterministic tests	2026-10-23T19:02:01.2041670Z 394 |                         description.isProcessRestoreEnabled = true
+macos	Deterministic tests	2026-10-23T19:02:01.2042180Z     |                                     `- error: value of type 'CATapDescription' has no member 'isProcessRestoreEnabled'
+macos	Deterministic tests	2026-10-23T19:02:01.2043070Z 395 |                     }
+macos	Deterministic tests	2026-10-23T19:02:01.2043520Z 396 |                     description.name = "RaveLink — \(channel.name)"
+macos	Deterministic tests	2026-10-23T19:02:01.2044040Z 
+macos	Deterministic tests	2026-10-23T19:02:01.2044460Z /Users/runner/work/ravelink/ravelink/Sources/RaveLinkAudio/AudioCoordinator.swift:528:29: error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.2045390Z 526 |             description.processes = selection.processIDs
+macos	Deterministic tests	2026-10-23T19:02:01.2045770Z 527 |             if #available(macOS 26.0, *) {
+macos	Deterministic tests	2026-10-23T19:02:01.2046110Z 528 |                 description.bundleIDs = selection.bundleIDs
+macos	Deterministic tests	2026-10-23T19:02:01.2046650Z     |                             `- error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.2047060Z 529 |                 description.isProcessRestoreEnabled = true
+macos	Deterministic tests	2026-10-23T19:02:01.2047380Z 530 |             }
+macos	Deterministic tests	2026-10-23T19:02:01.2047910Z /Users/runner/work/ravelink/ravelink/Sources/RaveLinkAudio/AudioCoordinator.swift:393:37: error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.2048790Z 391 |                     }
+macos	Deterministic tests	2026-10-23T19:02:01.2049070Z 392 |                     if #available(macOS 26.0, *) {
+macos	Deterministic tests	2026-10-23T19:02:01.2049420Z 393 |                         description.bundleIDs = selection.bundleIDs
+macos	Deterministic tests	2026-10-23T19:02:01.2049910Z     |                                     `- error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.2050340Z 394 |                         description.isProcessRestoreEnabled = true
+macos	Deterministic tests	2026-10-23T19:02:01.2050710Z 395 |                     }
+macos	Deterministic tests	2026-10-23T19:02:01.2050880Z 
+macos	Deterministic tests	2026-10-23T19:02:01.2051310Z /Users/runner/work/ravelink/ravelink/Sources/RaveLinkAudio/AudioCoordinator.swift:394:37: error: value of type 'CATapDescription' has no member 'isProcessRestoreEnabled'
+macos	Deterministic tests	2026-10-23T19:02:01.2052070Z 392 |                     if #available(macOS 26.0, *) {
+macos	Deterministic tests	2026-10-23T19:02:01.2052510Z 393 |                         description.bundleIDs = selection.bundleIDs
+macos	Deterministic tests	2026-10-23T19:02:01.2052890Z 394 |                         description.isProcessRestoreEnabled = true
+macos	Deterministic tests	2026-10-23T19:02:01.2053450Z     |                                     `- error: value of type 'CATapDescription' has no member 'isProcessRestoreEnabled'
+macos	Deterministic tests	2026-10-23T19:02:01.2053930Z 395 |                     }
+macos	Deterministic tests	2026-10-23T19:02:01.2054380Z 396 |                     description.name = "RaveLink — \(channel.name)"
+macos	Deterministic tests	2026-10-23T19:02:01.2054640Z 
+macos	Deterministic tests	2026-10-23T19:02:01.2055100Z /Users/runner/work/ravelink/ravelink/Sources/RaveLinkAudio/AudioCoordinator.swift:528:29: error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.2055740Z 526 |             description.processes = selection.processIDs
+macos	Deterministic tests	2026-10-23T19:02:01.2056090Z 527 |             if #available(macOS 26.0, *) {
+macos	Deterministic tests	2026-10-23T19:02:01.2056430Z 528 |                 description.bundleIDs = selection.bundleIDs
+macos	Deterministic tests	2026-10-23T19:02:01.2056950Z     |                             `- error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.2057410Z 529 |                 description.isProcessRestoreEnabled = true
+macos	Deterministic tests	2026-10-23T19:02:01.2057780Z 530 |             }
+macos	Deterministic tests	2026-10-23T19:02:01.2061590Z /Users/runner/work/ravelink/ravelink/Sources/RaveLinkAudio/AudioCoordinator.swift:393:37: error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.2062340Z 391 |                     }
+macos	Deterministic tests	2026-10-23T19:02:01.2062740Z 392 |                     if #available(macOS 26.0, *) {
+macos	Deterministic tests	2026-10-23T19:02:01.2063140Z 393 |                         description.bundleIDs = selection.bundleIDs
+macos	Deterministic tests	2026-10-23T19:02:01.2063780Z     |                                     `- error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.2064400Z 394 |                         description.isProcessRestoreEnabled = true
+macos	Deterministic tests	2026-10-23T19:02:01.2064890Z 395 |                     }
+macos	Deterministic tests	2026-10-23T19:02:01.2065130Z 
+macos	Deterministic tests	2026-10-23T19:02:01.2065600Z /Users/runner/work/ravelink/ravelink/Sources/RaveLinkAudio/AudioCoordinator.swift:394:37: error: value of type 'CATapDescription' has no member 'isProcessRestoreEnabled'
+macos	Deterministic tests	2026-10-23T19:02:01.2066890Z 392 |                     if #available(macOS 26.0, *) {
+macos	Deterministic tests	2026-10-23T19:02:01.2067400Z 393 |                         description.bundleIDs = selection.bundleIDs
+macos	Deterministic tests	2026-10-23T19:02:01.2068120Z 394 |                         description.isProcessRestoreEnabled = true
+macos	Deterministic tests	2026-10-23T19:02:01.2068830Z     |                                     `- error: value of type 'CATapDescription' has no member 'isProcessRestoreEnabled'
+macos	Deterministic tests	2026-10-23T19:02:01.2069340Z 395 |                     }
+macos	Deterministic tests	2026-10-23T19:02:01.2069860Z 396 |                     description.name = "RaveLink — \(channel.name)"
+macos	Deterministic tests	2026-10-23T19:02:01.2070190Z 
+macos	Deterministic tests	2026-10-23T19:02:01.2070650Z /Users/runner/work/ravelink/ravelink/Sources/RaveLinkAudio/AudioCoordinator.swift:528:29: error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.2071480Z 526 |             description.processes = selection.processIDs
+macos	Deterministic tests	2026-10-23T19:02:01.2072000Z 527 |             if #available(macOS 26.0, *) {
+macos	Deterministic tests	2026-10-23T19:02:01.2072540Z 528 |                 description.bundleIDs = selection.bundleIDs
+macos	Deterministic tests	2026-10-23T19:02:01.2073440Z     |                             `- error: value of type 'CATapDescription' has no member 'bundleIDs'
+macos	Deterministic tests	2026-10-23T19:02:01.2073980Z 529 |                 description.isProcessRestoreEnabled = true
+macos	Deterministic tests	2026-10-23T19:02:01.2074470Z 530 |             }
+macos	Deterministic tests	2026-10-23T19:02:01.2303770Z error: fatalError
+macos	Deterministic tests	2026-10-23T19:02:01.2458830Z ##[error]Process completed with exit code 1.
+macos	Post Run actions/checkout@v4	﻿2026-10-23T19:02:01.2849540Z Post job cleanup.
+macos	Post Run actions/checkout@v4	2026-10-23T19:02:01.8763420Z [command]/opt/homebrew/bin/git version
+macos	Post Run actions/checkout@v4	2026-10-23T19:02:02.0277560Z git version 2.55.0
+macos	Post Run actions/checkout@v4	2026-10-23T19:02:02.0403890Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/214d2506-63be-4c1d-8c83-67de888f24c9/.gitconfig'
+macos	Post Run actions/checkout@v4	2026-10-23T19:02:02.0408800Z Temporarily overriding HOME='/Users/runner/work/_temp/214d2506-63be-4c1d-8c83-67de888f24c9' before making global git config changes
+macos	Post Run actions/checkout@v4	2026-10-23T19:02:02.0410900Z Adding repository directory to the temporary git global config as a safe directory
+macos	Post Run actions/checkout@v4	2026-10-23T19:02:02.0411600Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+macos	Post Run actions/checkout@v4	2026-10-23T19:02:02.0511360Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+macos	Post Run actions/checkout@v4	2026-10-23T19:02:02.0592500Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+macos	Post Run actions/checkout@v4	2026-10-23T19:02:02.2228900Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+macos	Post Run actions/checkout@v4	2026-10-23T19:02:02.2340880Z http.https://github.com/.extraheader
+macos	Post Run actions/checkout@v4	2026-10-23T19:02:02.2352820Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+macos	Post Run actions/checkout@v4	2026-10-23T19:02:02.2495280Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+macos	Post Run actions/checkout@v4	2026-10-23T19:02:02.4287310Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+macos	Post Run actions/checkout@v4	2026-10-23T19:02:02.4363930Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+macos	Complete job	﻿2026-10-23T19:02:02.6133960Z Cleaning up orphan processes
+macos	Complete job	2026-10-23T19:02:02.8907300Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+installed-driver	Set up job	﻿2026-10-23T19:01:17.5358030Z Current runner version: '2.338.0'
+installed-driver	Set up job	2026-10-23T19:01:17.5375100Z ##[group]Runner Image Provisioner
+installed-driver	Set up job	2026-10-23T19:01:17.5375660Z Hosted Compute Agent
+installed-driver	Set up job	2026-10-23T19:01:17.5376060Z Version: 20260828.587
+installed-driver	Set up job	2026-10-23T19:01:17.5376500Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+installed-driver	Set up job	2026-10-23T19:01:17.5377020Z Build Date: 2026-08-28T16:44:25Z
+installed-driver	Set up job	2026-10-23T19:01:17.5377490Z Worker ID: {137c466c-c040-44ed-a7cb-0f564138d0dc}
+installed-driver	Set up job	2026-10-23T19:01:17.5377970Z Azure Region: westus
+installed-driver	Set up job	2026-10-23T19:01:17.5378370Z ##[endgroup]
+installed-driver	Set up job	2026-10-23T19:01:17.5379270Z ##[group]Operating System
+installed-driver	Set up job	2026-10-23T19:01:17.5379700Z macOS
+installed-driver	Set up job	2026-10-23T19:01:17.5380060Z 15.7.9
+installed-driver	Set up job	2026-10-23T19:01:17.5380410Z 24G830
+installed-driver	Set up job	2026-10-23T19:01:17.5380770Z ##[endgroup]
+installed-driver	Set up job	2026-10-23T19:01:17.5381150Z ##[group]Runner Image
+installed-driver	Set up job	2026-10-23T19:01:17.5381560Z Image: macos-15-arm64
+installed-driver	Set up job	2026-10-23T19:01:17.5381950Z Version: 20260907.0337.1
+installed-driver	Set up job	2026-10-23T19:01:17.5382730Z Included Software: https://github.com/actions/runner-images/blob/macos-15-arm64/20260907.0337/images/macos/macos-15-arm64-Readme.md
+installed-driver	Set up job	2026-10-23T19:01:17.5383900Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-15-arm64%2F20260907.0337
+installed-driver	Set up job	2026-10-23T19:01:17.5384590Z ##[endgroup]
+installed-driver	Set up job	2026-10-23T19:01:17.5385370Z ##[group]GITHUB_TOKEN Permissions
+installed-driver	Set up job	2026-10-23T19:01:17.5386590Z Contents: read
+installed-driver	Set up job	2026-10-23T19:01:17.5387050Z Metadata: read
+installed-driver	Set up job	2026-10-23T19:01:17.5387510Z ##[endgroup]
+installed-driver	Set up job	2026-10-23T19:01:17.5388850Z Secret source: Actions
+installed-driver	Set up job	2026-10-23T19:01:17.5389450Z Cache mode: write
+installed-driver	Set up job	2026-10-23T19:01:17.5389900Z Prepare workflow directory
+installed-driver	Set up job	2026-10-23T19:01:17.5720520Z Prepare all required actions
+installed-driver	Set up job	2026-10-23T19:01:17.5768180Z Getting action download info
+installed-driver	Set up job	2026-10-23T19:01:17.8267770Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+installed-driver	Set up job	2026-10-23T19:01:18.0869470Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+installed-driver	Set up job	2026-10-23T19:01:18.2808280Z Complete job name: installed-driver
+installed-driver	Run actions/checkout@v4	﻿2026-10-23T19:01:18.3393260Z ##[group]Run actions/checkout@v4
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.3394130Z with:
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.3394490Z   repository: thatsmethen/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.3397420Z   token: ***
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.3397850Z   ssh-strict: true
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.3398190Z   ssh-user: git
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.3398510Z   persist-credentials: true
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.3398850Z   clean: true
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.3399180Z   sparse-checkout-cone-mode: true
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.3399560Z   fetch-depth: 1
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.3399870Z   fetch-tags: false
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.3400190Z   show-progress: true
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.3400510Z   lfs: false
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.3400810Z   submodules: false
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.3401140Z   set-safe-directory: true
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.3401620Z   allow-unsafe-pr-checkout: false
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.3402240Z env:
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.3402630Z   RAVELINK_TEST_CONFIGURATION: release
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.3403050Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.8086540Z Syncing repository: thatsmethen/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.8088310Z ##[group]Getting Git version info
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.8088950Z Working directory is '/Users/runner/work/ravelink/ravelink'
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.8089690Z [command]/opt/homebrew/bin/git version
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.8615030Z git version 2.55.0
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.8626900Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.8633690Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/c15721ad-3433-4290-bbe2-0ce9f2cf3a1e/.gitconfig'
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.8642270Z Temporarily overriding HOME='/Users/runner/work/_temp/c15721ad-3433-4290-bbe2-0ce9f2cf3a1e' before making global git config changes
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.8643280Z Adding repository directory to the temporary git global config as a safe directory
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.8646450Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.8770350Z Deleting the contents of '/Users/runner/work/ravelink/ravelink'
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.8781820Z ##[group]Initializing the repository
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.8789640Z [command]/opt/homebrew/bin/git init /Users/runner/work/ravelink/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.9004870Z hint: Using 'master' as the name for the initial branch. This default branch name
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.9009530Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.9010560Z hint: to use in all of your new repositories, which will suppress this warning,
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.9011310Z hint: call:
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.9011730Z hint:
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.9012540Z hint: 	git config --global init.defaultBranch <name>
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.9013360Z hint:
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.9013910Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.9014710Z hint: 'development'. The just-created branch can be renamed via this command:
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.9015380Z hint:
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.9016810Z hint: 	git branch -m <name>
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.9017240Z hint:
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.9017760Z hint: Disable this message with "git config set advice.defaultBranchName false"
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.9018550Z Initialized empty Git repository in /Users/runner/work/ravelink/ravelink/.git/
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.9020080Z [command]/opt/homebrew/bin/git remote add origin https://github.com/thatsmethen/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.9100400Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.9102050Z ##[group]Disabling automatic garbage collection
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.9102970Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.9170520Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.9171240Z ##[group]Setting up auth
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.9176530Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:18.9241650Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:19.0289580Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:19.0358930Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:19.1152190Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:19.1211860Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:19.2099200Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:19.2169840Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:19.2170760Z ##[group]Fetching the repository
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:19.2184990Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +16abe9aedb9cfcb6bce1c9886b901e71a80a830e:refs/remotes/origin/main
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:21.3850350Z From https://github.com/thatsmethen/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:21.3851350Z  * [new ref]         16abe9aedb9cfcb6bce1c9886b901e71a80a830e -> origin/main
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:21.3855940Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:21.3856340Z ##[group]Determining the checkout info
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:21.3858730Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:21.3865700Z [command]/opt/homebrew/bin/git sparse-checkout disable
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:21.3943250Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:21.4008120Z ##[group]Checking out the ref
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:21.4011630Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:21.4423390Z Switched to a new branch 'main'
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:21.4436490Z branch 'main' set up to track 'origin/main'.
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:21.4441500Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:21.4556880Z [command]/opt/homebrew/bin/git log -1 --format=%H
+installed-driver	Run actions/checkout@v4	2026-10-23T19:01:21.4620980Z 16abe9aedb9cfcb6bce1c9886b901e71a80a830e
+installed-driver	Host identity	﻿2026-10-23T19:01:21.4780730Z ##[group]Run sw_vers
+installed-driver	Host identity	2026-10-23T19:01:21.4781300Z [36;1msw_vers[0m
+installed-driver	Host identity	2026-10-23T19:01:21.4781500Z [36;1muname -m[0m
+installed-driver	Host identity	2026-10-23T19:01:21.4825020Z shell: /bin/bash -e {0}
+installed-driver	Host identity	2026-10-23T19:01:21.4825370Z env:
+installed-driver	Host identity	2026-10-23T19:01:21.4825740Z   RAVELINK_TEST_CONFIGURATION: release
+installed-driver	Host identity	2026-10-23T19:01:21.4825990Z ##[endgroup]
+installed-driver	Host identity	2026-10-23T19:01:21.5322170Z ProductName:		macOS
+installed-driver	Host identity	2026-10-23T19:01:21.5325090Z ProductVersion:		15.7.9
+installed-driver	Host identity	2026-10-23T19:01:21.5325450Z BuildVersion:		24G830
+installed-driver	Host identity	2026-10-23T19:01:21.5348090Z arm64
+installed-driver	Build isolated test device	﻿2026-10-23T19:01:21.5606220Z ##[group]Run python3 scripts/virtual-devices.py build --channels 8 --device ci-loopback:CILoopback --device ci-mix-a:CIMixA --device ci-mix-b:CIMixB --output build/ci-drivers
+installed-driver	Build isolated test device	2026-10-23T19:01:21.5607390Z [36;1mpython3 scripts/virtual-devices.py build --channels 8 --device ci-loopback:CILoopback --device ci-mix-a:CIMixA --device ci-mix-b:CIMixB --output build/ci-drivers[0m
+installed-driver	Build isolated test device	2026-10-23T19:01:21.5608160Z [36;1mshasum -a 256 build/ci-drivers/*.driver/Contents/MacOS/* > build/driver-binary-sha256.txt[0m
+installed-driver	Build isolated test device	2026-10-23T19:01:21.5644040Z shell: /bin/bash -e {0}
+installed-driver	Build isolated test device	2026-10-23T19:01:21.5644340Z env:
+installed-driver	Build isolated test device	2026-10-23T19:01:21.5644580Z   RAVELINK_TEST_CONFIGURATION: release
+installed-driver	Build isolated test device	2026-10-23T19:01:21.5644830Z ##[endgroup]
+installed-driver	Build isolated test device	2026-10-23T19:01:26.0912680Z /Users/runner/work/ravelink/ravelink/build/ci-drivers/.ravelink-qq65op4r/RaveLink-ci-loopback.driver: replacing existing signature
+installed-driver	Build isolated test device	2026-10-23T19:01:28.4868350Z /Users/runner/work/ravelink/ravelink/build/ci-drivers/.ravelink-nlrit19z/RaveLink-ci-mix-a.driver: replacing existing signature
+installed-driver	Build isolated test device	2026-10-23T19:01:29.8666790Z /Users/runner/work/ravelink/ravelink/build/ci-drivers/.ravelink-3g6f_2gk/RaveLink-ci-mix-b.driver: replacing existing signature
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9189180Z [
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9238090Z   {
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9260710Z     "id": "ci-loopback",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9261270Z     "name": "RaveLink CILoopback",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9261760Z     "bundle": "RaveLink-ci-loopback.driver",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9262390Z     "bundleID": "au.textual.ravelink.audio.ci-loopback",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9263130Z     "deviceUID": "RaveLink.ci-loopback_UID",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9285920Z     "factoryUUID": "4EE93CF6-9DEC-5D17-AC9E-507705C24D80",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9290240Z     "channels": 8,
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9296210Z     "architectures": [
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9297350Z       "arm64",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9297760Z       "x86_64"
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9298320Z     ],
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9298860Z     "minimumMacOS": "12.0",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9299310Z     "upstream": {
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9299870Z       "repository": "https://github.com/ExistentialAudio/BlackHole",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9302060Z       "commit": "561d934c77a1fa64987e01ccabe890fed30e181f",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9302620Z       "version": "0.7.1",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9303030Z       "license": "GPL-3.0-only",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9303430Z       "files": {
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9303890Z         "BlackHole.c": "05f1fa61e2502072ddbc797717713b20e43e2e55e08d445312aeb55dad879c7b",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9316010Z         "LICENSE": "d5134ba41d942612bdf5ab79b32b3ddc2458f55e16437390bd81be8f2e0811e0",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9316640Z         "VERSION": "902311c7bb38fa1658ff403def6158ee7378fe9d6e2e284fa1c38735c31bd30b"
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9317550Z       }
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9317830Z     },
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9318230Z     "codeSigning": "ad-hoc",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9319330Z     "notarized": false,
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9320060Z     "version": "0.1.0",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9320420Z     "buildNumber": 1,
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9320980Z     "path": "/Users/runner/work/ravelink/ravelink/build/ci-drivers/RaveLink-ci-loopback.driver"
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9321600Z   },
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9322300Z   {
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9325700Z     "id": "ci-mix-a",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9326820Z     "name": "RaveLink CIMixA",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9327140Z     "bundle": "RaveLink-ci-mix-a.driver",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9327530Z     "bundleID": "au.textual.ravelink.audio.ci-mix-a",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9327900Z     "deviceUID": "RaveLink.ci-mix-a_UID",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9328280Z     "factoryUUID": "79BFB084-794D-5178-BC4B-6BD325BAF05D",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9335010Z     "channels": 8,
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9335220Z     "architectures": [
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9335390Z       "arm64",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9335590Z       "x86_64"
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9335750Z     ],
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9335900Z     "minimumMacOS": "12.0",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9336080Z     "upstream": {
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9336380Z       "repository": "https://github.com/ExistentialAudio/BlackHole",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9336900Z       "commit": "561d934c77a1fa64987e01ccabe890fed30e181f",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9337820Z       "version": "0.7.1",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9338100Z       "license": "GPL-3.0-only",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9338310Z       "files": {
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9338700Z         "BlackHole.c": "05f1fa61e2502072ddbc797717713b20e43e2e55e08d445312aeb55dad879c7b",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9340250Z         "LICENSE": "d5134ba41d942612bdf5ab79b32b3ddc2458f55e16437390bd81be8f2e0811e0",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9340760Z         "VERSION": "902311c7bb38fa1658ff403def6158ee7378fe9d6e2e284fa1c38735c31bd30b"
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9341130Z       }
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9341370Z     },
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9341610Z     "codeSigning": "ad-hoc",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9341920Z     "notarized": false,
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9342160Z     "version": "0.1.0",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9342380Z     "buildNumber": 1,
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9342730Z     "path": "/Users/runner/work/ravelink/ravelink/build/ci-drivers/RaveLink-ci-mix-a.driver"
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9343070Z   },
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9343210Z   {
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9343350Z     "id": "ci-mix-b",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9343530Z     "name": "RaveLink CIMixB",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9343780Z     "bundle": "RaveLink-ci-mix-b.driver",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9344130Z     "bundleID": "au.textual.ravelink.audio.ci-mix-b",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9344440Z     "deviceUID": "RaveLink.ci-mix-b_UID",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9344750Z     "factoryUUID": "0B80C012-D957-52EE-AFA4-731C5EEC9694",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9345060Z     "channels": 8,
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9345280Z     "architectures": [
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9345560Z       "arm64",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9346320Z       "x86_64"
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9346600Z     ],
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9346870Z     "minimumMacOS": "12.0",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9347140Z     "upstream": {
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9347450Z       "repository": "https://github.com/ExistentialAudio/BlackHole",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9347920Z       "commit": "561d934c77a1fa64987e01ccabe890fed30e181f",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9348220Z       "version": "0.7.1",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9348530Z       "license": "GPL-3.0-only",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9349040Z       "files": {
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9350250Z         "BlackHole.c": "05f1fa61e2502072ddbc797717713b20e43e2e55e08d445312aeb55dad879c7b",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9350840Z         "LICENSE": "d5134ba41d942612bdf5ab79b32b3ddc2458f55e16437390bd81be8f2e0811e0",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9351780Z         "VERSION": "902311c7bb38fa1658ff403def6158ee7378fe9d6e2e284fa1c38735c31bd30b"
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9352160Z       }
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9352300Z     },
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9352550Z     "codeSigning": "ad-hoc",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9352810Z     "notarized": false,
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9353070Z     "version": "0.1.0",
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9353260Z     "buildNumber": 1,
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9353620Z     "path": "/Users/runner/work/ravelink/ravelink/build/ci-drivers/RaveLink-ci-mix-b.driver"
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9354090Z   }
+installed-driver	Build isolated test device	2026-10-23T19:01:29.9354290Z ]
+installed-driver	Install into disposable runner	﻿2026-10-23T19:01:30.0200770Z ##[group]Run sudo python3 scripts/virtual-devices.py install build/ci-drivers/*.driver
+installed-driver	Install into disposable runner	2026-10-23T19:01:30.0201370Z [36;1msudo python3 scripts/virtual-devices.py install build/ci-drivers/*.driver[0m
+installed-driver	Install into disposable runner	2026-10-23T19:01:30.0201770Z [36;1msudo killall coreaudiod || true[0m
+installed-driver	Install into disposable runner	2026-10-23T19:01:30.0201970Z [36;1msleep 5[0m
+installed-driver	Install into disposable runner	2026-10-23T19:01:30.0248910Z shell: /bin/bash -e {0}
+installed-driver	Install into disposable runner	2026-10-23T19:01:30.0249130Z env:
+installed-driver	Install into disposable runner	2026-10-23T19:01:30.0249300Z   RAVELINK_TEST_CONFIGURATION: release
+installed-driver	Install into disposable runner	2026-10-23T19:01:30.0249500Z ##[endgroup]
+installed-driver	Install into disposable runner	2026-10-23T19:01:31.5179600Z Installed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-loopback.driver
+installed-driver	Install into disposable runner	2026-10-23T19:01:31.5260580Z Installed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-mix-a.driver
+installed-driver	Install into disposable runner	2026-10-23T19:01:31.5261360Z Installed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-mix-b.driver
+installed-driver	Install into disposable runner	2026-10-23T19:01:31.5262070Z Restart macOS after closing audio apps to activate these devices. Audio services were not restarted.
+installed-driver	Compile integration tests	﻿2026-10-23T19:01:36.6520950Z ##[group]Run set -o pipefail
+installed-driver	Compile integration tests	2026-10-23T19:01:36.6521240Z [36;1mset -o pipefail[0m
+installed-driver	Compile integration tests	2026-10-23T19:01:36.6521600Z [36;1mprintf '%s\n' "$RAVELINK_TEST_CONFIGURATION" > build/integration-configuration.txt[0m
+installed-driver	Compile integration tests	2026-10-23T19:01:36.6522320Z [36;1mscripts/test.sh --filter testInvalidStartFailsWithActionableErrorAndStaysStopped 2>&1 | tee build/integration-compile.log[0m
+installed-driver	Compile integration tests	2026-10-23T19:01:36.6523320Z [36;1mshasum -a 256 .build/release/RaveLinkEngine .build/release/RaveLinkPluginHost .build/release/RaveLinkPackageTests.xctest/Contents/MacOS/RaveLinkPackageTests > build/integration-binary-sha256.txt[0m
+installed-driver	Compile integration tests	2026-10-23T19:01:36.6599170Z shell: /bin/bash -e {0}
+installed-driver	Compile integration tests	2026-10-23T19:01:36.6599940Z env:
+installed-driver	Compile integration tests	2026-10-23T19:01:36.6600530Z   RAVELINK_TEST_CONFIGURATION: release
+installed-driver	Compile integration tests	2026-10-23T19:01:36.6601160Z ##[endgroup]
+installed-driver	Compile integration tests	2026-10-23T19:01:41.6856210Z Building for production...
+installed-driver	Compile integration tests	2026-10-23T19:01:41.6910170Z [0/22] /Users/runner/work/ravelink/ravelink/.build/arm64-apple-macosx/release/RaveLinkPackageTests.derived/runner.swift
+installed-driver	Compile integration tests	2026-10-23T19:01:41.9367010Z [1/22] Write swift-version--79AA4F9932D1E87A.txt
+installed-driver	Compile integration tests	2026-10-23T19:01:41.9432600Z [2/22] Write sources
+installed-driver	Compile integration tests	2026-10-23T19:01:42.2894170Z [4/23] Compiling RaveLinkRealtime SoundCheck.c
+installed-driver	Compile integration tests	2026-10-23T19:01:42.2998350Z [5/23] Write sources
+installed-driver	Compile integration tests	2026-10-23T19:01:43.3510770Z [8/23] Compiling RaveLinkRealtime Realtime.c
+installed-driver	Compile integration tests	2026-10-23T19:01:45.5792110Z [9/24] Compiling RaveLinkAudioUnitBridge AudioUnitBridge.m
+installed-driver	Compile integration tests	2026-10-23T19:01:45.5891680Z [10/24] Write sources
+installed-driver	Compile integration tests	2026-10-23T19:01:49.5148930Z [15/24] Compiling RaveLinkPluginHost Render.swift
+installed-driver	Compile integration tests	2026-10-23T19:01:49.5277380Z [15/24] Write Objects.LinkFileList
+installed-driver	Compile integration tests	2026-10-23T19:01:49.9464320Z [17/24] Compiling RaveLinkCore AudioUnitEffects.swift
+installed-driver	Compile integration tests	2026-10-23T19:01:50.3029530Z [17/26] Linking RaveLinkPluginHost
+installed-driver	Compile integration tests	2026-10-23T19:01:56.9279180Z [19/26] Compiling RaveLinkAudio ApplicationIdentity.swift
+installed-driver	Compile integration tests	2026-10-23T19:01:56.9484070Z /Users/runner/work/ravelink/ravelink/Sources/RaveLinkAudio/AudioCoordinator.swift:393:37: error: value of type 'CATapDescription' has no member 'bundleIDs'
+installed-driver	Compile integration tests	2026-10-23T19:01:56.9604300Z 391 |                     }
+installed-driver	Compile integration tests	2026-10-23T19:01:56.9718080Z 392 |                     if #available(macOS 26.0, *) {
+installed-driver	Compile integration tests	2026-10-23T19:01:56.9855070Z 393 |                         description.bundleIDs = selection.bundleIDs
+installed-driver	Compile integration tests	2026-10-23T19:01:56.9958820Z     |                                     `- error: value of type 'CATapDescription' has no member 'bundleIDs'
+installed-driver	Compile integration tests	2026-10-23T19:01:57.0006700Z 394 |                         description.isProcessRestoreEnabled = true
+installed-driver	Compile integration tests	2026-10-23T19:01:57.0110500Z 395 |                     }
+installed-driver	Compile integration tests	2026-10-23T19:01:57.0211890Z 
+installed-driver	Compile integration tests	2026-10-23T19:01:57.0314350Z /Users/runner/work/ravelink/ravelink/Sources/RaveLinkAudio/AudioCoordinator.swift:394:37: error: value of type 'CATapDescription' has no member 'isProcessRestoreEnabled'
+installed-driver	Compile integration tests	2026-10-23T19:01:57.0417640Z 392 |                     if #available(macOS 26.0, *) {
+installed-driver	Compile integration tests	2026-10-23T19:01:57.0518890Z 393 |                         description.bundleIDs = selection.bundleIDs
+installed-driver	Compile integration tests	2026-10-23T19:01:57.0578760Z 394 |                         description.isProcessRestoreEnabled = true
+installed-driver	Compile integration tests	2026-10-23T19:01:57.0579540Z     |                                     `- error: value of type 'CATapDescription' has no member 'isProcessRestoreEnabled'
+installed-driver	Compile integration tests	2026-10-23T19:01:57.0580200Z 395 |                     }
+installed-driver	Compile integration tests	2026-10-23T19:01:57.0581830Z 396 |                     description.name = "RaveLink — \(channel.name)"
+installed-driver	Compile integration tests	2026-10-23T19:01:57.0582270Z 
+installed-driver	Compile integration tests	2026-10-23T19:01:57.0582840Z /Users/runner/work/ravelink/ravelink/Sources/RaveLinkAudio/AudioCoordinator.swift:528:29: error: value of type 'CATapDescription' has no member 'bundleIDs'
+installed-driver	Compile integration tests	2026-10-23T19:01:57.0583650Z 526 |             description.processes = selection.processIDs
+installed-driver	Compile integration tests	2026-10-23T19:01:57.0584770Z 527 |             if #available(macOS 26.0, *) {
+installed-driver	Compile integration tests	2026-10-23T19:01:57.0585270Z 528 |                 description.bundleIDs = selection.bundleIDs
+installed-driver	Compile integration tests	2026-10-23T19:01:57.0585840Z     |                             `- error: value of type 'CATapDescription' has no member 'bundleIDs'
+installed-driver	Compile integration tests	2026-10-23T19:01:57.0586470Z 529 |                 description.isProcessRestoreEnabled = true
+installed-driver	Compile integration tests	2026-10-23T19:01:57.0588390Z 530 |             }
+installed-driver	Compile integration tests	2026-10-23T19:01:57.0588840Z error: fatalError
+installed-driver	Compile integration tests	2026-10-23T19:01:57.0607550Z ##[error]Process completed with exit code 1.
+installed-driver	Run actions/upload-artifact@v4	﻿2026-10-23T19:01:57.0852240Z ##[group]Run actions/upload-artifact@v4
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:57.0852470Z with:
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:57.0852740Z   name: installed-driver-evidence
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:57.0854400Z   path: build/installed-driver-test.log
+installed-driver	Run actions/upload-artifact@v4	build/integration-configuration.txt
+installed-driver	Run actions/upload-artifact@v4	build/integration-compile.log
+installed-driver	Run actions/upload-artifact@v4	build/integration-binary-sha256.txt
+installed-driver	Run actions/upload-artifact@v4	build/installed-devices.txt
+installed-driver	Run actions/upload-artifact@v4	build/receiver.log
+installed-driver	Run actions/upload-artifact@v4	build/independent-loopback.*
+installed-driver	Run actions/upload-artifact@v4	build/matrix-*.wav
+installed-driver	Run actions/upload-artifact@v4	build/matrix-*.log
+installed-driver	Run actions/upload-artifact@v4	build/matrix-analysis.json
+installed-driver	Run actions/upload-artifact@v4	build/au-*.wav
+installed-driver	Run actions/upload-artifact@v4	build/au-*.log
+installed-driver	Run actions/upload-artifact@v4	build/au-*.json
+installed-driver	Run actions/upload-artifact@v4	build/driver-binary-sha256.txt
+installed-driver	Run actions/upload-artifact@v4	build/soak-*.wav
+installed-driver	Run actions/upload-artifact@v4	build/soak-*.json
+installed-driver	Run actions/upload-artifact@v4	build/soak-*.log
+installed-driver	Run actions/upload-artifact@v4	build/sound-check-*.wav
+installed-driver	Run actions/upload-artifact@v4	build/sound-check-*.json
+installed-driver	Run actions/upload-artifact@v4	build/sound-check-*.log
+installed-driver	Run actions/upload-artifact@v4	build/ci-drivers/manifest.json
+installed-driver	Run actions/upload-artifact@v4	build/ci-drivers/*.driver/Contents/Resources/build-info.json
+installed-driver	Run actions/upload-artifact@v4	
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:57.0856150Z   if-no-files-found: warn
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:57.0856480Z   compression-level: 6
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:57.0856710Z   overwrite: false
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:57.0857000Z   include-hidden-files: false
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:57.0857230Z env:
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:57.0857420Z   RAVELINK_TEST_CONFIGURATION: release
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:57.0857770Z ##[endgroup]
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:57.6080830Z (node:2909) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:57.6082940Z (Use `node --trace-deprecation ...` to show where the warning was created)
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:57.6352140Z With the provided path, there will be 7 files uploaded
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:57.6361060Z Artifact name is valid!
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:57.6362780Z Root directory input is valid!
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:57.8710320Z Beginning upload of artifact content to blob storage
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:57.8965940Z (node:2909) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:57.9766610Z Uploaded bytes 4558
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:57.9848850Z Finished uploading artifact content to blob storage!
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:57.9853570Z SHA256 digest of uploaded artifact zip is f450216b480fcfe0b168e9d21e0b0a5dce5ffb5174eefb7fd9f39a08a6a5b7bd
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:57.9854210Z Finalizing artifact upload
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:58.4288060Z Artifact installed-driver-evidence.zip successfully finalized. Artifact ID 12523894422
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:58.4288830Z Artifact installed-driver-evidence has been successfully uploaded! Final size is 4558 bytes. Artifact ID is 12523894422
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T19:01:58.4290410Z Artifact download URL: https://github.com/thatsmethen/ravelink/actions/runs/40008060874/artifacts/12523894422
+installed-driver	Remove test device	﻿2026-10-23T19:01:58.4383540Z ##[group]Run sudo python3 scripts/virtual-devices.py uninstall ci-loopback ci-mix-a ci-mix-b
+installed-driver	Remove test device	2026-10-23T19:01:58.4384110Z [36;1msudo python3 scripts/virtual-devices.py uninstall ci-loopback ci-mix-a ci-mix-b[0m
+installed-driver	Remove test device	2026-10-23T19:01:58.4431980Z shell: /bin/bash -e {0}
+installed-driver	Remove test device	2026-10-23T19:01:58.4432210Z env:
+installed-driver	Remove test device	2026-10-23T19:01:58.4432430Z   RAVELINK_TEST_CONFIGURATION: release
+installed-driver	Remove test device	2026-10-23T19:01:58.4432660Z ##[endgroup]
+installed-driver	Remove test device	2026-10-23T19:01:58.9230570Z Removed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-loopback.driver
+installed-driver	Remove test device	2026-10-23T19:01:58.9318450Z Removed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-mix-a.driver
+installed-driver	Remove test device	2026-10-23T19:01:58.9337280Z Removed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-mix-b.driver
+installed-driver	Remove test device	2026-10-23T19:01:58.9339960Z Restart macOS after closing audio apps. Audio services were not restarted.
+installed-driver	Post Run actions/checkout@v4	﻿2026-10-23T19:01:58.9467140Z Post job cleanup.
+installed-driver	Post Run actions/checkout@v4	2026-10-23T19:01:59.0859530Z [command]/opt/homebrew/bin/git version
+installed-driver	Post Run actions/checkout@v4	2026-10-23T19:01:59.1072160Z git version 2.55.0
+installed-driver	Post Run actions/checkout@v4	2026-10-23T19:01:59.1092210Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/c24daa72-bb56-45f7-9b82-a7918ca84b4b/.gitconfig'
+installed-driver	Post Run actions/checkout@v4	2026-10-23T19:01:59.1099320Z Temporarily overriding HOME='/Users/runner/work/_temp/c24daa72-bb56-45f7-9b82-a7918ca84b4b' before making global git config changes
+installed-driver	Post Run actions/checkout@v4	2026-10-23T19:01:59.1100120Z Adding repository directory to the temporary git global config as a safe directory
+installed-driver	Post Run actions/checkout@v4	2026-10-23T19:01:59.1102660Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+installed-driver	Post Run actions/checkout@v4	2026-10-23T19:01:59.1232630Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+installed-driver	Post Run actions/checkout@v4	2026-10-23T19:01:59.1304340Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+installed-driver	Post Run actions/checkout@v4	2026-10-23T19:01:59.2607690Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+installed-driver	Post Run actions/checkout@v4	2026-10-23T19:01:59.2661500Z http.https://github.com/.extraheader
+installed-driver	Post Run actions/checkout@v4	2026-10-23T19:01:59.2800970Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+installed-driver	Post Run actions/checkout@v4	2026-10-23T19:01:59.2842840Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+installed-driver	Post Run actions/checkout@v4	2026-10-23T19:01:59.4836280Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+installed-driver	Post Run actions/checkout@v4	2026-10-23T19:01:59.5140980Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+installed-driver	Complete job	﻿2026-10-23T19:01:59.6592370Z Cleaning up orphan processes
+installed-driver	Complete job	2026-10-23T19:02:00.5110890Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+driver-lifecycle	Set up job	﻿2026-10-23T19:01:19.4471530Z Current runner version: '2.338.0'
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4487880Z ##[group]Runner Image Provisioner
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4488420Z Hosted Compute Agent
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4488890Z Version: 20260828.587
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4489310Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4489780Z Build Date: 2026-08-28T16:44:25Z
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4490240Z Worker ID: {cb9905ef-3e7e-4e15-907e-7c963fced3d0}
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4490770Z Azure Region: westus
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4491180Z ##[endgroup]
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4492060Z ##[group]Operating System
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4492450Z macOS
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4492880Z 15.7.9
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4493210Z 24G830
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4493560Z ##[endgroup]
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4493910Z ##[group]Runner Image
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4494300Z Image: macos-15-arm64
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4494680Z Version: 20260907.0337.1
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4495840Z Included Software: https://github.com/actions/runner-images/blob/macos-15-arm64/20260907.0337/images/macos/macos-15-arm64-Readme.md
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4496970Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-15-arm64%2F20260907.0337
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4497730Z ##[endgroup]
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4498460Z ##[group]GITHUB_TOKEN Permissions
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4499440Z Contents: read
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4499800Z Metadata: read
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4500170Z ##[endgroup]
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4503550Z Secret source: Actions
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4504240Z Cache mode: write
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4504770Z Prepare workflow directory
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4815350Z Prepare all required actions
+driver-lifecycle	Set up job	2026-10-23T19:01:19.4851470Z Getting action download info
+driver-lifecycle	Set up job	2026-10-23T19:01:19.9725690Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+driver-lifecycle	Set up job	2026-10-23T19:01:20.2614210Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+driver-lifecycle	Set up job	2026-10-23T19:01:20.4677680Z Complete job name: driver-lifecycle
+driver-lifecycle	Run actions/checkout@v4	﻿2026-10-23T19:01:20.5220370Z ##[group]Run actions/checkout@v4
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:20.5221030Z with:
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:20.5221370Z   repository: thatsmethen/ravelink
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:20.5224360Z   token: ***
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:20.5224750Z   ssh-strict: true
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:20.5225110Z   ssh-user: git
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:20.5225440Z   persist-credentials: true
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:20.5225800Z   clean: true
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:20.5226170Z   sparse-checkout-cone-mode: true
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:20.5226610Z   fetch-depth: 1
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:20.5226930Z   fetch-tags: false
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:20.5227260Z   show-progress: true
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:20.5227610Z   lfs: false
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:20.5227990Z   submodules: false
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:20.5228340Z   set-safe-directory: true
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:20.5228700Z   allow-unsafe-pr-checkout: false
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:20.5229760Z ##[endgroup]
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:20.9417300Z Syncing repository: thatsmethen/ravelink
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:20.9419140Z ##[group]Getting Git version info
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:20.9419790Z Working directory is '/Users/runner/work/ravelink/ravelink'
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:20.9420830Z [command]/opt/homebrew/bin/git version
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0058460Z git version 2.55.0
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0211020Z ##[endgroup]
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0225430Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/10d005ce-0319-46bb-9a55-58574a5684f0/.gitconfig'
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0227120Z Temporarily overriding HOME='/Users/runner/work/_temp/10d005ce-0319-46bb-9a55-58574a5684f0' before making global git config changes
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0229550Z Adding repository directory to the temporary git global config as a safe directory
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0230970Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0267700Z Deleting the contents of '/Users/runner/work/ravelink/ravelink'
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0269370Z ##[group]Initializing the repository
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0271420Z [command]/opt/homebrew/bin/git init /Users/runner/work/ravelink/ravelink
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0615960Z hint: Using 'master' as the name for the initial branch. This default branch name
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0619860Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0621060Z hint: to use in all of your new repositories, which will suppress this warning,
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0622460Z hint: call:
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0623650Z hint:
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0624260Z hint: 	git config --global init.defaultBranch <name>
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0625070Z hint:
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0625810Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0626810Z hint: 'development'. The just-created branch can be renamed via this command:
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0627730Z hint:
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0628230Z hint: 	git branch -m <name>
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0628760Z hint:
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0649690Z hint: Disable this message with "git config set advice.defaultBranchName false"
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0650750Z Initialized empty Git repository in /Users/runner/work/ravelink/ravelink/.git/
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0653160Z [command]/opt/homebrew/bin/git remote add origin https://github.com/thatsmethen/ravelink
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0740240Z ##[endgroup]
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0743180Z ##[group]Disabling automatic garbage collection
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0745670Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0805310Z ##[endgroup]
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0806930Z ##[group]Setting up auth
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0808200Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.0951970Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.2829950Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.2899360Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.5011220Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.5247740Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.6873430Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.7009030Z ##[endgroup]
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.7011870Z ##[group]Fetching the repository
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:21.7016870Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +16abe9aedb9cfcb6bce1c9886b901e71a80a830e:refs/remotes/origin/main
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:24.1612580Z From https://github.com/thatsmethen/ravelink
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:24.1615170Z  * [new ref]         16abe9aedb9cfcb6bce1c9886b901e71a80a830e -> origin/main
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:24.1618720Z ##[endgroup]
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:24.1622240Z ##[group]Determining the checkout info
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:24.1622830Z ##[endgroup]
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:24.1623670Z [command]/opt/homebrew/bin/git sparse-checkout disable
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:24.1759800Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:24.1846870Z ##[group]Checking out the ref
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:24.1847720Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:24.2428360Z Switched to a new branch 'main'
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:24.2455080Z branch 'main' set up to track 'origin/main'.
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:24.2456680Z ##[endgroup]
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:24.2580740Z [command]/opt/homebrew/bin/git log -1 --format=%H
+driver-lifecycle	Run actions/checkout@v4	2026-10-23T19:01:24.2619990Z 16abe9aedb9cfcb6bce1c9886b901e71a80a830e
+driver-lifecycle	Installer upgrade, repair, removal and HAL format lifecycle	﻿2026-10-23T19:01:24.3082460Z ##[group]Run python3 scripts/run-driver-lifecycle.py
+driver-lifecycle	Installer upgrade, repair, removal and HAL format lifecycle	2026-10-23T19:01:24.3083050Z [36;1mpython3 scripts/run-driver-lifecycle.py[0m
+driver-lifecycle	Installer upgrade, repair, removal and HAL format lifecycle	2026-10-23T19:01:24.3125980Z shell: /bin/bash -e {0}
+driver-lifecycle	Installer upgrade, repair, removal and HAL format lifecycle	2026-10-23T19:01:24.3126290Z env:
+driver-lifecycle	Installer upgrade, repair, removal and HAL format lifecycle	2026-10-23T19:01:24.3126550Z   RAVELINK_TEST_DRIVER_LIFECYCLE: 1
+driver-lifecycle	Installer upgrade, repair, removal and HAL format lifecycle	2026-10-23T19:01:24.3126820Z ##[endgroup]
+driver-lifecycle	Installer upgrade, repair, removal and HAL format lifecycle	2026-10-23T19:02:04.9317810Z reject-downgrade18-to17: expected policy refusal was not observed; see /Users/runner/work/ravelink/ravelink/build/driver-lifecycle/30-reject-downgrade18-to17.log
+driver-lifecycle	Installer upgrade, repair, removal and HAL format lifecycle	2026-10-23T19:02:04.9486240Z ##[error]Process completed with exit code 1.
+driver-lifecycle	Clean up owned lifecycle fixtures	﻿2026-10-23T19:02:04.9646540Z ##[group]Run python3 scripts/run-driver-lifecycle.py --cleanup
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T19:02:04.9647120Z [36;1mpython3 scripts/run-driver-lifecycle.py --cleanup[0m
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T19:02:04.9913620Z shell: /bin/bash -e {0}
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T19:02:04.9913950Z env:
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T19:02:04.9914190Z   RAVELINK_TEST_DRIVER_LIFECYCLE: 1
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T19:02:04.9914440Z ##[endgroup]
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T19:02:05.2659510Z Traceback (most recent call last):
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T19:02:05.2662100Z   File "/Users/runner/work/ravelink/ravelink/scripts/run-driver-lifecycle.py", line 248, in <module>
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T19:02:05.2664090Z     if __name__ == '__main__': raise SystemExit(main())
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T19:02:05.2664770Z                                                 ~~~~^^
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T19:02:05.2665800Z   File "/Users/runner/work/ravelink/ravelink/scripts/run-driver-lifecycle.py", line 227, in main
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T19:02:05.2666830Z     acceptance.cleanup()
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T19:02:05.2667510Z     ~~~~~~~~~~~~~~~~~~^^
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T19:02:05.2668500Z   File "/Users/runner/work/ravelink/ravelink/scripts/run-driver-lifecycle.py", line 212, in cleanup
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T19:02:05.2669950Z     self.reload()
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T19:02:05.2670380Z     ~~~~~~~~~~~^^
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T19:02:05.2671390Z   File "/Users/runner/work/ravelink/ravelink/scripts/run-driver-lifecycle.py", line 130, in reload
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T19:02:05.2672870Z     self.command('reload-disposable-audio-service', ['sudo', '-n', '/usr/bin/killall', 'coreaudiod'])
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T19:02:05.2674080Z     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T19:02:05.2675280Z   File "/Users/runner/work/ravelink/ravelink/scripts/run-driver-lifecycle.py", line 83, in command
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T19:02:05.2676630Z     raise AssertionError(f'{label}: unexpected exit {code}; see {log}')
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T19:02:05.2678580Z AssertionError: reload-disposable-audio-service: unexpected exit 1; see /Users/runner/work/ravelink/ravelink/build/driver-lifecycle/38-reload-disposable-audio-service.log
+driver-lifecycle	Clean up owned lifecycle fixtures	2026-10-23T19:02:05.2735750Z ##[error]Process completed with exit code 1.
+driver-lifecycle	Independent probe callback ASan and UBSan controls	﻿2026-10-23T19:02:05.2793780Z ##[group]Run set -o pipefail
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T19:02:05.2794230Z [36;1mset -o pipefail[0m
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T19:02:05.2794460Z [36;1mmkdir -p build[0m
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T19:02:05.2794870Z [36;1mpython3 -m unittest Drivers.tests.test_soak_probe -v 2>&1 | tee build/driver-lifecycle-sanitizer.log[0m
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T19:02:05.2833340Z shell: /bin/bash -e {0}
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T19:02:05.2833530Z env:
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T19:02:05.2833800Z   RAVELINK_TEST_PROBE_SANITIZER: 1
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T19:02:05.2834020Z ##[endgroup]
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T19:02:06.8479640Z test_callback_contract_under_sanitizers (Drivers.tests.test_soak_probe.SoakProbeTests.test_callback_contract_under_sanitizers) ... ok
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T19:02:07.1071350Z test_eight_channel_capture_feed_bounds_and_timestamp_health (Drivers.tests.test_soak_probe.SoakProbeTests.test_eight_channel_capture_feed_bounds_and_timestamp_health) ... ok
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T19:02:07.1073040Z 
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T19:02:07.1073420Z ----------------------------------------------------------------------
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T19:02:07.1074250Z Ran 2 tests in 1.701s
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T19:02:07.1075070Z 
+driver-lifecycle	Independent probe callback ASan and UBSan controls	2026-10-23T19:02:07.1075390Z OK
+driver-lifecycle	Run actions/upload-artifact@v4	﻿2026-10-23T19:02:07.1504210Z ##[group]Run actions/upload-artifact@v4
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:07.1504450Z with:
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:07.1504620Z   name: driver-lifecycle-evidence
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:07.1505280Z   path: build/driver-lifecycle/report.json
+driver-lifecycle	Run actions/upload-artifact@v4	build/driver-lifecycle/owned-fixtures.json
+driver-lifecycle	Run actions/upload-artifact@v4	build/driver-lifecycle/*.log
+driver-lifecycle	Run actions/upload-artifact@v4	build/driver-lifecycle/*/manifest.json
+driver-lifecycle	Run actions/upload-artifact@v4	build/driver-lifecycle-sanitizer.log
+driver-lifecycle	Run actions/upload-artifact@v4	
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:07.1505950Z   if-no-files-found: warn
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:07.1510110Z   compression-level: 6
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:07.1510300Z   overwrite: false
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:07.1510490Z   include-hidden-files: false
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:07.1510690Z ##[endgroup]
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:07.3495650Z (node:1728) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:07.3497540Z (Use `node --trace-deprecation ...` to show where the warning was created)
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:07.3669720Z Multiple search paths detected. Calculating the least common ancestor of all paths
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:07.3671840Z The least common ancestor is /Users/runner/work/ravelink/ravelink/build. This will be the root directory of the artifact
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:07.3673260Z With the provided path, there will be 47 files uploaded
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:07.3674260Z Artifact name is valid!
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:07.3674780Z Root directory input is valid!
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:07.7787860Z Beginning upload of artifact content to blob storage
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:07.8953690Z (node:1728) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:08.2224000Z Uploaded bytes 27752
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:08.3303980Z Finished uploading artifact content to blob storage!
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:08.3307170Z SHA256 digest of uploaded artifact zip is 99a767c50a953295549bd2b2a4531b6e30095538aa6746f26bd99dd2a6b7f148
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:08.3587530Z Finalizing artifact upload
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:08.8460790Z Artifact driver-lifecycle-evidence.zip successfully finalized. Artifact ID 12525062814
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:08.8461700Z Artifact driver-lifecycle-evidence has been successfully uploaded! Final size is 27752 bytes. Artifact ID is 12525062814
+driver-lifecycle	Run actions/upload-artifact@v4	2026-10-23T19:02:08.8474640Z Artifact download URL: https://github.com/thatsmethen/ravelink/actions/runs/40008060874/artifacts/12525062814
+driver-lifecycle	Post Run actions/checkout@v4	﻿2026-10-23T19:02:08.8638060Z Post job cleanup.
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T19:02:08.9688480Z [command]/opt/homebrew/bin/git version
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T19:02:08.9930430Z git version 2.55.0
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T19:02:08.9956660Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/549bd483-6092-4da8-aa28-679b32317104/.gitconfig'
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T19:02:08.9967320Z Temporarily overriding HOME='/Users/runner/work/_temp/549bd483-6092-4da8-aa28-679b32317104' before making global git config changes
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T19:02:08.9969220Z Adding repository directory to the temporary git global config as a safe directory
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T19:02:08.9972170Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T19:02:09.0087660Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T19:02:09.0153100Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T19:02:09.1039130Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T19:02:09.1096710Z http.https://github.com/.extraheader
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T19:02:09.1105740Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T19:02:09.1169830Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T19:02:09.1987360Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+driver-lifecycle	Post Run actions/checkout@v4	2026-10-23T19:02:09.2079800Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+driver-lifecycle	Complete job	﻿2026-10-23T19:02:09.3128710Z Cleaning up orphan processes
+driver-lifecycle	Complete job	2026-10-23T19:02:09.4347660Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

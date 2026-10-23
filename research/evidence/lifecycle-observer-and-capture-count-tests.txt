@@ -1,0 +1,29 @@
+test_cleanup_never_adopts_preexisting_devices (Drivers.tests.test_lifecycle_harness.LifecycleHarnessTests.test_cleanup_never_adopts_preexisting_devices) ... ok
+test_cleanup_rejects_another_run_ownership (Drivers.tests.test_lifecycle_harness.LifecycleHarnessTests.test_cleanup_rejects_another_run_ownership) ... ok
+test_failed_command_preserves_log_and_outcome (Drivers.tests.test_lifecycle_harness.LifecycleHarnessTests.test_failed_command_preserves_log_and_outcome) ... ok
+test_payload_identity_detects_changed_names_and_bytes (Drivers.tests.test_lifecycle_harness.LifecycleHarnessTests.test_payload_identity_detects_changed_names_and_bytes) ... ok
+test_receipt_query_errors_are_not_absence (Drivers.tests.test_lifecycle_harness.LifecycleHarnessTests.test_receipt_query_errors_are_not_absence) ... ok
+test_rejection_case_cannot_pass_with_successful_command (Drivers.tests.test_lifecycle_harness.LifecycleHarnessTests.test_rejection_case_cannot_pass_with_successful_command) ... ok
+test_service_already_absent_requires_specific_exit_and_diagnostic (Drivers.tests.test_lifecycle_harness.LifecycleHarnessTests.test_service_already_absent_requires_specific_exit_and_diagnostic) ... ok
+test_timeout_and_unrelated_failure_cannot_satisfy_policy_rejection (Drivers.tests.test_lifecycle_harness.LifecycleHarnessTests.test_timeout_and_unrelated_failure_cannot_satisfy_policy_rejection) ... ok
+test_workstation_and_self_hosted_are_refused (Drivers.tests.test_lifecycle_harness.LifecycleHarnessTests.test_workstation_and_self_hosted_are_refused) ... Refusing: requires explicit lifecycle opt-in on a GitHub-hosted disposable runner.
+ok
+test_all_eight_separate_bus_levels_pass (Drivers.tests.test_device_soak_verifier.DeviceSoakVerifierTests.test_all_eight_separate_bus_levels_pass) ... ok
+test_clipping_residual_rejected (Drivers.tests.test_device_soak_verifier.DeviceSoakVerifierTests.test_clipping_residual_rejected) ... ok
+test_default_envelope_rejects_short_run (Drivers.tests.test_device_soak_verifier.DeviceSoakVerifierTests.test_default_envelope_rejects_short_run) ... ok
+test_midrun_dropout_rejected (Drivers.tests.test_device_soak_verifier.DeviceSoakVerifierTests.test_midrun_dropout_rejected) ... ok
+test_mislabeled_frequency_rejected (Drivers.tests.test_device_soak_verifier.DeviceSoakVerifierTests.test_mislabeled_frequency_rejected) ... ok
+test_missing_second_input_tone_rejected (Drivers.tests.test_device_soak_verifier.DeviceSoakVerifierTests.test_missing_second_input_tone_rejected) ... ok
+test_partial_tail_is_not_discarded (Drivers.tests.test_device_soak_verifier.DeviceSoakVerifierTests.test_partial_tail_is_not_discarded) ... ok
+test_phase_jump_rejected (Drivers.tests.test_device_soak_verifier.DeviceSoakVerifierTests.test_phase_jump_rejected) ... ok
+test_riff_frame_length_and_nonfinite_rejected (Drivers.tests.test_device_soak_verifier.DeviceSoakVerifierTests.test_riff_frame_length_and_nonfinite_rejected) ... ok
+test_shared_capture_counts_preserve_logical_graph_and_strict_counter_gates (Drivers.tests.test_device_soak_verifier.DeviceSoakVerifierTests.test_shared_capture_counts_preserve_logical_graph_and_strict_counter_gates) ... ok
+test_signal_return_after_final_mute_rejected (Drivers.tests.test_device_soak_verifier.DeviceSoakVerifierTests.test_signal_return_after_final_mute_rejected) ... ok
+test_stereo_polarity_error_rejected (Drivers.tests.test_device_soak_verifier.DeviceSoakVerifierTests.test_stereo_polarity_error_rejected) ... ok
+test_wrong_bus_pair_assignment_rejected (Drivers.tests.test_device_soak_verifier.DeviceSoakVerifierTests.test_wrong_bus_pair_assignment_rejected) ... ok
+test_wrong_gain_rejected (Drivers.tests.test_device_soak_verifier.DeviceSoakVerifierTests.test_wrong_gain_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.701s
+
+OK

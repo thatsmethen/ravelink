@@ -81,5 +81,14 @@ class LifecycleHarnessTests(unittest.TestCase):
         with patch.object(subprocess, 'run', side_effect=subprocess.CalledProcessError(1, 'pkgutil')):
             with self.assertRaises(subprocess.CalledProcessError): harness.receipt('ci-lifecycle-a')
 
+    def test_service_already_absent_requires_specific_exit_and_diagnostic(self):
+        with tempfile.TemporaryDirectory() as folder, patch.object(module, 'OUT', Path(folder)):
+            harness = module.Acceptance();allowed = {1: 'No matching processes were found'}
+            harness.command('absent-service', [sys.executable, '-c', 'print("No matching processes were found"); raise SystemExit(1)'], allowed_failures=allowed)
+            with self.assertRaisesRegex(AssertionError, 'unexpected exit 1'):
+                harness.command('other-error', [sys.executable, '-c', 'print("permission denied"); raise SystemExit(1)'], allowed_failures=allowed)
+            with self.assertRaisesRegex(AssertionError, 'unexpected exit 124'):
+                harness.command('timeout', [sys.executable, '-c', 'print("No matching processes were found"); raise SystemExit(124)'], allowed_failures=allowed)
+
 
 if __name__ == '__main__': unittest.main()

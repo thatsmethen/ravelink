@@ -62,11 +62,23 @@ do not have this outer process boundary; hardware tests must use external limits
 
 ## Real-time graph
 
-The C layer allocates buffers before IO begins. Its callbacks contain no Swift
-object access, allocation, file IO, mutexes, or dispatch. Controls and telemetry
-use lock-free C11 atomics. Input capture uses one single-producer/single-consumer
-stereo FIFO for each output device clock. Duplex capture callbacks explicitly
-contribute silence to their output buffers.
+The C layer allocates buffers before IO begins and writes each page of ring,
+capture scratch, and render scratch storage on the control thread. Sinc kernels
+are fully initialized during configuration. This moves initial writable-page
+faults out of the callback; it does not lock memory or guarantee residency under
+later memory pressure. Its callbacks contain no Swift object access, allocation,
+file IO, mutexes, or dispatch. Controls and telemetry use lock-free C11 atomics.
+Identical canonical capture selectors share one native IOProc and one
+single-producer/single-consumer stereo FIFO for each output device clock. Each
+FIFO is read/resampled once, then its identical raw block is added to every
+referencing input group. Each group retains its own effects, meters, and sends.
+This avoids independent capture/FIFO start positions causing cancellation when
+several inputs mix the same source. Different channel offsets or application
+selectors retain distinct capture paths; partially overlapping selectors are not
+claimed to share sample alignment. Tone generators remain independent.
+`captureSourceCount` and `capturedFrames` describe unique native capture IOProcs,
+not visible inputs or expanded source references. Duplex capture callbacks
+explicitly contribute silence to their output buffers.
 
 Each source is converted to the destination rate, then sources belonging to one
 visible input are summed. Gain, one-pole high-pass, gate, and compressor operate
@@ -218,3 +230,9 @@ A recorded waveform is independent evidence only when that run actually succeeds
 Process-tap consent, app restarts, hardware hotplug, multi-device clock drift,
 long-duration load, all supported OS versions, and third-party effect rendering
 are not established by the synthetic tests or the silent physical-output run.
+
+The generated-buffer first-touch instrument in `research/evidence/realtime-first-touch.json`
+observed 568 minor faults on the first capture/render callback window and 8 on the
+second before page preparation; all three prepared runs observed zero in both
+windows. Output remained finite silence. These are host-specific fault-counter
+observations without HAL IO, not deadline or memory-pressure qualification.

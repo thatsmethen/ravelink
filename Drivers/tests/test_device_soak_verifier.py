@@ -15,6 +15,17 @@ verifier = importlib.util.module_from_spec(SPEC); SPEC.loader.exec_module(verifi
 class DeviceSoakVerifierTests(unittest.TestCase):
     rate = 8000
 
+    def test_shared_capture_counts_preserve_logical_graph_and_strict_counter_gates(self):
+        report = dict(visibleInputGroups=12, logicalCaptureSources=24, physicalCaptureSources=2,
+                      mixBuses=8, physicalOutputs=2, parentRoutes=96, expandedRoutes=192,
+                      droppedFrames=0, underrunFrames=0, oversizedBlocks=0,
+                      counterSamples=[dict(physicalCaptureSources=2)])
+        verifier.checked_engine(report)
+        for field, value in [('logicalCaptureSources', 2), ('physicalCaptureSources', 24),
+                             ('physicalCaptureSources', 1), ('droppedFrames', 1), ('underrunFrames', 1),
+                             ('oversizedBlocks', 1), ('counterSamples', [dict(physicalCaptureSources=1)])]:
+            with self.assertRaises(ValueError): verifier.checked_engine({**report, field: value})
+
     def capture(self, first_bus=0, change=None, duration=1.2):
         samples = array.array('f')
         for phase, seconds in enumerate((.5, duration, 1)):

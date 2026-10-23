@@ -58,6 +58,11 @@ int32_t rl_render_processor_error(RLRender *render);
 bool rl_render_set_sound_check(RLRender *render, uint32_t leader, RLSoundCheck *check);
 void rl_render_set_source(RLRender *render, uint32_t index, RLRing *ring,
                           double inputSampleRate, bool tone);
+// Configure only while stopped, before assigning a ring/tone to the alias.
+// An earlier configured non-alias root is read/resampled exactly once and its
+// identical raw block feeds every alias's independent group/effects/sends.
+// Reparenting, chains, cycles, and aliasing a source with its own aliases fail.
+bool rl_render_set_source_alias(RLRender *render, uint32_t source, uint32_t root);
 // Configure while callbacks are stopped. Leaders must be direct roots; invalid
 // indices, chains, and reparenting a leader with children are rejected.
 // The leader's controls and sends apply once to the sum of all group members.

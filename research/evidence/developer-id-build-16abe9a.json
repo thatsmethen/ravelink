@@ -1,0 +1,38 @@
+{
+  "recordedAtUTC": "2026-10-23T19:26:59.143294+00:00",
+  "sourceRevision": "16abe9aedb9cfcb6bce1c9886b901e71a80a830e",
+  "sourceStatus": "",
+  "sourceWorktree": "/Users/textual/.codex/worktrees/signed-build/ravelink",
+  "preservedBundle": "/Users/textual/projects/notify/ravelink/build/signed-16abe9a/RaveLink.app",
+  "buildLog": "build/developer-id-build-16abe9a.txt",
+  "buildIdentity": "Developer ID Application: Robert Beardsworth (GH8VLR4WRM)",
+  "verification": {
+    "exitCode": 0,
+    "output": "--prepared:/Users/textual/projects/notify/ravelink/build/signed-16abe9a/RaveLink.app/Contents/Helpers/RaveLinkPluginHost\n--validated:/Users/textual/projects/notify/ravelink/build/signed-16abe9a/RaveLink.app/Contents/Helpers/RaveLinkPluginHost\n--prepared:/Users/textual/projects/notify/ravelink/build/signed-16abe9a/RaveLink.app/Contents/MacOS/RaveLinkEngine\n--validated:/Users/textual/projects/notify/ravelink/build/signed-16abe9a/RaveLink.app/Contents/MacOS/RaveLinkEngine\nbuild/signed-16abe9a/RaveLink.app: valid on disk\nbuild/signed-16abe9a/RaveLink.app: satisfies its Designated Requirement\n"
+  },
+  "binaries": [
+    {
+      "path": "Contents/MacOS/RaveLink",
+      "sha256": "2fd6f40f5f0de476280eaa30bed3af817ca4a78cb2e6bfe47c2ef17fa155b773",
+      "signature": "Executable=/Users/textual/projects/notify/ravelink/build/signed-16abe9a/RaveLink.app/Contents/MacOS/RaveLink\nIdentifier=au.textual.ravelink\nFormat=app bundle with Mach-O thin (arm64)\nCodeDirectory v=20500 size=7551 flags=0x10000(runtime) hashes=225+7 location=embedded\nVersionPlatform=1\nVersionMin=983040\nVersionSDK=1704192\nHash type=sha256 size=32\nCandidateCDHash sha256=5386b02f9602db4467a5d4ee5c8124a5d8936ced\nCandidateCDHashFull sha256=5386b02f9602db4467a5d4ee5c8124a5d8936ced5caaa6208dfdf58fc169b5b8\nHash choices=sha256\nCMSDigest=5386b02f9602db4467a5d4ee5c8124a5d8936ced5caaa6208dfdf58fc169b5b8\nCMSDigestType=2\nExecutable Segment base=0\nExecutable Segment limit=1228800\nExecutable Segment flags=0x1\nPage size=16384\nCDHash=5386b02f9602db4467a5d4ee5c8124a5d8936ced\nSignature size=8986\nAuthority=Developer ID Application: Robert Beardsworth (GH8VLR4WRM)\nAuthority=Developer ID Certification Authority\nAuthority=Apple Root CA\nTimestamp=24 Oct 2026 at 6:16:09\u202fam\nInfo.plist entries=12\nTeamIdentifier=GH8VLR4WRM\nRuntime Version=26.1.0\nSealed Resources version=2 rules=13 files=4\nInternal requirements count=1 size=180\nTotal signatures=1\nChosen signature=1\n",
+      "entitlements": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"https://www.apple.com/DTDs/PropertyList-1.0.dtd\"><plist version=\"1.0\"><dict><key>com.apple.security.device.audio-input</key><true/></dict></plist>\n"
+    },
+    {
+      "path": "Contents/MacOS/RaveLinkEngine",
+      "sha256": "6c4897235ab2341ab8bdd8ab1645ed1ec5287e779a2ab555e05d1f163f0e1c73",
+      "signature": "Executable=/Users/textual/projects/notify/ravelink/build/signed-16abe9a/RaveLink.app/Contents/MacOS/RaveLinkEngine\nIdentifier=RaveLinkEngine\nFormat=Mach-O thin (arm64)\nCodeDirectory v=20500 size=3706 flags=0x10000(runtime) hashes=105+7 location=embedded\nVersionPlatform=1\nVersionMin=983040\nVersionSDK=1704192\nHash type=sha256 size=32\nCandidateCDHash sha256=0bbbf44b12b64d4e2c48554a1124bc73ee27c039\nCandidateCDHashFull sha256=0bbbf44b12b64d4e2c48554a1124bc73ee27c03917a427b39bec7ebc7c1f780f\nHash choices=sha256\nCMSDigest=0bbbf44b12b64d4e2c48554a1124bc73ee27c03917a427b39bec7ebc7c1f780f\nCMSDigestType=2\nExecutable Segment base=0\nExecutable Segment limit=720896\nExecutable Segment flags=0x1\nPage size=16384\nCDHash=0bbbf44b12b64d4e2c48554a1124bc73ee27c039\nSignature size=8987\nAuthority=Developer ID Application: Robert Beardsworth (GH8VLR4WRM)\nAuthority=Developer ID Certification Authority\nAuthority=Apple Root CA\nTimestamp=24 Oct 2026 at 6:16:08\u202fam\nInfo.plist=not bound\nTeamIdentifier=GH8VLR4WRM\nRuntime Version=26.1.0\nSealed Resources=none\nInternal requirements count=1 size=176\nTotal signatures=1\nChosen signature=1\n",
+      "entitlements": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"https://www.apple.com/DTDs/PropertyList-1.0.dtd\"><plist version=\"1.0\"><dict><key>com.apple.security.cs.disable-library-validation</key><true/><key>com.apple.security.device.audio-input</key><true/></dict></plist>\n"
+    },
+    {
+      "path": "Contents/Helpers/RaveLinkPluginHost",
+      "sha256": "c72136b8724224d3062bc8ccda7f3e022694e1fe7d68365e92a4638f471b22eb",
+      "signature": "Executable=/Users/textual/projects/notify/ravelink/build/signed-16abe9a/RaveLink.app/Contents/Helpers/RaveLinkPluginHost\nIdentifier=RaveLinkPluginHost\nFormat=Mach-O thin (arm64)\nCodeDirectory v=20500 size=798 flags=0x10000(runtime) hashes=14+7 location=embedded\nVersionPlatform=1\nVersionMin=983040\nVersionSDK=1704192\nHash type=sha256 size=32\nCandidateCDHash sha256=c7de84bff2469592763260e9d2810eaef3b14f44\nCandidateCDHashFull sha256=c7de84bff2469592763260e9d2810eaef3b14f441d36fadda336a85423a71cd3\nHash choices=sha256\nCMSDigest=c7de84bff2469592763260e9d2810eaef3b14f441d36fadda336a85423a71cd3\nCMSDigestType=2\nExecutable Segment base=0\nExecutable Segment limit=81920\nExecutable Segment flags=0x1\nPage size=16384\nCDHash=c7de84bff2469592763260e9d2810eaef3b14f44\nSignature size=8986\nAuthority=Developer ID Application: Robert Beardsworth (GH8VLR4WRM)\nAuthority=Developer ID Certification Authority\nAuthority=Apple Root CA\nTimestamp=24 Oct 2026 at 6:16:08\u202fam\nInfo.plist=not bound\nTeamIdentifier=GH8VLR4WRM\nRuntime Version=26.1.0\nSealed Resources=none\nInternal requirements count=1 size=180\nTotal signatures=1\nChosen signature=1\n",
+      "entitlements": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"https://www.apple.com/DTDs/PropertyList-1.0.dtd\"><plist version=\"1.0\"><dict><key>com.apple.security.cs.disable-library-validation</key><true/></dict></plist>\n"
+    }
+  ],
+  "limitations": [
+    "Signature verification only; no notarization submitted or verified.",
+    "Build is arm64 only on macOS 27 beta; no Intel or clean-user installation acceptance.",
+    "This fixed revision predates the shared-capture coherence and old-SDK fixes."
+  ]
+}

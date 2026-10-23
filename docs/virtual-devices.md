@@ -145,6 +145,21 @@ the start of the same GitHub run. Original command logs and state hashes survive
 failures. Local instrument controls and archive inspection do not establish that
 these Installer acceptance cases passed; retain the actual CI report separately.
 
+The first actual Installer run, `40008060874` at `16abe9a`, passed initial build17
+installation, build17→18 replacement with exact payload/receipt checks, changed
+2→4 channel discovery with a stable UID, 44.1→48kHz format changes, and same-build18
+repair of deliberately damaged bytes. It then **failed** its downgrade evidence
+gate: Installer returned a preinstall script error, but its `-dumplog` output
+omitted the script's specific refusal. Later cases were not reached. A separate
+cleanup reload also failed because `coreaudiod` had already exited after fixture
+removal. The frozen report and original logs remain in
+`research/evidence/installed-hal-40008060874/`. The corrected observer captures
+only newly appended Installer system-log bytes and requires the exact refusal;
+cleanup accepts only the specific already-absent process response and verifies
+fixture/receipt/CoreAudio absence. Full lifecycle acceptance remains pending.
+ASan and UBSan controls for the independent probe callback passed in this run;
+that instrumentation did not cover the installed driver or full audio engine.
+
 Still required before calling the driver release production-ready:
 
 1. Install the signed package on a clean Mac, restart, and verify device discovery/UID persistence and removal.

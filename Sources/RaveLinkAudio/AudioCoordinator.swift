@@ -19,6 +19,8 @@ public struct AudioApplicationInfo: Identifiable, Codable, Equatable, Sendable {
     public let name: String
 }
 public struct AudioDiagnostics: Codable, Equatable, Sendable {
+    /// Unique native capture IOProcs; repeated logical inputs share capture.
+    public var captureSourceCount: UInt32 = 0
     public var capturedFrames: UInt64 = 0
     public var renderedFrames: UInt64 = 0
     public var droppedFrames: UInt64 = 0
@@ -27,9 +29,10 @@ public struct AudioDiagnostics: Codable, Equatable, Sendable {
     /// AU rack alignment only; excludes device/FIFO/driver latency.
     public var effectAlignmentLatencySeconds: Double = 0
     public init() {}
-    private enum CodingKeys: String, CodingKey { case capturedFrames, renderedFrames, droppedFrames, underrunFrames, oversizedBlocks, effectAlignmentLatencySeconds }
+    private enum CodingKeys: String, CodingKey { case captureSourceCount, capturedFrames, renderedFrames, droppedFrames, underrunFrames, oversizedBlocks, effectAlignmentLatencySeconds }
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
+        captureSourceCount = try values.decodeIfPresent(UInt32.self, forKey: .captureSourceCount) ?? 0
         capturedFrames = try values.decode(UInt64.self, forKey: .capturedFrames)
         renderedFrames = try values.decode(UInt64.self, forKey: .renderedFrames)
         droppedFrames = try values.decode(UInt64.self, forKey: .droppedFrames)
@@ -362,8 +365,17 @@ private final class AudioGraph: @unchecked Sendable {
         // exactly the memberships used for inclusion and catch-all exclusion.
         let processes = (usesSystemRemainder || !dedicated.isEmpty) ? Hardware.processes() : []
         applicationProcesses = applicationMemberships(bundleIDs: usesSystemRemainder ? dedicated.union(["au.textual.ravelink"]) : dedicated, processes: processes, excludingPID: getpid())
+        let capturePlan = CaptureSourcePlan(sources: session.channels.map(\.source))
         for (index, channel) in session.channels.enumerated() {
             try cancellation.check()
+            if capturePlan.roots[index] != index {
+                for output in outputs {
+                    guard rl_render_set_source_alias(output.context, UInt32(index), UInt32(capturePlan.roots[index])) else {
+                        throw AudioRoutingError.configuration("A shared input has an invalid capture source. Start audio again to rebuild the route.")
+                    }
+                }
+                continue
+            }
             if channel.source.kind == .tone {
                 for output in outputs { rl_render_set_source(output.context, UInt32(index), nil, output.rate, true) }
                 continue
@@ -389,10 +401,7 @@ private final class AudioGraph: @unchecked Sendable {
                         selection = tapProcessSelection(bundleID: nil, dedicated: dedicated, processes: processes, ownPID: getpid(), ownObjectID: own)
                         description = CATapDescription(stereoGlobalTapButExcludeProcesses: selection.processIDs)
                     }
-                    if #available(macOS 26.0, *) {
-                        description.bundleIDs = selection.bundleIDs
-                        description.isProcessRestoreEnabled = true
-                    }
+                    configureNativeTapRestoration(description, bundleIDs: selection.bundleIDs)
                     description.name = "RaveLink — \(channel.name)"
                     description.isPrivate = true
                     // Preparation must never suppress another app. Playback is
@@ -524,10 +533,7 @@ private final class AudioGraph: @unchecked Sendable {
             guard let description = capture.tapDescription else { return }
             let selection = tapProcessSelection(bundleID: capture.tapApplicationBundleID, dedicated: dedicated, processes: processes, ownPID: getpid(), ownObjectID: own)
             description.processes = selection.processIDs
-            if #available(macOS 26.0, *) {
-                description.bundleIDs = selection.bundleIDs
-                description.isProcessRestoreEnabled = true
-            }
+            configureNativeTapRestoration(description, bundleIDs: selection.bundleIDs)
             var reference = Unmanaged.passUnretained(description)
             var address = Hardware.address(kAudioTapPropertyDescription)
             try checked(AudioObjectSetPropertyData(capture.tap, &address, 0, nil, UInt32(MemoryLayout.size(ofValue: reference)), &reference), "Refresh application capture and exclusions")
@@ -674,7 +680,9 @@ private final class AudioGraph: @unchecked Sendable {
                                         self.starting = false; self.pendingStart = nil; self.errorMessage = error.localizedDescription
                                         return
                                     }
-                                    self.graph = candidate; self.routing = expanded; self.errorMessage = nil; self.diagnostics = .init(); self.starting = false; self.pendingStart = nil; self.running = true
+                                    self.graph = candidate; self.routing = expanded; self.errorMessage = nil; self.diagnostics = .init()
+                                    self.diagnostics.captureSourceCount = UInt32(candidate.captures.count)
+                                    self.starting = false; self.pendingStart = nil; self.running = true
                                     self.soundCheck = candidate.outputs.first?.soundCheck?.snapshot()
                                 }
                             } catch {
@@ -762,6 +770,7 @@ private final class AudioGraph: @unchecked Sendable {
             stop(); errorMessage = failure; return
         }
         var channels: [UUID: Float] = [:], buses: [UUID: Float] = [:], stats = AudioDiagnostics()
+        stats.captureSourceCount = UInt32(graph.captures.count)
         for capture in graph.captures {
             _ = rl_capture_take_peak(capture.context)
             stats.capturedFrames += rl_capture_frames(capture.context)

@@ -1,0 +1,129 @@
+[0/1] Planning build
+Building for debugging...
+[0/13] Write sources
+[2/13] Write swift-version--1AB21518FC5DEDBE.txt
+[4/14] Compiling RaveLinkAudio AudioCoordinator.swift
+[5/14] Compiling RaveLinkAudio NativeTapRestoration.swift
+[6/14] Emitting module RaveLinkAudio
+[7/41] Emitting module RaveLinkEngine
+[8/41] Compiling RaveLinkEngine EngineMain.swift
+[8/41] Write Objects.LinkFileList
+[10/41] Compiling RaveLinkAudioTests PluginCatalogTests.swift
+[10/42] Linking RaveLinkEngine
+[11/42] Applying RaveLinkEngine
+[13/42] Compiling RaveLinkAudioTests InstalledAudioUnitAcceptanceTests.swift
+[14/42] Compiling RaveLinkAudioTests FeedbackValidationTests.swift
+[15/42] Compiling RaveLinkAudioTests ApplicationMembershipTests.swift
+[16/42] Compiling RaveLinkAudioTests AudioAllocationTests.swift
+[17/42] Compiling RaveLinkAudioTests SoundCheckRoutingTests.swift
+[18/42] Compiling RaveLinkAudioTests SourceAliasTests.swift
+[19/42] Compiling RaveLinkAudioTests ThirdPartyAudioUnitTests.swift
+[20/42] Compiling RaveLinkAudioTests InstalledDeviceSoakTests.swift
+[21/42] Compiling RaveLinkAudioTests LiveAudioUnitTests.swift
+[22/42] Compiling RaveLinkAudioTests RealtimeTests.swift
+[23/42] Compiling RaveLinkAudioTests RenderProgressMonitorTests.swift
+[24/42] Compiling RaveLinkAudioTests InstalledSoundCheckTests.swift
+[25/42] Compiling RaveLinkAudioTests PluginRenderTests.swift
+[26/42] Compiling RaveLinkAudioTests InstalledMatrixTests.swift
+[27/42] Compiling RaveLinkAudioTests AudioLifecycleTests.swift
+[28/42] Compiling RaveLinkAudioTests EngineClientTests.swift
+[29/42] Emitting module RaveLinkAudioTests
+[30/42] Compiling RaveLinkApp StudioView.swift
+[31/42] Compiling RaveLinkApp EngineDiagnosticsView.swift
+[32/42] Compiling RaveLinkApp SoundCheckView.swift
+[33/42] Compiling RaveLinkApp StudioModel.swift
+[34/42] Compiling RaveLinkApp SourceSheets.swift
+[35/42] Compiling RaveLinkApp RaveLinkApp.swift
+[36/42] Compiling RaveLinkApp AudioUnitRackView.swift
+[37/42] Emitting module RaveLinkApp
+[37/42] Write Objects.LinkFileList
+[38/42] Linking RaveLink
+[39/42] Applying RaveLink
+[41/44] Compiling RaveLinkAppTests SoundCheckIsolationTests.swift
+[42/44] Emitting module RaveLinkAppTests
+[42/44] Write Objects.LinkFileList
+[43/44] Linking RaveLinkPackageTests
+Build complete! (6.03s)
+􀟈  Test run started.
+􀄵  Testing Library Version: 1400
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite TapRetargetTransactionTests started.
+􀟈  Suite SoundCheckRoutingTests started.
+􀟈  Suite AudioCoordinatorTests started.
+􀟈  Suite AudioLifecycleTests started.
+􀟈  Suite DSPRecoveryTests started.
+􀟈  Suite NativeTapRestorationTests started.
+􀟈  Suite SourceAliasTests started.
+􀟈  Suite GroupedRealtimeTests started.
+􀟈  Suite RealtimeTests started.
+􀟈  Test failedExclusionUpdateNeverRestartsAnyCapture() started.
+􀟈  Test dryGroupIsRecordedBeforeEffectsAndPlaybackReplacesLiveInput() started.
+􀟈  Test allExclusionsAreUpdatedBeforeAnyCaptureRestarts() started.
+􀟈  Test finiteOverflowSpikeDoesNotPoisonFollowingAudio() started.
+􀟈  Test cancellationAfterDescriptionChangePreventsLateRestart() started.
+􀟈  Test suspensionCannotBeOverriddenByLiveControlsAndDoesNotFreezeProcessing() started.
+􀟈  Test optionalPublicSettersAreCheckedWithoutCreatingAnAudioTap() started.
+􀟈  Test testInvalidStartFailsWithActionableErrorAndStaysStopped() started.
+􀟈  Test consumerResetDiscardsOldAudioAndReprimesWithFreshCapture() started.
+􀟈  Test compressorProcessesSummedWaveformOnce() started.
+􀟈  Test toneGroupReceivesGainExactlyOnce() started.
+􀟈  Test nativeStreamValidationRejectsChangedStridesFlagsAndRate() started.
+􀟈  Test diagnosticsRetainLegacyDecodingAndReportPhysicalCaptureCount() started.
+􀟈  Test capturePlanSharesCanonicalSelectorsWithoutMergingDifferentPairsOrApps() started.
+􀟈  Test protocolRejectsExtraDestinationsAndInvalidClipTelemetry() started.
+􀟈  Test captureSilencesItsDuplexOutputContribution() started.
+􀟈  Test testNonFiniteInputIsContainedAndInvalidConfigurationRejected() started.
+􀟈  Test defaultGroupsRemainIndependentAndInvalidGraphsAreRejected() started.
+􀟈  Test testBandLimitedDownsamplingRejectsAliasedHighFrequency() started.
+􀟈  Test resampledSharedCaptureIsIdenticalAcrossIndependentGroups() started.
+􀟈  Test malformedControlUpdatesPreservePriorValidSettings() started.
+􀟈  Test testRingIsBoundedAndReportsOverflowAndUnderrun() started.
+􀟈  Test testIndependentBusGainPanMuteAndOffsets() started.
+􀟈  Test testDSPGainHighPassGateAndCompression() started.
+􀟈  Test testGainChangesRampAndMuteReachesSilence() started.
+􀟈  Test sumsGroupOnceAndUsesOnlyParentSendsForIndependentBuses() started.
+􀟈  Test aliasGraphRejectsChainsCyclesReparentingAndConfiguredAliases() started.
+􀟈  Test sharedRawAudioKeepsGroupSumEffectsMuteAndSendsIndependent() started.
+􀟈  Test testCaptureMonoDuplicationAndMeter() started.
+􁁛  Test failedExclusionUpdateNeverRestartsAnyCapture() passed after 0.001 seconds.
+􁁛  Test allExclusionsAreUpdatedBeforeAnyCaptureRestarts() passed after 0.001 seconds.
+􁁛  Test cancellationAfterDescriptionChangePreventsLateRestart() passed after 0.001 seconds.
+􁁛  Test captureSilencesItsDuplexOutputContribution() passed after 0.002 seconds.
+􁁛  Test diagnosticsRetainLegacyDecodingAndReportPhysicalCaptureCount() passed after 0.002 seconds.
+􁁛  Test capturePlanSharesCanonicalSelectorsWithoutMergingDifferentPairsOrApps() passed after 0.002 seconds.
+􁁛  Test malformedControlUpdatesPreservePriorValidSettings() passed after 0.002 seconds.
+􁁛  Test nativeStreamValidationRejectsChangedStridesFlagsAndRate() passed after 0.002 seconds.
+􁁛  Test testNonFiniteInputIsContainedAndInvalidConfigurationRejected() passed after 0.002 seconds.
+􁁛  Test optionalPublicSettersAreCheckedWithoutCreatingAnAudioTap() passed after 0.002 seconds.
+􁁛  Test aliasGraphRejectsChainsCyclesReparentingAndConfiguredAliases() passed after 0.002 seconds.
+􁁛  Test consumerResetDiscardsOldAudioAndReprimesWithFreshCapture() passed after 0.002 seconds.
+􁁛  Test testRingIsBoundedAndReportsOverflowAndUnderrun() passed after 0.002 seconds.
+􁁛  Test testCaptureMonoDuplicationAndMeter() passed after 0.002 seconds.
+􁁛  Suite TapRetargetTransactionTests passed after 0.003 seconds.
+􁁛  Suite NativeTapRestorationTests passed after 0.003 seconds.
+􁁛  Test toneGroupReceivesGainExactlyOnce() passed after 0.002 seconds.
+􁁛  Test finiteOverflowSpikeDoesNotPoisonFollowingAudio() passed after 0.003 seconds.
+􁁛  Suite DSPRecoveryTests passed after 0.003 seconds.
+􁁛  Test testGainChangesRampAndMuteReachesSilence() passed after 0.003 seconds.
+􁁛  Test protocolRejectsExtraDestinationsAndInvalidClipTelemetry() passed after 0.004 seconds.
+􁁛  Test testInvalidStartFailsWithActionableErrorAndStaysStopped() passed after 0.004 seconds.
+􀙟  Test testBlackHoleLoopbackAndLiveBusControls() skipped.
+􁁛  Test suspensionCannotBeOverriddenByLiveControlsAndDoesNotFreezeProcessing() passed after 0.004 seconds.
+􀙟  Test testSilentPhysicalOutputLifecycle() skipped.
+􁁛  Suite AudioCoordinatorTests passed after 0.004 seconds.
+􁁛  Suite AudioLifecycleTests passed after 0.004 seconds.
+􁁛  Test testIndependentBusGainPanMuteAndOffsets() passed after 0.004 seconds.
+􁁛  Test testDSPGainHighPassGateAndCompression() passed after 0.006 seconds.
+􁁛  Test dryGroupIsRecordedBeforeEffectsAndPlaybackReplacesLiveInput() passed after 0.018 seconds.
+􁁛  Suite SoundCheckRoutingTests passed after 0.018 seconds.
+􁁛  Test sharedRawAudioKeepsGroupSumEffectsMuteAndSendsIndependent() passed after 0.022 seconds.
+􁁛  Test sumsGroupOnceAndUsesOnlyParentSendsForIndependentBuses() passed after 0.023 seconds.
+􁁛  Test defaultGroupsRemainIndependentAndInvalidGraphsAreRejected() passed after 0.028 seconds.
+􁁛  Test compressorProcessesSummedWaveformOnce() passed after 0.031 seconds.
+􁁛  Suite GroupedRealtimeTests passed after 0.031 seconds.
+CAPTURE_ALIAS rawDifference=0.0 cancellationResidual=7.450435e-09
+􁁛  Test resampledSharedCaptureIsIdenticalAcrossIndependentGroups() passed after 0.059 seconds.
+􁁛  Suite SourceAliasTests passed after 0.059 seconds.
+􁁛  Test testBandLimitedDownsamplingRejectsAliasedHighFrequency() passed after 0.080 seconds.
+􁁛  Suite RealtimeTests passed after 0.080 seconds.
+􁁛  Test run with 31 tests in 9 suites passed after 0.081 seconds.

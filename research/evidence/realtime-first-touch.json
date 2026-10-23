@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "observedAtUTC": "2026-10-23T19:13:23.932571+00:00",
+  "baseCommit": "16abe9aedb9cfcb6bce1c9886b901e71a80a830e",
+  "compiler": "xcrun clang -O2 -std=c11; CoreAudio linked",
+  "probe": "realtime-first-touch-probe.c",
+  "counter": "getrusage(RUSAGE_SELF).ru_minflt",
+  "host": {
+    "version": "27.0",
+    "build": "26A5406e",
+    "architecture": "arm64"
+  },
+  "runs": [
+    {
+      "label": "before",
+      "sourceSHA256": "5a0e065b59a066d96afd8f87922301f4a5afcb103643fa55066db2c546c5d1a4",
+      "runs": [
+        {
+          "preparationMinorFaults": 10,
+          "firstCallbackMinorFaults": 568,
+          "secondCallbackMinorFaults": 8,
+          "nonzeroOrNonfiniteSilentOutputSamples": 0
+        },
+        {
+          "preparationMinorFaults": 10,
+          "firstCallbackMinorFaults": 568,
+          "secondCallbackMinorFaults": 8,
+          "nonzeroOrNonfiniteSilentOutputSamples": 0
+        },
+        {
+          "preparationMinorFaults": 10,
+          "firstCallbackMinorFaults": 568,
+          "secondCallbackMinorFaults": 8,
+          "nonzeroOrNonfiniteSilentOutputSamples": 0
+        }
+      ]
+    },
+    {
+      "label": "after",
+      "sourceSHA256": "6457e9b1421fad609f4abba2e2d28f9e5284d9fa9cf3a2ec1aa974d84b792c15",
+      "runs": [
+        {
+          "preparationMinorFaults": 602,
+          "firstCallbackMinorFaults": 0,
+          "secondCallbackMinorFaults": 0,
+          "nonzeroOrNonfiniteSilentOutputSamples": 0
+        },
+        {
+          "preparationMinorFaults": 602,
+          "firstCallbackMinorFaults": 0,
+          "secondCallbackMinorFaults": 0,
+          "nonzeroOrNonfiniteSilentOutputSamples": 0
+        },
+        {
+          "preparationMinorFaults": 603,
+          "firstCallbackMinorFaults": 0,
+          "secondCallbackMinorFaults": 0,
+          "nonzeroOrNonfiniteSilentOutputSamples": 0
+        }
+      ]
+    }
+  ],
+  "boundary": "Generated buffers and direct C callback invocation only; no HAL/hardware IO. Minor-fault counts are observations on this host, not a cross-machine pass threshold or guarantee of later page residency. The after source includes the independently developed raw-alias path; this silent fixture configures no aliases."
+}

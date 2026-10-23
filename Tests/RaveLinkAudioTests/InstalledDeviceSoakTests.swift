@@ -45,6 +45,8 @@ import RaveLinkAudio
         try #require(audio.running, Comment(rawValue: audio.errorMessage ?? "Device graph did not start"))
         try await Task.sleep(for: .seconds(3)) // Explicitly excluded startup/priming interval.
         let baseline = audio.diagnostics
+        try #require(baseline.captureSourceCount == 2,
+                     "The 24 logical inputs must share exactly two unique physical capture contexts")
         var resourceStart = rusage(); getrusage(RUSAGE_SELF, &resourceStart)
         let started = ProcessInfo.processInfo.systemUptime
         try Data("go\n".utf8).write(to: go, options: .atomic)
@@ -55,7 +57,8 @@ import RaveLinkAudio
             let stats = audio.diagnostics
             samples.append(["uptime": ProcessInfo.processInfo.systemUptime, "capturedFrames": stats.capturedFrames,
                             "renderedFrames": stats.renderedFrames, "droppedFrames": stats.droppedFrames,
-                            "underrunFrames": stats.underrunFrames, "oversizedBlocks": stats.oversizedBlocks])
+                            "underrunFrames": stats.underrunFrames, "oversizedBlocks": stats.oversizedBlocks,
+                            "physicalCaptureSources": stats.captureSourceCount])
         }
         let ended = ProcessInfo.processInfo.systemUptime, stats = audio.diagnostics
         var resourceEnd = rusage(); getrusage(RUSAGE_SELF, &resourceEnd)
@@ -68,14 +71,15 @@ import RaveLinkAudio
         let dropped = stats.droppedFrames - baseline.droppedFrames
         let underruns = stats.underrunFrames - baseline.underrunFrames
         let oversized = stats.oversizedBlocks - baseline.oversizedBlocks
-        let expectedCapture = devices[0].sampleRate * Double(groups * 2) * elapsed
+        let expectedCapture = devices[0].sampleRate * Double(baseline.captureSourceCount) * elapsed
         let expectedRender = devices.dropFirst().reduce(0) { $0 + $1.sampleRate } * elapsed
         for i in session.buses.indices { session.buses[i].muted = true }
         try audio.update(session: session)
         try await Task.sleep(for: .seconds(2))
         let evidence: [String: Any] = [
             "evidence": "Native device input routing on the named installed virtual devices; host-specific measured envelope",
-            "visibleInputGroups": groups, "captureSources": groups * 2, "mixBuses": mixes, "physicalOutputs": outputUIDs.count,
+            "visibleInputGroups": groups, "logicalCaptureSources": groups * 2,
+            "physicalCaptureSources": stats.captureSourceCount, "mixBuses": mixes, "physicalOutputs": outputUIDs.count,
             "parentRoutes": groups * mixes, "expandedRoutes": groups * 2 * mixes,
             "warmupSeconds": 3, "measuredSeconds": elapsed, "captureFrames": captured, "renderFrames": rendered,
             "droppedFrames": dropped, "underrunFrames": underruns, "oversizedBlocks": oversized,
@@ -88,6 +92,7 @@ import RaveLinkAudio
         ]
         try JSONSerialization.data(withJSONObject: evidence, options: [.prettyPrinted, .sortedKeys]).write(to: report, options: .atomic)
         #expect(elapsed >= 30 && elapsed < 35)
+        #expect(stats.captureSourceCount == 2)
         #expect(Double(captured) >= expectedCapture * 0.97 && Double(captured) <= expectedCapture * 1.03)
         #expect(Double(rendered) >= expectedRender * 0.97 && Double(rendered) <= expectedRender * 1.03)
         #expect(dropped == 0 && underruns == 0 && oversized == 0)

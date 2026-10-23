@@ -1,6 +1,7 @@
 import Testing
 @testable import RaveLinkAudio
 import Foundation
+import CoreAudio
 
 private func process(_ id: UInt32, _ bundle: String, _ pid: Int32, owner: String? = nil) -> AudioProcessIdentity {
     .init(id: id, bundle: bundle, pid: pid, applicationBundleID: owner)
@@ -64,5 +65,21 @@ private func process(_ id: UInt32, _ bundle: String, _ pid: Int32, owner: String
         #expect(owner.bundleID == "com.browser")
         let unresolved = ApplicationIdentityResolver.resolve(executable: URL(fileURLWithPath: "/usr/libexec/shared-service"), fallback: .init(bundleID: "shared.service", name: "Shared")) { _ in nil }
         #expect(unresolved.bundleID == "shared.service")
+    }
+}
+
+@Suite struct NativeTapRestorationTests {
+    @Test func optionalPublicSettersAreCheckedWithoutCreatingAnAudioTap() {
+        // Constructing this value object does not create a tap or request consent.
+        let description = CATapDescription(stereoMixdownOfProcesses: [123])
+        let applied = configureNativeTapRestoration(description, bundleIDs: ["com.example.selected"])
+        if #available(macOS 26.0, *) {
+            if description.responds(to: NSSelectorFromString("setBundleIDs:")) && description.responds(to: NSSelectorFromString("setProcessRestoreEnabled:")) {
+                #expect(applied)
+                #expect(description.value(forKey: "bundleIDs") as? [String] == ["com.example.selected"])
+                #expect(description.value(forKey: "processRestoreEnabled") as? Bool == true)
+            } else { #expect(!applied) }
+        } else { #expect(!applied) }
+        #expect(description.processes == [123])
     }
 }
