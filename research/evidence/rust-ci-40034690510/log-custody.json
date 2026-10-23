@@ -1,0 +1,7 @@
+{
+  "source_job_id": 120691164167,
+  "downloaded_raw_sha256": "5ab0d2cb475ff15bf92d6ce2c9fa267220558da8f4ae09bf569f8fae016b881a",
+  "raw_bytes": 26094,
+  "archive": "windows-original.log.gz",
+  "windows.log": "Git text view may normalize CRLF to LF; gzip preserves downloaded bytes"
+}

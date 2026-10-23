@@ -6,9 +6,13 @@
 //! A command deadline cancels late output; it cannot kill a stuck OS call. A
 //! supervising process is still required for hard recovery from driver hangs.
 
+mod control_bank;
+use control_bank::ControlBank;
+
 use cpal::traits::{DeviceTrait, HostTrait, StreamTrait};
 use ravelink_core::{
-    CompiledMixer, InputKind, MeterReading, ResourceBudget, Session, StereoOutput, Uuid,
+    CompiledMixer, InputKind, MeterReading, PreparedControls, ResourceBudget, Session,
+    StereoOutput, Uuid,
 };
 use std::{
     fmt,
@@ -54,6 +58,7 @@ pub enum AudioError {
         operation: &'static str,
     },
     AlreadyRunning,
+    NotRunning,
     InvalidSession(String),
     InvalidOutputId(String),
     DeviceUnavailable(OutputId),
@@ -73,7 +78,9 @@ impl fmt::Display for AudioError {
         match self {
             Self::UnsupportedPlatform => f.write_str("Audio is supported on macOS/CoreAudio and Windows/WASAPI."),
             Self::RuntimeUnavailable => f.write_str("The audio control thread is unavailable. Restart the audio runtime."),
+            Self::Timeout { operation: "device discovery" } => f.write_str("Audio device discovery exceeded its deadline. The device list was not refreshed; existing playback was not changed."),
             Self::Timeout { operation } => write!(f, "Audio {operation} exceeded its deadline. Output was cancelled; the device may be unresponsive."),
+            Self::NotRunning => f.write_str("Start audio before updating live controls."),
             Self::AlreadyRunning => f.write_str("Stop audio before starting a different session or output."),
             Self::InvalidSession(reason) => write!(f, "Cannot start this mix: {reason}"),
             Self::InvalidOutputId(id) => write!(f, "The selected output identity is invalid for this platform: {id}"),
@@ -144,6 +151,7 @@ pub struct AudioSnapshot {
     pub configuration: Option<RunningConfiguration>,
     pub rendered_frames: u64,
     pub callback_count: u64,
+    pub applied_control_version: u64,
     pub input_meters: Vec<MeterReading>,
     pub bus_meters: Vec<MeterReading>,
     pub fault: AudioFault,
@@ -197,6 +205,7 @@ struct Telemetry {
     fault: AtomicU32,
     frames: AtomicU64,
     callbacks: AtomicU64,
+    applied_control_version: AtomicU64,
     inputs: Vec<AtomicMeter>,
     buses: Vec<AtomicMeter>,
 }
@@ -206,6 +215,7 @@ impl Telemetry {
             fault: AtomicU32::new(0),
             frames: AtomicU64::new(0),
             callbacks: AtomicU64::new(0),
+            applied_control_version: AtomicU64::new(0),
             inputs: session
                 .inputs
                 .iter()
@@ -255,6 +265,12 @@ enum Command {
         wanted: Arc<AtomicBool>,
         reply: Reply<RunningConfiguration>,
     },
+    Update {
+        session: Session,
+        epoch: u64,
+        wanted: Arc<AtomicBool>,
+        reply: Reply<u64>,
+    },
     Stop(Reply<()>),
     Shutdown,
 }
@@ -264,6 +280,25 @@ enum Command {
 pub struct AudioRuntime {
     commands: mpsc::SyncSender<Command>,
     shared: Arc<Shared>,
+}
+
+/// Cancellation for one start request, including time spent in a UI queue.
+/// Create a fresh token for each start. Cancellation is permanent and also
+/// silences future callbacks if that start has already become active.
+#[derive(Clone)]
+pub struct StartCancellation(Arc<AtomicBool>);
+impl Default for StartCancellation {
+    fn default() -> Self {
+        Self(Arc::new(AtomicBool::new(true)))
+    }
+}
+impl StartCancellation {
+    pub fn cancel(&self) {
+        self.0.store(false, Ordering::Release);
+    }
+    pub fn is_cancelled(&self) -> bool {
+        !self.0.load(Ordering::Acquire)
+    }
 }
 impl AudioRuntime {
     pub fn new() -> Result<Self, AudioError> {
@@ -294,8 +329,20 @@ impl AudioRuntime {
         bus_id: Uuid,
         output_id: OutputId,
     ) -> Result<RunningConfiguration, AudioError> {
+        self.start_cancellable(session, bus_id, output_id, StartCancellation::default())
+    }
+    pub fn start_cancellable(
+        &self,
+        session: Session,
+        bus_id: Uuid,
+        output_id: OutputId,
+        cancellation: StartCancellation,
+    ) -> Result<RunningConfiguration, AudioError> {
+        if cancellation.is_cancelled() {
+            return Err(AudioError::Cancelled);
+        }
         validate_session(&session, bus_id)?;
-        let wanted = Arc::new(AtomicBool::new(true));
+        let wanted = cancellation.0;
         let (tx, rx) = mpsc::sync_channel(1);
         self.send(Command::Start {
             session,
@@ -310,6 +357,39 @@ impl AudioRuntime {
             wanted.store(false, Ordering::Release);
         }
         result
+    }
+    /// Publish gain/pan/link/mute/solo changes for the current graph. Returns a
+    /// bank version; `snapshot().applied_control_version` acknowledges callback
+    /// application. A timeout cancels output rather than applying a queued edit
+    /// later. Sources, route identities/order, DSP and sample rate must match.
+    pub fn update_controls(&self, session: Session) -> Result<u64, AudioError> {
+        let wanted = Arc::new(AtomicBool::new(true));
+        let (tx, rx) = mpsc::sync_channel(1);
+        self.send(Command::Update {
+            session,
+            epoch: self.shared.epoch.load(Ordering::Acquire),
+            wanted: wanted.clone(),
+            reply: tx,
+        })?;
+        let result = receive(rx, "control update");
+        if result.is_err() {
+            wanted.store(false, Ordering::Release);
+        }
+        if matches!(
+            result,
+            Err(AudioError::Timeout { .. } | AudioError::RuntimeUnavailable)
+        ) {
+            self.shared.epoch.fetch_add(1, Ordering::AcqRel);
+            self.shared.state().running = false;
+        }
+        result
+    }
+    /// Revoke output immediately without waiting on any device call, lock or
+    /// command queue. Use this for emergency stop and UI teardown, then request
+    /// `stop` off the UI thread to release native resources. Samples already
+    /// handed to the device cannot be recalled.
+    pub fn cancel_output(&self) {
+        self.shared.epoch.fetch_add(1, Ordering::AcqRel);
     }
     /// Immediately prevents subsequent callback output, then asks the owner to
     /// release the stream. Already handed-off hardware samples cannot be recalled.
@@ -346,6 +426,10 @@ impl AudioRuntime {
             configuration: state.configuration.clone(),
             rendered_frames: frames,
             callback_count: callbacks,
+            applied_control_version: state
+                .telemetry
+                .as_ref()
+                .map_or(0, |t| t.applied_control_version.load(Ordering::Acquire)),
             input_meters: inputs,
             bus_meters: buses,
             fault,
@@ -439,6 +523,35 @@ fn validate_session(session: &Session, bus: Uuid) -> Result<(), AudioError> {
     }
     Ok(())
 }
+fn prepare_live_update(current: &Session, next: &Session) -> Result<PreparedControls, AudioError> {
+    let same = current.id == next.id
+        && current.schema_version == next.schema_version
+        && current.sample_rate == next.sample_rate
+        && current.inputs.len() == next.inputs.len()
+        && current.buses.len() == next.buses.len()
+        && current.sends.len() == next.sends.len()
+        && current
+            .inputs
+            .iter()
+            .zip(&next.inputs)
+            .all(|(a, b)| a.id == b.id && a.kind == b.kind && a.dsp == b.dsp)
+        && current
+            .buses
+            .iter()
+            .zip(&next.buses)
+            .all(|(a, b)| a.id == b.id && a.dsp == b.dsp)
+        && current
+            .sends
+            .iter()
+            .zip(&next.sends)
+            .all(|(a, b)| a.id == b.id && a.input_id == b.input_id && a.bus_id == b.bus_id);
+    if !same {
+        return Err(AudioError::InvalidSession("sources, effects, route topology or sample rate changed; stop audio before applying this edit".into()));
+    }
+    PreparedControls::compile(next, GRAPH_BYTES)
+        .map_err(|e| AudioError::InvalidSession(e.to_string()))
+}
+
 fn select_config(
     configs: impl Iterator<Item = cpal::SupportedStreamConfigRange>,
     sample_rate: u32,
@@ -477,6 +590,8 @@ fn supported_pcm(format: cpal::SampleFormat) -> bool {
 
 struct Running {
     _stream: cpal::Stream,
+    session: Session,
+    controls: Arc<ControlBank>,
     wanted: Arc<AtomicBool>,
     telemetry: Arc<Telemetry>,
     epoch: u64,
@@ -510,7 +625,7 @@ fn runtime_loop(receiver: mpsc::Receiver<Command>, shared: Arc<Shared>) {
                 let result = if running.is_some() {
                     Err(AudioError::AlreadyRunning)
                 } else {
-                    start_stream(&session, bus, output, epoch, wanted, shared.clone())
+                    start_stream(session, bus, output, epoch, wanted, shared.clone())
                 };
                 match result {
                     Ok((owner, configuration)) => {
@@ -520,7 +635,7 @@ fn runtime_loop(receiver: mpsc::Receiver<Command>, shared: Arc<Shared>) {
                             state.configuration = Some(configuration.clone());
                             state.telemetry = Some(owner.telemetry.clone());
                             state.error = None;
-                            state.authorization = Some((owner.wanted.clone(), epoch));
+                            state.authorization = Some((owner.wanted.clone(), owner.epoch));
                         }
                         if reply.send(Ok(configuration)).is_err() {
                             owner.wanted.store(false, Ordering::Release);
@@ -534,6 +649,30 @@ fn runtime_loop(receiver: mpsc::Receiver<Command>, shared: Arc<Shared>) {
                         let _ = reply.send(Err(error));
                     }
                 }
+            }
+            Ok(Command::Update {
+                session,
+                epoch,
+                wanted,
+                reply,
+            }) => {
+                let result = match running.as_mut() {
+                    Some(owner) => {
+                        prepare_live_update(&owner.session, &session).and_then(|prepared| {
+                            if !wanted.load(Ordering::Acquire)
+                                || epoch != owner.epoch
+                                || shared.epoch.load(Ordering::Acquire) != epoch
+                            {
+                                return Err(AudioError::Cancelled);
+                            }
+                            let version = owner.controls.publish(&prepared)?;
+                            owner.session = session;
+                            Ok(version)
+                        })
+                    }
+                    None => Err(AudioError::NotRunning),
+                };
+                let _ = reply.send(result);
             }
             Ok(Command::Stop(reply)) => {
                 if let Some(old) = running.take() {
@@ -555,14 +694,23 @@ fn runtime_loop(receiver: mpsc::Receiver<Command>, shared: Arc<Shared>) {
 }
 
 fn start_stream(
-    session: &Session,
+    session: Session,
     bus: Uuid,
     output: OutputId,
     epoch: u64,
     wanted: Arc<AtomicBool>,
     shared: Arc<Shared>,
 ) -> Result<(Running, RunningConfiguration), AudioError> {
-    validate_session(session, bus)?;
+    if !wanted.load(Ordering::Acquire) {
+        return Err(AudioError::Cancelled);
+    }
+    validate_session(&session, bus)?;
+    let next_epoch = epoch.checked_add(1).ok_or(AudioError::RuntimeUnavailable)?;
+    shared
+        .epoch
+        .compare_exchange(epoch, next_epoch, Ordering::AcqRel, Ordering::Acquire)
+        .map_err(|_| AudioError::Cancelled)?;
+    let epoch = next_epoch;
     let id: cpal::DeviceId = output
         .0
         .parse()
@@ -610,7 +758,7 @@ fn start_stream(
         sample_format: config.sample_format().to_string(),
     };
     let render = RenderState::new(
-        session,
+        &session,
         bus,
         usize::from(config.channels()),
         epoch,
@@ -618,6 +766,7 @@ fn start_stream(
         shared.clone(),
     )?;
     let telemetry = render.telemetry.clone();
+    let controls = render.bank.clone();
     if !render.authorized() {
         return Err(AudioError::Cancelled);
     }
@@ -651,15 +800,33 @@ fn start_stream(
     if !wanted.load(Ordering::Acquire) || shared.epoch.load(Ordering::Acquire) != epoch {
         return Err(AudioError::Cancelled);
     }
+    let initial_fault = AudioFault::from_code(telemetry.fault.load(Ordering::Acquire));
+    if initial_fault != AudioFault::None {
+        return Err(backend(
+            "stream creation",
+            Some(name),
+            initial_fault.message(),
+        ));
+    }
     stream
         .play()
-        .map_err(|e| backend("stream activation", Some(name), e))?;
+        .map_err(|e| backend("stream activation", Some(name.clone()), e))?;
+    let initial_fault = AudioFault::from_code(telemetry.fault.load(Ordering::Acquire));
+    if initial_fault != AudioFault::None {
+        return Err(backend(
+            "stream activation",
+            Some(name),
+            initial_fault.message(),
+        ));
+    }
     if !wanted.load(Ordering::Acquire) || shared.epoch.load(Ordering::Acquire) != epoch {
         return Err(AudioError::Cancelled);
     }
     Ok((
         Running {
             _stream: stream,
+            session,
+            controls,
             wanted,
             telemetry,
             epoch,
@@ -706,6 +873,9 @@ where
 
 struct RenderState {
     mixer: CompiledMixer,
+    bank: Arc<ControlBank>,
+    control_scratch: PreparedControls,
+    applied_version: u64,
     bus: Uuid,
     channels: usize,
     left: Vec<f32>,
@@ -724,12 +894,21 @@ impl RenderState {
         wanted: Arc<AtomicBool>,
         shared: Arc<Shared>,
     ) -> Result<Self, AudioError> {
+        let control_records = session
+            .inputs
+            .len()
+            .checked_add(session.sends.len())
+            .and_then(|n| n.checked_add(session.buses.len()))
+            .ok_or_else(|| AudioError::InvalidSession("control count overflow".into()))?;
+        let control_bytes = ControlBank::estimated_bytes(control_records)
+            .ok_or_else(|| AudioError::InvalidSession("control memory overflow".into()))?;
         let overhead = session
             .inputs
             .len()
             .checked_add(session.buses.len())
             .and_then(|n| n.checked_mul(std::mem::size_of::<AtomicMeter>()))
             .and_then(|n| n.checked_add(2 * RENDER_CHUNK * std::mem::size_of::<f32>()))
+            .and_then(|n| n.checked_add(control_bytes))
             .and_then(|n| GRAPH_BYTES.checked_sub(n))
             .ok_or_else(|| {
                 AudioError::InvalidSession("the graph exceeds the runtime memory budget".into())
@@ -742,9 +921,15 @@ impl RenderState {
             },
         )
         .map_err(|e| AudioError::InvalidSession(e.to_string()))?;
+        let control_scratch = PreparedControls::compile(session, control_bytes)
+            .map_err(|e| AudioError::InvalidSession(e.to_string()))?;
+        let bank = Arc::new(ControlBank::new(&control_scratch));
         let telemetry = Arc::new(Telemetry::new(session));
         Ok(Self {
             mixer,
+            bank,
+            control_scratch,
+            applied_version: 0,
             bus,
             channels,
             left: vec![0.0; RENDER_CHUNK],
@@ -771,6 +956,19 @@ impl RenderState {
         {
             self.telemetry.fail(AudioFault::InvalidBuffer);
             return;
+        }
+        if let Some(version) = self
+            .bank
+            .copy_if_new(&mut self.control_scratch, self.applied_version)
+        {
+            if self.mixer.apply_controls(&self.control_scratch).is_err() {
+                self.telemetry.fail(AudioFault::Render);
+                return;
+            }
+            self.applied_version = version;
+            self.telemetry
+                .applied_control_version
+                .store(version, Ordering::Release);
         }
         let frames = output.len() / self.channels;
         for start in (0..frames).step_by(RENDER_CHUNK) {

@@ -144,6 +144,7 @@ struct CompiledChannel {
 }
 
 struct CompiledSend {
+    id: Uuid,
     input_index: usize,
     bus_index: usize,
     gains: [f32; 2],
@@ -264,6 +265,7 @@ impl CompiledMixer {
                 .iter()
                 .any(|other| other.bus_id == send.bus_id && other.controls.solo);
             sends.push(CompiledSend {
+                id: send.id,
                 input_index,
                 bus_index,
                 gains: send.controls.gains(),
@@ -280,6 +282,59 @@ impl CompiledMixer {
             input_meters,
             bus_meters,
         })
+    }
+
+    /// Apply one complete validated control bank without allocating, locking or
+    /// rebuilding. All records are checked before any state changes; oscillator
+    /// phase, DSP envelopes/filter history and route topology are preserved.
+    pub fn apply_controls(
+        &mut self,
+        controls: &crate::PreparedControls,
+    ) -> Result<(), crate::ControlError> {
+        use crate::ControlError;
+        if controls.inputs.len() != self.inputs.len()
+            || controls.sends.len() != self.sends.len()
+            || controls.buses.len() != self.buses.len()
+            || controls
+                .inputs
+                .iter()
+                .zip(&self.inputs)
+                .any(|(c, target)| c.id != target.id)
+            || controls
+                .sends
+                .iter()
+                .zip(&self.sends)
+                .any(|(c, target)| c.id != target.id)
+            || controls
+                .buses
+                .iter()
+                .zip(&self.buses)
+                .any(|(c, target)| c.id != target.id)
+        {
+            return Err(ControlError::LayoutMismatch);
+        }
+        if controls
+            .inputs
+            .iter()
+            .chain(&controls.sends)
+            .chain(&controls.buses)
+            .any(|c| !c.valid())
+        {
+            return Err(ControlError::InvalidGain);
+        }
+        for (target, c) in self.inputs.iter_mut().zip(&controls.inputs) {
+            target.gains = c.gains;
+            target.active = c.active;
+        }
+        for (target, c) in self.sends.iter_mut().zip(&controls.sends) {
+            target.gains = c.gains;
+            target.active = c.active;
+        }
+        for (target, c) in self.buses.iter_mut().zip(&controls.buses) {
+            target.gains = c.gains;
+            target.active = c.active;
+        }
+        Ok(())
     }
 
     pub fn sample_rate(&self) -> u32 {

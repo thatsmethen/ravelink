@@ -1,0 +1,90 @@
+Window: "RaveLink", App: RaveLink Rust.
+0 standard window RaveLink, Secondary Actions: Raise
+	1 container
+		2 text (settable) RAVE / LINK
+		3 text (settable) 128 sources / 32 mixes — stopped test
+		4 text (settable) Saved locally
+		5 button Start audio
+		6 button Save
+		7 button (disabled) Redo
+		8 button Undo
+		9 button + Source
+		10 text (settable) ○ AUDIO STOPPED
+		11 text (settable) Choose a mix, add sources, then select an output.
+		12 unknown
+			13 text (settable) YOUR MIXES
+			14 button Mix 01
+			15 button Mix 02
+			16 button Mix 03
+			17 button Mix 04
+			18 button Mix 05
+			19 button Mix 06
+			20 button Mix 07
+			21 button Mix 08
+			22 button Mix 09
+			23 button Mix 10
+			24 button + Create mix
+			25 text (settable) STUDIO
+			26 text (settable) 128 sources
+			27 text (settable) 32 mixes
+			28 text (settable) 4096 active routes
+			29 text (settable) Rust development build
+Windows + macOS
+		30 unknown
+			31 text (settable) Mix output
+			32 text field (settable) Mix 01
+			33 checkbox (settable, boolean) Link stereo levels, Value: on
+			34 slider (settable, float) dB, Value: 0
+			35 stepper (settable) dB, Value: 0
+			36 text (settable) dB
+			37 checkbox (settable, boolean) Mute, Value: on
+			38 checkbox (settable, boolean) Solo, Value: off
+			39 text (settable) Listening device
+			40 pop up button (settable) Select an output…
+			41 button Refresh devices
+			42 button Remove mix
+			43 text (settable) OUTPUT LEVEL
+			44 progress indicator (settable, float) L  −∞ dBFS, Value: 0
+			45 progress indicator (settable, float) R  −∞ dBFS, Value: 0
+			46 text (settable) Source settings
+			47 text (settable) Source 128
+			48 text field (settable) Source 128
+			49 slider (settable, float) Hz, Value: 347
+			50 stepper (settable) Hz, Value: 347
+			51 text (settable) Hz
+			52 slider (settable, float) dB tone, Value: -36
+			53 stepper (settable) dB tone, Value: -36
+			54 text (settable) dB tone
+			55 checkbox (settable, boolean) Link stereo levels, Value: on
+			56 slider (settable, float) dB, Value: 0
+			57 stepper (settable) dB, Value: 0
+			58 text (settable) dB
+			59 checkbox (settable, boolean) Mute, Value: on
+			60 checkbox (settable, boolean) Solo, Value: off
+			61 text (settable) EFFECTS · ALL MIXES
+			62 checkbox (settable, boolean) High-pass filter, Value: off
+			63 checkbox (settable, boolean) Noise gate, Value: off
+			64 checkbox (settable, boolean) Compressor, Value: off
+			65 button Remove source
+		66 text (settable) Mix 01
+		67 text field (settable) 128
+		68 text (settable) Shape this mix with independent source levels.
+		69 button Source 128
+		70 text (settable) TEST TONE
+		71 button Mute
+		72 button Solo
+		73 slider (settable, float) dB, Value: -18
+		74 stepper (settable) dB, Value: -18
+		75 text (settable) dB
+		76 slider (settable, float) Balance, Value: 0
+		77 stepper (settable) Balance, Value: 0.00
+		78 text (settable) Balance
+		79 button Remove from mix
+	80 close button
+	81 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	82 minimize button
+	83 text RaveLink
+84 menu bar
+	85 RaveLink
+
+The focused UI element is 67 text field (settable) 128

@@ -146,6 +146,22 @@ impl Studio {
     }
 
     fn edit(&mut self, edit: Edit) {
+        if self.audio.busy {
+            self.notice = "Wait for the audio device operation to finish before editing.".into();
+            return;
+        }
+        let live_edit = match &edit {
+            Edit::RenameInput(..)
+            | Edit::RenameBus(..)
+            | Edit::InputControls(..)
+            | Edit::BusControls(..) => true,
+            Edit::Route(input, bus, Some(_)) => self.route_index.contains_key(&(*input, *bus)),
+            _ => false,
+        };
+        if self.audio.running() && !live_edit {
+            self.notice = "Stop audio before changing sources, effects or routing.".into();
+            return;
+        }
         let previous = self.session.clone();
         match edit {
             Edit::AddInput => {
@@ -237,6 +253,9 @@ impl Studio {
         self.redo.clear();
         self.dirty_since = Some(Instant::now());
         self.reindex();
+        if self.audio.running() {
+            self.audio.queue_controls(self.session.clone());
+        }
     }
 
     fn save(&mut self) {
@@ -297,15 +316,16 @@ impl Studio {
                     ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                         ui.add_space(12.0);
                         let running = self.audio.running();
+                        let can_stop = self.audio.can_stop();
                         if ui
                             .add_enabled(
-                                !self.audio.busy,
-                                egui::Button::new(if running {
+                                can_stop || !self.audio.busy,
+                                egui::Button::new(if can_stop {
                                     "Stop audio"
                                 } else {
                                     "Start audio"
                                 })
-                                .fill(if running {
+                                .fill(if can_stop {
                                     Color32::from_rgb(110, 42, 54)
                                 } else {
                                     Color32::from_rgb(36, 96, 83)
@@ -313,7 +333,7 @@ impl Studio {
                             )
                             .clicked()
                         {
-                            if running {
+                            if can_stop {
                                 self.audio.send(Request::Stop);
                             } else if let (Some(bus), Some(output)) =
                                 (self.selected_bus, self.active_output.clone())
@@ -409,7 +429,7 @@ impl Studio {
                         .iter()
                         .find(|b| Some(b.id) == self.selected_bus)
                     {
-                        ui.add_enabled_ui(!self.audio.running() && !self.audio.busy, |ui| {
+                        ui.add_enabled_ui(!self.audio.busy, |ui| {
                             let mut name = bus.name.clone();
                             if ui.text_edit_singleline(&mut name).changed()
                                 && !name.trim().is_empty()
@@ -422,6 +442,8 @@ impl Studio {
                             if controls != bus.controls {
                                 edits.push(Edit::BusControls(bus.id, controls));
                             }
+                        });
+                        ui.add_enabled_ui(!self.audio.running() && !self.audio.busy, |ui| {
                             ui.add_space(8.0);
                             ui.label("Listening device");
                             let label = self
@@ -452,7 +474,7 @@ impl Studio {
                         });
                     }
                     ui.add_space(12.0);
-                    meter(ui, self.audio.peak());
+                    meter(ui, "OUTPUT LEVEL", self.audio.peak());
                     ui.separator();
                     if let Some(input) = self
                         .session
@@ -462,7 +484,7 @@ impl Studio {
                     {
                         ui.heading("Source settings");
                         ui.label(&input.name);
-                        ui.add_enabled_ui(!self.audio.running() && !self.audio.busy, |ui| {
+                        ui.add_enabled_ui(!self.audio.busy, |ui| {
                             let mut name = input.name.clone();
                             if ui.text_edit_singleline(&mut name).changed()
                                 && !name.trim().is_empty()
@@ -470,6 +492,13 @@ impl Studio {
                             {
                                 edits.push(Edit::RenameInput(input.id, name));
                             }
+                            let mut controls = input.controls.clone();
+                            gain_controls(ui, &mut controls);
+                            if controls != input.controls {
+                                edits.push(Edit::InputControls(input.id, controls));
+                            }
+                        });
+                        ui.add_enabled_ui(!self.audio.running() && !self.audio.busy, |ui| {
                             if let InputKind::TestTone {
                                 frequency_hz,
                                 amplitude_db,
@@ -485,11 +514,6 @@ impl Studio {
                                 if freq != frequency_hz || amp != amplitude_db {
                                     edits.push(Edit::Tone(input.id, freq, amp));
                                 }
-                            }
-                            let mut controls = input.controls.clone();
-                            gain_controls(ui, &mut controls);
-                            if controls != input.controls {
-                                edits.push(Edit::InputControls(input.id, controls));
                             }
                             ui.separator();
                             ui.label(RichText::new("EFFECTS · ALL MIXES").size(11.0).color(MUTED));
@@ -552,7 +576,7 @@ impl Studio {
             ui.label(RichText::new("Shape this mix with independent source levels.").color(MUTED)); ui.add_space(24.0);
             if self.session.inputs.is_empty() {
                 ui.add_space(70.0); ui.heading("Build your first mix"); ui.label("Add a source, include it in this mix, then choose where to listen.");
-                if ui.button("+ Add a test tone").clicked() { edits.push(Edit::AddInput); }
+                if ui.add_enabled(!self.audio.running() && !self.audio.busy, egui::Button::new("+ Add a test tone")).clicked() { edits.push(Edit::AddInput); }
                 ui.add_space(16.0); ui.label(RichText::new("Hardware and application capture are being implemented for the Rust runtime.").color(MUTED));
                 return;
             }
@@ -570,11 +594,13 @@ impl Studio {
                     ui.scope_builder(egui::UiBuilder::new().max_rect(rect),|ui| {
                         egui::Frame::new().fill(CARD).corner_radius(12.0).inner_margin(14.0).show(ui,|ui| {
                             ui.set_min_size(Vec2::new(STRIP_WIDTH-28.0,height-28.0));
+                            ui.set_max_width(STRIP_WIDTH-28.0);
+                            ui.spacing_mut().slider_width=88.0;
                             let selected=self.selected_input==Some(input.id);
                             if ui.add_sized([STRIP_WIDTH-28.0,40.0],egui::Button::new(RichText::new(&input.name).strong()).selected(selected)).clicked() { self.selected_input=Some(input.id); }
                             ui.label(RichText::new(match input.kind { InputKind::TestTone{..}=>"TEST TONE",InputKind::Hardware{..}=>"DEVICE",InputKind::Application{..}=>"APPLICATION",InputKind::Virtual{..}=>"VIRTUAL DEVICE" }).size(10.0).color(MUTED));
                             ui.add_space(16.0);
-                            ui.add_enabled_ui(!self.audio.running() && !self.audio.busy,|ui| {
+                            ui.add_enabled_ui(!self.audio.busy,|ui| {
                                 let route=self.route_index.get(&(input.id,bus_id)).map(|&idx| &self.session.sends[idx]);
                                 if let Some(route)=route {
                                     let mut controls=route.controls.clone();
@@ -586,14 +612,16 @@ impl Studio {
                                     ui.add_space(18.0);
                                     ui.horizontal(|ui| { ui.add_space(48.0); ui.add(egui::Slider::new(&mut controls.gain_db,-60.0..=12.0).vertical().text("dB").show_value(true)); });
                                     if controls.linked { controls.right_gain_db=controls.gain_db; }
-                                    ui.add_space(20.0); ui.add(egui::Slider::new(&mut controls.pan,-1.0..=1.0).text("Balance"));
+                                    ui.add_space(20.0); let balance_label=ui.label("Balance"); ui.add(egui::Slider::new(&mut controls.pan,-1.0..=1.0)).labelled_by(balance_label.id);
                                     if controls!=route.controls { edits.push(Edit::Route(input.id,bus_id,Some(controls))); }
-                                    if ui.small_button("Remove from mix").clicked() { edits.push(Edit::Route(input.id,bus_id,None)); }
+                                    if ui.add_enabled(!self.audio.running(),egui::Button::new("Remove from mix").small()).clicked() { edits.push(Edit::Route(input.id,bus_id,None)); }
                                 } else {
                                     ui.add_space(50.0); ui.label(RichText::new("Not in this mix").color(MUTED));
-                                    if ui.button("+ Add to mix").clicked() { edits.push(Edit::Route(input.id,bus_id,Some(ChannelControls::default()))); }
+                                    if ui.add_enabled(!self.audio.running(),egui::Button::new("+ Add to mix")).clicked() { edits.push(Edit::Route(input.id,bus_id,Some(ChannelControls::default()))); }
                                 }
                             });
+                            ui.add_space(12.0);
+                            meter(ui, "SOURCE LEVEL", self.audio.input_peak(input.id));
                         });
                     });
                 }
@@ -623,13 +651,15 @@ fn gain_controls(ui: &mut egui::Ui, controls: &mut ChannelControls) {
     });
 }
 
-fn meter(ui: &mut egui::Ui, peak: [f32; 2]) {
-    ui.label(RichText::new("OUTPUT LEVEL").size(10.0).color(MUTED));
+fn meter(ui: &mut egui::Ui, label: &str, peak: [f32; 2]) {
+    ui.label(RichText::new(label).size(10.0).color(MUTED));
     for (index, level) in peak.into_iter().enumerate() {
         let db = 20.0 * level.max(0.000001).log10();
         let fraction = ((db + 60.0) / 60.0).clamp(0.0, 1.0);
         ui.add(
             egui::ProgressBar::new(fraction)
+                .corner_radius(0)
+                .desired_width(ui.available_width())
                 .text(format!(
                     "{}  {}",
                     if index == 0 { "L" } else { "R" },
@@ -679,6 +709,9 @@ impl eframe::App for Studio {
                         }),
                     );
                     ui.separator();
+                    if self.audio.controls_pending() {
+                        ui.label("Applying controls…");
+                    }
                     ui.label(
                         self.save_error
                             .as_deref()
@@ -701,7 +734,11 @@ impl eframe::App for Studio {
             self.save();
             ctx.request_repaint();
         }
-        if self.dirty_since.is_some() || self.audio.busy || self.audio.running() {
+        if self.dirty_since.is_some()
+            || self.audio.busy
+            || self.audio.running()
+            || self.audio.controls_pending()
+        {
             ctx.request_repaint_after(Duration::from_millis(50));
         }
     }

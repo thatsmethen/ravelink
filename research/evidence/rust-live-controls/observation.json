@@ -1,0 +1,29 @@
+{
+  "date_utc": "2026-10-23T23:09:46.082522+00:00",
+  "base_commit": "01a2222c68bdbf8417e2a3d7f2b8da519aa60a60",
+  "code_state": "uncommitted live-control changes",
+  "tests": {
+    "workspace": 46,
+    "failures": 0,
+    "strict_clippy": "passed"
+  },
+  "native_ui": {
+    "audio": "stopped throughout",
+    "output_selected": false,
+    "large_fixture": {
+      "sources": 128,
+      "mixes": 32,
+      "routes": 4096
+    },
+    "original_restored_sha256": "94efd0f900d0d205944bbd291fa87a078ea469d7a3c1b462fedc5b123f3a6615",
+    "finding": "Initial source strips expanded beyond their assigned widths; reduced balance control width and verified adjacent strips no longer overlap. Empty meters now draw no false filled dot.",
+    "limits": "No installed driver or native live audio exercised. Initial stopped-source screenshot precedes width fix; scale-strips screenshot follows it. Balance label accessibility association is a subsequent small fix."
+  },
+  "binary_sha256": "7cc96389aaf5da5d340e1810543d29c6d2cf49ac47ab81e9a8cf5e3173f49f1c",
+  "files": {
+    "scale-strips.png": "9cde0e33651a67d86606053367cdb23255f35d74619aaf7313a0215d5c13317f",
+    "stopped-source.png": "2393b50852f58106772baa6e8089bcc0951702c0dba18bbaf398d694f7dc51f5",
+    "stopped-source-ax.txt": "d65907bafe47daed9d7aad08f9d36a7fcc5812fb76c3189e129b9778740d3e29",
+    "scale-strips-ax.txt": "5dc6dffc6a26d152b039d8db19eff842e3ecb383e4f028e7f38152f02f4f36cf"
+  }
+}

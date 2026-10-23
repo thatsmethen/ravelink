@@ -97,6 +97,55 @@ fn creation_and_stop_never_open_a_device() {
 }
 
 #[test]
+fn cancelled_queued_start_never_attempts_device_discovery() {
+    let runtime = AudioRuntime::new().unwrap();
+    let token = StartCancellation::default();
+    let queued = token.clone();
+    token.cancel();
+    let (session, bus) = session();
+    // An invalid identity would produce InvalidOutputId if device start ran.
+    assert_eq!(
+        runtime.start_cancellable(session, bus, OutputId("not-a-device".into()), queued),
+        Err(AudioError::Cancelled)
+    );
+    assert_eq!(runtime.snapshot().callback_count, 0);
+    assert!(runtime.snapshot().configuration.is_none());
+}
+
+#[test]
+fn emergency_stop_revokes_callbacks_without_the_control_mutex_or_queue() {
+    let (session, bus) = session();
+    let mut render = render(&session, bus, 2);
+    let (commands, _receiver) = mpsc::sync_channel(1);
+    commands.send(Command::Shutdown).unwrap(); // Saturated control queue.
+    let runtime = AudioRuntime {
+        commands,
+        shared: render.shared.clone(),
+    };
+    let shared = runtime.shared.clone();
+    let _held_control_lock = shared.state();
+    runtime.cancel_output();
+    let mut data = [999_i16; 128];
+    render.write(&mut data);
+    assert!(data.iter().all(|v| *v == 0));
+    assert_eq!(render.telemetry.frames.load(Ordering::Relaxed), 0);
+}
+
+#[test]
+fn start_token_cancellation_remains_effective_in_an_active_callback() {
+    let (session, bus) = session();
+    let mut render = render(&session, bus, 2);
+    let token = StartCancellation::default();
+    render.wanted = token.0.clone();
+    let mut data = [0.0_f32; 128];
+    render.write(&mut data);
+    assert!(data.iter().any(|v| *v != 0.0));
+    token.cancel();
+    render.write(&mut data);
+    assert!(data.iter().all(|v| *v == 0.0));
+}
+
+#[test]
 fn configuration_requires_exact_session_rate_and_stereo_pcm() {
     let choices = vec![
         config(1, cpal::SampleFormat::F32, 48000, 48000),
@@ -275,4 +324,182 @@ fn stopped_snapshot_hides_stale_meter_levels_and_keeps_diagnostics() {
     assert!(!stopped.running);
     assert_eq!(stopped.bus_meters[0].peak, [0.0; 2]);
     assert_eq!(stopped.rendered_frames, 128);
+}
+
+#[test]
+fn live_controls_preserve_phase_through_gain_pan_mute_and_unmute() {
+    let (session, bus) = session();
+    let mut render = render(&session, bus, 2);
+    render.write(&mut [0.0_f32; 254]);
+    let mut changed = session.clone();
+    changed.inputs[0].controls.set_gain_db(-6.0);
+    changed.sends[0].controls.set_gain_db(-3.0);
+    changed.buses[0].controls.pan = -0.5;
+    let prepared = prepare_live_update(&session, &changed).unwrap();
+    let version = render.bank.publish(&prepared).unwrap();
+    let mut pcm = [0.0_f32; 514];
+    OPERATIONS.with(|n| n.set(0));
+    COUNTING.with(|on| on.set(true));
+    render.write(&mut pcm);
+    COUNTING.with(|on| on.set(false));
+    assert_eq!(
+        OPERATIONS.with(Cell::get),
+        0,
+        "live bank application must not allocate or free"
+    );
+    for frame in 0..257 {
+        let expected = (((127 + frame) as f64 * std::f64::consts::TAU * 440.0) / 48000.0).sin()
+            as f32
+            * 10.0_f32.powf(-21.0 / 20.0);
+        assert!((pcm[frame * 2] - expected).abs() < 0.000002);
+        assert!((pcm[frame * 2 + 1] - expected * 0.5).abs() < 0.000002);
+    }
+    assert_eq!(
+        render
+            .telemetry
+            .applied_control_version
+            .load(Ordering::Acquire),
+        version
+    );
+    changed.inputs[0].controls.muted = true;
+    render
+        .bank
+        .publish(&prepare_live_update(&session, &changed).unwrap())
+        .unwrap();
+    let mut muted = [9.0_f32; 122];
+    render.write(&mut muted);
+    assert!(muted.iter().all(|v| *v == 0.0));
+    changed.inputs[0].controls.muted = false;
+    render
+        .bank
+        .publish(&prepare_live_update(&session, &changed).unwrap())
+        .unwrap();
+    let mut resumed = [0.0_f32; 46];
+    render.write(&mut resumed);
+    for frame in 0..23 {
+        let expected = (((445 + frame) as f64 * std::f64::consts::TAU * 440.0) / 48000.0).sin()
+            as f32
+            * 10.0_f32.powf(-21.0 / 20.0);
+        assert!((resumed[frame * 2] - expected).abs() < 0.000002);
+    }
+    assert_eq!(render.telemetry.frames.load(Ordering::Relaxed), 468);
+}
+
+#[test]
+fn in_flight_control_write_keeps_the_previous_complete_bank() {
+    let (session, bus) = session();
+    let mut render = render(&session, bus, 2);
+    render.write(&mut [0.0_f32; 102]);
+    let mut changed = session.clone();
+    changed.buses[0].controls.muted = true;
+    changed.inputs[0].controls.set_gain_db(-90.0);
+    render
+        .bank
+        .begin_incomplete_test_write(&prepare_live_update(&session, &changed).unwrap());
+    let mut pcm = [0.0_f32; 256];
+    render.write(&mut pcm);
+    for frame in 0..128 {
+        let expected = (((51 + frame) as f64 * std::f64::consts::TAU * 440.0) / 48000.0).sin()
+            as f32
+            * 10.0_f32.powf(-12.0 / 20.0);
+        assert!((pcm[frame * 2] - expected).abs() < 0.000002);
+    }
+    assert_eq!(
+        render
+            .telemetry
+            .applied_control_version
+            .load(Ordering::Acquire),
+        0
+    );
+    assert_eq!(render.telemetry.fault.load(Ordering::Acquire), 0);
+}
+
+#[test]
+fn concurrent_bank_reader_never_observes_mixed_mute_and_gain_records() {
+    let (session, _) = session();
+    let mut a = PreparedControls::compile(&session, GRAPH_BYTES).unwrap();
+    let mut b = a.clone();
+    for control in a.inputs.iter_mut().chain(&mut a.sends).chain(&mut a.buses) {
+        control.gains = [0.25, 0.5];
+        control.active = false;
+    }
+    for control in b.inputs.iter_mut().chain(&mut b.sends).chain(&mut b.buses) {
+        control.gains = [0.75, 1.0];
+        control.active = true;
+    }
+    let bank = Arc::new(ControlBank::new(&a));
+    bank.publish(&a).unwrap();
+    let mut scratch = a.clone();
+    let writer_bank = bank.clone();
+    let writer = thread::spawn(move || {
+        for index in 0..20000 {
+            writer_bank
+                .publish(if index % 2 == 0 { &a } else { &b })
+                .unwrap();
+        }
+    });
+    let mut accepted = 0;
+    for _ in 0..20000 {
+        if bank.copy_if_new(&mut scratch, 0).is_some() {
+            let expected = if scratch.inputs[0].active {
+                [0.75, 1.0]
+            } else {
+                [0.25, 0.5]
+            };
+            let active = scratch.inputs[0].active;
+            for control in scratch
+                .inputs
+                .iter()
+                .chain(&scratch.sends)
+                .chain(&scratch.buses)
+            {
+                assert_eq!(control.active, active);
+                assert_eq!(control.gains, expected);
+            }
+            accepted += 1;
+        }
+    }
+    writer.join().unwrap();
+    assert!(bank.copy_if_new(&mut scratch, 0).is_some());
+    assert!(accepted > 0);
+}
+
+#[test]
+fn live_edit_rejects_source_dsp_rate_and_route_changes_before_publication() {
+    let (session, _) = session();
+    let mut metadata = session.clone();
+    metadata.name = "Renamed".into();
+    metadata.inputs[0].name = "Tone renamed".into();
+    assert!(prepare_live_update(&session, &metadata).is_ok());
+    let mut changed = session.clone();
+    changed.sample_rate = 44100;
+    assert!(prepare_live_update(&session, &changed).is_err());
+    changed = session.clone();
+    changed.inputs[0].kind = InputKind::TestTone {
+        frequency_hz: 880.0,
+        amplitude_db: -12.0,
+    };
+    assert!(prepare_live_update(&session, &changed).is_err());
+    changed = session.clone();
+    changed.buses[0].dsp = DspConfig::default();
+    assert!(prepare_live_update(&session, &changed).is_err());
+    changed = session.clone();
+    changed.sends[0].id = Uuid::new_v4();
+    assert!(prepare_live_update(&session, &changed).is_err());
+    changed = session.clone();
+    changed.inputs[0].controls.gain_db = f32::NAN;
+    assert!(prepare_live_update(&session, &changed).is_err());
+}
+
+#[test]
+fn live_update_while_stopped_cannot_create_a_stream() {
+    let runtime = AudioRuntime::new().unwrap();
+    let (session, _) = session();
+    assert_eq!(
+        runtime.update_controls(session).unwrap_err(),
+        AudioError::NotRunning
+    );
+    assert!(!runtime.snapshot().running);
+    assert_eq!(runtime.snapshot().applied_control_version, 0);
+    assert!(runtime.snapshot().configuration.is_none());
 }
