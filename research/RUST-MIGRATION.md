@@ -25,3 +25,12 @@ The previous prototype is frozen under `legacy/`. It is retained to preserve his
 6. Signed/notarized macOS distribution and Windows driver qualification/signing, clean install/upgrade/uninstall and native OS/architecture verification.
 
 A compiling Rust prototype or passing generated-audio test does not satisfy installed-driver, native Windows, reference-fidelity or production acceptance.
+
+## Current evidence checkpoints
+
+- `6484db8`: native macOS and Windows desktop CI passed. The original macOS HAL passed a disposable-host installation, two independent 20-second stereo recordings, bit-identical reader overlap, fresh-client silence and owned-driver removal. Original PCM and observer records are preserved under `research/evidence/rust-hal-installed-40039161891/`. This measured the driver, not the complete Rust application runtime.
+- `6484db8`: the original Windows driver built on Windows Server 2022 and passed nine user-mode host tests, SDK ABI assertions, PE checks, INF validation and unsigned catalog generation. The original artifact and logs are preserved under `research/evidence/rust-windows-native-40039161836/`. No installed-kernel, endpoint, audio, Verifier, HLK or signing result is claimed.
+- `b30dea6`: explicit hardware/virtual-device input capture, a bounded clock-compensating transport and native input selection were added. The stopped macOS picker was exercised and the original studio restored byte-for-byte. Offline clock, spectral and allocation controls passed; physical input, permission and runtime audio evidence remained pending.
+- `4aa6394`: Windows capture was replaced with an original Rust WASAPI owner thread and portable packet decoder. Independent source review corrected failed-construction event lifetime and an exact-drain-budget error. The 34 audio tests pass locally, including silent-packet, release, timestamp, cancellation and transport controls; Windows-target checks pass. Native execution remains a distinct gate.
+
+Upcoming work includes installed capture-to-mixer-to-output observation, gain transition quality, simultaneous independent outputs, application/process capture, complete effects and Sound Check workflows, recovery and sustained resource measurements, native Windows interaction/audio tests, and distributable signed installers. Reference mixer fidelity remains unverified because the pinned Elgato reference stops at its separate vendor-driver installation gate.

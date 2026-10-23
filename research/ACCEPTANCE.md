@@ -1,5 +1,7 @@
 # Fidelity and release acceptance queue
 
+**Archived Swift/GPL prototype evidence.** This document predates the user's proprietary Rust requirement and does not describe the shipping implementation. The current requirements and gates are in [RUST-MIGRATION.md](RUST-MIGRATION.md). Retained results below apply only to their original prototype revisions; none transfers to the new Rust code or original drivers.
+
 Updated 24 October 2026 against installed-run source baseline `784e38f30a7b51f2fc8d40d58413780ae11e9944` (later development repairs are separately recorded) and preserved evidence through CI run 40011635266, plus the separately hashed accessibility and universal-signing development slices. This queue is not a completion declaration. [REFERENCE.md](REFERENCE.md) pins Wave Link macOS 3.4.0 build 3281, official documentation, REA provenance and limitations. The user subsequently approved its EULA and native acceptance reached a separate mandatory vendor-driver installation gate; **no reference main-mixer journey or audio behavior has been exercised**. Candidate behavior cannot be called faithful solely because it follows a documented feature list.
 
 ## Current workflow queue
