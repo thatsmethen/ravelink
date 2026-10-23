@@ -89,6 +89,11 @@ jobs:
           wait "$receiver_a"
           wait "$receiver_b"
           python3 scripts/verify-matrix.py build/matrix-a.wav build/matrix-b.wav | tee build/matrix-analysis.json
+      - name: Independent installed HAL Audio Unit acceptance
+        env:
+          RAVELINK_TEST_INSTALLED_AU: '1'
+          RAVELINK_AU_DEVICE_UID: RaveLink.ci-loopback_UID
+        run: scripts/run-au-loopback.sh
       - name: Grouped real input and eight mix soak
         env:
           RAVELINK_TEST_DEVICE_SOAK: '1'
@@ -105,6 +110,9 @@ jobs:
             build/matrix-*.wav
             build/matrix-*.log
             build/matrix-analysis.json
+            build/au-*.wav
+            build/au-*.log
+            build/au-*.json
             build/driver-binary-sha256.txt
             build/soak-*.wav
             build/soak-*.json
