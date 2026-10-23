@@ -1,0 +1,317 @@
+[0/1] Planning build
+􀟈  Test run started.
+􀄵  Testing Library Version: 1400
+􀄵  Target Platform: x86_64-apple-macos14.0
+􀟈  Suite SoundCheckIsolationTests started.
+􀟈  Suite GroupedRealtimeTests started.
+􀟈  Suite AudioCoordinatorTests started.
+􀟈  Suite DSPRecoveryTests started.
+􀟈  Suite InstalledAudioUnitAcceptanceTests started.
+􀟈  Suite EngineProtocolTests started.
+􀟈  Suite SoundCheckSessionTests started.
+􀟈  Suite SourceIdentityAndOrderTests started.
+􀟈  Suite InstalledSoundCheckTests started.
+􀟈  Suite ReviewTests started.
+􀟈  Suite ExpandedRoutingTests started.
+􀟈  Suite RenderProgressMonitorTests started.
+􀟈  Suite RealtimeTests started.
+􀟈  Suite LiveAudioUnitTests started.
+􀟈  Suite AudioAllocationTests started.
+􀟈  Suite NativeTapRestorationTests started.
+􀟈  Suite SessionTests started.
+􀟈  Suite TapRetargetTransactionTests started.
+􀟈  Suite ThirdPartyAudioUnitTests started.
+􀟈  Suite PluginRenderTests started.
+􀟈  Suite InstalledMatrixTests started.
+􀟈  Suite AudioUnitSessionTests started.
+􀟈  Suite SoundCheckBufferTests started.
+􀟈  Suite ApplicationMembershipTests started.
+􀟈  Suite AudioLifecycleTests started.
+􀟈  Suite SourceAliasTests started.
+􀟈  Suite EngineClientTests started.
+􀟈  Suite InstalledDeviceSoakTests started.
+􀟈  Test defaultGroupsRemainIndependentAndInvalidGraphsAreRejected() started.
+􀟈  Suite FeedbackValidationTests started.
+􀟈  Suite PluginCatalogTests started.
+􀟈  Test compressorProcessesSummedWaveformOnce() started.
+􀟈  Test testInvalidStartFailsWithActionableErrorAndStaysStopped() started.
+􀟈  Suite SoundCheckRoutingTests started.
+􀟈  Test toneGroupReceivesGainExactlyOnce() started.
+􀟈  Test auditionPreservesSourcesAndEffectsWithOnlyExplicitDestination() started.
+􀟈  Test rejectsContradictoryAndNonfiniteState() started.
+􀟈  Test staleOrOutOfRangeReorderDoesNotMutate() started.
+􀟈  Test importedStaleMetadataCannotDisguiseDuplicateCapture() started.
+􀟈  Test testInvalidImportDoesNotRewriteSource() started.
+􀟈  Test openingAndClosingAuditionKeepsStudioRoutesAndMutes() started.
+􀟈  Test singleLegacySourceRemainsLoadableAndRawBoundsAreChecked() started.
+􀟈  Test canonicalCaptureIdentityDropsIrrelevantFields() started.
+􀟈  Test testNewRoutesRemainMutedAfterRoundTripAndChannelRemoval() started.
+􀟈  Test progressingOutputCannotHideAnotherStalledDevice() started.
+􀟈  Test testOversizedSavePreservesExistingReadableSession() started.
+􀟈  Test malformedControlUpdatesPreservePriorValidSettings() started.
+􀟈  Test boundsPartialLinesAndRejectsVersionMismatch() started.
+􀟈  Test captureSilencesItsDuplexOutputContribution() started.
+􀟈  Test testGroupedSourceValidationIncludesAdditionalSources() started.
+􀟈  Test reorderingPreservesRouteIdentityAndControls() started.
+􀟈  Test finiteOverflowSpikeDoesNotPoisonFollowingAudio() started.
+􀟈  Test testCaptureMonoDuplicationAndMeter() started.
+􀟈  Test testGainChangesRampAndMuteReachesSilence() started.
+􀟈  Test oldSchemaOneSessionsDecodeWithoutNewFields() started.
+􀟈  Test testIncompleteImportedMatrixIsRejectedAndEmptyAxesAreAllowed() started.
+􀙟  Test installedSoundCheckDryRecordLoopGainAndSilence() skipped.
+􀟈  Test testBandLimitedDownsamplingRejectsAliasedHighFrequency() started.
+􀟈  Test testOutputOverlapRejectedButDistinctDevicesAndPairsAllowed() started.
+􀟈  Test generatedIdentitiesStayStableAcrossControlAndLabelEdits() started.
+􀟈  Test maximumBufferDurationAndGraphResetAreRespected() started.
+􀟈  Test sumsGroupOnceAndUsesOnlyParentSendsForIndependentBuses() started.
+􀟈  Test capacityRejectsOverflowAndNegativeCountsWithoutAllocatingMatrix() started.
+􀟈  Test rejectsBudgetOverflowBeforeAllocating() started.
+􀟈  Test rateExtremesReserveEnoughFramesAndFilterSpace() started.
+􀟈  Test capacityBudgetBoundaryIsExplicitAndConfigurable() started.
+􀟈  Test compactMillionRouteExpansionFailsBeforeMaterialization() started.
+􀟈  Test testRingIsBoundedAndReportsOverflowAndUnderrun() started.
+􀟈  Test testNonFiniteInputIsContainedAndInvalidConfigurationRejected() started.
+􀟈  Test testIndependentBusGainPanMuteAndOffsets() started.
+􀟈  Test testPersistenceRoundTripAndAtomicReplacement() started.
+􀟈  Test effectTopologyExcludesSafeLiveControls() started.
+􀟈  Test testRejectDanglingDuplicateAndNonfiniteRoutes() started.
+􀙟  Test installedAudioUnitGainBypassAndRestoredState() skipped.
+􀟈  Test globalAudioCommandCannotStartStudioInsideSoundCheck() started.
+􀟈  Test optionalPublicSettersAreCheckedWithoutCreatingAnAudioTap() started.
+􀟈  Test generatedIDCollisionFailsClosed() started.
+􀟈  Test testRejectUnknownSchemaAndInvalidEffects() started.
+􀟈  Test listeningOutputMustBeExplicitAndValid() started.
+􀟈  Test failedExclusionUpdateNeverRestartsAnyCapture() started.
+􀟈  Test invalidInputIsRejectedBeforeLaunchingAHelper() started.
+􀟈  Test allExclusionsAreUpdatedBeforeAnyCaptureRestarts() started.
+􀙟  Test installedIndependentMixControlSequence() skipped.
+􀟈  Test cancellationAfterDescriptionChangePreventsLateRestart() started.
+􀟈  Test sameVisibleCountsCanRequireDifferentExpansionBudgets() started.
+􀟈  Test testDynamicMatrixBeyondReferenceLimits() started.
+􀟈  Test meterMappingUsesGreatestMemberAndDoesNotInventSummedPeak() started.
+􀟈  Test appleLimiterRendersIndependentGainReferenceAndRestoresState() started.
+􀟈  Test savedStateIsBoundToIdentityVersionAndSize() started.
+􀟈  Test additionalOutputWorksWhenPrimaryIsUnassigned() started.
+􀟈  Test outerApplicationMetadataWinsOverNestedHelper() started.
+􀟈  Test groupedSourcesAndDestinationsPreserveIndependentMixes() started.
+􀟈  Test restartAdditionalProcessAndExitChangeExclusions() started.
+􀟈  Test initiallyAbsentExcludedApplicationRemainsWatched() started.
+􀟈  Test inclusionAndCatchAllShareCanonicalHelpersAndOwnProcessExclusions() started.
+􀟈  Test rapidCommandsKeepOrderAndMailboxIsBounded() started.
+􀟈  Test orderingDuplicatesOwnProcessAndUnrelatedAppsDoNotChangeMembership() started.
+􀟈  Test groupsRoundTripThroughPersistence() started.
+􀟈  Test suspensionCannotBeOverriddenByLiveControlsAndDoesNotFreezeProcessing() started.
+􀟈  Test allocationBoundsRejectMalformedRatesAndDurations() started.
+􀟈  Test capacityStopsRecordingAndNeverAutomaticallyPlays() started.
+􀟈  Test stoppedRecordingAndPlaybackSuppressEffectTails() started.
+􀟈  Test chromiumHelpersUseOwnerIdentityWithoutPrefixGuessing() started.
+􀟈  Test consumerResetDiscardsOldAudioAndReprimesWithFreshCapture() started.
+􀟈  Test testInvalidSavePreservesPreviousSession() started.
+􀟈  Test dryStereoRecordingLoopsIndependentlyOfNewInput() started.
+􀟈  Test nativeStreamValidationRejectsChangedStridesFlagsAndRate() started.
+􀟈  Test testOversizedSparseImportIsRejectedWithoutChangingOriginal() started.
+􀙟  Test installedMasterMeRendersRestoresAndRunsThroughNativeHook() skipped.
+􀟈  Test testDSPGainHighPassGateAndCompression() started.
+􀟈  Test malformedRenderReportsCannotMasqueradeAsValidAudio() started.
+􀟈  Test oldSessionDefaultsToEmptyRackAndRackRoundTrips() started.
+􀟈  Test rejectsDuplicatedSlotsInvalidIdentityStateAndParameters() started.
+􀟈  Test capturePlanSharesCanonicalSelectorsWithoutMergingDifferentPairsOrApps() started.
+􀟈  Test diagnosticsRetainLegacyDecodingAndReportPhysicalCaptureCount() started.
+􀟈  Test aliasGraphRejectsChainsCyclesReparentingAndConfiguredAliases() started.
+􀟈  Test sharedRawAudioKeepsGroupSumEffectsMuteAndSendsIndependent() started.
+􀟈  Test resampledSharedCaptureIsIdenticalAcrossIndependentGroups() started.
+􀟈  Test detectsMultiDeviceCycleAndAllowsMutedBreak() started.
+􀟈  Test separatesStereoPairsAndRejectsOverlap() started.
+􀟈  Test duplicateOrNonEffectMetadataIsRejected() started.
+􀟈  Test crashedChildAndOutputFloodAreContained() started.
+􀙟  Test installedGroupedDeviceInputThirtySecondSoak() skipped.
+􀟈  Test childResponseIsDecodedWithoutLoadingAnAudioUnit() started.
+􀟈  Test typedHelperErrorsSurviveNonzeroExit() started.
+􀟈  Test strictProtocolRejectsVersionOperationAndCorruptPayload() started.
+􀟈  Test selectedAppleLimiterAcceptsStereoOfflineAllocation() started.
+􀟈  Test cancellationStopsChild() started.
+􀟈  Test timedOutChildIgnoringTerminationIsKilled() started.
+􀟈  Test discoveryTimeoutKillsAndReapsUncooperativeChild() started.
+􀟈  Test dryGroupIsRecordedBeforeEffectsAndPlaybackReplacesLiveInput() started.
+􀟈  Test protocolRejectsExtraDestinationsAndInvalidClipTelemetry() started.
+􁁛  Test progressingOutputCannotHideAnotherStalledDevice() passed after 0.014 seconds.
+􁁛  Test staleOrOutOfRangeReorderDoesNotMutate() passed after 0.015 seconds.
+􁁛  Test malformedControlUpdatesPreservePriorValidSettings() passed after 0.015 seconds.
+􁁛  Test reorderingPreservesRouteIdentityAndControls() passed after 0.015 seconds.
+􁁛  Test canonicalCaptureIdentityDropsIrrelevantFields() passed after 0.015 seconds.
+􁁛  Test auditionPreservesSourcesAndEffectsWithOnlyExplicitDestination() passed after 0.015 seconds.
+􁁛  Test finiteOverflowSpikeDoesNotPoisonFollowingAudio() passed after 0.015 seconds.
+􁁛  Test captureSilencesItsDuplexOutputContribution() passed after 0.014 seconds.
+􁁛  Test testCaptureMonoDuplicationAndMeter() passed after 0.015 seconds.
+􁁛  Test testGainChangesRampAndMuteReachesSilence() passed after 0.015 seconds.
+􁁛  Test maximumBufferDurationAndGraphResetAreRespected() passed after 0.015 seconds.
+􁁛  Suite InstalledSoundCheckTests passed after 0.016 seconds.
+􁁛  Test singleLegacySourceRemainsLoadableAndRawBoundsAreChecked() passed after 0.015 seconds.
+􁁛  Test testIncompleteImportedMatrixIsRejectedAndEmptyAxesAreAllowed() passed after 0.015 seconds.
+􁁛  Test testOutputOverlapRejectedButDistinctDevicesAndPairsAllowed() passed after 0.015 seconds.
+􁁛  Test rejectsBudgetOverflowBeforeAllocating() passed after 0.015 seconds.
+􁁛  Test rateExtremesReserveEnoughFramesAndFilterSpace() passed after 0.015 seconds.
+􁁛  Test capacityRejectsOverflowAndNegativeCountsWithoutAllocatingMatrix() passed after 0.015 seconds.
+􁁛  Test testGroupedSourceValidationIncludesAdditionalSources() passed after 0.015 seconds.
+􁁛  Test testNonFiniteInputIsContainedAndInvalidConfigurationRejected() passed after 0.015 seconds.
+􁁛  Test toneGroupReceivesGainExactlyOnce() passed after 0.015 seconds.
+􁁛  Test testRingIsBoundedAndReportsOverflowAndUnderrun() passed after 0.015 seconds.
+􁁛  Test compactMillionRouteExpansionFailsBeforeMaterialization() passed after 0.015 seconds.
+􁁛  Test effectTopologyExcludesSafeLiveControls() passed after 0.015 seconds.
+􁁛  Test testIndependentBusGainPanMuteAndOffsets() passed after 0.015 seconds.
+􁁛  Test testRejectDanglingDuplicateAndNonfiniteRoutes() passed after 0.015 seconds.
+􁁛  Test capacityBudgetBoundaryIsExplicitAndConfigurable() passed after 0.015 seconds.
+􁁛  Test generatedIdentitiesStayStableAcrossControlAndLabelEdits() passed after 0.015 seconds.
+􁁛  Test generatedIDCollisionFailsClosed() passed after 0.015 seconds.
+􁁛  Test listeningOutputMustBeExplicitAndValid() passed after 0.016 seconds.
+􁁛  Test testRejectUnknownSchemaAndInvalidEffects() passed after 0.015 seconds.
+􁁛  Suite InstalledAudioUnitAcceptanceTests passed after 0.017 seconds.
+􁁛  Test allExclusionsAreUpdatedBeforeAnyCaptureRestarts() passed after 0.015 seconds.
+􁁛  Test failedExclusionUpdateNeverRestartsAnyCapture() passed after 0.015 seconds.
+􁁛  Suite InstalledMatrixTests passed after 0.017 seconds.
+􁁛  Test cancellationAfterDescriptionChangePreventsLateRestart() passed after 0.016 seconds.
+􁁛  Test oldSchemaOneSessionsDecodeWithoutNewFields() passed after 0.017 seconds.
+􁁛  Test sameVisibleCountsCanRequireDifferentExpansionBudgets() passed after 0.017 seconds.
+􁁛  Test meterMappingUsesGreatestMemberAndDoesNotInventSummedPeak() passed after 0.017 seconds.
+􁁛  Test invalidInputIsRejectedBeforeLaunchingAHelper() passed after 0.017 seconds.
+􁁛  Test outerApplicationMetadataWinsOverNestedHelper() passed after 0.017 seconds.
+􁁛  Test groupedSourcesAndDestinationsPreserveIndependentMixes() passed after 0.017 seconds.
+􁁛  Test additionalOutputWorksWhenPrimaryIsUnassigned() passed after 0.017 seconds.
+􁁛  Test restartAdditionalProcessAndExitChangeExclusions() passed after 0.017 seconds.
+􁁛  Test importedStaleMetadataCannotDisguiseDuplicateCapture() passed after 0.018 seconds.
+􁁛  Test savedStateIsBoundToIdentityVersionAndSize() passed after 0.017 seconds.
+􁁛  Test initiallyAbsentExcludedApplicationRemainsWatched() passed after 0.017 seconds.
+􁁛  Test orderingDuplicatesOwnProcessAndUnrelatedAppsDoNotChangeMembership() passed after 0.017 seconds.
+􁁛  Test inclusionAndCatchAllShareCanonicalHelpersAndOwnProcessExclusions() passed after 0.017 seconds.
+􁁛  Test allocationBoundsRejectMalformedRatesAndDurations() passed after 0.017 seconds.
+􁁛  Test optionalPublicSettersAreCheckedWithoutCreatingAnAudioTap() passed after 0.018 seconds.
+􁁛  Test suspensionCannotBeOverriddenByLiveControlsAndDoesNotFreezeProcessing() passed after 0.017 seconds.
+􁁛  Test chromiumHelpersUseOwnerIdentityWithoutPrefixGuessing() passed after 0.017 seconds.
+􁁛  Test stoppedRecordingAndPlaybackSuppressEffectTails() passed after 0.017 seconds.
+􁁛  Test groupsRoundTripThroughPersistence() passed after 0.018 seconds.
+􁁛  Test nativeStreamValidationRejectsChangedStridesFlagsAndRate() passed after 0.017 seconds.
+􁁛  Test dryStereoRecordingLoopsIndependentlyOfNewInput() passed after 0.018 seconds.
+􁁛  Test rapidCommandsKeepOrderAndMailboxIsBounded() passed after 0.018 seconds.
+􁁛  Suite ThirdPartyAudioUnitTests passed after 0.019 seconds.
+􁁛  Test capacityStopsRecordingAndNeverAutomaticallyPlays() passed after 0.018 seconds.
+􁁛  Test testNewRoutesRemainMutedAfterRoundTripAndChannelRemoval() passed after 0.019 seconds.
+􁁛  Test testPersistenceRoundTripAndAtomicReplacement() passed after 0.018 seconds.
+􁁛  Test consumerResetDiscardsOldAudioAndReprimesWithFreshCapture() passed after 0.017 seconds.
+􁁛  Test testOversizedSparseImportIsRejectedWithoutChangingOriginal() passed after 0.018 seconds.
+􁁛  Test testInvalidSavePreservesPreviousSession() passed after 0.017 seconds.
+􁁛  Test compressorProcessesSummedWaveformOnce() passed after 0.019 seconds.
+􁁛  Test rejectsDuplicatedSlotsInvalidIdentityStateAndParameters() passed after 0.015 seconds.
+􁁛  Test diagnosticsRetainLegacyDecodingAndReportPhysicalCaptureCount() passed after 0.011 seconds.
+􁁛  Test defaultGroupsRemainIndependentAndInvalidGraphsAreRejected() passed after 0.019 seconds.
+􁁛  Test aliasGraphRejectsChainsCyclesReparentingAndConfiguredAliases() passed after 0.010 seconds.
+􁁛  Test testDSPGainHighPassGateAndCompression() passed after 0.019 seconds.
+􁁛  Test sumsGroupOnceAndUsesOnlyParentSendsForIndependentBuses() passed after 0.019 seconds.
+􁁛  Suite InstalledDeviceSoakTests passed after 0.020 seconds.
+􁁛  Test capturePlanSharesCanonicalSelectorsWithoutMergingDifferentPairsOrApps() passed after 0.012 seconds.
+􁁛  Test rejectsContradictoryAndNonfiniteState() passed after 0.019 seconds.
+􁁛  Test testDynamicMatrixBeyondReferenceLimits() passed after 0.018 seconds.
+􁁛  Test detectsMultiDeviceCycleAndAllowsMutedBreak() passed after 0.010 seconds.
+􁁛  Test separatesStereoPairsAndRejectsOverlap() passed after 0.010 seconds.
+􁁛  Test testInvalidStartFailsWithActionableErrorAndStaysStopped() passed after 0.019 seconds.
+􁁛  Test testInvalidImportDoesNotRewriteSource() passed after 0.019 seconds.
+􁁛  Suite RenderProgressMonitorTests passed after 0.020 seconds.
+􁁛  Suite DSPRecoveryTests passed after 0.020 seconds.
+􁁛  Suite SourceIdentityAndOrderTests passed after 0.020 seconds.
+􁁛  Suite AudioAllocationTests passed after 0.020 seconds.
+􁁛  Suite ExpandedRoutingTests passed after 0.020 seconds.
+􁁛  Suite TapRetargetTransactionTests passed after 0.020 seconds.
+􁁛  Suite NativeTapRestorationTests passed after 0.020 seconds.
+􁁛  Suite ApplicationMembershipTests passed after 0.020 seconds.
+􁁛  Suite AudioLifecycleTests passed after 0.020 seconds.
+􁁛  Suite SoundCheckBufferTests passed after 0.020 seconds.
+􁁛  Suite GroupedRealtimeTests passed after 0.020 seconds.
+􁁛  Suite SessionTests passed after 0.020 seconds.
+􁁛  Suite FeedbackValidationTests passed after 0.020 seconds.
+􀟈  Test hostScratchBudgetCountsRacksOncePerVisibleGroup() started.
+􁁛  Suite SoundCheckSessionTests passed after 0.020 seconds.
+􀙟  Test testBlackHoleLoopbackAndLiveBusControls() skipped.
+􀙟  Test testSilentPhysicalOutputLifecycle() skipped.
+􁁛  Test hostScratchBudgetCountsRacksOncePerVisibleGroup() passed after 0.001 seconds.
+􀟈  Test renderErrorLatchesSilenceAcrossTheEntireOutput() started.
+􁁛  Suite AudioCoordinatorTests passed after 0.021 seconds.
+􁁛  Test renderErrorLatchesSilenceAcrossTheEntireOutput() passed after 0.001 seconds.
+􀟈  Test malformedEffectOutputLatchesFailure() started.
+􁁛  Test malformedRenderReportsCannotMasqueradeAsValidAudio() passed after 0.019 seconds.
+􁁛  Test malformedEffectOutputLatchesFailure() passed after 0.001 seconds.
+􀟈  Test appleEffectRunsInNativeCallbackAndChangesWithoutRebuild() started.
+􁁛  Test duplicateOrNonEffectMetadataIsRejected() passed after 0.013 seconds.
+􁁛  Test oldSessionDefaultsToEmptyRackAndRackRoundTrips() passed after 0.018 seconds.
+􁁛  Suite AudioUnitSessionTests passed after 0.023 seconds.
+􁁛  Test strictProtocolRejectsVersionOperationAndCorruptPayload() passed after 0.013 seconds.
+􁁛  Test protocolRejectsExtraDestinationsAndInvalidClipTelemetry() passed after 0.011 seconds.
+􁁛  Test openingAndClosingAuditionKeepsStudioRoutesAndMutes() passed after 0.025 seconds.
+􁁛  Test globalAudioCommandCannotStartStudioInsideSoundCheck() passed after 0.025 seconds.
+􁁛  Suite SoundCheckIsolationTests passed after 0.026 seconds.
+􁁛  Test dryGroupIsRecordedBeforeEffectsAndPlaybackReplacesLiveInput() passed after 0.013 seconds.
+􁁛  Suite SoundCheckRoutingTests passed after 0.026 seconds.
+􁁛  Test sharedRawAudioKeepsGroupSumEffectsMuteAndSendsIndependent() passed after 0.017 seconds.
+CAPTURE_ALIAS rawDifference=0.0 cancellationResidual=0.0
+􁁛  Test resampledSharedCaptureIsIdenticalAcrossIndependentGroups() passed after 0.019 seconds.
+􁁛  Suite SourceAliasTests passed after 0.028 seconds.
+􁁛  Test boundsPartialLinesAndRejectsVersionMismatch() passed after 0.028 seconds.
+􁁛  Suite EngineProtocolTests passed after 0.029 seconds.
+􁁛  Test testBandLimitedDownsamplingRejectsAliasedHighFrequency() passed after 0.055 seconds.
+􁁛  Suite RealtimeTests passed after 0.056 seconds.
+􁁛  Test cancellationStopsChild() passed after 0.116 seconds.
+􁁛  Test childResponseIsDecodedWithoutLoadingAnAudioUnit() passed after 0.360 seconds.
+􁁛  Test typedHelperErrorsSurviveNonzeroExit() passed after 0.360 seconds.
+􁁛  Test testOversizedSavePreservesExistingReadableSession() passed after 0.605 seconds.
+􁁛  Suite ReviewTests passed after 0.606 seconds.
+􁁛  Test crashedChildAndOutputFloodAreContained() passed after 0.790 seconds.
+􁁛  Test discoveryTimeoutKillsAndReapsUncooperativeChild() passed after 1.525 seconds.
+􀟈  Test abruptExitDoesNotRaiseSIGPIPEInClient() started.
+􁁛  Test appleEffectRunsInNativeCallbackAndChangesWithoutRebuild() passed after 2.158 seconds.
+􀟈  Test bypassAndEmptyRackDelaysSurviveIrregularBlockBoundaries() started.
+􁁛  Test bypassAndEmptyRackDelaysSurviveIrregularBlockBoundaries() passed after 0.001 seconds.
+􀟈  Test latencyAndDelayMemoryAreBoundedBeforeRendering() started.
+􁁛  Test latencyAndDelayMemoryAreBoundedBeforeRendering() passed after 0.001 seconds.
+􀟈  Test emptyChannelAlignsWithTwoRealAppleEffects() started.
+􁁛  Test timedOutChildIgnoringTerminationIsKilled() passed after 2.226 seconds.
+􁁛  Test selectedAppleLimiterAcceptsStereoOfflineAllocation() passed after 2.342 seconds.
+􁁛  Suite PluginCatalogTests passed after 2.352 seconds.
+􁁛  Test emptyChannelAlignsWithTwoRealAppleEffects() passed after 0.354 seconds.
+􀟈  Test changingAppleAttackDelayStopsUntilGraphReconstruction() started.
+􁁛  Test changingAppleAttackDelayStopsUntilGraphReconstruction() passed after 0.303 seconds.
+􀟈  Test remainingGraphBudgetBoundsActualAppleDelayStorage() started.
+􁁛  Test abruptExitDoesNotRaiseSIGPIPEInClient() passed after 1.453 seconds.
+􀟈  Test malformedFloodIsBoundedAndChildReaped() started.
+􁁛  Test remainingGraphBudgetBoundsActualAppleDelayStorage() passed after 0.649 seconds.
+􀟈  Test failedPreparationCanReleasePartlyCreatedGraph() started.
+􁁛  Test appleLimiterRendersIndependentGainReferenceAndRestoresState() passed after 3.856 seconds.
+􁁛  Suite PluginRenderTests passed after 3.857 seconds.
+􁁛  Test malformedFloodIsBoundedAndChildReaped() passed after 0.949 seconds.
+􀟈  Test brokenPipeWhileChildRemainsAliveDoesNotRaiseSIGPIPE() started.
+􁁛  Test failedPreparationCanReleasePartlyCreatedGraph() passed after 0.772 seconds.
+􁁛  Suite LiveAudioUnitTests passed after 4.261 seconds.
+􁁛  Test brokenPipeWhileChildRemainsAliveDoesNotRaiseSIGPIPE() passed after 0.672 seconds.
+􀟈  Test runningHeartbeatDeadlineCannotBeMaskedByStaleState(_:) started.
+􀟈  Test case passing 1 argument mode → "silent_running" to runningHeartbeatDeadlineCannotBeMaskedByStaleState(_:) started.
+􀟈  Test case passing 1 argument mode → "stale_heartbeat" to runningHeartbeatDeadlineCannotBeMaskedByStaleState(_:) started.
+􁁛  Test runningHeartbeatDeadlineCannotBeMaskedByStaleState(_:) with 2 test cases passed after 2.823 seconds.
+􀟈  Test sleepReapsActiveHelperAndWakeDiscoversWithoutResuming() started.
+􁁛  Test sleepReapsActiveHelperAndWakeDiscoversWithoutResuming() passed after 0.692 seconds.
+􀟈  Test missingSoundCheckSnapshotStopsAndReapsHelper() started.
+􁁛  Test missingSoundCheckSnapshotStopsAndReapsHelper() passed after 0.306 seconds.
+􀟈  Test stopHasIndependentDeadlineAndReapsHungHelper() started.
+􁁛  Test stopHasIndependentDeadlineAndReapsHungHelper() passed after 0.889 seconds.
+􀟈  Test startHasHardRoutingDeadline() started.
+􁁛  Test startHasHardRoutingDeadline() passed after 1.763 seconds.
+􀟈  Test staleTelemetryCannotRestartStoppedSession() started.
+􁁛  Test staleTelemetryCannotRestartStoppedSession() passed after 0.579 seconds.
+􀟈  Test editDuringStartReplacesOldProcessWithLatestSession() started.
+􁁛  Test editDuringStartReplacesOldProcessWithLatestSession() passed after 0.219 seconds.
+􀟈  Test sustainedControlInputSendsUpdatesBeforeProducerStops() started.
+􁁛  Test sustainedControlInputSendsUpdatesBeforeProducerStops() passed after 0.485 seconds.
+􀟈  Test pendingReplacementCoalescesRapidStartEdits() started.
+􁁛  Test pendingReplacementCoalescesRapidStartEdits() passed after 0.650 seconds.
+􀟈  Test realHelperExitsWhenParentControlPipeCloses() started.
+􁁛  Test realHelperExitsWhenParentControlPipeCloses() passed after 0.536 seconds.
+􀙟  Test realSilentOutputThroughSupervisedProcess() skipped.
+􀙟  Test soundCheckCommandsAndLiveEditsThroughSilentDevice() skipped.
+􁁛  Suite EngineClientTests passed after 13.557 seconds.
+􁁛  Test run with 128 tests in 31 suites passed after 13.559 seconds.

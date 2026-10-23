@@ -1,0 +1,11 @@
+enumerate-size status=0
+device id=121 uid=RaveLink.ci-mix-b_UID name=RaveLink CIMixB
+register-start rate=48000
+register-return status=0
+start-begin
+start-return status=0
+stop-begin
+stop-return status=0
+unregister-return status=0
+telemetry callbacks=2252 outputFrames=1153024 capturedFrames=1152000
+capture-wav build/matrix-b.wav

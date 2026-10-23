@@ -1,0 +1,11 @@
+enumerate-size status=0
+device id=101 uid=RaveLink.ci-loopback_UID name=RaveLink CILoopback
+register-start rate=48000
+register-return status=0
+start-begin
+start-return status=0
+stop-begin
+stop-return status=0
+unregister-return status=0
+telemetry callbacks=3754 outputFrames=1922048 capturedFrames=1920000
+capture-wav /Users/runner/work/ravelink/ravelink/build/au-loopback.wav

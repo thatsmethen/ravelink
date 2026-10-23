@@ -1,0 +1,22 @@
+[0/1] Planning build
+◇ Test run started.
+↳ Testing Library Version: 124.4
+↳ Target Platform: arm64e-apple-macos14.0
+◇ Suite InstalledMatrixTests started.
+◇ Test installedIndependentMixControlSequence() started.
+MATRIX_PHASE baseline uptime=161.11190537500002
+MATRIX_PHASE route-level-A uptime=162.35054945833335
+MATRIX_PHASE route-pan-A-left uptime=163.628304125
+MATRIX_PHASE route-mute-A uptime=164.83774379166667
+MATRIX_PHASE master-mute-B uptime=166.10613866666668
+MATRIX_PHASE restored-baseline uptime=167.38316395833334
+MATRIX_PHASE source-mute uptime=168.63071300000001
+MATRIX_PHASE secondary-solo uptime=169.83679995833333
+MATRIX_PHASE summed-sources uptime=171.11614620833333
+MATRIX_PHASE source-gain uptime=172.32137279166668
+MATRIX_PHASE master-level-B uptime=173.6016315
+MATRIX_PHASE final-mute uptime=174.82823016666669
+MATRIX_EVIDENCE renderedFrames=1434112 dropped=0 underruns=0
+✔ Test installedIndependentMixControlSequence() passed after 15.304 seconds.
+✔ Suite InstalledMatrixTests passed after 15.305 seconds.
+✔ Test run with 1 test passed after 15.305 seconds.

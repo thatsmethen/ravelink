@@ -1,0 +1,45 @@
+{
+  "status": "Post-run diagnosis only. Original failed result retained; timestamp validation was not bypassed for acceptance.",
+  "analysis": {
+    "a": {
+      "rate": 48000,
+      "seconds": 60.0,
+      "peak": 0.019231028854846954,
+      "nonzero": 12571752,
+      "pairs": [
+        {
+          "error": "Bus 0: invalid onset or missing tone"
+        },
+        {
+          "error": "Bus 1: invalid onset or missing tone"
+        },
+        {
+          "error": "Bus 2: invalid onset or missing tone"
+        },
+        {
+          "error": "Bus 3: invalid onset or missing tone"
+        }
+      ]
+    },
+    "b": {
+      "rate": 48000,
+      "seconds": 60.0,
+      "peak": 0.00492853531613946,
+      "nonzero": 12653790,
+      "pairs": [
+        {
+          "error": "Bus 4: invalid onset or missing tone"
+        },
+        {
+          "error": "Bus 5: invalid onset or missing tone"
+        },
+        {
+          "error": "Bus 6: invalid onset or missing tone"
+        },
+        {
+          "error": "Bus 7: invalid onset or missing tone"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,18 @@
+Building for production...
+[0/15] Write sources
+[5/15] Write swift-version--1AB21518FC5DEDBE.txt
+[6/15] Compiling RaveLinkRealtime SoundCheck.c
+[7/17] Compiling RaveLinkRealtime Realtime.c
+[8/17] Compiling RaveLinkAudioUnitBridge AudioUnitBridge.m
+[10/17] Compiling RaveLinkCore AudioUnitEffects.swift
+[11/18] Compiling RaveLinkPluginHost Render.swift
+[11/18] Write Objects.LinkFileList
+[12/18] Linking RaveLinkPluginHost
+[14/18] Compiling RaveLinkAudio ApplicationIdentity.swift
+[15/20] Compiling RaveLinkEngine EngineMain.swift
+[15/20] Write Objects.LinkFileList
+[16/20] Linking RaveLinkEngine
+[18/20] Compiling RaveLinkApp AudioUnitRackView.swift
+[18/20] Write Objects.LinkFileList
+[19/20] Linking RaveLink
+Build complete! (52.28s)

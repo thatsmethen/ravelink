@@ -1,0 +1,367 @@
+{
+  "outputs": [
+    {
+      "output": "A",
+      "sampleRate": 48000,
+      "frames": 1152000,
+      "phases": [
+        {
+          "phases": [
+            "baseline"
+          ],
+          "startSeconds": 2.1,
+          "durationSeconds": 1.3,
+          "expectedPeak": [
+            0.12589254117941673,
+            0.12589254117941673
+          ],
+          "minPeak": [
+            0.12589074671268463,
+            0.12589074671268463
+          ],
+          "maxPeak": [
+            0.12589074671268463,
+            0.12589074671268463
+          ]
+        },
+        {
+          "phases": [
+            "route-level-A"
+          ],
+          "startSeconds": 3.5,
+          "durationSeconds": 1.15,
+          "expectedPeak": [
+            0.0316227766016838,
+            0.0316227766016838
+          ],
+          "minPeak": [
+            0.0316229984164238,
+            0.0316229984164238
+          ],
+          "maxPeak": [
+            0.0316229984164238,
+            0.0316229984164238
+          ]
+        },
+        {
+          "phases": [
+            "route-pan-A-left"
+          ],
+          "startSeconds": 4.75,
+          "durationSeconds": 1.15,
+          "expectedPeak": [
+            0.0316227766016838,
+            0.0
+          ],
+          "minPeak": [
+            0.0316229984164238,
+            2.1019476964872256e-44
+          ],
+          "maxPeak": [
+            0.0316229984164238,
+            5.305771377805968e-10
+          ]
+        },
+        {
+          "phases": [
+            "route-mute-A",
+            "master-mute-B"
+          ],
+          "startSeconds": 6.0,
+          "durationSeconds": 2.45,
+          "expectedPeak": [
+            0.0,
+            0.0
+          ],
+          "minPeak": [
+            2.1019476964872256e-44,
+            2.1019476964872256e-44
+          ],
+          "maxPeak": [
+            3.002825321729574e-09,
+            2.1019476964872256e-44
+          ]
+        },
+        {
+          "phases": [
+            "restored-baseline"
+          ],
+          "startSeconds": 8.5,
+          "durationSeconds": 1.2,
+          "expectedPeak": [
+            0.12589254117941673,
+            0.12589254117941673
+          ],
+          "minPeak": [
+            0.12589074671268463,
+            0.12589074671268463
+          ],
+          "maxPeak": [
+            0.12589074671268463,
+            0.12589074671268463
+          ]
+        },
+        {
+          "phases": [
+            "source-mute",
+            "secondary-solo"
+          ],
+          "startSeconds": 9.8,
+          "durationSeconds": 2.35,
+          "expectedPeak": [
+            0.0,
+            0.0
+          ],
+          "minPeak": [
+            2.1019476964872256e-44,
+            2.1019476964872256e-44
+          ],
+          "maxPeak": [
+            8.306103027599931e-10,
+            8.306103027599931e-10
+          ]
+        },
+        {
+          "phases": [
+            "summed-sources"
+          ],
+          "startSeconds": 12.200000000000001,
+          "durationSeconds": 1.2,
+          "expectedPeak": [
+            0.12589254117941673,
+            0.12589254117941673
+          ],
+          "minPeak": [
+            0.12589074671268463,
+            0.12589074671268463
+          ],
+          "maxPeak": [
+            0.12589074671268463,
+            0.12589074671268463
+          ]
+        },
+        {
+          "phases": [
+            "source-gain",
+            "master-level-B"
+          ],
+          "startSeconds": 13.450000000000001,
+          "durationSeconds": 2.4,
+          "expectedPeak": [
+            0.06294626996124951,
+            0.06294626996124951
+          ],
+          "minPeak": [
+            0.06294627487659454,
+            0.06294627487659454
+          ],
+          "maxPeak": [
+            0.06294627487659454,
+            0.06294627487659454
+          ]
+        },
+        {
+          "phases": [
+            "final-mute"
+          ],
+          "startSeconds": 15.9,
+          "durationSeconds": 8.1,
+          "expectedPeak": [
+            0.0,
+            0.0
+          ],
+          "minPeak": [
+            0.0,
+            0.0
+          ],
+          "maxPeak": [
+            2.755404011622886e-06,
+            2.755404011622886e-06
+          ]
+        }
+      ]
+    },
+    {
+      "output": "B",
+      "sampleRate": 48000,
+      "frames": 1152000,
+      "phases": [
+        {
+          "phases": [
+            "baseline",
+            "route-level-A",
+            "route-pan-A-left",
+            "route-mute-A"
+          ],
+          "startSeconds": 2.1,
+          "durationSeconds": 5.0,
+          "expectedPeak": [
+            0.06294626996124951,
+            0.06294626996124951
+          ],
+          "minPeak": [
+            0.06294537335634232,
+            0.06294537335634232
+          ],
+          "maxPeak": [
+            0.06294537335634232,
+            0.06294537335634232
+          ]
+        },
+        {
+          "phases": [
+            "master-mute-B"
+          ],
+          "startSeconds": 7.2,
+          "durationSeconds": 1.25,
+          "expectedPeak": [
+            0.0,
+            0.0
+          ],
+          "minPeak": [
+            1.1210387714598537e-44,
+            1.1210387714598537e-44
+          ],
+          "maxPeak": [
+            1.9961991171157933e-08,
+            1.9961991171157933e-08
+          ]
+        },
+        {
+          "phases": [
+            "restored-baseline"
+          ],
+          "startSeconds": 8.5,
+          "durationSeconds": 1.2,
+          "expectedPeak": [
+            0.06294626996124951,
+            0.06294626996124951
+          ],
+          "minPeak": [
+            0.06294537335634232,
+            0.06294537335634232
+          ],
+          "maxPeak": [
+            0.06294537335634232,
+            0.06294537335634232
+          ]
+        },
+        {
+          "phases": [
+            "source-mute"
+          ],
+          "startSeconds": 9.8,
+          "durationSeconds": 1.15,
+          "expectedPeak": [
+            0.0,
+            0.0
+          ],
+          "minPeak": [
+            2.1019476964872256e-44,
+            2.1019476964872256e-44
+          ],
+          "maxPeak": [
+            4.77340611482191e-10,
+            4.77340611482191e-10
+          ]
+        },
+        {
+          "phases": [
+            "secondary-solo"
+          ],
+          "startSeconds": 11.0,
+          "durationSeconds": 1.15,
+          "expectedPeak": [
+            0.0316227766016838,
+            0.0316227766016838
+          ],
+          "minPeak": [
+            0.03162277117371559,
+            0.03162277117371559
+          ],
+          "maxPeak": [
+            0.03162277117371559,
+            0.03162277117371559
+          ]
+        },
+        {
+          "phases": [
+            "summed-sources"
+          ],
+          "startSeconds": 12.200000000000001,
+          "durationSeconds": 1.2,
+          "expectedPeak": [
+            0.0945690465629333,
+            0.0945690465629333
+          ],
+          "minPeak": [
+            0.09456814080476761,
+            0.09456814080476761
+          ],
+          "maxPeak": [
+            0.09456814080476761,
+            0.09456814080476761
+          ]
+        },
+        {
+          "phases": [
+            "source-gain"
+          ],
+          "startSeconds": 13.450000000000001,
+          "durationSeconds": 1.2,
+          "expectedPeak": [
+            0.06309591126807912,
+            0.06309591126807912
+          ],
+          "minPeak": [
+            0.06309590488672256,
+            0.06309590488672256
+          ],
+          "maxPeak": [
+            0.06309591978788376,
+            0.06309591978788376
+          ]
+        },
+        {
+          "phases": [
+            "master-level-B"
+          ],
+          "startSeconds": 14.75,
+          "durationSeconds": 1.1,
+          "expectedPeak": [
+            0.015848976339802034,
+            0.015848976339802034
+          ],
+          "minPeak": [
+            0.015849314630031586,
+            0.015849314630031586
+          ],
+          "maxPeak": [
+            0.015849314630031586,
+            0.015849314630031586
+          ]
+        },
+        {
+          "phases": [
+            "final-mute"
+          ],
+          "startSeconds": 15.9,
+          "durationSeconds": 8.1,
+          "expectedPeak": [
+            0.0,
+            0.0
+          ],
+          "minPeak": [
+            0.0,
+            0.0
+          ],
+          "maxPeak": [
+            7.9741818126422e-07,
+            7.9741818126422e-07
+          ]
+        }
+      ]
+    }
+  ],
+  "evidence": "Independent signal analysis; caller supplies recorder provenance; no alignment, resampling or gain fitting"
+}

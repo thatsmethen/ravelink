@@ -1,0 +1,47 @@
+{
+  "completed" : true,
+  "evidence" : "Supervised Sound Check state sequence; independent PCM determines actual silence, dry recording and loop gain",
+  "finalFrames" : 0,
+  "finalMode" : "empty",
+  "guardUID" : "RaveLink.ci-mix-b_UID",
+  "helperReaped" : true,
+  "initialGainDB" : -12,
+  "mixBuses" : 1,
+  "osVersion" : "Version 15.7.9 (Build 24G830)",
+  "outputUID" : "RaveLink.ci-mix-a_UID",
+  "recordedFrames" : 46592,
+  "sampleRate" : 48000,
+  "stateEvents" : [
+    {
+      "mode" : "empty",
+      "recordedFrames" : 0,
+      "uptime" : 293.55463500000002
+    },
+    {
+      "mode" : "recording",
+      "recordedFrames" : 2560,
+      "uptime" : 294.20874041666667
+    },
+    {
+      "mode" : "ready",
+      "recordedFrames" : 46592,
+      "uptime" : 295.15560687499999
+    },
+    {
+      "mode" : "playing",
+      "recordedFrames" : 46592,
+      "uptime" : 296.53503541666669
+    },
+    {
+      "mode" : "ready",
+      "recordedFrames" : 46592,
+      "uptime" : 303.13330375000004
+    },
+    {
+      "mode" : "empty",
+      "recordedFrames" : 0,
+      "uptime" : 304.24319129166668
+    }
+  ],
+  "visibleInputGroups" : 1
+}

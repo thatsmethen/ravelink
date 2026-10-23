@@ -1,0 +1,29 @@
+{
+  "recordedAtUTC": "2026-10-23T19:36:46.766555+00:00",
+  "sourceRevision": "784e38f30a7b51f2fc8d40d58413780ae11e9944",
+  "hostArchitecture": "arm64",
+  "hostOS": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0\nBuildVersion:\t\t26A5406e\n",
+  "command": "swift build -c release --arch x86_64 --scratch-path .build-x86_64",
+  "exitCode": 0,
+  "binaries": [
+    {
+      "name": "RaveLink",
+      "sha256": "ac1376c0bd6952bad30cba468299f6607f89ca11b414f491bbe819226f8d8b4b",
+      "architecture": "x86_64"
+    },
+    {
+      "name": "RaveLinkEngine",
+      "sha256": "6e35ca05e630ceb7beac729c5b8ae61f2e38957db293874d5db8383f76fc6f1e",
+      "architecture": "x86_64"
+    },
+    {
+      "name": "RaveLinkPluginHost",
+      "sha256": "e3c02ea364ee1837710b2da1ccb6c3a9b89568c69489c98f774f30b4de4a3a5a",
+      "architecture": "x86_64"
+    }
+  ],
+  "limitations": [
+    "Cross-compilation only; not native Intel hardware or production acceptance.",
+    "Full translated x86_64 tests are a separate pending record."
+  ]
+}

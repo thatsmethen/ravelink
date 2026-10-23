@@ -1,0 +1,26 @@
+[0/1] Planning build
+Building for production...
+[0/7] Write sources
+[0/7] /Users/textual/.codex/worktrees/signed-build/ravelink/.build-x86_64/x86_64-apple-macosx/release/RaveLinkPackageTests.derived/runner.swift
+[4/14] Write sources
+[5/14] Write swift-version--1AB21518FC5DEDBE.txt
+[7/16] Compiling RaveLinkPluginHost Render.swift
+[7/16] Write Objects.LinkFileList
+[8/16] Linking RaveLinkPluginHost
+[10/16] Compiling RaveLinkCore AudioUnitEffects.swift
+[11/18] Compiling RaveLinkCoreTests AudioUnitSessionTests.swift
+[12/18] Compiling RaveLinkAudio ApplicationIdentity.swift
+[13/21] Compiling RaveLinkEngine EngineMain.swift
+[13/21] Write Objects.LinkFileList
+[14/21] Linking RaveLinkEngine
+[16/21] Compiling RaveLinkApp AudioUnitRackView.swift
+[16/21] Write Objects.LinkFileList
+[17/21] Linking RaveLink
+[19/22] Compiling RaveLinkAppTests SoundCheckIsolationTests.swift
+[20/22] Compiling RaveLinkAudioTests ApplicationMembershipTests.swift
+[21/23] Compiling RaveLinkPackageTests runner.swift
+[21/23] Write Objects.LinkFileList
+[22/23] Linking RaveLinkPackageTests
+Build complete! (24.64s)
+error: Exited with unexpected signal code 5
+swiftpm_testing_helper/Entrypoint.swift:34: Fatal error: Failed to open test bundle at path /Users/textual/.codex/worktrees/signed-build/ravelink/.build-x86_64/x86_64-apple-macosx/release/RaveLinkPackageTests.xctest/Contents/MacOS/RaveLinkPackageTests: dlopen(/Users/textual/.codex/worktrees/signed-build/ravelink/.build-x86_64/x86_64-apple-macosx/release/RaveLinkPackageTests.xctest/Contents/MacOS/RaveLinkPackageTests, 0x0101): tried: '/Library/Developer/CommandLineTools/Library/Developer/Frameworks/RaveLinkPackageTests' (no such file), '/Users/textual/.codex/worktrees/signed-build/ravelink/.build-x86_64/x86_64-apple-macosx/release/RaveLinkPackageTests.xctest/Contents/MacOS/RaveLinkPackageTests' (mach-o file, but is an incompatible architecture (have 'x86_64', need 'arm64e, arm64e.v1, arm64, arm64')), '/System/Volumes/Preboot/Cryptexes/OS/Users/textual/.codex/worktrees/signed-build/ravelink/.build-x86_64/x86_64-apple-macosx/release/RaveLinkPackageTests.xctest/Contents/MacOS/RaveLinkPackageTests' (no such file), '/Users/textual/.codex/worktrees/signed-build/ravelink/.build-x86_64/x86_64-apple-macosx/release/RaveLinkPackageTests.xctest/Contents/MacOS/RaveLinkPackageTests' (mach-o file, but is an incompatible architecture (have 'x86_64', need 'arm64e, arm64e.v1, arm64, arm64'))

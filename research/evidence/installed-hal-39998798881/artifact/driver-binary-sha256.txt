@@ -1,0 +1,3 @@
+23d9137cc7f620172bd3bad58e45755fcb3fd1a63d7c02d0f87b6ed4774f6dc2  build/ci-drivers/RaveLink-ci-loopback.driver/Contents/MacOS/RaveLinkAudio
+f77710884f7472fca6e7dc41b29b4fedea3ab23fd3b88a371b27347b44bc1dc1  build/ci-drivers/RaveLink-ci-mix-a.driver/Contents/MacOS/RaveLinkAudio
+75ab1cff85cb8603d2e84e35904c4287051dbcfaf3ad440b6f2074a311f3ae4c  build/ci-drivers/RaveLink-ci-mix-b.driver/Contents/MacOS/RaveLinkAudio

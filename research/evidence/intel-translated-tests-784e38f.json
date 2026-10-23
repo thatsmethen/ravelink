@@ -1,0 +1,17 @@
+{
+  "recordedAtUTC": "2026-10-23T19:40:11.779760+00:00",
+  "sourceRevision": "784e38f30a7b51f2fc8d40d58413780ae11e9944",
+  "host": "arm64 macOS27beta26A5406e",
+  "execution": "Rosetta x86_64 translated, not native Intel hardware",
+  "command": "RAVELINK_PLUGIN_RENDER_APPLE=1 RAVELINK_PLUGIN_PROBE_APPLE=1 arch -x86_64 /Library/Developer/CommandLineTools/usr/bin/swift-test --skip-build --disable-xctest -c release --arch x86_64 --scratch-path .build-x86_64",
+  "exitCode": 0,
+  "testResult": "128 tests in31suites passed after13.559seconds; opt-in hardware cases skipped",
+  "testBundleSHA256": "9b27ee8897cb4d17aef25a23c32252ba79309be3bf9e4c57904cf6f71500bef4",
+  "testBundleArchitecture": "x86_64",
+  "logSHA256": "275f4f45d5a09907245c3771bfaaebb321da972ccf5a4d54679788c9b708528c",
+  "priorFailure": "intel-test-launcher-failure-784e38f.txt records native arm64 SwiftPM helper unable to dlopen x86_64 testbundle; forced translated launcher succeeded without source edits",
+  "limitations": [
+    "No native Intel host or installed HAL validation.",
+    "No application privacy, hotplug, sleep/wake or long-running physical-clock qualification."
+  ]
+}

@@ -1,0 +1,673 @@
+{
+  "status": "Diagnostic fixed-frequency measurements only, original FAILED result retained. No alignment or gain fitting.",
+  "measurements": {
+    "a": [
+      {
+        "bus": 0,
+        "expectedComponentAmplitude": 0.01,
+        "windows": [
+          {
+            "atSeconds": 7,
+            "componentAmplitudes": [
+              0.0008815477076463241,
+              0.0017494127567950573
+            ],
+            "relativeToExpected": [
+              0.0881547707646324,
+              0.17494127567950574
+            ]
+          },
+          {
+            "atSeconds": 10,
+            "componentAmplitudes": [
+              0.007295347503339605,
+              0.0014879767072424857
+            ],
+            "relativeToExpected": [
+              0.7295347503339605,
+              0.14879767072424857
+            ]
+          },
+          {
+            "atSeconds": 15,
+            "componentAmplitudes": [
+              0.007631361476495861,
+              0.0010694454223240137
+            ],
+            "relativeToExpected": [
+              0.763136147649586,
+              0.10694454223240137
+            ]
+          },
+          {
+            "atSeconds": 20,
+            "componentAmplitudes": [
+              0.002539484662414231,
+              0.003735959324569326
+            ],
+            "relativeToExpected": [
+              0.2539484662414231,
+              0.37359593245693257
+            ]
+          },
+          {
+            "atSeconds": 25,
+            "componentAmplitudes": [
+              0.002263369427797346,
+              0.004956547530855388
+            ],
+            "relativeToExpected": [
+              0.2263369427797346,
+              0.49565475308553875
+            ]
+          },
+          {
+            "atSeconds": 30,
+            "componentAmplitudes": [
+              0.0028683215131762355,
+              0.0033544642467614534
+            ],
+            "relativeToExpected": [
+              0.2868321513176235,
+              0.3354464246761453
+            ]
+          },
+          {
+            "atSeconds": 35,
+            "componentAmplitudes": [
+              0.0009578176329461336,
+              0.0035284151241243415
+            ],
+            "relativeToExpected": [
+              0.09578176329461335,
+              0.35284151241243417
+            ]
+          }
+        ]
+      },
+      {
+        "bus": 1,
+        "expectedComponentAmplitude": 0.0070794578438413795,
+        "windows": [
+          {
+            "atSeconds": 7,
+            "componentAmplitudes": [
+              0.0006240861242502872,
+              0.0012384856968662315
+            ],
+            "relativeToExpected": [
+              0.08815450815816318,
+              0.17494075453018273
+            ]
+          },
+          {
+            "atSeconds": 10,
+            "componentAmplitudes": [
+              0.005164695132001152,
+              0.0010534037014662977
+            ],
+            "relativeToExpected": [
+              0.7295325780481998,
+              0.14879722779657248
+            ]
+          },
+          {
+            "atSeconds": 15,
+            "componentAmplitudes": [
+              0.005402574090504957,
+              0.0007571071235270106
+            ],
+            "relativeToExpected": [
+              0.7631338740444381,
+              0.10694422372832398
+            ]
+          },
+          {
+            "atSeconds": 20,
+            "componentAmplitudes": [
+              0.0017978121022262882,
+              0.0026448487711645597
+            ],
+            "relativeToExpected": [
+              0.2539477092571793,
+              0.3735948189119296
+            ]
+          },
+          {
+            "atSeconds": 25,
+            "componentAmplitudes": [
+              0.0016023380706437927,
+              0.0035089564745980632
+            ],
+            "relativeToExpected": [
+              0.22633626839627444,
+              0.49565327628168643
+            ]
+          },
+          {
+            "atSeconds": 30,
+            "componentAmplitudes": [
+              0.0020306100739042265,
+              0.0023747717470788106
+            ],
+            "relativeToExpected": [
+              0.28683129678789054,
+              0.33544542526581916
+            ]
+          },
+          {
+            "atSeconds": 35,
+            "componentAmplitudes": [
+              0.0006780809340922242,
+              0.0024979191671261115
+            ],
+            "relativeToExpected": [
+              0.0957814777698134,
+              0.35284046069984326
+            ]
+          }
+        ]
+      },
+      {
+        "bus": 2,
+        "expectedComponentAmplitude": 0.005011872336272723,
+        "windows": [
+          {
+            "atSeconds": 7,
+            "componentAmplitudes": [
+              0.0004418172866780056,
+              0.000876777048260982
+            ],
+            "relativeToExpected": [
+              0.08815413822104266,
+              0.17494002030247882
+            ]
+          },
+          {
+            "atSeconds": 10,
+            "componentAmplitudes": [
+              0.0036563087980653834,
+              0.0007457495772767831
+            ],
+            "relativeToExpected": [
+              0.7295295156669018,
+              0.14879660279443377
+            ]
+          },
+          {
+            "atSeconds": 15,
+            "componentAmplitudes": [
+              0.0038247135050345146,
+              0.0005359885486636069
+            ],
+            "relativeToExpected": [
+              0.7631306722147904,
+              0.10694377524033583
+            ]
+          },
+          {
+            "atSeconds": 20,
+            "componentAmplitudes": [
+              0.0012727481586516116,
+              0.0018724016804422363
+            ],
+            "relativeToExpected": [
+              0.25394664374035936,
+              0.3735932511470797
+            ]
+          },
+          {
+            "atSeconds": 25,
+            "componentAmplitudes": [
+              0.0011343637264108956,
+              0.0024841405225666836
+            ],
+            "relativeToExpected": [
+              0.22633531947753283,
+              0.49565119697644033
+            ]
+          },
+          {
+            "atSeconds": 30,
+            "componentAmplitudes": [
+              0.001437555811678604,
+              0.0016812025936284154
+            ],
+            "relativeToExpected": [
+              0.2868300936706818,
+              0.33544401788947165
+            ]
+          },
+          {
+            "atSeconds": 35,
+            "componentAmplitudes": [
+              0.0004800425247044978,
+              0.0017683839253334079
+            ],
+            "relativeToExpected": [
+              0.09578107591254019,
+              0.35283898046144896
+            ]
+          }
+        ]
+      },
+      {
+        "bus": 3,
+        "expectedComponentAmplitude": 0.003548133892335755,
+        "windows": [
+          {
+            "atSeconds": 7,
+            "componentAmplitudes": [
+              0.00031278404734407206,
+              0.0006207133177636361
+            ],
+            "relativeToExpected": [
+              0.08815452202063453,
+              0.1749407819993561
+            ]
+          },
+          {
+            "atSeconds": 10,
+            "componentAmplitudes": [
+              0.0025884796764421873,
+              0.0005279525708156035
+            ],
+            "relativeToExpected": [
+              0.7295326938009596,
+              0.14879725141038846
+            ]
+          },
+          {
+            "atSeconds": 15,
+            "componentAmplitudes": [
+              0.0027077015935717116,
+              0.0003794524842565473
+            ],
+            "relativeToExpected": [
+              0.7631339954280073,
+              0.10694424048545467
+            ]
+          },
+          {
+            "atSeconds": 20,
+            "componentAmplitudes": [
+              0.0009010406181594218,
+              0.001325564650637361
+            ],
+            "relativeToExpected": [
+              0.25394774985964863,
+              0.37359487856438667
+            ]
+          },
+          {
+            "atSeconds": 25,
+            "componentAmplitudes": [
+              0.0008030715116602353,
+              0.0017586444656440784
+            ],
+            "relativeToExpected": [
+              0.22633630410479497,
+              0.49565335441339664
+            ]
+          },
+          {
+            "atSeconds": 30,
+            "componentAmplitudes": [
+              0.0010177160068096508,
+              0.0011902054712129401
+            ],
+            "relativeToExpected": [
+              0.2868313422466938,
+              0.33544547847641165
+            ]
+          },
+          {
+            "atSeconds": 35,
+            "componentAmplitudes": [
+              0.0003398455605860888,
+              0.0012519253953769901
+            ],
+            "relativeToExpected": [
+              0.09578149272218324,
+              0.3528405165547011
+            ]
+          }
+        ]
+      }
+    ],
+    "b": [
+      {
+        "bus": 4,
+        "expectedComponentAmplitude": 0.0025118864315095803,
+        "windows": [
+          {
+            "atSeconds": 7,
+            "componentAmplitudes": [
+              0.00025146840634066616,
+              0.0004295875114976604
+            ],
+            "relativeToExpected": [
+              0.10011137573187973,
+              0.17102186870745154
+            ]
+          },
+          {
+            "atSeconds": 10,
+            "componentAmplitudes": [
+              0.0019217300996638921,
+              0.000289205718610314
+            ],
+            "relativeToExpected": [
+              0.7650545325446824,
+              0.115134870343843
+            ]
+          },
+          {
+            "atSeconds": 15,
+            "componentAmplitudes": [
+              0.0017752481522399306,
+              0.0006202447341047739
+            ],
+            "relativeToExpected": [
+              0.7067390189185628,
+              0.24692387614515773
+            ]
+          },
+          {
+            "atSeconds": 20,
+            "componentAmplitudes": [
+              0.000724713933182015,
+              0.0004181612182337394
+            ],
+            "relativeToExpected": [
+              0.28851381339978827,
+              0.16647297942623746
+            ]
+          },
+          {
+            "atSeconds": 25,
+            "componentAmplitudes": [
+              0.0002455040425886208,
+              0.0019382538373252922
+            ],
+            "relativeToExpected": [
+              0.0977369197544011,
+              0.7716327509920305
+            ]
+          },
+          {
+            "atSeconds": 30,
+            "componentAmplitudes": [
+              0.0007102348578416634,
+              0.0007170307126438038
+            ],
+            "relativeToExpected": [
+              0.2827495896838099,
+              0.2854550682105825
+            ]
+          },
+          {
+            "atSeconds": 35,
+            "componentAmplitudes": [
+              0.00021894852123151274,
+              0.00048038347460403194
+            ],
+            "relativeToExpected": [
+              0.08716497628434985,
+              0.19124410585526894
+            ]
+          }
+        ]
+      },
+      {
+        "bus": 5,
+        "expectedComponentAmplitude": 0.001778279410038923,
+        "windows": [
+          {
+            "atSeconds": 7,
+            "componentAmplitudes": [
+              0.00017802674069843452,
+              0.000304125935671223
+            ],
+            "relativeToExpected": [
+              0.10011179328367631,
+              0.17102258169011036
+            ]
+          },
+          {
+            "atSeconds": 10,
+            "componentAmplitudes": [
+              0.001360486392968018,
+              0.0002047428235230806
+            ],
+            "relativeToExpected": [
+              0.7650577211250732,
+              0.11513535070318291
+            ]
+          },
+          {
+            "atSeconds": 15,
+            "componentAmplitudes": [
+              0.0012567846812879192,
+              0.00043910147525163704
+            ],
+            "relativeToExpected": [
+              0.706741963154379,
+              0.24692490548604282
+            ]
+          },
+          {
+            "atSeconds": 20,
+            "componentAmplitudes": [
+              0.0005130603127777037,
+              0.0002960367057090228
+            ],
+            "relativeToExpected": [
+              0.2885150161899888,
+              0.16647367339339725
+            ]
+          },
+          {
+            "atSeconds": 25,
+            "componentAmplitudes": [
+              0.00017380427588849015,
+              0.001372184352557167
+            ],
+            "relativeToExpected": [
+              0.09773732682688258,
+              0.7716359672224584
+            ]
+          },
+          {
+            "atSeconds": 30,
+            "componentAmplitudes": [
+              0.0005028098691958112,
+              0.0005076209858201223
+            ],
+            "relativeToExpected": [
+              0.28275076816235856,
+              0.285456257860519
+            ]
+          },
+          {
+            "atSeconds": 35,
+            "componentAmplitudes": [
+              0.00015500432891743055,
+              0.000340086873231557
+            ],
+            "relativeToExpected": [
+              0.08716533973366863,
+              0.19124490297287602
+            ]
+          }
+        ]
+      },
+      {
+        "bus": 6,
+        "expectedComponentAmplitude": 0.0012589254117941673,
+        "windows": [
+          {
+            "atSeconds": 7,
+            "componentAmplitudes": [
+              0.00012603277152376454,
+              0.00021530380478395237
+            ],
+            "relativeToExpected": [
+              0.10011138892188058,
+              0.17102189118345817
+            ]
+          },
+          {
+            "atSeconds": 10,
+            "componentAmplitudes": [
+              0.0009631467181294128,
+              0.00014494623335025494
+            ],
+            "relativeToExpected": [
+              0.7650546323922216,
+              0.11513488566704178
+            ]
+          },
+          {
+            "atSeconds": 15,
+            "componentAmplitudes": [
+              0.0008897318276414051,
+              0.0003108587831978255
+            ],
+            "relativeToExpected": [
+              0.706739112028406,
+              0.24692390850606685
+            ]
+          },
+          {
+            "atSeconds": 20,
+            "componentAmplitudes": [
+              0.00036321741935888333,
+              0.0002095770923257304
+            ],
+            "relativeToExpected": [
+              0.28851385154045084,
+              0.1664730017857452
+            ]
+          },
+          {
+            "atSeconds": 25,
+            "componentAmplitudes": [
+              0.00012304350762632667,
+              0.0009714282064236383
+            ],
+            "relativeToExpected": [
+              0.09773693220710372,
+              0.7716328523698635
+            ]
+          },
+          {
+            "atSeconds": 30,
+            "componentAmplitudes": [
+              0.00035596069044947103,
+              0.00035936668632379046
+            ],
+            "relativeToExpected": [
+              0.2827496268759647,
+              0.28545510556629106
+            ]
+          },
+          {
+            "atSeconds": 35,
+            "componentAmplitudes": [
+              0.00010973421813392647,
+              0.0002407620961228727
+            ],
+            "relativeToExpected": [
+              0.08716498777917105,
+              0.19124413080179925
+            ]
+          }
+        ]
+      },
+      {
+        "bus": 7,
+        "expectedComponentAmplitude": 0.0008912509381337455,
+        "windows": [
+          {
+            "atSeconds": 7,
+            "componentAmplitudes": [
+              8.922473551294525e-05,
+              0.00015242404640800216
+            ],
+            "relativeToExpected": [
+              0.10011179982573634,
+              0.17102259294915734
+            ]
+          },
+          {
+            "atSeconds": 10,
+            "componentAmplitudes": [
+              0.0006818584567660806,
+              0.00010261449544944688
+            ],
+            "relativeToExpected": [
+              0.7650577717134,
+              0.11513535757316426
+            ]
+          },
+          {
+            "atSeconds": 15,
+            "componentAmplitudes": [
+              0.0006298844802262211,
+              0.00022007206794379572
+            ],
+            "relativeToExpected": [
+              0.7067420108922203,
+              0.24692492150933437
+            ]
+          },
+          {
+            "atSeconds": 20,
+            "componentAmplitudes": [
+              0.00025713929577955816,
+              0.0001483698274407336
+            ],
+            "relativeToExpected": [
+              0.28851503519087524,
+              0.16647368445010097
+            ]
+          },
+          {
+            "atSeconds": 25,
+            "componentAmplitudes": [
+              8.710848988755951e-05,
+              0.000687721325093317
+            ],
+            "relativeToExpected": [
+              0.09773733318021774,
+              0.7716360181717017
+            ]
+          },
+          {
+            "atSeconds": 30,
+            "componentAmplitudes": [
+              0.00025200190419970964,
+              0.0002544131746505896
+            ],
+            "relativeToExpected": [
+              0.2827507870313097,
+              0.28545627697551
+            ]
+          },
+          {
+            "atSeconds": 35,
+            "componentAmplitudes": [
+              7.768619583207373e-05,
+              0.00017044721029922763
+            ],
+            "relativeToExpected": [
+              0.087165345368103,
+              0.1912449154400211
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

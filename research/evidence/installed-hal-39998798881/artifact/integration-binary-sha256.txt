@@ -1,0 +1,3 @@
+b5db53a76db99d4f4f989babc000a96b27241808cd51051c96cb0cc62a8b2ac3  .build/release/RaveLinkEngine
+e16353c6e16c0a44d615df27e8494648f9f3739956417233612168a2b2c14167  .build/release/RaveLinkPluginHost
+4ec29aa698dfc77417a81a9aaca7572d1f1f0754bfb3a1df9436a31dab58dba6  .build/release/RaveLinkPackageTests.xctest/Contents/MacOS/RaveLinkPackageTests
