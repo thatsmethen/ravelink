@@ -1,0 +1,24 @@
+{
+  "sampleRate": 48000,
+  "frames": 576000,
+  "seconds": 12.0,
+  "peak": 0.12589074671268463,
+  "frequencyHz": 439.99959304514147,
+  "stereoDifference": 0.0,
+  "phaseWindows": {
+    "unity": 42,
+    "minus12dB": 20,
+    "silenceAfterSignal": 131
+  },
+  "windowSeconds": 0.05,
+  "phaseFrequenciesHz": {
+    "unity": 439.99959304514147,
+    "minus12dB": 439.99912070519446
+  },
+  "orderedPhaseStartsSeconds": {
+    "unity": 2.3000000000000003,
+    "minus12dB": 4.4,
+    "muted": 5.45
+  },
+  "evidence": "signal analysis only; caller supplies capture provenance; no alignment, resampling or gain fitting"
+}

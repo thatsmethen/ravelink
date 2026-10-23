@@ -1,0 +1,7 @@
+enumerate-size status=0
+device id=86 uid=AVIODevice name=Apple Virtual Sound Device
+device id=91 uid=AVIODevice 2 name=Apple Virtual Sound Device
+device id=56 uid=NullAudioDevice_UID name=Null Audio Device
+device id=97 uid=RaveLink.ci-loopback_UID name=RaveLink CILoopback
+device id=111 uid=RaveLink.ci-mix-a_UID name=RaveLink CIMixA
+device id=121 uid=RaveLink.ci-mix-b_UID name=RaveLink CIMixB

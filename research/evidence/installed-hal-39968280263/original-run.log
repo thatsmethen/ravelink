@@ -1,0 +1,1333 @@
+macos	Set up job	﻿2026-10-23T14:16:58.8966950Z Current runner version: '2.338.0'
+macos	Set up job	2026-10-23T14:16:58.8984710Z ##[group]Runner Image Provisioner
+macos	Set up job	2026-10-23T14:16:58.8985340Z Hosted Compute Agent
+macos	Set up job	2026-10-23T14:16:58.8985740Z Version: 20260828.587
+macos	Set up job	2026-10-23T14:16:58.8986160Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+macos	Set up job	2026-10-23T14:16:58.8986630Z Build Date: 2026-08-28T16:44:25Z
+macos	Set up job	2026-10-23T14:16:58.8987060Z Worker ID: {6a63a9d9-e35a-47e4-a00c-63b7f431e4dc}
+macos	Set up job	2026-10-23T14:16:58.8987520Z Azure Region: westus
+macos	Set up job	2026-10-23T14:16:58.8987880Z ##[endgroup]
+macos	Set up job	2026-10-23T14:16:58.8988850Z ##[group]Operating System
+macos	Set up job	2026-10-23T14:16:58.8989240Z macOS
+macos	Set up job	2026-10-23T14:16:58.8989560Z 15.7.9
+macos	Set up job	2026-10-23T14:16:58.8989890Z 24G830
+macos	Set up job	2026-10-23T14:16:58.8990230Z ##[endgroup]
+macos	Set up job	2026-10-23T14:16:58.8990570Z ##[group]Runner Image
+macos	Set up job	2026-10-23T14:16:58.8990950Z Image: macos-15-arm64
+macos	Set up job	2026-10-23T14:16:58.8991340Z Version: 20260907.0337.1
+macos	Set up job	2026-10-23T14:16:58.8992110Z Included Software: https://github.com/actions/runner-images/blob/macos-15-arm64/20260907.0337/images/macos/macos-15-arm64-Readme.md
+macos	Set up job	2026-10-23T14:16:58.8993270Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-15-arm64%2F20260907.0337
+macos	Set up job	2026-10-23T14:16:58.8993960Z ##[endgroup]
+macos	Set up job	2026-10-23T14:16:58.8994720Z ##[group]GITHUB_TOKEN Permissions
+macos	Set up job	2026-10-23T14:16:58.8996270Z Contents: read
+macos	Set up job	2026-10-23T14:16:58.8996640Z Metadata: read
+macos	Set up job	2026-10-23T14:16:58.8997000Z ##[endgroup]
+macos	Set up job	2026-10-23T14:16:58.9001850Z Secret source: Actions
+macos	Set up job	2026-10-23T14:16:58.9003600Z Cache mode: write
+macos	Set up job	2026-10-23T14:16:58.9004930Z Prepare workflow directory
+macos	Set up job	2026-10-23T14:16:58.9314010Z Prepare all required actions
+macos	Set up job	2026-10-23T14:16:58.9390800Z Getting action download info
+macos	Set up job	2026-10-23T14:16:59.3606070Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+macos	Set up job	2026-10-23T14:16:59.7604930Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+macos	Set up job	2026-10-23T14:16:59.9794320Z Complete job name: macos
+macos	Run actions/checkout@v4	﻿2026-10-23T14:17:00.1612170Z ##[group]Run actions/checkout@v4
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.1616480Z with:
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.1617670Z   repository: thatsmethen/ravelink
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.1626820Z   token: ***
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.1627420Z   ssh-strict: true
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.1627950Z   ssh-user: git
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.1628310Z   persist-credentials: true
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.1628750Z   clean: true
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.1629100Z   sparse-checkout-cone-mode: true
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.1629960Z   fetch-depth: 1
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.1630360Z   fetch-tags: false
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.1630760Z   show-progress: true
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.1633140Z   lfs: false
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.1633560Z   submodules: false
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.1633910Z   set-safe-directory: true
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.1635300Z   allow-unsafe-pr-checkout: false
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.1639000Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.6470070Z Syncing repository: thatsmethen/ravelink
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.6504170Z ##[group]Getting Git version info
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.6505210Z Working directory is '/Users/runner/work/ravelink/ravelink'
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.6506510Z [command]/opt/homebrew/bin/git version
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7234610Z git version 2.55.0
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7383820Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7398690Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/fe8ab353-68fd-4701-9557-8baa61a4f41f/.gitconfig'
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7400690Z Temporarily overriding HOME='/Users/runner/work/_temp/fe8ab353-68fd-4701-9557-8baa61a4f41f' before making global git config changes
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7401750Z Adding repository directory to the temporary git global config as a safe directory
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7403270Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7464940Z Deleting the contents of '/Users/runner/work/ravelink/ravelink'
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7470610Z ##[group]Initializing the repository
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7472670Z [command]/opt/homebrew/bin/git init /Users/runner/work/ravelink/ravelink
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7818800Z hint: Using 'master' as the name for the initial branch. This default branch name
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7822960Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7825210Z hint: to use in all of your new repositories, which will suppress this warning,
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7825970Z hint: call:
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7826300Z hint:
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7826710Z hint: 	git config --global init.defaultBranch <name>
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7827150Z hint:
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7827570Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7828230Z hint: 'development'. The just-created branch can be renamed via this command:
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7828760Z hint:
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7829570Z hint: 	git branch -m <name>
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7830880Z hint:
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7832210Z hint: Disable this message with "git config set advice.defaultBranchName false"
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7852720Z Initialized empty Git repository in /Users/runner/work/ravelink/ravelink/.git/
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7855790Z [command]/opt/homebrew/bin/git remote add origin https://github.com/thatsmethen/ravelink
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7987230Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7991070Z ##[group]Disabling automatic garbage collection
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.7995680Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.8096820Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.8097700Z ##[group]Setting up auth
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.8101710Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+macos	Run actions/checkout@v4	2026-10-23T14:17:00.8371640Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+macos	Run actions/checkout@v4	2026-10-23T14:17:01.0207000Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+macos	Run actions/checkout@v4	2026-10-23T14:17:01.0325960Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+macos	Run actions/checkout@v4	2026-10-23T14:17:01.1844660Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+macos	Run actions/checkout@v4	2026-10-23T14:17:01.1947530Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+macos	Run actions/checkout@v4	2026-10-23T14:17:01.3149000Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+macos	Run actions/checkout@v4	2026-10-23T14:17:01.3275990Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T14:17:01.3276750Z ##[group]Fetching the repository
+macos	Run actions/checkout@v4	2026-10-23T14:17:01.3277900Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8dbb85d2327704c742862b4cca16a3fff2614035:refs/remotes/origin/main
+macos	Run actions/checkout@v4	2026-10-23T14:17:01.9125030Z From https://github.com/thatsmethen/ravelink
+macos	Run actions/checkout@v4	2026-10-23T14:17:01.9128730Z  * [new ref]         8dbb85d2327704c742862b4cca16a3fff2614035 -> origin/main
+macos	Run actions/checkout@v4	2026-10-23T14:17:01.9134560Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T14:17:01.9135610Z ##[group]Determining the checkout info
+macos	Run actions/checkout@v4	2026-10-23T14:17:01.9136700Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T14:17:01.9137500Z [command]/opt/homebrew/bin/git sparse-checkout disable
+macos	Run actions/checkout@v4	2026-10-23T14:17:01.9231720Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+macos	Run actions/checkout@v4	2026-10-23T14:17:01.9304160Z ##[group]Checking out the ref
+macos	Run actions/checkout@v4	2026-10-23T14:17:01.9309460Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+macos	Run actions/checkout@v4	2026-10-23T14:17:01.9681570Z Switched to a new branch 'main'
+macos	Run actions/checkout@v4	2026-10-23T14:17:01.9692440Z branch 'main' set up to track 'origin/main'.
+macos	Run actions/checkout@v4	2026-10-23T14:17:01.9696950Z ##[endgroup]
+macos	Run actions/checkout@v4	2026-10-23T14:17:01.9825070Z [command]/opt/homebrew/bin/git log -1 --format=%H
+macos	Run actions/checkout@v4	2026-10-23T14:17:01.9955840Z 8dbb85d2327704c742862b4cca16a3fff2614035
+macos	Swift toolchain	﻿2026-10-23T14:17:02.0199470Z ##[group]Run swift --version
+macos	Swift toolchain	2026-10-23T14:17:02.0200540Z [36;1mswift --version[0m
+macos	Swift toolchain	2026-10-23T14:17:02.0257050Z shell: /bin/bash -e {0}
+macos	Swift toolchain	2026-10-23T14:17:02.0258280Z ##[endgroup]
+macos	Swift toolchain	2026-10-23T14:17:05.7424590Z Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+macos	Swift toolchain	2026-10-23T14:17:05.7435250Z Target: arm64-apple-macosx15.0
+macos	Swift toolchain	2026-10-23T14:17:05.7522050Z swift-driver version: 1.120.5 
+macos	Deterministic tests	﻿2026-10-23T14:17:05.7666610Z ##[group]Run scripts/test.sh
+macos	Deterministic tests	2026-10-23T14:17:05.7666970Z [36;1mscripts/test.sh[0m
+macos	Deterministic tests	2026-10-23T14:17:05.7736400Z shell: /bin/bash -e {0}
+macos	Deterministic tests	2026-10-23T14:17:05.7737370Z env:
+macos	Deterministic tests	2026-10-23T14:17:05.7737950Z   RAVELINK_PLUGIN_RENDER_APPLE: 1
+macos	Deterministic tests	2026-10-23T14:17:05.7738670Z   RAVELINK_PLUGIN_PROBE_APPLE: 1
+macos	Deterministic tests	2026-10-23T14:17:05.7783010Z ##[endgroup]
+macos	Deterministic tests	2026-10-23T14:17:10.2216030Z Building for debugging...
+macos	Deterministic tests	2026-10-23T14:17:10.2296470Z [0/26] /Users/runner/work/ravelink/ravelink/.build/arm64-apple-macosx/debug/RaveLinkPackageTests.derived/runner.swift
+macos	Deterministic tests	2026-10-23T14:17:10.2399660Z [1/26] Write sources
+macos	Deterministic tests	2026-10-23T14:17:10.2441580Z [2/26] Write RaveLinkPluginHost-entitlement.plist
+macos	Deterministic tests	2026-10-23T14:17:10.2507490Z [2/26] Write sources
+macos	Deterministic tests	2026-10-23T14:17:10.2515570Z [4/26] Write RaveLinkEngine-entitlement.plist
+macos	Deterministic tests	2026-10-23T14:17:10.2516250Z [4/26] Write sources
+macos	Deterministic tests	2026-10-23T14:17:10.4712830Z [8/26] Write swift-version--79AA4F9932D1E87A.txt
+macos	Deterministic tests	2026-10-23T14:17:10.4741350Z [9/26] Write sources
+macos	Deterministic tests	2026-10-23T14:17:13.2094300Z [10/29] Compiling RaveLinkRealtime Realtime.c
+macos	Deterministic tests	2026-10-23T14:17:16.6335230Z [11/33] Compiling RaveLinkAudioUnitBridge AudioUnitBridge.m
+macos	Deterministic tests	2026-10-23T14:17:16.6434400Z [12/33] Write sources
+macos	Deterministic tests	2026-10-23T14:17:16.6537360Z [12/33] Write RaveLink-entitlement.plist
+macos	Deterministic tests	2026-10-23T14:17:21.0269920Z [16/33] Emitting module RaveLinkCore
+macos	Deterministic tests	2026-10-23T14:17:21.0395970Z [17/33] Compiling RaveLinkCore AudioUnitEffects.swift
+macos	Deterministic tests	2026-10-23T14:17:21.0519620Z [18/33] Compiling RaveLinkCore ExpandedRouting.swift
+macos	Deterministic tests	2026-10-23T14:17:21.0655470Z [19/33] Compiling RaveLinkCore Session.swift
+macos	Deterministic tests	2026-10-23T14:17:21.6481260Z [20/34] Compiling RaveLinkPluginHost main.swift
+macos	Deterministic tests	2026-10-23T14:17:21.6886580Z [21/34] Emitting module RaveLinkPluginHost
+macos	Deterministic tests	2026-10-23T14:17:21.6989600Z [22/34] Compiling RaveLinkPluginHost Render.swift
+macos	Deterministic tests	2026-10-23T14:17:21.7091940Z [22/34] Write Objects.LinkFileList
+macos	Deterministic tests	2026-10-23T14:17:21.8408990Z [24/34] Compiling RaveLinkCore SessionStore.swift
+macos	Deterministic tests	2026-10-23T14:17:22.9286180Z [24/46] Linking RaveLinkPluginHost
+macos	Deterministic tests	2026-10-23T14:17:22.9702810Z [25/46] Applying RaveLinkPluginHost
+macos	Deterministic tests	2026-10-23T14:17:27.2573740Z [27/46] Compiling RaveLinkAudio EngineClient.swift
+macos	Deterministic tests	2026-10-23T14:17:27.2660250Z [28/46] Compiling RaveLinkAudio EngineProtocol.swift
+macos	Deterministic tests	2026-10-23T14:17:27.8611920Z [29/47] Emitting module RaveLinkAudio
+macos	Deterministic tests	2026-10-23T14:17:28.5525500Z [30/49] Compiling RaveLinkCoreTests SourceIdentityAndOrderTests.swift
+macos	Deterministic tests	2026-10-23T14:17:28.9137230Z [31/49] Emitting module RaveLinkCoreTests
+macos	Deterministic tests	2026-10-23T14:17:28.9239340Z [32/49] Compiling RaveLinkAudio AudioAllocationBudget.swift
+macos	Deterministic tests	2026-10-23T14:17:28.9339020Z [33/49] Compiling RaveLinkAudio AudioCoordinator.swift
+macos	Deterministic tests	2026-10-23T14:17:29.7502890Z [34/49] Compiling RaveLinkAudio PluginCatalog.swift
+macos	Deterministic tests	2026-10-23T14:17:29.7604600Z [35/49] Compiling RaveLinkAudio PluginRender.swift
+macos	Deterministic tests	2026-10-23T14:17:30.7426520Z [37/49] Compiling RaveLinkAudio FeedbackValidation.swift
+macos	Deterministic tests	2026-10-23T14:17:30.7427390Z [38/49] Compiling RaveLinkAudio LiveAudioUnitGraph.swift
+macos	Deterministic tests	2026-10-23T14:17:34.7790100Z [42/65] Compiling RaveLinkEngine EngineMain.swift
+macos	Deterministic tests	2026-10-23T14:17:34.7893080Z [43/65] Emitting module RaveLinkEngine
+macos	Deterministic tests	2026-10-23T14:17:34.7996370Z [43/65] Write Objects.LinkFileList
+macos	Deterministic tests	2026-10-23T14:17:35.4974780Z [44/65] Linking RaveLinkEngine
+macos	Deterministic tests	2026-10-23T14:17:35.5277630Z [45/65] Applying RaveLinkEngine
+macos	Deterministic tests	2026-10-23T14:17:38.7636350Z [47/65] Compiling RaveLinkAudioTests InstalledAudioUnitAcceptanceTests.swift
+macos	Deterministic tests	2026-10-23T14:17:38.7791950Z [48/65] Compiling RaveLinkAudioTests InstalledDeviceSoakTests.swift
+macos	Deterministic tests	2026-10-23T14:17:38.7919430Z [49/65] Compiling RaveLinkAudioTests InstalledMatrixTests.swift
+macos	Deterministic tests	2026-10-23T14:17:38.8038290Z [50/65] Compiling RaveLinkAudioTests LiveAudioUnitTests.swift
+macos	Deterministic tests	2026-10-23T14:17:39.2476980Z [51/69] Emitting module RaveLinkAudioTests
+macos	Deterministic tests	2026-10-23T14:17:39.2580200Z [52/69] Compiling RaveLinkAudioTests AudioAllocationTests.swift
+macos	Deterministic tests	2026-10-23T14:17:39.2660250Z [53/69] Compiling RaveLinkAudioTests EngineClientTests.swift
+macos	Deterministic tests	2026-10-23T14:17:39.2661220Z [54/69] Compiling RaveLinkApp RaveLinkApp.swift
+macos	Deterministic tests	2026-10-23T14:17:39.2661850Z [55/69] Compiling RaveLinkApp SourceSheets.swift
+macos	Deterministic tests	2026-10-23T14:17:39.2846050Z [58/69] Emitting module RaveLinkApp
+macos	Deterministic tests	2026-10-23T14:17:42.6733360Z [61/71] Compiling RaveLinkAudioTests PluginCatalogTests.swift
+macos	Deterministic tests	2026-10-23T14:17:42.6836270Z [62/71] Compiling RaveLinkAudioTests PluginRenderTests.swift
+macos	Deterministic tests	2026-10-23T14:17:42.6879390Z [63/71] Compiling RaveLinkAudioTests RealtimeTests.swift
+macos	Deterministic tests	2026-10-23T14:17:42.6880360Z [64/71] Compiling RaveLinkAudioTests ThirdPartyAudioUnitTests.swift
+macos	Deterministic tests	2026-10-23T14:17:43.1736350Z [65/73] Emitting module RaveLinkPackageTests
+macos	Deterministic tests	2026-10-23T14:17:43.1797400Z [66/73] Compiling RaveLinkPackageTests runner.swift
+macos	Deterministic tests	2026-10-23T14:17:43.1899420Z [66/73] Write Objects.LinkFileList
+macos	Deterministic tests	2026-10-23T14:17:43.9755930Z [67/73] Linking RaveLinkPackageTests
+macos	Deterministic tests	2026-10-23T14:17:44.2039670Z [69/73] Compiling RaveLinkApp StudioModel.swift
+macos	Deterministic tests	2026-10-23T14:17:44.2040400Z [70/73] Compiling RaveLinkApp StudioView.swift
+macos	Deterministic tests	2026-10-23T14:17:44.2346940Z [70/73] Write Objects.LinkFileList
+macos	Deterministic tests	2026-10-23T14:17:44.9522410Z [71/73] Linking RaveLink
+macos	Deterministic tests	2026-10-23T14:17:44.9854680Z [72/73] Applying RaveLink
+macos	Deterministic tests	2026-10-23T14:17:44.9907470Z Build complete! (34.90s)
+macos	Deterministic tests	2026-10-23T14:17:55.6975540Z ◇ Test run started.
+macos	Deterministic tests	2026-10-23T14:17:55.6979320Z ↳ Testing Library Version: 124.4
+macos	Deterministic tests	2026-10-23T14:17:55.6980700Z ↳ Target Platform: arm64e-apple-macos14.0
+macos	Deterministic tests	2026-10-23T14:17:55.6995040Z ◇ Suite SessionTests started.
+macos	Deterministic tests	2026-10-23T14:17:55.6997260Z ◇ Suite ReviewTests started.
+macos	Deterministic tests	2026-10-23T14:17:55.7004910Z ◇ Suite AudioUnitSessionTests started.
+macos	Deterministic tests	2026-10-23T14:17:55.7005680Z ◇ Suite SourceIdentityAndOrderTests started.
+macos	Deterministic tests	2026-10-23T14:17:55.7037790Z ◇ Suite InstalledDeviceSoakTests started.
+macos	Deterministic tests	2026-10-23T14:17:55.7044150Z ◇ Suite EngineProtocolTests started.
+macos	Deterministic tests	2026-10-23T14:17:55.7061020Z ◇ Suite GroupedRealtimeTests started.
+macos	Deterministic tests	2026-10-23T14:17:55.7064010Z ◇ Suite FeedbackValidationTests started.
+macos	Deterministic tests	2026-10-23T14:17:55.7069540Z ◇ Suite PluginCatalogTests started.
+macos	Deterministic tests	2026-10-23T14:17:55.7078980Z ◇ Suite PluginRenderTests started.
+macos	Deterministic tests	2026-10-23T14:17:55.7082810Z ◇ Suite EngineClientTests started.
+macos	Deterministic tests	2026-10-23T14:17:55.7088780Z ◇ Suite RealtimeTests started.
+macos	Deterministic tests	2026-10-23T14:17:55.7096760Z ◇ Suite InstalledMatrixTests started.
+macos	Deterministic tests	2026-10-23T14:17:55.7108410Z ◇ Suite InstalledAudioUnitAcceptanceTests started.
+macos	Deterministic tests	2026-10-23T14:17:55.7110500Z ◇ Suite AudioCoordinatorTests started.
+macos	Deterministic tests	2026-10-23T14:17:55.7112420Z ◇ Suite AudioAllocationTests started.
+macos	Deterministic tests	2026-10-23T14:17:55.7113570Z ◇ Suite LiveAudioUnitTests started.
+macos	Deterministic tests	2026-10-23T14:17:55.7115470Z ◇ Test testPersistenceRoundTripAndAtomicReplacement() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7117940Z ◇ Test testRejectDanglingDuplicateAndNonfiniteRoutes() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7119350Z ◇ Test testRejectUnknownSchemaAndInvalidEffects() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7121110Z ◇ Test testInvalidSavePreservesPreviousSession() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7129190Z ◇ Test testDynamicMatrixBeyondReferenceLimits() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7130530Z ◇ Test testGroupedSourceValidationIncludesAdditionalSources() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7132300Z ◇ Test testOversizedSavePreservesExistingReadableSession() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7133470Z ◇ Test testOutputOverlapRejectedButDistinctDevicesAndPairsAllowed() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7134540Z ◇ Test testNewRoutesRemainMutedAfterRoundTripAndChannelRemoval() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7135930Z ◇ Test testIncompleteImportedMatrixIsRejectedAndEmptyAxesAreAllowed() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7137440Z ◇ Test testInvalidImportDoesNotRewriteSource() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7138960Z ◇ Test testOversizedSparseImportIsRejectedWithoutChangingOriginal() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7140290Z ◇ Test singleLegacySourceRemainsLoadableAndRawBoundsAreChecked() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7141590Z ◇ Test importedStaleMetadataCannotDisguiseDuplicateCapture() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7142890Z ◇ Test canonicalCaptureIdentityDropsIrrelevantFields() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7146130Z ◇ Test staleOrOutOfRangeReorderDoesNotMutate() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7147900Z ◇ Test reorderingPreservesRouteIdentityAndControls() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7149660Z ◇ Test oldSessionDefaultsToEmptyRackAndRackRoundTrips() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7152940Z ◇ Test rejectsDuplicatedSlotsInvalidIdentityStateAndParameters() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7155300Z ✘ Test installedGroupedDeviceInputThirtySecondSoak() skipped.
+macos	Deterministic tests	2026-10-23T14:17:55.7157790Z ◇ Test rejectsContradictoryAndNonfiniteState() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7158730Z ◇ Test boundsPartialLinesAndRejectsVersionMismatch() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7159970Z ◇ Test sumsGroupOnceAndUsesOnlyParentSendsForIndependentBuses() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7162110Z ◇ Test captureSilencesItsDuplexOutputContribution() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7163330Z ◇ Test toneGroupReceivesGainExactlyOnce() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7164160Z ◇ Test compressorProcessesSummedWaveformOnce() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7167210Z ◇ Test defaultGroupsRemainIndependentAndInvalidGraphsAreRejected() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7168860Z ◇ Test separatesStereoPairsAndRejectsOverlap() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7170750Z ◇ Test detectsMultiDeviceCycleAndAllowsMutedBreak() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7171630Z ◇ Test crashedChildAndOutputFloodAreContained() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7172480Z ◇ Test childResponseIsDecodedWithoutLoadingAnAudioUnit() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7175880Z ◇ Test timedOutChildIgnoringTerminationIsKilled() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7177000Z ◇ Test typedHelperErrorsSurviveNonzeroExit() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7178600Z ◇ Test cancellationStopsChild() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7179470Z ◇ Test strictProtocolRejectsVersionOperationAndCorruptPayload() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7180060Z ◇ Test duplicateOrNonEffectMetadataIsRejected() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7180590Z ◇ Test selectedAppleLimiterAcceptsStereoOfflineAllocation() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7181090Z ◇ Test savedStateIsBoundToIdentityVersionAndSize() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7181600Z ◇ Test invalidInputIsRejectedBeforeLaunchingAHelper() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7182080Z ◇ Test malformedRenderReportsCannotMasqueradeAsValidAudio() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7182710Z ◇ Test appleLimiterRendersIndependentGainReferenceAndRestoresState() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7183250Z ◇ Test discoveryTimeoutKillsAndReapsUncooperativeChild() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7183800Z ◇ Test testRingIsBoundedAndReportsOverflowAndUnderrun() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7184270Z ◇ Suite ThirdPartyAudioUnitTests started.
+macos	Deterministic tests	2026-10-23T14:17:55.7184860Z ◇ Test testNonFiniteInputIsContainedAndInvalidConfigurationRejected() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7185650Z ◇ Test testIndependentBusGainPanMuteAndOffsets() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7186720Z ◇ Test testDSPGainHighPassGateAndCompression() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7187340Z ◇ Test testBandLimitedDownsamplingRejectsAliasedHighFrequency() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7187900Z ◇ Test testCaptureMonoDuplicationAndMeter() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7188500Z ◇ Test testGainChangesRampAndMuteReachesSilence() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7189160Z ✘ Test installedAudioUnitGainBypassAndRestoredState() skipped.
+macos	Deterministic tests	2026-10-23T14:17:55.7189680Z ✘ Test installedIndependentMixControlSequence() skipped.
+macos	Deterministic tests	2026-10-23T14:17:55.7190440Z ◇ Test testInvalidStartFailsWithActionableErrorAndStaysStopped() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7191010Z ◇ Test rateExtremesReserveEnoughFramesAndFilterSpace() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7191560Z ◇ Suite ExpandedRoutingTests started.
+macos	Deterministic tests	2026-10-23T14:17:55.7191980Z ◇ Test rejectsBudgetOverflowBeforeAllocating() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7192490Z ◇ Test malformedEffectOutputLatchesFailure() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7192980Z ◇ Test failedPreparationCanReleasePartlyCreatedGraph() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7202230Z ◇ Test renderErrorLatchesSilenceAcrossTheEntireOutput() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7203160Z ◇ Test effectTopologyExcludesSafeLiveControls() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7205860Z ◇ Test appleEffectRunsInNativeCallbackAndChangesWithoutRebuild() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7206860Z ✔ Test testRejectDanglingDuplicateAndNonfiniteRoutes() passed after 1.505 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7207540Z ✔ Test testRejectUnknownSchemaAndInvalidEffects() passed after 1.505 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7209050Z ✔ Test testInvalidSavePreservesPreviousSession() passed after 1.505 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7209670Z ✔ Test testGroupedSourceValidationIncludesAdditionalSources() passed after 1.505 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7210460Z ✔ Test testDynamicMatrixBeyondReferenceLimits() passed after 1.505 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7211930Z ✔ Test testOutputOverlapRejectedButDistinctDevicesAndPairsAllowed() passed after 1.505 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7212810Z ✔ Test testPersistenceRoundTripAndAtomicReplacement() passed after 1.505 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7213930Z ✔ Test testIncompleteImportedMatrixIsRejectedAndEmptyAxesAreAllowed() passed after 1.505 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7215610Z ✔ Test testInvalidImportDoesNotRewriteSource() passed after 1.505 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7217000Z ✔ Test testNewRoutesRemainMutedAfterRoundTripAndChannelRemoval() passed after 1.505 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7218010Z ✔ Test singleLegacySourceRemainsLoadableAndRawBoundsAreChecked() passed after 1.505 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7219100Z ✔ Test testOversizedSparseImportIsRejectedWithoutChangingOriginal() passed after 1.505 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7220270Z ✔ Test canonicalCaptureIdentityDropsIrrelevantFields() passed after 1.505 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7221100Z ✔ Test staleOrOutOfRangeReorderDoesNotMutate() passed after 1.505 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7221920Z ✔ Test importedStaleMetadataCannotDisguiseDuplicateCapture() passed after 1.506 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7222670Z ✔ Test reorderingPreservesRouteIdentityAndControls() passed after 1.505 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7223500Z ✔ Test rejectsDuplicatedSlotsInvalidIdentityStateAndParameters() passed after 1.505 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7225000Z ✔ Suite InstalledDeviceSoakTests passed after 1.506 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7226050Z ✔ Test rejectsContradictoryAndNonfiniteState() passed after 1.506 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7226740Z ✔ Test oldSessionDefaultsToEmptyRackAndRackRoundTrips() passed after 1.506 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7227410Z ✔ Test boundsPartialLinesAndRejectsVersionMismatch() passed after 1.506 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7228150Z ✔ Test captureSilencesItsDuplexOutputContribution() passed after 1.506 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7228870Z ✔ Test toneGroupReceivesGainExactlyOnce() passed after 1.506 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7229660Z ✔ Test sumsGroupOnceAndUsesOnlyParentSendsForIndependentBuses() passed after 1.506 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7230300Z ✔ Test compressorProcessesSummedWaveformOnce() passed after 1.506 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7230870Z ✔ Test separatesStereoPairsAndRejectsOverlap() passed after 1.506 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7231480Z ✔ Test detectsMultiDeviceCycleAndAllowsMutedBreak() passed after 1.506 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7232220Z ✔ Test strictProtocolRejectsVersionOperationAndCorruptPayload() passed after 1.506 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7232930Z ✔ Test duplicateOrNonEffectMetadataIsRejected() passed after 1.506 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7408970Z ✔ Test savedStateIsBoundToIdentityVersionAndSize() passed after 1.506 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7409690Z ✔ Test invalidInputIsRejectedBeforeLaunchingAHelper() passed after 1.506 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7410450Z ✔ Test malformedRenderReportsCannotMasqueradeAsValidAudio() passed after 1.506 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7411060Z ✔ Test testRingIsBoundedAndReportsOverflowAndUnderrun() passed after 1.506 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7411830Z ✔ Test testNonFiniteInputIsContainedAndInvalidConfigurationRejected() passed after 1.506 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7412440Z ✘ Test installedMasterMeRendersRestoresAndRunsThroughNativeHook() skipped.
+macos	Deterministic tests	2026-10-23T14:17:55.7412950Z ✔ Test testIndependentBusGainPanMuteAndOffsets() passed after 1.506 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7414090Z ✔ Test defaultGroupsRemainIndependentAndInvalidGraphsAreRejected() passed after 1.507 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7414770Z ✔ Test testCaptureMonoDuplicationAndMeter() passed after 1.507 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7415890Z ✔ Test testDSPGainHighPassGateAndCompression() passed after 1.507 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7416420Z ✔ Test testGainChangesRampAndMuteReachesSilence() passed after 1.507 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7416930Z ✔ Suite InstalledAudioUnitAcceptanceTests passed after 1.508 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7417500Z ◇ Test additionalOutputWorksWhenPrimaryIsUnassigned() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7417990Z ◇ Test sameVisibleCountsCanRequireDifferentExpansionBudgets() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7418570Z ◇ Test capacityRejectsOverflowAndNegativeCountsWithoutAllocatingMatrix() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7419040Z ◇ Test oldSchemaOneSessionsDecodeWithoutNewFields() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7419380Z ◇ Test generatedIDCollisionFailsClosed() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7419800Z ◇ Test groupedSourcesAndDestinationsPreserveIndependentMixes() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7421660Z ◇ Test meterMappingUsesGreatestMemberAndDoesNotInventSummedPeak() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7422190Z ◇ Test compactMillionRouteExpansionFailsBeforeMaterialization() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7422880Z ◇ Test capacityBudgetBoundaryIsExplicitAndConfigurable() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7423510Z ◇ Test generatedIdentitiesStayStableAcrossControlAndLabelEdits() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7423950Z ◇ Test groupsRoundTripThroughPersistence() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7424370Z ✔ Test rateExtremesReserveEnoughFramesAndFilterSpace() passed after 1.507 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7424960Z ✔ Test rejectsBudgetOverflowBeforeAllocating() passed after 1.507 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7425410Z ✔ Suite InstalledMatrixTests passed after 1.508 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7425810Z ✔ Test malformedEffectOutputLatchesFailure() passed after 1.526 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7426480Z ✔ Test renderErrorLatchesSilenceAcrossTheEntireOutput() passed after 1.527 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7427220Z ✔ Test testBandLimitedDownsamplingRejectsAliasedHighFrequency() passed after 1.541 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7427850Z ✔ Test effectTopologyExcludesSafeLiveControls() passed after 1.541 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7428530Z ✔ Test testOversizedSavePreservesExistingReadableSession() passed after 1.542 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7429170Z ✔ Test childResponseIsDecodedWithoutLoadingAnAudioUnit() passed after 1.542 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7429670Z ✔ Test typedHelperErrorsSurviveNonzeroExit() passed after 1.542 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7430180Z ✔ Test testInvalidStartFailsWithActionableErrorAndStaysStopped() passed after 1.542 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7430620Z ✔ Suite SessionTests passed after 1.549 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7430900Z ✔ Suite ReviewTests passed after 1.549 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7431280Z ✔ Suite SourceIdentityAndOrderTests passed after 1.549 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7431770Z ✔ Suite AudioUnitSessionTests passed after 1.549 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7432170Z ✔ Suite EngineProtocolTests passed after 1.549 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7432600Z ✔ Suite GroupedRealtimeTests passed after 1.549 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7432970Z ✔ Suite FeedbackValidationTests passed after 1.549 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7433330Z ✔ Suite RealtimeTests passed after 1.549 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7433720Z ✔ Suite ThirdPartyAudioUnitTests passed after 1.549 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7434220Z ✔ Test additionalOutputWorksWhenPrimaryIsUnassigned() passed after 0.041 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7434760Z ✔ Test sameVisibleCountsCanRequireDifferentExpansionBudgets() passed after 0.041 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7435450Z ✔ Test capacityRejectsOverflowAndNegativeCountsWithoutAllocatingMatrix() passed after 0.041 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7436120Z ✔ Test oldSchemaOneSessionsDecodeWithoutNewFields() passed after 0.041 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7437010Z ✔ Test generatedIDCollisionFailsClosed() passed after 0.041 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7437630Z ✔ Test groupedSourcesAndDestinationsPreserveIndependentMixes() passed after 0.041 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7438280Z ✔ Test meterMappingUsesGreatestMemberAndDoesNotInventSummedPeak() passed after 0.041 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7439130Z ✔ Test compactMillionRouteExpansionFailsBeforeMaterialization() passed after 0.041 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7439690Z ✔ Test capacityBudgetBoundaryIsExplicitAndConfigurable() passed after 0.041 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7440310Z ✔ Test generatedIdentitiesStayStableAcrossControlAndLabelEdits() passed after 0.041 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7442100Z ✔ Test groupsRoundTripThroughPersistence() passed after 0.041 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7443380Z ✔ Suite AudioAllocationTests passed after 1.550 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7444740Z ✔ Test crashedChildAndOutputFloodAreContained() passed after 1.549 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7445900Z ✔ Suite ExpandedRoutingTests passed after 1.549 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7446950Z ✘ Test testBlackHoleLoopbackAndLiveBusControls() skipped.
+macos	Deterministic tests	2026-10-23T14:17:55.7447950Z ✘ Test testSilentPhysicalOutputLifecycle() skipped.
+macos	Deterministic tests	2026-10-23T14:17:55.7448980Z ✔ Suite AudioCoordinatorTests passed after 1.550 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7450010Z ✔ Test cancellationStopsChild() passed after 1.550 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7451340Z ✔ Test discoveryTimeoutKillsAndReapsUncooperativeChild() passed after 1.766 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7452710Z ◇ Test abruptExitDoesNotRaiseSIGPIPEInClient() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7453970Z ✔ Test failedPreparationCanReleasePartlyCreatedGraph() passed after 1.819 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7455630Z ✔ Test appleEffectRunsInNativeCallbackAndChangesWithoutRebuild() passed after 2.028 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7456950Z ✔ Suite LiveAudioUnitTests passed after 2.030 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7458210Z ✔ Test selectedAppleLimiterAcceptsStereoOfflineAllocation() passed after 2.041 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7459600Z ✔ Test timedOutChildIgnoringTerminationIsKilled() passed after 2.390 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7460720Z ✔ Suite PluginCatalogTests passed after 2.391 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7462020Z ✔ Test appleLimiterRendersIndependentGainReferenceAndRestoresState() passed after 3.313 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7463470Z ✔ Suite PluginRenderTests passed after 3.314 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7465120Z ✘ Test abruptExitDoesNotRaiseSIGPIPEInClient() recorded an issue at EngineClientTests.swift:86:9: Expectation failed: predicate()
+macos	Deterministic tests	2026-10-23T14:17:55.7466970Z ✘ Test abruptExitDoesNotRaiseSIGPIPEInClient() failed after 3.033 seconds with 1 issue.
+macos	Deterministic tests	2026-10-23T14:17:55.7468290Z ◇ Test malformedFloodIsBoundedAndChildReaped() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7469470Z ✔ Test malformedFloodIsBoundedAndChildReaped() passed after 1.281 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7470780Z ◇ Test stopHasIndependentDeadlineAndReapsHungHelper() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7472110Z ✔ Test stopHasIndependentDeadlineAndReapsHungHelper() passed after 0.695 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7473380Z ◇ Test startHasHardRoutingDeadline() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7474440Z ✔ Test startHasHardRoutingDeadline() passed after 1.882 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7475600Z ◇ Test staleTelemetryCannotRestartStoppedSession() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7476870Z ✔ Test staleTelemetryCannotRestartStoppedSession() passed after 0.324 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7478280Z ◇ Test editDuringStartReplacesOldProcessWithLatestSession() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7479710Z ✔ Test editDuringStartReplacesOldProcessWithLatestSession() passed after 0.160 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7481300Z ◇ Test sustainedControlInputSendsUpdatesBeforeProducerStops() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7482870Z ✔ Test sustainedControlInputSendsUpdatesBeforeProducerStops() passed after 0.848 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7484260Z ◇ Test pendingReplacementCoalescesRapidStartEdits() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7485910Z ✔ Test pendingReplacementCoalescesRapidStartEdits() passed after 0.554 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7488570Z ◇ Test realHelperExitsWhenParentControlPipeCloses() started.
+macos	Deterministic tests	2026-10-23T14:17:55.7489930Z ✔ Test realHelperExitsWhenParentControlPipeCloses() passed after 0.044 seconds.
+macos	Deterministic tests	2026-10-23T14:17:55.7491190Z ✘ Test realSilentOutputThroughSupervisedProcess() skipped.
+macos	Deterministic tests	2026-10-23T14:17:55.7493070Z ✘ Suite EngineClientTests failed after 10.594 seconds with 1 issue.
+macos	Deterministic tests	2026-10-23T14:17:55.7494250Z ✘ Test run with 83 tests failed after 10.595 seconds with 1 issue.
+macos	Deterministic tests	2026-10-23T14:17:55.7520850Z ##[error]Process completed with exit code 1.
+macos	Post Run actions/checkout@v4	﻿2026-10-23T14:17:55.7811630Z Post job cleanup.
+macos	Post Run actions/checkout@v4	2026-10-23T14:17:56.1641630Z [command]/opt/homebrew/bin/git version
+macos	Post Run actions/checkout@v4	2026-10-23T14:17:56.1908920Z git version 2.55.0
+macos	Post Run actions/checkout@v4	2026-10-23T14:17:56.1936430Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/7833065f-187f-4983-a1da-fa084bea91ad/.gitconfig'
+macos	Post Run actions/checkout@v4	2026-10-23T14:17:56.1947430Z Temporarily overriding HOME='/Users/runner/work/_temp/7833065f-187f-4983-a1da-fa084bea91ad' before making global git config changes
+macos	Post Run actions/checkout@v4	2026-10-23T14:17:56.1949390Z Adding repository directory to the temporary git global config as a safe directory
+macos	Post Run actions/checkout@v4	2026-10-23T14:17:56.1951380Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+macos	Post Run actions/checkout@v4	2026-10-23T14:17:56.2088370Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+macos	Post Run actions/checkout@v4	2026-10-23T14:17:56.2154750Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+macos	Post Run actions/checkout@v4	2026-10-23T14:17:56.3192260Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+macos	Post Run actions/checkout@v4	2026-10-23T14:17:56.3240490Z http.https://github.com/.extraheader
+macos	Post Run actions/checkout@v4	2026-10-23T14:17:56.3246980Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+macos	Post Run actions/checkout@v4	2026-10-23T14:17:56.3305640Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+macos	Post Run actions/checkout@v4	2026-10-23T14:17:56.4094420Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+macos	Post Run actions/checkout@v4	2026-10-23T14:17:56.4158150Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+macos	Complete job	﻿2026-10-23T14:17:56.5475820Z Cleaning up orphan processes
+macos	Complete job	2026-10-23T14:17:56.5689820Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+installed-driver	Set up job	﻿2026-10-23T14:16:58.2704620Z Current runner version: '2.338.0'
+installed-driver	Set up job	2026-10-23T14:16:58.2777200Z ##[group]Runner Image Provisioner
+installed-driver	Set up job	2026-10-23T14:16:58.2778170Z Hosted Compute Agent
+installed-driver	Set up job	2026-10-23T14:16:58.2779420Z Version: 20260828.587
+installed-driver	Set up job	2026-10-23T14:16:58.2779980Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+installed-driver	Set up job	2026-10-23T14:16:58.2781150Z Build Date: 2026-08-28T16:44:25Z
+installed-driver	Set up job	2026-10-23T14:16:58.2782310Z Worker ID: {58944e19-a48f-489d-9a1a-89ea3fff96b7}
+installed-driver	Set up job	2026-10-23T14:16:58.2783090Z Azure Region: westus
+installed-driver	Set up job	2026-10-23T14:16:58.2784100Z ##[endgroup]
+installed-driver	Set up job	2026-10-23T14:16:58.2786880Z ##[group]Operating System
+installed-driver	Set up job	2026-10-23T14:16:58.2787310Z macOS
+installed-driver	Set up job	2026-10-23T14:16:58.2787640Z 15.7.9
+installed-driver	Set up job	2026-10-23T14:16:58.2788300Z 24G830
+installed-driver	Set up job	2026-10-23T14:16:58.2789310Z ##[endgroup]
+installed-driver	Set up job	2026-10-23T14:16:58.2789680Z ##[group]Runner Image
+installed-driver	Set up job	2026-10-23T14:16:58.2790820Z Image: macos-15-arm64
+installed-driver	Set up job	2026-10-23T14:16:58.2791510Z Version: 20260907.0337.1
+installed-driver	Set up job	2026-10-23T14:16:58.2792450Z Included Software: https://github.com/actions/runner-images/blob/macos-15-arm64/20260907.0337/images/macos/macos-15-arm64-Readme.md
+installed-driver	Set up job	2026-10-23T14:16:58.2794210Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-15-arm64%2F20260907.0337
+installed-driver	Set up job	2026-10-23T14:16:58.2796000Z ##[endgroup]
+installed-driver	Set up job	2026-10-23T14:16:58.2796920Z ##[group]GITHUB_TOKEN Permissions
+installed-driver	Set up job	2026-10-23T14:16:58.2800490Z Contents: read
+installed-driver	Set up job	2026-10-23T14:16:58.2801600Z Metadata: read
+installed-driver	Set up job	2026-10-23T14:16:58.2802020Z ##[endgroup]
+installed-driver	Set up job	2026-10-23T14:16:58.2805040Z Secret source: Actions
+installed-driver	Set up job	2026-10-23T14:16:58.2805650Z Cache mode: write
+installed-driver	Set up job	2026-10-23T14:16:58.2806500Z Prepare workflow directory
+installed-driver	Set up job	2026-10-23T14:16:58.3326130Z Prepare all required actions
+installed-driver	Set up job	2026-10-23T14:16:58.3365990Z Getting action download info
+installed-driver	Set up job	2026-10-23T14:16:58.4939010Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+installed-driver	Set up job	2026-10-23T14:16:58.7697710Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+installed-driver	Set up job	2026-10-23T14:16:59.0203030Z Complete job name: installed-driver
+installed-driver	Run actions/checkout@v4	﻿2026-10-23T14:16:59.0887870Z ##[group]Run actions/checkout@v4
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.0888530Z with:
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.0888900Z   repository: thatsmethen/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.0891740Z   token: ***
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.0892060Z   ssh-strict: true
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.0892380Z   ssh-user: git
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.0892710Z   persist-credentials: true
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.0893060Z   clean: true
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.0893410Z   sparse-checkout-cone-mode: true
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.0893860Z   fetch-depth: 1
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.0894170Z   fetch-tags: false
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.0894490Z   show-progress: true
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.0894820Z   lfs: false
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.0895120Z   submodules: false
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.0895520Z   set-safe-directory: true
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.0895900Z   allow-unsafe-pr-checkout: false
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.0896410Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.4543470Z Syncing repository: thatsmethen/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.4544910Z ##[group]Getting Git version info
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.4545420Z Working directory is '/Users/runner/work/ravelink/ravelink'
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.4546320Z [command]/opt/homebrew/bin/git version
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5359800Z git version 2.55.0
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5380060Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5386860Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/331735ed-cbf5-4828-8f78-7d5bbf82a26a/.gitconfig'
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5396030Z Temporarily overriding HOME='/Users/runner/work/_temp/331735ed-cbf5-4828-8f78-7d5bbf82a26a' before making global git config changes
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5397230Z Adding repository directory to the temporary git global config as a safe directory
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5399050Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5597290Z Deleting the contents of '/Users/runner/work/ravelink/ravelink'
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5637100Z ##[group]Initializing the repository
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5641110Z [command]/opt/homebrew/bin/git init /Users/runner/work/ravelink/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5870400Z hint: Using 'master' as the name for the initial branch. This default branch name
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5876700Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5877950Z hint: to use in all of your new repositories, which will suppress this warning,
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5878710Z hint: call:
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5879190Z hint:
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5879820Z hint: 	git config --global init.defaultBranch <name>
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5880350Z hint:
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5880830Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5881860Z hint: 'development'. The just-created branch can be renamed via this command:
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5882460Z hint:
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5883190Z hint: 	git branch -m <name>
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5883580Z hint:
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5884140Z hint: Disable this message with "git config set advice.defaultBranchName false"
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5884880Z Initialized empty Git repository in /Users/runner/work/ravelink/ravelink/.git/
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.5886270Z [command]/opt/homebrew/bin/git remote add origin https://github.com/thatsmethen/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.6004610Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.6005540Z ##[group]Disabling automatic garbage collection
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.6008960Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.6068720Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.6069460Z ##[group]Setting up auth
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.6071370Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.6144950Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.7363950Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.7456300Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.8652550Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+installed-driver	Run actions/checkout@v4	2026-10-23T14:16:59.8805140Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+installed-driver	Run actions/checkout@v4	2026-10-23T14:17:00.0091510Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+installed-driver	Run actions/checkout@v4	2026-10-23T14:17:00.0115030Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T14:17:00.0115880Z ##[group]Fetching the repository
+installed-driver	Run actions/checkout@v4	2026-10-23T14:17:00.0117770Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8dbb85d2327704c742862b4cca16a3fff2614035:refs/remotes/origin/main
+installed-driver	Run actions/checkout@v4	2026-10-23T14:17:01.0234410Z From https://github.com/thatsmethen/ravelink
+installed-driver	Run actions/checkout@v4	2026-10-23T14:17:01.0303550Z  * [new ref]         8dbb85d2327704c742862b4cca16a3fff2614035 -> origin/main
+installed-driver	Run actions/checkout@v4	2026-10-23T14:17:01.0347060Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T14:17:01.0349000Z ##[group]Determining the checkout info
+installed-driver	Run actions/checkout@v4	2026-10-23T14:17:01.0350560Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T14:17:01.0351860Z [command]/opt/homebrew/bin/git sparse-checkout disable
+installed-driver	Run actions/checkout@v4	2026-10-23T14:17:01.0400300Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+installed-driver	Run actions/checkout@v4	2026-10-23T14:17:01.0496580Z ##[group]Checking out the ref
+installed-driver	Run actions/checkout@v4	2026-10-23T14:17:01.0499020Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+installed-driver	Run actions/checkout@v4	2026-10-23T14:17:01.1234390Z Switched to a new branch 'main'
+installed-driver	Run actions/checkout@v4	2026-10-23T14:17:01.1239750Z branch 'main' set up to track 'origin/main'.
+installed-driver	Run actions/checkout@v4	2026-10-23T14:17:01.1241670Z ##[endgroup]
+installed-driver	Run actions/checkout@v4	2026-10-23T14:17:01.1365280Z [command]/opt/homebrew/bin/git log -1 --format=%H
+installed-driver	Run actions/checkout@v4	2026-10-23T14:17:01.1428840Z 8dbb85d2327704c742862b4cca16a3fff2614035
+installed-driver	Host identity	﻿2026-10-23T14:17:01.1716640Z ##[group]Run sw_vers
+installed-driver	Host identity	2026-10-23T14:17:01.1717200Z [36;1msw_vers[0m
+installed-driver	Host identity	2026-10-23T14:17:01.1717460Z [36;1muname -m[0m
+installed-driver	Host identity	2026-10-23T14:17:01.1789560Z shell: /bin/bash -e {0}
+installed-driver	Host identity	2026-10-23T14:17:01.1789910Z ##[endgroup]
+installed-driver	Host identity	2026-10-23T14:17:01.2550610Z ProductName:		macOS
+installed-driver	Host identity	2026-10-23T14:17:01.2552050Z ProductVersion:		15.7.9
+installed-driver	Host identity	2026-10-23T14:17:01.2552500Z BuildVersion:		24G830
+installed-driver	Host identity	2026-10-23T14:17:01.2579090Z arm64
+installed-driver	Build isolated test device	﻿2026-10-23T14:17:01.2672890Z ##[group]Run python3 scripts/virtual-devices.py build --channels 8 --device ci-loopback:CILoopback --device ci-mix-a:CIMixA --device ci-mix-b:CIMixB --output build/ci-drivers
+installed-driver	Build isolated test device	2026-10-23T14:17:01.2674050Z [36;1mpython3 scripts/virtual-devices.py build --channels 8 --device ci-loopback:CILoopback --device ci-mix-a:CIMixA --device ci-mix-b:CIMixB --output build/ci-drivers[0m
+installed-driver	Build isolated test device	2026-10-23T14:17:01.2674830Z [36;1mshasum -a 256 build/ci-drivers/*.driver/Contents/MacOS/* > build/driver-binary-sha256.txt[0m
+installed-driver	Build isolated test device	2026-10-23T14:17:01.2705860Z shell: /bin/bash -e {0}
+installed-driver	Build isolated test device	2026-10-23T14:17:01.2706110Z ##[endgroup]
+installed-driver	Build isolated test device	2026-10-23T14:17:05.5456550Z /Users/runner/work/ravelink/ravelink/build/ci-drivers/.ravelink-kl_jjjnz/RaveLink-ci-loopback.driver: replacing existing signature
+installed-driver	Build isolated test device	2026-10-23T14:17:08.7647510Z /Users/runner/work/ravelink/ravelink/build/ci-drivers/.ravelink-o8e8x5_d/RaveLink-ci-mix-a.driver: replacing existing signature
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5179460Z /Users/runner/work/ravelink/ravelink/build/ci-drivers/.ravelink-3dnqeznm/RaveLink-ci-mix-b.driver: replacing existing signature
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5695530Z [
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5697790Z   {
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5698120Z     "id": "ci-loopback",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5698780Z     "name": "RaveLink CILoopback",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5699420Z     "bundle": "RaveLink-ci-loopback.driver",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5700000Z     "bundleID": "au.textual.ravelink.audio.ci-loopback",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5700520Z     "deviceUID": "RaveLink.ci-loopback_UID",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5701390Z     "factoryUUID": "4EE93CF6-9DEC-5D17-AC9E-507705C24D80",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5701950Z     "channels": 8,
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5704430Z     "architectures": [
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5704800Z       "arm64",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5705300Z       "x86_64"
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5706610Z     ],
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5706970Z     "minimumMacOS": "12.0",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5707310Z     "upstream": {
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5707910Z       "repository": "https://github.com/ExistentialAudio/BlackHole",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5708400Z       "commit": "561d934c77a1fa64987e01ccabe890fed30e181f",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5708910Z       "version": "0.7.1",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5709330Z       "license": "GPL-3.0-only",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5709640Z       "files": {
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5710170Z         "BlackHole.c": "05f1fa61e2502072ddbc797717713b20e43e2e55e08d445312aeb55dad879c7b",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5710860Z         "LICENSE": "d5134ba41d942612bdf5ab79b32b3ddc2458f55e16437390bd81be8f2e0811e0",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5711540Z         "VERSION": "902311c7bb38fa1658ff403def6158ee7378fe9d6e2e284fa1c38735c31bd30b"
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5711990Z       }
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5712270Z     },
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5712770Z     "codeSigning": "ad-hoc",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5713280Z     "notarized": false,
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5713660Z     "version": "0.1.0",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5714270Z     "path": "/Users/runner/work/ravelink/ravelink/build/ci-drivers/RaveLink-ci-loopback.driver"
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5714910Z   },
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5715230Z   {
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5715610Z     "id": "ci-mix-a",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5715950Z     "name": "RaveLink CIMixA",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5716590Z     "bundle": "RaveLink-ci-mix-a.driver",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5717050Z     "bundleID": "au.textual.ravelink.audio.ci-mix-a",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5717540Z     "deviceUID": "RaveLink.ci-mix-a_UID",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5718100Z     "factoryUUID": "79BFB084-794D-5178-BC4B-6BD325BAF05D",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5718740Z     "channels": 8,
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5719060Z     "architectures": [
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5719350Z       "arm64",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5719690Z       "x86_64"
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5719960Z     ],
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5720290Z     "minimumMacOS": "12.0",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5720540Z     "upstream": {
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5730770Z       "repository": "https://github.com/ExistentialAudio/BlackHole",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5731240Z       "commit": "561d934c77a1fa64987e01ccabe890fed30e181f",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5731620Z       "version": "0.7.1",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5732010Z       "license": "GPL-3.0-only",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5733050Z       "files": {
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5733490Z         "BlackHole.c": "05f1fa61e2502072ddbc797717713b20e43e2e55e08d445312aeb55dad879c7b",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5734070Z         "LICENSE": "d5134ba41d942612bdf5ab79b32b3ddc2458f55e16437390bd81be8f2e0811e0",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5734690Z         "VERSION": "902311c7bb38fa1658ff403def6158ee7378fe9d6e2e284fa1c38735c31bd30b"
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5735160Z       }
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5735450Z     },
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5735720Z     "codeSigning": "ad-hoc",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5736000Z     "notarized": false,
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5736300Z     "version": "0.1.0",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5736760Z     "path": "/Users/runner/work/ravelink/ravelink/build/ci-drivers/RaveLink-ci-mix-a.driver"
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5737270Z   },
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5737480Z   {
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5737740Z     "id": "ci-mix-b",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5738030Z     "name": "RaveLink CIMixB",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5738380Z     "bundle": "RaveLink-ci-mix-b.driver",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5738730Z     "bundleID": "au.textual.ravelink.audio.ci-mix-b",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5739160Z     "deviceUID": "RaveLink.ci-mix-b_UID",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5739990Z     "factoryUUID": "0B80C012-D957-52EE-AFA4-731C5EEC9694",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5740340Z     "channels": 8,
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5740650Z     "architectures": [
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5740940Z       "arm64",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5741240Z       "x86_64"
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5741560Z     ],
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5741810Z     "minimumMacOS": "12.0",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5742270Z     "upstream": {
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5742740Z       "repository": "https://github.com/ExistentialAudio/BlackHole",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5743270Z       "commit": "561d934c77a1fa64987e01ccabe890fed30e181f",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5743620Z       "version": "0.7.1",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5744200Z       "license": "GPL-3.0-only",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5744480Z       "files": {
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5745170Z         "BlackHole.c": "05f1fa61e2502072ddbc797717713b20e43e2e55e08d445312aeb55dad879c7b",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5745800Z         "LICENSE": "d5134ba41d942612bdf5ab79b32b3ddc2458f55e16437390bd81be8f2e0811e0",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5746450Z         "VERSION": "902311c7bb38fa1658ff403def6158ee7378fe9d6e2e284fa1c38735c31bd30b"
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5746950Z       }
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5747160Z     },
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5747470Z     "codeSigning": "ad-hoc",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5747750Z     "notarized": false,
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5748140Z     "version": "0.1.0",
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5748620Z     "path": "/Users/runner/work/ravelink/ravelink/build/ci-drivers/RaveLink-ci-mix-b.driver"
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5749170Z   }
+installed-driver	Build isolated test device	2026-10-23T14:17:10.5749430Z ]
+installed-driver	Install into disposable runner	﻿2026-10-23T14:17:10.6725670Z ##[group]Run sudo python3 scripts/virtual-devices.py install build/ci-drivers/*.driver
+installed-driver	Install into disposable runner	2026-10-23T14:17:10.6726400Z [36;1msudo python3 scripts/virtual-devices.py install build/ci-drivers/*.driver[0m
+installed-driver	Install into disposable runner	2026-10-23T14:17:10.6726850Z [36;1msudo killall coreaudiod || true[0m
+installed-driver	Install into disposable runner	2026-10-23T14:17:10.6727220Z [36;1msleep 5[0m
+installed-driver	Install into disposable runner	2026-10-23T14:17:10.7076190Z shell: /bin/bash -e {0}
+installed-driver	Install into disposable runner	2026-10-23T14:17:10.7076510Z ##[endgroup]
+installed-driver	Install into disposable runner	2026-10-23T14:17:12.2648370Z Installed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-loopback.driver
+installed-driver	Install into disposable runner	2026-10-23T14:17:12.2649010Z Installed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-mix-a.driver
+installed-driver	Install into disposable runner	2026-10-23T14:17:17.3724860Z Installed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-mix-b.driver
+installed-driver	Install into disposable runner	2026-10-23T14:17:17.3726300Z Restart macOS after closing audio apps to activate these devices. Audio services were not restarted.
+installed-driver	Compile integration tests	﻿2026-10-23T14:17:17.3808470Z ##[group]Run scripts/test.sh --filter testInvalidStartFailsWithActionableErrorAndStaysStopped
+installed-driver	Compile integration tests	2026-10-23T14:17:17.3809170Z [36;1mscripts/test.sh --filter testInvalidStartFailsWithActionableErrorAndStaysStopped[0m
+installed-driver	Compile integration tests	2026-10-23T14:17:17.4097370Z shell: /bin/bash -e {0}
+installed-driver	Compile integration tests	2026-10-23T14:17:17.4097710Z ##[endgroup]
+installed-driver	Compile integration tests	2026-10-23T14:17:23.5830000Z Building for debugging...
+installed-driver	Compile integration tests	2026-10-23T14:17:23.5883540Z [0/26] /Users/runner/work/ravelink/ravelink/.build/arm64-apple-macosx/debug/RaveLinkPackageTests.derived/runner.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:23.5957160Z [0/26] Write sources
+installed-driver	Compile integration tests	2026-10-23T14:17:23.5974220Z [0/26] Write RaveLinkPluginHost-entitlement.plist
+installed-driver	Compile integration tests	2026-10-23T14:17:23.6028090Z [3/26] Write sources
+installed-driver	Compile integration tests	2026-10-23T14:17:23.6035160Z [5/26] Write RaveLinkEngine-entitlement.plist
+installed-driver	Compile integration tests	2026-10-23T14:17:23.6036560Z [5/26] Write sources
+installed-driver	Compile integration tests	2026-10-23T14:17:23.7856650Z [8/26] Write swift-version--79AA4F9932D1E87A.txt
+installed-driver	Compile integration tests	2026-10-23T14:17:23.8035860Z [9/26] Write sources
+installed-driver	Compile integration tests	2026-10-23T14:17:25.9702970Z [10/29] Compiling RaveLinkRealtime Realtime.c
+installed-driver	Compile integration tests	2026-10-23T14:17:29.3564750Z [11/33] Compiling RaveLinkAudioUnitBridge AudioUnitBridge.m
+installed-driver	Compile integration tests	2026-10-23T14:17:29.3577490Z [12/33] Write sources
+installed-driver	Compile integration tests	2026-10-23T14:17:29.3667210Z [12/33] Write RaveLink-entitlement.plist
+installed-driver	Compile integration tests	2026-10-23T14:17:32.7564580Z [16/33] Emitting module RaveLinkCore
+installed-driver	Compile integration tests	2026-10-23T14:17:32.7667390Z [17/33] Compiling RaveLinkCore Session.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:32.7723980Z [18/33] Compiling RaveLinkCore AudioUnitEffects.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:32.7725410Z [19/33] Compiling RaveLinkCore ExpandedRouting.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:33.3459420Z [20/34] Emitting module RaveLinkPluginHost
+installed-driver	Compile integration tests	2026-10-23T14:17:33.3561210Z [21/34] Compiling RaveLinkPluginHost Render.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:33.3662010Z [22/34] Compiling RaveLinkPluginHost main.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:33.3858930Z [22/34] Write Objects.LinkFileList
+installed-driver	Compile integration tests	2026-10-23T14:17:33.3975670Z [24/34] Compiling RaveLinkCore SessionStore.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:34.4899290Z [24/46] Linking RaveLinkPluginHost
+installed-driver	Compile integration tests	2026-10-23T14:17:34.5109030Z [25/46] Applying RaveLinkPluginHost
+installed-driver	Compile integration tests	2026-10-23T14:17:37.9480330Z [27/46] Compiling RaveLinkAudio EngineClient.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:37.9583140Z [28/46] Compiling RaveLinkAudio EngineProtocol.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:37.9685230Z [29/46] Emitting module RaveLinkCoreTests
+installed-driver	Compile integration tests	2026-10-23T14:17:37.9786700Z [30/46] Compiling RaveLinkAudio AudioAllocationBudget.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:37.9887580Z [31/46] Compiling RaveLinkAudio AudioCoordinator.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:38.3863560Z [32/47] Emitting module RaveLinkAudio
+installed-driver	Compile integration tests	2026-10-23T14:17:38.9457030Z [33/49] Compiling RaveLinkCoreTests SourceIdentityAndOrderTests.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:39.6025400Z [34/49] Compiling RaveLinkAudio PluginCatalog.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:39.6029990Z [35/49] Compiling RaveLinkAudio PluginRender.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:40.1937280Z [37/49] Compiling RaveLinkAudio FeedbackValidation.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:40.1939320Z [38/49] Compiling RaveLinkAudio LiveAudioUnitGraph.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:42.9673900Z [42/65] Emitting module RaveLinkEngine
+installed-driver	Compile integration tests	2026-10-23T14:17:42.9775360Z [43/65] Compiling RaveLinkEngine EngineMain.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:42.9876670Z [43/65] Write Objects.LinkFileList
+installed-driver	Compile integration tests	2026-10-23T14:17:43.5720870Z [44/65] Linking RaveLinkEngine
+installed-driver	Compile integration tests	2026-10-23T14:17:43.5922560Z [45/65] Applying RaveLinkEngine
+installed-driver	Compile integration tests	2026-10-23T14:17:45.6443210Z [47/65] Compiling RaveLinkAudioTests InstalledAudioUnitAcceptanceTests.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:45.6570890Z [48/65] Compiling RaveLinkAudioTests InstalledDeviceSoakTests.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:45.6693150Z [49/65] Compiling RaveLinkAudioTests InstalledMatrixTests.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:45.6750970Z [50/65] Compiling RaveLinkAudioTests LiveAudioUnitTests.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:45.6752790Z [51/69] Compiling RaveLinkAudioTests AudioAllocationTests.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:45.6754480Z [52/69] Compiling RaveLinkAudioTests EngineClientTests.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:45.6857750Z [53/69] Emitting module RaveLinkApp
+installed-driver	Compile integration tests	2026-10-23T14:17:45.6962270Z [54/69] Compiling RaveLinkAudioTests FeedbackValidationTests.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:45.7067690Z [55/69] Compiling RaveLinkAudioTests GroupedRealtimeTests.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:45.8243010Z [56/71] Emitting module RaveLinkAudioTests
+installed-driver	Compile integration tests	2026-10-23T14:17:48.3613950Z [61/71] Compiling RaveLinkAudioTests PluginCatalogTests.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:48.3615440Z [62/71] Compiling RaveLinkAudioTests PluginRenderTests.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:48.3617990Z [63/71] Compiling RaveLinkAudioTests RealtimeTests.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:48.3619170Z [64/71] Compiling RaveLinkAudioTests ThirdPartyAudioUnitTests.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:48.7181910Z [65/73] Emitting module RaveLinkPackageTests
+installed-driver	Compile integration tests	2026-10-23T14:17:48.7198970Z [66/73] Compiling RaveLinkPackageTests runner.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:48.7300210Z [66/73] Write Objects.LinkFileList
+installed-driver	Compile integration tests	2026-10-23T14:17:49.3173070Z [68/73] Compiling RaveLinkApp StudioModel.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:49.3174660Z [69/73] Compiling RaveLinkApp StudioView.swift
+installed-driver	Compile integration tests	2026-10-23T14:17:49.3441010Z [69/73] Write Objects.LinkFileList
+installed-driver	Compile integration tests	2026-10-23T14:17:49.3563310Z [70/73] Linking RaveLinkPackageTests
+installed-driver	Compile integration tests	2026-10-23T14:17:50.0492250Z [71/73] Linking RaveLink
+installed-driver	Compile integration tests	2026-10-23T14:17:50.0762430Z [72/73] Applying RaveLink
+installed-driver	Compile integration tests	2026-10-23T14:17:50.0817180Z Build complete! (26.60s)
+installed-driver	Compile integration tests	2026-10-23T14:17:50.1368350Z ◇ Test run started.
+installed-driver	Compile integration tests	2026-10-23T14:17:50.1372580Z ↳ Testing Library Version: 124.4
+installed-driver	Compile integration tests	2026-10-23T14:17:50.1409470Z ↳ Target Platform: arm64e-apple-macos14.0
+installed-driver	Compile integration tests	2026-10-23T14:17:50.1410410Z ◇ Suite AudioCoordinatorTests started.
+installed-driver	Compile integration tests	2026-10-23T14:17:50.1412130Z ◇ Test testInvalidStartFailsWithActionableErrorAndStaysStopped() started.
+installed-driver	Compile integration tests	2026-10-23T14:17:50.1413470Z ✔ Test testInvalidStartFailsWithActionableErrorAndStaysStopped() passed after 0.004 seconds.
+installed-driver	Compile integration tests	2026-10-23T14:17:50.1417750Z ✔ Suite AudioCoordinatorTests passed after 0.005 seconds.
+installed-driver	Compile integration tests	2026-10-23T14:17:50.1418620Z ✔ Test run with 1 test passed after 0.006 seconds.
+installed-driver	Actual installed HAL loopback	﻿2026-10-23T14:17:50.1511180Z ##[group]Run set -o pipefail
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:50.1511690Z [36;1mset -o pipefail[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:50.1512000Z [36;1mrm -f build/receiver-ready[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:50.1512430Z [36;1mpython3 scripts/audio-device-probe.py --list > build/installed-devices.txt[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:50.1513450Z [36;1mpython3 scripts/audio-device-probe.py --uid RaveLink.ci-loopback_UID --capture-seconds 12 --wav build/independent-loopback.wav --ready-file build/receiver-ready --timeout 25 > build/receiver.log 2>&1 &[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:50.1514240Z [36;1mreceiver_pid=$![0m
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:50.1514870Z [36;1mtrap 'kill "$receiver_pid" 2>/dev/null || true; wait "$receiver_pid" 2>/dev/null || true' EXIT[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:50.1515330Z [36;1mfor attempt in {1..15}; do[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:50.1515750Z [36;1m  if [ -f build/receiver-ready ]; then break; fi[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:50.1516180Z [36;1m  if ! kill -0 "$receiver_pid" 2>/dev/null; then cat build/receiver.log; exit 1; fi[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:50.1516620Z [36;1m  sleep 1[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:50.1516830Z [36;1mdone[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:50.1517100Z [36;1mtest -f build/receiver-ready[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:50.1517640Z [36;1mscripts/test.sh --skip-build --filter testBlackHoleLoopbackAndLiveBusControls 2>&1 | tee build/installed-driver-test.log[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:50.1518120Z [36;1mwait "$receiver_pid"[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:50.1518540Z [36;1mpython3 scripts/verify-loopback.py build/independent-loopback.wav | tee build/independent-loopback.json[0m
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:50.1581480Z shell: /bin/bash -e {0}
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:50.1581980Z env:
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:50.1582570Z   RAVELINK_TEST_LOOPBACK: 1
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:50.1583270Z   RAVELINK_LOOPBACK_DEVICE_UID: RaveLink.ci-loopback_UID
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:50.1584160Z ##[endgroup]
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:53.3708090Z [0/1] Planning build
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:58.1179060Z ◇ Test run started.
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:58.1280940Z ↳ Testing Library Version: 124.4
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:58.1313680Z ↳ Target Platform: arm64e-apple-macos14.0
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:58.1315550Z ◇ Suite AudioCoordinatorTests started.
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:58.1359990Z ◇ Test testBlackHoleLoopbackAndLiveBusControls() started.
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:58.1361290Z VIRTUAL_DRIVER_LIVE_EVIDENCE uid=RaveLink.ci-loopback_UID rate=48000.0 unityPeak=0.12589069 minus12dBPeak=0.031622987 mutedPeak=2.1e-44 capturedFrames=95744 renderedFrames=95744 droppedFrames=0 underrunFrames=0
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:58.1362670Z ✔ Test testBlackHoleLoopbackAndLiveBusControls() passed after 4.707 seconds.
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:58.1364350Z ✔ Suite AudioCoordinatorTests passed after 4.707 seconds.
+installed-driver	Actual installed HAL loopback	2026-10-23T14:17:58.1364850Z ✔ Test run with 1 test passed after 4.707 seconds.
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9888550Z {
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9889390Z   "sampleRate": 48000,
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9889910Z   "frames": 576000,
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9890340Z   "seconds": 12.0,
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9890700Z   "peak": 0.12589074671268463,
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9891090Z   "frequencyHz": 439.99959304514147,
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9891510Z   "stereoDifference": 0.0,
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9891940Z   "phaseWindows": {
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9892310Z     "unity": 42,
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9892610Z     "minus12dB": 20,
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9893020Z     "silenceAfterSignal": 131
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9893450Z   },
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9893740Z   "windowSeconds": 0.05,
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9894380Z   "phaseFrequenciesHz": {
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9894700Z     "unity": 439.99959304514147,
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9895090Z     "minus12dB": 439.99912070519446
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9895420Z   },
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9895770Z   "orderedPhaseStartsSeconds": {
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9896190Z     "unity": 2.3000000000000003,
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9896590Z     "minus12dB": 4.4,
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9896890Z     "muted": 5.45
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9897260Z   },
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9897830Z   "evidence": "signal analysis only; caller supplies capture provenance; no alignment, resampling or gain fitting"
+installed-driver	Actual installed HAL loopback	2026-10-23T14:18:03.9898530Z }
+installed-driver	Independent simultaneous mix control recordings	﻿2026-10-23T14:18:04.0271420Z ##[group]Run set -o pipefail
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0271850Z [36;1mset -o pipefail[0m
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0272160Z [36;1mrm -f build/matrix-a-ready build/matrix-b-ready[0m
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0273040Z [36;1mpython3 scripts/audio-device-probe.py --uid RaveLink.ci-mix-a_UID --capture-seconds 24 --wav build/matrix-a.wav --ready-file build/matrix-a-ready --timeout 40 > build/matrix-a-recorder.log 2>&1 &[0m
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0273810Z [36;1mreceiver_a=$![0m
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0274490Z [36;1mpython3 scripts/audio-device-probe.py --uid RaveLink.ci-mix-b_UID --capture-seconds 24 --wav build/matrix-b.wav --ready-file build/matrix-b-ready --timeout 40 > build/matrix-b-recorder.log 2>&1 &[0m
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0275240Z [36;1mreceiver_b=$![0m
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0275710Z [36;1mtrap 'kill "$receiver_a" "$receiver_b" 2>/dev/null || true; wait "$receiver_a" 2>/dev/null || true; wait "$receiver_b" 2>/dev/null || true' EXIT[0m
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0276300Z [36;1mfor attempt in {1..15}; do[0m
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0277120Z [36;1m  if [ -f build/matrix-a-ready ] && [ -f build/matrix-b-ready ]; then break; fi[0m
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0277610Z [36;1m  kill -0 "$receiver_a" && kill -0 "$receiver_b"[0m
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0277950Z [36;1m  sleep 1[0m
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0278150Z [36;1mdone[0m
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0278500Z [36;1mtest -f build/matrix-a-ready && test -f build/matrix-b-ready[0m
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0279070Z [36;1mscripts/test.sh --skip-build --filter installedIndependentMixControlSequence 2>&1 | tee build/matrix-test.log[0m
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0279620Z [36;1mwait "$receiver_a"[0m
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0279910Z [36;1mwait "$receiver_b"[0m
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0280420Z [36;1mpython3 scripts/verify-matrix.py build/matrix-a.wav build/matrix-b.wav | tee build/matrix-analysis.json[0m
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0742540Z shell: /bin/bash -e {0}
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0742840Z env:
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0743140Z   RAVELINK_TEST_MATRIX: 1
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0743430Z   RAVELINK_MATRIX_A_UID: RaveLink.ci-mix-a_UID
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0743820Z   RAVELINK_MATRIX_B_UID: RaveLink.ci-mix-b_UID
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:04.0744150Z ##[endgroup]
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:07.7003070Z [0/1] Planning build
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:23.2194430Z ◇ Test run started.
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:23.2199700Z ↳ Testing Library Version: 124.4
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:23.2202650Z ↳ Target Platform: arm64e-apple-macos14.0
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:23.2203920Z ◇ Suite InstalledMatrixTests started.
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:23.2205450Z ◇ Test installedIndependentMixControlSequence() started.
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:23.2207310Z MATRIX_PHASE baseline uptime=139.61167133333333
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:23.2346010Z MATRIX_PHASE route-level-A uptime=140.823650125
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:23.2348670Z MATRIX_PHASE route-pan-A-left uptime=142.09274008333335
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:23.2350220Z MATRIX_PHASE route-mute-A uptime=143.37127341666667
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:23.2352210Z MATRIX_PHASE master-mute-B uptime=144.62245320833335
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:23.2354020Z MATRIX_PHASE restored-baseline uptime=145.86043237500002
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:23.2357020Z MATRIX_PHASE source-mute uptime=147.07820383333333
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:23.2359930Z MATRIX_PHASE secondary-solo uptime=148.35601933333334
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:23.2361820Z MATRIX_PHASE summed-sources uptime=149.56379804166667
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:23.2365590Z MATRIX_PHASE source-gain uptime=150.83364208333333
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:23.2367180Z MATRIX_PHASE master-level-B uptime=152.10522383333335
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:23.2369900Z MATRIX_PHASE final-mute uptime=153.315138375
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:23.2373700Z MATRIX_EVIDENCE renderedFrames=1446912 dropped=0 underruns=0
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:23.2377280Z ✔ Test installedIndependentMixControlSequence() passed after 15.459 seconds.
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:23.2381360Z ✔ Suite InstalledMatrixTests passed after 15.459 seconds.
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:23.2386150Z ✔ Test run with 1 test passed after 15.459 seconds.
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1476330Z {
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1579000Z   "outputs": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1682960Z     {
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1784660Z       "output": "A",
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1885270Z       "sampleRate": 48000,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1941980Z       "frames": 1152000,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1942500Z       "phases": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1944100Z         {
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1945000Z           "phases": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1946000Z             "baseline"
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1946790Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1947670Z           "startSeconds": 2.75,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1948700Z           "durationSeconds": 1.35,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1949540Z           "expectedPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1950430Z             0.12589254117941673,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1951210Z             0.12589254117941673
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1952470Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1953160Z           "minPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1954040Z             0.12589074671268463,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1954820Z             0.12589074671268463
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1955720Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1956540Z           "maxPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1957320Z             0.12589074671268463,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1958210Z             0.12589074671268463
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1959010Z           ]
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1959800Z         },
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1960490Z         {
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1961290Z           "phases": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1962430Z             "route-level-A"
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1963420Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1964240Z           "startSeconds": 4.15,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1965210Z           "durationSeconds": 1.15,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.1966240Z           "expectedPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2072230Z             0.0316227766016838,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2099390Z             0.0316227766016838
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2100260Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2100840Z           "minPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2101460Z             0.0316229984164238,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2102330Z             0.0316229984164238
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2102990Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2103560Z           "maxPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2104170Z             0.03174128383398056,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2104840Z             0.03174128383398056
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2105500Z           ]
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2106040Z         },
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2106580Z         {
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2107140Z           "phases": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2107780Z             "route-pan-A-left"
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2108430Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2109010Z           "startSeconds": 5.4,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2109860Z           "durationSeconds": 1.2,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2110840Z           "expectedPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2111500Z             0.0316227766016838,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2112320Z             0.0
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2119640Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2120040Z           "minPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2120640Z             0.0316229984164238,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2121130Z             2.1019476964872256e-44
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2121740Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2122330Z           "maxPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2122900Z             0.0316229984164238,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2123600Z             3.8070186292316066e-07
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2124320Z           ]
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2124830Z         },
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2125660Z         {
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2126210Z           "phases": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2126700Z             "route-mute-A",
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2127290Z             "master-mute-B"
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2127940Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2128470Z           "startSeconds": 6.7,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2129150Z           "durationSeconds": 2.4,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2129800Z           "expectedPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2130490Z             0.0,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2131100Z             0.0
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2131630Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2132140Z           "minPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2132680Z             2.1019476964872256e-44,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2133190Z             2.1019476964872256e-44
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2133670Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2134050Z           "maxPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2134660Z             8.25842338958438e-10,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2135450Z             2.1019476964872256e-44
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2136070Z           ]
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2137540Z         },
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2138010Z         {
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2138580Z           "phases": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2139230Z             "restored-baseline"
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2139810Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2140380Z           "startSeconds": 9.15,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2140900Z           "durationSeconds": 1.2,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2141630Z           "expectedPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2142210Z             0.12589254117941673,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2142890Z             0.12589254117941673
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2143480Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2143870Z           "minPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2144310Z             0.12589074671268463,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2144890Z             0.12589074671268463
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2145570Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2146070Z           "maxPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2146740Z             0.12589074671268463,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2147340Z             0.12589074671268463
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2148000Z           ]
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2148490Z         },
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2149070Z         {
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2149570Z           "phases": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2150200Z             "source-mute",
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2150870Z             "secondary-solo"
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2151430Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2152060Z           "startSeconds": 10.450000000000001,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2152850Z           "durationSeconds": 2.4,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2153380Z           "expectedPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2153980Z             0.0,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2154480Z             0.0
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2155030Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2155540Z           "minPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2156090Z             2.1019476964872256e-44,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2157000Z             2.1019476964872256e-44
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2157590Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2157820Z           "maxPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2158120Z             7.058846307472777e-08,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2158450Z             7.058846307472777e-08
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2158700Z           ]
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2158950Z         },
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2159130Z         {
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2159400Z           "phases": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2159640Z             "summed-sources"
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2159930Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2160150Z           "startSeconds": 12.9,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2160470Z           "durationSeconds": 1.2,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2160820Z           "expectedPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2161070Z             0.12589254117941673,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2161360Z             0.12589254117941673
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2162190Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2162450Z           "minPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2162680Z             0.12589074671268463,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2162980Z             0.12589074671268463
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2163210Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2163470Z           "maxPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2163630Z             0.12589074671268463,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2163800Z             0.12589074671268463
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2164020Z           ]
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2164200Z         },
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2164450Z         {
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2164650Z           "phases": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2164880Z             "source-gain",
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2165130Z             "master-level-B"
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2165400Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2165550Z           "startSeconds": 14.200000000000001,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2165830Z           "durationSeconds": 2.4,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2166090Z           "expectedPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2166340Z             0.06294626996124951,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2166640Z             0.06294626996124951
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2166860Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2167060Z           "minPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2167270Z             0.06294627487659454,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2167510Z             0.06294627487659454
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2167740Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2167990Z           "maxPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2168210Z             0.06294627487659454,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2168500Z             0.06294627487659454
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2169010Z           ]
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2169140Z         },
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2169330Z         {
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2169530Z           "phases": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2169750Z             "final-mute"
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2169900Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2170050Z           "startSeconds": 16.7,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2170360Z           "durationSeconds": 7.3,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2170540Z           "expectedPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2170770Z             0.0,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2170980Z             0.0
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2171250Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2171450Z           "minPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2171710Z             0.0,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2171850Z             0.0
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2172100Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2172380Z           "maxPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2172600Z             5.657385671042903e-10,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2172790Z             5.657385671042903e-10
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2173010Z           ]
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2173260Z         }
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2173460Z       ]
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2173700Z     },
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2173880Z     {
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2174380Z       "output": "B",
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2174700Z       "sampleRate": 48000,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2175000Z       "frames": 1152000,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2175170Z       "phases": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2175440Z         {
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2175700Z           "phases": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2175920Z             "baseline",
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2176210Z             "route-level-A",
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2176470Z             "route-pan-A-left",
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2176780Z             "route-mute-A"
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2177000Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2177280Z           "startSeconds": 2.75,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2177540Z           "durationSeconds": 5.2,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2177870Z           "expectedPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2178040Z             0.06294626996124951,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2178340Z             0.06294626996124951
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2178640Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2178840Z           "minPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2179130Z             0.06294537335634232,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2179370Z             0.06294537335634232
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2179660Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2179860Z           "maxPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2180140Z             0.06294537335634232,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2180390Z             0.06294537335634232
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2180540Z           ]
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2180660Z         },
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2180840Z         {
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2181280Z           "phases": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2181500Z             "master-mute-B"
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2181790Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2182000Z           "startSeconds": 8.05,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2182310Z           "durationSeconds": 1.1,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2182560Z           "expectedPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2182820Z             0.0,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2182980Z             0.0
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2183210Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2183500Z           "minPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2183770Z             1.1210387714598537e-44,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2183950Z             1.1210387714598537e-44
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2184110Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2184280Z           "maxPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2184480Z             5.026036808963852e-10,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2184670Z             5.026036808963852e-10
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2184870Z           ]
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2185050Z         },
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2185170Z         {
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2185380Z           "phases": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2185550Z             "restored-baseline"
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2185760Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2185960Z           "startSeconds": 9.200000000000001,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2186210Z           "durationSeconds": 1.2,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2186440Z           "expectedPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2186610Z             0.06294626996124951,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2186860Z             0.06294626996124951
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2187070Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2187430Z           "minPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2187620Z             0.06294537335634232,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2187870Z             0.06294537335634232
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2188080Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2188260Z           "maxPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2188490Z             0.06294537335634232,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2188710Z             0.06294537335634232
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2188950Z           ]
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2189160Z         },
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2189320Z         {
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2189540Z           "phases": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2189760Z             "source-mute"
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2189930Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2190060Z           "startSeconds": 10.5,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2190340Z           "durationSeconds": 1.15,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2190570Z           "expectedPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2190810Z             0.0,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2190990Z             0.0
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2191200Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2191430Z           "minPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2191680Z             2.1019476964872256e-44,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2191980Z             2.1019476964872256e-44
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2192190Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2192420Z           "maxPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2192620Z             9.789418164984909e-10,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2192890Z             9.789418164984909e-10
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2193100Z           ]
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2193260Z         },
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2193390Z         {
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2193500Z           "phases": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2193660Z             "secondary-solo"
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2193830Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2193970Z           "startSeconds": 11.700000000000001,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2194180Z           "durationSeconds": 1.15,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2194360Z           "expectedPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2194520Z             0.0316227766016838,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2194680Z             0.0316227766016838
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2203260Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2203460Z           "minPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2203660Z             0.03162277117371559,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2203870Z             0.03162277117371559
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2204040Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2204190Z           "maxPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2204370Z             0.03162277117371559,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2204570Z             0.03162277117371559
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2204720Z           ]
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2204830Z         },
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2204950Z         {
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2205070Z           "phases": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2205210Z             "summed-sources"
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2205860Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2206000Z           "startSeconds": 12.9,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2206190Z           "durationSeconds": 1.25,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2206370Z           "expectedPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2206530Z             0.0945690465629333,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2206700Z             0.0945690465629333
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2206850Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2206970Z           "minPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2207120Z             0.09456715732812881,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2207290Z             0.09456715732812881
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2207440Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2207560Z           "maxPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2207710Z             0.09456814080476761,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2207870Z             0.09456814080476761
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2208020Z           ]
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2208140Z         },
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2208260Z         {
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2208370Z           "phases": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2208520Z             "source-gain"
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2208680Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2208820Z           "startSeconds": 14.200000000000001,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2209040Z           "durationSeconds": 1.2,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2209210Z           "expectedPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2209380Z             0.06309591126807912,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2209540Z             0.06309591126807912
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2209690Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2209820Z           "minPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2210290Z             0.06309590488672256,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2210450Z             0.06309590488672256
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2210600Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2210730Z           "maxPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2210870Z             0.06311638653278351,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2211040Z             0.06311638653278351
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2211190Z           ]
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2211310Z         },
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2211430Z         {
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2211550Z           "phases": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2211700Z             "master-level-B"
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2211860Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2211990Z           "startSeconds": 15.5,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2212170Z           "durationSeconds": 1.1,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2212340Z           "expectedPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2212500Z             0.015848976339802034,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2212670Z             0.015848976339802034
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2212830Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2212950Z           "minPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2213100Z             0.015849314630031586,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2213270Z             0.015849314630031586
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2213420Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2213550Z           "maxPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2213690Z             0.015849314630031586,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2213860Z             0.015849314630031586
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2214010Z           ]
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2214130Z         },
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2214240Z         {
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2214430Z           "phases": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2214580Z             "final-mute"
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2214730Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2214860Z           "startSeconds": 16.7,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2215040Z           "durationSeconds": 7.3,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2215220Z           "expectedPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2215420Z             0.0,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2215550Z             0.0
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2215670Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2215790Z           "minPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2215930Z             0.0,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2216060Z             0.0
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2216190Z           ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2216310Z           "maxPeak": [
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2216460Z             8.703171516799557e-08,
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2216630Z             8.703171516799557e-08
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2216790Z           ]
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2216910Z         }
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2217020Z       ]
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2217130Z     }
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2217250Z   ],
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2217620Z   "evidence": "Independent signal analysis; caller supplies recorder provenance; no alignment, resampling or gain fitting"
+installed-driver	Independent simultaneous mix control recordings	2026-10-23T14:18:33.2218420Z }
+installed-driver	Independent installed HAL Audio Unit acceptance	﻿2026-10-23T14:18:33.2307900Z ##[group]Run scripts/run-au-loopback.sh
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:18:33.2308210Z [36;1mscripts/run-au-loopback.sh[0m
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:18:33.2350130Z shell: /bin/bash -e {0}
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:18:33.2350330Z env:
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:18:33.2350520Z   RAVELINK_TEST_INSTALLED_AU: 1
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:18:33.2350800Z   RAVELINK_AU_DEVICE_UID: RaveLink.ci-loopback_UID
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:18:33.2351040Z ##[endgroup]
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:18:36.1950680Z [0/1] Planning build
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:18:47.9158580Z ◇ Test run started.
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:18:47.9162490Z ↳ Testing Library Version: 124.4
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:18:47.9163910Z ↳ Target Platform: arm64e-apple-macos14.0
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:18:47.9164540Z ◇ Suite InstalledAudioUnitAcceptanceTests started.
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:18:47.9165290Z ◇ Test installedAudioUnitGainBypassAndRestoredState() started.
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:18:47.9166330Z AU_HAL_PHASE active-plus6dB uptime=169.02815845833334
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:18:47.9169530Z AU_HAL_PHASE live-minus6dB uptime=171.0957055416667
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:18:47.9233240Z AU_HAL_PHASE host-bypass uptime=173.1883799166667
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:18:47.9235280Z AU_HAL_PHASE restored-plus12dB uptime=175.21747045833334
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:18:47.9237660Z AU_HAL_PHASE final-mute uptime=177.27341133333334
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:18:47.9239570Z ✔ Test installedAudioUnitGainBypassAndRestoredState() passed after 11.649 seconds.
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:18:47.9242130Z ✔ Suite InstalledAudioUnitAcceptanceTests passed after 11.649 seconds.
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:18:47.9243950Z ✔ Test run with 1 test passed after 11.650 seconds.
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0515950Z {
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0518500Z   "sampleRate": 48000,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0519160Z   "frames": 1920000,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0519960Z   "phases": [
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0520750Z     {
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0521360Z       "name": "active-plus6dB",
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0522180Z       "expectedPeak": 0.2517850848726689,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0522850Z       "startSeconds": 3.4000000000000004,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0523610Z       "settledSeconds": 2.25,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0524610Z       "precedingTransitionWindows": 1,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0525660Z       "precedingRestartSilenceSeconds": 0.0,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0526370Z       "maximumPeak": 0.25178149342536926,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0527120Z       "minimumRMS": 0.17722636680578704
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0527730Z     },
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0528280Z     {
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0528960Z       "name": "live-minus6dB",
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0529570Z       "expectedPeak": 0.06294626996124951,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0530350Z       "startSeconds": 5.7,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0530930Z       "settledSeconds": 2.0,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0531680Z       "precedingTransitionWindows": 1,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0532400Z       "precedingRestartSilenceSeconds": 0.0,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0533210Z       "maximumPeak": 0.06294536590576172,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0533910Z       "minimumRMS": 0.044509092673600696
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0534650Z     },
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0535080Z     {
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0535660Z       "name": "host-bypass",
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0536410Z       "expectedPeak": 0.12589254117941673,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0537110Z       "startSeconds": 7.75,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0537820Z       "settledSeconds": 1.9500000000000002,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0538510Z       "precedingTransitionWindows": 1,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0539560Z       "precedingRestartSilenceSeconds": 0.0,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0540310Z       "maximumPeak": 0.12589074671268463,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0541130Z       "minimumRMS": 0.08899350993828802
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0541770Z     },
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0542330Z     {
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0542910Z       "name": "restored-plus12dB",
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0543540Z       "expectedPeak": 0.5011872336272722,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0588750Z       "startSeconds": 10.05,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0589580Z       "settledSeconds": 1.8,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0591100Z       "precedingTransitionWindows": 2,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0591620Z       "precedingRestartSilenceSeconds": 0.25,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0592060Z       "maximumPeak": 0.501180112361908,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0592360Z       "minimumRMS": 0.3537545712343052
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0596570Z     },
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0597310Z     {
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0597560Z       "name": "final-mute",
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0597980Z       "expectedPeak": 0.0,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0598280Z       "startSeconds": 11.950000000000001,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0598690Z       "settledSeconds": 28.05,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0599000Z       "precedingTransitionWindows": 2,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0599480Z       "precedingRestartSilenceSeconds": 0.0,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0599930Z       "maximumPeak": 9.98756410908186e-10,
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0600350Z       "minimumRMS": 0.0
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0600620Z     }
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0601120Z   ],
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0602020Z   "evidence": "Independent recorded PCM; fixed expected gain/RMS/440Hz/stereo correlation, ordered continuous phases, no alignment/resampling/gain fitting. Latency is not measured by this amplitude sequence."
+installed-driver	Independent installed HAL Audio Unit acceptance	2026-10-23T14:19:16.0602870Z }
+installed-driver	Grouped real input and eight mix soak	﻿2026-10-23T14:19:16.0885480Z ##[group]Run scripts/run-device-soak.sh
+installed-driver	Grouped real input and eight mix soak	2026-10-23T14:19:16.0885910Z [36;1mscripts/run-device-soak.sh[0m
+installed-driver	Grouped real input and eight mix soak	2026-10-23T14:19:16.1152570Z shell: /bin/bash -e {0}
+installed-driver	Grouped real input and eight mix soak	2026-10-23T14:19:16.1152910Z env:
+installed-driver	Grouped real input and eight mix soak	2026-10-23T14:19:16.1153180Z   RAVELINK_TEST_DEVICE_SOAK: 1
+installed-driver	Grouped real input and eight mix soak	2026-10-23T14:19:16.1153420Z ##[endgroup]
+installed-driver	Grouped real input and eight mix soak	2026-10-23T14:19:18.4631390Z [0/1] Planning build
+installed-driver	Grouped real input and eight mix soak	2026-10-23T14:19:56.4472540Z ◇ Test run started.
+installed-driver	Grouped real input and eight mix soak	2026-10-23T14:19:56.4749500Z ↳ Testing Library Version: 124.4
+installed-driver	Grouped real input and eight mix soak	2026-10-23T14:19:56.5069530Z ↳ Target Platform: arm64e-apple-macos14.0
+installed-driver	Grouped real input and eight mix soak	2026-10-23T14:19:56.5219230Z ◇ Suite InstalledDeviceSoakTests started.
+installed-driver	Grouped real input and eight mix soak	2026-10-23T14:19:56.5378530Z ◇ Test installedGroupedDeviceInputThirtySecondSoak() started.
+installed-driver	Grouped real input and eight mix soak	2026-10-23T14:19:56.5490260Z ✘ Test installedGroupedDeviceInputThirtySecondSoak() recorded an issue at InstalledDeviceSoakTests.swift:92:9: Expectation failed: (Double(rendered) >= expectedRender * 0.97 → false) && (Double(rendered) <= expectedRender * 1.03 → <not evaluated>)
+installed-driver	Grouped real input and eight mix soak	2026-10-23T14:19:56.5596650Z ✘ Test installedGroupedDeviceInputThirtySecondSoak() recorded an issue at InstalledDeviceSoakTests.swift:93:9: Expectation failed: (dropped == 0 && underruns == 0 → false) && (oversized == 0 → <not evaluated>)
+installed-driver	Grouped real input and eight mix soak	2026-10-23T14:19:56.5697760Z DEVICE_SOAK_EVIDENCE /Users/runner/work/ravelink/ravelink/build/soak-engine.json
+installed-driver	Grouped real input and eight mix soak	2026-10-23T14:19:56.5801670Z ✘ Test installedGroupedDeviceInputThirtySecondSoak() failed after 37.835 seconds with 2 issues.
+installed-driver	Grouped real input and eight mix soak	2026-10-23T14:19:56.5923190Z ✘ Suite InstalledDeviceSoakTests failed after 37.836 seconds with 2 issues.
+installed-driver	Grouped real input and eight mix soak	2026-10-23T14:19:56.6025310Z ↳ /// Explicit CI acceptance only. An independent process feeds a real HAL input;
+installed-driver	Grouped real input and eight mix soak	2026-10-23T14:19:56.6136050Z ↳ /// two independent recorders inspect all eight destination stereo pairs.
+installed-driver	Grouped real input and eight mix soak	2026-10-23T14:19:56.6235890Z ✘ Test run with 1 test failed after 37.836 seconds with 2 issues.
+installed-driver	Grouped real input and eight mix soak	2026-10-23T14:19:56.6691120Z ##[error]Process completed with exit code 1.
+installed-driver	Run actions/upload-artifact@v4	﻿2026-10-23T14:19:56.7036970Z ##[group]Run actions/upload-artifact@v4
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:19:56.7037400Z with:
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:19:56.7037700Z   name: installed-driver-evidence
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:19:56.7039550Z   path: build/installed-driver-test.log
+installed-driver	Run actions/upload-artifact@v4	build/installed-devices.txt
+installed-driver	Run actions/upload-artifact@v4	build/receiver.log
+installed-driver	Run actions/upload-artifact@v4	build/independent-loopback.*
+installed-driver	Run actions/upload-artifact@v4	build/matrix-*.wav
+installed-driver	Run actions/upload-artifact@v4	build/matrix-*.log
+installed-driver	Run actions/upload-artifact@v4	build/matrix-analysis.json
+installed-driver	Run actions/upload-artifact@v4	build/au-*.wav
+installed-driver	Run actions/upload-artifact@v4	build/au-*.log
+installed-driver	Run actions/upload-artifact@v4	build/au-*.json
+installed-driver	Run actions/upload-artifact@v4	build/driver-binary-sha256.txt
+installed-driver	Run actions/upload-artifact@v4	build/soak-*.wav
+installed-driver	Run actions/upload-artifact@v4	build/soak-*.json
+installed-driver	Run actions/upload-artifact@v4	build/soak-*.log
+installed-driver	Run actions/upload-artifact@v4	build/ci-drivers/manifest.json
+installed-driver	Run actions/upload-artifact@v4	build/ci-drivers/*.driver/Contents/Resources/build-info.json
+installed-driver	Run actions/upload-artifact@v4	
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:19:56.7041330Z   if-no-files-found: warn
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:19:56.7041630Z   compression-level: 6
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:19:56.7042010Z   overwrite: false
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:19:56.7042230Z   include-hidden-files: false
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:19:56.7042550Z ##[endgroup]
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:19:57.2321040Z (node:3717) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:19:57.2322610Z (Use `node --trace-deprecation ...` to show where the warning was created)
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:19:57.2639500Z With the provided path, there will be 26 files uploaded
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:19:57.2654150Z Artifact name is valid!
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:19:57.2654900Z Root directory input is valid!
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:19:57.5622530Z Beginning upload of artifact content to blob storage
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:19:57.8168220Z (node:3717) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:19:57.9231100Z Uploaded bytes 1271905
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:19:57.9433190Z Finished uploading artifact content to blob storage!
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:19:57.9534720Z SHA256 digest of uploaded artifact zip is e1f28f41d2e9052974905e6c4bcdd62199a9c7eebe55f92c5242076f830a6a99
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:19:57.9636630Z Finalizing artifact upload
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:19:58.3794370Z Artifact installed-driver-evidence.zip successfully finalized. Artifact ID 12507902766
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:19:58.3795330Z Artifact installed-driver-evidence has been successfully uploaded! Final size is 1271905 bytes. Artifact ID is 12507902766
+installed-driver	Run actions/upload-artifact@v4	2026-10-23T14:19:58.3811110Z Artifact download URL: https://github.com/thatsmethen/ravelink/actions/runs/39968280263/artifacts/12507902766
+installed-driver	Remove test device	﻿2026-10-23T14:19:58.3983710Z ##[group]Run sudo python3 scripts/virtual-devices.py uninstall ci-loopback ci-mix-a ci-mix-b
+installed-driver	Remove test device	2026-10-23T14:19:58.3985420Z [36;1msudo python3 scripts/virtual-devices.py uninstall ci-loopback ci-mix-a ci-mix-b[0m
+installed-driver	Remove test device	2026-10-23T14:19:58.4308340Z shell: /bin/bash -e {0}
+installed-driver	Remove test device	2026-10-23T14:19:58.4308800Z ##[endgroup]
+installed-driver	Remove test device	2026-10-23T14:19:58.8224200Z Removed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-loopback.driver
+installed-driver	Remove test device	2026-10-23T14:19:58.8227220Z Removed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-mix-a.driver
+installed-driver	Remove test device	2026-10-23T14:19:58.8228330Z Removed /Library/Audio/Plug-Ins/HAL/RaveLink-ci-mix-b.driver
+installed-driver	Remove test device	2026-10-23T14:19:58.8229500Z Restart macOS after closing audio apps. Audio services were not restarted.
+installed-driver	Post Run actions/checkout@v4	﻿2026-10-23T14:19:58.8427230Z Post job cleanup.
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:19:58.9419580Z [command]/opt/homebrew/bin/git version
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:19:58.9550040Z git version 2.55.0
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:19:58.9585110Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/fe6bc58d-a546-4431-90aa-1df291442884/.gitconfig'
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:19:58.9593780Z Temporarily overriding HOME='/Users/runner/work/_temp/fe6bc58d-a546-4431-90aa-1df291442884' before making global git config changes
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:19:58.9598150Z Adding repository directory to the temporary git global config as a safe directory
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:19:58.9598810Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:19:58.9677170Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:19:58.9743580Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:19:59.0707630Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:19:59.0771450Z http.https://github.com/.extraheader
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:19:59.0786700Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:19:59.0904650Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:19:59.1813400Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+installed-driver	Post Run actions/checkout@v4	2026-10-23T14:19:59.1872440Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+installed-driver	Complete job	﻿2026-10-23T14:19:59.2874920Z Cleaning up orphan processes
+installed-driver	Complete job	2026-10-23T14:20:00.8742040Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

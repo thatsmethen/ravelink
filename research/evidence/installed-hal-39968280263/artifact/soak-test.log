@@ -1,0 +1,14 @@
+[0/1] Planning build
+◇ Test run started.
+↳ Testing Library Version: 124.4
+↳ Target Platform: arm64e-apple-macos14.0
+◇ Suite InstalledDeviceSoakTests started.
+◇ Test installedGroupedDeviceInputThirtySecondSoak() started.
+✘ Test installedGroupedDeviceInputThirtySecondSoak() recorded an issue at InstalledDeviceSoakTests.swift:92:9: Expectation failed: (Double(rendered) >= expectedRender * 0.97 → false) && (Double(rendered) <= expectedRender * 1.03 → <not evaluated>)
+✘ Test installedGroupedDeviceInputThirtySecondSoak() recorded an issue at InstalledDeviceSoakTests.swift:93:9: Expectation failed: (dropped == 0 && underruns == 0 → false) && (oversized == 0 → <not evaluated>)
+DEVICE_SOAK_EVIDENCE /Users/runner/work/ravelink/ravelink/build/soak-engine.json
+✘ Test installedGroupedDeviceInputThirtySecondSoak() failed after 37.835 seconds with 2 issues.
+✘ Suite InstalledDeviceSoakTests failed after 37.836 seconds with 2 issues.
+↳ /// Explicit CI acceptance only. An independent process feeds a real HAL input;
+↳ /// two independent recorders inspect all eight destination stereo pairs.
+✘ Test run with 1 test failed after 37.836 seconds with 2 issues.

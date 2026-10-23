@@ -1,0 +1,14 @@
+[0/1] Planning build
+◇ Test run started.
+↳ Testing Library Version: 124.4
+↳ Target Platform: arm64e-apple-macos14.0
+◇ Suite InstalledAudioUnitAcceptanceTests started.
+◇ Test installedAudioUnitGainBypassAndRestoredState() started.
+AU_HAL_PHASE active-plus6dB uptime=169.02815845833334
+AU_HAL_PHASE live-minus6dB uptime=171.0957055416667
+AU_HAL_PHASE host-bypass uptime=173.1883799166667
+AU_HAL_PHASE restored-plus12dB uptime=175.21747045833334
+AU_HAL_PHASE final-mute uptime=177.27341133333334
+✔ Test installedAudioUnitGainBypassAndRestoredState() passed after 11.649 seconds.
+✔ Suite InstalledAudioUnitAcceptanceTests passed after 11.649 seconds.
+✔ Test run with 1 test passed after 11.650 seconds.

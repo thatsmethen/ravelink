@@ -1,0 +1,57 @@
+{
+  "sampleRate": 48000,
+  "frames": 1920000,
+  "phases": [
+    {
+      "name": "active-plus6dB",
+      "expectedPeak": 0.2517850848726689,
+      "startSeconds": 3.4000000000000004,
+      "settledSeconds": 2.25,
+      "precedingTransitionWindows": 1,
+      "precedingRestartSilenceSeconds": 0.0,
+      "maximumPeak": 0.25178149342536926,
+      "minimumRMS": 0.17722636680578704
+    },
+    {
+      "name": "live-minus6dB",
+      "expectedPeak": 0.06294626996124951,
+      "startSeconds": 5.7,
+      "settledSeconds": 2.0,
+      "precedingTransitionWindows": 1,
+      "precedingRestartSilenceSeconds": 0.0,
+      "maximumPeak": 0.06294536590576172,
+      "minimumRMS": 0.044509092673600696
+    },
+    {
+      "name": "host-bypass",
+      "expectedPeak": 0.12589254117941673,
+      "startSeconds": 7.75,
+      "settledSeconds": 1.9500000000000002,
+      "precedingTransitionWindows": 1,
+      "precedingRestartSilenceSeconds": 0.0,
+      "maximumPeak": 0.12589074671268463,
+      "minimumRMS": 0.08899350993828802
+    },
+    {
+      "name": "restored-plus12dB",
+      "expectedPeak": 0.5011872336272722,
+      "startSeconds": 10.05,
+      "settledSeconds": 1.8,
+      "precedingTransitionWindows": 2,
+      "precedingRestartSilenceSeconds": 0.25,
+      "maximumPeak": 0.501180112361908,
+      "minimumRMS": 0.3537545712343052
+    },
+    {
+      "name": "final-mute",
+      "expectedPeak": 0.0,
+      "startSeconds": 11.950000000000001,
+      "settledSeconds": 28.05,
+      "precedingTransitionWindows": 2,
+      "precedingRestartSilenceSeconds": 0.0,
+      "maximumPeak": 9.98756410908186e-10,
+      "minimumRMS": 0.0
+    }
+  ],
+  "evidence": "Independent recorded PCM; fixed expected gain/RMS/440Hz/stereo correlation, ordered continuous phases, no alignment/resampling/gain fitting. Latency is not measured by this amplitude sequence."
+}

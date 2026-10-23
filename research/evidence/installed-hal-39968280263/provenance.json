@@ -1,0 +1,67 @@
+{
+  "recordedAt": "2026-10-23T14:39:49.254788+00:00",
+  "evidenceClass": "Installed-HAL loopback, supervised matrix and Apple Audio Unit gain/bypass/state passed; repeated actual device-input scale acceptance failed",
+  "revision": "8dbb85d2327704c742862b4cca16a3fff2614035",
+  "runURL": "https://github.com/thatsmethen/ravelink/actions/runs/39968280263",
+  "conclusion": "failure",
+  "failure": "Debug build: 24 capture nodes/eight buses over 32.212378 seconds produced 2,589,696 rendered frames (83.7442% of nominal), 9,905,058 dropped frames, zero underrun/oversized counters. Separate deterministic abruptExitDoesNotRaiseSIGPIPEInClient failed again.",
+  "missingEvidence": "Original shell terminated independent soak probes after Swift assertions; no soak waveform exists. Failure-preserving harness had not yet landed.",
+  "scope": "Independent loopback and matrix sequences passed. Apple limiter version 67072 on installed HAL at 48 kHz passed ordered +6 dB/live -6 dB/bypass/restored +12 dB/final mute sequence with raw 40-second capture. This amplitude sequence does not measure AU latency or third-party compatibility.",
+  "cleanup": "Probe wrappers reported SIGTERM and child process groups reaped; installed drivers removed by successful always cleanup.",
+  "rawPCM": [
+    {
+      "originalPath": "artifact/matrix-b.wav",
+      "bytes": 9216044,
+      "sha256": "ec717448f2b5ad33e20820f66dcfa9fdb3f6d1564708a3e703ed56cf8e5048e8",
+      "losslessArchive": "artifact/matrix-b.wav.gz"
+    },
+    {
+      "originalPath": "artifact/matrix-a.wav",
+      "bytes": 9216044,
+      "sha256": "26b182e6264aa3933513d2178519478be96d9a503be2a8c9804494c1ced12572",
+      "losslessArchive": "artifact/matrix-a.wav.gz"
+    },
+    {
+      "originalPath": "artifact/independent-loopback.wav",
+      "bytes": 4608044,
+      "sha256": "75aa6d413f6193cd97d779806d8aa8ae97cfb42fb1d5b78db948379b3296ab4a",
+      "losslessArchive": "artifact/independent-loopback.wav.gz"
+    },
+    {
+      "originalPath": "artifact/au-loopback.wav",
+      "bytes": 15360044,
+      "sha256": "1075ca6f35389549adebbe81380f8cf813b4f55d9fea127caaeb7554eca08b3c",
+      "losslessArchive": "artifact/au-loopback.wav.gz"
+    }
+  ],
+  "files": {
+    "artifact/au-analysis.json": "b29f648adba4636adbf47f9cc60f17644e916abf67668ce4c784bcd38d878489",
+    "artifact/au-engine.json": "54b354ac277badd9d90d36191c219940f9341385d9655ac0b27bc41731ca04be",
+    "artifact/au-loopback.wav.gz": "be16c7c823b38dbc309b36121370f22429b92c8e5d490568d1d1be24e5fbc13a",
+    "artifact/au-receiver.log": "8dcc1b4b07baccb10746ac3187d59c49bd07aef0c78ac20e2fe9ddd43aa16f16",
+    "artifact/au-test.log": "97877558c5bd8a2e765c9d24e180c8adce7391858a82c7da5732ba2000de871a",
+    "artifact/ci-drivers/RaveLink-ci-loopback.driver/Contents/Resources/build-info.json": "37983ea9e296f5615afd925b742ef2a4c9a3abdf6b76bca64ee645ab617b24c9",
+    "artifact/ci-drivers/RaveLink-ci-mix-a.driver/Contents/Resources/build-info.json": "de3c1f0ea5e47beaba436c2241cd5c09083ff1bb960946f8cae1e74d3e87405d",
+    "artifact/ci-drivers/RaveLink-ci-mix-b.driver/Contents/Resources/build-info.json": "913f35b7e3ed43a58fcd87568c3f1bf0fd55443111f2d0f8ecb1f6a1bef0e74e",
+    "artifact/ci-drivers/manifest.json": "13d54148f5b2fc142adfd9abb52696f9891c5dc71d8bec5f9b432fce2fe6203b",
+    "artifact/driver-binary-sha256.txt": "c40eefab5050a9e821053ec6bd5ce4778039b99f85f25e4aec848f59419e7fea",
+    "artifact/independent-loopback.json": "2d6448d6b2bb756c5cc0fb1a1138ce1b4930bec0f58936967040dd35b76a4ce0",
+    "artifact/independent-loopback.wav.gz": "f5a0d36c6a1c79a106fc4e7b3c9d2e0116500714286a3f5bceef4d9ff8a49e64",
+    "artifact/installed-devices.txt": "1c38a8fdb43f5a128ecfa82290cc8940643aa00e36a4851a8491b1b4113eb915",
+    "artifact/installed-driver-test.log": "1a6cc0bde9c21ac0a74a1fc93b19284b3f0eec4c2c6f216abf2fc03321cbdfe4",
+    "artifact/matrix-a-recorder.log": "9c1387bdd1bf46c8d1dd758dbd13a890ef59bdaa2314023efac5d483d984f178",
+    "artifact/matrix-a.wav.gz": "7e4376428d02bae1b64d94ded12e0d805de8275f0d61f6fa32c91cfd81fdffa1",
+    "artifact/matrix-analysis.json": "0ed9ae4a10fc744ae585c8b1ce546cf1485cfbbc9c85e72a58a5a72d436a26fc",
+    "artifact/matrix-b-recorder.log": "5b279809bae5fe9aba2b1240668fe21965f071b90a2f9c1963748d997d934550",
+    "artifact/matrix-b.wav.gz": "269e486770e2417704f174d6627b39252478b22facf5289b8692a178ae68608f",
+    "artifact/matrix-test.log": "d3b20b42c7099d8baab4e2f2c053db654fa754a76f11efe73c5e000c961aa0c3",
+    "artifact/receiver.log": "01049d262e2bf2ddf957018ecfc099eb1008c0b2e49fbac5631cf9a97968f81d",
+    "artifact/soak-a.log": "4ed62292aebb05da182505ca9b7fc5ac753a00da172f24fce44c1aab3669d509",
+    "artifact/soak-b.log": "4ed62292aebb05da182505ca9b7fc5ac753a00da172f24fce44c1aab3669d509",
+    "artifact/soak-engine.json": "f4817ccbab74d6ae824c022fef42fc9a240a7f0e15a499b23b50f3d337d065b2",
+    "artifact/soak-feeder.log": "4ed62292aebb05da182505ca9b7fc5ac753a00da172f24fce44c1aab3669d509",
+    "artifact/soak-test.log": "c46fe6c982512a960d064ebf00fbd00c16a9d4b59ee51c514eba073577060eca",
+    "original-run.log": "f718462dd851e5f422d2beae7add78636f4e8959d541e2e69f21eedef8719f5e",
+    "run.json": "c651fdebe3e5d0278472ce99a6edd3bca97de2913786285a39a07b881399179b"
+  }
+}
