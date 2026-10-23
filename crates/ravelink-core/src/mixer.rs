@@ -1,6 +1,7 @@
 use crate::{
     dsp::{sanitize, Frame, Processor},
     session::db_to_gain,
+    smoothing::ControlRamp,
     InputKind, Session, SessionError,
 };
 use std::{error::Error, fmt, mem::size_of};
@@ -10,6 +11,7 @@ use uuid::Uuid;
 /// from available memory rather than a fixed input or mix count in the product.
 /// The estimate covers owned graph arrays and their frame buffers, not the
 /// caller's session, source/destination buffers, or allocator bookkeeping.
+/// Inline live-control ramp state is included in the graph estimate.
 #[derive(Clone, Copy, Debug)]
 pub struct ResourceBudget {
     pub max_block_frames: usize,
@@ -139,8 +141,8 @@ struct CompiledChannel {
     id: Uuid,
     frames: Vec<Frame>,
     processor: Processor,
-    gains: [f32; 2],
-    active: bool,
+    gains: ControlRamp<2>,
+    activity: ControlRamp<1>,
     tone: Option<Tone>,
 }
 
@@ -148,12 +150,12 @@ struct CompiledSend {
     id: Uuid,
     input_index: usize,
     bus_index: usize,
-    gains: [f32; 2],
-    active: bool,
+    gains: ControlRamp<2>,
 }
 
 pub struct CompiledMixer {
     sample_rate: u32,
+    control_ramp_frames: u32,
     max_block_frames: usize,
     working_bytes: usize,
     inputs: Vec<CompiledChannel>,
@@ -233,8 +235,10 @@ impl CompiledMixer {
                 id: input.id,
                 frames: frame_buffer(budget.max_block_frames)?,
                 processor: Processor::new(&input.dsp, session.sample_rate),
-                gains: input.controls.gains(),
-                active: !input.controls.muted && (!input_solo || input.controls.solo),
+                gains: ControlRamp::new(input.controls.gains()),
+                activity: ControlRamp::new(activity_gain(
+                    !input.controls.muted && (!input_solo || input.controls.solo),
+                )),
                 tone,
             });
             input_meters.push(MeterReading::empty(input.id));
@@ -244,8 +248,10 @@ impl CompiledMixer {
                 id: bus.id,
                 frames: frame_buffer(budget.max_block_frames)?,
                 processor: Processor::new(&bus.dsp, session.sample_rate),
-                gains: bus.controls.gains(),
-                active: !bus.controls.muted && (!bus_solo || bus.controls.solo),
+                gains: ControlRamp::new(bus.controls.gains()),
+                activity: ControlRamp::new(activity_gain(
+                    !bus.controls.muted && (!bus_solo || bus.controls.solo),
+                )),
                 tone: None,
             });
             bus_meters.push(MeterReading::empty(bus.id));
@@ -269,12 +275,18 @@ impl CompiledMixer {
                 id: send.id,
                 input_index,
                 bus_index,
-                gains: send.controls.gains(),
-                active: !send.controls.muted && (!send_solo || send.controls.solo),
+                gains: ControlRamp::new(
+                    if !send.controls.muted && (!send_solo || send.controls.solo) {
+                        send.controls.gains()
+                    } else {
+                        [0.0; 2]
+                    },
+                ),
             });
         }
         Ok(Self {
             sample_rate: session.sample_rate,
+            control_ramp_frames: session.sample_rate.div_ceil(200),
             max_block_frames: budget.max_block_frames,
             working_bytes,
             inputs,
@@ -288,6 +300,12 @@ impl CompiledMixer {
     /// Apply one complete validated control bank without allocating, locking or
     /// rebuilding. All records are checked before any state changes; oscillator
     /// phase, DSP envelopes/filter history and route topology are preserved.
+    /// Changed targets use a 5 ms linear amplitude ramp (rounded up to a whole
+    /// frame). The next rendered sample advances one step; the last ramp sample
+    /// reaches the exact target. Retargeting starts from the last rendered gain,
+    /// and reapplying an unchanged target does not restart an existing ramp.
+    /// Gain/pan ramp before input/bus DSP; mute/solo ramp after it. Sends ramp
+    /// their combined resolved gain. Initial compiled controls apply exactly.
     pub fn apply_controls(
         &mut self,
         controls: &crate::PreparedControls,
@@ -324,16 +342,22 @@ impl CompiledMixer {
             return Err(ControlError::InvalidGain);
         }
         for (target, c) in self.inputs.iter_mut().zip(&controls.inputs) {
-            target.gains = c.gains;
-            target.active = c.active;
+            target.gains.retarget(c.gains, self.control_ramp_frames);
+            target
+                .activity
+                .retarget(activity_gain(c.active), self.control_ramp_frames);
         }
         for (target, c) in self.sends.iter_mut().zip(&controls.sends) {
-            target.gains = c.gains;
-            target.active = c.active;
+            target.gains.retarget(
+                if c.active { c.gains } else { [0.0; 2] },
+                self.control_ramp_frames,
+            );
         }
         for (target, c) in self.buses.iter_mut().zip(&controls.buses) {
-            target.gains = c.gains;
-            target.active = c.active;
+            target.gains.retarget(c.gains, self.control_ramp_frames);
+            target
+                .activity
+                .retarget(activity_gain(c.active), self.control_ramp_frames);
         }
         Ok(())
     }
@@ -343,6 +367,11 @@ impl CompiledMixer {
     }
     pub fn max_block_frames(&self) -> usize {
         self.max_block_frames
+    }
+    /// Number of rendered frames in each live-control ramp: ceil(rate * 5 ms).
+    /// Zero-frame renders and rejected renders do not advance the ramp.
+    pub fn control_ramp_frames(&self) -> u32 {
+        self.control_ramp_frames
     }
     pub fn working_bytes(&self) -> usize {
         self.working_bytes
@@ -361,8 +390,9 @@ impl CompiledMixer {
     /// Only the first `frames` elements are read/written.
     ///
     /// Input solo applies across inputs; send solo applies only within its
-    /// destination bus; bus solo applies across buses. Mute always wins. Controls
-    /// precede channel DSP; bus masters follow the sum of their sends.
+    /// destination bus; bus solo applies across buses. Mute always wins. Channel
+    /// gain/pan precede DSP, and mute/solo follow it. Bus masters follow
+    /// the sum of their sends. Live controls ramp as described by `apply_controls`.
     ///
     /// The callback makes no allocations, locks, I/O or graph changes. Buffer
     /// errors are detected before changing output or DSP state. The host should
@@ -399,35 +429,40 @@ impl CompiledMixer {
                 let frame = source.map_or([generated; 2], |source| {
                     [source.left[frame_index], source.right[frame_index]]
                 });
-                let processed = input.processor.process([
-                    sanitize(frame[0]) * input.gains[0],
-                    sanitize(frame[1]) * input.gains[1],
-                ]);
-                input.frames[frame_index] = if input.active { processed } else { [0.0; 2] };
+                let gains = input.gains.next();
+                let activity = input.activity.next()[0];
+                let processed = input
+                    .processor
+                    .process([sanitize(frame[0]) * gains[0], sanitize(frame[1]) * gains[1]]);
+                input.frames[frame_index] = apply_activity(processed, activity);
             }
             self.input_meters[index].measure(&input.frames[..frames]);
         }
         for bus in &mut self.buses {
             bus.frames[..frames].fill([0.0; 2]);
         }
-        for send in &self.sends {
-            if !send.active {
+        for send in &mut self.sends {
+            // Preserve the constant cost of a completed muted route. Testing
+            // only its target would prematurely cut off an in-flight fade.
+            if send.gains.is_stationary_zero() {
                 continue;
             }
             let input = &self.inputs[send.input_index];
             let bus = &mut self.buses[send.bus_index];
             for frame_index in 0..frames {
-                bus.frames[frame_index][0] += input.frames[frame_index][0] * send.gains[0];
-                bus.frames[frame_index][1] += input.frames[frame_index][1] * send.gains[1];
+                let gains = send.gains.next();
+                bus.frames[frame_index][0] += input.frames[frame_index][0] * gains[0];
+                bus.frames[frame_index][1] += input.frames[frame_index][1] * gains[1];
             }
         }
         for (index, bus) in self.buses.iter_mut().enumerate() {
             for frame in &mut bus.frames[..frames] {
-                let processed = bus.processor.process([
-                    sanitize(frame[0]) * bus.gains[0],
-                    sanitize(frame[1]) * bus.gains[1],
-                ]);
-                *frame = if bus.active { processed } else { [0.0; 2] };
+                let gains = bus.gains.next();
+                let activity = bus.activity.next()[0];
+                let processed = bus
+                    .processor
+                    .process([sanitize(frame[0]) * gains[0], sanitize(frame[1]) * gains[1]]);
+                *frame = apply_activity(processed, activity);
             }
             self.bus_meters[index].measure(&bus.frames[..frames]);
         }
@@ -495,6 +530,18 @@ impl CompiledMixer {
             }
         }
         Ok(())
+    }
+}
+
+fn activity_gain(active: bool) -> [f32; 1] {
+    [if active { 1.0 } else { 0.0 }]
+}
+
+fn apply_activity(frame: Frame, gain: f32) -> Frame {
+    if gain == 0.0 {
+        [0.0; 2]
+    } else {
+        [frame[0] * gain, frame[1] * gain]
     }
 }
 

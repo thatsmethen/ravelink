@@ -581,6 +581,48 @@ fn rendering_and_meter_reads_allocate_nothing_including_first_callback() {
 }
 
 #[test]
+fn applying_and_retargeting_live_ramps_allocate_nothing_on_the_audio_thread() {
+    let (mut session, a, _, x, _) = fixture();
+    let mut mixer = CompiledMixer::compile(&session, ResourceBudget::default()).unwrap();
+    let first = PreparedControls::compile(&session, 1024 * 1024).unwrap();
+    session.inputs[0].controls.pan = 0.5;
+    session.inputs[0].controls.muted = true;
+    session.sends[0].controls.set_gain_db(-12.0);
+    session.sends[1].controls.muted = true;
+    session.buses[0].controls.set_gain_db(-6.0);
+    session.buses[1].controls.solo = true;
+    let second = PreparedControls::compile(&session, 1024 * 1024).unwrap();
+    let source = [0.25; 32];
+    let (mut left, mut right) = ([0.0; 32], [0.0; 32]);
+    ALLOCATIONS.with(|count| count.set(0));
+    COUNTING.with(|enabled| enabled.set(true));
+    let mut succeeded = true;
+    for index in 0..100 {
+        succeeded &= mixer
+            .apply_controls(if index % 2 == 0 { &second } else { &first })
+            .is_ok();
+        succeeded &= mixer
+            .render(
+                &[StereoInput {
+                    id: a,
+                    left: &source,
+                    right: &source,
+                }],
+                &mut [StereoOutput {
+                    id: x,
+                    left: &mut left,
+                    right: &mut right,
+                }],
+                32,
+            )
+            .is_ok();
+    }
+    COUNTING.with(|enabled| enabled.set(false));
+    assert!(succeeded);
+    assert_eq!(ALLOCATIONS.with(Cell::get), 0);
+}
+
+#[test]
 fn mapped_source_iterator_preserves_routing_without_descriptor_allocation() {
     let (session, a, b, x, _) = fixture();
     let mut mixer = CompiledMixer::compile(&session, ResourceBudget::default()).unwrap();

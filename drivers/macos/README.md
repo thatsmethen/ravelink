@@ -1,17 +1,25 @@
 # RaveLink macOS HAL
 
 The independently authored Rust AudioServerPlugIn is in `crates/ravelink-hal`.
-It publishes one stereo virtual cable named **RaveLink**. Playback written to its
-output stream can be captured from its input stream. The fixed native format is
-48,000 Hz, packed interleaved Float32, two channels. Its device UID is
-`au.textual.ravelink.cable.1`; its bundle ID is `au.textual.ravelink.hal`.
+It publishes two independently buffered stereo virtual cables named **RaveLink**
+and **RaveLink 2**. Playback written to each output stream can be captured from
+that cable's input stream. Both use 48,000 Hz, packed interleaved Float32, two
+channels. Their device UIDs are `au.textual.ravelink.cable.1` and
+`au.textual.ravelink.cable.2`; the bundle ID is `au.textual.ravelink.hal`.
 
-This is an implementation and local validation candidate. Passing tests or
-building a bundle does not establish operation inside macOS's audio host.
-Installation, host loading, app-to-app capture, sleep/wake, rate conversion,
-aggregate-device behavior and sustained production use remain unverified.
-In particular, the synthetic host supplies its own timestamp relationship; actual
-HAL callback ordering and input-latency calibration require an installed-host test.
+The earlier one-cable source passed the fixed independent installed-host
+protocol in GitHub run 40039161891 (source `6484db8`, macOS 15.7.9 arm64).
+That observation covers basic stereo loopback, two readers and silence after a
+fresh start; it does not qualify the subsequent second cable or application
+capture/mix path. The dual-cable candidate has synthetic/private-host coverage
+and a separate installed runtime protocol awaiting its first observation.
+An unchanged-protocol run, **40041055533** at `b30dea6`, subsequently failed on a
+568-frame reader timestamp gap; a later run **40041275322** passed. Both outcomes
+remain evidence. Intermittent reader continuity is an unresolved release risk.
+Sleep/wake, aggregate devices, long-duration behavior and release distribution
+remain unqualified. See `tests/SYSTEM-ACCEPTANCE.md`,
+`tests/RUNTIME-ACCEPTANCE.md` and the preserved evidence under
+`research/evidence/rust-hal-installed-40039161891/`.
 
 ## Build and validate
 
@@ -34,7 +42,8 @@ are separate release work.
 
 ## Behavior and limits
 
-- IDs: plugin 1, device 100, capture stream 101, playback stream 102.
+- IDs: plugin 1; Cable 1 device 100, capture 101, playback 102; Cable 2 device
+  200, capture 201, playback 202. Each cable has independent clients and storage.
 - Sample ring: 16,384 stereo frames, timestamp-addressed; independent capture
   readers. A missing/overwritten/contested frame yields silence. Full Float32 bit
   patterns are preserved without clamping or lossy encoding.

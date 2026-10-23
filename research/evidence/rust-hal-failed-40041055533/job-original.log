@@ -1,0 +1,212 @@
+installed-hal	Set up job	﻿2026-10-23T23:41:21.7799110Z Current runner version: '2.338.0'
+installed-hal	Set up job	2026-10-23T23:41:21.7816960Z ##[group]Runner Image Provisioner
+installed-hal	Set up job	2026-10-23T23:41:21.7817590Z Hosted Compute Agent
+installed-hal	Set up job	2026-10-23T23:41:21.7818020Z Version: 20260828.587
+installed-hal	Set up job	2026-10-23T23:41:21.7818440Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+installed-hal	Set up job	2026-10-23T23:41:21.7818970Z Build Date: 2026-08-28T16:44:25Z
+installed-hal	Set up job	2026-10-23T23:41:21.7819430Z Worker ID: {51822f68-09fe-4386-a5fe-ee0c14a1e6ee}
+installed-hal	Set up job	2026-10-23T23:41:21.7819910Z Azure Region: westus
+installed-hal	Set up job	2026-10-23T23:41:21.7820330Z ##[endgroup]
+installed-hal	Set up job	2026-10-23T23:41:21.7821550Z ##[group]Operating System
+installed-hal	Set up job	2026-10-23T23:41:21.7822020Z macOS
+installed-hal	Set up job	2026-10-23T23:41:21.7822410Z 15.7.9
+installed-hal	Set up job	2026-10-23T23:41:21.7822800Z 24G830
+installed-hal	Set up job	2026-10-23T23:41:21.7823160Z ##[endgroup]
+installed-hal	Set up job	2026-10-23T23:41:21.7823560Z ##[group]Runner Image
+installed-hal	Set up job	2026-10-23T23:41:21.7823980Z Image: macos-15-arm64
+installed-hal	Set up job	2026-10-23T23:41:21.7824390Z Version: 20260907.0337.1
+installed-hal	Set up job	2026-10-23T23:41:21.7825160Z Included Software: https://github.com/actions/runner-images/blob/macos-15-arm64/20260907.0337/images/macos/macos-15-arm64-Readme.md
+installed-hal	Set up job	2026-10-23T23:41:21.7826580Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-15-arm64%2F20260907.0337
+installed-hal	Set up job	2026-10-23T23:41:21.7827320Z ##[endgroup]
+installed-hal	Set up job	2026-10-23T23:41:21.7828130Z ##[group]GITHUB_TOKEN Permissions
+installed-hal	Set up job	2026-10-23T23:41:21.7830100Z Contents: read
+installed-hal	Set up job	2026-10-23T23:41:21.7830530Z Metadata: read
+installed-hal	Set up job	2026-10-23T23:41:21.7830950Z ##[endgroup]
+installed-hal	Set up job	2026-10-23T23:41:21.7832850Z Secret source: Actions
+installed-hal	Set up job	2026-10-23T23:41:21.7833460Z Cache mode: write
+installed-hal	Set up job	2026-10-23T23:41:21.7834010Z Prepare workflow directory
+installed-hal	Set up job	2026-10-23T23:41:21.8061900Z Prepare all required actions
+installed-hal	Set up job	2026-10-23T23:41:21.8096510Z Getting action download info
+installed-hal	Set up job	2026-10-23T23:41:22.2186760Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+installed-hal	Set up job	2026-10-23T23:41:22.4807640Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+installed-hal	Set up job	2026-10-23T23:41:22.6729810Z Complete job name: installed-hal
+installed-hal	Run actions/checkout@v4	﻿2026-10-23T23:41:22.7266600Z ##[group]Run actions/checkout@v4
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:22.7267280Z with:
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:22.7267630Z   repository: thatsmethen/ravelink
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:22.7270330Z   token: ***
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:22.7270640Z   ssh-strict: true
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:22.7271030Z   ssh-user: git
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:22.7271430Z   persist-credentials: true
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:22.7271870Z   clean: true
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:22.7272290Z   sparse-checkout-cone-mode: true
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:22.7272730Z   fetch-depth: 1
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:22.7273040Z   fetch-tags: false
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:22.7273370Z   show-progress: true
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:22.7273710Z   lfs: false
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:22.7274030Z   submodules: false
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:22.7274380Z   set-safe-directory: true
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:22.7274790Z   allow-unsafe-pr-checkout: false
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:22.7275360Z ##[endgroup]
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.1388530Z Syncing repository: thatsmethen/ravelink
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.1391140Z ##[group]Getting Git version info
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.1391830Z Working directory is '/Users/runner/work/ravelink/ravelink'
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.1393610Z [command]/opt/homebrew/bin/git version
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.1971360Z git version 2.55.0
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.1984810Z ##[endgroup]
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.1991920Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/73b95550-eb52-407d-a2cf-0c020c498914/.gitconfig'
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.1999120Z Temporarily overriding HOME='/Users/runner/work/_temp/73b95550-eb52-407d-a2cf-0c020c498914' before making global git config changes
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2000190Z Adding repository directory to the temporary git global config as a safe directory
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2003020Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2120220Z Deleting the contents of '/Users/runner/work/ravelink/ravelink'
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2126030Z ##[group]Initializing the repository
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2130000Z [command]/opt/homebrew/bin/git init /Users/runner/work/ravelink/ravelink
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2354750Z hint: Using 'master' as the name for the initial branch. This default branch name
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2357710Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2358570Z hint: to use in all of your new repositories, which will suppress this warning,
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2359100Z hint: call:
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2359540Z hint:
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2359970Z hint: 	git config --global init.defaultBranch <name>
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2360600Z hint:
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2361330Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2362550Z hint: 'development'. The just-created branch can be renamed via this command:
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2363110Z hint:
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2363410Z hint: 	git branch -m <name>
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2363810Z hint:
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2364290Z hint: Disable this message with "git config set advice.defaultBranchName false"
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2365120Z Initialized empty Git repository in /Users/runner/work/ravelink/ravelink/.git/
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2373630Z [command]/opt/homebrew/bin/git remote add origin https://github.com/thatsmethen/ravelink
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2464540Z ##[endgroup]
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2465970Z ##[group]Disabling automatic garbage collection
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2466850Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2546530Z ##[endgroup]
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2547460Z ##[group]Setting up auth
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2557390Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.2629120Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.3698680Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.3767160Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.4713600Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.4786970Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.5580460Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.5649940Z ##[endgroup]
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.5650740Z ##[group]Fetching the repository
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:23.5655760Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +b30dea636fe1794fb074e4b876bde968c8205db2:refs/remotes/origin/main
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:25.0507370Z From https://github.com/thatsmethen/ravelink
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:25.0508440Z  * [new ref]         b30dea636fe1794fb074e4b876bde968c8205db2 -> origin/main
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:25.0511280Z ##[endgroup]
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:25.0514930Z ##[group]Determining the checkout info
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:25.0517590Z ##[endgroup]
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:25.0520820Z [command]/opt/homebrew/bin/git sparse-checkout disable
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:25.0613270Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:25.0682340Z ##[group]Checking out the ref
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:25.0687430Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:25.3456810Z Switched to a new branch 'main'
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:25.3565280Z branch 'main' set up to track 'origin/main'.
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:25.3724660Z ##[endgroup]
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:25.3728930Z [command]/opt/homebrew/bin/git log -1 --format=%H
+installed-hal	Run actions/checkout@v4	2026-10-23T23:41:25.3730100Z b30dea636fe1794fb074e4b876bde968c8205db2
+installed-hal	Install pinned Rust	﻿2026-10-23T23:41:25.3933840Z ##[group]Run rustup toolchain install 1.91.1 --profile minimal
+installed-hal	Install pinned Rust	2026-10-23T23:41:25.3935780Z [36;1mrustup toolchain install 1.91.1 --profile minimal[0m
+installed-hal	Install pinned Rust	2026-10-23T23:41:25.3984410Z shell: /bin/bash -e {0}
+installed-hal	Install pinned Rust	2026-10-23T23:41:25.3984890Z ##[endgroup]
+installed-hal	Install pinned Rust	2026-10-23T23:41:25.4831590Z info: syncing channel updates for 1.91.1-aarch64-apple-darwin
+installed-hal	Install pinned Rust	2026-10-23T23:41:25.6122000Z info: latest update on 2025-11-10 for version 1.91.1 (ed61e7d7e 2025-11-07)
+installed-hal	Install pinned Rust	2026-10-23T23:41:25.6128090Z info: downloading 3 components
+installed-hal	Install pinned Rust	2026-10-23T23:41:32.9046780Z 
+installed-hal	Install pinned Rust	2026-10-23T23:41:33.0213020Z   1.91.1-aarch64-apple-darwin installed - rustc 1.91.1 (ed61e7d7e 2025-11-07)
+installed-hal	Install pinned Rust	2026-10-23T23:41:33.0214280Z info: self-update is disabled for this build of rustup
+installed-hal	Install pinned Rust	2026-10-23T23:41:33.0234070Z 
+installed-hal	Install pinned Rust	2026-10-23T23:41:33.0272190Z info: any updates to rustup will need to be fetched with your system package manager
+installed-hal	Build original driver bundle and independent observer	﻿2026-10-23T23:41:33.0499370Z ##[group]Run mkdir -p build/rust-hal-system
+installed-hal	Build original driver bundle and independent observer	2026-10-23T23:41:33.0499860Z [36;1mmkdir -p build/rust-hal-system[0m
+installed-hal	Build original driver bundle and independent observer	2026-10-23T23:41:33.0500380Z [36;1msh drivers/macos/build-bundle.sh > build/rust-hal-system/build-driver.log 2>&1[0m
+installed-hal	Build original driver bundle and independent observer	2026-10-23T23:41:33.0501570Z [36;1mxcrun clang -std=c11 -O2 -Wall -Wextra -Werror drivers/macos/tests/system-probe.c -framework CoreAudio -framework CoreFoundation -o build/rust-hal-system/system-probe[0m
+installed-hal	Build original driver bundle and independent observer	2026-10-23T23:41:33.0502800Z [36;1mshasum -a 256 drivers/macos/tests/system-probe.c build/rust-hal-system/system-probe dist/macos/RaveLink.driver/Contents/MacOS/RaveLinkHAL > build/rust-hal-system/build-sha256.txt[0m
+installed-hal	Build original driver bundle and independent observer	2026-10-23T23:41:33.0503710Z [36;1msw_vers > build/rust-hal-system/environment.txt[0m
+installed-hal	Build original driver bundle and independent observer	2026-10-23T23:41:33.0504160Z [36;1muname -a >> build/rust-hal-system/environment.txt[0m
+installed-hal	Build original driver bundle and independent observer	2026-10-23T23:41:33.0504640Z [36;1mxcrun --show-sdk-version >> build/rust-hal-system/environment.txt[0m
+installed-hal	Build original driver bundle and independent observer	2026-10-23T23:41:33.0505170Z [36;1mrustc -vV >> build/rust-hal-system/environment.txt[0m
+installed-hal	Build original driver bundle and independent observer	2026-10-23T23:41:33.0659080Z shell: /bin/bash -e {0}
+installed-hal	Build original driver bundle and independent observer	2026-10-23T23:41:33.0659550Z ##[endgroup]
+installed-hal	Observer and analyzer controls without audio	﻿2026-10-23T23:41:44.2627230Z ##[group]Run python3 -m unittest discover -s drivers/macos/tests -p 'test_system.py' -v 2>&1 | tee build/rust-hal-system/observer-controls.txt
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:44.2628520Z [36;1mpython3 -m unittest discover -s drivers/macos/tests -p 'test_system.py' -v 2>&1 | tee build/rust-hal-system/observer-controls.txt[0m
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:44.2697180Z shell: /bin/bash -e {0}
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:44.2697600Z ##[endgroup]
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:44.9499940Z test_correct_distinct_stereo_tone_and_nonzero_phase_pass (test_system.AnalysisControls.test_correct_distinct_stereo_tone_and_nonzero_phase_pass) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.0649460Z test_exact_zero_packet_hole_is_rejected (test_system.AnalysisControls.test_exact_zero_packet_hole_is_rejected) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.1688060Z test_generator_metadata_cannot_change_acceptance_signal (test_system.AnalysisControls.test_generator_metadata_cannot_change_acceptance_signal) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.3089920Z test_half_amplitude_is_rejected (test_system.AnalysisControls.test_half_amplitude_is_rejected) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.3384620Z test_nonfinite_or_truncated_pcm_is_observer_failure (test_system.AnalysisControls.test_nonfinite_or_truncated_pcm_is_observer_failure) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.4565340Z test_phase_discontinuity_without_zeros_is_rejected (test_system.AnalysisControls.test_phase_discontinuity_without_zeros_is_rejected) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.5654090Z test_probe_failure_and_partial_counts_are_not_promoted (test_system.AnalysisControls.test_probe_failure_and_partial_counts_are_not_promoted) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.6302930Z test_stale_audio_after_restart_is_rejected (test_system.AnalysisControls.test_stale_audio_after_restart_is_rejected) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.7623280Z test_swapped_channels_fail (test_system.AnalysisControls.test_swapped_channels_fail) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.8859780Z test_timestamp_gap_fails_even_with_valid_pcm (test_system.AnalysisControls.test_timestamp_gap_fails_even_with_valid_pcm) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.8893960Z test_cleanup_refuses_foreign_bundle_without_mutating (test_system.EnvironmentControls.test_cleanup_refuses_foreign_bundle_without_mutating) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.8910450Z test_cleanup_requires_matching_run_ownership (test_system.EnvironmentControls.test_cleanup_requires_matching_run_ownership) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.8911720Z test_cleanup_target_is_exact_owned_bundle (test_system.EnvironmentControls.test_cleanup_target_is_exact_owned_bundle) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.8923060Z test_existing_record_is_never_overwritten (test_system.EnvironmentControls.test_existing_record_is_never_overwritten) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.8930790Z test_local_mutating_execution_is_refused (test_system.EnvironmentControls.test_local_mutating_execution_is_refused) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.8942550Z test_manifest_retains_original_failed_bytes_and_hash (test_system.EnvironmentControls.test_manifest_retains_original_failed_bytes_and_hash) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.8949910Z test_only_query_errors_expire_without_successful_absence (test_system.EnvironmentControls.test_only_query_errors_expire_without_successful_absence) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.8963410Z test_restart_retries_query_error_without_calling_it_absence (test_system.EnvironmentControls.test_restart_retries_query_error_without_calling_it_absence) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.8982410Z test_successful_cleanup_recheck_does_not_restart_daemon (test_system.EnvironmentControls.test_successful_cleanup_recheck_does_not_restart_daemon) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.8984140Z 
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.8984620Z ----------------------------------------------------------------------
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.8986090Z Ran 19 tests in 1.063s
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.8986660Z 
+installed-hal	Observer and analyzer controls without audio	2026-10-23T23:41:45.8986980Z OK
+installed-hal	Install, observe independent clients, verify silence after restart, remove	﻿2026-10-23T23:41:45.9439770Z ##[group]Run python3 drivers/macos/tests/run_system.py run
+installed-hal	Install, observe independent clients, verify silence after restart, remove	2026-10-23T23:41:45.9440410Z [36;1mpython3 drivers/macos/tests/run_system.py run[0m
+installed-hal	Install, observe independent clients, verify silence after restart, remove	2026-10-23T23:41:45.9481380Z shell: /bin/bash -e {0}
+installed-hal	Install, observe independent clients, verify silence after restart, remove	2026-10-23T23:41:45.9482430Z ##[endgroup]
+installed-hal	Install, observe independent clients, verify silence after restart, remove	2026-10-23T23:42:35.4100000Z ##[error]Process completed with exit code 1.
+installed-hal	Ensure owned driver cleanup	﻿2026-10-23T23:42:35.4211930Z ##[group]Run python3 drivers/macos/tests/run_system.py cleanup
+installed-hal	Ensure owned driver cleanup	2026-10-23T23:42:35.4212830Z [36;1mpython3 drivers/macos/tests/run_system.py cleanup[0m
+installed-hal	Ensure owned driver cleanup	2026-10-23T23:42:35.4287800Z shell: /bin/bash -e {0}
+installed-hal	Ensure owned driver cleanup	2026-10-23T23:42:35.4288220Z ##[endgroup]
+installed-hal	Hash original evidence including failed observations	﻿2026-10-23T23:42:35.8192110Z ##[group]Run python3 drivers/macos/tests/run_system.py manifest
+installed-hal	Hash original evidence including failed observations	2026-10-23T23:42:35.8193600Z [36;1mpython3 drivers/macos/tests/run_system.py manifest[0m
+installed-hal	Hash original evidence including failed observations	2026-10-23T23:42:35.8272550Z shell: /bin/bash -e {0}
+installed-hal	Hash original evidence including failed observations	2026-10-23T23:42:35.8273550Z ##[endgroup]
+installed-hal	Preserve original observations and failed results	﻿2026-10-23T23:42:35.9885370Z ##[group]Run actions/upload-artifact@v4
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:35.9885730Z with:
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:35.9886030Z   name: original-rust-hal-40041055533-1
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:35.9886330Z   path: build/rust-hal-system/
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:35.9886660Z   if-no-files-found: error
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:35.9886900Z   retention-days: 30
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:35.9887240Z   compression-level: 6
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:35.9887490Z   overwrite: false
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:35.9887870Z   include-hidden-files: false
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:35.9888160Z ##[endgroup]
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:36.2458660Z (node:3666) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:36.2460790Z (Use `node --trace-deprecation ...` to show where the warning was created)
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:36.2564960Z With the provided path, there will be 50 files uploaded
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:36.2568160Z Artifact name is valid!
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:36.2568820Z Root directory input is valid!
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:36.7360620Z Beginning upload of artifact content to blob storage
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:37.2638200Z (node:3666) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:38.3459420Z Uploaded bytes 8388608
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:38.4755820Z Uploaded bytes 10300324
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:38.5585710Z Finished uploading artifact content to blob storage!
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:38.5587210Z SHA256 digest of uploaded artifact zip is 13cea5ce67cc5d60f09b29ccbf112de8e15d4e9476c04449e0b3c23a22b7088d
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:38.5590570Z Finalizing artifact upload
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:39.0193910Z Artifact original-rust-hal-40041055533-1.zip successfully finalized. Artifact ID 12539038361
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:39.0199870Z Artifact original-rust-hal-40041055533-1 has been successfully uploaded! Final size is 10300324 bytes. Artifact ID is 12539038361
+installed-hal	Preserve original observations and failed results	2026-10-23T23:42:39.0206810Z Artifact download URL: https://github.com/thatsmethen/ravelink/actions/runs/40041055533/artifacts/12539038361
+installed-hal	Post Run actions/checkout@v4	﻿2026-10-23T23:42:39.0390720Z Post job cleanup.
+installed-hal	Post Run actions/checkout@v4	2026-10-23T23:42:39.1519880Z [command]/opt/homebrew/bin/git version
+installed-hal	Post Run actions/checkout@v4	2026-10-23T23:42:39.1643500Z git version 2.55.0
+installed-hal	Post Run actions/checkout@v4	2026-10-23T23:42:39.1675810Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/2129e844-1f26-4be6-b487-053b0d17fffa/.gitconfig'
+installed-hal	Post Run actions/checkout@v4	2026-10-23T23:42:39.1686900Z Temporarily overriding HOME='/Users/runner/work/_temp/2129e844-1f26-4be6-b487-053b0d17fffa' before making global git config changes
+installed-hal	Post Run actions/checkout@v4	2026-10-23T23:42:39.1689330Z Adding repository directory to the temporary git global config as a safe directory
+installed-hal	Post Run actions/checkout@v4	2026-10-23T23:42:39.1690550Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+installed-hal	Post Run actions/checkout@v4	2026-10-23T23:42:39.1841050Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+installed-hal	Post Run actions/checkout@v4	2026-10-23T23:42:39.1996290Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+installed-hal	Post Run actions/checkout@v4	2026-10-23T23:42:39.3643390Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+installed-hal	Post Run actions/checkout@v4	2026-10-23T23:42:39.3688450Z http.https://github.com/.extraheader
+installed-hal	Post Run actions/checkout@v4	2026-10-23T23:42:39.3751430Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+installed-hal	Post Run actions/checkout@v4	2026-10-23T23:42:39.3754750Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+installed-hal	Post Run actions/checkout@v4	2026-10-23T23:42:39.5037670Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+installed-hal	Post Run actions/checkout@v4	2026-10-23T23:42:39.5280900Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+installed-hal	Complete job	﻿2026-10-23T23:42:39.6254880Z Cleaning up orphan processes
+installed-hal	Complete job	2026-10-23T23:42:40.3895340Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

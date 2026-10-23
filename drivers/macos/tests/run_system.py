@@ -21,6 +21,7 @@ import time
 from analyze_system import analyze, load_events, load_wav
 
 UID = "au.textual.ravelink.cable.1"
+UIDS = (UID, "au.textual.ravelink.cable.2")
 BUNDLE_ID = "au.textual.ravelink.hal"
 DESTINATION = Path("/Library/Audio/Plug-Ins/HAL/RustRaveLink.driver")
 REPOSITORY = Path(__file__).resolve().parents[3]
@@ -74,9 +75,9 @@ def restart_service(output: Path, label: str) -> None:
         raise RuntimeError(f"coreaudiod restart failed ({result.returncode})")
 
 
-def discover(probe: Path, output: Path, label: str) -> dict:
+def discover(probe: Path, output: Path, label: str, uid: str = UID) -> dict:
     report = output / f"{label}-discovery.json"
-    result = bounded([str(probe), "discover", "--uid", UID, "--report", str(report)], output / f"{label}-discovery.log")
+    result = bounded([str(probe), "discover", "--uid", uid, "--report", str(report)], output / f"{label}-discovery.log")
     if result.returncode or not report.exists():
         raise RuntimeError(f"device discovery failed; see {label}-discovery.log")
     data = json.loads(report.read_text())
@@ -85,12 +86,12 @@ def discover(probe: Path, output: Path, label: str) -> dict:
     return data
 
 
-def wait_presence(probe: Path, output: Path, label: str, wanted: int) -> dict:
+def wait_presence(probe: Path, output: Path, label: str, wanted: int, uid: str = UID) -> dict:
     deadline, attempt = time.monotonic() + 25, 0
     last_error = "no discovery completed"
     while True:
         try:
-            data = discover(probe, output, f"{label}-{attempt}")
+            data = discover(probe, output, f"{label}-{attempt}", uid)
         except (OSError, ValueError, RuntimeError, subprocess.SubprocessError) as error:
             # CoreAudio can be unavailable briefly during daemon restart. Each
             # failed observation remains a separate file; valid absence never
@@ -137,8 +138,8 @@ def cleanup(output: Path, probe: Path) -> dict:
         previously_clean = previous.exists() and json.loads(previous.read_text()).get("pass")
         if removed or not previously_clean:
             restart_service(output, label)
-        absent = wait_presence(probe, output, label, 0)
-        result = {"pass": not DESTINATION.exists(), "device": absent, "removed_only": str(DESTINATION), "attempt": attempt}
+        absent = {uid: wait_presence(probe, output, f"{label}-cable-{index + 1}", 0, uid) for index, uid in enumerate(UIDS)}
+        result = {"pass": not DESTINATION.exists(), "devices": absent, "removed_only": str(DESTINATION), "attempt": attempt}
     except (OSError, ValueError, RuntimeError, subprocess.SubprocessError) as error:
         result = {"pass": False, "error": str(error), "attempt": attempt}
         save(output / f"{label}.json", result)
@@ -150,13 +151,13 @@ def cleanup(output: Path, probe: Path) -> dict:
 
 
 class ProbeProcess:
-    def __init__(self, probe: Path, output: Path, name: str, mode: str, seconds: float):
+    def __init__(self, probe: Path, output: Path, name: str, mode: str, seconds: float, uid: str = UID):
         self.name, self.mode, self.output = name, mode, output
         self.report, self.events = output / f"{name}.json", output / f"{name}.csv"
         self.wav, self.ready = output / f"{name}.wav", output / f"{name}.ready.json"
         if self.ready.exists() or self.report.exists() or self.wav.exists():
             raise RuntimeError(f"refusing to overwrite existing observation {name}")
-        command = [str(probe), mode, "--uid", UID, "--seconds", str(seconds), "--report", str(self.report),
+        command = [str(probe), mode, "--uid", uid, "--seconds", str(seconds), "--report", str(self.report),
                    "--events", str(self.events), "--ready", str(self.ready)]
         if mode == "record":
             command += ["--wav", str(self.wav)]
@@ -266,21 +267,21 @@ def run_observation(probe: Path, output: Path) -> dict:
     return result
 
 
-def run(output: Path, probe: Path, bundle: Path) -> bool:
+def run(output: Path, probe: Path, bundle: Path, observation=None) -> bool:
     guard_environment()
     output.mkdir(parents=True, exist_ok=True)
     if (output / "installation-owner.json").exists() or DESTINATION.exists():
         raise RuntimeError("a driver ownership marker or destination already exists")
-    before = discover(probe, output, "before")
-    if before["matches"]:
-        raise RuntimeError("refusing installation because the test UID already exists")
+    before = {uid: discover(probe, output, f"before-cable-{index + 1}", uid) for index, uid in enumerate(UIDS)}
+    if any(data["matches"] for data in before.values()):
+        raise RuntimeError("refusing installation because a test UID already exists")
     info = plistlib.loads((bundle / "Contents/Info.plist").read_bytes())
     if info.get("CFBundleIdentifier") != BUNDLE_ID:
         raise RuntimeError("unexpected source bundle identity")
     ownership = {"destination": str(DESTINATION), "run_id": os.environ["GITHUB_RUN_ID"],
                  "source_revision": os.environ.get("GITHUB_SHA"), "bundle_id": BUNDLE_ID,
                  "source_binary_sha256": sha(bundle / "Contents/MacOS/RaveLinkHAL"),
-                 "observer_sha256": sha(probe), "uid_absent_before": True,
+                 "observer_sha256": sha(probe), "uids_absent_before": list(UIDS),
                  "initial_observation": before}
     save(output / "installation-owner.json", ownership)
     result, cleaned = False, False
@@ -293,8 +294,9 @@ def run(output: Path, probe: Path, bundle: Path) -> bool:
         if sha(DESTINATION / "Contents/MacOS/RaveLinkHAL") != ownership["source_binary_sha256"]:
             raise RuntimeError("installed binary differs from the built artifact")
         restart_service(output, "install")
-        save(output / "installed-device.json", wait_presence(probe, output, "installed", 1))
-        result = run_observation(probe, output)["pass"]
+        installed = {uid: wait_presence(probe, output, f"installed-cable-{index + 1}", 1, uid) for index, uid in enumerate(UIDS)}
+        save(output / "installed-devices.json", installed)
+        result = (observation or run_observation)(probe, output)["pass"]
     except (OSError, ValueError, RuntimeError, subprocess.SubprocessError) as error:
         save(output / "harness-error.json", {"pass": False, "error": str(error)})
     finally:

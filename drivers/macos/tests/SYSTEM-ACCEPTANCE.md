@@ -6,23 +6,41 @@ import the driver's implementation. Python performs independent PCM and clock
 analysis using only the standard library. These instruments are test tools,
 outside the shipping Rust application and driver.
 
-As of 2026-10-24, the instrument compiles against the local Apple SDK with
-`-Wall -Wextra -Werror`, and 19 synthetic observer controls pass. **No installed
-HAL acceptance has yet been observed for this protocol.** The local work did
-not enumerate audio devices, install a driver, restart CoreAudio, or start audio.
-Synthetic controls validate the instrument; they do not qualify the driver.
+The initial one-cable source passed this protocol in GitHub run **40039161891**,
+source **6484db8**, on macOS 15.7.9 arm64. Original PCM, reports and hashes are
+preserved in `research/evidence/rust-hal-installed-40039161891/`. Both 16-second
+tone interiors passed, the readers agreed across 756,028 aligned frames, and
+fresh capture after all clients stopped was silent. This bounded result does
+not qualify later source changes or the application runtime. The instrument
+also compiles against the local Apple SDK with strict warnings; its synthetic
+controls never enumerate devices, install drivers or start audio locally.
+
+An unchanged-protocol rerun **40041055533** (`b30dea6`) failed: reader A's third
+callback skipped 568 input sample frames. Its second callback was observed
+22.380 ms after its input timestamp versus approximately 10.74 ms normally;
+the sample-to-host clock relation remained 48 kHz. Writer and reader B clocks
+remained continuous. The pair check also failed because it requires contiguous
+sample arrays. Diagnostic per-callback absolute-time alignment found identical
+PCM across 755,288 common interior frames; that does not restore the missing
+capture or change the failure. A later run **40041275322** passed. Root cause of
+the missed callback deadline remains unproven; intermittent continuity remains
+an open release risk. Original failed and successful artifacts are preserved
+separately, and no threshold was changed.
 
 ## Execution boundary
 
 The `.github/workflows/rust-hal.yml` workflow builds the original driver and
 runs this protocol on a disposable `macos-15` GitHub runner. The orchestrator
 refuses normal local execution. It requires the runner's macOS identity and run
-ID, an absent destination, and successful independent discovery proving the UID
-is absent before installation. A query failure is never treated as absence.
+ID, an absent destination, and successful independent discovery proving both
+registered cable UIDs are absent before installation. A query failure is never
+treated as absence. The second cable was added after the initial observation;
+this protocol's waveform and two-reader checks remain on Cable 1.
 
 Only `/Library/Audio/Plug-Ins/HAL/RustRaveLink.driver` is installed and removed.
 The source bundle is `dist/macos/RaveLink.driver`, with bundle identifier
-`au.textual.ravelink.hal` and device UID `au.textual.ravelink.cable.1`. An ownership
+`au.textual.ravelink.hal` and device UIDs `au.textual.ravelink.cable.1` and
+`au.textual.ravelink.cable.2`. An ownership
 record is saved before copying. Cleanup checks the run, path and bundle identity;
 it never removes another HAL bundle. Installation and removal restart CoreAudio
 only on this disposable runner. System default input/output devices are not changed.
@@ -63,7 +81,7 @@ Every cleanup attempt is retained separately, including failed attempts.
 7. Wait for all writer/reader processes to stop and exit. Start a fresh
    three-second input-only process. Require its entire PCM capture to be exactly
    silent, testing that a new first-client start cannot replay the previous ring.
-8. Remove the owned bundle and require successful independent device absence.
+8. Remove the owned bundle and require successful independent absence of both UIDs.
 
 The probe preallocates and touches its PCM and event storage before callbacks.
 The callback does no file I/O, allocation or locking. It latches invalid format,
@@ -114,11 +132,10 @@ silence; a later test must also verify tone delivery after repeated restarts.
 The strict residual check is intended to expose packet loss and discontinuity,
 even when reported callback throughput appears healthy.
 
-The next product acceptance should drive the same installed device through the
-Rust runtime, retain this independent recorder, and exercise live gain, pan,
-mute, solo and stop without resetting tone phase. That work follows the first
-installed-driver observation so transport failures and runtime failures can be
-distinguished.
+The separate `RUNTIME-ACCEPTANCE.md` protocol drives Cable 1 through the actual
+Rust capture/mixer runtime into Cable 2, testing gain, mute and stop. Its first
+hosted observation is pending. Pan, solo and repeated capture restarts remain
+additional qualifications; the existing loopback result does not cover them.
 
 API provenance: the observer was authored from the Apple SDK's
 `AudioHardware.h`/`AudioHardwareBase.h` declarations and official documentation

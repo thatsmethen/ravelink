@@ -208,7 +208,7 @@ class EnvironmentControls(unittest.TestCase):
                  mock.patch.object(run_system, "wait_presence", return_value={"matches": 0}) as observe:
                 result = run_system.cleanup(output, Path("unused"))
                 restart.assert_not_called()
-                observe.assert_called_once()
+                self.assertEqual(observe.call_count, 2)
                 self.assertTrue(result["pass"])
 
     def test_manifest_retains_original_failed_bytes_and_hash(self):

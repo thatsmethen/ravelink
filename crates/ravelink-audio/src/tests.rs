@@ -348,11 +348,16 @@ fn live_controls_preserve_phase_through_gain_pan_mute_and_unmute() {
         "live bank application must not allocate or free"
     );
     for frame in 0..257 {
+        let progress = ((frame + 1) as f32 / 240.0).min(1.0);
+        let input_gain = 1.0 + (10.0_f32.powf(-6.0 / 20.0) - 1.0) * progress;
+        let send_gain = 1.0 + (10.0_f32.powf(-3.0 / 20.0) - 1.0) * progress;
         let expected = (((127 + frame) as f64 * std::f64::consts::TAU * 440.0) / 48000.0).sin()
             as f32
-            * 10.0_f32.powf(-21.0 / 20.0);
+            * 10.0_f32.powf(-12.0 / 20.0)
+            * input_gain
+            * send_gain;
         assert!((pcm[frame * 2] - expected).abs() < 0.000002);
-        assert!((pcm[frame * 2 + 1] - expected * 0.5).abs() < 0.000002);
+        assert!((pcm[frame * 2 + 1] - expected * (1.0 - 0.5 * progress)).abs() < 0.000002);
     }
     assert_eq!(
         render
@@ -366,9 +371,18 @@ fn live_controls_preserve_phase_through_gain_pan_mute_and_unmute() {
         .bank
         .publish(&prepare_live_update(&session, &changed).unwrap())
         .unwrap();
-    let mut muted = [9.0_f32; 122];
+    let mut muted = [9.0_f32; 514];
     render.write(&mut muted);
-    assert!(muted.iter().all(|v| *v == 0.0));
+    for frame in 0..239 {
+        let activity = 1.0 - (frame + 1) as f32 / 240.0;
+        let expected = (((384 + frame) as f64 * std::f64::consts::TAU * 440.0) / 48000.0).sin()
+            as f32
+            * 10.0_f32.powf(-21.0 / 20.0)
+            * activity;
+        assert!((muted[frame * 2] - expected).abs() < 0.000002);
+        assert!((muted[frame * 2 + 1] - expected * 0.5).abs() < 0.000002);
+    }
+    assert!(muted[239 * 2..].iter().all(|v| *v == 0.0));
     changed.inputs[0].controls.muted = false;
     render
         .bank
@@ -377,12 +391,15 @@ fn live_controls_preserve_phase_through_gain_pan_mute_and_unmute() {
     let mut resumed = [0.0_f32; 46];
     render.write(&mut resumed);
     for frame in 0..23 {
-        let expected = (((445 + frame) as f64 * std::f64::consts::TAU * 440.0) / 48000.0).sin()
+        let expected = (((641 + frame) as f64 * std::f64::consts::TAU * 440.0) / 48000.0).sin()
             as f32
-            * 10.0_f32.powf(-21.0 / 20.0);
+            * 10.0_f32.powf(-21.0 / 20.0)
+            * (frame + 1) as f32
+            / 240.0;
         assert!((resumed[frame * 2] - expected).abs() < 0.000002);
+        assert!((resumed[frame * 2 + 1] - expected * 0.5).abs() < 0.000002);
     }
-    assert_eq!(render.telemetry.frames.load(Ordering::Relaxed), 468);
+    assert_eq!(render.telemetry.frames.load(Ordering::Relaxed), 664);
 }
 
 #[test]

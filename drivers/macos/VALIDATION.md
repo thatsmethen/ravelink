@@ -72,3 +72,26 @@ establish application-runtime capture, Windows kernel operation, long-run/load
 capacity, physical-device clock drift, measured absolute latency, sleep/wake,
 aggregate operation, Intel macOS or signed/notarized release readiness. No driver
 was installed on the developer's Mac for this run.
+
+## Two-cable local checkpoint — 24 October 2026
+
+The registry now also publishes **RaveLink 2**, device 200 with input 201,
+output 202 and UID `au.textual.ravelink.cable.2`. Cable 1 keeps its existing
+name, IDs, UID, format and timestamp protocol. Only the original static device
+registry changes production behavior; each entry already owns its ring,
+client table, running count and clock anchor.
+
+All eight Rust HAL tests, strict Clippy, formatting and the Apple SDK native
+host passed. The direct-vtable and native-host checks enumerate both devices,
+translate both UIDs, validate both stream pairs and use the same client ID on
+both devices. With both cables running, distinct audio at identical timestamps
+remains isolated. Restarting either cable clears only that cable's ring; adding
+or stopping an additional client does not reset the other active client. The
+native host retains the existing 1/127/512/4096/8192-frame Cable 1 cases and checks
+Cable 2 data across each Cable 1 restart. Tested IO callbacks on both devices
+make zero Rust heap allocations.
+
+These are local synthetic-host checks. This checkpoint does not extend the
+earlier installed single-cable evidence to installed dual-cable operation or
+the application runtime. No local HAL installation or audio-service change was
+performed.

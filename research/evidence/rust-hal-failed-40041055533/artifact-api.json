@@ -1,0 +1,20 @@
+{
+  "id": 12539038361,
+  "node_id": "MDg6QXJ0aWZhY3QxMjUzOTAzODM2MQ==",
+  "name": "original-rust-hal-40041055533-1",
+  "size_in_bytes": 10300324,
+  "url": "https://api.github.com/repos/thatsmethen/ravelink/actions/artifacts/12539038361",
+  "archive_download_url": "https://api.github.com/repos/thatsmethen/ravelink/actions/artifacts/12539038361/zip",
+  "expired": false,
+  "digest": "sha256:13cea5ce67cc5d60f09b29ccbf112de8e15d4e9476c04449e0b3c23a22b7088d",
+  "created_at": "2026-10-23T23:42:39Z",
+  "updated_at": "2026-10-23T23:42:39Z",
+  "expires_at": "2026-11-22T23:42:36Z",
+  "workflow_run": {
+    "id": 40041055533,
+    "repository_id": 1431038845,
+    "head_repository_id": 1431038845,
+    "head_branch": "main",
+    "head_sha": "b30dea636fe1794fb074e4b876bde968c8205db2"
+  }
+}

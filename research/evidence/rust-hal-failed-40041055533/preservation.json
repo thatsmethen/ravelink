@@ -1,0 +1,287 @@
+{
+  "run_id": 40041055533,
+  "head_sha": "b30dea636fe1794fb074e4b876bde968c8205db2",
+  "artifact_id": 12539038361,
+  "github_digest": "sha256:13cea5ce67cc5d60f09b29ccbf112de8e15d4e9476c04449e0b3c23a22b7088d",
+  "original_zip_bytes": 10300324,
+  "original_zip_sha256": "13cea5ce67cc5d60f09b29ccbf112de8e15d4e9476c04449e0b3c23a22b7088d",
+  "archive_members": [
+    {
+      "path": "acceptance.json",
+      "bytes": 4310,
+      "sha256": "7940b71c85f46c5cf292a2ed37685d2bd32ab6611de2a582f2c99b4b77b91894"
+    },
+    {
+      "path": "before-discovery.json",
+      "bytes": 389,
+      "sha256": "2aa323e041cbb6ae371b2f95ac754994a444d0b8cdca44354851bc6c2b41562c"
+    },
+    {
+      "path": "before-discovery.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build-driver.log",
+      "bytes": 602,
+      "sha256": "b69fd12a688ed0ef89d0ebe4127c4ae33b28a999aeda3e5e5fa9140e37322849"
+    },
+    {
+      "path": "build-sha256.txt",
+      "bytes": 322,
+      "sha256": "8786cc901475b5a145e6d9f882c7d075ea34d2930bca3a02675b9cad2fec8d4b"
+    },
+    {
+      "path": "cleanup-attempt-0-0-discovery.json",
+      "bytes": 389,
+      "sha256": "2aa323e041cbb6ae371b2f95ac754994a444d0b8cdca44354851bc6c2b41562c"
+    },
+    {
+      "path": "cleanup-attempt-0-0-discovery.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "cleanup-attempt-0-remove.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "cleanup-attempt-0-restart.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "cleanup-attempt-0.json",
+      "bytes": 647,
+      "sha256": "e0fdd68a14da113865a9e764c9ff3d1efa96858d958ba92b2b9f8dde1599ca78"
+    },
+    {
+      "path": "cleanup-attempt-2-0-discovery.json",
+      "bytes": 389,
+      "sha256": "2aa323e041cbb6ae371b2f95ac754994a444d0b8cdca44354851bc6c2b41562c"
+    },
+    {
+      "path": "cleanup-attempt-2-0-discovery.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "cleanup-attempt-2.json",
+      "bytes": 647,
+      "sha256": "8924290fdde4ec0f45c5799813be4982f61301f878d9fa5ecdfe726a6df38c0a"
+    },
+    {
+      "path": "cleanup.json",
+      "bytes": 647,
+      "sha256": "8924290fdde4ec0f45c5799813be4982f61301f878d9fa5ecdfe726a6df38c0a"
+    },
+    {
+      "path": "custody-manifest.json",
+      "bytes": 7778,
+      "sha256": "03cf0b8f7993d817bef022a2c3cefdb74c6896e21bd3d0fb2eaa374f743bd6cd"
+    },
+    {
+      "path": "environment.txt",
+      "bytes": 464,
+      "sha256": "79a9006d41352019da6dd44d48b45c9b7a4cea1308b69d3cd2266f277910250e"
+    },
+    {
+      "path": "independent-readers.json",
+      "bytes": 172,
+      "sha256": "79ecf40ee4b61c730ab5e898302da15210ee112b5983e0f03245f8e525f3cf76"
+    },
+    {
+      "path": "install-restart.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "install.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "installation-owner.json",
+      "bytes": 973,
+      "sha256": "1ce0a5b1abffd64bed35909b5a7737afc1bcfbe46678b243bdaf518e32a9b0e8"
+    },
+    {
+      "path": "installed-0-discovery.json",
+      "bytes": 390,
+      "sha256": "90e5c68366dae8ca73929f06b6408dc8991791036996d8c1c264ed0c548ca452"
+    },
+    {
+      "path": "installed-0-discovery.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "installed-device.json",
+      "bytes": 483,
+      "sha256": "962753f57e035e2cf5f7aca60cd12d1d29fb72c73141470ab600dca2005102b7"
+    },
+    {
+      "path": "observer-controls.txt",
+      "bytes": 2662,
+      "sha256": "a03442b2e456320686ea23b2097b0f621c49ecc18cdf2bb5d0c32e9d11780609"
+    },
+    {
+      "path": "ownership.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "permissions.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reader-a-analysis.json",
+      "bytes": 1228,
+      "sha256": "42248e9f7c65c10228d09f4554a354521037e786c4c92a0fecbbd9ec8f6e3f14"
+    },
+    {
+      "path": "reader-a.csv",
+      "bytes": 73118,
+      "sha256": "8c7b8e88e66503803cfb04b67995a784f8ee0a828615b6bbe2de7b25eb1e8f5e"
+    },
+    {
+      "path": "reader-a.json",
+      "bytes": 422,
+      "sha256": "65a9ec2bb915e0e081220e443d1c5b7d5d27cff2b6512dfbfd1d5a94abecdc9c"
+    },
+    {
+      "path": "reader-a.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reader-a.ready.json",
+      "bytes": 57,
+      "sha256": "4d500ae6cd2587be91c948a359241b10cabd13c1d1720d662b74ee185733cb2a"
+    },
+    {
+      "path": "reader-a.wav",
+      "bytes": 7680044,
+      "sha256": "3d50e2cc9f7c292b47659dbab9b05d3ca5ec9ab2310179d44314dca9033d12b8"
+    },
+    {
+      "path": "reader-b-analysis.json",
+      "bytes": 1117,
+      "sha256": "8ed35525dca5a668f8fa502f35e2bd600c3e3bb50a41fb16857750c68f0b4d5e"
+    },
+    {
+      "path": "reader-b.csv",
+      "bytes": 73168,
+      "sha256": "a31c55e5cf1e2e15a8854b64133bfe0c17806e67a6448cc9dbcf0443f7e91e34"
+    },
+    {
+      "path": "reader-b.json",
+      "bytes": 422,
+      "sha256": "c22c6034d7700f8c223edd23f8ea75b1b25a1aa61ef44e8cef412470d9032683"
+    },
+    {
+      "path": "reader-b.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reader-b.ready.json",
+      "bytes": 56,
+      "sha256": "a28a4903037bebb6abe1f7205d04b44b75f7a1567fd034bc5b493ed8ad55722a"
+    },
+    {
+      "path": "reader-b.wav",
+      "bytes": 7680044,
+      "sha256": "a04551caebf04f0783b82bcc08df8678568a072917e0c1a5bec69bd2d0735886"
+    },
+    {
+      "path": "restarted-silence-analysis.json",
+      "bytes": 369,
+      "sha256": "a5654dab4bac0f603d72907c6e7c9318203ccd2712de54925c7ef8ee62757b91"
+    },
+    {
+      "path": "restarted-silence.csv",
+      "bytes": 11348,
+      "sha256": "b41d012e37b851170c2d6540b982f1665d2ae9dfae4b4c03950a9356748dfd46"
+    },
+    {
+      "path": "restarted-silence.json",
+      "bytes": 421,
+      "sha256": "41b0efa4c2dac4e8d3e5c5c75674385bd4e3b4673925a0acbefce37a1d422650"
+    },
+    {
+      "path": "restarted-silence.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "restarted-silence.ready.json",
+      "bytes": 56,
+      "sha256": "df6e3f7899a63eb361cdb53585c87cadceea8458daccb29c0ad42722b25a660e"
+    },
+    {
+      "path": "restarted-silence.wav",
+      "bytes": 1152044,
+      "sha256": "db4049ff10a9b4097359dac7c8c8441f9f6a620176298fe95203edbd6037b755"
+    },
+    {
+      "path": "system-probe",
+      "bytes": 35376,
+      "sha256": "bffe23aef2f187924dadc306e25d5c416a9c3f25c48ae4a88f9ce0ddbef1d57a"
+    },
+    {
+      "path": "tone-writer-analysis.json",
+      "bytes": 337,
+      "sha256": "deea7e21872dddf7715c061fadc01a361083fb3945c0e77601e653d9f9eb70c2"
+    },
+    {
+      "path": "tone-writer.csv",
+      "bytes": 148052,
+      "sha256": "6d00b1a3ae2888bf72d2f52f16a886cd1ad75fe0dc62a9076f9560acfd79eed2"
+    },
+    {
+      "path": "tone-writer.json",
+      "bytes": 422,
+      "sha256": "eb12952197a3dcc8b9f43ef82047b2dc3a8824461a4ad04f2b02e0f92c878a13"
+    },
+    {
+      "path": "tone-writer.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tone-writer.ready.json",
+      "bytes": 57,
+      "sha256": "fb004e3d81d637d2ad5d0b5198f28afe2117ea8824901506f8371e25b181eca8"
+    }
+  ],
+  "original_files": [
+    {
+      "path": "acceptance-original.json",
+      "bytes": 4310,
+      "sha256": "7940b71c85f46c5cf292a2ed37685d2bd32ab6611de2a582f2c99b4b77b91894"
+    },
+    {
+      "path": "artifact-api.json",
+      "bytes": 784,
+      "sha256": "d20b16f1e2f25e7058a334b2d11b64a45612142321f10d8563f8436ddf5e2f52"
+    },
+    {
+      "path": "artifact-original.zip",
+      "bytes": 10300324,
+      "sha256": "13cea5ce67cc5d60f09b29ccbf112de8e15d4e9476c04449e0b3c23a22b7088d"
+    },
+    {
+      "path": "job-original.log",
+      "bytes": 28888,
+      "sha256": "457ff33113eb0642668ad9d7a2ff1f3ea41b66481458827706aef6c3ec5e054c"
+    },
+    {
+      "path": "run-original.json",
+      "bytes": 12278,
+      "sha256": "c81ba5486e49e786b91ca049e3e92774849d0acec612145367adf2dcca20f770"
+    }
+  ]
+}

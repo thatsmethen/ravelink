@@ -126,7 +126,9 @@ fn controls_preserve_high_pass_history() {
         b[0].abs() > 0.001,
         "filter history must be nonzero after the impulse"
     );
-    assert!((a[0] - b[0] * 10.0_f32.powf(-6.0 / 20.0)).abs() < 0.000001);
+    let first_ramp_gain =
+        1.0 + (10.0_f32.powf(-6.0 / 20.0) - 1.0) / actual.control_ramp_frames() as f32;
+    assert!((a[0] - b[0] * first_ramp_gain).abs() < 0.000001);
 }
 
 #[test]

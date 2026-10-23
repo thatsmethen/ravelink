@@ -109,7 +109,10 @@ impl Device {
 
 // Add independent entries here to publish additional cables. Object IDs reserve a
 // three-object block per device. No IO path uses a shared sample ring across devices.
-pub static DEVICES: [Device; 1] = [Device::new(100, "RaveLink", "au.textual.ravelink.cable.1")];
+pub static DEVICES: [Device; 2] = [
+    Device::new(100, "RaveLink", "au.textual.ravelink.cable.1"),
+    Device::new(200, "RaveLink 2", "au.textual.ravelink.cable.2"),
+];
 
 pub fn find(id: ObjectId) -> Option<&'static Device> {
     DEVICES.iter().find(|d| d.id == id)

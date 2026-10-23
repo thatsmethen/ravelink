@@ -15,6 +15,7 @@ mod controls;
 mod dsp;
 mod mixer;
 mod session;
+mod smoothing;
 
 pub use controls::{ControlError, PreparedControls, ResolvedControl};
 pub use mixer::{
