@@ -4,6 +4,8 @@ The user explicitly changed the product requirements to independently authored p
 
 New shipping implementation lives in `crates/` and `drivers/`. First-party new code is proprietary. Permissively licensed Rust libraries and platform SDK interfaces are allowed dependencies; no GPL implementation is copied, translated, linked or packaged into the new shipping targets. All former GPL notices and rights remain in force for the archived prototype. Private visibility does not revoke any previously granted rights.
 
+The user subsequently requested public GitHub visibility and continued incremental pushes. The repository is now public; first-party proprietary licensing and the archived prototype's existing licence are unchanged. `scripts/push-public.sh` checks the requested visibility before and after publication.
+
 The previous prototype is frozen under `legacy/`. It is retained to preserve history, failed experiments and test evidence. Native code, old driver patches and GPL build scripts are not a shipping foundation for the Rust rewrite. Fresh driver work uses official SDK ABI contracts and independently authored implementation. This is a provenance boundary, not a claim of an independently audited clean-room process.
 
 ## Frozen results
