@@ -39,6 +39,7 @@ private struct EngineFixture {
         import json, os, signal, sys, time
         from pathlib import Path
         mode = '\(mode)'
+        protocol_version = \(EngineWire.version)
         pid_file = Path(__file__).with_name('pid')
         if pid_file.exists():
             try:
@@ -66,13 +67,17 @@ private struct EngineFixture {
                 with Path(__file__).with_name('updates').open('a') as stream: stream.write(request['session']['name'] + '\\n')
             if operation == 'stop' and mode == 'hang_stop': time.sleep(30)
             if operation == 'start' and mode == 'slow_start' and request['session']['name'] == 'old': time.sleep(30)
-            if operation == 'start': running = True
+            if operation in ('start', 'startSoundCheck'): running = True
             if operation == 'stop': running = False
             generation = request['generation']
-            reply = {'version':1,'id':request['id'],'generation':generation,'kind':'reply','success':True,'snapshot':snapshot(running)}
+            reply = {'version':protocol_version,'id':request['id'],'generation':generation,'kind':'reply','success':True,'snapshot':snapshot(running)}
             print(json.dumps(reply), flush=True)
+            if mode == 'closed_input':
+                os.close(0)
+                Path(__file__).with_name('input_closed').write_text('yes')
+                time.sleep(30)
             if mode == 'stale' and operation == 'stop':
-                print(json.dumps({'version':1,'generation':generation-1,'kind':'state','success':True,'snapshot':snapshot(True)}),flush=True)
+                print(json.dumps({'version':protocol_version,'generation':generation-1,'kind':'state','success':True,'snapshot':snapshot(True)}),flush=True)
         """
         try script.write(to: executable, atomically: true, encoding: .utf8)
         try FileManager.default.setAttributes([.posixPermissions: 0o755], ofItemAtPath: executable.path)
@@ -101,10 +106,11 @@ private func processGone(_ pid: Int32) -> Bool { kill(pid, 0) == -1 && errno == 
     }
     @Test @MainActor func abruptExitDoesNotRaiseSIGPIPEInClient() async throws {
         let fixture = try EngineFixture("crash"); defer { fixture.remove() }
-        let client = EngineClient(helperURL: fixture.executable, timeouts: .init(discovery: 0.5))
+        let client = EngineClient(helperURL: fixture.executable, timeouts: .init(discovery: 5))
         defer { client.shutdown() }
-        try await eventually { client.errorMessage != nil && fixture.recordedPID != nil }
-        let pid = try #require(fixture.recordedPID)
+        try await eventually({ client.errorMessage != nil }, timeout: 6)
+        let pid = try #require(fixture.recordedPID, Comment(rawValue: client.errorMessage ?? "Fixture never started"))
+        #expect(client.errorMessage?.contains("did not finish") == false, "This case must observe the injected exit, not a startup timeout")
         try await eventually { processGone(pid) }
         #expect(!client.running)
     }
@@ -115,6 +121,32 @@ private func processGone(_ pid: Int32) -> Bool { kill(pid, 0) == -1 && errno == 
         try await eventually { client.errorMessage != nil && fixture.recordedPID != nil }
         let pid = try #require(fixture.recordedPID)
         #expect(client.errorMessage?.contains("4 MiB") == true)
+        try await eventually { processGone(pid) }
+    }
+    @Test @MainActor func brokenPipeWhileChildRemainsAliveDoesNotRaiseSIGPIPE() async throws {
+        let fixture = try EngineFixture("closed_input"); defer { fixture.remove() }
+        let client = EngineClient(helperURL: fixture.executable, autoDiscover: false)
+        defer { client.shutdown() }
+        try client.start(session: .initial)
+        try await eventually { client.running && FileManager.default.fileExists(atPath: fixture.directory.appendingPathComponent("input_closed").path) }
+        let pid = try #require(client.helperProcessID)
+        #expect(kill(pid, 0) == 0, "The peer must remain alive so the next write reaches the EPIPE branch")
+        client.stop()
+        try await eventually { client.errorMessage != nil }
+        #expect(client.errorMessage?.contains("closed its control channel") == true)
+        try await eventually { processGone(pid) }
+    }
+    @Test @MainActor func missingSoundCheckSnapshotStopsAndReapsHelper() async throws {
+        let fixture = try EngineFixture("echo"); defer { fixture.remove() }
+        let client = EngineClient(helperURL: fixture.executable, autoDiscover: false)
+        defer { client.shutdown() }
+        let channel = MixerChannel(name: "Check", source: .init(kind: .tone))
+        let session = try SoundCheckSession.make(channel: channel, output: .init(deviceUID: "fixture-output"))
+        try client.startSoundCheck(session: session, channelID: channel.id)
+        try await eventually { client.errorMessage != nil }
+        #expect(client.errorMessage?.contains("stopped reporting its Sound Check") == true)
+        #expect(!client.running && client.soundCheck == nil)
+        let pid = try #require(fixture.recordedPID)
         try await eventually { processGone(pid) }
     }
     @Test @MainActor func stopHasIndependentDeadlineAndReapsHungHelper() async throws {
@@ -249,6 +281,41 @@ private func processGone(_ pid: Int32) -> Bool { kill(pid, 0) == -1 && errno == 
         try await Task.sleep(for: .milliseconds(150))
         #expect(client.errorMessage == nil)
         client.shutdown()
+        try await eventually { processGone(pid) }
+    }
+    @Test(.enabled(if: ProcessInfo.processInfo.environment["RAVELINK_TEST_SILENT_OUTPUT"] == "1")) @MainActor func soundCheckCommandsAndLiveEditsThroughSilentDevice() async throws {
+        let helper = try #require(EngineClient.defaultHelperURL())
+        let client = EngineClient(helperURL: helper)
+        defer { client.shutdown() }
+        let uid = ProcessInfo.processInfo.environment["RAVELINK_SILENT_OUTPUT_UID"] ?? "BuiltInSpeakerDevice"
+        try await eventually({ client.devices.contains { $0.id == uid } }, timeout: 10)
+        let channel = MixerChannel(name: "Silent Sound Check", source: .init(kind: .tone))
+        var session = try SoundCheckSession.make(channel: channel, output: .init(deviceUID: uid))
+        session.buses[0].muted = true // Playback also remains silent on physical hardware.
+        try client.startSoundCheck(session: session, channelID: channel.id)
+        try await eventually({ client.running || client.errorMessage != nil }, timeout: 14)
+        try #require(client.running, Comment(rawValue: client.errorMessage ?? "Sound Check did not start"))
+        let pid = try #require(client.helperProcessID)
+        try client.soundCheckCommand(.record)
+        try await eventually { (client.soundCheck?.recordedFrames ?? 0) > 2048 }
+        #expect(client.busMeters.values.allSatisfy { $0 == 0 })
+        try client.soundCheckCommand(.stop)
+        try await eventually { client.soundCheck?.mode == .ready }
+        let frames = try #require(client.soundCheck?.recordedFrames)
+        session.channels[0].effects.gainDB = -12
+        try client.update(session: session)
+        try await Task.sleep(for: .milliseconds(100))
+        #expect(client.soundCheck?.recordedFrames == frames)
+        #expect(client.helperProcessID == pid)
+        try client.soundCheckCommand(.play)
+        try await eventually { client.soundCheck?.mode == .playing }
+        #expect(client.soundCheck?.recordedFrames == frames)
+        #expect(client.busMeters.values.allSatisfy { $0 == 0 })
+        print("SUPERVISED_SOUND_CHECK uid=\(uid) recordedFrames=\(frames) retainedAfterLiveEdit=true playbackOutputPeak=0")
+        session.channels[0].source = .init(kind: .device, deviceUID: "different-source")
+        try client.update(session: session)
+        try await eventually { client.errorMessage?.contains("temporary clip was discarded") == true }
+        #expect(!client.running && client.soundCheck == nil)
         try await eventually { processGone(pid) }
     }
 }

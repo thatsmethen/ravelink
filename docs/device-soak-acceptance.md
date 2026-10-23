@@ -27,8 +27,11 @@ RAVELINK_TEST_DEVICE_SOAK=1 scripts/run-device-soak.sh
 ```
 
 The script supervises all three probe processes, checks readiness, runs the
-opt-in Swift test, waits for raw recordings, and analyzes them. Its EXIT trap
-terminates and reaps every still-owned probe on failure. Each Python supervisor
+opt-in Swift test, waits for raw recordings, and analyzes them. An engine test
+failure still lets each bounded recorder finish, so the failed audio observation
+is retained. `soak-exit-status.json` records every component's exit status, and any
+failure keeps the overall run failed. Its EXIT trap terminates and reaps every
+still-owned probe on interruption or early setup failure. Each Python supervisor
 also bounds its C child and escalates termination after two seconds. No local
 HAL run is implied by compiling this instrument or passing its synthetic controls.
 
@@ -59,3 +62,16 @@ all hardware compatibility, or an unlimited performance envelope.
 controls for the instrument. Those tests prove analyzer behavior only; actual
 installed-driver evidence requires raw WAVs, probe reports, engine report, passing
 analysis and CI provenance from the same run.
+
+The first expanded run, GitHub Actions `39967965423` at revision `b34a841`, failed
+this acceptance on macOS 15.7.9, three logical processors, with the debug test
+build. During 32.337 seconds at 48 kHz it captured 37,306,368 frames and rendered
+2,553,344 frames, about 82.25% of the expected render count. The engine counted
+11,546,018 dropped frames, zero underrun frames and zero oversized blocks; process
+CPU use was 1.396 core equivalents and peak RSS was 60,489,728 bytes. The original
+shell aborted its independent probes when Swift assertions failed, so this run
+has no raw soak waveform and cannot diagnose phase coherence. That observation
+gap prompted the failure-preserving orchestration above. Original engine metrics,
+logs, provenance and the separate passing loopback/matrix captures are frozen in
+`research/evidence/installed-hal-39967965423/`. This run establishes a failed
+configuration, not a successful scale envelope.

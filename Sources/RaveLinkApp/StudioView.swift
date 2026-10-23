@@ -39,6 +39,7 @@ struct StudioView: View {
         .sheet(isPresented: $studio.showingMix) { MixSheet(studio: studio, audio: audio) }
         .sheet(isPresented: $studio.showingSettings) { setupInfo }
         .sheet(isPresented: $studio.showingDiagnostics) { EngineDiagnosticsView(audio: audio) }
+        .sheet(isPresented: $studio.showingSoundCheck) { SoundCheckView(studio: studio, audio: audio) }
         .alert("Studio needs attention", isPresented: Binding(get: { studio.notice != nil }, set: { if !$0 { studio.notice = nil } })) {
             Button("OK") { studio.notice = nil }
         } message: { Text(studio.notice ?? "") }
@@ -141,6 +142,7 @@ struct StudioView: View {
                     Spacer(minLength: 0)
                     Menu {
                         Button("Input settings") { studio.selectedChannel = channel.id }
+                        Button("Sound Check…") { studio.openSoundCheck(channel.id) }
                         Divider()
                         Button("Move input up") { studio.moveChannel(channel.id, by: -1) }.disabled(studio.session.channels.first?.id == channel.id)
                         Button("Move input down") { studio.moveChannel(channel.id, by: 1) }.disabled(studio.session.channels.last?.id == channel.id)
@@ -191,6 +193,8 @@ struct StudioView: View {
                 sourcesSection(channel)
                 Divider()
                 Text("Applied before this input reaches your mixes.").font(.caption).foregroundStyle(.secondary)
+                Button { studio.openSoundCheck(channel.id) } label: { Label("Sound Check", systemImage: "waveform") }
+                    .buttonStyle(.bordered)
                 effectSlider("Input gain", value: channelBinding(channel, \.effects.gainDB), range: -60...24, suffix: "dB")
                 effectSlider("High-pass filter", value: channelBinding(channel, \.effects.highPassHz), range: 0...1000, suffix: "Hz")
                 effectSlider("Noise gate", value: channelBinding(channel, \.effects.gateThresholdDB), range: -100...0, suffix: "dB")

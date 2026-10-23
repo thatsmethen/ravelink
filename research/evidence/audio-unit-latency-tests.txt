@@ -1,0 +1,38 @@
+[0/1] Planning build
+Building for debugging...
+[0/9] Write swift-version--1AB21518FC5DEDBE.txt
+[1/7] Compiling RaveLinkAudioUnitBridge AudioUnitBridge.m
+[3/8] Emitting module RaveLinkAudio
+[3/11] Write Objects.LinkFileList
+[6/11] Linking RaveLinkEngine
+[7/11] Applying RaveLinkEngine
+[8/11] Linking RaveLinkPackageTests
+[9/11] Linking RaveLink
+[10/11] Applying RaveLink
+Build complete! (1.48s)
+􀟈  Test run started.
+􀄵  Testing Library Version: 1400
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite LiveAudioUnitTests started.
+􀟈  Suite ThirdPartyAudioUnitTests started.
+􀟈  Test malformedEffectOutputLatchesFailure() started.
+􀟈  Test effectTopologyExcludesSafeLiveControls() started.
+􀟈  Test emptyChannelAlignsWithTwoRealAppleEffects() started.
+􀟈  Test appleEffectRunsInNativeCallbackAndChangesWithoutRebuild() started.
+􀟈  Test installedMasterMeRendersRestoresAndRunsThroughNativeHook() started.
+􀟈  Test latencyAndDelayMemoryAreBoundedBeforeRendering() started.
+􀟈  Test failedPreparationCanReleasePartlyCreatedGraph() started.
+􀟈  Test renderErrorLatchesSilenceAcrossTheEntireOutput() started.
+􀟈  Test bypassAndEmptyRackDelaysSurviveIrregularBlockBoundaries() started.
+􁁛  Test latencyAndDelayMemoryAreBoundedBeforeRendering() passed after 0.001 seconds.
+􁁛  Test malformedEffectOutputLatchesFailure() passed after 0.001 seconds.
+􁁛  Test effectTopologyExcludesSafeLiveControls() passed after 0.001 seconds.
+􁁛  Test renderErrorLatchesSilenceAcrossTheEntireOutput() passed after 0.001 seconds.
+􁁛  Test bypassAndEmptyRackDelaysSurviveIrregularBlockBoundaries() passed after 0.001 seconds.
+􁁛  Test failedPreparationCanReleasePartlyCreatedGraph() passed after 0.466 seconds.
+􁁛  Test appleEffectRunsInNativeCallbackAndChangesWithoutRebuild() passed after 0.518 seconds.
+􁁛  Test emptyChannelAlignsWithTwoRealAppleEffects() passed after 0.542 seconds.
+􁁛  Suite LiveAudioUnitTests passed after 0.542 seconds.
+􁁛  Test installedMasterMeRendersRestoresAndRunsThroughNativeHook() passed after 2.336 seconds.
+􁁛  Suite ThirdPartyAudioUnitTests passed after 2.337 seconds.
+􁁛  Test run with 9 tests in 2 suites passed after 2.337 seconds.

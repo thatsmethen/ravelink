@@ -19,6 +19,7 @@ let package = Package(
         .target(name: "RaveLinkAudio", dependencies: ["RaveLinkCore", "RaveLinkRealtime", "RaveLinkAudioUnitBridge"]),
         .executableTarget(name: "RaveLinkApp", dependencies: ["RaveLinkCore", "RaveLinkAudio"]),
         .testTarget(name: "RaveLinkCoreTests", dependencies: ["RaveLinkCore"]),
+        .testTarget(name: "RaveLinkAppTests", dependencies: ["RaveLinkApp", "RaveLinkCore", "RaveLinkAudio"]),
         .testTarget(name: "RaveLinkAudioTests", dependencies: ["RaveLinkAudio", "RaveLinkCore", "RaveLinkRealtime"])
     ],
     swiftLanguageModes: [.v5]

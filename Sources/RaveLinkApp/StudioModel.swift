@@ -16,11 +16,18 @@ import RaveLinkAudio
     @Published var showingOutputs = false
     @Published var showingSettings = false
     @Published var showingDiagnostics = false
-    let audio = EngineClient()
-    private let store = SessionStore.standard
+    @Published var showingSoundCheck = false
+    @Published var soundCheckChannelID: UUID?
+    @Published private(set) var preparingSoundCheck = false
+    @Published var soundCheckNotice: String?
+    let audio: EngineClient
+    private let store: SessionStore
     private var pending: Task<Void, Never>?
     private var allowsOverwrite = true
-    init() {
+    private var audition: MixerSession?
+    private var auditionTask: Task<Void, Never>?
+    init(store: SessionStore = .standard, audio: EngineClient? = nil) {
+        self.store = store; self.audio = audio ?? EngineClient()
         if FileManager.default.fileExists(atPath: store.url.path) {
             do { session = try store.load() }
             catch {
@@ -49,7 +56,19 @@ import RaveLinkAudio
         pending?.cancel()
         if allowsOverwrite { saveStatus = "Saving…" }
         if (audio.running || audio.starting) && audioSnapshot(previous) != audioSnapshot(session) {
-            do { try audio.update(session: audioSnapshot(session)) }
+            do {
+                if var audition {
+                    if let id = soundCheckChannelID, let channel = session.channels.first(where: { $0.id == id }) {
+                        let previousAudition = audition
+                        var input = channel; input.muted = false; input.solo = false
+                        audition.channels = [input]
+                        if audioSnapshot(audition) != audioSnapshot(previousAudition) {
+                            self.audition = audition
+                            try audio.update(session: audioSnapshot(audition))
+                        }
+                    } else { endSoundCheck() }
+                } else { try audio.update(session: audioSnapshot(session)) }
+            }
             catch { notice = error.localizedDescription }
         }
         pending = Task { [weak self] in
@@ -64,8 +83,53 @@ import RaveLinkAudio
     }
     func flush() { pending?.cancel(); guard allowsOverwrite else { return }; do { try store.save(session) } catch { notice = error.localizedDescription } }
     func toggleAudio() {
+        if showingSoundCheck {
+            endSoundCheck()
+            soundCheckNotice = "Use Record sample to start Sound Check. Close this window before starting studio audio."
+            return
+        }
+        if audition != nil { endSoundCheck(); return }
         if audio.running || audio.starting { audio.stop() }
         else { do { try audio.start(session: session) } catch { notice = error.localizedDescription } }
+    }
+    func openSoundCheck(_ id: UUID) {
+        endSoundCheck(); audio.stop()
+        soundCheckChannelID = id; soundCheckNotice = nil; showingSoundCheck = true
+    }
+    func recordSoundCheck(output: MixDestination) {
+        guard let id = soundCheckChannelID, let channel = session.channels.first(where: { $0.id == id }) else { return }
+        soundCheckNotice = nil
+        if audio.soundCheck?.channelID == id && audio.running {
+            commandSoundCheck(.record); return
+        }
+        auditionTask?.cancel()
+        do {
+            let check = try SoundCheckSession.make(channel: channel, output: output)
+            audition = check; preparingSoundCheck = true
+            let excluded = Array(Set(session.channels.flatMap(\.allSources).filter { $0.kind == .application }.compactMap(\.bundleID))).sorted()
+            try audio.startSoundCheck(session: check, channelID: id, excludedApplications: excluded)
+            auditionTask = Task { @MainActor [weak self] in
+                guard let self else { return }
+                do {
+                    while audio.starting { try await Task.sleep(for: .milliseconds(25)) }
+                    try Task.checkCancellation()
+                    guard audio.running, audio.soundCheck?.channelID == id else {
+                        throw SessionError.invalid(audio.errorMessage ?? "Sound Check could not connect to the selected devices.")
+                    }
+                    try audio.soundCheckCommand(.record)
+                } catch { if !Task.isCancelled { soundCheckNotice = error.localizedDescription } }
+                if !Task.isCancelled { preparingSoundCheck = false }
+            }
+        } catch { preparingSoundCheck = false; soundCheckNotice = error.localizedDescription }
+    }
+    func commandSoundCheck(_ command: SoundCheckCommand) {
+        do { try audio.soundCheckCommand(command); soundCheckNotice = nil }
+        catch { soundCheckNotice = error.localizedDescription }
+    }
+    func endSoundCheck() {
+        auditionTask?.cancel(); auditionTask = nil; preparingSoundCheck = false
+        if audition != nil { audio.stop() }
+        audition = nil
     }
     func beginInput(target: UUID? = nil, replacing: Int? = nil) {
         sourceTarget = target; sourceReplacement = replacing; showingInput = true
@@ -170,6 +234,7 @@ import RaveLinkAudio
         guard panel.runModal() == .OK, let url = panel.url else { return }
         do {
             let imported = try SessionStore(url: url).load()
+            endSoundCheck(); showingSoundCheck = false
             audio.stop(); session = imported; selectedChannel = nil
         } catch { notice = "Could not import studio. \(error.localizedDescription)" }
     }

@@ -11,7 +11,7 @@ The GUI performs no HAL calls and writes no blocking pipes. A bounded JSON-lines
 protocol carries complete session snapshots and coalesced 20 Hz telemetry. Each
 line is limited to 4 MiB, requests and replies have checked IDs and generations,
 and invalid or oversized messages stop the helper. Continuous control edits send
-the latest snapshot at intervals of at most 25 ms rather than waiting for the
+the latest snapshot on a 25 ms target interval rather than waiting for the
 user to release a slider. Session topology changes rebuild the native graph;
 ordinary gain, mute, pan, and effect parameter changes retain it.
 
@@ -56,13 +56,20 @@ once on that summed waveform. Source meters report that processed group signal.
 Configured Audio Unit effects then process the group before its sends. Each
 output clock has its own prepared rack instance. The Objective-C bridge uses
 cached render/pull blocks and preallocated planar buffers in 512-frame slices.
-Live parameter assignments use cached scheduling blocks; bypass crossfades the
-dry/wet signal over approximately 5 ms while the effect continues processing.
+Live parameter assignments use validated Audio Unit controls on the engine control
+thread; bypass crossfades the dry/wet signal over approximately 5 ms while the effect continues processing.
 Changing effect identity, order, version, or saved state rebuilds the graph.
 A render error or invalid returned waveform latches the output silent and stops
 audio with the effect and input identified. Third-party code may still block,
 allocate, or crash; isolation limits its impact on the GUI rather than making
 arbitrary plugins real-time safe.
+
+The rack aligns each effect's bypass path to its reported latency and aligns
+shorter input racks to the longest rack on that output clock. Telemetry reports
+`effectAlignmentLatencySeconds`, bounded to two seconds. This is effect alignment
+only; it excludes physical device, driver, and FIFO latency. A live effect change
+that changes latency stops audio and requires a new graph rather than silently
+misaligning the channels.
 Each send has independent gain, stereo balance, and mute; each bus has independent
 gain and mute. Source mute/solo and send/bus controls use short smoothing ramps.
 Multiple mix destinations preserve the parent bus controls and are rendered on
@@ -92,6 +99,25 @@ one sixteenth of physical RAM and 512 MiB. Actual usable graph size also depends
 on device limits, CPU, sample rates, scheduling, and plugin behaviour. The memory
 estimate is a resource guard, not a measurement or a real-time CPU guarantee.
 
+## Sound Check isolation
+
+Sound Check uses a separate engine session with one selected input group and one
+explicit listening destination. Every API/protocol entry validates that shape;
+the studio is not resumed automatically. The system remainder keeps the original
+studio's dedicated-application exclusions, including across live control edits.
+It records at most 30 seconds of the dry, summed input into preallocated memory.
+Recording, idle, and ready states produce silence, including a second gate after
+Audio Unit processing to suppress effect tails. Playback replaces the live input
+with that dry clip before the complete effect chain; loop boundaries have a short
+fade. Clip PCM never enters the JSON protocol or a file.
+
+Gain, mute, pan, parameter, and bypass edits retain the clip. Changing an input,
+destination, effect identity/order/state, or another graph topology discards it
+and stops Sound Check with an explicit message. Closing the session or terminating
+the helper also discards it. Mode and recorded frame count are published together
+in one atomic state so the UI cannot observe a torn transition. The helper's
+snapshot must keep reporting the expected clip while the check is running.
+
 ## Verification and limits
 
 Run `scripts/test.sh` for deterministic tests. Audio tests cover the filter/gate/
@@ -100,11 +126,17 @@ source/send/bus smoothing and mute, channel offsets, mono capture, invalid input
 FIFO overflow/underrun, sample-rate conversion stopband controls, memory overflow,
 and virtual feedback cycles. Hardware tests are opt-in.
 
-`EngineClientTests` exercise unexpected exit, oversized output, ignored SIGTERM,
+`EngineClientTests` exercise unexpected exit, a live peer closing its input pipe
+(forcing the EPIPE write path without SIGPIPE terminating the caller), oversized output, ignored SIGTERM,
 discovery and stop deadlines, stale telemetry, reaping before replacement, and
 continuous control input. The opt-in supervised silent-output test verifies real
 native rendering through IPC and checks that the helper PID disappears after
 shutdown. See `research/evidence/engine-process-tests.txt` for the recorded run.
+Sound Check routing tests prove dry grouped recording before effects, processing
+the same clip with changed gain, and post-effect tail silence. The opt-in physical
+test records generated tone and exercises commands/live edits while keeping its
+listening bus muted throughout playback; it is a silent callback/IPC test, not
+independent evidence of the listening waveform.
 
 On the development host, independent native registration, one second of silent
 physical output, stop, and unregister all succeeded. The independent C probe

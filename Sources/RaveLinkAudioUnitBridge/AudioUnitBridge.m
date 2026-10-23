@@ -15,15 +15,22 @@ typedef struct {
     float *input[2];
     _Atomic bool bypassed;
     float wet;
+    uint32_t latencyFrames, delayCursor;
+    float *dryDelay;
 } RLAUNode;
 typedef struct {
     RLAUNode **nodes;
     uint32_t count;
     float *buffers; // Two stereo planar buffers, 512 frames per plane.
     double sampleTime;
+    bool active;
+    uint32_t latencyFrames, alignmentFrames, delayCursor;
+    float *alignmentDelay;
 } RLAUChain;
 struct RLAUGraph {
-    uint32_t sourceCount, maxFrames;
+    uint32_t sourceCount, maxFrames, maxLatencyFrames, alignmentLatencyFrames;
+    uint64_t delayBytes, maxDelayBytes;
+    bool finalized, configurationClosed;
     float smoothing;
     RLAUChain *chains;
     _Atomic int32_t error;
@@ -43,6 +50,8 @@ RLAUGraph *rl_au_graph_create(uint32_t sources, uint32_t maxFrames, double rate)
     g->chains = calloc(sources ? sources : 1, sizeof(RLAUChain));
     if (!g->chains) { free(g); return NULL; }
     g->sourceCount = sources; g->maxFrames = maxFrames;
+    g->maxLatencyFrames = (uint32_t)ceil(rate * 2);
+    g->maxDelayBytes = 128ull * 1024 * 1024;
     g->smoothing = (float)exp(-1.0 / (.005 * rate));
     return g;
 }
@@ -55,15 +64,25 @@ void rl_au_graph_destroy(RLAUGraph *g) {
             if (node->render) Block_release(node->render);
             if (node->pull) Block_release(node->pull);
             if (node->schedule) Block_release(node->schedule);
-            free(node);
+            free(node->dryDelay); free(node);
         }
-        free(chain->nodes); free(chain->buffers);
+        free(chain->nodes); free(chain->buffers); free(chain->alignmentDelay);
     }
     free(g->chains); free(g);
 }
-bool rl_au_graph_append(RLAUGraph *g, uint32_t source, uint32_t slot, AURenderBlock block, AUScheduleParameterBlock schedule, bool bypassed) {
-    if (!g || source >= g->sourceCount || !block) return false;
+bool rl_au_graph_enable_source(RLAUGraph *g, uint32_t source) {
+    if (!g || g->configurationClosed || source >= g->sourceCount) return false;
+    g->chains[source].active = true; return true;
+}
+bool rl_au_graph_set_latency_limits(RLAUGraph *g, uint32_t maxFrames, uint64_t maxBytes) {
+    if (!g || g->configurationClosed || g->delayBytes || maxFrames > g->maxLatencyFrames || maxBytes > g->maxDelayBytes) return false;
+    g->maxLatencyFrames = maxFrames; g->maxDelayBytes = maxBytes; return true;
+}
+bool rl_au_graph_append(RLAUGraph *g, uint32_t source, uint32_t slot, AURenderBlock block, AUScheduleParameterBlock schedule, bool bypassed, uint32_t latencyFrames) {
+    if (!g || g->configurationClosed || source >= g->sourceCount || !block) return false;
     RLAUChain *chain = &g->chains[source];
+    uint64_t bytes = (uint64_t)latencyFrames * 2 * sizeof(float);
+    if (latencyFrames > g->maxLatencyFrames - chain->latencyFrames || bytes > g->maxDelayBytes - g->delayBytes) return false;
     if (chain->count == UINT32_MAX || (size_t)chain->count + 1 > SIZE_MAX / sizeof(RLAUNode *)) return false;
     for (uint32_t n = 0; n < chain->count; n++) if (chain->nodes[n]->slot == slot) return false;
     if (!chain->buffers) { chain->buffers = calloc(4 * RL_AU_BLOCK_FRAMES, sizeof(float)); if (!chain->buffers) return false; }
@@ -73,7 +92,11 @@ bool rl_au_graph_append(RLAUGraph *g, uint32_t source, uint32_t slot, AURenderBl
     RLAUNode *node = calloc(1, sizeof(*node));
     if (!node) return false;
     if (!atomic_is_lock_free(&node->bypassed)) { free(node); return false; }
-    node->slot = slot; node->wet = bypassed ? 0 : 1;
+    node->slot = slot; node->wet = bypassed ? 0 : 1; node->latencyFrames = latencyFrames;
+    if (latencyFrames) {
+        node->dryDelay = calloc((size_t)latencyFrames * 2, sizeof(float));
+        if (!node->dryDelay) { free(node); return false; }
+    }
     atomic_init(&node->bypassed, bypassed);
     node->render = Block_copy(block);
     node->schedule = schedule ? Block_copy(schedule) : NULL;
@@ -87,7 +110,34 @@ bool rl_au_graph_append(RLAUGraph *g, uint32_t source, uint32_t slot, AURenderBl
         return noErr;
     });
     chain->nodes[chain->count++] = node;
+    chain->active = true; chain->latencyFrames += latencyFrames; g->delayBytes += bytes;
     return true;
+}
+bool rl_au_graph_finalize(RLAUGraph *g) {
+    if (!g || g->configurationClosed) return false;
+    g->configurationClosed = true;
+    uint32_t longest = 0;
+    for (uint32_t s = 0; s < g->sourceCount; s++) if (g->chains[s].active && g->chains[s].latencyFrames > longest) longest = g->chains[s].latencyFrames;
+    uint64_t extraBytes = 0;
+    for (uint32_t s = 0; s < g->sourceCount; s++) {
+        RLAUChain *chain = &g->chains[s]; if (!chain->active) continue;
+        uint64_t bytes = (uint64_t)(longest - chain->latencyFrames) * 2 * sizeof(float);
+        if (bytes > g->maxDelayBytes - g->delayBytes - extraBytes) return false;
+        extraBytes += bytes;
+    }
+    for (uint32_t s = 0; s < g->sourceCount; s++) {
+        RLAUChain *chain = &g->chains[s]; if (!chain->active) continue;
+        chain->alignmentFrames = longest - chain->latencyFrames;
+        if (chain->alignmentFrames) {
+            chain->alignmentDelay = calloc((size_t)chain->alignmentFrames * 2, sizeof(float));
+            if (!chain->alignmentDelay) return false; // Owner discards the partial graph.
+        }
+    }
+    g->delayBytes += extraBytes; g->alignmentLatencyFrames = longest; g->finalized = true; return true;
+}
+uint32_t rl_au_graph_latency_frames(RLAUGraph *g) { return g ? g->alignmentLatencyFrames : 0; }
+void rl_au_graph_invalidate(RLAUGraph *g, uint32_t source, uint32_t slot, int32_t status) {
+    if (g && status) fail(g, source, slot, status);
 }
 static RLAUNode *find_node(RLAUGraph *g, uint32_t source, uint32_t slot) {
     if (!g || source >= g->sourceCount) return NULL;
@@ -115,10 +165,10 @@ int32_t rl_au_graph_process(void *context, uint32_t source, float *stereo, uint3
     if (!g) return 0;
     int32_t error = atomic_load_explicit(&g->error, memory_order_acquire);
     if (error) return error;
-    if (source >= g->sourceCount || !stereo || frames > g->maxFrames) return fail(g, source, UINT32_MAX, -70001);
+    if (!g->finalized || source >= g->sourceCount || !stereo || frames > g->maxFrames) return fail(g, source, UINT32_MAX, -70001);
     RLAUChain *chain = &g->chains[source];
-    if (!chain->count) return 0;
-    for (uint32_t offset = 0; offset < frames;) {
+    if (!chain->active) return 0;
+    if (chain->count) for (uint32_t offset = 0; offset < frames;) {
         uint32_t count = frames - offset; if (count > RL_AU_BLOCK_FRAMES) count = RL_AU_BLOCK_FRAMES;
         float *left = chain->buffers, *right = left + RL_AU_BLOCK_FRAMES;
         float *nextLeft = right + RL_AU_BLOCK_FRAMES, *nextRight = nextLeft + RL_AU_BLOCK_FRAMES;
@@ -142,15 +192,31 @@ int32_t rl_au_graph_process(void *context, uint32_t source, float *stereo, uint3
                 float r = (flags & kAudioUnitRenderAction_OutputIsSilence) ? 0 : outRight[f];
                 if (!isfinite(l) || !isfinite(r) || fabsf(l) > 1000000 || fabsf(r) > 1000000) return fail(g, source, node->slot, -70003);
                 node->wet = g->smoothing * node->wet + (1 - g->smoothing) * target;
+                // Delay dry by the unit's reported latency before a host bypass blend.
                 // Reads precede writes in case an effect returned an input pointer.
-                nextLeft[f] = left[f] * (1 - node->wet) + l * node->wet;
-                nextRight[f] = right[f] * (1 - node->wet) + r * node->wet;
+                float dryLeft = left[f], dryRight = right[f];
+                if (node->latencyFrames) {
+                    uint32_t index = node->delayCursor * 2;
+                    float delayedLeft = node->dryDelay[index], delayedRight = node->dryDelay[index + 1];
+                    node->dryDelay[index] = dryLeft; node->dryDelay[index + 1] = dryRight;
+                    dryLeft = delayedLeft; dryRight = delayedRight;
+                    if (++node->delayCursor == node->latencyFrames) node->delayCursor = 0;
+                }
+                nextLeft[f] = dryLeft * (1 - node->wet) + l * node->wet;
+                nextRight[f] = dryRight * (1 - node->wet) + r * node->wet;
             }
             float *swap = left; left = nextLeft; nextLeft = swap;
             swap = right; right = nextRight; nextRight = swap;
         }
         for (uint32_t f = 0; f < count; f++) { stereo[(offset + f) * 2] = left[f]; stereo[(offset + f) * 2 + 1] = right[f]; }
         chain->sampleTime += count; offset += count;
+    }
+    if (chain->alignmentFrames) for (uint32_t frame = 0; frame < frames; frame++) {
+        uint32_t index = chain->delayCursor * 2;
+        float left = stereo[frame * 2], right = stereo[frame * 2 + 1];
+        stereo[frame * 2] = chain->alignmentDelay[index]; stereo[frame * 2 + 1] = chain->alignmentDelay[index + 1];
+        chain->alignmentDelay[index] = left; chain->alignmentDelay[index + 1] = right;
+        if (++chain->delayCursor == chain->alignmentFrames) chain->delayCursor = 0;
     }
     return 0;
 }

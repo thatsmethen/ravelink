@@ -72,10 +72,12 @@ private final class WireOutput: @unchecked Sendable {
                     audio.refreshDevices()
                     await audio.finishPendingControlWork()
                     while !audio.inventoryReady { try await Task.sleep(for: .milliseconds(10)) }
-                case .start:
+                case .start, .startSoundCheck:
                     while !audio.inventoryReady { try await Task.sleep(for: .milliseconds(10)) }
                     guard request.generation == generation else { reply(request, error: "The request was superseded."); return }
-                    try audio.start(session: request.session!)
+                    if request.operation == .startSoundCheck {
+                        try audio.startSoundCheck(session: request.session!, channelID: request.soundCheckChannelID!, excludedApplications: request.excludedApplications ?? [])
+                    } else { try audio.start(session: request.session!) }
                     while audio.starting && request.generation == generation { try await Task.sleep(for: .milliseconds(10)) }
                     guard request.generation == generation else { reply(request, error: "The request was superseded."); return }
                     if !audio.running { reply(request, error: audio.errorMessage ?? "The audio route did not start."); return }
@@ -87,6 +89,8 @@ private final class WireOutput: @unchecked Sendable {
                 case .stop:
                     audio.stop()
                     await audio.finishPendingControlWork()
+                case .soundCheckCommand:
+                    try audio.soundCheckCommand(request.soundCheckCommand!)
                 }
                 reply(request)
             } catch { reply(request, error: error.localizedDescription) }

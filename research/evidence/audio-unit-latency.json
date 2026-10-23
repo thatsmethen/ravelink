@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "observedAtUTC": "2026-10-23T14:30:18.395399+00:00",
+  "baseCommit": "8dbb85d2327704c742862b4cca16a3fff2614035",
+  "host": {
+    "version": "27.0",
+    "build": "26A5406e",
+    "architecture": "arm64"
+  },
+  "runs": [
+    {
+      "command": "RAVELINK_PLUGIN_RENDER_APPLE=1 RAVELINK_PLUGIN_RENDER_MASTER_ME=1 scripts/test.sh --filter 'LiveAudioUnitTests|ThirdPartyAudioUnitTests'",
+      "passed": 9,
+      "failed": 0,
+      "durationSeconds": 2.337,
+      "log": "audio-unit-latency-tests.txt"
+    },
+    {
+      "command": "RAVELINK_PLUGIN_RENDER_APPLE=1 scripts/test.sh --filter changingAppleAttackDelayStopsUntilGraphReconstruction",
+      "passed": 1,
+      "failed": 0,
+      "durationSeconds": 0.438,
+      "log": "audio-unit-dynamic-latency-tests.txt"
+    }
+  ],
+  "measuredCases": {
+    "appleLimiterVersion": 67072,
+    "sampleRate": 48000,
+    "singleLimiterFrames": 96,
+    "twoLimiterFrames": 192,
+    "emptyChannelAlignedWithTwoLimiters": true,
+    "bypassMaintainsSingleLimiterDelay": true,
+    "appleAttackChangeSeconds": [
+      0.002,
+      0.01
+    ],
+    "latencyChangeLatchesSilence": true,
+    "explicitReconstructionReportsNewDelay": true,
+    "syntheticIrregularFrameBlocks": [
+      1,
+      3,
+      2,
+      11,
+      257,
+      512,
+      7
+    ],
+    "syntheticCumulativeBypassDelayFrames": 7,
+    "unfinishedGraphRejected": true,
+    "delayBudgetRejectedBeforeRender": true
+  },
+  "limits": {
+    "rackLatencySeconds": 2,
+    "delayMemoryBytesPerOutput": 134217728,
+    "rounding": "nearest sample per slot",
+    "dynamicLatencyDetection": "after UI parameter assignments and during engine telemetry polling"
+  },
+  "boundary": "Generated PCM through actual native C callback and selected installed Apple/master_me units. No local hardware device started. Alignment uses reported effect latency only; no physical IO, SRC, FIFO or inter-device synchronization measurement. Installed-HAL CI acceptance added separately; not yet claimed passed.",
+  "sourceSHA256": {
+    "Sources/RaveLinkAudio/LiveAudioUnitGraph.swift": "5ab316bc467910a85d4b35e8827021b4a6c71ebf1a21aa2cbe2e82505714ee89",
+    "Sources/RaveLinkAudioUnitBridge/AudioUnitBridge.m": "c80100929b0bb8d739dd4eb870a956b15253a854d4875f208acc2ec6ce4e0335",
+    "Sources/RaveLinkAudioUnitBridge/include/RaveLinkAudioUnitBridge.h": "e48e46597c5234e69aafdb04acad324b664dfc40797edf28248b7684f9bbb808",
+    "Tests/RaveLinkAudioTests/LiveAudioUnitTests.swift": "048810caf83866d648b2d0a14050b23a85fb3cc6348b4a19a249c039f12cf07a",
+    "scripts/run-au-loopback.sh": "b424e2ffd13c33037e7d152b98514fcd2d2104e59421ea80d9bbb206d2616479"
+  }
+}

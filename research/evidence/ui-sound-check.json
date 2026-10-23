@@ -1,0 +1,24 @@
+{
+  "recordedAt": "2026-10-23T15:27:37.188440+00:00",
+  "evidenceClass": "Native packaged application journey; no independent output recording",
+  "host": "macOS 27.0 beta 26A5406e arm64",
+  "applicationSHA256": "b811a8b298e1d3b9fb073e4afab4051d3547d03a79ff97407118c91b5664bea8",
+  "engineSHA256": "8995f4366c68d53917c3ff0797beb1647ba01561a170c9545024f7396a2a7765",
+  "source": "Built-in 440 Hz test tone",
+  "listeningDevice": "MacBook Pro Speakers",
+  "observations": [
+    "Record disabled until an explicit listening output is selected",
+    "Record enters recording state and shows dry input meter at -18 dB",
+    "Recording reaches exactly 30.0 seconds then automatically enters ready state",
+    "No Play action was taken; this journey exercised silent recording and ready states",
+    "Delete sample resets duration to zero and disables playback",
+    "Done returns to unchanged studio routes with audio stopped"
+  ],
+  "screenshot": "ui-sound-check.png",
+  "limitations": [
+    "No microphone or system privacy consent exercised",
+    "No independent physical output PCM; silence is a configured state, not a recorded measurement",
+    "Pre-record broadcast and shortcut review fixes were made after this build; require separate recheck",
+    "Installed virtual PCM acceptance is separate"
+  ]
+}

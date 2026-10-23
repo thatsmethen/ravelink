@@ -49,7 +49,8 @@ private final class AUToneFixture {
         defer { rl_au_graph_destroy(bridge) }
         let fixture = try AUToneFixture(sources: 2)
         let failing: AURenderBlock = { _, _, _, _, _, _ in -12345 }
-        #expect(rl_au_graph_append(bridge, 1, 7, failing, nil, false))
+        #expect(rl_au_graph_append(bridge, 1, 7, failing, nil, false, 0))
+        #expect(rl_au_graph_finalize(bridge))
         rl_render_set_group_processor(fixture.render, rl_au_graph_process, UnsafeMutableRawPointer(bridge))
         #expect(fixture.block().allSatisfy { $0 == 0 })
         #expect(rl_render_processor_error(fixture.render) == -12345)
@@ -70,7 +71,8 @@ private final class AUToneFixture {
             for buffer in list { buffer.mData?.assumingMemoryBound(to: Float.self).update(repeating: .nan, count: Int(frames)) }
             return noErr
         }
-        #expect(rl_au_graph_append(bridge, 0, 3, invalid, nil, false))
+        #expect(rl_au_graph_append(bridge, 0, 3, invalid, nil, false, 0))
+        #expect(rl_au_graph_finalize(bridge))
         rl_render_set_group_processor(fixture.render, rl_au_graph_process, UnsafeMutableRawPointer(bridge))
         #expect(fixture.block().allSatisfy { $0 == 0 })
         #expect(rl_render_processor_error(fixture.render) == -70003)
@@ -92,6 +94,7 @@ private final class AUToneFixture {
         for frame in 4096..<16384 { maxError = max(maxError, abs(wetSamples[frame * 2] - drySamples[(frame - 96) * 2] * 2)) }
         #expect(maxError < 0.000_03)
         #expect(graph.failureMessage == nil)
+        #expect(abs(graph.alignmentLatencySeconds - 0.002) < 1e-9)
         session.channels[0].audioUnitEffects[0].parameters = [.init(address: 2, value: -6.0206)]
         try graph.updateControls(session: session.expandedRouting().session)
         drySamples = []; wetSamples = []
@@ -104,10 +107,91 @@ private final class AUToneFixture {
         drySamples = []; wetSamples = []
         for _ in 0..<16 { drySamples += dry.block(); wetSamples += wet.block() }
         maxError = 0
-        for index in 8192..<16384 { maxError = max(maxError, abs(wetSamples[index] - drySamples[index])) }
+        for index in 8192..<16384 { maxError = max(maxError, abs(wetSamples[index] - drySamples[index - 192])) }
         #expect(maxError < 0.000_01)
         #expect(try graph.snapshotStates()[id]?.count == 1)
         #expect(rl_render_processor_error(wet.render) == 0)
+    }
+    @Test func bypassAndEmptyRackDelaysSurviveIrregularBlockBoundaries() throws {
+        let bridge = try #require(rl_au_graph_create(3, 512, 48000))
+        defer { rl_au_graph_destroy(bridge) }
+        // The synthetic wet path is irrelevant because both nodes start bypassed.
+        let silent: AURenderBlock = { flags, _, _, _, _, _ in
+            flags.pointee.insert(.unitRenderAction_OutputIsSilence); return noErr
+        }
+        #expect(rl_au_graph_append(bridge, 0, 0, silent, nil, true, 3))
+        #expect(rl_au_graph_append(bridge, 0, 1, silent, nil, true, 4))
+        #expect(rl_au_graph_enable_source(bridge, 1)) // Empty leader still aligns.
+        #expect(rl_au_graph_finalize(bridge))
+        #expect(rl_au_graph_latency_frames(bridge) == 7)
+        #expect(!rl_au_graph_append(bridge, 0, 2, silent, nil, true, 1))
+        var frame = 0
+        for count in [1, 3, 2, 11, 257, 512, 7] {
+            var signal = [Float]()
+            var expected = [Float]()
+            for offset in 0..<count {
+                let input = Float(frame + offset + 1)
+                signal += [input, -input]
+                let delayed = frame + offset < 7 ? Float.zero : input - 7
+                expected += [delayed, -delayed]
+            }
+            var rack = signal, empty = signal, inactive = signal
+            #expect(rl_au_graph_process(UnsafeMutableRawPointer(bridge), 0, &rack, UInt32(count)) == 0)
+            #expect(rl_au_graph_process(UnsafeMutableRawPointer(bridge), 1, &empty, UInt32(count)) == 0)
+            #expect(rl_au_graph_process(UnsafeMutableRawPointer(bridge), 2, &inactive, UInt32(count)) == 0)
+            #expect(rack == expected)
+            #expect(empty == expected)
+            #expect(inactive == signal)
+            frame += count
+        }
+    }
+    @Test func latencyAndDelayMemoryAreBoundedBeforeRendering() throws {
+        let bridge = try #require(rl_au_graph_create(2, 512, 48000))
+        defer { rl_au_graph_destroy(bridge) }
+        let silent: AURenderBlock = { _, _, _, _, _, _ in noErr }
+        #expect(rl_au_graph_set_latency_limits(bridge, 10, 80))
+        #expect(!rl_au_graph_append(bridge, 0, 0, silent, nil, false, 11))
+        #expect(rl_au_graph_append(bridge, 0, 0, silent, nil, false, 10))
+        #expect(!rl_au_graph_append(bridge, 0, 1, silent, nil, false, 1))
+        #expect(rl_au_graph_enable_source(bridge, 1))
+        #expect(!rl_au_graph_finalize(bridge)) // Another 80 bytes needed for empty rack.
+        #expect(!rl_au_graph_finalize(bridge)) // Partial configuration cannot be reused.
+        var samples = [Float](repeating: 0, count: 2)
+        #expect(rl_au_graph_process(UnsafeMutableRawPointer(bridge), 0, &samples, 1) == -70001)
+    }
+    @Test(.enabled(if: ProcessInfo.processInfo.environment["RAVELINK_PLUGIN_RENDER_APPLE"] == "1"))
+    func emptyChannelAlignsWithTwoRealAppleEffects() throws {
+        var session = session()
+        let extra = AudioUnitEffectSlot(descriptor: descriptor, parameters: [.init(address: 2, value: 0)])
+        session.channels[0].audioUnitEffects[0].parameters = [.init(address: 2, value: 0)]
+        session.channels[0].audioUnitEffects.append(extra)
+        session.addChannel(.init(name: "Dry", source: .init(kind: .tone)))
+        let graph = try LiveAudioUnitGraph(session: session, channelParents: [:], sampleRate: 48000, maxFrames: 512)
+        let dry = try AUToneFixture(sources: 2), wet = try AUToneFixture(sources: 2)
+        graph.install(on: wet.render)
+        var drySamples: [Float] = [], wetSamples: [Float] = []
+        for _ in 0..<24 { drySamples += dry.block(); wetSamples += wet.block() }
+        var maxError: Float = 0
+        for index in 8192..<24576 { maxError = max(maxError, abs(wetSamples[index] - drySamples[index - 384])) }
+        #expect(maxError < 0.000_01)
+        #expect(abs(graph.alignmentLatencySeconds - 0.004) < 1e-9)
+        #expect(graph.failureMessage == nil)
+    }
+    @Test(.enabled(if: ProcessInfo.processInfo.environment["RAVELINK_PLUGIN_RENDER_APPLE"] == "1"))
+    func changingAppleAttackDelayStopsUntilGraphReconstruction() throws {
+        var session = session()
+        let graph = try LiveAudioUnitGraph(session: session, channelParents: [:], sampleRate: 48000, maxFrames: 512)
+        let wet = try AUToneFixture()
+        graph.install(on: wet.render)
+        _ = wet.block()
+        session.channels[0].audioUnitEffects[0].parameters.append(.init(address: 0, value: 0.01))
+        #expect(throws: (any Error).self) { try graph.updateControls(session: session) }
+        #expect(graph.failureMessage?.contains("changed its reported latency") == true)
+        #expect(wet.block().allSatisfy { $0 == 0 })
+        #expect(rl_render_processor_error(wet.render) == -70004)
+        let restarted = try LiveAudioUnitGraph(session: session, channelParents: [:], sampleRate: 48000, maxFrames: 512)
+        #expect(abs(restarted.alignmentLatencySeconds - 0.01) < 1e-9)
+        #expect(restarted.failureMessage == nil)
     }
     @Test(.enabled(if: ProcessInfo.processInfo.environment["RAVELINK_PLUGIN_RENDER_APPLE"] == "1"))
     func failedPreparationCanReleasePartlyCreatedGraph() throws {

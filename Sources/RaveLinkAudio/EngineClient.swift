@@ -25,6 +25,7 @@ private final class EngineClientBundleMarker: NSObject {}
     @Published public private(set) var channelMeters: [UUID: Float] = [:]
     @Published public private(set) var busMeters: [UUID: Float] = [:]
     @Published public private(set) var diagnostics = AudioDiagnostics()
+    @Published public private(set) var soundCheck: SoundCheckSnapshot?
     @Published public private(set) var helperProcessID: Int32?
     private let helperURL: URL?
     private let timeouts: EngineTimeouts
@@ -38,6 +39,8 @@ private final class EngineClientBundleMarker: NSObject {}
     private var updateTask: Task<Void, Never>?
     private var latestUpdate: MixerSession?
     private var updateIdentity: UUID?
+    private var soundCheckChannelID: UUID?
+    private var soundCheckExcludedApplications: [String] = []
 
     public init(helperURL: URL? = EngineClient.defaultHelperURL(), timeouts: EngineTimeouts = .init(), autoDiscover: Bool = true) {
         self.helperURL = helperURL; self.timeouts = timeouts
@@ -66,17 +69,36 @@ private final class EngineClientBundleMarker: NSObject {}
         } catch { fail(error.localizedDescription) }
     }
     public func start(session: MixerSession) throws {
+        try start(session: session, soundCheckChannelID: nil)
+    }
+    public func startSoundCheck(session: MixerSession, channelID: UUID, excludedApplications: [String] = []) throws {
+        try validateSoundCheckSession(session, channelID: channelID)
+        try start(session: session, soundCheckChannelID: channelID, excludedApplications: validatedExcludedApplications(excludedApplications))
+    }
+    public func soundCheckCommand(_ command: SoundCheckCommand) throws {
+        guard running, soundCheckChannelID != nil else {
+            throw AudioRoutingError.configuration("Start Sound Check before controlling its clip.")
+        }
+        generation &+= 1
+        let request = EngineRequest(generation: generation, operation: .soundCheckCommand, soundCheckCommand: command)
+        sessionRequest = request.id; sessionOperation = .soundCheckCommand
+        transport?.enqueue(request, timeout: timeouts.stop)
+    }
+    private func start(session: MixerSession, soundCheckChannelID: UUID?, excludedApplications: [String] = []) throws {
         _ = try session.validated()
+        let operation: EngineOperation = soundCheckChannelID == nil ? .start : .startSoundCheck
         // Verify wire size before replacing a working helper.
-        _ = try EngineWire.encode(EngineRequest(generation: generation, operation: .start, session: session))
+        _ = try EngineWire.encode(EngineRequest(generation: generation, operation: operation, session: session, soundCheckChannelID: soundCheckChannelID, excludedApplications: soundCheckChannelID == nil ? nil : excludedApplications))
         cancelUpdates()
         replaceTransport()
         generation &+= 1; starting = true; running = false; errorMessage = nil
+        self.soundCheckChannelID = soundCheckChannelID; soundCheck = nil
+        soundCheckExcludedApplications = excludedApplications
         channelMeters = [:]; busMeters = [:]; diagnostics = .init()
         do {
             try ensureTransport()
-            let request = EngineRequest(generation: generation, operation: .start, session: session)
-            sessionRequest = request.id; sessionOperation = .start
+            let request = EngineRequest(generation: generation, operation: operation, session: session, soundCheckChannelID: soundCheckChannelID, excludedApplications: soundCheckChannelID == nil ? nil : excludedApplications)
+            sessionRequest = request.id; sessionOperation = operation
             transport?.enqueue(request, timeout: timeouts.start)
         } catch { fail(error.localizedDescription); throw error }
     }
@@ -86,11 +108,13 @@ private final class EngineClientBundleMarker: NSObject {}
         // An edit during a pending start invalidates that process immediately.
         // A newly spawned helper receives the complete latest snapshot.
         if starting {
-            let request = EngineRequest(generation: generation &+ 1, operation: .start, session: session)
+            if let soundCheckChannelID { try validateSoundCheckSession(session, channelID: soundCheckChannelID) }
+            let operation: EngineOperation = soundCheckChannelID == nil ? .start : .startSoundCheck
+            let request = EngineRequest(generation: generation &+ 1, operation: operation, session: session, soundCheckChannelID: soundCheckChannelID, excludedApplications: soundCheckChannelID == nil ? nil : soundCheckExcludedApplications)
             _ = try EngineWire.encode(request)
             if transport?.replaceQueuedStart(request, timeout: timeouts.start) == true {
-                generation = request.generation; sessionRequest = request.id; sessionOperation = .start
-            } else { try start(session: session) }
+                generation = request.generation; sessionRequest = request.id; sessionOperation = operation
+            } else { try start(session: session, soundCheckChannelID: soundCheckChannelID, excludedApplications: soundCheckExcludedApplications) }
             return
         }
         latestUpdate = session
@@ -111,7 +135,7 @@ private final class EngineClientBundleMarker: NSObject {}
     }
     public func stop() {
         cancelUpdates()
-        generation &+= 1; running = false; starting = false; channelMeters = [:]; busMeters = [:]
+        generation &+= 1; running = false; starting = false; channelMeters = [:]; busMeters = [:]; soundCheck = nil; soundCheckChannelID = nil
         guard let transport else { return }
         let request = EngineRequest(generation: generation, operation: .stop)
         sessionRequest = request.id; sessionOperation = .stop
@@ -120,7 +144,7 @@ private final class EngineClientBundleMarker: NSObject {}
     /// Application termination and tests use this to close and reap the helper.
     public func shutdown() {
         cancelUpdates()
-        generation &+= 1; running = false; starting = false; channelMeters = [:]; busMeters = [:]
+        generation &+= 1; running = false; starting = false; channelMeters = [:]; busMeters = [:]; soundCheck = nil; soundCheckChannelID = nil
         sessionRequest = nil; sessionOperation = nil; discoveryRequest = nil
         transport?.cancel(); retiringTransport = transport ?? retiringTransport; transport = nil
         connection = UUID(); helperProcessID = nil
@@ -159,10 +183,19 @@ private final class EngineClientBundleMarker: NSObject {}
             if response.kind == .reply && !response.success {
                 fail(userFacing(response.errorMessage ?? "The audio engine rejected this route.")); return
             }
-            if sessionOperation != .start && sessionOperation != .stop {
+            if sessionOperation != .start && sessionOperation != .startSoundCheck && sessionOperation != .stop {
                 running = response.snapshot.running; starting = response.snapshot.starting
             }
             channelMeters = response.snapshot.channelMeters; busMeters = response.snapshot.busMeters; diagnostics = response.snapshot.diagnostics
+            if sessionOperation != .stop {
+                if response.snapshot.running, soundCheckChannelID != nil, response.snapshot.soundCheck == nil {
+                    fail("The audio engine stopped reporting its Sound Check clip and was stopped."); return
+                }
+                if let check = response.snapshot.soundCheck, check.channelID != soundCheckChannelID {
+                    fail("The audio engine returned Sound Check data for an unexpected input and was stopped."); return
+                }
+                soundCheck = response.snapshot.soundCheck
+            }
             if let message = response.errorMessage {
                 // A local HAL watchdog indicates that this helper is unusable;
                 // terminate it so the next manual start gets a fresh process.
@@ -174,6 +207,7 @@ private final class EngineClientBundleMarker: NSObject {}
     private func fail(_ message: String) {
         running = false; starting = false; errorMessage = message
         channelMeters = [:]; busMeters = [:]; sessionRequest = nil; sessionOperation = nil; discoveryRequest = nil
+        soundCheck = nil; soundCheckChannelID = nil
         cancelUpdates()
         transport?.cancel(); retiringTransport = transport ?? retiringTransport; transport = nil
         connection = UUID(); helperProcessID = nil
@@ -213,7 +247,7 @@ private final class EngineTransport: @unchecked Sendable {
         lock.lock(); defer { lock.unlock() }
         guard !cancelled else { return }
         if request.operation == .update { commands.removeAll { $0.request.operation == .update } }
-        if request.operation == .stop { commands.removeAll { $0.request.operation == .update || $0.request.operation == .start } }
+        if request.operation == .stop { commands.removeAll { $0.request.operation != .discover } }
         guard commands.count < 8 else { cancelled = true; event(.failed("Too many pending audio commands. The engine was stopped.")); return }
         commands.append(Queued(request: request, deadline: DispatchTime.now().uptimeNanoseconds + UInt64(timeout * 1_000_000_000)))
     }
@@ -223,7 +257,7 @@ private final class EngineTransport: @unchecked Sendable {
     func replaceQueuedStart(_ request: EngineRequest, timeout: TimeInterval) -> Bool {
         lock.lock(); defer { lock.unlock() }
         guard !cancelled, !launching else { return false }
-        commands.removeAll { $0.request.operation == .start || $0.request.operation == .update }
+        commands.removeAll { $0.request.operation == .start || $0.request.operation == .startSoundCheck || $0.request.operation == .update }
         commands.append(Queued(request: request, deadline: DispatchTime.now().uptimeNanoseconds + UInt64(timeout * 1_000_000_000)))
         return true
     }

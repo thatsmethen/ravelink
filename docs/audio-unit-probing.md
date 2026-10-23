@@ -84,3 +84,21 @@ The opt-in installed `master_me` test verifies finite output, parameter applicat
 RAVELINK_PLUGIN_RENDER_APPLE=1 scripts/test.sh --filter LiveAudioUnitTests
 RAVELINK_PLUGIN_RENDER_MASTER_ME=1 scripts/test.sh --filter ThirdPartyAudioUnitTests
 ```
+
+## Reported processing latency alignment
+
+Each live slot reports `AUAudioUnit.latency` after resource allocation. The host converts seconds to the nearest sample at that output's rate. The dry branch of host bypass is delayed by the same number of samples, and shorter or empty leader racks receive the remaining delay needed to match the longest rack on that output clock. Group children do not allocate redundant delays. Bypass keeps the configured alignment delay while its 5 ms dry/wet transition runs.
+
+Delay rings are allocated before callbacks begin. Total reported processing latency is limited to two seconds per rack, and all dry/alignment rings together have a 128 MiB budget per output graph. Exceeding either limit rejects startup with an actionable error. These are resource bounds, independent of the number of channels stored in a session. Changing a parameter that changes reported latency latches output silence and requires explicit restart, which rebuilds delays from the new settings. Latency is also checked during engine telemetry polling, so an asynchronous vendor change can remain undetected until the next poll. The host cannot compensate latency that a plug-in does not report correctly.
+
+`LiveAudioUnitGraph.alignmentLatencySeconds` reports the aligned effect-processing delay. This excludes capture FIFO, sample-rate conversion, hardware, network, and transport delay; it does not measure round-trip latency or synchronize separate physical output clocks. Per-slot nearest-sample rounding may introduce up to half a sample of difference from a fractional reported delay.
+
+Apple's [`latency` contract](https://developer.apple.com/documentation/audiotoolbox/auaudiounit/latency) distinguishes processing latency from intentional delay/reverb and recommends fixed latency while rendering. The host SDK `AUAudioUnit.h` (latency property documentation) was also inspected because the web page's Markdown rendition was unavailable to the browser tool.
+
+The local native-hook checks now include two real Apple limiters in series plus an empty channel: both routes align at 192 samples at 48 kHz. A single limiter remains aligned at 96 samples through gain and bypass changes. Changing Apple attack time from 2 ms to 10 ms demonstrably changes reported latency, latches silence, and succeeds after explicit graph reconstruction. Synthetic checks cover irregular block boundaries, cumulative bypass delay, empty-rack alignment, inactive group children, resource rejection, and use of an unfinished graph. Evidence is recorded in `research/evidence/audio-unit-latency.json`. No hardware device was started by these checks.
+
+## Independent installed-HAL acceptance
+
+The opt-in CI path `scripts/run-au-loopback.sh` starts an independent recorder on the installed virtual device, then exercises the supervised engine through `EngineClient`: Apple limiter +6.0206 dB, a live change to -6.0206 dB, host bypass, a saved/restored +12 dB state, and final master mute. The engine must keep its process identity through the sequence. `verify-au-loopback.py` checks ordered, sustained 440 Hz stereo output against predetermined gains, with bounded transition and restart windows. It does not fit gains to observed samples or claim physical latency measurement.
+
+Raw PCM, test/recorder logs, control metadata, analysis, and individual exit statuses are preserved even if an engine assertion fails. Synthetic verifier tests establish acceptance/rejection behavior only. A successful installed-HAL result must be recorded separately with its CI run and artifact provenance; adding this test to CI does not establish a pass.

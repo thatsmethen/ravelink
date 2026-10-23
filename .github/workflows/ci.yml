@@ -29,6 +29,8 @@ jobs:
   installed-driver:
     runs-on: macos-15
     timeout-minutes: 12
+    env:
+      RAVELINK_TEST_CONFIGURATION: release
     steps:
       - uses: actions/checkout@v4
       - name: Host identity
@@ -45,7 +47,12 @@ jobs:
           sudo killall coreaudiod || true
           sleep 5
       - name: Compile integration tests
-        run: scripts/test.sh --filter testInvalidStartFailsWithActionableErrorAndStaysStopped
+        id: integration_build
+        run: |
+          set -o pipefail
+          printf '%s\n' "$RAVELINK_TEST_CONFIGURATION" > build/integration-configuration.txt
+          scripts/test.sh --filter testInvalidStartFailsWithActionableErrorAndStaysStopped 2>&1 | tee build/integration-compile.log
+          shasum -a 256 .build/release/RaveLinkEngine .build/release/RaveLinkPluginHost .build/release/RaveLinkPackageTests.xctest/Contents/MacOS/RaveLinkPackageTests > build/integration-binary-sha256.txt
       - name: Actual installed HAL loopback
         env:
           RAVELINK_TEST_LOOPBACK: '1'
@@ -95,15 +102,24 @@ jobs:
           RAVELINK_AU_DEVICE_UID: RaveLink.ci-loopback_UID
         run: scripts/run-au-loopback.sh
       - name: Grouped real input and eight mix soak
+        if: ${{ !cancelled() && steps.integration_build.outcome == 'success' }}
         env:
           RAVELINK_TEST_DEVICE_SOAK: '1'
         run: scripts/run-device-soak.sh
+      - name: Independent installed HAL Sound Check acceptance
+        if: ${{ !cancelled() && steps.integration_build.outcome == 'success' }}
+        env:
+          RAVELINK_TEST_SOUND_CHECK: '1'
+        run: scripts/run-sound-check.sh
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: installed-driver-evidence
           path: |
             build/installed-driver-test.log
+            build/integration-configuration.txt
+            build/integration-compile.log
+            build/integration-binary-sha256.txt
             build/installed-devices.txt
             build/receiver.log
             build/independent-loopback.*
@@ -117,6 +133,9 @@ jobs:
             build/soak-*.wav
             build/soak-*.json
             build/soak-*.log
+            build/sound-check-*.wav
+            build/sound-check-*.json
+            build/sound-check-*.log
             build/ci-drivers/manifest.json
             build/ci-drivers/*.driver/Contents/Resources/build-info.json
       - name: Remove test device

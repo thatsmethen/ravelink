@@ -32,8 +32,19 @@ for attempt in {1..30}; do
   sleep 1
 done
 test -f "$soak_dir/soak-a-ready" && test -f "$soak_dir/soak-b-ready" && test -f "$soak_dir/soak-feeder-ready"
-RAVELINK_SOAK_GO_FILE="$soak_dir/soak-go" RAVELINK_SOAK_REPORT="$soak_dir/soak-engine.json" scripts/test.sh --skip-build --filter installedGroupedDeviceInputThirtySecondSoak 2>&1 | tee "$soak_dir/soak-test.log"
-wait "$feeder"; feeder=''
-wait "$receiver_a"; receiver_a=''
-wait "$receiver_b"; receiver_b=''
-python3 scripts/verify-device-soak.py "$soak_dir" | tee "$soak_dir/soak-analysis.json"
+# An engine assertion must not destroy the independent observation of its failure.
+# Each probe has its own timeout and process-group cleanup, so let all recordings
+# finish before preserving the final nonzero result.
+engine_status=0; feeder_status=0; receiver_a_status=0; receiver_b_status=0; analysis_status=0
+RAVELINK_SOAK_GO_FILE="$soak_dir/soak-go" RAVELINK_SOAK_REPORT="$soak_dir/soak-engine.json" scripts/test.sh --skip-build --filter installedGroupedDeviceInputThirtySecondSoak 2>&1 | tee "$soak_dir/soak-test.log" || engine_status=$?
+wait "$feeder" || feeder_status=$?; feeder=''
+wait "$receiver_a" || receiver_a_status=$?; receiver_a=''
+wait "$receiver_b" || receiver_b_status=$?; receiver_b=''
+python3 scripts/verify-device-soak.py "$soak_dir" 2> "$soak_dir/soak-analysis.log" | tee "$soak_dir/soak-analysis.json" || analysis_status=$?
+printf '{"engine":%s,"feeder":%s,"receiverA":%s,"receiverB":%s,"analysis":%s}\n' \
+  "$engine_status" "$feeder_status" "$receiver_a_status" "$receiver_b_status" "$analysis_status" > "$soak_dir/soak-exit-status.json"
+if (( engine_status || feeder_status || receiver_a_status || receiver_b_status || analysis_status )); then
+  cat "$soak_dir/soak-exit-status.json" >&2
+  cat "$soak_dir/soak-analysis.log" >&2
+  exit 1
+fi

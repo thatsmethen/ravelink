@@ -7,16 +7,22 @@ struct EngineDiagnosticsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 18) {
             Text("Engine diagnostics").font(.title2.weight(.semibold))
-            LabeledContent("State", value: audio.starting ? "Connecting" : (audio.running ? "Running" : "Stopped"))
+            row("State", audio.starting ? "Connecting" : (audio.running ? "Running" : "Stopped"))
             Divider()
-            LabeledContent("Captured frames", value: String(audio.diagnostics.capturedFrames))
-            LabeledContent("Rendered frames", value: String(audio.diagnostics.renderedFrames))
-            LabeledContent("Input overflow frames", value: String(audio.diagnostics.droppedFrames))
-            LabeledContent("Buffer underrun frames", value: String(audio.diagnostics.underrunFrames))
-            LabeledContent("Oversized device blocks", value: String(audio.diagnostics.oversizedBlocks))
+            row("Captured frames", String(audio.diagnostics.capturedFrames))
+            row("Rendered frames", String(audio.diagnostics.renderedFrames))
+            row("Input overflow frames", String(audio.diagnostics.droppedFrames))
+            row("Buffer underrun frames", String(audio.diagnostics.underrunFrames))
+            row("Oversized device blocks", String(audio.diagnostics.oversizedBlocks))
+            row("AU alignment delay", String(format: "%.2f ms", audio.diagnostics.effectAlignmentLatencySeconds * 1000))
+            Text("AU alignment uses the effects’ reported delay. It excludes device and capture latency.").font(.caption).foregroundStyle(.secondary)
             Text("Counters combine active paths in this run. Increasing overflow or underrun counts can explain clicks or gaps. Reduce active sources or align device sample rates, then start again.").font(.caption).foregroundStyle(.secondary)
             if let error = audio.errorMessage { Text(error).font(.callout).foregroundStyle(.orange).textSelection(.enabled) }
             HStack { Spacer(); Button("Done") { dismiss() }.keyboardShortcut(.defaultAction).buttonStyle(AccentButtonStyle()) }
         }.padding(28).frame(width: 500)
+    }
+    private func row(_ title: String, _ value: String) -> some View {
+        LabeledContent(title, value: value)
+            .accessibilityElement(children: .ignore).accessibilityLabel(title).accessibilityValue(value)
     }
 }

@@ -16,6 +16,7 @@ public final class LiveAudioUnitGraph {
         let source: UInt32, slot: UInt32, channelID: UUID, slotID: UUID
         let channelName: String, name: String
         let wrapper: AVAudioUnit
+        let latencyFrames: UInt32
         let renderBlock: AURenderBlock
         let scheduleBlock: AUScheduleParameterBlock
         let parameters: [UInt64: ParameterInfo]
@@ -25,7 +26,11 @@ public final class LiveAudioUnitGraph {
     private let bridge: OpaquePointer
     private let topology: MixerSession
     private var units: [UnitRecord] = []
+    private var latencyFailure: String?
     public let sampleRate: Double
+    /// Reported AU processing delay aligned across leader channels on this clock.
+    /// Excludes capture FIFO, device, transport, and converter latency.
+    public var alignmentLatencySeconds: Double { Double(rl_au_graph_latency_frames(bridge)) / sampleRate }
 
     public init(session: MixerSession, channelParents: [UUID: UUID], sampleRate: Double, maxFrames: UInt32) throws {
         _ = try session.validated()
@@ -37,15 +42,17 @@ public final class LiveAudioUnitGraph {
         do {
             for (source, channel) in session.channels.enumerated() {
                 guard channelParents[channel.id] == channel.id || channelParents[channel.id] == nil else { continue }
+                guard rl_au_graph_enable_source(bridge, UInt32(source)) else { throw SessionError.invalid("Could not configure effect alignment for \(channel.name).") }
                 for (slotIndex, slot) in channel.audioUnitEffects.enumerated() {
                     guard slotIndex <= Int(UInt32.max) else { throw SessionError.invalid("The effect rack exceeds addressable size.") }
                     let record = try Self.prepare(slot, source: UInt32(source), slotIndex: UInt32(slotIndex), channel: channel, rate: sampleRate)
                     units.append(record)
-                    guard rl_au_graph_append(bridge, record.source, record.slot, record.renderBlock, record.scheduleBlock, slot.isBypassed) else {
-                        throw SessionError.invalid("Could not prepare \(slot.descriptor.name) on \(channel.name).")
+                    guard rl_au_graph_append(bridge, record.source, record.slot, record.renderBlock, record.scheduleBlock, slot.isBypassed, record.latencyFrames) else {
+                        throw SessionError.invalid("Could not prepare \(slot.descriptor.name) on \(channel.name). Racks are limited to two seconds of reported latency and 128 MiB of delay storage per output.")
                     }
                 }
             }
+            guard rl_au_graph_finalize(bridge) else { throw SessionError.invalid("Could not allocate effect alignment delays within the 128 MiB output budget. Reduce rack latency or the number of input channels.") }
         } catch {
             // All stored properties are initialized, so Swift runs deinit when
             // this initializer throws. Do not free the bridge a second time.
@@ -61,6 +68,7 @@ public final class LiveAudioUnitGraph {
         rl_render_set_group_processor(render, rl_au_graph_process, UnsafeMutableRawPointer(bridge))
     }
     public var failureMessage: String? {
+        if let changed = checkLatency() { return changed }
         var source: UInt32 = 0, slot: UInt32 = 0
         let error = rl_au_graph_error(bridge, &source, &slot)
         guard error != 0 else { return nil }
@@ -111,6 +119,26 @@ public final class LiveAudioUnitGraph {
             }
             record.applied = values; record.bypassed = bypassed; units[index] = record
         }
+        if let changed = checkLatency() { throw SessionError.invalid(changed) }
+    }
+    // AU latency may change when a parameter or vendor state changes. Poll only on
+    // the engine control queue, then latch the callback silent until a new graph.
+    private func checkLatency() -> String? {
+        if let latencyFailure { return latencyFailure }
+        for record in units {
+            let current = Self.latencyFrames(record.wrapper.auAudioUnit.latency, rate: sampleRate)
+            if current != record.latencyFrames {
+                let message = "\(record.name) on \(record.channelName) changed its reported latency. Audio stopped to preserve channel alignment. Start audio again to rebuild its delays."
+                latencyFailure = message
+                rl_au_graph_invalidate(bridge, record.source, record.slot, -70004)
+                return message
+            }
+        }
+        return nil
+    }
+    private static func latencyFrames(_ seconds: Double, rate: Double) -> UInt32? {
+        guard seconds.isFinite, seconds >= 0, seconds <= 2 else { return nil }
+        return UInt32((seconds * rate).rounded())
     }
     /// Control-queue-only state snapshot. Never called from the render callback.
     public func snapshotStates() throws -> [UUID: [UUID: AudioUnitState]] {
@@ -180,9 +208,10 @@ public final class LiveAudioUnitGraph {
         // Fetch both host blocks before allocation, as required by the AU contract.
         let renderBlock = unit.renderBlock, scheduleBlock = unit.scheduleParameterBlock
         try unit.allocateRenderResources(); unit.reset()
+        guard let latency = latencyFrames(unit.latency, rate: rate) else { throw SessionError.invalid("\(slot.descriptor.name) reports an invalid latency or more than two seconds of delay.") }
         prepared = true
         return .init(source: source, slot: slotIndex, channelID: channel.id, slotID: slot.id, channelName: channel.name,
-                     name: slot.descriptor.name, wrapper: wrapper, renderBlock: renderBlock, scheduleBlock: scheduleBlock, parameters: metadata,
+                     name: slot.descriptor.name, wrapper: wrapper, latencyFrames: latency, renderBlock: renderBlock, scheduleBlock: scheduleBlock, parameters: metadata,
                      applied: Dictionary(slot.parameters.map { ($0.address, $0.value) }, uniquingKeysWith: { _, value in value }), bypassed: slot.isBypassed)
     }
 }

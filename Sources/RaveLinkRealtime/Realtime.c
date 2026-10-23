@@ -260,6 +260,7 @@ struct RLRender {
     _Atomic uint64_t frames, oversized;
     RLGroupProcessor processor; void *processorContext;
     _Atomic int32_t processorError;
+    RLSoundCheck *soundCheck; uint32_t soundCheckLeader;
 };
 RLRender *rl_render_create(double rate, uint32_t maxFrames, uint32_t sourceCount, uint32_t busCount) {
     if (!atomics_supported() || !maxFrames || !isfinite(rate) || rate < 8000) return NULL;
@@ -296,6 +297,10 @@ void rl_render_set_group_processor(RLRender *r, RLGroupProcessor processor, void
     if (!r) return; r->processor = processor; r->processorContext = context;
 }
 int32_t rl_render_processor_error(RLRender *r) { return r ? atomic_load(&r->processorError) : 0; }
+bool rl_render_set_sound_check(RLRender *r, uint32_t leader, RLSoundCheck *check) {
+    if (!r || leader >= r->sourceCount || r->sources[leader].leader != leader || !check) return false;
+    r->soundCheck = check; r->soundCheckLeader = leader; return true;
+}
 void rl_render_set_source(RLRender *r, uint32_t i, RLRing *ring, double inputRate, bool tone) {
     if (!r || i >= r->sourceCount) return;
     r->sources[i].ring = ring; r->sources[i].ratio = inputRate / r->sampleRate; r->sources[i].tone = tone;
@@ -363,11 +368,13 @@ OSStatus rl_render_callback(AudioObjectID device, const AudioTimeStamp *now, con
         RLSource *src = &r->sources[s];
         if (src->leader != s) continue;
         float *group = r->groupScratch + (size_t)s * frames * 2;
+        if (r->soundCheck && s == r->soundCheckLeader) rl_sound_check_process(r->soundCheck, group, frames);
         rl_dsp_process(src->dsp, group, frames);
         if (r->processor) {
             int32_t status = r->processor(r->processorContext, s, group, frames);
             if (status) { atomic_store(&r->processorError, status); return noErr; }
         }
+        if (r->soundCheck && s == r->soundCheckLeader) rl_sound_check_silence_if_stopped(r->soundCheck, group, frames);
         float peak = 0;
         for (size_t sample = 0; sample < (size_t)frames * 2; sample++) peak = fmaxf(peak, fabsf(group[sample]));
         peak_store(&src->peak, peak);

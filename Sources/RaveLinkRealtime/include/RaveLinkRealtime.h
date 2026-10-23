@@ -3,6 +3,7 @@
 #include <CoreAudio/CoreAudio.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include "SoundCheck.h"
 
 // All allocation occurs while the graph is stopped. Controls and telemetry use
 // lock-free C11 atomics; each FIFO has exactly one capture writer and render reader.
@@ -47,6 +48,8 @@ void rl_render_destroy(RLRender *render);
 typedef int32_t (*RLGroupProcessor)(void *context, uint32_t sourceIndex, float *stereo, uint32_t frames);
 void rl_render_set_group_processor(RLRender *render, RLGroupProcessor processor, void *context);
 int32_t rl_render_processor_error(RLRender *render);
+// Configure only while stopped. Sound Check storage must outlive callbacks.
+bool rl_render_set_sound_check(RLRender *render, uint32_t leader, RLSoundCheck *check);
 void rl_render_set_source(RLRender *render, uint32_t index, RLRing *ring,
                           double inputSampleRate, bool tone);
 // Configure while callbacks are stopped. Leaders must be direct roots; invalid
