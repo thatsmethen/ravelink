@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-24",
+  "platform": "macOS arm64",
+  "build": "development, uncommitted initial Rust workspace",
+  "runtime_actions": [
+    "Launched native application through CUA",
+    "Created one test-tone source",
+    "Enabled Monitor route",
+    "Set Monitor send to -12 dB and muted it",
+    "Selected Stream and verified source was not routed",
+    "Saved and reopened studio; same routing present; audio stopped",
+    "Quit normally; process absent"
+  ],
+  "counts": {
+    "inputs": 1,
+    "buses": 3,
+    "sends": 1
+  },
+  "studio_sha256": "94efd0f900d0d205944bbd291fa87a078ea469d7a3c1b462fedc5b123f3a6615",
+  "app_binary_sha256": "feeac0c324354edf4c85b8f36728e8a8988f01fbb3ae46486cffab446318f99d",
+  "source_audio_started": false,
+  "system_defaults_changed": false,
+  "driver_installed": false,
+  "initial_failure": {
+    "type": "native launch aborted before UI",
+    "finding": "WGPU native backend features omitted",
+    "fix": "Explicit Metal on macOS and DX12 on Windows",
+    "source_report": "ravelink-app-2026-10-24-092556.ips"
+  },
+  "limits": [
+    "Initial routing UI only; no physical or installed virtual audio run",
+    "No native Windows observation",
+    "No large-studio native benchmark yet",
+    "Legacy studio at RaveLink/session.json untouched"
+  ]
+}

@@ -1,2 +1,4 @@
-# Keep vendored source byte-identical to its pinned upstream hash.
-Drivers/BlackHole/* -whitespace
+* text=auto eol=lf
+*.png -text
+*.gz -text
+*.wav -text

@@ -1,0 +1,432 @@
+use crate::{
+    dsp::{sanitize, Frame, Processor},
+    session::db_to_gain,
+    InputKind, Session, SessionError,
+};
+use std::{error::Error, fmt, mem::size_of};
+use uuid::Uuid;
+
+/// A host-selected memory and callback-size budget. Channel counts are derived
+/// from available memory rather than a fixed input or mix count in the product.
+/// The estimate covers owned graph arrays and their frame buffers, not the
+/// caller's session, source/destination buffers, or allocator bookkeeping.
+#[derive(Clone, Copy, Debug)]
+pub struct ResourceBudget {
+    pub max_block_frames: usize,
+    pub max_working_bytes: usize,
+}
+
+impl Default for ResourceBudget {
+    fn default() -> Self {
+        Self {
+            max_block_frames: 2048,
+            max_working_bytes: 64 * 1024 * 1024,
+        }
+    }
+}
+
+pub struct StereoInput<'a> {
+    pub id: Uuid,
+    pub left: &'a [f32],
+    pub right: &'a [f32],
+}
+
+pub struct StereoOutput<'a> {
+    pub id: Uuid,
+    pub left: &'a mut [f32],
+    pub right: &'a mut [f32],
+}
+
+/// Post-control, post-DSP meters for the last rendered block. Hosts can copy
+/// these fixed-size values into their own callback-safe meter transport.
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MeterReading {
+    pub id: Uuid,
+    pub peak: [f32; 2],
+    pub rms: [f32; 2],
+    pub clipped_samples: [u64; 2],
+}
+
+impl MeterReading {
+    fn empty(id: Uuid) -> Self {
+        Self {
+            id,
+            peak: [0.0; 2],
+            rms: [0.0; 2],
+            clipped_samples: [0; 2],
+        }
+    }
+    fn measure(&mut self, frames: &[Frame]) {
+        self.peak = [0.0; 2];
+        self.rms = [0.0; 2];
+        self.clipped_samples = [0; 2];
+        let mut squares = [0.0_f64; 2];
+        for frame in frames {
+            for channel in 0..2 {
+                let sample = frame[channel];
+                self.peak[channel] = self.peak[channel].max(sample.abs());
+                squares[channel] += f64::from(sample) * f64::from(sample);
+                if sample.abs() > 1.0 {
+                    self.clipped_samples[channel] += 1;
+                }
+            }
+        }
+        if !frames.is_empty() {
+            for (channel, sum) in squares.iter().enumerate() {
+                self.rms[channel] = (sum / frames.len() as f64).sqrt() as f32;
+            }
+        }
+    }
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum RenderError {
+    BlockTooLarge {
+        requested: usize,
+        maximum: usize,
+    },
+    BufferTooShort {
+        id: Uuid,
+        required: usize,
+        available: usize,
+    },
+    UnknownInput(Uuid),
+    UnknownBus(Uuid),
+    DuplicateInput(Uuid),
+    DuplicateBus(Uuid),
+}
+
+impl fmt::Display for RenderError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::BlockTooLarge { requested, maximum } => write!(
+                f,
+                "render block has {requested} frames; configured maximum is {maximum}"
+            ),
+            Self::BufferTooShort {
+                id,
+                required,
+                available,
+            } => write!(f, "buffer {id} has {available} frames; {required} required"),
+            Self::UnknownInput(id) => write!(f, "unknown input buffer {id}"),
+            Self::UnknownBus(id) => write!(f, "unknown output bus {id}"),
+            Self::DuplicateInput(id) => write!(f, "duplicate input buffer {id}"),
+            Self::DuplicateBus(id) => write!(f, "duplicate output buffer {id}"),
+        }
+    }
+}
+impl Error for RenderError {}
+
+struct Tone {
+    phase: f64,
+    increment: f64,
+    amplitude: f32,
+}
+
+impl Tone {
+    fn next(&mut self) -> f32 {
+        let sample = self.phase.sin() as f32 * self.amplitude;
+        self.phase += self.increment;
+        if self.phase >= std::f64::consts::TAU {
+            self.phase -= std::f64::consts::TAU;
+        }
+        sample
+    }
+}
+
+struct CompiledChannel {
+    id: Uuid,
+    frames: Vec<Frame>,
+    processor: Processor,
+    gains: [f32; 2],
+    active: bool,
+    tone: Option<Tone>,
+}
+
+struct CompiledSend {
+    input_index: usize,
+    bus_index: usize,
+    gains: [f32; 2],
+    active: bool,
+}
+
+pub struct CompiledMixer {
+    sample_rate: u32,
+    max_block_frames: usize,
+    working_bytes: usize,
+    inputs: Vec<CompiledChannel>,
+    buses: Vec<CompiledChannel>,
+    sends: Vec<CompiledSend>,
+    input_meters: Vec<MeterReading>,
+    bus_meters: Vec<MeterReading>,
+}
+
+impl CompiledMixer {
+    /// Must run off the audio thread. The session is copied into an immutable
+    /// topology; subsequent session edits do not change this graph.
+    pub fn compile(session: &Session, budget: ResourceBudget) -> Result<Self, SessionError> {
+        session.validate()?;
+        if budget.max_block_frames == 0 {
+            return Err(SessionError::Invalid(
+                "max_block_frames must be greater than zero".into(),
+            ));
+        }
+        let overflow = || SessionError::ResourceBudget {
+            resource: "working bytes",
+            required: usize::MAX,
+            allowed: budget.max_working_bytes,
+        };
+        let channel_count = session
+            .inputs
+            .len()
+            .checked_add(session.buses.len())
+            .ok_or_else(overflow)?;
+        let frame_bytes = budget
+            .max_block_frames
+            .checked_mul(size_of::<Frame>())
+            .ok_or_else(overflow)?;
+        let channel_bytes = size_of::<CompiledChannel>()
+            .checked_add(size_of::<MeterReading>())
+            .and_then(|n| n.checked_add(frame_bytes))
+            .ok_or_else(overflow)?;
+        let working_bytes = channel_count
+            .checked_mul(channel_bytes)
+            .and_then(|n| {
+                session
+                    .sends
+                    .len()
+                    .checked_mul(size_of::<CompiledSend>())
+                    .and_then(|s| n.checked_add(s))
+            })
+            .and_then(|n| n.checked_add(size_of::<Self>()))
+            .ok_or_else(overflow)?;
+        if working_bytes > budget.max_working_bytes {
+            return Err(SessionError::ResourceBudget {
+                resource: "working bytes",
+                required: working_bytes,
+                allowed: budget.max_working_bytes,
+            });
+        }
+        let input_solo = session.inputs.iter().any(|input| input.controls.solo);
+        let bus_solo = session.buses.iter().any(|bus| bus.controls.solo);
+        let mut inputs = reserved_vec(session.inputs.len())?;
+        let mut buses = reserved_vec(session.buses.len())?;
+        let mut sends = reserved_vec(session.sends.len())?;
+        let mut input_meters = reserved_vec(session.inputs.len())?;
+        let mut bus_meters = reserved_vec(session.buses.len())?;
+        for input in &session.inputs {
+            let tone = match input.kind {
+                InputKind::TestTone {
+                    frequency_hz,
+                    amplitude_db,
+                } => Some(Tone {
+                    phase: 0.0,
+                    increment: std::f64::consts::TAU * f64::from(frequency_hz)
+                        / f64::from(session.sample_rate),
+                    amplitude: db_to_gain(amplitude_db),
+                }),
+                _ => None,
+            };
+            inputs.push(CompiledChannel {
+                id: input.id,
+                frames: frame_buffer(budget.max_block_frames)?,
+                processor: Processor::new(&input.dsp, session.sample_rate),
+                gains: input.controls.gains(),
+                active: !input.controls.muted && (!input_solo || input.controls.solo),
+                tone,
+            });
+            input_meters.push(MeterReading::empty(input.id));
+        }
+        for bus in &session.buses {
+            buses.push(CompiledChannel {
+                id: bus.id,
+                frames: frame_buffer(budget.max_block_frames)?,
+                processor: Processor::new(&bus.dsp, session.sample_rate),
+                gains: bus.controls.gains(),
+                active: !bus.controls.muted && (!bus_solo || bus.controls.solo),
+                tone: None,
+            });
+            bus_meters.push(MeterReading::empty(bus.id));
+        }
+        for send in &session.sends {
+            let input_index = session
+                .inputs
+                .iter()
+                .position(|input| input.id == send.input_id)
+                .ok_or(SessionError::MissingInput(send.input_id))?;
+            let bus_index = session
+                .buses
+                .iter()
+                .position(|bus| bus.id == send.bus_id)
+                .ok_or(SessionError::MissingBus(send.bus_id))?;
+            let send_solo = session
+                .sends
+                .iter()
+                .any(|other| other.bus_id == send.bus_id && other.controls.solo);
+            sends.push(CompiledSend {
+                input_index,
+                bus_index,
+                gains: send.controls.gains(),
+                active: !send.controls.muted && (!send_solo || send.controls.solo),
+            });
+        }
+        Ok(Self {
+            sample_rate: session.sample_rate,
+            max_block_frames: budget.max_block_frames,
+            working_bytes,
+            inputs,
+            buses,
+            sends,
+            input_meters,
+            bus_meters,
+        })
+    }
+
+    pub fn sample_rate(&self) -> u32 {
+        self.sample_rate
+    }
+    pub fn max_block_frames(&self) -> usize {
+        self.max_block_frames
+    }
+    pub fn working_bytes(&self) -> usize {
+        self.working_bytes
+    }
+    pub fn input_meters(&self) -> &[MeterReading] {
+        &self.input_meters
+    }
+    pub fn bus_meters(&self) -> &[MeterReading] {
+        &self.bus_meters
+    }
+
+    /// Render planar stereo buffers. Buffer order is arbitrary; IDs select the
+    /// graph channels. Missing external inputs are silent, except test-tone
+    /// inputs, which synthesize an internal sine. A provided buffer overrides a
+    /// test tone. Output buses may be omitted; all buses still render and meter.
+    /// Only the first `frames` elements are read/written.
+    ///
+    /// Input solo applies across inputs; send solo applies only within its
+    /// destination bus; bus solo applies across buses. Mute always wins. Controls
+    /// precede channel DSP; bus masters follow the sum of their sends.
+    ///
+    /// The callback makes no allocations, locks, I/O or graph changes. Buffer
+    /// errors are detected before changing output or DSP state. The host should
+    /// silence its device output if this method returns an error.
+    pub fn render(
+        &mut self,
+        sources: &[StereoInput<'_>],
+        outputs: &mut [StereoOutput<'_>],
+        frames: usize,
+    ) -> Result<(), RenderError> {
+        self.validate_buffers(sources, outputs, frames)?;
+        for (index, input) in self.inputs.iter_mut().enumerate() {
+            let source = sources.iter().find(|source| source.id == input.id);
+            for frame_index in 0..frames {
+                let generated = input.tone.as_mut().map_or(0.0, Tone::next);
+                let frame = source.map_or([generated; 2], |source| {
+                    [source.left[frame_index], source.right[frame_index]]
+                });
+                let processed = input.processor.process([
+                    sanitize(frame[0]) * input.gains[0],
+                    sanitize(frame[1]) * input.gains[1],
+                ]);
+                input.frames[frame_index] = if input.active { processed } else { [0.0; 2] };
+            }
+            self.input_meters[index].measure(&input.frames[..frames]);
+        }
+        for bus in &mut self.buses {
+            bus.frames[..frames].fill([0.0; 2]);
+        }
+        for send in &self.sends {
+            if !send.active {
+                continue;
+            }
+            let input = &self.inputs[send.input_index];
+            let bus = &mut self.buses[send.bus_index];
+            for frame_index in 0..frames {
+                bus.frames[frame_index][0] += input.frames[frame_index][0] * send.gains[0];
+                bus.frames[frame_index][1] += input.frames[frame_index][1] * send.gains[1];
+            }
+        }
+        for (index, bus) in self.buses.iter_mut().enumerate() {
+            for frame in &mut bus.frames[..frames] {
+                let processed = bus.processor.process([
+                    sanitize(frame[0]) * bus.gains[0],
+                    sanitize(frame[1]) * bus.gains[1],
+                ]);
+                *frame = if bus.active { processed } else { [0.0; 2] };
+            }
+            self.bus_meters[index].measure(&bus.frames[..frames]);
+        }
+        for output in outputs {
+            // Already validated, and graph IDs cannot mutate during render.
+            if let Some(bus) = self.buses.iter().find(|bus| bus.id == output.id) {
+                for frame_index in 0..frames {
+                    output.left[frame_index] = bus.frames[frame_index][0];
+                    output.right[frame_index] = bus.frames[frame_index][1];
+                }
+            }
+        }
+        Ok(())
+    }
+
+    fn validate_buffers(
+        &self,
+        sources: &[StereoInput<'_>],
+        outputs: &[StereoOutput<'_>],
+        frames: usize,
+    ) -> Result<(), RenderError> {
+        if frames > self.max_block_frames {
+            return Err(RenderError::BlockTooLarge {
+                requested: frames,
+                maximum: self.max_block_frames,
+            });
+        }
+        for (index, source) in sources.iter().enumerate() {
+            if !self.inputs.iter().any(|input| input.id == source.id) {
+                return Err(RenderError::UnknownInput(source.id));
+            }
+            if sources[..index].iter().any(|other| other.id == source.id) {
+                return Err(RenderError::DuplicateInput(source.id));
+            }
+            let available = source.left.len().min(source.right.len());
+            if available < frames {
+                return Err(RenderError::BufferTooShort {
+                    id: source.id,
+                    required: frames,
+                    available,
+                });
+            }
+        }
+        for (index, output) in outputs.iter().enumerate() {
+            if !self.buses.iter().any(|bus| bus.id == output.id) {
+                return Err(RenderError::UnknownBus(output.id));
+            }
+            if outputs[..index].iter().any(|other| other.id == output.id) {
+                return Err(RenderError::DuplicateBus(output.id));
+            }
+            let available = output.left.len().min(output.right.len());
+            if available < frames {
+                return Err(RenderError::BufferTooShort {
+                    id: output.id,
+                    required: frames,
+                    available,
+                });
+            }
+        }
+        Ok(())
+    }
+}
+
+fn reserved_vec<T>(capacity: usize) -> Result<Vec<T>, SessionError> {
+    let mut result = Vec::new();
+    result
+        .try_reserve_exact(capacity)
+        .map_err(|_| SessionError::AllocationFailed)?;
+    Ok(result)
+}
+
+fn frame_buffer(frames: usize) -> Result<Vec<Frame>, SessionError> {
+    let mut result = reserved_vec(frames)?;
+    result.resize(frames, [0.0; 2]);
+    Ok(result)
+}

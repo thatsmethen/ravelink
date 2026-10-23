@@ -1,0 +1,53 @@
+name: Rust Windows and macOS
+on:
+  push:
+    paths-ignore: ['research/evidence/**', 'legacy/**']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  desktop:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15, windows-2022]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Rust
+        shell: bash
+        run: rustup toolchain install 1.91.1 --profile minimal --component rustfmt,clippy
+      - name: Dependency and font notices
+        run: python scripts/dependency-notices.py --check
+      - name: Formatting
+        run: cargo fmt --all -- --check
+      - name: Static checks
+        run: cargo clippy --locked --workspace --all-targets -- -D warnings
+      - name: Deterministic tests
+        run: cargo test --locked --workspace
+      - name: Build macOS application
+        if: runner.os == 'macOS'
+        run: |
+          scripts/build-macos-app.sh
+          ditto -c -k --sequesterRsrc --keepParent 'dist/macos/RaveLink Rust.app' dist/RaveLink-macOS-development.zip
+      - name: Build Windows application
+        if: runner.os == 'Windows'
+        run: |
+          cargo build --locked -p ravelink-app --release
+          New-Item -ItemType Directory -Force dist/windows
+          Copy-Item target/release/ravelink-app.exe,LICENSE,THIRD-PARTY-NOTICES.txt dist/windows/
+          Compress-Archive -Path dist/windows/* -DestinationPath dist/RaveLink-Windows-development.zip
+      - name: macOS driver ABI harness
+        if: runner.os == 'macOS'
+        run: sh drivers/macos/tests/run-native-host.sh
+      - uses: actions/upload-artifact@v4
+        if: runner.os == 'macOS'
+        with:
+          name: RaveLink-macOS-development
+          path: dist/RaveLink-macOS-development.zip
+      - uses: actions/upload-artifact@v4
+        if: runner.os == 'Windows'
+        with:
+          name: RaveLink-Windows-development
+          path: dist/RaveLink-Windows-development.zip
