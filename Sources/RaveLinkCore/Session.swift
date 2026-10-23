@@ -1,0 +1,76 @@
+import Foundation
+
+public enum SourceKind: String, Codable, CaseIterable, Sendable {
+    case device, application, system, tone
+}
+public struct InputSource: Codable, Equatable, Sendable {
+    public var kind: SourceKind
+    public var deviceUID: String?
+    public var bundleID: String?
+    public var channelOffset: Int
+    public init(kind: SourceKind = .device, deviceUID: String? = nil, bundleID: String? = nil, channelOffset: Int = 0) {
+        self.kind = kind; self.deviceUID = deviceUID; self.bundleID = bundleID; self.channelOffset = channelOffset
+    }
+}
+public struct ChannelEffects: Codable, Equatable, Sendable {
+    public var gainDB: Float = 0
+    public var highPassHz: Float = 0
+    public var gateThresholdDB: Float = -80
+    public var compressorThresholdDB: Float = 0
+    public var compressorRatio: Float = 1
+    public init() {}
+}
+public struct MixerChannel: Identifiable, Codable, Equatable, Sendable {
+    public var id: UUID
+    public var name: String
+    public var source: InputSource
+    public var muted: Bool
+    public var solo: Bool
+    public var effects: ChannelEffects
+    public init(id: UUID = UUID(), name: String, source: InputSource = .init(), muted: Bool = false, solo: Bool = false, effects: ChannelEffects = .init()) {
+        self.id = id; self.name = name; self.source = source; self.muted = muted; self.solo = solo; self.effects = effects
+    }
+}
+public struct MixBus: Identifiable, Codable, Equatable, Sendable {
+    public var id: UUID
+    public var name: String
+    public var deviceUID: String?
+    public var channelOffset: Int
+    public var gainDB: Float
+    public var muted: Bool
+    public init(id: UUID = UUID(), name: String, deviceUID: String? = nil, channelOffset: Int = 0, gainDB: Float = 0, muted: Bool = false) {
+        self.id = id; self.name = name; self.deviceUID = deviceUID; self.channelOffset = channelOffset; self.gainDB = gainDB; self.muted = muted
+    }
+}
+public struct MixSend: Identifiable, Codable, Equatable, Sendable {
+    public var id: String { channelID.uuidString + ":" + busID.uuidString }
+    public var channelID: UUID
+    public var busID: UUID
+    public var gainDB: Float
+    public var pan: Float
+    public var muted: Bool
+    public init(channelID: UUID, busID: UUID, gainDB: Float = 0, pan: Float = 0, muted: Bool = false) {
+        self.channelID = channelID; self.busID = busID; self.gainDB = gainDB; self.pan = pan; self.muted = muted
+    }
+}
+public struct MixerSession: Codable, Equatable, Sendable {
+    public var schemaVersion: Int = 1
+    public var name: String
+    public var channels: [MixerChannel]
+    public var buses: [MixBus]
+    public var sends: [MixSend]
+    public init(name: String = "My studio", channels: [MixerChannel] = [], buses: [MixBus] = [], sends: [MixSend] = []) {
+        self.name = name; self.channels = channels; self.buses = buses; self.sends = sends
+    }
+    public static var initial: MixerSession { .init(buses: [.init(name: "Personal"), .init(name: "Stream"), .init(name: "Voice chat")]) }
+    public mutating func addChannel(_ channel: MixerChannel) {
+        channels.append(channel)
+        sends += buses.map { MixSend(channelID: channel.id, busID: $0.id, muted: true) }
+    }
+    public mutating func addBus(_ bus: MixBus) {
+        buses.append(bus)
+        sends += channels.map { MixSend(channelID: $0.id, busID: bus.id, muted: true) }
+    }
+    public mutating func removeChannel(_ id: UUID) { channels.removeAll { $0.id == id }; sends.removeAll { $0.channelID == id } }
+    public mutating func removeBus(_ id: UUID) { buses.removeAll { $0.id == id }; sends.removeAll { $0.busID == id } }
+}
