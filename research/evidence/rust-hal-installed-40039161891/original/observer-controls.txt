@@ -1,0 +1,24 @@
+test_correct_distinct_stereo_tone_and_nonzero_phase_pass (test_system.AnalysisControls.test_correct_distinct_stereo_tone_and_nonzero_phase_pass) ... ok
+test_exact_zero_packet_hole_is_rejected (test_system.AnalysisControls.test_exact_zero_packet_hole_is_rejected) ... ok
+test_generator_metadata_cannot_change_acceptance_signal (test_system.AnalysisControls.test_generator_metadata_cannot_change_acceptance_signal) ... ok
+test_half_amplitude_is_rejected (test_system.AnalysisControls.test_half_amplitude_is_rejected) ... ok
+test_nonfinite_or_truncated_pcm_is_observer_failure (test_system.AnalysisControls.test_nonfinite_or_truncated_pcm_is_observer_failure) ... ok
+test_phase_discontinuity_without_zeros_is_rejected (test_system.AnalysisControls.test_phase_discontinuity_without_zeros_is_rejected) ... ok
+test_probe_failure_and_partial_counts_are_not_promoted (test_system.AnalysisControls.test_probe_failure_and_partial_counts_are_not_promoted) ... ok
+test_stale_audio_after_restart_is_rejected (test_system.AnalysisControls.test_stale_audio_after_restart_is_rejected) ... ok
+test_swapped_channels_fail (test_system.AnalysisControls.test_swapped_channels_fail) ... ok
+test_timestamp_gap_fails_even_with_valid_pcm (test_system.AnalysisControls.test_timestamp_gap_fails_even_with_valid_pcm) ... ok
+test_cleanup_refuses_foreign_bundle_without_mutating (test_system.EnvironmentControls.test_cleanup_refuses_foreign_bundle_without_mutating) ... ok
+test_cleanup_requires_matching_run_ownership (test_system.EnvironmentControls.test_cleanup_requires_matching_run_ownership) ... ok
+test_cleanup_target_is_exact_owned_bundle (test_system.EnvironmentControls.test_cleanup_target_is_exact_owned_bundle) ... ok
+test_existing_record_is_never_overwritten (test_system.EnvironmentControls.test_existing_record_is_never_overwritten) ... ok
+test_local_mutating_execution_is_refused (test_system.EnvironmentControls.test_local_mutating_execution_is_refused) ... ok
+test_manifest_retains_original_failed_bytes_and_hash (test_system.EnvironmentControls.test_manifest_retains_original_failed_bytes_and_hash) ... ok
+test_only_query_errors_expire_without_successful_absence (test_system.EnvironmentControls.test_only_query_errors_expire_without_successful_absence) ... ok
+test_restart_retries_query_error_without_calling_it_absence (test_system.EnvironmentControls.test_restart_retries_query_error_without_calling_it_absence) ... ok
+test_successful_cleanup_recheck_does_not_restart_daemon (test_system.EnvironmentControls.test_successful_cleanup_recheck_does_not_restart_daemon) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.943s
+
+OK

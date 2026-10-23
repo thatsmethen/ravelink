@@ -1,0 +1,3 @@
+0792ac8a75c2c3f58bb8418adb877db7cc7a249df9d57f88720580234dcc7e21  drivers/macos/tests/system-probe.c
+bffe23aef2f187924dadc306e25d5c416a9c3f25c48ae4a88f9ce0ddbef1d57a  build/rust-hal-system/system-probe
+98e4970cf5577b1d65c6b8e83849ed7c45609b39aee45d445b6de55a12f31310  dist/macos/RaveLink.driver/Contents/MacOS/RaveLinkHAL

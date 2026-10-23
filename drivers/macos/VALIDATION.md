@@ -47,3 +47,28 @@ SHA-256 of `Contents/MacOS/RaveLinkHAL`:
 `8abd3ff7866a39bbf92d6bc79eb4e28f62695c39b55c7e4edd586c90aa1c4a6a`.
 Rebuilding or re-signing may change that hash. The bundle has no Developer ID
 signature or notarization and is not a universal release artifact.
+
+## Installed independent-client checkpoint — 6484db8
+
+[Run 40039161891](https://github.com/thatsmethen/ravelink/actions/runs/40039161891)
+installed the original driver on a disposable macOS 15.7.9 arm64 GitHub VM and
+completed the [fixed protocol](tests/SYSTEM-ACCEPTANCE.md). All 49 original
+artifact files were downloaded and verified against the runner's SHA-256
+manifest. [Original evidence](../../research/evidence/rust-hal-installed-40039161891/)
+includes losslessly compressed PCM and its restoration manifest.
+
+- Independent 40-second 440/997 Hz stereo writer: 1,920,000 frames, no sample
+  timestamp gaps or host-time reversals.
+- Two independent 20-second readers: each captured 960,000 frames. Fixed
+  16-second interiors measured amplitude 0.125 on both channels, residual RMS
+  below 9.1e-8, and no stereo zero holes.
+- The readers were bit-identical over 756,028 aligned overlapping frames.
+- A fresh three-second reader after all clients stopped captured exact silence.
+- Cleanup removed only the owned bundle and independently confirmed UID absence.
+
+This supplies actual installed-device discovery, independent-client PCM and
+stop/restart evidence missing from the local checkpoint above. It does not
+establish application-runtime capture, Windows kernel operation, long-run/load
+capacity, physical-device clock drift, measured absolute latency, sleep/wake,
+aggregate operation, Intel macOS or signed/notarized release readiness. No driver
+was installed on the developer's Mac for this run.

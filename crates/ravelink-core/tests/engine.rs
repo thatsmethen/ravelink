@@ -579,3 +579,53 @@ fn rendering_and_meter_reads_allocate_nothing_including_first_callback() {
     assert!(succeeded);
     assert_eq!(ALLOCATIONS.with(Cell::get), 0);
 }
+
+#[test]
+fn mapped_source_iterator_preserves_routing_without_descriptor_allocation() {
+    let (session, a, b, x, _) = fixture();
+    let mut mixer = CompiledMixer::compile(&session, ResourceBudget::default()).unwrap();
+    let planes = [
+        (b, vec![0.3_f32; 128], vec![-0.1_f32; 128]),
+        (a, vec![0.2_f32; 128], vec![0.4_f32; 128]),
+    ];
+    let (mut left, mut right) = ([0.0; 128], [0.0; 128]);
+    ALLOCATIONS.with(|count| count.set(0));
+    COUNTING.with(|enabled| enabled.set(true));
+    let result = mixer.render_sources(
+        planes.iter().map(|(id, l, r)| StereoInput {
+            id: *id,
+            left: l,
+            right: r,
+        }),
+        &mut [StereoOutput {
+            id: x,
+            left: &mut left,
+            right: &mut right,
+        }],
+        128,
+    );
+    COUNTING.with(|enabled| enabled.set(false));
+    result.unwrap();
+    assert_eq!(ALLOCATIONS.with(Cell::get), 0);
+    assert!(left.iter().all(|s| (*s - 0.5).abs() < 1e-6));
+    assert!(right.iter().all(|s| (*s - 0.3).abs() < 1e-6));
+    // Duplicate IDs from a mapped iterator still fail before output mutation.
+    let saved = left;
+    assert_eq!(
+        mixer.render_sources(
+            planes.iter().map(|(_, l, r)| StereoInput {
+                id: a,
+                left: l,
+                right: r
+            }),
+            &mut [StereoOutput {
+                id: x,
+                left: &mut left,
+                right: &mut right
+            }],
+            128
+        ),
+        Err(RenderError::DuplicateInput(a))
+    );
+    assert_eq!(left, saved);
+}

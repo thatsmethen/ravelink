@@ -20,3 +20,6 @@ research/evidence/installed-hal-40022691623/installed-driver-artifact/soak-a.wav
 research/evidence/installed-hal-40022691623/installed-driver-artifact/soak-b.wav
 research/evidence/installed-hal-40022691623/installed-driver-artifact/sound-check-guard.wav
 research/evidence/installed-hal-40022691623/installed-driver-artifact/sound-check-output.wav
+# Exact original bytes are also committed as gzip, with a restoration manifest.
+research/evidence/rust-hal-installed-40039161891/original/*.wav
+research/evidence/rust-hal-installed-40039161891/original/system-probe

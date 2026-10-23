@@ -2,3 +2,5 @@
 *.png -text
 *.gz -text
 *.wav -text
+# Preserve the exact upstream notice, including its original whitespace.
+docs/third-party-licenses/rust-1.91.1/COPYRIGHT-library.html -whitespace

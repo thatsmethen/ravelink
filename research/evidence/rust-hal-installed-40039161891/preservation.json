@@ -1,0 +1,38 @@
+{
+  "all_49_original_files_verified_against_runner_manifest": true,
+  "compressed_originals": [
+    {
+      "original": "original/restarted-silence.wav",
+      "preserved_as": "original/restarted-silence.wav.gz",
+      "original_sha256": "db4049ff10a9b4097359dac7c8c8441f9f6a620176298fe95203edbd6037b755",
+      "compressed_sha256": "468353c15bdd2781325977c4d9e2928fa73d81e92bdfcd56196fa56bacab6c4d",
+      "original_bytes": 1152044,
+      "compressed_bytes": 1206
+    },
+    {
+      "original": "original/system-probe",
+      "preserved_as": "original/system-probe.gz",
+      "original_sha256": "bffe23aef2f187924dadc306e25d5c416a9c3f25c48ae4a88f9ce0ddbef1d57a",
+      "compressed_sha256": "d03c8be68a75fa6a573bbf7195613aade2145e1fdf174596e20f471308133cf5",
+      "original_bytes": 35376,
+      "compressed_bytes": 6749
+    },
+    {
+      "original": "original/reader-b.wav",
+      "preserved_as": "original/reader-b.wav.gz",
+      "original_sha256": "03651f126351a4b62e994d62c507731d8978e26877a8e4b134e6fb0b4d7aa891",
+      "compressed_sha256": "8a8f8961089daffadd9fb2d480348fb680c14040e2536f1a34cf28f1e0ace004",
+      "original_bytes": 7680044,
+      "compressed_bytes": 5100327
+    },
+    {
+      "original": "original/reader-a.wav",
+      "preserved_as": "original/reader-a.wav.gz",
+      "original_sha256": "2faa0be45b5dc8596b42d361245894c6aca34f7f9db7dd3cb7c36ff3039b2702",
+      "compressed_sha256": "169bc5ad9a37f937904c41ff3e8f2e7a575d6e1e6d414afa1ea5c3bacb281e2e",
+      "original_bytes": 7680044,
+      "compressed_bytes": 5100153
+    }
+  ],
+  "note": "Decompress .gz files to restore runner original paths before checking custody-manifest.json. No PCM has been changed."
+}

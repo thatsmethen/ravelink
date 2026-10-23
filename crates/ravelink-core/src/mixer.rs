@@ -25,6 +25,7 @@ impl Default for ResourceBudget {
     }
 }
 
+#[derive(Clone, Copy)]
 pub struct StereoInput<'a> {
     pub id: Uuid,
     pub left: &'a [f32],
@@ -372,9 +373,27 @@ impl CompiledMixer {
         outputs: &mut [StereoOutput<'_>],
         frames: usize,
     ) -> Result<(), RenderError> {
-        self.validate_buffers(sources, outputs, frames)?;
+        self.render_sources(sources.iter().copied(), outputs, frames)
+    }
+
+    /// Render borrowed sources without assembling a temporary descriptor Vec.
+    /// Use an immutable slice iterator or map over stable preallocated planes.
+    /// Clones of `sources` must yield the same IDs and buffers throughout this
+    /// call; the iterator is traversed for validation and channel lookup. The
+    /// mixer itself does not allocate, but callers must also supply an iterator
+    /// whose `clone` and `next` operations are suitable for an audio callback.
+    pub fn render_sources<'a, I>(
+        &mut self,
+        sources: I,
+        outputs: &mut [StereoOutput<'_>],
+        frames: usize,
+    ) -> Result<(), RenderError>
+    where
+        I: Iterator<Item = StereoInput<'a>> + Clone,
+    {
+        self.validate_buffers(sources.clone(), outputs, frames)?;
         for (index, input) in self.inputs.iter_mut().enumerate() {
-            let source = sources.iter().find(|source| source.id == input.id);
+            let source = sources.clone().find(|source| source.id == input.id);
             for frame_index in 0..frames {
                 let generated = input.tone.as_mut().map_or(0.0, Tone::next);
                 let frame = source.map_or([generated; 2], |source| {
@@ -424,23 +443,30 @@ impl CompiledMixer {
         Ok(())
     }
 
-    fn validate_buffers(
+    fn validate_buffers<'a, I>(
         &self,
-        sources: &[StereoInput<'_>],
+        sources: I,
         outputs: &[StereoOutput<'_>],
         frames: usize,
-    ) -> Result<(), RenderError> {
+    ) -> Result<(), RenderError>
+    where
+        I: Iterator<Item = StereoInput<'a>> + Clone,
+    {
         if frames > self.max_block_frames {
             return Err(RenderError::BlockTooLarge {
                 requested: frames,
                 maximum: self.max_block_frames,
             });
         }
-        for (index, source) in sources.iter().enumerate() {
+        for (index, source) in sources.clone().enumerate() {
             if !self.inputs.iter().any(|input| input.id == source.id) {
                 return Err(RenderError::UnknownInput(source.id));
             }
-            if sources[..index].iter().any(|other| other.id == source.id) {
+            if sources
+                .clone()
+                .take(index)
+                .any(|other| other.id == source.id)
+            {
                 return Err(RenderError::DuplicateInput(source.id));
             }
             let available = source.left.len().min(source.right.len());
