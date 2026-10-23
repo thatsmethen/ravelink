@@ -15,7 +15,7 @@ import AppKit
         .windowStyle(.hiddenTitleBar)
         .commands {
             CommandGroup(replacing: .newItem) {
-                Button("Add Input…") { studio.showingInput = true }.keyboardShortcut("n")
+                Button("Add Input…") { studio.beginInput() }.keyboardShortcut("n")
                 Button("Add Mix…") { studio.showingMix = true }.keyboardShortcut("n", modifiers: [.command, .shift])
                 Divider()
                 Button("Import Studio…") { studio.importSession() }.keyboardShortcut("o")

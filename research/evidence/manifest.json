@@ -1,0 +1,937 @@
+{
+  "captured_at": "2026-10-23T12:54:43.314764+00:00",
+  "client_date": "2026-10-23",
+  "host": {
+    "os": "macOS 27.0",
+    "build": "26A5406e",
+    "architecture": "arm64"
+  },
+  "toolchain": {
+    "node": {
+      "version": "24.22.1",
+      "resolved": "https://registry.npmjs.org/node/-/node-24.22.1.tgz",
+      "integrity": "sha512-/afvvA22SKaLX/7u8R0VvbWOtu4Bg/hs7OVnnRi7fTHGcdPtURfQcvEakiA23qG0EfqS/6T30Z0vzztTMerKeQ==",
+      "license": "MIT"
+    },
+    "rea-agents": {
+      "version": "6.7.0",
+      "resolved": "https://registry.npmjs.org/rea-agents/-/rea-agents-6.7.0.tgz",
+      "integrity": "sha512-yhIx2ioJYYT1C/tONfYeitC6LhnKmCh+ZwRUOgYuhSc733lGhkkt73zhug9WmLgxoMdKuqIYGCoBfD4fXkOhFw==",
+      "license": "MIT"
+    }
+  },
+  "rea_source_revision": "5d6b8a0ab693c03ab85cf0807d40bedf021e76d8",
+  "reference": {
+    "official_feed": "https://gc-updates.elgato.com/mac/ewlm-update/final/feed.xml",
+    "feed_sha256": "daa18561dc167ae3441750dcd2534668d82df4ed7745428fc3d3b651a75c3363",
+    "feed_title": "3.4.0 (3281)",
+    "feed_pubDate": "Thu, 08 Oct 2026 16:00:09 CEST",
+    "download_url": "https://edge.elgato.com/egc/macos/ewlm/release/ElgatoWaveLink-3.4.0.3281.dmg",
+    "dmg_sha256": "49f15d4a6565885631485b69f0c7f4bbdc8856d11af479a18555d30a1e548a1f",
+    "dmg_bytes": 100762225,
+    "installed": false,
+    "runtime_observation": "Launched read-only-mounted app through CUA; EULA gate observed; Cancel then Quit; main mixer and audio not exercised."
+  },
+  "evidence": [
+    {
+      "file": ".tools/evidence/installed-driver-macho.json",
+      "file_sha256": "21e20734cbe598f085ccc6b4877ed432f57cde5093a9e171a7640c218100050c",
+      "evidence_id": "ev_53ec3f16d17e1df129ff7fb0088908bbf99e3b823bf435dc1292affc850fb8f3",
+      "operation": "inspect_macho",
+      "subject": {
+        "name": "WaveLinkVirtualAudio",
+        "digest": {
+          "sha256": "3af3dec4dc7499e2ab84034f0239cccc022c0a99ee6a89987e7677135fa360b4"
+        },
+        "local_path": "/Library/Audio/Plug-Ins/HAL/WaveLinkVirtualAudio.driver/Contents/MacOS/WaveLinkVirtualAudio",
+        "format": "mach-o-universal",
+        "architecture": "arm64"
+      },
+      "provider": {
+        "id": "native-macos",
+        "name": "macOS native inspection utilities",
+        "version": null
+      },
+      "limitations": [
+        "Imports and exports combine dyld_info and nm; stripped or toolchain-hidden symbols may be absent.",
+        "vtool output is retained as provenance but only otool build metadata is normalized."
+      ],
+      "uuid": "F88462F6-77BD-3FE1-9ACB-68CC68FDC155",
+      "architectures": {
+        "items": [
+          {
+            "name": "x86_64",
+            "cpu_type": "CPU_TYPE_X86_64",
+            "cpu_subtype": "CPU_SUBTYPE_X86_64_ALL",
+            "file_offset": 16384,
+            "size": 138608,
+            "alignment": 16384
+          },
+          {
+            "name": "arm64",
+            "cpu_type": "CPU_TYPE_ARM64",
+            "cpu_subtype": "CPU_SUBTYPE_ARM64_ALL",
+            "file_offset": 163840,
+            "size": 177472,
+            "alignment": 16384
+          }
+        ],
+        "total": 2,
+        "exhaustive": true,
+        "limitations": []
+      },
+      "dependencies": {
+        "items": [
+          {
+            "path": "/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "2503.1.0",
+            "compatibility_version": "150.0.0"
+          },
+          {
+            "path": "/usr/lib/libc++.1.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "1700.255.5",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/libSystem.B.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "1345.120.2",
+            "compatibility_version": "1.0.0"
+          }
+        ],
+        "total": 3,
+        "exhaustive": true,
+        "limitations": []
+      }
+    },
+    {
+      "file": ".tools/evidence/installed-driver-plist.json",
+      "file_sha256": "8ad3122ffb5206c17c348d034bcd02fc00fcc58de3385de2c8a463a8f4045c97",
+      "evidence_id": "ev_0e85b015016e51c6830918a79c4f9d5e11b9412eb4c5870c64fc48b2096b2661",
+      "operation": "inspect_plist",
+      "subject": {
+        "name": "WaveLinkVirtualAudio",
+        "digest": {
+          "sha256": "3af3dec4dc7499e2ab84034f0239cccc022c0a99ee6a89987e7677135fa360b4"
+        },
+        "local_path": "/Library/Audio/Plug-Ins/HAL/WaveLinkVirtualAudio.driver/Contents/MacOS/WaveLinkVirtualAudio",
+        "format": "mach-o-universal",
+        "architecture": "arm64"
+      },
+      "provider": {
+        "id": "native-macos",
+        "name": "macOS native inspection utilities",
+        "version": null
+      },
+      "limitations": [],
+      "bundle": {
+        "identifier": "com.elgato.WaveLinkVirtualAudio",
+        "executable": "WaveLinkVirtualAudio",
+        "name": "WaveLinkVirtualAudio",
+        "version": "5",
+        "short_version": "1.1"
+      }
+    },
+    {
+      "file": ".tools/evidence/reference-macho.json",
+      "file_sha256": "f566bf55a905db7e00511156cf4dc7af12072679abe19ef2f35fa70104ac671a",
+      "evidence_id": "ev_67dff9e8207fb0eb0861ca01cd7759ca1fe738de9b620706682c247cef7328c9",
+      "operation": "inspect_macho",
+      "subject": {
+        "name": "WaveLinkMacOS",
+        "digest": {
+          "sha256": "42aac08bd1f25968cfd28efebb80810deb141de7bec740aef4594c31c0713694"
+        },
+        "local_path": "/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/MacOS/WaveLinkMacOS",
+        "format": "mach-o-universal",
+        "architecture": "arm64"
+      },
+      "provider": {
+        "id": "native-macos",
+        "name": "macOS native inspection utilities",
+        "version": null
+      },
+      "limitations": [
+        "Imports and exports combine dyld_info and nm; stripped or toolchain-hidden symbols may be absent.",
+        "vtool output is retained as provenance but only otool build metadata is normalized."
+      ],
+      "uuid": "A91D6833-E60D-3E45-AFAA-8773429C6802",
+      "architectures": {
+        "items": [
+          {
+            "name": "x86_64",
+            "cpu_type": "CPU_TYPE_X86_64",
+            "cpu_subtype": "CPU_SUBTYPE_X86_64_ALL",
+            "file_offset": 16384,
+            "size": 18633136,
+            "alignment": 16384
+          },
+          {
+            "name": "arm64",
+            "cpu_type": "CPU_TYPE_ARM64",
+            "cpu_subtype": "CPU_SUBTYPE_ARM64_ALL",
+            "file_offset": 18661376,
+            "size": 17719168,
+            "alignment": 16384
+          }
+        ],
+        "total": 2,
+        "exhaustive": true,
+        "limitations": []
+      },
+      "dependencies": {
+        "items": [
+          {
+            "path": "/usr/lib/libc++.1.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "2100.43.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "@rpath/libaic.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "0.0.0",
+            "compatibility_version": "0.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/CoreAudio.framework/Versions/A/CoreAudio",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "1.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/CoreSpotlight.framework/Versions/A/CoreSpotlight",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "2418.4.13",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "@rpath/WaveAPI.framework/Versions/A/WaveAPI",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "0.0.0",
+            "compatibility_version": "0.0.0"
+          },
+          {
+            "path": "@rpath/WavePluginRack.framework/Versions/A/WavePluginRack",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "0.0.0",
+            "compatibility_version": "0.0.0"
+          },
+          {
+            "path": "@rpath/tlusbdfuapi.framework/Versions/A/tlusbdfuapi",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "1.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "@rpath/Lottie.framework/Versions/A/Lottie",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "1.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "@rpath/Sparkle.framework/Versions/B/Sparkle",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "2.8.1",
+            "compatibility_version": "1.6.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "4424.1.255",
+            "compatibility_version": "300.0.0"
+          },
+          {
+            "path": "/usr/lib/libobjc.A.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "228.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/libSystem.B.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "1356.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/AVFAudio.framework/Versions/A/AVFAudio",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "1.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/AVFoundation.framework/Versions/A/AVFoundation",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "2.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/Accelerate.framework/Versions/A/Accelerate",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "4.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "2685.50.120",
+            "compatibility_version": "45.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/AudioToolbox.framework/Versions/A/AudioToolbox",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "1000.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/AuthenticationServices.framework/Versions/A/AuthenticationServices",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "624.1.16",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/CloudKit.framework/Versions/A/CloudKit",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "2350.34.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/Combine.framework/Versions/A/Combine",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "3023.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/CoreAudioKit.framework/Versions/A/CoreAudioKit",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "1.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/CoreData.framework/Versions/A/CoreData",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "1526.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "4424.1.255",
+            "compatibility_version": "150.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/CoreGraphics.framework/Versions/A/CoreGraphics",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "1965.4.5",
+            "compatibility_version": "64.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/CoreImage.framework/Versions/A/CoreImage",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "7.0.0",
+            "compatibility_version": "1.0.1"
+          },
+          {
+            "path": "/System/Library/Frameworks/CoreText.framework/Versions/A/CoreText",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "877.4.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/CryptoKit.framework/Versions/A/CryptoKit",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "1.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/IOKit.framework/Versions/A/IOKit",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "275.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/MetricKit.framework/Versions/A/MetricKit",
+            "kind": "LC_LOAD_WEAK_DYLIB",
+            "current_version": "1.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/Network.framework/Versions/A/Network",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "5812.101.2",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/OSLog.framework/Versions/A/OSLog",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "1861.100.19",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/QuartzCore.framework/Versions/A/QuartzCore",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "1195.9.0",
+            "compatibility_version": "1.2.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/Security.framework/Versions/A/Security",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "61901.101.4",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/ServiceManagement.framework/Versions/A/ServiceManagement",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "3102.100.102",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/SwiftData.framework/Versions/A/SwiftData",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "0.0.0",
+            "compatibility_version": "0.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/SwiftUI.framework/Versions/A/SwiftUI",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "7.4.27",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/TipKit.framework/Versions/A/TipKit",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "120.4.4",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/UserNotifications.framework/Versions/A/UserNotifications",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "1.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/WebKit.framework/Versions/A/WebKit",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "624.1.16",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/libcompression.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "1.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/libz.1.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "1.2.12",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftAVFoundation.dylib",
+            "kind": "LC_LOAD_WEAK_DYLIB",
+            "current_version": "2410.24.5",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftAccelerate.dylib",
+            "kind": "LC_LOAD_WEAK_DYLIB",
+            "current_version": "77.100.2",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftCompression.dylib",
+            "kind": "LC_LOAD_WEAK_DYLIB",
+            "current_version": "11.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftCore.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "0.0.0",
+            "compatibility_version": "0.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftCoreAudio.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "411.255.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftCoreFoundation.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "120.100.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftCoreImage.dylib",
+            "kind": "LC_LOAD_WEAK_DYLIB",
+            "current_version": "2.2.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftCoreLocation.dylib",
+            "kind": "LC_LOAD_WEAK_DYLIB",
+            "current_version": "53.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftCoreMIDI.dylib",
+            "kind": "LC_LOAD_WEAK_DYLIB",
+            "current_version": "6.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftCoreMedia.dylib",
+            "kind": "LC_LOAD_WEAK_DYLIB",
+            "current_version": "3305.24.5",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftDarwin.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "377.100.15",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftDataDetection.dylib",
+            "kind": "LC_LOAD_WEAK_DYLIB",
+            "current_version": "821.6.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftDispatch.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "1542.100.32",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftIOKit.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "1.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftMetal.dylib",
+            "kind": "LC_LOAD_WEAK_DYLIB",
+            "current_version": "372.16.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftOSLog.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "10.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftObjectiveC.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "951.7.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftObservation.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "0.0.0",
+            "compatibility_version": "0.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftQuartzCore.dylib",
+            "kind": "LC_LOAD_WEAK_DYLIB",
+            "current_version": "5.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftRegexBuilder.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "0.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftSpatial.dylib",
+            "kind": "LC_LOAD_WEAK_DYLIB",
+            "current_version": "1.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftSynchronization.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "0.0.0",
+            "compatibility_version": "0.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftUniformTypeIdentifiers.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "877.4.9",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftXPC.dylib",
+            "kind": "LC_LOAD_WEAK_DYLIB",
+            "current_version": "128.100.15",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswift_Builtin_float.dylib",
+            "kind": "LC_LOAD_WEAK_DYLIB",
+            "current_version": "0.0.0",
+            "compatibility_version": "0.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswift_Concurrency.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "0.0.0",
+            "compatibility_version": "0.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswift_StringProcessing.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "0.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswift_errno.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "377.100.15",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswift_math.dylib",
+            "kind": "LC_LOAD_WEAK_DYLIB",
+            "current_version": "377.100.15",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswift_signal.dylib",
+            "kind": "LC_LOAD_WEAK_DYLIB",
+            "current_version": "377.100.15",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswift_stdio.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "377.100.15",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswift_time.dylib",
+            "kind": "LC_LOAD_WEAK_DYLIB",
+            "current_version": "377.100.15",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftos.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "1082.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftsimd.dylib",
+            "kind": "LC_LOAD_WEAK_DYLIB",
+            "current_version": "23.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftsys_time.dylib",
+            "kind": "LC_LOAD_WEAK_DYLIB",
+            "current_version": "377.100.15",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/swift/libswiftunistd.dylib",
+            "kind": "LC_LOAD_WEAK_DYLIB",
+            "current_version": "377.100.15",
+            "compatibility_version": "1.0.0"
+          }
+        ],
+        "total": 77,
+        "exhaustive": true,
+        "limitations": []
+      }
+    },
+    {
+      "file": ".tools/evidence/reference-plist.json",
+      "file_sha256": "b409a7e887e6ab35303d1de61ba6058c6148340d4ed02ca1fa8a6e5dace9317c",
+      "evidence_id": "ev_ae648cfea85327b4c16f32b7d65a68ce50a2abf2ae5e67fdc3c320b89fc88279",
+      "operation": "inspect_plist",
+      "subject": {
+        "name": "WaveLinkMacOS",
+        "digest": {
+          "sha256": "42aac08bd1f25968cfd28efebb80810deb141de7bec740aef4594c31c0713694"
+        },
+        "local_path": "/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/MacOS/WaveLinkMacOS",
+        "format": "mach-o-universal",
+        "architecture": "arm64"
+      },
+      "provider": {
+        "id": "native-macos",
+        "name": "macOS native inspection utilities",
+        "version": null
+      },
+      "limitations": [],
+      "bundle": {
+        "identifier": "com.elgato.WaveLink3",
+        "executable": "WaveLinkMacOS",
+        "name": "WaveLinkMacOS",
+        "version": "3281",
+        "short_version": "3.4.0"
+      }
+    },
+    {
+      "file": ".tools/evidence/reference-driver-macho.json",
+      "file_sha256": "10073e69034f262241e48b72808a23741bd6c80d21f671b1160b939a9cd1cb77",
+      "evidence_id": "ev_dfa91980b93ae89066f23852f1f85702996760b4a178b13def78042ec3fbde1c",
+      "operation": "inspect_macho",
+      "subject": {
+        "name": "WaveLink3VirtualAudio",
+        "digest": {
+          "sha256": "83fa62e0b4e4e1aae887c1da029760d0f22e84a10c9573ddff8a5ab2146b1bf1"
+        },
+        "local_path": "/Users/textual/projects/notify/ravelink/.tools/reference/driver-package/WaveLinkVAD.pkg/Payload/Library/Audio/Plug-Ins/HAL/WaveLink3VirtualAudio.driver/Contents/MacOS/WaveLink3VirtualAudio",
+        "format": "mach-o-universal",
+        "architecture": "arm64"
+      },
+      "provider": {
+        "id": "native-macos",
+        "name": "macOS native inspection utilities",
+        "version": null
+      },
+      "limitations": [
+        "Imports and exports combine dyld_info and nm; stripped or toolchain-hidden symbols may be absent.",
+        "vtool output is retained as provenance but only otool build metadata is normalized."
+      ],
+      "uuid": "E4A738EB-A0A9-3CF8-B845-D99DAE9A2C9B",
+      "architectures": {
+        "items": [
+          {
+            "name": "x86_64",
+            "cpu_type": "CPU_TYPE_X86_64",
+            "cpu_subtype": "CPU_SUBTYPE_X86_64_ALL",
+            "file_offset": 16384,
+            "size": 142640,
+            "alignment": 16384
+          },
+          {
+            "name": "arm64",
+            "cpu_type": "CPU_TYPE_ARM64",
+            "cpu_subtype": "CPU_SUBTYPE_ARM64_ALL",
+            "file_offset": 163840,
+            "size": 181456,
+            "alignment": 16384
+          }
+        ],
+        "total": 2,
+        "exhaustive": true,
+        "limitations": []
+      },
+      "dependencies": {
+        "items": [
+          {
+            "path": "/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "3502.1.255",
+            "compatibility_version": "150.0.0"
+          },
+          {
+            "path": "/System/Library/Frameworks/Accelerate.framework/Versions/A/Accelerate",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "4.0.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/libc++.1.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "1900.180.0",
+            "compatibility_version": "1.0.0"
+          },
+          {
+            "path": "/usr/lib/libSystem.B.dylib",
+            "kind": "LC_LOAD_DYLIB",
+            "current_version": "1351.0.0",
+            "compatibility_version": "1.0.0"
+          }
+        ],
+        "total": 4,
+        "exhaustive": true,
+        "limitations": []
+      },
+      "selected_exports": [
+        {
+          "name": "__ZN13VirtualDevice12createDeviceEPP32AudioServerPlugInDriverInterfacePK14__CFDictionaryPK27AudioServerPlugInClientInfoPj",
+          "address": "0xd028",
+          "weak": null,
+          "reexport": false,
+          "source": null
+        },
+        {
+          "name": "__ZN13VirtualDevice13destroyDeviceEPP32AudioServerPlugInDriverInterfacej",
+          "address": "0xd098",
+          "weak": null,
+          "reexport": false,
+          "source": null
+        },
+        {
+          "name": "__ZN13VirtualDevice13doIOOperationEPP32AudioServerPlugInDriverInterfacejjjjjPK28AudioServerPlugInIOCycleInfoPvS6_",
+          "address": "0xebb4",
+          "weak": null,
+          "reexport": false,
+          "source": null
+        },
+        {
+          "name": "__ZN13VirtualDevice16getZeroTimeStampEPP32AudioServerPlugInDriverInterfacejjPdPyS4_",
+          "address": "0xe740",
+          "weak": null,
+          "reexport": false,
+          "source": null
+        },
+        {
+          "name": "__ZN6Device12createDeviceEjRKNSt3__112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEES8_S8_bNS0_8weak_ptrI6PluginEEj",
+          "address": "0x60f0",
+          "weak": null,
+          "reexport": false,
+          "source": null
+        },
+        {
+          "name": "__ZN6Device13doIOOperationEjjjjPK28AudioServerPlugInIOCycleInfoPvS3_",
+          "address": "0xbc3c",
+          "weak": null,
+          "reexport": false,
+          "source": null
+        },
+        {
+          "name": "__ZN6Device13setSampleRateEd",
+          "address": "0x63dc",
+          "weak": null,
+          "reexport": false,
+          "source": null
+        },
+        {
+          "name": "__ZN6Device16getZeroTimeStampEPdPyS1_",
+          "address": "0xbab0",
+          "weak": null,
+          "reexport": false,
+          "source": null
+        },
+        {
+          "name": "__ZN6Device18validateSampleRateEd",
+          "address": "0x64a4",
+          "weak": null,
+          "reexport": false,
+          "source": null
+        },
+        {
+          "name": "_createVirtualDevice",
+          "address": "0x2030",
+          "weak": null,
+          "reexport": false,
+          "source": null
+        }
+      ]
+    },
+    {
+      "file": ".tools/evidence/reference-driver-plist.json",
+      "file_sha256": "4c684aaa6b1262174f92fc5eaff67476361a34c519c4e7af346290cf75bac295",
+      "evidence_id": "ev_50d6506c00ed67674af1a6e3609591eb8dbd3c99c50c53d851c55b4211ad94db",
+      "operation": "inspect_plist",
+      "subject": {
+        "name": "WaveLink3VirtualAudio",
+        "digest": {
+          "sha256": "83fa62e0b4e4e1aae887c1da029760d0f22e84a10c9573ddff8a5ab2146b1bf1"
+        },
+        "local_path": "/Users/textual/projects/notify/ravelink/.tools/reference/driver-package/WaveLinkVAD.pkg/Payload/Library/Audio/Plug-Ins/HAL/WaveLink3VirtualAudio.driver/Contents/MacOS/WaveLink3VirtualAudio",
+        "format": "mach-o-universal",
+        "architecture": "arm64"
+      },
+      "provider": {
+        "id": "native-macos",
+        "name": "macOS native inspection utilities",
+        "version": null
+      },
+      "limitations": [],
+      "bundle": {
+        "identifier": "com.elgato.WaveLink3VirtualAudio",
+        "executable": "WaveLink3VirtualAudio",
+        "name": "WaveLink3VirtualAudio",
+        "version": "10",
+        "short_version": "1.6"
+      }
+    },
+    {
+      "file": ".tools/evidence/reference-driver-package.json",
+      "file_sha256": "abadd33c7677a7311727868b08369e4c4e192a481e4534c0afef49d05baea05d",
+      "evidence_id": "ev_82aa198e489168699852cba1147c5ddc5cf4db34c13d9119e7cce0298d2c4e43",
+      "operation": "inspect_artifact",
+      "subject": {
+        "name": "WaveLink3VirtualAudioDriverInstaller.pkg",
+        "digest": {
+          "sha256": "e75d4af1394f96c60ff9cb221b3417d5ff420bd5c30107eae1170ade928c8e98"
+        },
+        "local_path": "/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Resources/WaveLink3VirtualAudioDriverInstaller.pkg",
+        "format": "pkg",
+        "architecture": null
+      },
+      "provider": {
+        "id": "rea-artifact-graph",
+        "name": "REA safe artifact graph provider",
+        "version": "1"
+      },
+      "limitations": [
+        "Inspection derives bounded static hypotheses and next probes; it does not execute the artifact or claim format-specific semantics.",
+        "PKG root hash is observed; child inventory requires a native macOS adapter."
+      ]
+    },
+    {
+      "file": ".tools/evidence/reference-artifact.json",
+      "file_sha256": "629bdbd533410a1841fdef1eee22232eddbeeda23603453aeb87219e9baf03c3",
+      "evidence_id": "ev_5b22384b5678852c6ad822efa123ed0ac7f8712fba040973ef61005b17d4210e",
+      "operation": "inspect_artifact",
+      "subject": {
+        "name": "Elgato Wave Link.app",
+        "digest": {
+          "sha256": "0759165a44ec54c736bc5e1840bc5a37e878376ca63885961a5a5c30c8833f9b"
+        },
+        "local_path": "/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app",
+        "format": "directory",
+        "architecture": null
+      },
+      "provider": {
+        "id": "rea-artifact-graph",
+        "name": "REA safe artifact graph provider",
+        "version": "1"
+      },
+      "limitations": [
+        "Inspection derives bounded static hypotheses and next probes; it does not execute the artifact or claim format-specific semantics."
+      ]
+    }
+  ],
+  "limitations": [
+    "Proprietary app, package, raw plist, screenshots and full REA records retained locally under ignored .tools; not copied into application or repository.",
+    "Mach-O inventories are static; exported names are not proof functions execute or implement advertised behavior.",
+    "All deep decompilation providers unavailable in this environment at inspection time.",
+    "REA repository main documents CLI flags not supported by npm 6.7.0; used advertised CLI help and complete JSON output after --detail was rejected."
+  ],
+  "provider_availability": [
+    {
+      "id": "ghidra",
+      "status": "unavailable",
+      "reason": "Set GHIDRA_INSTALL_DIR to an extracted Ghidra 12.1.x release directory."
+    },
+    {
+      "id": "hopper",
+      "status": "unavailable",
+      "reason": "Hopper launcher is missing or not executable: /Applications/Hopper Disassembler.app/Contents/MacOS/hopper"
+    },
+    {
+      "id": "ida",
+      "status": "unavailable",
+      "reason": "Set REA_IDA_MCP_CONFIG to an upstream IDA MCP JSON registration; see docs/ida-provider.md."
+    },
+    {
+      "id": "kuna",
+      "status": "unavailable",
+      "reason": "Set REA_KUNA_COMMAND to the absolute path of a caller-supplied kuna executable (verified with 1.833). REA does not download, install or update Kuna."
+    }
+  ]
+}

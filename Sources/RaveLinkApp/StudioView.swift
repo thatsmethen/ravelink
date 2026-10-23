@@ -18,10 +18,10 @@ struct StudioView: View {
                     HStack {
                         VStack(alignment: .leading, spacing: 6) {
                             Text("YOUR STUDIO").font(.system(size: 10, weight: .semibold, design: .monospaced)).foregroundStyle(accent)
-                            Text("Every source. Every destination.").font(.system(size: 22, weight: .semibold))
+                            Text("Mixes & routing").font(.system(size: 22, weight: .semibold))
                         }
                         Spacer()
-                        Button { studio.showingInput = true } label: { Label("Add input", systemImage: "plus") }.buttonStyle(.borderedProminent).tint(accent).foregroundStyle(.black)
+                        Button { studio.beginInput() } label: { Label("Add input", systemImage: "plus") }.buttonStyle(.borderedProminent).tint(accent).foregroundStyle(.black)
                     }.padding(24)
                     matrix
                 }
@@ -34,7 +34,8 @@ struct StudioView: View {
             footer
         }
         .background(canvas).tint(accent)
-        .sheet(isPresented: $studio.showingInput) { InputSheet(studio: studio, audio: audio) }
+        .sheet(isPresented: $studio.showingInput, onDismiss: { studio.sourceTarget = nil; studio.sourceReplacement = nil }) { InputSheet(studio: studio, audio: audio) }
+        .sheet(isPresented: $studio.showingOutputs) { MonitorOutputsSheet(studio: studio, audio: audio) }
         .sheet(isPresented: $studio.showingMix) { MixSheet(studio: studio, audio: audio) }
         .sheet(isPresented: $studio.showingSettings) { setupInfo }
         .alert("Studio needs attention", isPresented: Binding(get: { studio.notice != nil }, set: { if !$0 { studio.notice = nil } })) {
@@ -56,7 +57,7 @@ struct StudioView: View {
                 Button("Refresh devices") { audio.refreshDevices() }
             } label: { Image(systemName: "ellipsis.circle").font(.title3) }.menuStyle(.borderlessButton).frame(width: 34).help("Studio options")
             Button { studio.toggleAudio() } label: {
-                Label(audio.running ? "Stop audio" : "Start audio", systemImage: audio.running ? "stop.fill" : "play.fill").frame(width: 105)
+                Label(audio.starting ? "Cancel start" : (audio.running ? "Stop audio" : "Start audio"), systemImage: (audio.running || audio.starting) ? "stop.fill" : "play.fill").frame(width: 105)
             }.buttonStyle(.borderedProminent).tint(audio.running ? .red.opacity(0.75) : accent).foregroundStyle(audio.running ? .white : .black)
         }.padding(.horizontal, 24).padding(.top, 30).padding(.bottom, 18)
     }
@@ -76,12 +77,12 @@ struct StudioView: View {
                         Image(systemName: "waveform.badge.plus").font(.system(size: 38)).foregroundStyle(accent)
                         Text("Build your first mix").font(.title2.weight(.semibold))
                         Text("Add a microphone, an app, or system audio.\nThen turn on the mixes that should hear it.").foregroundStyle(.secondary).multilineTextAlignment(.center)
-                        Button("Add your first input") { studio.showingInput = true }.buttonStyle(.borderedProminent).tint(accent).foregroundStyle(.black)
+                        Button("Add your first input") { studio.beginInput() }.buttonStyle(.borderedProminent).tint(accent).foregroundStyle(.black)
                         Button("Set up virtual outputs") { studio.showingSettings = true }.buttonStyle(.plain).foregroundStyle(.secondary)
                     }.frame(width: max(820, CGFloat(studio.session.buses.count * 196 + 296)), height: 330)
                 } else {
                     ForEach(studio.session.channels.indices, id: \.self) { index in channelRow(index) }
-                    Button { studio.showingInput = true } label: { Label("Add input", systemImage: "plus").frame(width: 260, height: 50, alignment: .leading) }.buttonStyle(.plain).foregroundStyle(accent).padding(.horizontal, 18)
+                    Button { studio.beginInput() } label: { Label("Add input", systemImage: "plus").frame(width: 260, height: 50, alignment: .leading) }.buttonStyle(.plain).foregroundStyle(accent).padding(.horizontal, 18)
                 }
             }.padding(.horizontal, 24).padding(.bottom, 24)
         }
@@ -94,6 +95,7 @@ struct StudioView: View {
                 TextField("Mix name", text: $studio.session.buses[index].name).textFieldStyle(.plain).font(.headline)
                 Menu {
                     Button(bus.muted ? "Unmute mix" : "Mute mix") { studio.session.buses[index].muted.toggle() }
+                    Button("Additional outputs…") { studio.outputTarget = bus.id; studio.showingOutputs = true }
                     Button("Remove mix", role: .destructive) { studio.session.removeBus(bus.id) }
                 } label: { Image(systemName: "ellipsis") }.menuStyle(.borderlessButton).frame(width: 18)
             }
@@ -171,6 +173,8 @@ struct StudioView: View {
                     Button { studio.selectedChannel = nil } label: { Image(systemName: "xmark") }.buttonStyle(.plain).help("Close input settings")
                 }
                 TextField("Input name", text: $studio.session.channels[index].name).font(.title2).textFieldStyle(.plain)
+                sourcesSection(index: index)
+                Divider()
                 Text("Applied before this input reaches your mixes.").font(.caption).foregroundStyle(.secondary)
                 effectSlider("Input gain", value: $studio.session.channels[index].effects.gainDB, range: -60...24, suffix: "dB")
                 effectSlider("High-pass filter", value: $studio.session.channels[index].effects.highPassHz, range: 0...1000, suffix: "Hz")
@@ -185,6 +189,38 @@ struct StudioView: View {
             }.padding(22)
         }.background(panel.opacity(0.6))
     }
+    private func sourcesSection(index: Int) -> some View {
+        let channel = studio.session.channels[index]
+        let sources = [channel.source] + channel.additionalSources
+        return VStack(alignment: .leading, spacing: 10) {
+            Text("Sources").font(.headline)
+            ForEach(sources.indices, id: \.self) { slot in
+                HStack {
+                    Image(systemName: sourceIcon(sources[slot].kind)).foregroundStyle(accent)
+                    Text(sourceName(sources[slot])).font(.caption).lineLimit(2)
+                    Spacer()
+                    Menu {
+                        Button("Change source…") { studio.beginInput(target: channel.id, replacing: slot) }
+                        if sources.count > 1 {
+                            Button("Remove source", role: .destructive) {
+                                if slot == 0 { studio.session.channels[index].source = studio.session.channels[index].additionalSources.removeFirst() }
+                                else { studio.session.channels[index].additionalSources.remove(at: slot - 1) }
+                            }
+                        }
+                    } label: { Image(systemName: "ellipsis") }.menuStyle(.borderlessButton).frame(width: 18)
+                }
+            }
+            Button { studio.beginInput(target: channel.id) } label: { Label("Add source", systemImage: "plus") }.buttonStyle(.bordered)
+        }
+    }
+    private func sourceName(_ source: InputSource) -> String {
+        switch source.kind {
+        case .device: return audio.devices.first(where: { $0.id == source.deviceUID })?.name ?? "Device unavailable"
+        case .application: return audio.applications.first(where: { $0.id == source.bundleID })?.name ?? source.bundleID ?? "Application"
+        case .system: return "System audio"
+        case .tone: return "Test tone"
+        }
+    }
     private func effectSlider(_ title: String, value: Binding<Float>, range: ClosedRange<Float>, suffix: String) -> some View {
         VStack(alignment: .leading, spacing: 9) {
             HStack { Text(title).font(.callout); Spacer(); Text("\(Int(value.wrappedValue)) \(suffix)").font(.system(size: 11, design: .monospaced)).foregroundStyle(accent) }
@@ -194,9 +230,10 @@ struct StudioView: View {
     private var footer: some View {
         HStack(spacing: 8) {
             Circle().fill(audio.running ? accent : .gray).frame(width: 6, height: 6)
-            Text(audio.running ? "Audio running" : "Audio stopped").font(.caption.weight(.medium))
+            Text(audio.starting ? "Connecting audio…" : (audio.running ? "Audio running" : "Audio stopped")).font(.caption.weight(.medium))
             if let error = audio.errorMessage { Text(error).font(.caption).foregroundStyle(.orange).lineLimit(2) }
             Spacer()
+            Text(studio.saveStatus).font(.caption).foregroundStyle(studio.saveStatus.hasPrefix("Not saved") ? .orange : .secondary).lineLimit(1)
             Text("\(studio.session.channels.count) inputs  ·  \(studio.session.buses.count) mixes").font(.system(size: 11, design: .monospaced)).foregroundStyle(.secondary)
             Button { studio.showingSettings = true } label: { Image(systemName: "questionmark.circle") }.buttonStyle(.plain).help("Audio setup")
         }.padding(.horizontal, 24).padding(.vertical, 14)
@@ -215,6 +252,7 @@ struct StudioView: View {
         }.font(.callout).frame(width: 520).padding(30)
     }
     private func sourceDescription(_ channel: MixerChannel) -> String {
+        if !channel.additionalSources.isEmpty { return "\(channel.additionalSources.count + 1) sources" }
         switch channel.source.kind {
         case .device: return audio.devices.first(where: { $0.id == channel.source.deviceUID })?.name ?? "Device unavailable"
         case .application: return channel.source.bundleID ?? "Application"
@@ -226,7 +264,7 @@ struct StudioView: View {
 func sourceIcon(_ kind: SourceKind) -> String {
     switch kind { case .device: return "mic.fill"; case .application: return "app.dashed"; case .system: return "desktopcomputer"; case .tone: return "waveform" }
 }
-func db(_ value: Float) -> String { value <= -60 ? "−∞" : String(format: "%+.0f dB", value) }
+func db(_ value: Float) -> String { String(format: "%+.0f dB", value) }
 struct LevelMeter: View {
     let level: Float
     let active: Bool

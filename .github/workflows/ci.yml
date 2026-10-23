@@ -12,10 +12,14 @@ jobs:
       - name: Swift toolchain
         run: swift --version
       - name: Deterministic tests
-        run: swift test
+        run: scripts/test.sh
+      - name: Driver source and bundle tests
+        run: python3 -m unittest discover -s Drivers/tests -p 'test_*.py' -v
       - name: Build application
-        run: scripts/build-app.sh
+        run: |
+          scripts/build-app.sh
+          ditto -c -k --sequesterRsrc --keepParent build/RaveLink.app build/RaveLink-development.zip
       - uses: actions/upload-artifact@v4
         with:
           name: RaveLink-development
-          path: build/RaveLink.app
+          path: build/RaveLink-development.zip

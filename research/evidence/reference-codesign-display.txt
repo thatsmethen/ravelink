@@ -1,0 +1,16 @@
+Executable=/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/MacOS/WaveLinkMacOS
+Identifier=com.elgato.WaveLink3
+Format=app bundle with Mach-O universal (x86_64 arm64)
+CodeDirectory v=20500 size=34880 flags=0x10000(runtime) hashes=1079+7 location=embedded
+Signature size=9081
+Authority=Developer ID Application: Corsair Memory, Inc. (Y93VXCB8Q5)
+Authority=Developer ID Certification Authority
+Authority=Apple Root CA
+Timestamp=9 Oct 2026 at 12:56:12 am
+Info.plist entries=42
+TeamIdentifier=Y93VXCB8Q5
+Runtime Version=26.4.0
+Sealed Resources version=2 rules=13 files=137
+Internal requirements count=1 size=212
+Total signatures=1
+Chosen signature=1

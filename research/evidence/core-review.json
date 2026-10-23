@@ -1,0 +1,19 @@
+{
+  "recorded_at": "2026-10-23T13:06:52.048513+00:00",
+  "command": "scripts/test.sh --filter 'ReviewTests|SessionTests'",
+  "exit_code": 0,
+  "tests_passed": 12,
+  "suites": 2,
+  "reported_test_seconds": 0.376,
+  "scope": "Core validation and persistence only; no native audio or reference runtime claim.",
+  "log_path": ".tools/evidence/core-review-tests.txt",
+  "log_sha256": "fb8642f45fb905c1c4c97feb5db981d7f625119ede616cff6401c52446dcbea9",
+  "source_sha256": {
+    "Sources/RaveLinkCore/Session.swift": "6e056a8f8fd7e6f0d972dbb378f282a2dbfd836203be581b7389ef3a7f0d34b3",
+    "Sources/RaveLinkCore/SessionStore.swift": "446980bfbdcba8468d9e99b1181c12db4ee70b56f026a915b85278e61c44070f",
+    "Tests/RaveLinkCoreTests/SessionTests.swift": "0db6935b76e8f41e5e20499d5dd53c0bbdbe06eeb802271d3f511180f52820a1",
+    "Tests/RaveLinkCoreTests/ReviewTests.swift": "ecebfa13205122b4df17164b6bba81a46d3c415ebf531486dd0c7eedc18546d6",
+    "scripts/test.sh": "8c8750b603e1ba7c7bf0f5977bbcd92cda613ec490d39ed1cd8c361e40b57f7f"
+  },
+  "toolchain_note": "CLT Swift 6.2.1, built-in Testing.framework version 1400. Explicit framework paths and disabled unavailable Foundation cross-import overlay for test build. No product source substitution."
+}

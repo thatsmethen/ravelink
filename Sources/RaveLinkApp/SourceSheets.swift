@@ -13,7 +13,7 @@ struct InputSheet: View {
     private var valid: Bool { (kind == .device && !deviceUID.isEmpty) || (kind == .application && !bundleID.isEmpty) || kind == .system || kind == .tone }
     var body: some View {
         VStack(alignment: .leading, spacing: 22) {
-            HStack { Text("Add an input").font(.title2.weight(.semibold)); Spacer(); Button { audio.refreshDevices() } label: { Label("Refresh", systemImage: "arrow.clockwise") } }
+            HStack { Text(studio.sourceTarget == nil ? "Add an input" : (studio.sourceReplacement == nil ? "Add a source" : "Change source")).font(.title2.weight(.semibold)); Spacer(); Button { audio.refreshDevices() } label: { Label("Refresh", systemImage: "arrow.clockwise") } }
             Text("Bring audio into your studio, then choose which mixes can hear it.").foregroundStyle(.secondary)
             Picker("Source", selection: $kind) {
                 Text("Device").tag(SourceKind.device)
@@ -34,17 +34,17 @@ struct InputSheet: View {
                         Text("Choose an application…").tag("")
                         ForEach(audio.applications) { Text($0.name).tag($0.id) }
                     }
-                    Text("Open an app and play audio if it is missing here. macOS will ask for audio capture permission when needed.").font(.caption).foregroundStyle(.secondary)
+                    Text("Open an app and play audio if it is missing here. macOS will ask for audio capture permission when needed. While mixing, this app’s original playback is replaced by your routes.").font(.caption).foregroundStyle(.secondary)
                 case .system:
                     Label("All system audio", systemImage: "desktopcomputer").font(.headline)
-                    Text("Captures applications outside dedicated app inputs. RaveLink’s own output is excluded to prevent feedback.").font(.caption).foregroundStyle(.secondary)
+                    Text("Captures applications outside dedicated app inputs. RaveLink’s own output is excluded. Original playback is replaced by your routes while mixing.").font(.caption).foregroundStyle(.secondary)
                 case .tone:
                     Label("440 Hz calibration tone", systemImage: "waveform").font(.headline)
                     Text("A quiet signal for checking your route. Starts only after you enable a mix and start audio.").font(.caption).foregroundStyle(.secondary)
                 }
             }.frame(minHeight: 80, alignment: .top)
-            TextField("Name (optional)", text: $name).textFieldStyle(.roundedBorder)
-            HStack { Button("Cancel") { dismiss() }.keyboardShortcut(.cancelAction); Spacer(); Button("Add input") { add() }.buttonStyle(.borderedProminent).disabled(!valid).keyboardShortcut(.defaultAction) }
+            if studio.sourceTarget == nil { TextField("Name (optional)", text: $name).textFieldStyle(.roundedBorder) }
+            HStack { Button("Cancel") { dismiss() }.keyboardShortcut(.cancelAction); Spacer(); Button(studio.sourceReplacement == nil ? "Add input" : "Use source") { add() }.buttonStyle(.borderedProminent).disabled(!valid).keyboardShortcut(.defaultAction) }
         }.padding(30).frame(width: 560)
     }
     private func add() {
@@ -77,5 +77,49 @@ struct MixSheet: View {
             Text("For a streaming or chat app, choose a virtual device such as RaveLink Stream or BlackHole. For listening, choose your headphones.").font(.caption).foregroundStyle(.secondary)
             HStack { Button("Cancel") { dismiss() }.keyboardShortcut(.cancelAction); Spacer(); Button("Add mix") { studio.add(MixBus(name: name, deviceUID: deviceUID)); dismiss() }.buttonStyle(.borderedProminent).disabled(name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty).keyboardShortcut(.defaultAction) }
         }.padding(30).frame(width: 500)
+    }
+}
+
+struct MonitorOutputsSheet: View {
+    @ObservedObject var studio: StudioModel
+    @ObservedObject var audio: AudioCoordinator
+    @Environment(\.dismiss) private var dismiss
+    @State private var selectedUID = ""
+    @State private var offset = 0
+    var body: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            Text("Additional outputs").font(.title2.weight(.semibold))
+            Text("Play the same mix on more than one device. All destinations follow this mix’s level and mute controls.").foregroundStyle(.secondary)
+            if let index = studio.session.buses.firstIndex(where: { $0.id == studio.outputTarget }) {
+                Text(studio.session.buses[index].name).font(.headline)
+                let outputs = studio.session.buses[index].additionalOutputs
+                if outputs.isEmpty { Text("No additional outputs yet.").font(.callout).foregroundStyle(.secondary) }
+                ForEach(outputs.indices, id: \.self) { slot in
+                    HStack {
+                        Image(systemName: "speaker.wave.2")
+                        Text(audio.devices.first(where: { $0.id == outputs[slot].deviceUID })?.name ?? "Missing device")
+                        Text("\(outputs[slot].channelOffset + 1)–\(outputs[slot].channelOffset + 2)").foregroundStyle(.secondary)
+                        Spacer()
+                        Button("Remove") { studio.session.buses[index].additionalOutputs.remove(at: slot) }
+                    }
+                }
+                Divider()
+                Picker("Device", selection: $selectedUID) {
+                    Text("Choose output…").tag("")
+                    ForEach(audio.devices.filter { $0.outputChannels > 1 }) { Text($0.name).tag($0.id) }
+                }.onChange(of: selectedUID) { _, _ in offset = 0 }
+                if let device = audio.devices.first(where: { $0.id == selectedUID }), device.outputChannels > 2 {
+                    Picker("Channels", selection: $offset) {
+                        ForEach(Array(stride(from: 0, to: device.outputChannels - 1, by: 2)), id: \.self) { value in Text("\(value + 1)–\(value + 2)").tag(value) }
+                    }
+                }
+                let duplicate = (studio.session.buses[index].deviceUID == selectedUID && studio.session.buses[index].channelOffset == offset) || outputs.contains { $0.deviceUID == selectedUID && $0.channelOffset == offset }
+                HStack {
+                    Button("Add output") { studio.session.buses[index].additionalOutputs.append(MixDestination(deviceUID: selectedUID, channelOffset: offset)); selectedUID = "" }.disabled(selectedUID.isEmpty || duplicate)
+                    Spacer()
+                    Button("Done") { dismiss() }.keyboardShortcut(.defaultAction)
+                }
+            } else { Button("Done") { dismiss() } }
+        }.padding(30).frame(width: 540)
     }
 }

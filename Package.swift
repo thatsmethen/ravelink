@@ -10,9 +10,11 @@ let package = Package(
     ],
     targets: [
         .target(name: "RaveLinkCore"),
-        .target(name: "RaveLinkAudio", dependencies: ["RaveLinkCore"]),
+        .target(name: "RaveLinkRealtime", publicHeadersPath: "include"),
+        .target(name: "RaveLinkAudio", dependencies: ["RaveLinkCore", "RaveLinkRealtime"]),
         .executableTarget(name: "RaveLinkApp", dependencies: ["RaveLinkCore", "RaveLinkAudio"]),
-        .testTarget(name: "RaveLinkCoreTests", dependencies: ["RaveLinkCore"])
+        .testTarget(name: "RaveLinkCoreTests", dependencies: ["RaveLinkCore"]),
+        .testTarget(name: "RaveLinkAudioTests", dependencies: ["RaveLinkAudio", "RaveLinkCore", "RaveLinkRealtime"])
     ],
     swiftLanguageModes: [.v5]
 )

@@ -3,7 +3,7 @@ import Foundation
 public enum SourceKind: String, Codable, CaseIterable, Sendable {
     case device, application, system, tone
 }
-public struct InputSource: Codable, Equatable, Sendable {
+public struct InputSource: Codable, Hashable, Sendable {
     public var kind: SourceKind
     public var deviceUID: String?
     public var bundleID: String?
@@ -24,11 +24,32 @@ public struct MixerChannel: Identifiable, Codable, Equatable, Sendable {
     public var id: UUID
     public var name: String
     public var source: InputSource
+    public var additionalSources: [InputSource]
     public var muted: Bool
     public var solo: Bool
     public var effects: ChannelEffects
-    public init(id: UUID = UUID(), name: String, source: InputSource = .init(), muted: Bool = false, solo: Bool = false, effects: ChannelEffects = .init()) {
+    public init(id: UUID = UUID(), name: String, source: InputSource = .init(), muted: Bool = false, solo: Bool = false, effects: ChannelEffects = .init(), additionalSources: [InputSource] = []) {
         self.id = id; self.name = name; self.source = source; self.muted = muted; self.solo = solo; self.effects = effects
+        self.additionalSources = additionalSources
+    }
+    public var allSources: [InputSource] { [source] + additionalSources }
+    private enum CodingKeys: String, CodingKey { case id, name, source, muted, solo, effects, additionalSources }
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decode(UUID.self, forKey: .id)
+        name = try values.decode(String.self, forKey: .name)
+        source = try values.decode(InputSource.self, forKey: .source)
+        muted = try values.decode(Bool.self, forKey: .muted)
+        solo = try values.decode(Bool.self, forKey: .solo)
+        effects = try values.decode(ChannelEffects.self, forKey: .effects)
+        additionalSources = try values.decodeIfPresent([InputSource].self, forKey: .additionalSources) ?? []
+    }
+}
+public struct MixDestination: Codable, Equatable, Sendable {
+    public var deviceUID: String?
+    public var channelOffset: Int
+    public init(deviceUID: String? = nil, channelOffset: Int = 0) {
+        self.deviceUID = deviceUID; self.channelOffset = channelOffset
     }
 }
 public struct MixBus: Identifiable, Codable, Equatable, Sendable {
@@ -38,8 +59,22 @@ public struct MixBus: Identifiable, Codable, Equatable, Sendable {
     public var channelOffset: Int
     public var gainDB: Float
     public var muted: Bool
-    public init(id: UUID = UUID(), name: String, deviceUID: String? = nil, channelOffset: Int = 0, gainDB: Float = 0, muted: Bool = false) {
+    public var additionalOutputs: [MixDestination]
+    public init(id: UUID = UUID(), name: String, deviceUID: String? = nil, channelOffset: Int = 0, gainDB: Float = 0, muted: Bool = false, additionalOutputs: [MixDestination] = []) {
         self.id = id; self.name = name; self.deviceUID = deviceUID; self.channelOffset = channelOffset; self.gainDB = gainDB; self.muted = muted
+        self.additionalOutputs = additionalOutputs
+    }
+    public var allOutputs: [MixDestination] { [.init(deviceUID: deviceUID, channelOffset: channelOffset)] + additionalOutputs }
+    private enum CodingKeys: String, CodingKey { case id, name, deviceUID, channelOffset, gainDB, muted, additionalOutputs }
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decode(UUID.self, forKey: .id)
+        name = try values.decode(String.self, forKey: .name)
+        deviceUID = try values.decodeIfPresent(String.self, forKey: .deviceUID)
+        channelOffset = try values.decode(Int.self, forKey: .channelOffset)
+        gainDB = try values.decode(Float.self, forKey: .gainDB)
+        muted = try values.decode(Bool.self, forKey: .muted)
+        additionalOutputs = try values.decodeIfPresent([MixDestination].self, forKey: .additionalOutputs) ?? []
     }
 }
 public struct MixSend: Identifiable, Codable, Equatable, Sendable {

@@ -1,0 +1,24 @@
+--prepared:/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Frameworks/libaic.dylib
+--validated:/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Frameworks/libaic.dylib
+--prepared:/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Frameworks/Lottie.framework/Versions/Current/.
+--validated:/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Frameworks/Lottie.framework/Versions/Current/.
+--prepared:/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Frameworks/Sentry.framework/Versions/Current/.
+--validated:/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Frameworks/Sentry.framework/Versions/Current/.
+--prepared:/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Frameworks/Sparkle.framework/Versions/Current/.
+--prepared:/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Frameworks/Sparkle.framework/Versions/Current/Autoupdate
+--validated:/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Frameworks/Sparkle.framework/Versions/Current/Autoupdate
+--prepared:/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Frameworks/Sparkle.framework/Versions/Current/Updater.app
+--validated:/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Frameworks/Sparkle.framework/Versions/Current/Updater.app
+--prepared:/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Frameworks/Sparkle.framework/Versions/Current/XPCServices/Downloader.xpc
+--validated:/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Frameworks/Sparkle.framework/Versions/Current/XPCServices/Downloader.xpc
+--prepared:/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Frameworks/Sparkle.framework/Versions/Current/XPCServices/Installer.xpc
+--validated:/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Frameworks/Sparkle.framework/Versions/Current/XPCServices/Installer.xpc
+--validated:/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Frameworks/Sparkle.framework/Versions/Current/.
+--prepared:/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Frameworks/tlusbdfuapi.framework/Versions/Current/.
+--validated:/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Frameworks/tlusbdfuapi.framework/Versions/Current/.
+--prepared:/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Frameworks/WaveAPI.framework/Versions/Current/.
+--validated:/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Frameworks/WaveAPI.framework/Versions/Current/.
+--prepared:/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Frameworks/WavePluginRack.framework/Versions/Current/.
+--validated:/Users/textual/projects/notify/ravelink/.tools/reference/wavelink-mount/Elgato Wave Link.app/Contents/Frameworks/WavePluginRack.framework/Versions/Current/.
+.tools/reference/wavelink-mount/Elgato Wave Link.app: valid on disk
+.tools/reference/wavelink-mount/Elgato Wave Link.app: satisfies its Designated Requirement
