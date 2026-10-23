@@ -10,7 +10,8 @@ Checkpoint: 2026-10-24, macOS arm64 development host. No Windows driver installa
 | Official SDK ABI compile | Passed | Apple Clang 17, Windows x64 target, exact Microsoft 26100.6584 header packages; sizes, offsets, constants, signatures and inheritance |
 | Native Windows kernel PE cross-build | Passed | Pinned nightly/core, bundled LLVM linker, official kernel import libraries |
 | PE structure check | Passed | Native AMD64 entry, checksum, relocations, ASLR/NX/integrity flags, kernel-only imports, no TLS or writable executable sections |
-| Windows MSVC/InfVerif/Inf2Cat pipeline | Pending hosted run | Implemented in dedicated workflow; no successful Windows packaging result claimed by this record |
+| Native Windows Rust build and host tests | Passed | Hosted run 40038289774 built the kernel PE and passed all nine tests |
+| Windows MSVC/InfVerif/Inf2Cat pipeline | Initial ABI-harness build failed; correction prepared | Header search order and MSVC-compatible test type trait corrected; INF/catalog stages not reached |
 | Actual Windows kernel/endpoint/audio/latency tests | Not run | Requires authorized Windows test environment |
 | Production signing, HVCI/Verifier/HLK | Not run | Required before release |
 
@@ -21,3 +22,5 @@ The host vtable scenario injects failures at all ten PortCls startup acquisition
 Independent source review found and corrected three defects before this checkpoint: accepting PortCls's default power capabilities, sampling QPC only after acquiring the shared lock to prevent reordered callers from moving the cursor backwards, and covering ordinary/surprise removal in addition to rebalance callbacks. Buffer detach/free sequencing and failure rollback were then checked with the host harness.
 
 The implementation holds a kernel spin lock while processing at most one cyclic buffer per direction (up to 16,384 frames total), and can clear up to 64 KiB on STOP. This is bounded but has no measured native hold-time evidence. Microsoft's guidance is less than 25 microseconds; meeting that bound, including under contention, is a release qualification gate. The initial polled WaveRT path and absence of event-driven notifications also need real Windows audio-engine compatibility testing.
+
+Initial hosted run: [40038289774](https://github.com/thatsmethen/ravelink/actions/runs/40038289774), commit `db0ae168652a4e4269b5f8b8914a1ff53da77c2f`. Rust build, nine host tests, formatting and strict Clippy succeeded on Windows. The compile-only C++ harness failed because user-mode MSVC CRT headers preceded the WDK CRT and the test used a Clang-specific type trait. The subsequent correction changes only the harness/build environment; the driver remains pure Rust.

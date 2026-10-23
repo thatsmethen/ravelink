@@ -26,7 +26,7 @@ rustup toolchain install nightly-2025-11-10 --profile minimal --component rust-s
 ./drivers/windows/build.ps1
 ```
 
-`toolchain.json` pins Rust, the target, and exact Microsoft WDK/SDK NuGet versions and SHA-512 digests. The script retrieves verified Microsoft packages into a temporary build cache, compiles Rust with the bundled LLVM linker, runs host tests, compiles the SDK ABI assertions with MSVC, validates the PE and INF, and generates an unsigned catalog. Output goes to `dist/windows-driver/`. `-SkipCatalog` skips only catalog creation, and records that explicitly.
+`toolchain.json` pins Rust, the target, and exact Microsoft WDK/SDK NuGet versions and SHA-512 digests. The script retrieves verified Microsoft packages into a temporary build cache, compiles Rust with the bundled LLVM linker, runs host tests, compiles the SDK ABI assertions with MSVC, validates the PE and INF, and generates an unsigned catalog. Output goes to `dist/windows-driver/` with the proprietary license and complete Rust core/compiler-builtins runtime notices from the exact compiler sysroot. `-SkipCatalog` skips only catalog creation, and records that explicitly.
 
 The nightly toolchain is required only because `-Zbuild-std=core` rebuilds core with panic-abort. The prebuilt stable Windows core pulls user-mode exception-runtime references into this kernel build. No fake exception handler is supplied. `_fltused` is an inert linker metadata marker; no floating-point arithmetic is used by the transport.
 

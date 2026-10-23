@@ -9,11 +9,14 @@
 #endif
 
 template<typename Left, typename Right>
-constexpr bool same_type = __is_same(Left, Right);
+constexpr bool same_type = false;
+template<typename Type>
+constexpr bool same_type<Type, Type> = true;
 template<typename Base, typename Derived>
 constexpr bool is_base = __is_base_of(Base, Derived);
 
 static_assert(sizeof(void*) == 8, "The Rust binding currently targets x64/arm64.");
+static_assert(sizeof(KEVENT) == 24 && alignof(KEVENT) == 8);
 static_assert(sizeof(DRIVER_OBJECT) == 336);
 static_assert(offsetof(DRIVER_OBJECT, MajorFunction) == 112);
 static_assert(offsetof(DEVICE_OBJECT, DeviceExtension) == 64);

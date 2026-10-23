@@ -37,6 +37,7 @@ jobs:
           cargo build --locked -p ravelink-app --release
           New-Item -ItemType Directory -Force dist/windows
           Copy-Item target/release/ravelink-app.exe,LICENSE,THIRD-PARTY-NOTICES.txt dist/windows/
+          Copy-Item -Recurse docs/third-party-licenses/rust-1.91.1 dist/windows/Rust-runtime-notices
           Compress-Archive -Path dist/windows/* -DestinationPath dist/RaveLink-Windows-development.zip
       - name: macOS driver ABI harness
         if: runner.os == 'macOS'

@@ -27,5 +27,6 @@ mkdir -p "$output"
 cp "$CARGO_TARGET_DIR/$target/release/ravelink_windows_driver.dll" "$output/RaveLink.sys"
 cp "$repo/drivers/windows/RaveLink.inf" "$output/RaveLink.inf"
 cp "$repo/LICENSE" "$repo/drivers/windows/PROVENANCE.md" "$output/"
+python3 "$repo/drivers/windows/runtime-notices.py" --sysroot "$sysroot" --output "$output"
 python3 "$repo/drivers/windows/tests/check-pe.py" "$output/RaveLink.sys" --output "$output/pe-evidence.json"
 printf 'Unsigned PE only; Windows INF validation/catalog and kernel runtime remain separate.\n'

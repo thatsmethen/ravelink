@@ -12,6 +12,12 @@ $Pin = Get-Content (Join-Path $PSScriptRoot 'toolchain.json') -Raw | ConvertFrom
 if (!$OutputDirectory) { $OutputDirectory = Join-Path $Repo 'dist/windows-driver' }
 $OutputDirectory = [IO.Path]::GetFullPath($OutputDirectory)
 New-Item -ItemType Directory -Force $CacheDirectory, $OutputDirectory | Out-Null
+# Remove only generated package files; never let a failed rerun expose an old
+# catalog or success report alongside a newly built binary.
+foreach ($generated in @('RaveLink.sys', 'RaveLink.inf', 'RaveLink.cat', 'ravelink_windows_driver.pdb', 'pe-evidence.json', 'build-evidence.json', 'DRIVER-RUNTIME-NOTICES.txt', 'runtime-notices')) {
+    $path = Join-Path $OutputDirectory $generated
+    if (Test-Path $path) { Remove-Item -Recurse -Force $path }
+}
 
 function Invoke-Checked([string]$Program, [string[]]$Arguments) {
     & $Program @Arguments
@@ -71,7 +77,7 @@ try {
     $toolset = Get-ChildItem (Join-Path $vs 'VC/Tools/MSVC') -Directory | Where-Object Name -Like "$($Pin.msvc_validation_toolset).*" | Sort-Object Name -Descending | Select-Object -First 1
     if (!$toolset) { throw "MSVC $($Pin.msvc_validation_toolset) is required for the compile-only ABI check." }
     $cl = Join-Path $toolset.FullName 'bin/Hostx64/x64/cl.exe'
-    $includes = @((Join-Path $toolset.FullName 'include'), (Join-Path $Wdk "c/Include/$Version/km"), (Join-Path $Wdk "c/Include/$Version/km/crt"), (Join-Path $Sdk "c/Include/$Version/shared"), (Join-Path $Sdk "c/Include/$Version/ucrt"))
+    $includes = @((Join-Path $Wdk "c/Include/$Version/km"), (Join-Path $Wdk "c/Include/$Version/km/crt"), (Join-Path $Sdk "c/Include/$Version/shared"), (Join-Path $Sdk "c/Include/$Version/ucrt"), (Join-Path $toolset.FullName 'include'))
     $arguments = @('/nologo', '/c', '/std:c++17', '/D_AMD64_=1', '/D_WIN64', '/D_WIN32_WINNT=0x0a00', '/DNTDDI_VERSION=0x0A00000C')
     foreach ($include in $includes) { $arguments += "/I$include" }
     $arguments += @("/Fo$(Join-Path $BuildDirectory 'abi-check.obj')", (Join-Path $PSScriptRoot 'tests/abi-check.cpp'))
@@ -83,13 +89,14 @@ try {
     Copy-Item (Join-Path $PSScriptRoot 'RaveLink.inf') $OutputDirectory -Force
     Copy-Item (Join-Path $Repo 'LICENSE') $OutputDirectory -Force
     Copy-Item (Join-Path $PSScriptRoot 'PROVENANCE.md') $OutputDirectory -Force
+    Invoke-Checked python @((Join-Path $PSScriptRoot 'runtime-notices.py'), '--sysroot', $sysroot, '--output', $OutputDirectory)
     Copy-Item (Join-Path $BuildDirectory "$($Pin.target)/release/ravelink_windows_driver.pdb") $OutputDirectory -Force
     Invoke-Checked python @((Join-Path $PSScriptRoot 'tests/check-pe.py'), $driver, '--output', (Join-Path $OutputDirectory 'pe-evidence.json'))
     $infverif = Join-Path $Wdk "c/tools/$Version/x64/infverif.exe"
     Invoke-Checked $infverif @('/w', (Join-Path $OutputDirectory 'RaveLink.inf'))
     if (!$SkipCatalog) {
         $inf2cat = Join-Path $Wdk "c/bin/$Version/x86/Inf2Cat.exe"
-        Invoke-Checked $inf2cat @("/driver:$OutputDirectory", '/os:10_X64', '/uselocaltime')
+        Invoke-Checked $inf2cat @("/driver:$OutputDirectory", '/os:10_VB_X64', '/uselocaltime')
     }
     @{
         rust = $compiler; target = $Pin.target; wdk = $Pin.packages[0].version

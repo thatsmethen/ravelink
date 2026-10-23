@@ -12,6 +12,14 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGETS = ['aarch64-apple-darwin', 'x86_64-pc-windows-msvc']
 
 def generate():
+    runtime = ROOT/'docs/third-party-licenses/rust-1.91.1'
+    runtime_record = json.loads((runtime/'sources.json').read_text(encoding='utf-8'))
+    pinned = tomllib.loads((ROOT/'rust-toolchain.toml').read_text(encoding='utf-8'))['toolchain']['channel']
+    if runtime_record['toolchain'] != pinned:
+        raise RuntimeError('Rust runtime notices do not match the pinned toolchain')
+    for record in runtime_record['files']:
+        if hashlib.sha256((runtime/record['file']).read_bytes()).hexdigest() != record['sha256']:
+            raise RuntimeError('Rust runtime notice hash mismatch: '+record['file'])
     packages = {}
     for target in TARGETS:
         metadata = json.loads(subprocess.check_output([
