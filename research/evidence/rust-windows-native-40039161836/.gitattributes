@@ -1,0 +1,6 @@
+run.json -text
+ci.log -text
+artifact-api.json -text
+artifact-original.zip binary
+build-at-6484.ps1 -text
+toolchain-at-6484.json -text

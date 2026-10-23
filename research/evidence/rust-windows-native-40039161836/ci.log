@@ -1,0 +1,258 @@
+unsigned-package	Set up job	﻿2026-10-23T23:21:04.5112699Z Current runner version: '2.338.0'
+unsigned-package	Set up job	2026-10-23T23:21:04.5820904Z ##[group]Runner Image Provisioner
+unsigned-package	Set up job	2026-10-23T23:21:04.5822274Z Hosted Compute Agent
+unsigned-package	Set up job	2026-10-23T23:21:04.5823205Z Version: 20261012.601
+unsigned-package	Set up job	2026-10-23T23:21:04.5824143Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+unsigned-package	Set up job	2026-10-23T23:21:04.5825314Z Build Date: 2026-10-12T17:48:21Z
+unsigned-package	Set up job	2026-10-23T23:21:04.5826400Z Worker ID: {0083d5a9-3cc9-4268-8248-39a4855726e4}
+unsigned-package	Set up job	2026-10-23T23:21:04.5827573Z Region: westus2
+unsigned-package	Set up job	2026-10-23T23:21:04.5828427Z Cloud: Azure
+unsigned-package	Set up job	2026-10-23T23:21:04.5829252Z ##[endgroup]
+unsigned-package	Set up job	2026-10-23T23:21:04.5831594Z ##[group]Operating System
+unsigned-package	Set up job	2026-10-23T23:21:04.5832688Z Microsoft Windows Server 2022
+unsigned-package	Set up job	2026-10-23T23:21:04.5833701Z 10.0.20348
+unsigned-package	Set up job	2026-10-23T23:21:04.5834517Z Datacenter
+unsigned-package	Set up job	2026-10-23T23:21:04.5835371Z ##[endgroup]
+unsigned-package	Set up job	2026-10-23T23:21:04.5836249Z ##[group]Runner Image
+unsigned-package	Set up job	2026-10-23T23:21:04.5837182Z Image: windows-2022
+unsigned-package	Set up job	2026-10-23T23:21:04.5838111Z Version: 20261012.333.1
+unsigned-package	Set up job	2026-10-23T23:21:04.5840042Z Included Software: https://github.com/actions/runner-images/blob/win22/20261012.333/images/windows/Windows2022-Readme.md
+unsigned-package	Set up job	2026-10-23T23:21:04.5843223Z Image Release: https://github.com/actions/runner-images/releases/tag/win22%2F20261012.333
+unsigned-package	Set up job	2026-10-23T23:21:04.5844790Z ##[endgroup]
+unsigned-package	Set up job	2026-10-23T23:21:04.5846623Z ##[group]GITHUB_TOKEN Permissions
+unsigned-package	Set up job	2026-10-23T23:21:04.5849125Z Contents: read
+unsigned-package	Set up job	2026-10-23T23:21:04.5850490Z Metadata: read
+unsigned-package	Set up job	2026-10-23T23:21:04.5851697Z ##[endgroup]
+unsigned-package	Set up job	2026-10-23T23:21:04.5854778Z Secret source: Actions
+unsigned-package	Set up job	2026-10-23T23:21:04.5856455Z Cache mode: write
+unsigned-package	Set up job	2026-10-23T23:21:04.5857845Z Prepare workflow directory
+unsigned-package	Set up job	2026-10-23T23:21:04.6368374Z Prepare all required actions
+unsigned-package	Set up job	2026-10-23T23:21:04.6449631Z Getting action download info
+unsigned-package	Set up job	2026-10-23T23:21:05.0962611Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+unsigned-package	Set up job	2026-10-23T23:21:05.2503647Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+unsigned-package	Set up job	2026-10-23T23:21:05.8403259Z Complete job name: unsigned-package
+unsigned-package	Run actions/checkout@v4	﻿2026-10-23T23:21:06.8518501Z ##[group]Run actions/checkout@v4
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:06.8520799Z with:
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:06.8522073Z   repository: thatsmethen/ravelink
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:06.8540167Z   token: ***
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:06.8541421Z   ssh-strict: true
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:06.8542619Z   ssh-user: git
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:06.8543870Z   persist-credentials: true
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:06.8549262Z   clean: true
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:06.8550571Z   sparse-checkout-cone-mode: true
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:06.8552111Z   fetch-depth: 1
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:06.8553314Z   fetch-tags: false
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:06.8555059Z   show-progress: true
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:06.8556465Z   lfs: false
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:06.8557612Z   submodules: false
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:06.8558909Z   set-safe-directory: true
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:06.8560359Z   allow-unsafe-pr-checkout: false
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:06.8562309Z ##[endgroup]
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:10.0177872Z Syncing repository: thatsmethen/ravelink
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:10.0179825Z ##[group]Getting Git version info
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:10.0180625Z Working directory is 'D:\a\ravelink\ravelink'
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:10.0182638Z [command]"C:\Program Files\Git\bin\git.exe" version
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:10.0183445Z git version 2.56.0.windows.2
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:10.0184899Z ##[endgroup]
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:10.0189791Z Temporarily overriding HOME='D:\a\_temp\cc79ebf4-e8e3-46e1-9dcc-91f2cfbf4336' before making global git config changes
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:10.0191046Z Adding repository directory to the temporary git global config as a safe directory
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:10.0192180Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\ravelink\ravelink
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:10.1229883Z Deleting the contents of 'D:\a\ravelink\ravelink'
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:10.1235828Z ##[group]Initializing the repository
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:10.1237006Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\ravelink\ravelink
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:10.2015279Z Initialized empty Git repository in D:/a/ravelink/ravelink/.git/
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:10.2177955Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/thatsmethen/ravelink
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:10.2953297Z ##[endgroup]
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:10.2964833Z ##[group]Disabling automatic garbage collection
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:10.2969686Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:10.3244782Z ##[endgroup]
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:10.3245759Z ##[group]Setting up auth
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:10.3259211Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:10.3701447Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:12.0853269Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:12.1182262Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:12.6247517Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:12.6554049Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:13.1818096Z [command]"C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:13.2131327Z ##[endgroup]
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:13.2132284Z ##[group]Fetching the repository
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:13.2151252Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +6484db8f80d3ad6d7233b5c927b11b6889c82b75:refs/remotes/origin/main
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:14.8308719Z From https://github.com/thatsmethen/ravelink
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:14.8313857Z  * [new ref]         6484db8f80d3ad6d7233b5c927b11b6889c82b75 -> origin/main
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:14.8354538Z ##[endgroup]
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:14.8359040Z ##[group]Determining the checkout info
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:14.8367378Z ##[endgroup]
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:15.2613977Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:15.2660095Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:15.2663190Z ##[group]Checking out the ref
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:15.2664179Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force -B main refs/remotes/origin/main
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:15.2665211Z Switched to a new branch 'main'
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:15.2665877Z branch 'main' set up to track 'origin/main'.
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:15.2667457Z ##[endgroup]
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:15.2668758Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+unsigned-package	Run actions/checkout@v4	2026-10-23T23:21:15.2669532Z 6484db8f80d3ad6d7233b5c927b11b6889c82b75
+unsigned-package	Install pinned Rust tools	﻿2026-10-23T23:21:15.2907705Z ##[group]Run rustup toolchain install 1.91.1 --profile minimal --component rustfmt,clippy
+unsigned-package	Install pinned Rust tools	2026-10-23T23:21:15.2908495Z [36;1mrustup toolchain install 1.91.1 --profile minimal --component rustfmt,clippy[0m
+unsigned-package	Install pinned Rust tools	2026-10-23T23:21:15.2908978Z [36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }[0m
+unsigned-package	Install pinned Rust tools	2026-10-23T23:21:15.2909582Z [36;1mrustup toolchain install nightly-2025-11-10 --profile minimal --component rust-src --target x86_64-pc-windows-msvc[0m
+unsigned-package	Install pinned Rust tools	2026-10-23T23:21:15.2910181Z [36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }[0m
+unsigned-package	Install pinned Rust tools	2026-10-23T23:21:15.3012992Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+unsigned-package	Install pinned Rust tools	2026-10-23T23:21:15.3013375Z ##[endgroup]
+unsigned-package	Install pinned Rust tools	2026-10-23T23:21:16.3386423Z info: syncing channel updates for 1.91.1-x86_64-pc-windows-msvc
+unsigned-package	Install pinned Rust tools	2026-10-23T23:21:16.7996501Z info: latest update on 2025-11-10 for version 1.91.1 (ed61e7d7e 2025-11-07)
+unsigned-package	Install pinned Rust tools	2026-10-23T23:21:16.8056348Z info: downloading 5 components
+unsigned-package	Install pinned Rust tools	2026-10-23T23:21:24.8635421Z 
+unsigned-package	Install pinned Rust tools	2026-10-23T23:21:26.1136953Z   1.91.1-x86_64-pc-windows-msvc installed - rustc 1.91.1 (ed61e7d7e 2025-11-07)
+unsigned-package	Install pinned Rust tools	2026-10-23T23:21:26.1137939Z 
+unsigned-package	Install pinned Rust tools	2026-10-23T23:21:26.1517411Z info: syncing channel updates for nightly-2025-11-10-x86_64-pc-windows-msvc
+unsigned-package	Install pinned Rust tools	2026-10-23T23:21:26.7916599Z info: latest update on 2025-11-10 for version 1.93.0-nightly (6647be936 2025-11-09)
+unsigned-package	Install pinned Rust tools	2026-10-23T23:21:26.7918013Z info: downloading 4 components
+unsigned-package	Install pinned Rust tools	2026-10-23T23:21:40.4524032Z 
+unsigned-package	Install pinned Rust tools	2026-10-23T23:21:41.8194870Z   nightly-2025-11-10-x86_64-pc-windows-msvc installed - rustc 1.93.0-nightly (6647be936 2025-11-09)
+unsigned-package	Install pinned Rust tools	2026-10-23T23:21:41.8195848Z 
+unsigned-package	Format and static checks	﻿2026-10-23T23:21:42.1423594Z ##[group]Run cargo +1.91.1 fmt --manifest-path crates/ravelink-windows-driver/Cargo.toml -- --check
+unsigned-package	Format and static checks	2026-10-23T23:21:42.1424409Z [36;1mcargo +1.91.1 fmt --manifest-path crates/ravelink-windows-driver/Cargo.toml -- --check[0m
+unsigned-package	Format and static checks	2026-10-23T23:21:42.1424931Z [36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }[0m
+unsigned-package	Format and static checks	2026-10-23T23:21:42.1425574Z [36;1mcargo +1.91.1 clippy --locked --manifest-path crates/ravelink-windows-driver/Cargo.toml --all-targets -- -D warnings[0m
+unsigned-package	Format and static checks	2026-10-23T23:21:42.1426196Z [36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }[0m
+unsigned-package	Format and static checks	2026-10-23T23:21:42.1465308Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+unsigned-package	Format and static checks	2026-10-23T23:21:42.1465672Z ##[endgroup]
+unsigned-package	Format and static checks	2026-10-23T23:21:44.5203496Z    Compiling ravelink-windows-driver v0.1.0 (D:\a\ravelink\ravelink\crates\ravelink-windows-driver)
+unsigned-package	Format and static checks	2026-10-23T23:21:47.4088281Z     Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.10s
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	﻿2026-10-23T23:21:47.6834640Z ##[group]Run ./drivers/windows/build.ps1
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:21:47.6835521Z [36;1m./drivers/windows/build.ps1[0m
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:21:47.6875471Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:21:47.6875830Z ##[endgroup]
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:06.3750376Z     Updating crates.io index
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:06.3754295Z  Downloading crates ...
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:06.4605886Z   Downloaded getopts v0.2.24
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:06.8470643Z   Downloaded rustc-literal-escaper v0.0.5
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:06.8600886Z   Downloaded cfg-if v1.0.1
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:06.8769279Z   Downloaded rustc-demangle v0.1.26
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:06.8987841Z   Downloaded hashbrown v0.15.5
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:07.0496119Z    Compiling compiler_builtins v0.1.160 (C:\Users\runneradmin\.rustup\toolchains\nightly-2025-11-10-x86_64-pc-windows-msvc\lib\rustlib\src\rust\library\compiler-builtins\compiler-builtins)
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:07.0498439Z    Compiling ravelink-windows-driver v0.1.0 (D:\a\ravelink\ravelink\crates\ravelink-windows-driver)
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:07.3468468Z    Compiling core v0.0.0 (C:\Users\runneradmin\.rustup\toolchains\nightly-2025-11-10-x86_64-pc-windows-msvc\lib\rustlib\src\rust\library\core)
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:30.0302792Z     Finished `release` profile [optimized] target(s) in 23.62s
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:30.0303966Z    Compiling ravelink-windows-driver v0.1.0 (D:\a\ravelink\ravelink\crates\ravelink-windows-driver)
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.1164477Z     Finished `test` profile [unoptimized + debuginfo] target(s) in 1.59s
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.1172557Z      Running unittests src\lib.rs (target\windows-driver\debug\deps\ravelink_windows_driver-ee1ceab37d86d59a.exe)
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.1260123Z 
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.1260485Z running 9 tests
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.1271427Z test abi::tests::sixty_four_bit_header_layout_contract ... ok
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.1272501Z test descriptors::tests::descriptor_graphs_only_instantiate_the_two_streaming_pins ... ok
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.1281539Z test descriptors::tests::fixed_format_negotiation_is_bounded_and_rejects_malformed_formats ... ok
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.1283135Z test descriptors::tests::range_constraints_and_bridge_negotiation_are_respected ... ok
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.1284531Z test kernel::tests::mocked_portcls_vtables_transfer_audio_and_release_every_owned_resource ... ok
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.1287444Z test transport::tests::clock_does_not_accumulate_rounding_and_pauses_resume ... ok
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.1290789Z test transport::tests::cursor_is_frame_aligned_and_wraps ... ok
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.1293528Z test transport::tests::integer_clock_conversion_matches_wide_reference ... ok
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.1304136Z test transport::tests::buffer_rounding_never_under_allocates ... ok
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.1304810Z 
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.1305443Z test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.1306254Z 
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.1319229Z    Doc-tests ravelink_windows_driver
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.1763165Z 
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.1766927Z running 0 tests
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.1768307Z 
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.1768980Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.1770645Z 
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:31.6740890Z abi-check.cpp
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3958453Z {
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3959161Z   "file": "RaveLink.sys",
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3959752Z   "bytes": 20480,
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3960607Z   "sha256": "15cb6ad85aa3541b3c62f281121eea9a31152e6d899d7d134db25c237a94e314",
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3961460Z   "machine": "AMD64",
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3961970Z   "subsystem": "native",
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3962495Z   "entry_rva": 4096,
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3963016Z   "checksum": 72138,
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3963526Z   "imports": {
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3964030Z     "ntoskrnl.exe": [
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3964574Z       "ExAllocatePool2",
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3965168Z       "ExFreePoolWithTag",
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3965767Z       "KeAcquireSpinLockRaiseToDpc",
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3966422Z       "KeBugCheckEx",
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3969771Z       "KeReleaseSpinLock"
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3970376Z     ],
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3970840Z     "hal.dll": [
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3971376Z       "KeQueryPerformanceCounter"
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3971977Z     ],
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3972493Z     "portcls.sys": [
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3973045Z       "PcAddAdapterDevice",
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3973632Z       "PcDispatchIrp",
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3974224Z       "PcInitializeAdapterDriver",
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3974842Z       "PcNewPort",
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3975501Z       "PcRegisterAdapterPnpManagement",
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3976144Z       "PcRegisterAdapterPowerManagement",
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3976847Z       "PcRegisterPhysicalConnection",
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3977492Z       "PcRegisterSubdevice",
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3978093Z       "PcUnregisterAdapterPnpManagement",
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3978826Z       "PcUnregisterAdapterPowerManagement"
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3979475Z     ]
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3979908Z   },
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3980370Z   "exports": {
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3981180Z     "DriverEntry": 4096,
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3981758Z     "_fltused": 22664
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3982282Z   },
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3982699Z   "sections": [
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3983155Z     ".text",
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3983613Z     ".rdata",
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3984103Z     ".data",
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3984587Z     ".pdata",
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3985061Z     ".reloc"
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3985520Z   ],
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3985976Z   "signed": false,
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3986768Z   "qualification": "PE structure only; no kernel load or endpoint runtime test"
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:34.3987629Z }
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:35.0370610Z ....................................
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:35.0371494Z Signability test complete.
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:35.0372022Z 
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:35.0372356Z Errors:
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:35.0372834Z None
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:35.0373192Z 
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:35.0373461Z Warnings:
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:35.0373953Z None
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:35.0689513Z 
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:35.0690399Z Catalog generation complete.
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:35.0691396Z D:\a\ravelink\ravelink\dist\windows-driver\ravelink.cat
+unsigned-package	Build unsigned driver, verify SDK ABI and INF, create unsigned catalog	2026-10-23T23:22:35.0945743Z Unsigned package and validation evidence: D:\a\ravelink\ravelink\dist\windows-driver
+unsigned-package	Run actions/upload-artifact@v4	﻿2026-10-23T23:22:35.1445410Z ##[group]Run actions/upload-artifact@v4
+unsigned-package	Run actions/upload-artifact@v4	2026-10-23T23:22:35.1446291Z with:
+unsigned-package	Run actions/upload-artifact@v4	2026-10-23T23:22:35.1446704Z   name: RaveLink-Windows-driver-unsigned
+unsigned-package	Run actions/upload-artifact@v4	2026-10-23T23:22:35.1447586Z   path: dist/windows-driver/
+unsigned-package	Run actions/upload-artifact@v4	2026-10-23T23:22:35.1448188Z   if-no-files-found: warn
+unsigned-package	Run actions/upload-artifact@v4	2026-10-23T23:22:35.1448500Z   compression-level: 6
+unsigned-package	Run actions/upload-artifact@v4	2026-10-23T23:22:35.1448772Z   overwrite: false
+unsigned-package	Run actions/upload-artifact@v4	2026-10-23T23:22:35.1449403Z   include-hidden-files: false
+unsigned-package	Run actions/upload-artifact@v4	2026-10-23T23:22:35.1449833Z ##[endgroup]
+unsigned-package	Run actions/upload-artifact@v4	2026-10-23T23:22:35.3398474Z (node:7948) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+unsigned-package	Run actions/upload-artifact@v4	2026-10-23T23:22:35.3400097Z (Use `node --trace-deprecation ...` to show where the warning was created)
+unsigned-package	Run actions/upload-artifact@v4	2026-10-23T23:22:35.3621958Z With the provided path, there will be 16 files uploaded
+unsigned-package	Run actions/upload-artifact@v4	2026-10-23T23:22:35.3623296Z Artifact name is valid!
+unsigned-package	Run actions/upload-artifact@v4	2026-10-23T23:22:35.3628458Z Root directory input is valid!
+unsigned-package	Run actions/upload-artifact@v4	2026-10-23T23:22:35.7833261Z Beginning upload of artifact content to blob storage
+unsigned-package	Run actions/upload-artifact@v4	2026-10-23T23:22:35.8651052Z (node:7948) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+unsigned-package	Run actions/upload-artifact@v4	2026-10-23T23:22:36.2866890Z Uploaded bytes 72773
+unsigned-package	Run actions/upload-artifact@v4	2026-10-23T23:22:36.3691063Z Finished uploading artifact content to blob storage!
+unsigned-package	Run actions/upload-artifact@v4	2026-10-23T23:22:36.3692442Z SHA256 digest of uploaded artifact zip is 72dccbdb999223e44f9ca9ac37f2b69062c1720ad6a049d6228bc3cbbf623dd9
+unsigned-package	Run actions/upload-artifact@v4	2026-10-23T23:22:36.3693621Z Finalizing artifact upload
+unsigned-package	Run actions/upload-artifact@v4	2026-10-23T23:22:36.8544034Z Artifact RaveLink-Windows-driver-unsigned.zip successfully finalized. Artifact ID 12538083934
+unsigned-package	Run actions/upload-artifact@v4	2026-10-23T23:22:36.8545815Z Artifact RaveLink-Windows-driver-unsigned has been successfully uploaded! Final size is 72773 bytes. Artifact ID is 12538083934
+unsigned-package	Run actions/upload-artifact@v4	2026-10-23T23:22:36.8555296Z Artifact download URL: https://github.com/thatsmethen/ravelink/actions/runs/40039161836/artifacts/12538083934
+unsigned-package	Post Run actions/checkout@v4	﻿2026-10-23T23:22:36.8891232Z Post job cleanup.
+unsigned-package	Post Run actions/checkout@v4	2026-10-23T23:22:37.1084870Z [command]"C:\Program Files\Git\bin\git.exe" version
+unsigned-package	Post Run actions/checkout@v4	2026-10-23T23:22:37.1522088Z git version 2.56.0.windows.2
+unsigned-package	Post Run actions/checkout@v4	2026-10-23T23:22:37.1761881Z Temporarily overriding HOME='D:\a\_temp\5ec3d6da-1ed9-4469-be15-a92d38341509' before making global git config changes
+unsigned-package	Post Run actions/checkout@v4	2026-10-23T23:22:37.1778020Z Adding repository directory to the temporary git global config as a safe directory
+unsigned-package	Post Run actions/checkout@v4	2026-10-23T23:22:37.1781537Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\ravelink\ravelink
+unsigned-package	Post Run actions/checkout@v4	2026-10-23T23:22:37.2029521Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+unsigned-package	Post Run actions/checkout@v4	2026-10-23T23:22:37.2336427Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+unsigned-package	Post Run actions/checkout@v4	2026-10-23T23:22:37.7664798Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+unsigned-package	Post Run actions/checkout@v4	2026-10-23T23:22:37.8009535Z http.https://github.com/.extraheader
+unsigned-package	Post Run actions/checkout@v4	2026-10-23T23:22:37.8060180Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all http.https://github.com/.extraheader
+unsigned-package	Post Run actions/checkout@v4	2026-10-23T23:22:37.8454186Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+unsigned-package	Post Run actions/checkout@v4	2026-10-23T23:22:38.3749258Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+unsigned-package	Post Run actions/checkout@v4	2026-10-23T23:22:38.4047695Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+unsigned-package	Complete job	﻿2026-10-23T23:22:38.9134535Z Cleaning up orphan processes
+unsigned-package	Complete job	2026-10-23T23:22:38.9418610Z Terminate orphan process: pid (1032) (vctip)
+unsigned-package	Complete job	2026-10-23T23:22:38.9535053Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

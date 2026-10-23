@@ -60,6 +60,7 @@ impl Producer {
     pub(crate) fn new(ring: Arc<Ring>) -> Self {
         Self { ring, cursor: 0 }
     }
+    #[cfg(any(not(target_os = "windows"), test))]
     pub(crate) fn push<T: cpal::Sample>(
         &mut self,
         input: &[T],
@@ -72,6 +73,17 @@ impl Producer {
             return Err(TransportError::InvalidBuffer);
         }
         let frames = input.len() / channels;
+        self.push_frames(frames, |offset| {
+            let frame = &input[offset * channels..(offset + 1) * channels];
+            let convert = |x: T| <f32 as cpal::FromSample<T>>::from_sample_(x);
+            [convert(frame[0]), convert(frame[usize::from(channels > 1)])]
+        })
+    }
+    pub(crate) fn push_frames(
+        &mut self,
+        frames: usize,
+        mut read: impl FnMut(usize) -> [f32; 2],
+    ) -> Result<(), TransportError> {
         if frames > super::MAX_CALLBACK_FRAMES {
             return Err(TransportError::InvalidBuffer);
         }
@@ -83,18 +95,11 @@ impl Producer {
         if end - released > CAPACITY as u64 {
             return Err(TransportError::Overflow);
         }
-        for (offset, frame) in input.chunks_exact(channels).enumerate() {
-            let sanitize = |x: T| {
-                let value = <f32 as cpal::FromSample<T>>::from_sample_(x);
-                if value.is_finite() {
-                    value
-                } else {
-                    0.0
-                }
-            };
-            let left = sanitize(frame[0]);
-            let right = sanitize(frame[usize::from(channels > 1)]);
-            let bits = u64::from(left.to_bits()) | (u64::from(right.to_bits()) << 32);
+        for offset in 0..frames {
+            let frame = read(offset);
+            let sanitize = |x: f32| if x.is_finite() { x } else { 0.0 };
+            let bits = u64::from(sanitize(frame[0]).to_bits())
+                | (u64::from(sanitize(frame[1]).to_bits()) << 32);
             self.ring.frames[(self.cursor as usize + offset) & (CAPACITY - 1)]
                 .store(bits, Ordering::Relaxed);
         }

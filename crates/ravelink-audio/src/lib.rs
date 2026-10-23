@@ -1,7 +1,8 @@
 //! Explicit-device, stopped-by-default audio runtime for macOS and Windows.
 //!
 //! Blocking control methods must run away from the GUI thread. One dedicated
-//! thread owns CPAL hosts/devices/streams. Callbacks use a preallocated mixer,
+//! thread owns CPAL hosts/devices/streams; Windows capture has dedicated WASAPI
+//! owners with bounded event waits. Callbacks use a preallocated mixer,
 //! planar buffers and atomic telemetry, with no application locks or allocation.
 //! A command deadline cancels late output; it cannot kill a stuck OS call. A
 //! supervising process is still required for hard recovery from driver hangs.
@@ -9,6 +10,10 @@
 mod capture;
 mod capture_transport;
 mod control_bank;
+#[cfg(target_os = "windows")]
+mod wasapi_capture;
+#[cfg(any(target_os = "windows", test))]
+mod wasapi_packet;
 use capture::{CaptureRender, CaptureState};
 use control_bank::ControlBank;
 
@@ -153,6 +158,7 @@ pub enum AudioFault {
     CaptureUnderflow = 11,
     CaptureOverflow = 12,
     CaptureStartup = 13,
+    CaptureTimestamp = 14,
 }
 impl AudioFault {
     fn from_code(code: u32) -> Self {
@@ -170,6 +176,7 @@ impl AudioFault {
             11 => Self::CaptureUnderflow,
             12 => Self::CaptureOverflow,
             13 => Self::CaptureStartup,
+            14 => Self::CaptureTimestamp,
             _ => Self::Backend,
         }
     }
@@ -178,6 +185,7 @@ impl AudioFault {
             Self::None => "",
             Self::CaptureUnderflow => "An input could not keep up with output. Audio stopped rather than dropping captured samples; check device clocks and load.",
             Self::CaptureOverflow => "An input exceeded its capture buffer. Audio stopped rather than overwriting captured samples; check device clocks and load.",
+            Self::CaptureTimestamp => "An input reported invalid capture timing. Audio stopped; check the input device and restart audio.",
             Self::CaptureStartup => "A selected input did not deliver audio before its startup deadline. Check input permissions and the selected device.",
             Self::DeviceUnavailable => "A selected audio device disconnected. Reconnect it and start explicitly.",
             Self::DeviceChanged => "An audio device route changed unexpectedly. Output stopped; select the intended device again.",
@@ -682,7 +690,7 @@ impl Drop for Running {
 /// Revoke publication before dropping native capture resources, including when
 /// a later stream fails to build/start and a driver blocks during destruction.
 struct InputStreams {
-    streams: Vec<cpal::Stream>,
+    streams: Vec<capture::CaptureStream>,
     wanted: Arc<AtomicBool>,
 }
 impl Drop for InputStreams {

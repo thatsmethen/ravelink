@@ -1,7 +1,7 @@
 use super::capture_transport::{Consumer, Kernel, Producer, Ring, TransportError};
 use super::{
     backend, native_host, supported_pcm, AudioError, AudioFault, InputDevice, InputId,
-    RunningInput, Shared, Telemetry, COMMAND_TIMEOUT, RENDER_CHUNK,
+    RunningInput, Shared, Telemetry, RENDER_CHUNK,
 };
 use cpal::traits::{DeviceTrait, HostTrait};
 use ravelink_core::{InputKind, Session, Uuid};
@@ -51,6 +51,7 @@ pub(crate) fn source_groups(session: &Session) -> BTreeMap<String, Vec<Uuid>> {
     groups
 }
 pub(crate) struct Selected {
+    #[cfg(not(target_os = "windows"))]
     device: cpal::Device,
     pub(crate) config: cpal::SupportedStreamConfig,
     pub(crate) configuration: RunningInput,
@@ -101,6 +102,7 @@ pub(crate) fn select(session: &Session, host: &cpal::Host) -> Result<Vec<Selecte
             sample_format: config.sample_format().to_string(),
         };
         selected.push(Selected {
+            #[cfg(not(target_os = "windows"))]
             device,
             config,
             configuration,
@@ -116,6 +118,7 @@ pub(crate) fn select_config(
         .filter(|c| {
             (1..=super::MAX_DEVICE_CHANNELS).contains(&c.channels())
                 && supported_pcm(c.sample_format())
+                && native_encoding_supported(c.sample_format())
         })
         .filter_map(|c| c.try_with_sample_rate(sample_rate))
         .min_by_key(|c| {
@@ -134,6 +137,22 @@ pub(crate) fn select_config(
             )
         })
 }
+
+fn native_encoding_supported(format: cpal::SampleFormat) -> bool {
+    #[cfg(target_os = "windows")]
+    {
+        super::wasapi_packet::Encoding::from_cpal(format).is_some()
+    }
+    #[cfg(not(target_os = "windows"))]
+    {
+        let _ = format;
+        true
+    }
+}
+#[cfg(target_os = "windows")]
+pub(crate) type CaptureStream = super::wasapi_capture::WasapiCapture;
+#[cfg(not(target_os = "windows"))]
+pub(crate) type CaptureStream = cpal::Stream;
 
 pub(crate) struct CaptureRender {
     pub(crate) source_ids: Vec<Uuid>,
@@ -159,6 +178,7 @@ pub(crate) fn bytes_per_capture() -> usize {
 
 pub(crate) struct CaptureState {
     producer: Producer,
+    #[cfg(any(not(target_os = "windows"), test))]
     channels: usize,
     epoch: u64,
     wanted: Arc<AtomicBool>,
@@ -174,8 +194,11 @@ impl CaptureState {
         shared: Arc<Shared>,
         telemetry: Arc<Telemetry>,
     ) -> Self {
+        #[cfg(all(target_os = "windows", not(test)))]
+        let _ = channels;
         Self {
             producer: Producer::new(ring),
+            #[cfg(any(not(target_os = "windows"), test))]
             channels,
             epoch,
             wanted,
@@ -183,18 +206,33 @@ impl CaptureState {
             telemetry,
         }
     }
+    pub(crate) fn authorized(&self) -> bool {
+        self.wanted.load(Ordering::Acquire)
+            && self.shared.epoch.load(Ordering::Acquire) == self.epoch
+            && self.telemetry.fault.load(Ordering::Acquire) == 0
+    }
+    pub(crate) fn fail(&self, fault: AudioFault) {
+        self.telemetry.fail(fault);
+    }
+    #[cfg(any(not(target_os = "windows"), test))]
     pub(crate) fn push<T: cpal::Sample>(&mut self, samples: &[T])
     where
         f32: cpal::FromSample<T>,
     {
-        if !self.wanted.load(Ordering::Acquire)
-            || self.shared.epoch.load(Ordering::Acquire) != self.epoch
-            || self.telemetry.fault.load(Ordering::Acquire) != 0
-        {
+        if !self.authorized() {
             return;
         }
         if let Err(error) = self.producer.push(samples, self.channels) {
-            self.telemetry.fail(fault(error));
+            self.fail(fault(error));
+        }
+    }
+    #[cfg(any(target_os = "windows", test))]
+    pub(crate) fn push_frames(&mut self, frames: usize, read: impl FnMut(usize) -> [f32; 2]) {
+        if !self.authorized() {
+            return;
+        }
+        if let Err(error) = self.producer.push_frames(frames, read) {
+            self.fail(fault(error));
         }
     }
 }
@@ -205,6 +243,7 @@ pub(crate) fn fault(error: TransportError) -> AudioFault {
         TransportError::InvalidBuffer => AudioFault::InvalidBuffer,
     }
 }
+#[cfg(not(target_os = "windows"))]
 fn make_typed<T: cpal::SizedSample>(
     selected: &Selected,
     mut state: CaptureState,
@@ -226,9 +265,10 @@ where
         move |error| {
             telemetry.fail(super::stream_fault(error.kind()));
         },
-        Some(COMMAND_TIMEOUT),
+        Some(super::COMMAND_TIMEOUT),
     )
 }
+#[cfg(not(target_os = "windows"))]
 pub(crate) fn make_stream(
     selected: &Selected,
     state: CaptureState,
@@ -265,4 +305,12 @@ pub(crate) fn make_stream(
             e,
         )
     })
+}
+
+#[cfg(target_os = "windows")]
+pub(crate) fn make_stream(
+    selected: &Selected,
+    state: CaptureState,
+) -> Result<CaptureStream, AudioError> {
+    CaptureStream::build(&selected.configuration, &selected.config, state)
 }

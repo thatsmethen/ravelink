@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "preserved_at_utc": "2026-10-23T23:41:10.691935+00:00",
+  "repository": "thatsmethen/ravelink",
+  "run_id": 40039161836,
+  "job_id": 120705881578,
+  "head_sha": "6484db8f80d3ad6d7233b5c927b11b6889c82b75",
+  "run_url": "https://github.com/thatsmethen/ravelink/actions/runs/40039161836",
+  "source_extracted_directory": "/tmp/ravelink-native-40039161836",
+  "artifact": {
+    "id": 12538083934,
+    "name": "RaveLink-Windows-driver-unsigned",
+    "api_digest": "sha256:72dccbdb999223e44f9ca9ac37f2b69062c1720ad6a049d6228bc3cbbf623dd9",
+    "archive_original_bytes": true,
+    "archive_matches_ci_log_digest": true,
+    "archive_matches_api_digest": true,
+    "all_members_match_preexisting_extraction": true,
+    "file_count": 16
+  },
+  "acquisition": [
+    "run.json and ci.log copied byte-for-byte from parent-provided /tmp directory",
+    "artifact-api.json from gh api repos/thatsmethen/ravelink/actions/artifacts/12538083934",
+    "artifact-original.zip from gh api repos/thatsmethen/ravelink/actions/artifacts/12538083934/zip",
+    "build-at-6484.ps1 and toolchain-at-6484.json from git show 6484db8f80d3ad6d7233b5c927b11b6889c82b75:drivers/windows/{build.ps1,toolchain.json}"
+  ],
+  "files": [
+    {
+      "path": "run.json",
+      "bytes": 1787,
+      "sha256": "ac492b5e3d74672f0e6e21054ec9ae1af00b49fc11c3d0ed51b14922510b9756"
+    },
+    {
+      "path": "ci.log",
+      "bytes": 35390,
+      "sha256": "f174e7eca2008bb797029f8ef2c9331f3c882dc7d534b1dab80ec94d9ad01845"
+    },
+    {
+      "path": "artifact-api.json",
+      "bytes": 699,
+      "sha256": "41baf6ff18a0dabb7c6d4da1bec9b383cf3082d35e4b96745f77046a5dfcf6eb"
+    },
+    {
+      "path": "artifact-original.zip",
+      "bytes": 72773,
+      "sha256": "72dccbdb999223e44f9ca9ac37f2b69062c1720ad6a049d6228bc3cbbf623dd9"
+    },
+    {
+      "path": "build-at-6484.ps1",
+      "bytes": 7310,
+      "sha256": "e196098c30e553242be0cf726e7d823ce33bf3c3a61446a2da1710b65d1037fe"
+    },
+    {
+      "path": "toolchain-at-6484.json",
+      "bytes": 609,
+      "sha256": "256feeaf48141fbbad035abcb0622794c7f30768a9f79577d6f1c402bd2abfaf"
+    }
+  ],
+  "archive_members": [
+    {
+      "path": "DRIVER-RUNTIME-NOTICES.txt",
+      "bytes": 1334,
+      "sha256": "7a6cbd2cacbed2cf4280335f59617367aa7efbd41be26cf6aa5e30779c4c8a01",
+      "matches_preexisting_extracted_copy": true
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 869,
+      "sha256": "1f89782821056ada6963c2663c506c2cc206e9ddf4b1e16d52ae82611bf5c2db",
+      "matches_preexisting_extracted_copy": true
+    },
+    {
+      "path": "PROVENANCE.md",
+      "bytes": 5616,
+      "sha256": "7f41001b2155fd1a4efe0ddf899caecac205f0d88c51947e79a268cc318671c7",
+      "matches_preexisting_extracted_copy": true
+    },
+    {
+      "path": "RaveLink.inf",
+      "bytes": 1961,
+      "sha256": "40b6701d6b06bb3273b469db9a04803e6966a3813c2c6cd824bf45b4d07c944f",
+      "matches_preexisting_extracted_copy": true
+    },
+    {
+      "path": "RaveLink.sys",
+      "bytes": 20480,
+      "sha256": "15cb6ad85aa3541b3c62f281121eea9a31152e6d899d7d134db25c237a94e314",
+      "matches_preexisting_extracted_copy": true
+    },
+    {
+      "path": "build-evidence.json",
+      "bytes": 269,
+      "sha256": "ac2bd0367d4c881f89213bba6c2ad2ac571e779050a2ffe471a2b3d0d8f14885",
+      "matches_preexisting_extracted_copy": true
+    },
+    {
+      "path": "pe-evidence.json",
+      "bytes": 1127,
+      "sha256": "ff9833d6c0a557ae0122586c5f2dac84b50800521bba3ae2cc84476b3770e3d3",
+      "matches_preexisting_extracted_copy": true
+    },
+    {
+      "path": "ravelink.cat",
+      "bytes": 1116,
+      "sha256": "9d88a143aaeca403864be36d2fc149730ba85e51ae005151a6cbf75a1f669839",
+      "matches_preexisting_extracted_copy": true
+    },
+    {
+      "path": "ravelink_windows_driver.pdb",
+      "bytes": 208896,
+      "sha256": "6e1a71ffd442d8e3b1762524d9de7a207d53e20169dd87e3ee89a07ccbf432ab",
+      "matches_preexisting_extracted_copy": true
+    },
+    {
+      "path": "runtime-notices/Rust-Apache-2.0.txt",
+      "bytes": 10280,
+      "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+      "matches_preexisting_extracted_copy": true
+    },
+    {
+      "path": "runtime-notices/Rust-COPYRIGHT-library.html",
+      "bytes": 411104,
+      "sha256": "c90d52b09be83ce6e930d00f4b26559611eadcee806b2307184e04f2c78ad522",
+      "matches_preexisting_extracted_copy": true
+    },
+    {
+      "path": "runtime-notices/Rust-MIT.txt",
+      "bytes": 1078,
+      "sha256": "b85dcd3e453d05982552c52b5fc9e0bdd6d23c6f8e844b984a88af32570b0cc0",
+      "matches_preexisting_extracted_copy": true
+    },
+    {
+      "path": "runtime-notices/Rust-Unicode-3.0.txt",
+      "bytes": 1995,
+      "sha256": "f5062c9a188d81dfe66b56db4182dcf9e4b17c0d9b0d311a8e20b3a1b075c443",
+      "matches_preexisting_extracted_copy": true
+    },
+    {
+      "path": "runtime-notices/compiler-builtins-LICENSE.txt",
+      "bytes": 15078,
+      "sha256": "ab6eec6caf0fa5775e411c7a8bc6a45c4ef2956b0980b157ab74fc5cd62a928b",
+      "matches_preexisting_extracted_copy": true
+    },
+    {
+      "path": "runtime-notices/compiler-builtins-libm-LICENSE.txt",
+      "bytes": 14088,
+      "sha256": "3823dda7cf046602f4b4e77ec8e227863dc4736037cc85bb33d9f19febe16bb7",
+      "matches_preexisting_extracted_copy": true
+    },
+    {
+      "path": "runtime-notices/manifest.json",
+      "bytes": 1108,
+      "sha256": "584eaadf6793fe04c38375797b467ad3f2d1086a195fc439c169fb52689e95e0",
+      "matches_preexisting_extracted_copy": true
+    }
+  ],
+  "evidence_boundary": {
+    "native_windows_build": true,
+    "native_windows_host_tests_passed": 9,
+    "sdk_abi_checks": true,
+    "inf_validation": true,
+    "unsigned_catalog_created": true,
+    "driver_signed": false,
+    "kernel_loaded": false,
+    "endpoint_discovered": false,
+    "audio_runtime_qualified": false,
+    "hlk_qualified": false
+  }
+}

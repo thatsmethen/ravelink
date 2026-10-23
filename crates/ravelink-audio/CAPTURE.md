@@ -63,13 +63,35 @@ The implementation was checked against the pinned `cpal 0.18.2` primary source:
 Native host tests must still qualify real callback cadence, permissions,
 disconnection, the ASRC servo with real clocks, and operating-system buffer flags.
 
-### Windows backend finding requiring correction
+### Original Windows WASAPI capture adapter
 
-The pinned CPAL `src/host/wasapi/stream.rs` capture path at lines 819–855 checks
-`AUDCLNT_BUFFERFLAGS_DATA_DISCONTINUITY`, then reads and delivers packet data
-without checking `AUDCLNT_BUFFERFLAGS_SILENT`. The callback API does not expose
-these flags. Microsoft specifies that a SILENT packet's actual data must be
-ignored and treated as silence:
-<https://learn.microsoft.com/en-us/windows/win32/api/audioclient/ne-audioclient-_audclnt_bufferflags>.
-This dependency behavior needs correction in the WASAPI adapter before Windows
-native capture can be qualified. Merely sanitizing non-finite PCM cannot fix it.
+Windows capture now uses first-party `wasapi_capture.rs` and portable
+`wasapi_packet.rs`. CPAL still supplies explicit endpoint discovery/configuration
+and output. The native capture worker resolves the exact backend ID through
+`IMMDeviceEnumerator::GetDevice`, validates active capture direction and the
+requested shared PCM format, installs an event before starting, and registers
+with MMCSS Pro Audio. COM interfaces, packet leases and the event stay on that
+one worker. Normal waits are bounded to 20 ms; command acknowledgement remains
+bounded by the runtime deadline, and teardown never joins a hung driver call.
+
+`AUDCLNT_BUFFERFLAGS_SILENT` packets create zero stereo frames without borrowing
+the OS payload, even if its pointer is null or its contents are nonzero. Every
+nonempty acquired packet is released exactly once, including invalid packets and
+early returns. Frame-position gaps and later discontinuity flags stop capture.
+The initial discontinuity flag at position zero is permitted. Timestamp-error
+flags and non-increasing packet QPC values cause a separate capture-timing fault.
+Fresh starts do not reuse old native streams or transport queues.
+
+The former pinned-CPAL capture path ignored the SILENT flag. This adapter removes
+that path from Windows builds. Portable tests exercise silence, malformed data,
+position/QPC checks, PCM valid bits, packet release errors, and no application
+allocation while converting packets into the ring. Windows-only tests also check
+SDK flag values, WAVEFORMATEXTENSIBLE layout values and device-error mapping.
+Cross-target compilation is not native Windows execution or qualification.
+
+Primary API contracts used for this original implementation:
+
+- [Buffer flags](https://learn.microsoft.com/en-us/windows/win32/api/audioclient/ne-audioclient-_audclnt_bufferflags)
+- [GetBuffer packet and release lifetime](https://learn.microsoft.com/en-us/windows/win32/api/audioclient/nf-audioclient-iaudiocaptureclient-getbuffer)
+- [Initialize format and event contract](https://learn.microsoft.com/en-us/windows/win32/api/audioclient/nf-audioclient-iaudioclient-initialize)
+- [SetEventHandle ordering](https://learn.microsoft.com/en-us/windows/win32/api/audioclient/nf-audioclient-iaudioclient-seteventhandle)
