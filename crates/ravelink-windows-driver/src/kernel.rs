@@ -58,6 +58,19 @@ extern "system" {
     fn ExFreePoolWithTag(pointer: Raw, tag: u32);
     fn KeAcquireSpinLockRaiseToDpc(lock: *mut usize) -> u8;
     fn KeReleaseSpinLock(lock: *mut usize, old_irql: u8);
+    fn KeInitializeEvent(event: *mut KernelEvent, kind: i32, signaled: u8);
+    fn KeClearEvent(event: *mut KernelEvent);
+    fn KeSetEvent(event: *mut KernelEvent, increment: i32, wait: u8) -> i32;
+    fn KeEnterCriticalRegion();
+    fn KeLeaveCriticalRegion();
+    fn KeGetCurrentIrql() -> u8;
+    fn KeWaitForSingleObject(
+        object: Raw,
+        reason: i32,
+        mode: i8,
+        alertable: u8,
+        timeout: *const PhysicalAddress,
+    ) -> NtStatus;
     fn KeQueryPerformanceCounter(frequency: *mut PhysicalAddress) -> PhysicalAddress;
     #[cfg(not(test))]
     fn KeBugCheckEx(code: u32, a: usize, b: usize, c: usize, d: usize) -> !;
@@ -98,7 +111,8 @@ struct CableState {
     powered: bool,
     stopping: bool,
     slots: [Slot; 2],
-    frames: [Frame; CABLE_FRAMES],
+    copying: bool,
+    control_pending: bool,
     ports: [*mut Port; 2],
     subdevices: u8,
     connections: u8,
@@ -119,6 +133,11 @@ struct Cable {
     device: *mut DeviceObject,
     lock: UnsafeCell<usize>,
     state: UnsafeCell<CableState>,
+    // Audio storage has separate aliasing/lifetime from metadata. Only the
+    // current copy owner accesses it; metadata readers never borrow this array.
+    frames: UnsafeCell<[Frame; CABLE_FRAMES]>,
+    control_gate: UnsafeCell<KernelEvent>,
+    copy_idle: UnsafeCell<KernelEvent>,
 }
 #[repr(C)]
 struct Miniport {
@@ -185,19 +204,73 @@ unsafe fn query(pointer: Raw, id: &Guid) -> Result<Raw, NtStatus> {
     }
 }
 
-/// Pump at most one buffer per stream. Old, missed periods are dropped rather
-/// than causing unbounded catch-up work. Float32 samples are copied as u64 bits;
-/// no floating-point arithmetic or dynamic allocation occurs in this path.
-unsafe fn pump(state: &mut CableState, ticks: u64) {
-    if !state.powered || state.stopping {
-        return;
+struct CriticalRegion;
+impl Drop for CriticalRegion {
+    fn drop(&mut self) {
+        unsafe { KeLeaveCriticalRegion() }
     }
-    for index in 0..2 {
-        let slot = state.slots[index];
+}
+unsafe fn critical_region() -> CriticalRegion {
+    KeEnterCriticalRegion();
+    CriticalRegion
+}
+
+/// Passive-only controls serialize here, then wait for the one current copy
+/// owner. No GetPosition call waits on either event. The spin lock protects only
+/// metadata and event handoff, never PCM copy/clear or a blocking operation.
+/// Normal kernel APCs remain disabled while acquiring and owning the event gate,
+/// so a suspended request thread cannot strand power, removal, or buffer release.
+struct Control {
+    cable: *mut Cable,
+    _apcs: CriticalRegion,
+}
+impl Drop for Control {
+    fn drop(&mut self) {
+        unsafe {
+            {
+                let mut guard = lock(self.cable);
+                guard.state().control_pending = false;
+            }
+            KeSetEvent((*self.cable).control_gate.get(), 0, 0);
+        }
+    }
+}
+unsafe fn wait_event(event: *mut KernelEvent) {
+    // Executive / KernelMode / nonalertable / indefinite. Callers are PASSIVE.
+    assert_eq!(
+        KeWaitForSingleObject(event.cast(), 0, 0, 0, ptr::null()),
+        OK
+    );
+}
+unsafe fn control(cable: *mut Cable) -> Control {
+    let apcs = critical_region();
+    wait_event((*cable).control_gate.get());
+    let copying = {
+        let mut guard = lock(cable);
+        let state = guard.state();
+        state.control_pending = true;
+        state.copying
+    };
+    if copying {
+        wait_event((*cable).copy_idle.get());
+    }
+    Control { cable, _apcs: apcs }
+}
+
+/// Copy at caller IRQL, without raising it or holding any adapter spin lock.
+/// The copy owner has exclusive ring access and controls cannot unmap buffers.
+/// At most one cyclic buffer per direction is processed; older missed periods
+/// are dropped. There are no allocations, waits, or floating point operations.
+unsafe fn copy_period(cable: *mut Cable, slots: [Slot; 2], ticks: u64, frequency: u64) -> [u64; 2] {
+    #[cfg(test)]
+    tests::before_pcm_copy();
+    let frames = (*cable).frames.get().cast::<Frame>();
+    let mut processed = [slots[0].processed, slots[1].processed];
+    for (index, slot) in slots.into_iter().enumerate() {
         if slot.timeline.state != State::Run || slot.buffer.is_null() || slot.bytes < FRAME_BYTES {
             continue;
         }
-        let end = slot.timeline.position(ticks, state.frequency);
+        let end = slot.timeline.position(ticks, frequency);
         let capacity = u64::from(slot.bytes / FRAME_BYTES);
         let start = slot.processed.max(end.saturating_sub(capacity));
         for frame in start..end {
@@ -205,13 +278,13 @@ unsafe fn pump(state: &mut CableState, ticks: u64) {
             let buffer = slot.buffer.add((frame % capacity) as usize);
             if index == 0 {
                 let pair = ptr::read_volatile(buffer);
-                state.frames[global as usize % CABLE_FRAMES] = Frame {
+                frames.add(global as usize % CABLE_FRAMES).write(Frame {
                     time_plus_one: global.saturating_add(1),
                     pair,
-                };
+                });
             } else {
                 let pair = if let Some(source) = global.checked_sub(DELAY_FRAMES) {
-                    let stored = state.frames[source as usize % CABLE_FRAMES];
+                    let stored = frames.add(source as usize % CABLE_FRAMES).read();
                     if stored.time_plus_one == source + 1 {
                         stored.pair
                     } else {
@@ -223,8 +296,63 @@ unsafe fn pump(state: &mut CableState, ticks: u64) {
                 ptr::write_volatile(buffer, pair);
             }
         }
-        state.slots[index].processed = end;
+        processed[index] = end;
     }
+    processed
+}
+
+/// A contending audio query observes the last published position and returns;
+/// it never spins waiting for the current PCM copy or a passive control.
+unsafe fn try_pump(cable: *mut Cable) {
+    // A passive caller must not be suspended while owning the copy and keeping
+    // controls waiting. Dispatch callers already prevent normal kernel APCs.
+    let _apcs = if KeGetCurrentIrql() <= 1 {
+        Some(critical_region())
+    } else {
+        None
+    };
+    let (slots, ticks, frequency) = {
+        let mut guard = lock(cable);
+        let state = guard.state();
+        if !state.powered || state.stopping || state.copying || state.control_pending {
+            return;
+        }
+        state.copying = true;
+        KeClearEvent((*cable).copy_idle.get());
+        (state.slots, now(), state.frequency)
+    };
+    let processed = copy_period(cable, slots, ticks, frequency);
+    let mut guard = lock(cable);
+    let state = guard.state();
+    for (slot, frame) in state.slots.iter_mut().zip(processed) {
+        slot.processed = frame;
+    }
+    state.copying = false;
+    KeSetEvent((*cable).copy_idle.get(), 0, 0);
+}
+
+/// Drain the final period before a passive state transition. The caller owns
+/// Control, which excludes audio copies and buffer mutation throughout.
+unsafe fn pump_control(owner: &Control) -> u64 {
+    let cable = owner.cable;
+    let (slots, ticks, frequency, enabled) = {
+        let mut guard = lock(cable);
+        let state = guard.state();
+        (
+            state.slots,
+            now(),
+            state.frequency,
+            state.powered && !state.stopping,
+        )
+    };
+    if enabled {
+        let processed = copy_period(cable, slots, ticks, frequency);
+        let mut guard = lock(cable);
+        for (slot, frame) in guard.state().slots.iter_mut().zip(processed) {
+            slot.processed = frame;
+        }
+    }
+    ticks
 }
 
 unsafe extern "system" fn cable_query(this: Raw, id: *const Guid, out: *mut Raw) -> NtStatus {
@@ -256,10 +384,10 @@ unsafe extern "system" fn cable_release(this: Raw) -> u32 {
 }
 unsafe extern "system" fn power_change(this: Raw, power: PowerState) {
     let cable = this.cast::<Cable>();
+    let owner = control(cable);
+    let ticks = pump_control(&owner);
     let mut guard = lock(cable);
-    let ticks = now();
     let state = guard.state();
-    pump(state, ticks);
     let awake = power.device_state == 1;
     let global = global_frame(state, ticks);
     for slot in &mut state.slots {
@@ -369,6 +497,7 @@ unsafe fn teardown(cable: *mut Cable) {
         return;
     }
     cable_add(cable.cast()); // Deregistration can release PortCls's adapter references.
+    let owner = control(cable);
     let (ports, subdevices, connections) = {
         let mut guard = lock(cable);
         let state = guard.state();
@@ -383,6 +512,7 @@ unsafe fn teardown(cable: *mut Cable) {
         state.connections = 0;
         values
     };
+    drop(owner); // Stopping now excludes all new PCM copies.
     let device = (*cable).device;
     let extension_owns_ref = *adapter_slot(device) == cable;
     if extension_owns_ref {
@@ -556,6 +686,9 @@ unsafe extern "system" fn stream_release(this: Raw) -> u32 {
             (slot.mdl, slot.bytes)
         };
         if !mdl.is_null() {
+            // PortCls normally calls FreeAudioBuffer before final Release. This
+            // fallback supports passive construction/error cleanup only; a
+            // dispatch-level Release must arrive with its buffer already freed.
             free_buffer(this, mdl, bytes);
         }
         {
@@ -595,7 +728,7 @@ unsafe extern "system" fn new_stream(
     {
         let mut guard = lock(cable);
         let state = guard.state();
-        if state.stopping || state.slots[index].active {
+        if state.stopping || state.control_pending || state.slots[index].active {
             ExFreePoolWithTag(stream.cast(), TAG);
             return BAD_STATE;
         }
@@ -622,6 +755,7 @@ unsafe extern "system" fn set_format(this: Raw, format: *mut KsDataFormat) -> Nt
         return INVALID;
     }
     let stream = &*this.cast::<Stream>();
+    let _owner = control(stream.cable);
     let mut guard = lock(stream.cable);
     let state = guard.state();
     if state.stopping || state.slots[stream.index].timeline.state == State::Run {
@@ -638,10 +772,10 @@ unsafe extern "system" fn set_state(this: Raw, requested: KsState) -> NtStatus {
         _ => return INVALID,
     };
     let stream = &*this.cast::<Stream>();
+    let owner = control(stream.cable);
+    let ticks = pump_control(&owner);
     let mut guard = lock(stream.cable);
-    let ticks = now();
     let state = guard.state();
-    pump(state, ticks);
     let global = global_frame(state, ticks);
     let slot = &mut state.slots[stream.index];
     if desired == State::Run && (state.stopping || !state.powered || slot.buffer.is_null()) {
@@ -654,9 +788,17 @@ unsafe extern "system" fn set_state(this: Raw, requested: KsState) -> NtStatus {
     }
     if desired == State::Stop {
         slot.processed = 0;
-        if !slot.buffer.is_null() {
-            ptr::write_bytes(slot.buffer.cast::<u8>(), 0, slot.bytes as usize);
-        }
+    }
+    let clear = if desired == State::Stop {
+        (slot.buffer, slot.bytes)
+    } else {
+        (ptr::null_mut(), 0)
+    };
+    drop(guard);
+    if !clear.0.is_null() {
+        #[cfg(test)]
+        tests::assert_no_spin_lock();
+        ptr::write_bytes(clear.0.cast::<u8>(), 0, clear.1 as usize);
     }
     OK
 }
@@ -665,18 +807,14 @@ unsafe extern "system" fn position(this: Raw, out: *mut KsAudioPosition) -> NtSt
         return INVALID;
     }
     let stream = &*this.cast::<Stream>();
+    try_pump(stream.cable);
     let mut guard = lock(stream.cable);
-    let ticks = now();
     let state = guard.state();
     if state.stopping {
         return BAD_STATE;
     }
-    pump(state, ticks);
     let slot = state.slots[stream.index];
-    let offset = u64::from(byte_offset(
-        slot.timeline.position(ticks, state.frequency),
-        slot.bytes,
-    ));
+    let offset = u64::from(byte_offset(slot.processed, slot.bytes));
     ptr::write_unaligned(
         out,
         KsAudioPosition {
@@ -705,6 +843,7 @@ unsafe extern "system" fn allocate_buffer(
         return INVALID;
     };
     let stream = &*this.cast::<Stream>();
+    let _owner = control(stream.cable);
     {
         let mut guard = lock(stream.cable);
         let state = guard.state();
@@ -764,6 +903,7 @@ unsafe extern "system" fn free_buffer(this: Raw, mdl: *mut Mdl, _: u32) {
         return;
     }
     let stream = &*this.cast::<Stream>();
+    let _owner = control(stream.cable);
     let buffer = {
         let mut guard = lock(stream.cable);
         let slot = &mut guard.state().slots[stream.index];
@@ -862,6 +1002,8 @@ unsafe extern "system" fn start_device(
         owner: cable,
     });
     (*cable).device = device;
+    KeInitializeEvent((*cable).control_gate.get(), 1, 1); // SynchronizationEvent
+    KeInitializeEvent((*cable).copy_idle.get(), 0, 1); // NotificationEvent
     let mut frequency = PhysicalAddress { quad_part: 0 };
     let ticks = KeQueryPerformanceCounter(&mut frequency).quad_part as u64;
     if frequency.quad_part <= 0 || frequency.quad_part as u64 > MAX_CLOCK_FREQUENCY {

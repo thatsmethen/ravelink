@@ -89,6 +89,7 @@ try {
     Copy-Item (Join-Path $PSScriptRoot 'RaveLink.inf') $OutputDirectory -Force
     Copy-Item (Join-Path $Repo 'LICENSE') $OutputDirectory -Force
     Copy-Item (Join-Path $PSScriptRoot 'PROVENANCE.md') $OutputDirectory -Force
+    Copy-Item (Join-Path $PSScriptRoot 'toolchain.json') $OutputDirectory -Force
     Invoke-Checked python @((Join-Path $PSScriptRoot 'runtime-notices.py'), '--sysroot', $sysroot, '--output', $OutputDirectory)
     Copy-Item (Join-Path $BuildDirectory "$($Pin.target)/release/ravelink_windows_driver.pdb") $OutputDirectory -Force
     Invoke-Checked python @((Join-Path $PSScriptRoot 'tests/check-pe.py'), $driver, '--output', (Join-Path $OutputDirectory 'pe-evidence.json'))

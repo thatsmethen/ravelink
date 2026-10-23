@@ -17,6 +17,11 @@ pub type DriverObject = c_void;
 pub type Irp = c_void;
 pub type ResourceList = c_void;
 pub type DeviceCapabilities = c_void;
+/// Storage layout of WDK KEVENT (DISPATCHER_HEADER), initialized only by KeInitializeEvent.
+#[repr(C, align(8))]
+pub struct KernelEvent {
+    pub opaque: [u64; 3],
+}
 pub type MemoryCachingType = i32;
 pub type KsState = i32;
 
@@ -838,6 +843,8 @@ mod tests {
 
     #[test]
     fn sixty_four_bit_header_layout_contract() {
+        assert_eq!(size_of::<KernelEvent>(), 24);
+        assert_eq!(align_of::<KernelEvent>(), 8);
         assert_eq!(size_of::<DriverObjectFields>(), 336);
         assert_eq!(offset_of!(DriverObjectFields, major_function), 112);
         assert_eq!(offset_of!(DeviceObjectPrefix, device_extension), 64);

@@ -17,6 +17,9 @@ constexpr bool is_base = __is_base_of(Base, Derived);
 
 static_assert(sizeof(void*) == 8, "The Rust binding currently targets x64/arm64.");
 static_assert(sizeof(KEVENT) == 24 && alignof(KEVENT) == 8);
+static_assert(PASSIVE_LEVEL == 0 && APC_LEVEL == 1 && DISPATCH_LEVEL == 2);
+static_assert(Executive == 0 && KernelMode == 0);
+static_assert(NotificationEvent == 0 && SynchronizationEvent == 1);
 static_assert(sizeof(DRIVER_OBJECT) == 336);
 static_assert(offsetof(DRIVER_OBJECT, MajorFunction) == 112);
 static_assert(offsetof(DEVICE_OBJECT, DeviceExtension) == 64);

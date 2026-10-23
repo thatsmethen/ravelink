@@ -6,7 +6,7 @@ use std::{
     collections::BTreeMap,
     sync::{
         atomic::{AtomicU64, AtomicUsize},
-        Mutex,
+        Arc, Condvar, Mutex,
     },
 };
 
@@ -26,10 +26,129 @@ struct Mock {
     fail_operation: usize,
     short_mdl: bool,
     fail_map: bool,
+    events: BTreeMap<usize, Arc<Event>>,
 }
 static MOCK: Mutex<Option<Mock>> = Mutex::new(None);
 static TICKS: AtomicU64 = AtomicU64::new(0);
 static HELD_LOCKS: AtomicUsize = AtomicUsize::new(0);
+static HELD_REGIONS: AtomicUsize = AtomicUsize::new(0);
+std::thread_local! {
+    static LOCAL_LOCKS: std::cell::Cell<usize> = const { std::cell::Cell::new(0) };
+    static LOCAL_REGIONS: std::cell::Cell<usize> = const { std::cell::Cell::new(0) };
+    static LOCAL_IRQL: std::cell::Cell<u8> = const { std::cell::Cell::new(0) };
+}
+struct Event {
+    signal: Mutex<bool>,
+    changed: Condvar,
+    automatic: bool,
+}
+struct CopyPause {
+    state: Mutex<(bool, bool)>,
+    changed: Condvar,
+}
+static PAUSE_COPY: Mutex<Option<Arc<CopyPause>>> = Mutex::new(None);
+pub(super) fn assert_no_spin_lock() {
+    LOCAL_LOCKS.with(|count| assert_eq!(count.get(), 0));
+}
+pub(super) fn before_pcm_copy() {
+    assert_no_spin_lock();
+    if LOCAL_IRQL.with(|level| level.get() <= 1) {
+        LOCAL_REGIONS.with(|count| assert!(count.get() > 0));
+    }
+    let pause = PAUSE_COPY.lock().unwrap().clone();
+    if let Some(pause) = pause {
+        let mut state = pause.state.lock().unwrap();
+        state.0 = true;
+        pause.changed.notify_all();
+        while !state.1 {
+            state = pause.changed.wait(state).unwrap();
+        }
+    }
+}
+#[allow(non_snake_case)]
+#[no_mangle]
+unsafe extern "system" fn KeEnterCriticalRegion() {
+    assert_no_spin_lock();
+    LOCAL_IRQL.with(|level| assert!(level.get() <= 1));
+    LOCAL_REGIONS.with(|count| count.set(count.get() + 1));
+    HELD_REGIONS.fetch_add(1, Ordering::SeqCst);
+}
+#[allow(non_snake_case)]
+#[no_mangle]
+unsafe extern "system" fn KeLeaveCriticalRegion() {
+    assert_no_spin_lock();
+    LOCAL_IRQL.with(|level| assert!(level.get() <= 1));
+    LOCAL_REGIONS.with(|count| {
+        assert!(count.get() > 0);
+        count.set(count.get() - 1);
+    });
+    HELD_REGIONS.fetch_sub(1, Ordering::SeqCst);
+}
+#[allow(non_snake_case)]
+#[no_mangle]
+unsafe extern "system" fn KeGetCurrentIrql() -> u8 {
+    LOCAL_IRQL.with(|level| level.get())
+}
+#[allow(non_snake_case)]
+#[no_mangle]
+unsafe extern "system" fn KeInitializeEvent(event: *mut KernelEvent, kind: i32, signaled: u8) {
+    with_mock(|m| {
+        m.events.insert(
+            event as usize,
+            Arc::new(Event {
+                signal: Mutex::new(signaled != 0),
+                changed: Condvar::new(),
+                automatic: kind == 1,
+            }),
+        );
+    });
+}
+fn event(pointer: usize) -> Arc<Event> {
+    with_mock(|m| m.events.get(&pointer).unwrap().clone())
+}
+#[allow(non_snake_case)]
+#[no_mangle]
+unsafe extern "system" fn KeClearEvent(pointer: *mut KernelEvent) {
+    *event(pointer as usize).signal.lock().unwrap() = false;
+}
+#[allow(non_snake_case)]
+#[no_mangle]
+unsafe extern "system" fn KeSetEvent(pointer: *mut KernelEvent, increment: i32, wait: u8) -> i32 {
+    assert_eq!((increment, wait), (0, 0));
+    let event = event(pointer as usize);
+    if event.automatic {
+        LOCAL_REGIONS.with(|count| assert!(count.get() > 0));
+    }
+    let mut signaled = event.signal.lock().unwrap();
+    let old = *signaled;
+    *signaled = true;
+    event.changed.notify_all();
+    i32::from(old)
+}
+#[allow(non_snake_case)]
+#[no_mangle]
+unsafe extern "system" fn KeWaitForSingleObject(
+    pointer: Raw,
+    reason: i32,
+    mode: i8,
+    alertable: u8,
+    timeout: *const PhysicalAddress,
+) -> NtStatus {
+    assert_no_spin_lock();
+    LOCAL_REGIONS.with(|count| assert!(count.get() > 0));
+    LOCAL_IRQL.with(|level| assert_eq!(level.get(), 0));
+    assert_eq!((reason, mode, alertable), (0, 0, 0));
+    assert!(timeout.is_null());
+    let event = event(pointer as usize);
+    let mut signaled = event.signal.lock().unwrap();
+    while !*signaled {
+        signaled = event.changed.wait(signaled).unwrap();
+    }
+    if event.automatic {
+        *signaled = false;
+    }
+    OK
+}
 fn with_mock<T>(f: impl FnOnce(&mut Mock) -> T) -> T {
     f(MOCK.lock().unwrap().as_mut().unwrap())
 }
@@ -46,8 +165,10 @@ fn reset(fail_operation: usize) {
     });
     TICKS.store(0, Ordering::SeqCst);
     assert_eq!(HELD_LOCKS.load(Ordering::SeqCst), 0);
+    assert_eq!(HELD_REGIONS.load(Ordering::SeqCst), 0);
 }
 fn assert_clean() {
+    assert_eq!(HELD_REGIONS.load(Ordering::SeqCst), 0);
     with_mock(|m| {
         assert!(
             m.pools.is_empty(),
@@ -56,6 +177,7 @@ fn assert_clean() {
         );
         assert!(m.registered.is_empty());
         assert!(m.connections.is_empty());
+        assert!(m.events.is_empty());
         assert_eq!(
             (m.power, m.pnp, m.live_ports, m.live_mdls, m.mappings),
             (0, 0, 0, 0, 0)
@@ -84,6 +206,11 @@ unsafe extern "system" fn ExFreePoolWithTag(pointer: Raw, tag: u32) {
     assert_eq!(tag, TAG);
     let layout =
         with_mock(|m| m.pools.remove(&(pointer as usize))).expect("double or foreign pool free");
+    with_mock(|m| {
+        m.events.retain(|address, _| {
+            *address < pointer as usize || *address >= pointer as usize + layout.size()
+        });
+    });
     dealloc(pointer.cast(), layout);
 }
 #[allow(non_snake_case)]
@@ -97,13 +224,16 @@ unsafe extern "system" fn KeAcquireSpinLockRaiseToDpc(pointer: *mut usize) -> u8
         std::hint::spin_loop();
     }
     HELD_LOCKS.fetch_add(1, Ordering::SeqCst);
-    0
+    LOCAL_LOCKS.with(|count| count.set(count.get() + 1));
+    LOCAL_IRQL.with(|level| level.replace(2))
 }
 #[allow(non_snake_case)]
 #[no_mangle]
-unsafe extern "system" fn KeReleaseSpinLock(pointer: *mut usize, _: u8) {
+unsafe extern "system" fn KeReleaseSpinLock(pointer: *mut usize, old_irql: u8) {
     assert_eq!(AtomicUsize::from_ptr(pointer).swap(0, Ordering::Release), 1);
     HELD_LOCKS.fetch_sub(1, Ordering::SeqCst);
+    LOCAL_LOCKS.with(|count| count.set(count.get() - 1));
+    LOCAL_IRQL.with(|level| level.set(old_irql));
 }
 #[allow(non_snake_case)]
 #[no_mangle]
@@ -115,7 +245,7 @@ unsafe extern "system" fn KeQueryPerformanceCounter(
     } else {
         // Clock samples used for progress must be serialized with the pump;
         // sampling before the lock can reorder concurrent callback timestamps.
-        assert_eq!(HELD_LOCKS.load(Ordering::SeqCst), 1);
+        LOCAL_LOCKS.with(|count| assert_eq!(count.get(), 1));
     }
     PhysicalAddress {
         quad_part: TICKS.load(Ordering::SeqCst) as i64,
@@ -726,6 +856,10 @@ fn mocked_portcls_vtables_transfer_audio_and_release_every_owned_resource() {
             );
         }
         assert_eq!(cursor(render), 768 * 8);
+        LOCAL_IRQL.with(|level| level.set(2));
+        assert_eq!(cursor(capture), 768 * 8);
+        LOCAL_IRQL.with(|level| level.set(0));
+        assert_eq!(HELD_REGIONS.load(Ordering::SeqCst), 0);
         // PortCls pauses active streams before D3 and resumes them after D0.
         for stream in [render, capture] {
             set(stream, KSSTATE_PAUSE);
@@ -739,6 +873,59 @@ fn mocked_portcls_vtables_transfer_audio_and_release_every_owned_resource() {
         }
         TICKS.store(48_896, Ordering::SeqCst);
         assert_eq!(cursor(capture), 896 * 8);
+        // Pause the real PCM-copy function outside the metadata lock. A second
+        // GetPosition must return without waiting. FreeAudioBuffer must wait at
+        // passive level and must not unmap until the in-flight copy completes.
+        let pause = Arc::new(CopyPause {
+            state: Mutex::new((false, false)),
+            changed: Condvar::new(),
+        });
+        *PAUSE_COPY.lock().unwrap() = Some(pause.clone());
+        TICKS.store(48_960, Ordering::SeqCst);
+        let capture_address = capture as usize;
+        let copier = std::thread::spawn(move || {
+            cursor(capture_address as *mut MiniportWaveRtStream);
+        });
+        {
+            let mut state = pause.state.lock().unwrap();
+            while !state.0 {
+                state = pause.changed.wait(state).unwrap();
+            }
+        }
+        assert_eq!(cursor(render), 896 * 8); // last committed position, no wait
+        let mdl_address = capture_mdl as usize;
+        let (done_tx, done_rx) = std::sync::mpsc::channel();
+        let freer = std::thread::spawn(move || {
+            let stream = capture_address as *mut MiniportWaveRtStream;
+            ((*(*stream).vtable).free_audio_buffer)(stream.cast(), mdl_address as *mut Mdl, 8192);
+            done_tx.send(()).unwrap();
+        });
+        let deadline = std::time::Instant::now() + std::time::Duration::from_secs(2);
+        loop {
+            let pending = {
+                let mut guard = lock(cable);
+                guard.state().control_pending
+            };
+            if pending {
+                break;
+            }
+            assert!(
+                std::time::Instant::now() < deadline,
+                "free did not enter control wait"
+            );
+            std::thread::yield_now();
+        }
+        assert!(done_rx.try_recv().is_err());
+        assert_eq!(with_mock(|m| m.mappings), 2);
+        {
+            let mut state = pause.state.lock().unwrap();
+            state.1 = true;
+            pause.changed.notify_all();
+        }
+        copier.join().unwrap();
+        freer.join().unwrap();
+        *PAUSE_COPY.lock().unwrap() = None;
+        assert_eq!(with_mock(|m| m.mappings), 1);
         // Removal must detach the adapter even while clients retain stream objects.
         remove(pointer, IRP_MN_SURPRISE_REMOVAL);
         assert!((*adapter_slot(pointer)).is_null());
@@ -752,9 +939,10 @@ fn mocked_portcls_vtables_transfer_audio_and_release_every_owned_resource() {
         );
         remove(pointer, IRP_MN_REMOVE_DEVICE);
         assert_eq!(with_mock(|m| m.dispatches), 2);
-        for stream in [render, capture] {
-            unknown_release(stream.cast());
-        }
+        unknown_release(render.cast()); // passive fallback releases its MDL
+        LOCAL_IRQL.with(|level| level.set(2));
+        unknown_release(capture.cast()); // already freed: no passive wait
+        LOCAL_IRQL.with(|level| level.set(0));
         assert_eq!(render_lower.refs.load(Ordering::SeqCst), 1);
         assert_eq!(capture_lower.refs.load(Ordering::SeqCst), 1);
         assert_clean();

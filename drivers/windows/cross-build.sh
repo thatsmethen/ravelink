@@ -3,6 +3,14 @@
 # Does not install a driver or create a signed distributable.
 set -euo pipefail
 repo="$(cd "$(dirname "$0")/../.." && pwd)"
+output="${RAVELINK_OUTPUT:-$repo/dist/windows-driver}"
+mkdir -p "$output"
+# A cross-build cannot revalidate an earlier Windows catalog or matching PDB.
+# Clear only known generated products before building, including stale evidence.
+rm -f -- "$output/RaveLink.sys" "$output/RaveLink.inf" \
+  "$output/RaveLink.cat" "$output/ravelink.cat" \
+  "$output/ravelink_windows_driver.pdb" "$output/pe-evidence.json" \
+  "$output/build-evidence.json"
 : "${RAVELINK_WDK_ROOT:?Point to the extracted Microsoft.Windows.WDK.x64 package}"
 : "${RAVELINK_SDK_ROOT:?Point to the extracted Microsoft.Windows.SDK.CPP package}"
 toolchain=nightly-2025-11-10
@@ -22,11 +30,10 @@ cargo "+$toolchain" build -Zbuild-std=core --locked \
 unset CARGO_ENCODED_RUSTFLAGS
 cargo "+$toolchain" test --locked --manifest-path "$repo/crates/ravelink-windows-driver/Cargo.toml"
 "$repo/drivers/windows/tests/check-sdk-abi.sh"
-output="${RAVELINK_OUTPUT:-$repo/dist/windows-driver}"
-mkdir -p "$output"
 cp "$CARGO_TARGET_DIR/$target/release/ravelink_windows_driver.dll" "$output/RaveLink.sys"
 cp "$repo/drivers/windows/RaveLink.inf" "$output/RaveLink.inf"
-cp "$repo/LICENSE" "$repo/drivers/windows/PROVENANCE.md" "$output/"
+cp "$repo/LICENSE" "$repo/drivers/windows/PROVENANCE.md" \
+  "$repo/drivers/windows/toolchain.json" "$output/"
 python3 "$repo/drivers/windows/runtime-notices.py" --sysroot "$sysroot" --output "$output"
 python3 "$repo/drivers/windows/tests/check-pe.py" "$output/RaveLink.sys" --output "$output/pe-evidence.json"
 printf 'Unsigned PE only; Windows INF validation/catalog and kernel runtime remain separate.\n'
