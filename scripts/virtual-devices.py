@@ -18,6 +18,7 @@ import subprocess
 import sys
 import tempfile
 import uuid
+import xml.etree.ElementTree as ET
 import zlib
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -26,6 +27,7 @@ HAL = Path('/Library/Audio/Plug-Ins/HAL')
 PREFIX = 'au.textual.ravelink.audio.'
 PLUGIN_TYPE = '443ABAB8-E7B3-491A-B985-BEB9187030DB'
 VERSION = '0.1.0'
+BUILD_NUMBER = 1
 DEFAULT_DEVICES = ['stream:Stream Mix', 'voice:Voice', 'music:Music', 'browser:Browser', 'game:Game']
 
 
@@ -43,6 +45,20 @@ def parse_device(value: str) -> tuple[str, str]:
     if not label or len(label) > 80 or '%' in label or any(ord(c) < 32 or ord(c) == 127 for c in label):
         raise ValueError('Device label must contain 1–80 printable characters without percent signs')
     return slug, label
+
+
+def release_version(version: str, build_number: int) -> tuple[str, int]:
+    if not isinstance(version, str) or not re.fullmatch(r'(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)', version):
+        raise ValueError('Release version must be three canonical integers, e.g. 0.2.0')
+    # CFBundleVersion's first component is limited to four digits. Keep package
+    # receipts and bundle comparison on the same monotonic numeric scale.
+    if type(build_number) is not int or not 1 <= build_number <= 9999:
+        raise ValueError('Build number must be an increasing integer from 1 through 9999')
+    return version, build_number
+
+
+def receipt_id(slug: str) -> str:
+    return PREFIX + 'package.' + parse_device(slug)[0]
 
 
 def verify_upstream() -> dict:
@@ -73,7 +89,9 @@ def icon() -> bytes:
     return b'icns' + struct.pack('>I', len(png) + 16) + b'ic08' + struct.pack('>I', len(png) + 8) + png
 
 
-def build_one(destination: Path, device: tuple[str, str], channels: int, archs: list[str], identity: str, manifest: dict) -> dict:
+def build_one(destination: Path, device: tuple[str, str], channels: int, archs: list[str], identity: str,
+              manifest: dict, version: str = VERSION, build_number: int = BUILD_NUMBER) -> dict:
+    release_version(version, build_number)
     slug, label = device
     bundle_id = PREFIX + slug
     driver_name = 'RaveLink.' + slug
@@ -127,8 +145,8 @@ def build_one(destination: Path, device: tuple[str, str], channels: int, archs: 
             'CFBundleInfoDictionaryVersion': '6.0',
             'CFBundleName': 'RaveLink ' + label,
             'CFBundlePackageType': 'BNDL',
-            'CFBundleShortVersionString': VERSION,
-            'CFBundleVersion': '1',
+            'CFBundleShortVersionString': version,
+            'CFBundleVersion': str(build_number),
             'CFBundleSupportedPlatforms': ['MacOSX'],
             'CFBundleIconFile': 'RaveLink.icns',
             'LSMinimumSystemVersion': '12.0',
@@ -148,7 +166,7 @@ def build_one(destination: Path, device: tuple[str, str], channels: int, archs: 
             'factoryUUID': factory, 'channels': channels, 'architectures': archs,
             'minimumMacOS': '12.0', 'upstream': manifest,
             'codeSigning': 'ad-hoc' if identity == '-' else identity,
-            'notarized': False, 'version': VERSION,
+            'notarized': False, 'version': version, 'buildNumber': build_number,
         }
         (resources / 'build-info.json').write_text(json.dumps(metadata, indent=2) + '\n')
         (source_dir / 'BUILD.txt').write_text(
@@ -185,6 +203,11 @@ def validate_bundle(bundle: Path) -> dict:
         raise ValueError('Driver identity mismatch')
     if info['CFBundleExecutable'] != 'RaveLinkAudio' or info['CFBundlePackageType'] != 'BNDL':
         raise ValueError('Unexpected driver structure')
+    # Initial development bundles omitted buildNumber but used CFBundleVersion1.
+    version, build_number = release_version(data['version'], data.get('buildNumber', int(str(info['CFBundleVersion']))))
+    if info['CFBundleShortVersionString'] != version or info['CFBundleVersion'] != str(build_number):
+        raise ValueError('Driver release version mismatch')
+    data['buildNumber'] = build_number
     factory = str(uuid.uuid5(uuid.NAMESPACE_DNS, PREFIX + slug)).upper()
     if info['CFPlugInFactories'] != {factory: 'RaveLink_Create'} or info['CFPlugInTypes'] != {PLUGIN_TYPE: [factory]}:
         raise ValueError('Driver factory identity mismatch')
@@ -229,10 +252,12 @@ def install(bundles: list[Path]) -> None:
 
 
 def uninstall(ids: list[str]) -> None:
+    slugs = [parse_device(value)[0] for value in ids]
+    if len(set(slugs)) != len(slugs):
+        raise ValueError('Duplicate uninstall device IDs; no devices removed')
     require_root()
     targets = []
-    for value in ids:
-        slug, _ = parse_device(value)
+    for slug in slugs:
         target = HAL / f'RaveLink-{slug}.driver'
         if not target.exists():
             raise ValueError(f'Not installed: {target}')
@@ -241,44 +266,153 @@ def uninstall(ids: list[str]) -> None:
     for target in targets:
         shutil.rmtree(target)
         print(f'Removed {target}')
+    for slug in slugs:
+        receipt = receipt_id(slug)
+        present = subprocess.run(['/usr/sbin/pkgutil', '--pkg-info', receipt],
+                                 stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        if present.returncode == 0:
+            run(['/usr/sbin/pkgutil', '--forget', receipt])
     print('Restart macOS after closing audio apps. Audio services were not restarted.')
 
 
+def preinstall_script(releases: list[tuple[str, int]]) -> str:
+    """Every component checks the entire proposed set before any payload changes."""
+    checks = []
+    for slug, build_number in releases:
+        slug = parse_device(slug)[0]
+        release_version(VERSION, build_number)
+        checks.append(f"check_device '{slug}' '{build_number}'")
+    return '''#!/bin/bash
+set -euo pipefail
+volume="${3:-/}"
+case "$volume" in /*) ;; *) echo 'Invalid Installer target volume' >&2; exit 1 ;; esac
+volume=$(cd "$volume" && pwd -P)
+ancestor="${volume%/}"
+for component in Library Audio Plug-Ins HAL; do
+  ancestor="$ancestor/$component"
+  if [[ -L "$ancestor" || ( -e "$ancestor" && ! -d "$ancestor" ) ]]; then
+    echo "Refusing unexpected HAL parent path: $ancestor" >&2; exit 1
+  fi
+done
+hal="${volume%/}/Library/Audio/Plug-Ins/HAL"
+check_device() {
+  local slug="$1" incoming="$2" target="$hal/RaveLink-$1.driver" identity installed
+  if [[ -L "$target" ]]; then echo "Refusing symbolic-link driver: $target" >&2; exit 1; fi
+  if [[ ! -e "$target" ]]; then return; fi
+  if [[ ! -d "$target" || -L "$target/Contents" || -L "$target/Contents/Info.plist" ]]; then
+    echo "Refusing unexpected installed driver structure: $target" >&2; exit 1
+  fi
+  identity=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$target/Contents/Info.plist")
+  if [[ "$identity" != "au.textual.ravelink.audio.$slug" ]]; then
+    echo "Refusing to replace another bundle at $target" >&2; exit 1
+  fi
+  installed=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' "$target/Contents/Info.plist")
+  if [[ ! "$installed" =~ ^[1-9][0-9]{0,3}$ ]]; then
+    echo "Unsupported installed build number at $target; inspect it before replacing it" >&2; exit 1
+  fi
+  if (( installed > incoming )); then
+    echo "Refusing driver downgrade: $slug installed build $installed, package build $incoming. Explicitly uninstall first for an intentional downgrade." >&2
+    exit 1
+  fi
+}
+''' + '\n'.join(checks) + '\n'
+
+
 def package(bundles: list[Path], output: Path, identity: str | None) -> None:
-    if output.exists():
+    if not bundles:
+        raise ValueError('Specify at least one driver bundle')
+    if output.exists() or output.is_symlink():
         raise ValueError('Package output already exists')
-    ids = [validate_bundle(bundle)['id'] for bundle in bundles]
+    metadata = [validate_bundle(bundle) for bundle in bundles]
+    ids = [data['id'] for data in metadata]
     if len(set(ids)) != len(ids):
         raise ValueError('Duplicate devices')
+    architectures = set.intersection(*(set(data['architectures']) for data in metadata))
+    if not architectures:
+        raise ValueError('Packaged devices must support at least one common architecture')
     output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='ravelink-package-') as staging:
         staging = Path(staging)
-        payload = staging / 'payload'
-        payload.mkdir()
-        for bundle in bundles:
+        components = staging / 'components'
+        components.mkdir()
+        scripts = staging / 'scripts'
+        scripts.mkdir()
+        releases = [(data['id'], data.get('buildNumber', 1)) for data in metadata]
+        (scripts / 'preinstall').write_text(preinstall_script(releases))
+        (scripts / 'preinstall').chmod(0o755)
+        run(['/usr/bin/xattr', '-rc', str(scripts)])
+        packages = []
+        for bundle, data in zip(bundles, metadata):
+            payload = staging / ('payload-' + data['id'])
+            payload.mkdir()
             shutil.copytree(bundle, payload / bundle.name)
-        # Generated build provenance is host-specific and causes pkgbuild AppleDouble sidecars.
-        run(['/usr/bin/xattr', '-rc', str(payload)])
-        # Use component property list to stop Installer relocating bundles outside HAL.
-        components = staging / 'components.plist'
-        run(['/usr/bin/pkgbuild', '--analyze', '--root', str(payload), str(components)])
-        definitions = plistlib.loads(components.read_bytes())
-        for component in definitions:
-            component['BundleIsRelocatable'] = False
-            component['BundleHasStrictIdentifier'] = True
-        components.write_bytes(plistlib.dumps(definitions))
-        args = ['/usr/bin/pkgbuild', '--root', str(payload), '--component-plist', str(components), '--ownership', 'recommended', '--install-location', str(HAL), '--identifier', PREFIX + 'package', '--version', VERSION]
+            # Avoid host-specific extended attributes and AppleDouble sidecars.
+            run(['/usr/bin/xattr', '-rc', str(payload)])
+            component_plist = staging / (data['id'] + '.plist')
+            run(['/usr/bin/pkgbuild', '--analyze', '--root', str(payload), str(component_plist)])
+            definitions = plistlib.loads(component_plist.read_bytes())
+            for component in definitions:
+                component.update(BundleIsRelocatable=False, BundleHasStrictIdentifier=True,
+                                 BundleIsVersionChecked=True, BundleOverwriteAction='upgrade')
+            component_plist.write_bytes(plistlib.dumps(definitions))
+            component_package = components / (data['id'] + '.pkg')
+            run(['/usr/bin/pkgbuild', '--root', str(payload), '--component-plist', str(component_plist),
+                 '--scripts', str(scripts), '--ownership', 'recommended', '--install-location', str(HAL),
+                 '--identifier', receipt_id(data['id']), '--version', str(data.get('buildNumber', 1)), str(component_package)])
+            packages.append(component_package)
+        distribution = staging / 'Distribution'
+        synthesize = ['/usr/bin/productbuild', '--synthesize']
+        for component_package in packages:
+            synthesize += ['--package', str(component_package)]
+        run(synthesize + [str(distribution)])
+        tree = ET.parse(distribution)
+        root = tree.getroot()
+        title = root.find('title')
+        if title is None:
+            title = ET.SubElement(root, 'title')
+        title.text = 'RaveLink virtual devices'
+        options = root.find('options')
+        if options is None:
+            options = ET.SubElement(root, 'options')
+        options.set('customize', 'never')
+        options.set('rootVolumeOnly', 'true')
+        options.set('hostArchitectures', ','.join(sorted(architectures)))
+        domains = root.find('domains')
+        if domains is None:
+            domains = ET.SubElement(root, 'domains')
+        domains.attrib.update(enable_localSystem='true', enable_currentUserHome='false', enable_anywhere='false')
+        minimum_os = max((data['minimumMacOS'] for data in metadata), key=lambda value: tuple(map(int, value.split('.'))))
+        volume_check = root.find('volume-check')
+        if volume_check is None:
+            volume_check = ET.SubElement(root, 'volume-check', script='true')
+        allowed_os = volume_check.find('allowed-os-versions')
+        if allowed_os is None:
+            allowed_os = ET.SubElement(volume_check, 'allowed-os-versions')
+        else:
+            allowed_os.clear()
+        ET.SubElement(allowed_os, 'os-version', min=minimum_os)
+        for reference in root.findall('pkg-ref'):
+            if reference.text and reference.text.strip():
+                reference.set('onConclusion', 'RequireRestart')
+        tree.write(distribution, encoding='utf-8', xml_declaration=True)
+        args = ['/usr/bin/productbuild', '--distribution', str(distribution), '--package-path', str(components)]
         if identity:
-            args += ['--sign', identity]
+            args += ['--sign', identity, '--timestamp']
         run(args + [str(output)])
         # Check the archived bytes, not only the staging folder.
         expanded = staging / 'expanded'
         run(['/usr/sbin/pkgutil', '--expand-full', str(output), str(expanded)])
-        archived = sorted((expanded / 'Payload').glob('*.driver'))
-        if {bundle.name for bundle in archived} != {bundle.name for bundle in bundles}:
+        archived = sorted(expanded.rglob('*.driver'))
+        if len(archived) != len(bundles) or {bundle.name for bundle in archived} != {bundle.name for bundle in bundles}:
             raise ValueError('Package is missing driver bundles')
         for bundle in archived:
             validate_bundle(bundle)
+        receipts = {ET.parse(path).getroot().get('identifier'): ET.parse(path).getroot().get('version')
+                    for path in expanded.rglob('PackageInfo')}
+        if receipts != {receipt_id(slug): str(build_number) for slug, build_number in releases}:
+            raise ValueError('Package receipt identity or version mismatch')
+        if identity:
+            run(['/usr/sbin/pkgutil', '--check-signature', str(output)])
     print(f'Created {output}. macOS restart required after installation; package never restarts audio services.')
     print('Package is unsigned.' if identity is None else 'Package signed; notarization is a separate release step.')
 
@@ -292,6 +426,8 @@ def main() -> int:
     build.add_argument('--arch', choices=['arm64', 'x86_64'], action='append')
     build.add_argument('--output', type=Path, default=ROOT / 'build' / 'virtual-devices')
     build.add_argument('--sign', default='-', help='Signing identity; default ad-hoc')
+    build.add_argument('--version', default=VERSION, help='Release version, e.g. 0.2.0')
+    build.add_argument('--build-number', type=int, default=BUILD_NUMBER, help='Increasing CFBundleVersion and package receipt version (1–9999)')
     for name in ['validate', 'install', 'package']:
         cmd = commands.add_parser(name)
         cmd.add_argument('bundles', nargs='+', type=Path)
@@ -303,6 +439,7 @@ def main() -> int:
     args = parser.parse_args()
     try:
         if args.command == 'build':
+            release_version(args.version, args.build_number)
             if not 2 <= args.channels <= 256 or args.channels % 2:
                 raise ValueError('Channels must be an even integer from 2–256; create additional device IDs for more buses')
             devices = [parse_device(value) for value in (args.device or DEFAULT_DEVICES)]
@@ -314,7 +451,8 @@ def main() -> int:
             if any((args.output / f'RaveLink-{slug}.driver').exists() for slug, _ in devices):
                 raise ValueError('An output driver already exists; choose a fresh output directory')
             archs = list(dict.fromkeys(args.arch or ['arm64', 'x86_64']))
-            result = [build_one(args.output, device, args.channels, archs, args.sign, manifest) for device in devices]
+            result = [build_one(args.output, device, args.channels, archs, args.sign, manifest,
+                                args.version, args.build_number) for device in devices]
             (args.output / 'manifest.json').write_text(json.dumps(result, indent=2) + '\n')
             print(json.dumps(result, indent=2))
         elif args.command == 'validate':

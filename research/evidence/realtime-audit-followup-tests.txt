@@ -1,0 +1,77 @@
+[0/1] Planning build
+Building for debugging...
+[0/9] Write sources
+[1/9] Write swift-version--1AB21518FC5DEDBE.txt
+[3/5] Compiling RaveLinkAudioTests LiveAudioUnitTests.swift
+[4/5] Emitting module RaveLinkAudioTests
+[4/6] Write Objects.LinkFileList
+[5/6] Linking RaveLinkPackageTests
+Build complete! (2.07s)
+􀟈  Test run started.
+􀄵  Testing Library Version: 1400
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite AudioCoordinatorTests started.
+􀟈  Suite GroupedRealtimeTests started.
+􀟈  Suite RealtimeTests started.
+􀟈  Suite DSPRecoveryTests started.
+􀟈  Test defaultGroupsRemainIndependentAndInvalidGraphsAreRejected() started.
+􀟈  Suite LiveAudioUnitTests started.
+􀟈  Test testBandLimitedDownsamplingRejectsAliasedHighFrequency() started.
+􀟈  Test testIndependentBusGainPanMuteAndOffsets() started.
+􀟈  Test testCaptureMonoDuplicationAndMeter() started.
+􀟈  Test testGainChangesRampAndMuteReachesSilence() started.
+􀟈  Test testDSPGainHighPassGateAndCompression() started.
+􀟈  Test testRingIsBoundedAndReportsOverflowAndUnderrun() started.
+􀟈  Test malformedControlUpdatesPreservePriorValidSettings() started.
+􀟈  Test testNonFiniteInputIsContainedAndInvalidConfigurationRejected() started.
+􀟈  Test toneGroupReceivesGainExactlyOnce() started.
+􀟈  Test sumsGroupOnceAndUsesOnlyParentSendsForIndependentBuses() started.
+􀟈  Test testInvalidStartFailsWithActionableErrorAndStaysStopped() started.
+􀟈  Test compressorProcessesSummedWaveformOnce() started.
+􀟈  Test captureSilencesItsDuplexOutputContribution() started.
+􀟈  Test finiteOverflowSpikeDoesNotPoisonFollowingAudio() started.
+􀟈  Test effectTopologyExcludesSafeLiveControls() started.
+􁁛  Test testNonFiniteInputIsContainedAndInvalidConfigurationRejected() passed after 0.001 seconds.
+􁁛  Test testCaptureMonoDuplicationAndMeter() passed after 0.001 seconds.
+􁁛  Test testRingIsBoundedAndReportsOverflowAndUnderrun() passed after 0.001 seconds.
+􁁛  Test effectTopologyExcludesSafeLiveControls() passed after 0.001 seconds.
+􀟈  Test hostScratchBudgetCountsRacksOncePerVisibleGroup() started.
+􁁛  Test captureSilencesItsDuplexOutputContribution() passed after 0.001 seconds.
+􁁛  Test malformedControlUpdatesPreservePriorValidSettings() passed after 0.001 seconds.
+􁁛  Test hostScratchBudgetCountsRacksOncePerVisibleGroup() passed after 0.001 seconds.
+􀟈  Test renderErrorLatchesSilenceAcrossTheEntireOutput() started.
+􁁛  Test testInvalidStartFailsWithActionableErrorAndStaysStopped() passed after 0.002 seconds.
+􀙟  Test testBlackHoleLoopbackAndLiveBusControls() skipped.
+􀙟  Test testSilentPhysicalOutputLifecycle() skipped.
+􁁛  Suite AudioCoordinatorTests passed after 0.003 seconds.
+􁁛  Test renderErrorLatchesSilenceAcrossTheEntireOutput() passed after 0.001 seconds.
+􀟈  Test malformedEffectOutputLatchesFailure() started.
+􁁛  Test toneGroupReceivesGainExactlyOnce() passed after 0.003 seconds.
+􁁛  Test finiteOverflowSpikeDoesNotPoisonFollowingAudio() passed after 0.003 seconds.
+􁁛  Suite DSPRecoveryTests passed after 0.003 seconds.
+􁁛  Test testGainChangesRampAndMuteReachesSilence() passed after 0.003 seconds.
+􁁛  Test malformedEffectOutputLatchesFailure() passed after 0.001 seconds.
+􀟈  Test appleEffectRunsInNativeCallbackAndChangesWithoutRebuild() started.
+􁁛  Test testIndependentBusGainPanMuteAndOffsets() passed after 0.004 seconds.
+􁁛  Test testDSPGainHighPassGateAndCompression() passed after 0.005 seconds.
+􁁛  Test sumsGroupOnceAndUsesOnlyParentSendsForIndependentBuses() passed after 0.023 seconds.
+􁁛  Test defaultGroupsRemainIndependentAndInvalidGraphsAreRejected() passed after 0.026 seconds.
+􁁛  Test compressorProcessesSummedWaveformOnce() passed after 0.029 seconds.
+􁁛  Suite GroupedRealtimeTests passed after 0.029 seconds.
+􁁛  Test testBandLimitedDownsamplingRejectsAliasedHighFrequency() passed after 0.077 seconds.
+􁁛  Suite RealtimeTests passed after 0.078 seconds.
+􁁛  Test appleEffectRunsInNativeCallbackAndChangesWithoutRebuild() passed after 0.278 seconds.
+􀟈  Test bypassAndEmptyRackDelaysSurviveIrregularBlockBoundaries() started.
+􁁛  Test bypassAndEmptyRackDelaysSurviveIrregularBlockBoundaries() passed after 0.001 seconds.
+􀟈  Test latencyAndDelayMemoryAreBoundedBeforeRendering() started.
+􁁛  Test latencyAndDelayMemoryAreBoundedBeforeRendering() passed after 0.001 seconds.
+􀟈  Test emptyChannelAlignsWithTwoRealAppleEffects() started.
+􁁛  Test emptyChannelAlignsWithTwoRealAppleEffects() passed after 0.216 seconds.
+􀟈  Test changingAppleAttackDelayStopsUntilGraphReconstruction() started.
+􁁛  Test changingAppleAttackDelayStopsUntilGraphReconstruction() passed after 0.214 seconds.
+􀟈  Test remainingGraphBudgetBoundsActualAppleDelayStorage() started.
+􁁛  Test remainingGraphBudgetBoundsActualAppleDelayStorage() passed after 0.374 seconds.
+􀟈  Test failedPreparationCanReleasePartlyCreatedGraph() started.
+􁁛  Test failedPreparationCanReleasePartlyCreatedGraph() passed after 0.527 seconds.
+􁁛  Suite LiveAudioUnitTests passed after 1.616 seconds.
+􁁛  Test run with 28 tests in 5 suites passed after 1.616 seconds.

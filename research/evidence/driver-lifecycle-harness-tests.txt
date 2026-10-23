@@ -1,0 +1,55 @@
+test_cleanup_never_adopts_preexisting_devices (Drivers.tests.test_lifecycle_harness.LifecycleHarnessTests.test_cleanup_never_adopts_preexisting_devices) ... ok
+test_cleanup_rejects_another_run_ownership (Drivers.tests.test_lifecycle_harness.LifecycleHarnessTests.test_cleanup_rejects_another_run_ownership) ... ok
+test_failed_command_preserves_log_and_outcome (Drivers.tests.test_lifecycle_harness.LifecycleHarnessTests.test_failed_command_preserves_log_and_outcome) ... ok
+test_payload_identity_detects_changed_names_and_bytes (Drivers.tests.test_lifecycle_harness.LifecycleHarnessTests.test_payload_identity_detects_changed_names_and_bytes) ... ok
+test_receipt_query_errors_are_not_absence (Drivers.tests.test_lifecycle_harness.LifecycleHarnessTests.test_receipt_query_errors_are_not_absence) ... ok
+test_rejection_case_cannot_pass_with_successful_command (Drivers.tests.test_lifecycle_harness.LifecycleHarnessTests.test_rejection_case_cannot_pass_with_successful_command) ... ok
+test_timeout_and_unrelated_failure_cannot_satisfy_policy_rejection (Drivers.tests.test_lifecycle_harness.LifecycleHarnessTests.test_timeout_and_unrelated_failure_cannot_satisfy_policy_rejection) ... ok
+test_workstation_and_self_hosted_are_refused (Drivers.tests.test_lifecycle_harness.LifecycleHarnessTests.test_workstation_and_self_hosted_are_refused) ... Refusing: requires explicit lifecycle opt-in on a GitHub-hosted disposable runner.
+ok
+test_query_errors_and_invalid_format_do_not_pass_as_absence (Drivers.tests.test_driver_state_probe.DriverStateProbeTests.test_query_errors_and_invalid_format_do_not_pass_as_absence) ... ok
+test_duplicate_uninstall_aliases_fail_before_root_or_filesystem_work (Drivers.tests.test_virtual_lifecycle.VirtualLifecycleTests.test_duplicate_uninstall_aliases_fail_before_root_or_filesystem_work) ... ok
+test_every_component_checks_later_downgrade_before_any_payload (Drivers.tests.test_virtual_lifecycle.VirtualLifecycleTests.test_every_component_checks_later_downgrade_before_any_payload) ... ok
+test_invalid_release_fails_before_creating_output (Drivers.tests.test_virtual_lifecycle.VirtualLifecycleTests.test_invalid_release_fails_before_creating_output) ... ok
+test_preinstall_allows_fresh_upgrade_and_same_build_repair (Drivers.tests.test_virtual_lifecycle.VirtualLifecycleTests.test_preinstall_allows_fresh_upgrade_and_same_build_repair) ... ok
+test_preinstall_refuses_redirected_parent_without_following_it (Drivers.tests.test_virtual_lifecycle.VirtualLifecycleTests.test_preinstall_refuses_redirected_parent_without_following_it) ... ok
+test_preinstall_refuses_symlink_destination (Drivers.tests.test_virtual_lifecycle.VirtualLifecycleTests.test_preinstall_refuses_symlink_destination) ... ok
+test_preinstall_rejects_downgrade_identity_mismatch_and_unknown_build (Drivers.tests.test_virtual_lifecycle.VirtualLifecycleTests.test_preinstall_rejects_downgrade_identity_mismatch_and_unknown_build) ... ok
+test_real_product_archive_has_per_device_receipts_and_versioned_payload (Drivers.tests.test_virtual_lifecycle.VirtualLifecycleTests.test_real_product_archive_has_per_device_receipts_and_versioned_payload) ... /private/var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/tmpi5i3v86t/devices/.ravelink-mvoj2nke/RaveLink-receipt-a.driver: replacing existing signature
+/private/var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/tmpi5i3v86t/devices/.ravelink-yr1vy_4s/RaveLink-receipt-b.driver: replacing existing signature
+/var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/tmpi5i3v86t/devices/RaveLink-receipt-a.driver: replacing existing signature
+write: Permission denied
+write: Permission denied
+write: Permission denied
+write: Permission denied
+write: Permission denied
+write: Permission denied
+write: Permission denied
+write: Permission denied
+ok
+test_release_identifiers_and_build_numbers_are_explicit (Drivers.tests.test_virtual_lifecycle.VirtualLifecycleTests.test_release_identifiers_and_build_numbers_are_explicit) ... ok
+test_uninstall_preflights_all_bundles_and_forgets_only_owned_receipts (Drivers.tests.test_virtual_lifecycle.VirtualLifecycleTests.test_uninstall_preflights_all_bundles_and_forgets_only_owned_receipts) ... ok
+test_bad_ids_are_rejected (Drivers.tests.test_virtual_devices.DriverConfigurationTests.test_bad_ids_are_rejected) ... ok
+test_built_bundles_and_isolation (Drivers.tests.test_virtual_devices.DriverConfigurationTests.test_built_bundles_and_isolation) ... /private/var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/ravelink-driver-test-79j_wfuw/devices/.ravelink-m11oz_w2/RaveLink-test-one.driver: replacing existing signature
+/private/var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/ravelink-driver-test-79j_wfuw/devices/.ravelink-or6rw1hj/RaveLink-test-two.driver: replacing existing signature
+PASS: 2 bundles; identity, virtual transport, formats, hidden mirror, malformed request, 4096-block loopback per bundle, ring wrap, silence, clock, instance isolation, client lifecycle.
+/var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/ravelink-driver-test-79j_wfuw/devices/RaveLink-test-one.driver: a sealed resource is missing or invalid
+ok
+test_duplicate_id_fails_before_build (Drivers.tests.test_virtual_devices.DriverConfigurationTests.test_duplicate_id_fails_before_build) ... ok
+test_format_injection_and_controls_are_rejected (Drivers.tests.test_virtual_devices.DriverConfigurationTests.test_format_injection_and_controls_are_rejected) ... ok
+test_invalid_channel_counts_fail_before_build (Drivers.tests.test_virtual_devices.DriverConfigurationTests.test_invalid_channel_counts_fail_before_build) ... ok
+test_no_admin_install (Drivers.tests.test_virtual_devices.DriverConfigurationTests.test_no_admin_install) ... ok
+test_pinned_source_hashes (Drivers.tests.test_virtual_devices.DriverConfigurationTests.test_pinned_source_hashes) ... ok
+test_stable_id_and_editable_label (Drivers.tests.test_virtual_devices.DriverConfigurationTests.test_stable_id_and_editable_label) ... ok
+test_callback_contract_under_sanitizers (Drivers.tests.test_soak_probe.SoakProbeTests.test_callback_contract_under_sanitizers) ... skipped 'ASan instrumentation is opt-in; unavailable on some macOS beta hosts'
+test_eight_channel_capture_feed_bounds_and_timestamp_health (Drivers.tests.test_soak_probe.SoakProbeTests.test_eight_channel_capture_feed_bounds_and_timestamp_health) ... ok
+
+----------------------------------------------------------------------
+Ran 29 tests in 5.766s
+
+OK (skipped=1)
+Created /var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/tmpi5i3v86t/devices.pkg. macOS restart required after installation; package never restarts audio services.
+Package is unsigned.
+Removed /var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/tmprfwl_ahm/RaveLink-voice.driver
+Removed /var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/tmprfwl_ahm/RaveLink-music.driver
+Restart macOS after closing audio apps. Audio services were not restarted.

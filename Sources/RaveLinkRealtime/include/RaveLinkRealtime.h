@@ -20,6 +20,9 @@ uint32_t rl_ring_read(RLRing *ring, float *stereo, uint32_t frames, double ratio
 bool rl_ring_prepare_ratio(RLRing *ring, double ratio);
 uint64_t rl_ring_dropped(RLRing *ring);
 uint64_t rl_ring_underruns(RLRing *ring);
+// Request from control while its producer is stopped. Consumer discards queued
+// frames and resets SRC history on its next read; it never edits writer state.
+void rl_ring_request_reset(RLRing *ring);
 
 RLDSP *rl_dsp_create(double sampleRate);
 void rl_dsp_destroy(RLDSP *dsp);
@@ -43,6 +46,9 @@ AudioDeviceIOProc rl_capture_io_proc(void);
 RLRender *rl_render_create(double sampleRate, uint32_t maxFrames,
                            uint32_t sourceCount, uint32_t busCount);
 void rl_render_destroy(RLRender *render);
+// Independent fail-closed gate. Processing/draining continues while suspended;
+// ordinary channel/bus controls cannot reopen it. Resume has a 5 ms ramp.
+void rl_render_set_suspended(RLRender *render, bool suspended);
 // Install only while stopped. Context must outlive every callback. A nonzero
 // return permanently latches silence for this graph until explicit rebuild.
 typedef int32_t (*RLGroupProcessor)(void *context, uint32_t sourceIndex, float *stereo, uint32_t frames);

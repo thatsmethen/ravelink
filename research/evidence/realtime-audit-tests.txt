@@ -1,0 +1,133 @@
+[0/1] Planning build
+Building for debugging...
+[0/15] Write sources
+[2/15] Write swift-version--1AB21518FC5DEDBE.txt
+[3/15] Compiling RaveLinkRealtime Realtime.c
+[4/13] Compiling RaveLinkAudioUnitBridge AudioUnitBridge.m
+[6/19] Compiling RaveLinkCore SessionStore.swift
+[7/19] Compiling RaveLinkCore SoundCheck.swift
+[8/19] Compiling RaveLinkCore Session.swift
+[9/19] Compiling RaveLinkCore ExpandedRouting.swift
+[10/19] Emitting module RaveLinkCore
+[11/19] Compiling RaveLinkCore AudioUnitEffects.swift
+[12/34] Compiling RaveLinkAudio RenderProgressMonitor.swift
+[13/34] Compiling RaveLinkAudio PluginRender.swift
+[14/34] Compiling RaveLinkAudio SoundCheckSupport.swift
+[15/34] Compiling RaveLinkAudio PluginCatalog.swift
+[16/34] Compiling RaveLinkAudio LiveAudioUnitGraph.swift
+[17/34] Compiling RaveLinkAudio EngineProtocol.swift
+[18/34] Compiling RaveLinkAudio AudioStreamValidation.swift
+[19/34] Compiling RaveLinkAudio EngineClient.swift
+[20/34] Compiling RaveLinkAudio FeedbackValidation.swift
+[21/34] Compiling RaveLinkAudio HardwareEventMonitor.swift
+[22/34] Compiling RaveLinkAudio AudioAllocationBudget.swift
+[23/34] Compiling RaveLinkAudio ApplicationIdentity.swift
+[24/34] Compiling RaveLinkAudio ApplicationMembership.swift
+[25/34] Compiling RaveLinkAudio AudioCoordinator.swift
+[26/34] Emitting module RaveLinkAudio
+[27/62] Emitting module RaveLinkEngine
+[28/62] Compiling RaveLinkEngine EngineMain.swift
+[28/62] Write Objects.LinkFileList
+[30/62] Compiling RaveLinkAudioTests RenderProgressMonitorTests.swift
+[30/63] Linking RaveLinkEngine
+[31/63] Applying RaveLinkEngine
+[33/63] Compiling RaveLinkAudioTests SoundCheckRoutingTests.swift
+[34/63] Compiling RaveLinkAudioTests PluginRenderTests.swift
+[35/63] Compiling RaveLinkAudioTests SoundCheckBufferTests.swift
+[36/63] Compiling RaveLinkAudioTests PluginCatalogTests.swift
+[37/63] Compiling RaveLinkAudioTests FeedbackValidationTests.swift
+[38/63] Compiling RaveLinkAudioTests ThirdPartyAudioUnitTests.swift
+[39/63] Compiling RaveLinkAudioTests RealtimeTests.swift
+[40/63] Compiling RaveLinkAudioTests InstalledMatrixTests.swift
+[41/63] Compiling RaveLinkAudioTests LiveAudioUnitTests.swift
+[42/63] Compiling RaveLinkAudioTests InstalledSoundCheckTests.swift
+[43/63] Compiling RaveLinkAudioTests GroupedRealtimeTests.swift
+[44/63] Compiling RaveLinkAudioTests InstalledAudioUnitAcceptanceTests.swift
+[45/63] Compiling RaveLinkAudioTests InstalledDeviceSoakTests.swift
+[46/63] Emitting module RaveLinkAudioTests
+[47/63] Compiling RaveLinkAudioTests ApplicationMembershipTests.swift
+[48/63] Compiling RaveLinkAudioTests AudioAllocationTests.swift
+[49/63] Compiling RaveLinkAudioTests DSPRecoveryTests.swift
+[50/63] Compiling RaveLinkAudioTests EngineClientTests.swift
+[51/63] Compiling RaveLinkApp StudioView.swift
+[52/63] Compiling RaveLinkApp AudioUnitRackView.swift
+[53/63] Compiling RaveLinkApp StudioModel.swift
+[54/63] Compiling RaveLinkApp RaveLinkApp.swift
+[55/63] Compiling RaveLinkApp SoundCheckView.swift
+[56/63] Emitting module RaveLinkApp
+[57/63] Compiling RaveLinkApp SourceSheets.swift
+[58/63] Compiling RaveLinkApp EngineDiagnosticsView.swift
+[58/63] Write Objects.LinkFileList
+[59/63] Linking RaveLink
+[60/63] Applying RaveLink
+[62/65] Emitting module RaveLinkAppTests
+[63/65] Compiling RaveLinkAppTests SoundCheckIsolationTests.swift
+[63/65] Write Objects.LinkFileList
+[64/65] Linking RaveLinkPackageTests
+Build complete! (6.65s)
+􀟈  Test run started.
+􀄵  Testing Library Version: 1400
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite RealtimeTests started.
+􀟈  Suite GroupedRealtimeTests started.
+􀟈  Suite LiveAudioUnitTests started.
+􀟈  Suite DSPRecoveryTests started.
+􀟈  Suite AudioCoordinatorTests started.
+􀟈  Test sumsGroupOnceAndUsesOnlyParentSendsForIndependentBuses() started.
+􀟈  Test finiteOverflowSpikeDoesNotPoisonFollowingAudio() started.
+􀟈  Test appleEffectRunsInNativeCallbackAndChangesWithoutRebuild() started.
+􀟈  Test compressorProcessesSummedWaveformOnce() started.
+􀟈  Test testDSPGainHighPassGateAndCompression() started.
+􀟈  Test malformedControlUpdatesPreservePriorValidSettings() started.
+􀟈  Test captureSilencesItsDuplexOutputContribution() started.
+􀟈  Test testGainChangesRampAndMuteReachesSilence() started.
+􀟈  Test testRingIsBoundedAndReportsOverflowAndUnderrun() started.
+􀟈  Test toneGroupReceivesGainExactlyOnce() started.
+􀟈  Test testNonFiniteInputIsContainedAndInvalidConfigurationRejected() started.
+􀟈  Test remainingGraphBudgetBoundsActualAppleDelayStorage() started.
+􀟈  Test effectTopologyExcludesSafeLiveControls() started.
+􀟈  Test failedPreparationCanReleasePartlyCreatedGraph() started.
+􀟈  Test latencyAndDelayMemoryAreBoundedBeforeRendering() started.
+􀟈  Test changingAppleAttackDelayStopsUntilGraphReconstruction() started.
+􀟈  Test emptyChannelAlignsWithTwoRealAppleEffects() started.
+􀟈  Test defaultGroupsRemainIndependentAndInvalidGraphsAreRejected() started.
+􀟈  Test testInvalidStartFailsWithActionableErrorAndStaysStopped() started.
+􀟈  Test testIndependentBusGainPanMuteAndOffsets() started.
+􀟈  Test testCaptureMonoDuplicationAndMeter() started.
+􀟈  Test testBandLimitedDownsamplingRejectsAliasedHighFrequency() started.
+􀟈  Test malformedEffectOutputLatchesFailure() started.
+􀟈  Test bypassAndEmptyRackDelaysSurviveIrregularBlockBoundaries() started.
+􀟈  Test renderErrorLatchesSilenceAcrossTheEntireOutput() started.
+􁁛  Test testNonFiniteInputIsContainedAndInvalidConfigurationRejected() passed after 0.001 seconds.
+􁁛  Test captureSilencesItsDuplexOutputContribution() passed after 0.001 seconds.
+􁁛  Test latencyAndDelayMemoryAreBoundedBeforeRendering() passed after 0.001 seconds.
+􁁛  Test effectTopologyExcludesSafeLiveControls() passed after 0.001 seconds.
+􁁛  Test testRingIsBoundedAndReportsOverflowAndUnderrun() passed after 0.001 seconds.
+􁁛  Test testCaptureMonoDuplicationAndMeter() passed after 0.001 seconds.
+􁁛  Test malformedEffectOutputLatchesFailure() passed after 0.001 seconds.
+􁁛  Test finiteOverflowSpikeDoesNotPoisonFollowingAudio() passed after 0.001 seconds.
+􁁛  Test renderErrorLatchesSilenceAcrossTheEntireOutput() passed after 0.001 seconds.
+􁁛  Test testInvalidStartFailsWithActionableErrorAndStaysStopped() passed after 0.001 seconds.
+􀙟  Test testBlackHoleLoopbackAndLiveBusControls() skipped.
+􀙟  Test testSilentPhysicalOutputLifecycle() skipped.
+􁁛  Suite AudioCoordinatorTests passed after 0.002 seconds.
+􁁛  Test malformedControlUpdatesPreservePriorValidSettings() passed after 0.002 seconds.
+􁁛  Test testGainChangesRampAndMuteReachesSilence() passed after 0.002 seconds.
+􁁛  Suite DSPRecoveryTests passed after 0.002 seconds.
+􁁛  Test bypassAndEmptyRackDelaysSurviveIrregularBlockBoundaries() passed after 0.002 seconds.
+􁁛  Test testIndependentBusGainPanMuteAndOffsets() passed after 0.002 seconds.
+􁁛  Test toneGroupReceivesGainExactlyOnce() passed after 0.002 seconds.
+􁁛  Test testDSPGainHighPassGateAndCompression() passed after 0.005 seconds.
+􁁛  Test sumsGroupOnceAndUsesOnlyParentSendsForIndependentBuses() passed after 0.022 seconds.
+􁁛  Test defaultGroupsRemainIndependentAndInvalidGraphsAreRejected() passed after 0.026 seconds.
+􁁛  Test compressorProcessesSummedWaveformOnce() passed after 0.027 seconds.
+􁁛  Suite GroupedRealtimeTests passed after 0.027 seconds.
+􁁛  Test testBandLimitedDownsamplingRejectsAliasedHighFrequency() passed after 0.077 seconds.
+􁁛  Suite RealtimeTests passed after 0.077 seconds.
+􁁛  Test appleEffectRunsInNativeCallbackAndChangesWithoutRebuild() passed after 0.281 seconds.
+􁁛  Test remainingGraphBudgetBoundsActualAppleDelayStorage() passed after 0.333 seconds.
+􁁛  Test changingAppleAttackDelayStopsUntilGraphReconstruction() passed after 0.394 seconds.
+􁁛  Test emptyChannelAlignsWithTwoRealAppleEffects() passed after 0.423 seconds.
+􁁛  Test failedPreparationCanReleasePartlyCreatedGraph() passed after 0.447 seconds.
+􁁛  Suite LiveAudioUnitTests passed after 0.447 seconds.
+􁁛  Test run with 27 tests in 5 suites passed after 0.448 seconds.

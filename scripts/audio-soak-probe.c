@@ -25,6 +25,9 @@ typedef struct {
     uint32_t priorFrames;
     bool havePrior;
     uint32_t minBlock, maxBlock;
+    uint64_t firstDiscontinuityCallback, discontinuityPriorHost, discontinuityNextHost;
+    double discontinuityPriorSample, discontinuityNextSample;
+    uint32_t discontinuityPriorFrames;
 } Probe;
 static uint32_t blockFrames(const AudioBufferList *list) {
     uint32_t frames=UINT32_MAX;
@@ -71,7 +74,12 @@ static OSStatus callback(AudioObjectID device,const AudioTimeStamp *now,const Au
     if(!timestamp)atomic_fetch_add(&p->invalidTimestamps,1);
     else {
         if(!sequence)atomic_store(&p->firstHost,stamp->mHostTime);
-        if(p->havePrior && (stamp->mHostTime<=p->priorHost || fabs(stamp->mSampleTime-p->priorSample-p->priorFrames)>.5))atomic_fetch_add(&p->discontinuities,1);
+        if(p->havePrior && (stamp->mHostTime<=p->priorHost || fabs(stamp->mSampleTime-p->priorSample-p->priorFrames)>.5)) {
+            if(atomic_fetch_add(&p->discontinuities,1)==0) {
+                p->firstDiscontinuityCallback=sequence;p->discontinuityPriorHost=p->priorHost;p->discontinuityNextHost=stamp->mHostTime;
+                p->discontinuityPriorSample=p->priorSample;p->discontinuityNextSample=stamp->mSampleTime;p->discontinuityPriorFrames=p->priorFrames;
+            }
+        }
         p->priorHost=stamp->mHostTime;p->priorSample=stamp->mSampleTime;p->priorFrames=frames;p->havePrior=true;
     }
     if(p->feed) {
@@ -90,7 +98,11 @@ static OSStatus callback(AudioObjectID device,const AudioTimeStamp *now,const Au
     } else {
         uint64_t at=atomic_load(&p->count);
         uint32_t count=frames; if(count>p->capacity-at)count=(uint32_t)(p->capacity-at);
-        for(uint32_t f=0;f<count;f++)for(uint32_t c=0;c<p->channels;c++)p->samples[(at+f)*p->channels+c]=readSample(input,c,f);
+        for(uint32_t f=0;f<count;f++)for(uint32_t c=0;c<p->channels;c++) {
+            float value=readSample(input,c,f);p->samples[(at+f)*p->channels+c]=value;
+            if(timestamp && fabsf(value)>1e-6f && !atomic_load(&p->firstSignalHost))
+                atomic_store(&p->firstSignalHost,stamp->mHostTime+(uint64_t)(f/p->rate/p->hostScale));
+        }
         atomic_store_explicit(&p->count,at+count,memory_order_release);
     }
     return noErr;
@@ -183,5 +195,9 @@ int main(int argc,char **argv) {
     if(!feed&&wave(wav,&p))okay=false;
     FILE*f=fopen(report,"w");if(!f)return 10;
     fprintf(f,"{\"mode\":\"%s\",\"sampleRate\":%.0f,\"channels\":%u,\"configuredBufferFrames\":%u,\"minBlockFrames\":%u,\"maxBlockFrames\":%u,\"frames\":%llu,\"callbacks\":%llu,\"firstFrameHostSeconds\":%.9f,\"firstSignalHostSeconds\":%.9f,\"timestampDiscontinuities\":%llu,\"invalidTimestamps\":%llu,\"complete\":%s}\n",mode,p.rate,p.channels,bufferFrames,p.minBlock,p.maxBlock,(unsigned long long)atomic_load(feed?&p.signalFrames:&p.count),(unsigned long long)atomic_load(&p.callbacks),atomic_load(&p.firstHost)*p.hostScale,atomic_load(&p.firstSignalHost)*p.hostScale,(unsigned long long)atomic_load(&p.discontinuities),(unsigned long long)atomic_load(&p.invalidTimestamps),okay?"true":"false");
-    if(fclose(f))okay=false;free(p.samples);return okay?0:11;
+    if(fclose(f))okay=false;
+    // A separate bounded diagnostic preserves the strict primary report schema.
+    // No callback I/O or heap allocation; values are read only after IOProc removal.
+    if(atomic_load(&p.discontinuities))fprintf(stderr,"first-timestamp-discontinuity callback=%llu priorSample=%.17g nextSample=%.17g priorFrames=%u priorHostSeconds=%.9f nextHostSeconds=%.9f\n",(unsigned long long)p.firstDiscontinuityCallback,p.discontinuityPriorSample,p.discontinuityNextSample,p.discontinuityPriorFrames,p.discontinuityPriorHost*p.hostScale,p.discontinuityNextHost*p.hostScale);
+    free(p.samples);return okay?0:11;
 }

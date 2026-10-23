@@ -32,6 +32,21 @@ python3 scripts/virtual-devices.py build \
 
 IDs are immutable routing identities; labels are human-readable. The persistent UID is `RaveLink.<id>_UID`. Changing a label does not change this UID. Bundle identifiers use `au.textual.ravelink.audio.<id>`. Device IDs must be unique across installed instances. Each bundle has its own deterministic CFPlugIn factory UUID and independent ring buffer; it coexists with the official BlackHole device.
 
+Release builds specify a user-facing version and a monotonically increasing build
+number. The defaults `0.1.0` and `1` preserve the initial development build. For example:
+
+```sh
+python3 scripts/virtual-devices.py build --device podcast:Podcast \
+  --version 0.2.0 --build-number 2 --output build/podcast-0.2.0
+```
+
+`--version` is three canonical integers. `--build-number` is an integer from 1
+through 9999 and becomes both `CFBundleVersion` and the package receipt version.
+This follows the conservative four-digit first-component format in Apple's
+[bundle version reference](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html).
+Increase the build number for every published change, including driver code,
+channel count or label changes. Changing either version does not change the UID.
+
 Optional multichannel transport:
 
 ```sh
@@ -52,12 +67,31 @@ python3 scripts/virtual-devices.py package build/virtual-devices/*.driver \
   --output build/RaveLink-Virtual-Devices-0.1.0.pkg
 ```
 
-The bundle validator checks identity, factory, architecture, exported factory symbol, symlink exclusion, and the sealed code signature. Packaging expands its own output and validates every archived driver. Component packages install only under `/Library/Audio/Plug-Ins/HAL`; bundle relocation is disabled and existing bundle identifiers must match. A package can upgrade the same RaveLink device identifiers. The package contains no scripts that restart audio services.
+The bundle validator checks identity, release metadata, factory, architecture,
+exported factory symbol, symlink exclusion, and the sealed code signature.
+Packaging expands its own output and validates every archived driver and receipt.
+Each device has its own stable receipt, `au.textual.ravelink.audio.package.<id>`;
+one product archive combines the requested components without sharing receipt
+ownership between unrelated device sets. Component packages install only under
+`/Library/Audio/Plug-Ins/HAL`, with relocation disabled, strict identifiers,
+version checking and complete bundle replacement explicitly enabled.
+
+Before any component payload is installed, its preinstall script checks the
+entire proposed device set. It rejects a lower incoming build number, another
+bundle's identity, unsupported existing version metadata or symlink destinations.
+Same-build reinstall is allowed for repair; higher builds replace old bundle
+contents, including files removed in the new release. An intentional downgrade
+requires an explicit uninstall first. The Installer requests a restart; no script
+restarts audio services. These policies have package/temporary-volume tests;
+actual Installer upgrade/downgrade acceptance is a separate gate.
+Preflighting policy does not make the whole multi-device product transactional:
+a later disk or payload failure can still leave a partially updated device set.
 
 Builds are **ad-hoc signed** by default. That proves local byte integrity, not publisher identity or notarization. A release requires the developer's signing assets and independent installation verification:
 
 ```sh
 python3 scripts/virtual-devices.py build --output build/release-devices \
+  --version 0.2.0 --build-number 2 \
   --sign 'Developer ID Application: YOUR NAME (TEAMID)'
 python3 scripts/virtual-devices.py package build/release-devices/*.driver \
   --output build/RaveLink-Virtual-Devices.pkg \
@@ -84,11 +118,32 @@ Remove only the selected RaveLink IDs:
 sudo python3 scripts/virtual-devices.py uninstall stream voice music browser game
 ```
 
-Restart macOS after removal. Direct uninstall deliberately checks RaveLink identity and signature before removing a bundle. If an installed bundle is damaged, inspect that exact RaveLink path and remove it manually as an administrator; the script does not guess which files are safe to delete.
+Restart macOS after removal. Direct uninstall rejects duplicate IDs and validates
+every selected bundle's identity and signature before removing any bundle. It
+forgets only those devices' new per-device receipts after removal. The earlier
+shared development receipt `au.textual.ravelink.audio.package` is left untouched
+because it may also describe other installed devices. If an installed bundle is
+damaged, inspect that exact RaveLink path and remove it manually as an
+administrator; the script does not guess which files are safe to delete.
 
 ## Evidence and release gates
 
 Local verification on 23 October 2026 built five stereo devices and a 256-channel device as universal arm64/x86_64 bundles. Native arm64 execution loaded the actual built bundles in a private process and checked identity, two directions of stream format, hidden mirror exclusion, malformed property requests, 4,096 blocks of exact loopback including ring wrap, stale-read silence, clock values, simultaneous independent instance buffers, and multi-client start/stop. The Python suite also checks pinned source hashes, invalid identifiers, channel bounds, format-string rejection, duplicate IDs, non-admin install refusal, payload symlinks, and signature tampering. This does not load the bundles into `coreaudiod`.
+
+`scripts/run-driver-lifecycle.py` is a separate, explicitly opted-in GitHub-hosted
+runner acceptance. It refuses pre-existing fixture payloads or receipts and uses
+only `ci-lifecycle-a`/`ci-lifecycle-b`. Its checks cover build17→18, exact payload
+and receipt identity, same-build repair of deliberately damaged bytes, rejected
+downgrade and mixed upgrade/downgrade with unchanged bytes/receipts, duplicate
+uninstall refusal, higher build with lower marketing version, selected removal,
+and a stale receipt with missing payload. An independent CoreAudio observer
+checks stable UID, changed names and 2→4 channels, 44.1→48kHz stream formats, and
+absence after removal. It never starts audio IO. Explicit runner-only service
+reloads do not change the shipped package's restart behavior. Both normal and
+always-run cleanup require a marker proving these exact fixtures were absent at
+the start of the same GitHub run. Original command logs and state hashes survive
+failures. Local instrument controls and archive inspection do not establish that
+these Installer acceptance cases passed; retain the actual CI report separately.
 
 Still required before calling the driver release production-ready:
 

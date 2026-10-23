@@ -35,3 +35,13 @@ endpoint. A generated input does not establish microphone permissions, physical
 hardware capture compatibility, third-party effects behavior or long-session
 stability. Installed-HAL acceptance requires matching raw captures and provenance
 from a successful CI run.
+
+This specific Sound Check sequence passed on installed HAL in release run
+`39998798881`, revision `b787263`, macOS 15.7.9 arm64 at 48 kHz. The dry clip
+contained 46,592 frames. Independent PCM measured unity peak 0.12588985, then
+−12 dB peaks 0.03162277–0.03170098 at 440.00001 Hz, followed by 12.2 seconds of
+silence. The guard's peak was zero throughout; the helper was reaped and clear
+left zero recorded frames. Raw recordings and provenance are preserved in
+`research/evidence/installed-hal-39998798881/`. The broader CI run failed its
+separate device-input soak and deterministic tests; this Sound Check result does
+not establish overall release readiness.

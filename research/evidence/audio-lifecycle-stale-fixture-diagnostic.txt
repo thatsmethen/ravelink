@@ -1,0 +1,54 @@
+[0/1] Planning build
+Building for debugging...
+[0/10] Write sources
+[2/10] Write swift-version--1AB21518FC5DEDBE.txt
+[4/10] Compiling RaveLinkAudio AudioPowerObserver.swift
+[5/12] Emitting module RaveLinkAudio
+[6/12] Compiling RaveLinkAudio AudioCoordinator.swift
+[7/12] Compiling RaveLinkAudio EngineClient.swift
+[8/40] Compiling RaveLinkEngine EngineMain.swift
+[9/40] Emitting module RaveLinkEngine
+[9/40] Write Objects.LinkFileList
+[11/40] Compiling RaveLinkAudioTests InstalledDeviceSoakTests.swift
+[12/40] Compiling RaveLinkAudioTests ApplicationMembershipTests.swift
+[13/40] Compiling RaveLinkAudioTests SoundCheckRoutingTests.swift
+[14/41] Compiling RaveLinkAudioTests PluginRenderTests.swift
+[15/41] Compiling RaveLinkAudioTests RealtimeTests.swift
+[16/41] Compiling RaveLinkAudioTests InstalledMatrixTests.swift
+[16/41] Linking RaveLinkEngine
+[17/41] Applying RaveLinkEngine
+[19/41] Compiling RaveLinkAudioTests InstalledAudioUnitAcceptanceTests.swift
+[20/41] Compiling RaveLinkAudioTests FeedbackValidationTests.swift
+[21/41] Emitting module RaveLinkAudioTests
+[22/41] Compiling RaveLinkAudioTests AudioLifecycleTests.swift
+[23/41] Compiling RaveLinkAudioTests LiveAudioUnitTests.swift
+[24/41] Compiling RaveLinkAudioTests ThirdPartyAudioUnitTests.swift
+[25/41] Compiling RaveLinkAudioTests InstalledSoundCheckTests.swift
+[26/41] Compiling RaveLinkAudioTests RenderProgressMonitorTests.swift
+[27/41] Compiling RaveLinkAudioTests AudioAllocationTests.swift
+[28/41] Compiling RaveLinkAudioTests PluginCatalogTests.swift
+[29/41] Compiling RaveLinkAudioTests EngineClientTests.swift
+[30/41] Compiling RaveLinkApp AudioUnitRackView.swift
+[31/41] Compiling RaveLinkApp EngineDiagnosticsView.swift
+[32/41] Compiling RaveLinkApp RaveLinkApp.swift
+[33/41] Compiling RaveLinkApp StudioModel.swift
+[34/41] Compiling RaveLinkApp StudioView.swift
+[35/41] Emitting module RaveLinkApp
+[36/41] Compiling RaveLinkApp SourceSheets.swift
+[37/41] Compiling RaveLinkApp SoundCheckView.swift
+[37/41] Write Objects.LinkFileList
+[38/41] Linking RaveLink
+[39/41] Applying RaveLink
+[41/43] Emitting module RaveLinkAppTests
+[42/43] Compiling RaveLinkAppTests SoundCheckIsolationTests.swift
+[42/44] Write Objects.LinkFileList
+[43/44] Linking RaveLinkPackageTests
+Build complete! (6.13s)
+􀟈  Test run started.
+􀄵  Testing Library Version: 1400
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite EngineClientTests started.
+􀟈  Test staleTelemetryCannotRestartStoppedSession() started.
+􁁛  Test staleTelemetryCannotRestartStoppedSession() passed after 0.480 seconds.
+􁁛  Suite EngineClientTests passed after 0.480 seconds.
+􁁛  Test run with 1 test in 1 suite passed after 0.480 seconds.

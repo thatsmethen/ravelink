@@ -1,0 +1,18 @@
+{
+  "recordedAt": "2026-10-23T18:55:23.892785+00:00",
+  "evidenceClass": "Native packaged UI and accessibility observation",
+  "applicationSHA256": "0a6a6060aa2fb4ad497996f50b929715a25d72deb99faad775855c1c8d0055c8",
+  "engineSHA256": "4eb7bd0920f6a5418075735ca8868bc276181b6d06700f7f01cf83f7e9d5006f",
+  "observations": [
+    "Sound Check opens with Studio audio is paused and playback disabled until an explicit output is chosen",
+    "Command-R inside the sheet shows instruction to close Sound Check before starting studio audio; stays Ready to record at zero duration",
+    "Closing the sheet leaves studio audio stopped with original test tone routes and settings",
+    "Engine diagnostics accessibility exposes State, Captured frames, Rendered frames, Input overflow frames, Buffer underrun frames, Oversized device blocks and AU alignment delay as separately named values"
+  ],
+  "screenshot": "ui-sound-check-isolation.png",
+  "limitations": [
+    "No active broadcast session was used in this UI check; pure app-state guard regression is separate",
+    "No VoiceOver speech or full keyboard navigation pass",
+    "No physical or microphone PCM recording"
+  ]
+}

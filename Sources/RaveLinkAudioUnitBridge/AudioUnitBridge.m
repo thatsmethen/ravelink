@@ -36,6 +36,17 @@ struct RLAUGraph {
     _Atomic int32_t error;
     _Atomic uint32_t errorSource, errorSlot;
 };
+// Force private writable pages during configuration, before real-time access.
+// A 4 KiB stride covers both supported 4 KiB and 16 KiB macOS page sizes.
+static float *audio_buffer_create(size_t samples) {
+    float *buffer = calloc(samples, sizeof(float));
+    if (buffer && samples) {
+        volatile float *pages = buffer;
+        for (size_t index = 0; index < samples; index += 1024) pages[index] = 0;
+        pages[samples - 1] = 0;
+    }
+    return buffer;
+}
 static int32_t fail(RLAUGraph *g, uint32_t source, uint32_t slot, int32_t status) {
     atomic_store_explicit(&g->errorSource, source, memory_order_relaxed);
     atomic_store_explicit(&g->errorSlot, slot, memory_order_relaxed);
@@ -85,7 +96,7 @@ bool rl_au_graph_append(RLAUGraph *g, uint32_t source, uint32_t slot, AURenderBl
     if (latencyFrames > g->maxLatencyFrames - chain->latencyFrames || bytes > g->maxDelayBytes - g->delayBytes) return false;
     if (chain->count == UINT32_MAX || (size_t)chain->count + 1 > SIZE_MAX / sizeof(RLAUNode *)) return false;
     for (uint32_t n = 0; n < chain->count; n++) if (chain->nodes[n]->slot == slot) return false;
-    if (!chain->buffers) { chain->buffers = calloc(4 * RL_AU_BLOCK_FRAMES, sizeof(float)); if (!chain->buffers) return false; }
+    if (!chain->buffers) { chain->buffers = audio_buffer_create(4 * RL_AU_BLOCK_FRAMES); if (!chain->buffers) return false; }
     RLAUNode **grown = realloc(chain->nodes, ((size_t)chain->count + 1) * sizeof(*grown));
     if (!grown) return false;
     chain->nodes = grown;
@@ -94,7 +105,7 @@ bool rl_au_graph_append(RLAUGraph *g, uint32_t source, uint32_t slot, AURenderBl
     if (!atomic_is_lock_free(&node->bypassed)) { free(node); return false; }
     node->slot = slot; node->wet = bypassed ? 0 : 1; node->latencyFrames = latencyFrames;
     if (latencyFrames) {
-        node->dryDelay = calloc((size_t)latencyFrames * 2, sizeof(float));
+        node->dryDelay = audio_buffer_create((size_t)latencyFrames * 2);
         if (!node->dryDelay) { free(node); return false; }
     }
     atomic_init(&node->bypassed, bypassed);
@@ -129,13 +140,14 @@ bool rl_au_graph_finalize(RLAUGraph *g) {
         RLAUChain *chain = &g->chains[s]; if (!chain->active) continue;
         chain->alignmentFrames = longest - chain->latencyFrames;
         if (chain->alignmentFrames) {
-            chain->alignmentDelay = calloc((size_t)chain->alignmentFrames * 2, sizeof(float));
+            chain->alignmentDelay = audio_buffer_create((size_t)chain->alignmentFrames * 2);
             if (!chain->alignmentDelay) return false; // Owner discards the partial graph.
         }
     }
     g->delayBytes += extraBytes; g->alignmentLatencyFrames = longest; g->finalized = true; return true;
 }
 uint32_t rl_au_graph_latency_frames(RLAUGraph *g) { return g ? g->alignmentLatencyFrames : 0; }
+uint64_t rl_au_graph_delay_bytes(RLAUGraph *g) { return g ? g->delayBytes : 0; }
 void rl_au_graph_invalidate(RLAUGraph *g, uint32_t source, uint32_t slot, int32_t status) {
     if (g && status) fail(g, source, slot, status);
 }

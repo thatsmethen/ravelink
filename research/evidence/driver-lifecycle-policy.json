@@ -1,0 +1,42 @@
+{
+  "recordedAt": "2026-10-23T16:39:46.894152+00:00",
+  "evidenceClass": "Local driver source, generated package archive, and temporary-volume policy controls; not an installed HAL upgrade result",
+  "baseRevision": "9929420e6259492887147ddccf9d647dcd240bf0",
+  "workingTreeChanges": true,
+  "host": {
+    "macOS": "27.0",
+    "architecture": "arm64"
+  },
+  "command": "python3 -m unittest Drivers.tests.test_virtual_lifecycle Drivers.tests.test_virtual_devices -v",
+  "tests": 18,
+  "result": "passed",
+  "verified": [
+    "Per-device receipt identities and build versions in a generated product archive",
+    "Signed bundled payloads and embedded preinstall script contents",
+    "Temporary-volume fresh install, upgrade, same-build repair and rejected downgrade policy",
+    "Duplicate uninstall and all-bundle preflight; mock receipt removal limited to selected IDs",
+    "Legacy metadata build derivation; symlink rejection; minimum OS and architecture distribution constraints",
+    "Existing native arm64 in-process driver contract; universal bundle structure"
+  ],
+  "notVerified": [
+    "Installer execution in a system HAL location",
+    "Loaded driver upgrade, channel/label change, discovery after restart, receipt persistence and removal",
+    "Developer ID Installer signing, notarization and clean-machine distribution",
+    "x86_64 runtime"
+  ],
+  "warnings": "Local macOS27 pkgbuild --root emitted write: Permission denied warnings but returned0, including after stripping script extended attributes; resulting archives were expanded and payload signatures/receipts/scripts verified. Warnings remain visible in both original test logs.",
+  "sha256": {
+    "scripts/virtual-devices.py": "fc1fab88b748eea7c6a5fe4243ed68e605829c24eacded6504b10b82278c61b2",
+    "Drivers/tests/test_virtual_lifecycle.py": "4b160f452751cd714e9815e366307127cfd8ebfc09d58e76d41e0a84b308ff5b",
+    "Drivers/tests/test_virtual_devices.py": "1622e16e4cce0736a03c02ff63d79c7cc333c1b8c77afc768397a0cdcd022c40",
+    "research/evidence/driver-lifecycle-policy-final-tests.txt": "558891eff8af67b41739eb46083e34d4bf69ca7f2c81fc963128f7dbfbf4ba03",
+    "research/evidence/driver-lifecycle-policy-tests.txt": "8caf6879d0d20f1c2af683af65654b6ba5e68e361a0bc5d6d077c0f97de8da0e"
+  },
+  "previousVerification": {
+    "sourceSHA256": "490565a8970a26be88783e6e2414185b185d012cde4220cf389e20bc08c8a492",
+    "log": "research/evidence/driver-lifecycle-policy-tests.txt",
+    "logSHA256": "8caf6879d0d20f1c2af683af65654b6ba5e68e361a0bc5d6d077c0f97de8da0e",
+    "tests": 18
+  },
+  "recheckedAt": "2026-10-23T16:42:12.319956+00:00"
+}

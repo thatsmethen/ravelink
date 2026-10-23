@@ -21,6 +21,7 @@ struct RLRing {
     float *kernel;
     uint32_t capacity, mask;
     _Atomic uint64_t write, read, dropped, underruns;
+    _Atomic bool resetRequested;
     double fraction;
     bool primed;
     double correction;
@@ -74,6 +75,10 @@ uint32_t rl_ring_write(RLRing *r, const float *stereo, uint32_t frames) {
 }
 uint32_t rl_ring_read(RLRing *r, float *stereo, uint32_t frames, double ratio) {
     if (!r || !stereo) return 0;
+    if (atomic_exchange_explicit(&r->resetRequested, false, memory_order_acquire)) {
+        atomic_store_explicit(&r->read, atomic_load_explicit(&r->write, memory_order_acquire), memory_order_release);
+        r->fraction = 0; r->correction = 0; r->primed = false;
+    }
     if (!isfinite(ratio) || ratio < 1.0 / 24 || ratio > 24 || fabs(ratio - r->configuredRatio) > .000001) {
         memset(stereo, 0, (size_t)frames * 2 * sizeof(float)); return 0;
     }
@@ -117,6 +122,7 @@ uint32_t rl_ring_read(RLRing *r, float *stereo, uint32_t frames, double ratio) {
 }
 uint64_t rl_ring_dropped(RLRing *r) { return r ? atomic_load(&r->dropped) : 0; }
 uint64_t rl_ring_underruns(RLRing *r) { return r ? atomic_load(&r->underruns) : 0; }
+void rl_ring_request_reset(RLRing *r) { if (r) atomic_store_explicit(&r->resetRequested, true, memory_order_release); }
 
 struct RLDSP {
     double sampleRate;
@@ -132,25 +138,35 @@ RLDSP *rl_dsp_create(double sampleRate) {
 }
 void rl_dsp_destroy(RLDSP *d) { free(d); }
 void rl_dsp_controls(RLDSP *d, float gainDB, float highPassHz, float gateDB, float compressorDB, float ratio) {
-    if (!d) return;
+    if (!d || !isfinite(gainDB) || !isfinite(highPassHz) || !isfinite(gateDB) ||
+        !isfinite(compressorDB) || !isfinite(ratio)) return;
     atomic_store(&d->gain, db_gain(gainDB)); atomic_store(&d->highpass, fmaxf(0, fminf(highPassHz, 20000)));
     atomic_store(&d->gate, gateDB <= -80 ? 0 : db_gain(gateDB));
     atomic_store(&d->threshold, db_gain(compressorDB)); atomic_store(&d->ratio, fmaxf(1, fminf(ratio, 20)));
 }
 void rl_dsp_process(RLDSP *d, float *stereo, uint32_t frames) {
-    if (!d) return;
+    if (!d || !stereo) return;
     float gain = atomic_load(&d->gain), hp = atomic_load(&d->highpass), gate = atomic_load(&d->gate);
     float threshold = atomic_load(&d->threshold), ratio = atomic_load(&d->ratio);
     float alpha = hp > 0 ? (float)(1 / (1 + 2 * M_PI * hp / d->sampleRate)) : 0;
     float attack = (float)exp(-1 / (.005 * d->sampleRate)), release = (float)exp(-1 / (.100 * d->sampleRate));
     float smooth = (float)exp(-1 / (.005 * d->sampleRate));
+    if (!isfinite(d->inputGain)) d->inputGain = 0;
+    if (!isfinite(d->envelope)) d->envelope = 0;
+    if (!isfinite(d->smoothedGain)) d->smoothedGain = 1;
     for (uint32_t i = 0; i < frames; i++) {
         d->inputGain = smooth * d->inputGain + (1 - smooth) * gain;
         float pair[2];
         for (int c = 0; c < 2; c++) {
-            float x = finite_sample(stereo[i * 2 + c]) * d->inputGain;
+            // Reject corrupt Float32 magnitudes before multiplication can overflow
+            // and poison the filter/envelope across all later valid audio. The
+            // bound matches the AU bridge's output validity envelope (+120 dBFS).
+            float raw = stereo[i * 2 + c];
+            float x = (isfinite(raw) && fabsf(raw) <= 1000000.f ? raw : 0.f) * d->inputGain;
             float y = hp > 0 ? alpha * (d->previousOutput[c] + x - d->previousInput[c]) : x;
-            d->previousInput[c] = x; d->previousOutput[c] = y; pair[c] = y;
+            if (!isfinite(y)) { y = 0; d->previousInput[c] = 0; }
+            else d->previousInput[c] = x;
+            d->previousOutput[c] = y; pair[c] = y;
         }
         float level = fmaxf(fabsf(pair[0]), fabsf(pair[1]));
         float coefficient = level > d->envelope ? attack : release;
@@ -260,6 +276,8 @@ struct RLRender {
     _Atomic uint64_t frames, oversized;
     RLGroupProcessor processor; void *processorContext;
     _Atomic int32_t processorError;
+    _Atomic bool suspended;
+    float resumeGain;
     RLSoundCheck *soundCheck; uint32_t soundCheckLeader;
 };
 RLRender *rl_render_create(double rate, uint32_t maxFrames, uint32_t sourceCount, uint32_t busCount) {
@@ -272,6 +290,7 @@ RLRender *rl_render_create(double rate, uint32_t maxFrames, uint32_t sourceCount
         (size_t)maxFrames > SIZE_MAX / 2 / sizeof(float) / buses) return NULL;
     RLRender *r = calloc(1, sizeof(*r)); if (!r) return NULL;
     atomic_init(&r->processorError, 0);
+    atomic_init(&r->suspended, false); r->resumeGain = 1;
     if (!atomic_is_lock_free(&r->processorError)) { free(r); return NULL; }
     r->sampleRate = rate; r->maxFrames = maxFrames; r->sourceCount = sourceCount; r->busCount = busCount;
     r->sources = calloc(sourceCount ? sourceCount : 1, sizeof(RLSource));
@@ -292,6 +311,9 @@ void rl_render_destroy(RLRender *r) {
     if (!r) return;
     if (r->sources) for (uint32_t i = 0; i < r->sourceCount; i++) rl_dsp_destroy(r->sources[i].dsp);
     free(r->sources); free(r->buses); free(r->sends); free(r->sourceScratch); free(r->groupScratch); free(r->busScratch); free(r);
+}
+void rl_render_set_suspended(RLRender *r, bool suspended) {
+    if (r) atomic_store_explicit(&r->suspended, suspended, memory_order_release);
 }
 void rl_render_set_group_processor(RLRender *r, RLGroupProcessor processor, void *context) {
     if (!r) return; r->processor = processor; r->processorContext = context;
@@ -391,6 +413,15 @@ OSStatus rl_render_callback(AudioObjectID device, const AudioTimeStamp *now, con
             }
         }
     }
+    bool suspended = atomic_load_explicit(&r->suspended, memory_order_acquire);
+    if (suspended) r->resumeGain = 0;
+    // Store one frame ramp for reuse by every bus; sourceScratch is no longer
+    // needed after group processing. A control edit cannot defeat suspension.
+    float resumeStep = (float)(1 / (.005 * r->sampleRate));
+    for (uint32_t f = 0; f < frames; f++) {
+        if (!suspended) r->resumeGain = fminf(1, r->resumeGain + resumeStep);
+        r->sourceScratch[f] = r->resumeGain;
+    }
     for (uint32_t b = 0; b < r->busCount; b++) {
         RLBus *bus = &r->buses[b]; float gain = atomic_load(&bus->muted) ? 0 : atomic_load(&bus->gain), peak = 0;
         float *src = r->busScratch + (size_t)b * frames * 2;
@@ -398,7 +429,7 @@ OSStatus rl_render_callback(AudioObjectID device, const AudioTimeStamp *now, con
         for (uint32_t f = 0; f < frames; f++) {
             bus->smoothedGain = smoothing * bus->smoothedGain + (1 - smoothing) * gain;
             for (uint32_t c = 0; c < 2; c++) {
-                float sample = finite_sample(src[f * 2 + c] * bus->smoothedGain); peak = fmaxf(peak, fabsf(sample)); add_sample(output, bus->offset + c, f, sample);
+                float sample = finite_sample(src[f * 2 + c] * bus->smoothedGain * r->sourceScratch[f]); peak = fmaxf(peak, fabsf(sample)); add_sample(output, bus->offset + c, f, sample);
             }
         }
         peak_store(&bus->peak, peak);

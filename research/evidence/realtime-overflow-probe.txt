@@ -1,0 +1,2 @@
+before: spike_finite=0 recovery_nonfinite_samples=1024 last=nan
+after: spike_finite=1 recovery_nonfinite_samples=0 last=0.00666742

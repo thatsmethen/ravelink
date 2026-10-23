@@ -24,6 +24,13 @@ during a pending start cancels that helper and prepares the latest session in a
 fresh process. Closing the parent pipe also makes the real helper exit, including
 when a driver call is blocked on its control worker.
 
+A running helper must keep reporting current-generation state within three
+seconds. Each output also has an independent frame-progress watchdog (five
+seconds or four maximum buffer durations, whichever is larger). Sleep stops the
+helper; wake refreshes devices without resuming audio. These checks cover separate
+failure modes: a live process/control loop does not prove a device callback is
+returning.
+
 Inside the helper, `AudioCoordinator` keeps state on its main actor. Device discovery, graph
 preparation, hardware start/stop, and device-health reads run on a dedicated serial
 worker. `starting` describes preparation; `running` becomes true only after all
@@ -34,6 +41,17 @@ a late driver return cannot broadcast an obsolete mix. Candidate process taps
 initially preserve original playback. Only an accepted generation enables
 `mutedWhenTapped`, suppressing original app playback while RaveLink routes it.
 Stopping capture restores that playback.
+
+Application identity includes actual enclosing app bundles, grouping nested
+browser helpers without guessing from bundle-ID prefixes. Dedicated inputs and
+the system remainder share one process snapshot. Process-list events retarget all
+affected taps behind an independent output gate, unregister capture callbacks,
+discard queued capture, and reopen only after the current generation succeeds.
+macOS 26 adds bundle restoration; macOS 15 uses explicit process-object updates.
+Device listeners and a polling fallback revalidate alive state, rates, channel
+ranges, and Float32 byte layout; a stalled health check has a three-second limit.
+Actual tap transitions and hardware/power changes still require runtime
+qualification; see [application lifecycle](application-capture-lifecycle-plan.md).
 
 A blocked CoreAudio call cannot be cancelled within the helper; the supervisor
 terminates the process instead. This recovers the application's control boundary,
@@ -98,6 +116,9 @@ allocation each have conservative preflight budgets, bounded by the lesser of
 one sixteenth of physical RAM and 512 MiB. Actual usable graph size also depends
 on device limits, CPU, sample rates, scheduling, and plugin behaviour. The memory
 estimate is a resource guard, not a measurement or a real-time CPU guarantee.
+It also reserves conservative AU bridge overhead and actual host delay-buffer
+storage across output clocks. Vendor-private plugin allocations and process RSS
+are outside this estimate.
 
 ## Sound Check isolation
 

@@ -1,0 +1,33 @@
+[0/1] Planning build
+Building for debugging...
+[0/10] Write sources
+[2/10] Write swift-version--1AB21518FC5DEDBE.txt
+[4/11] Compiling RaveLinkAudio AudioCoordinator.swift
+[5/11] Emitting module RaveLinkAudio
+[6/11] Compiling RaveLinkAudio EngineClient.swift
+[7/19] Emitting module RaveLinkEngine
+[7/19] Write Objects.LinkFileList
+[9/19] Emitting module RaveLinkApp
+[9/19] Write Objects.LinkFileList
+[10/19] Linking RaveLinkEngine
+[11/19] Applying RaveLinkEngine
+[12/19] Linking RaveLink
+[13/19] Applying RaveLink
+[15/19] Emitting module RaveLinkAudioTests
+[16/19] Compiling RaveLinkAudioTests EngineClientTests.swift
+[17/19] Compiling RaveLinkAudioTests LiveAudioUnitTests.swift
+[17/19] Write Objects.LinkFileList
+[18/19] Linking RaveLinkPackageTests
+Build complete! (3.95s)
+􀟈  Test run started.
+􀄵  Testing Library Version: 1400
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite EngineClientTests started.
+􀟈  Test realSilentOutputThroughSupervisedProcess() started.
+SUPERVISED_SILENT_OUTPUT uid=BuiltInSpeakerDevice frames=200704 peak=0.0 helperPID=77461
+􁁛  Test realSilentOutputThroughSupervisedProcess() passed after 4.996 seconds.
+􀟈  Test soundCheckCommandsAndLiveEditsThroughSilentDevice() started.
+SUPERVISED_SOUND_CHECK uid=BuiltInSpeakerDevice recordedFrames=4096 retainedAfterLiveEdit=true playbackOutputPeak=0
+􁁛  Test soundCheckCommandsAndLiveEditsThroughSilentDevice() passed after 0.651 seconds.
+􁁛  Suite EngineClientTests passed after 5.648 seconds.
+􁁛  Test run with 2 tests in 1 suite passed after 5.648 seconds.

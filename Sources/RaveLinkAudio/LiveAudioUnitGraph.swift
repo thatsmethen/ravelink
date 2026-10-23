@@ -31,8 +31,26 @@ public final class LiveAudioUnitGraph {
     /// Reported AU processing delay aligned across leader channels on this clock.
     /// Excludes capture FIFO, device, transport, and converter latency.
     public var alignmentLatencySeconds: Double { Double(rl_au_graph_latency_frames(bridge)) / sampleRate }
+    /// Host delay rings only; vendor-owned allocations are not measurable here.
+    public var delayMemoryBytes: UInt64 { rl_au_graph_delay_bytes(bridge) }
 
-    public init(session: MixerSession, channelParents: [UUID: UUID], sampleRate: Double, maxFrames: UInt32) throws {
+    /// Conservative bridge storage beyond delay rings: chain descriptors, planar
+    /// scratch, nodes, pointer-array growth and host pull blocks. This is not RSS;
+    /// vendor resources and Swift parameter/state objects are outside this estimate.
+    public static func estimatedHostOverhead(session: MixerSession, channelParents: [UUID: UUID]) throws -> UInt64 {
+        var budget = AudioAllocationBudget(limit: UInt64.max)
+        try budget.reserve(256)
+        try budget.reserve(try AudioAllocationBudget.product(UInt64(max(1, session.channels.count)), 128))
+        for channel in session.channels {
+            guard channelParents[channel.id] == nil || channelParents[channel.id] == channel.id,
+                  !channel.audioUnitEffects.isEmpty else { continue }
+            try budget.reserve(8192) // Four 512-frame Float32 planes.
+            try budget.reserve(try AudioAllocationBudget.product(UInt64(channel.audioUnitEffects.count), 512))
+        }
+        return budget.reserved
+    }
+
+    public init(session: MixerSession, channelParents: [UUID: UUID], sampleRate: Double, maxFrames: UInt32, delayBudgetBytes: UInt64 = 128 * 1024 * 1024) throws {
         _ = try session.validated()
         guard session.channels.count <= Int(UInt32.max), maxFrames > 0,
               let graph = rl_au_graph_create(UInt32(session.channels.count), maxFrames, sampleRate) else {
@@ -40,6 +58,9 @@ public final class LiveAudioUnitGraph {
         }
         bridge = graph; topology = session; self.sampleRate = sampleRate
         do {
+            guard rl_au_graph_set_latency_limits(bridge, UInt32(ceil(sampleRate * 2)), min(delayBudgetBytes, 128 * 1024 * 1024)) else {
+                throw SessionError.invalid("Could not configure the Audio Unit delay budget.")
+            }
             for (source, channel) in session.channels.enumerated() {
                 guard channelParents[channel.id] == channel.id || channelParents[channel.id] == nil else { continue }
                 guard rl_au_graph_enable_source(bridge, UInt32(source)) else { throw SessionError.invalid("Could not configure effect alignment for \(channel.name).") }
@@ -48,11 +69,11 @@ public final class LiveAudioUnitGraph {
                     let record = try Self.prepare(slot, source: UInt32(source), slotIndex: UInt32(slotIndex), channel: channel, rate: sampleRate)
                     units.append(record)
                     guard rl_au_graph_append(bridge, record.source, record.slot, record.renderBlock, record.scheduleBlock, slot.isBypassed, record.latencyFrames) else {
-                        throw SessionError.invalid("Could not prepare \(slot.descriptor.name) on \(channel.name). Racks are limited to two seconds of reported latency and 128 MiB of delay storage per output.")
+                        throw SessionError.invalid("Could not prepare \(slot.descriptor.name) on \(channel.name). Racks are limited to two seconds of reported latency and the remaining output delay budget.")
                     }
                 }
             }
-            guard rl_au_graph_finalize(bridge) else { throw SessionError.invalid("Could not allocate effect alignment delays within the 128 MiB output budget. Reduce rack latency or the number of input channels.") }
+            guard rl_au_graph_finalize(bridge) else { throw SessionError.invalid("Could not allocate effect alignment delays within the remaining output delay budget. Reduce rack latency or the number of input channels.") }
         } catch {
             // All stored properties are initialized, so Swift runs deinit when
             // this initializer throws. Do not free the bridge a second time.

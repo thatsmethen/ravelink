@@ -22,15 +22,18 @@ int main(void) {
     callback(0,NULL,&in,&stamp,&out,&stamp,&feeder);
     for(unsigned i=0;i<7*8;i++)assert(output[i]==0);
     assert(atomic_load(&feeder.signalFrames)==4 && atomic_load(&feeder.discontinuities)==0);
-    Probe recorder={.rate=8000,.channels=8,.capacity=3};
+    Probe recorder={.rate=8000,.hostScale=1e-9,.channels=8,.capacity=3};
     recorder.samples=calloc(3*8,sizeof(float));assert(recorder.samples);
     callback(0,NULL,&in,&stamp,&out,&stamp,&recorder);
     assert(atomic_load(&recorder.count)==3);
+    assert(atomic_load(&recorder.firstSignalHost)==2000);
     for(unsigned i=0;i<3*8;i++)assert(recorder.samples[i]==input[i]);
     for(unsigned i=0;i<7*8;i++)assert(output[i]==0);
     stamp.mSampleTime=99;stamp.mHostTime=3000;
     callback(0,NULL,&in,&stamp,&out,&stamp,&recorder);
     assert(atomic_load(&recorder.discontinuities)==1);
+    assert(recorder.firstDiscontinuityCallback==1 && recorder.discontinuityPriorSample==7
+           && recorder.discontinuityNextSample==99 && recorder.discontinuityPriorFrames==7);
     callback(0,NULL,&in,NULL,&out,NULL,&recorder);
     assert(atomic_load(&recorder.invalidTimestamps)==1);
     free(recorder.samples);

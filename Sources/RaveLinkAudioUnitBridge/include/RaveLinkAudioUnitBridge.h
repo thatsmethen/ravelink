@@ -15,6 +15,8 @@ bool rl_au_graph_enable_source(RLAUGraph * _Nonnull graph, uint32_t sourceIndex)
 bool rl_au_graph_set_latency_limits(RLAUGraph * _Nonnull graph, uint32_t maxLatencyFrames, uint64_t maxDelayBytes);
 bool rl_au_graph_finalize(RLAUGraph * _Nonnull graph);
 uint32_t rl_au_graph_latency_frames(RLAUGraph * _Nonnull graph);
+// Configured delay storage; read only after successful finalization.
+uint64_t rl_au_graph_delay_bytes(RLAUGraph * _Nonnull graph);
 void rl_au_graph_invalidate(RLAUGraph * _Nonnull graph, uint32_t sourceIndex, uint32_t slotIndex, int32_t status);
 bool rl_au_graph_set_bypass(RLAUGraph * _Nonnull graph, uint32_t sourceIndex, uint32_t slotIndex, bool bypassed);
 bool rl_au_graph_set_parameter(RLAUGraph * _Nonnull graph, uint32_t sourceIndex, uint32_t slotIndex, uint64_t address, float value, uint32_t rampFrames);

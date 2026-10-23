@@ -76,6 +76,11 @@ private struct EngineFixture {
                 os.close(0)
                 Path(__file__).with_name('input_closed').write_text('yes')
                 time.sleep(30)
+            if mode == 'silent_running' and running: time.sleep(30)
+            if mode == 'stale_heartbeat' and running:
+                while True:
+                    print(json.dumps({'version':protocol_version,'generation':generation-1,'kind':'state','success':True,'snapshot':snapshot(True)}),flush=True)
+                    time.sleep(.02)
             if mode == 'stale' and operation == 'stop':
                 print(json.dumps({'version':protocol_version,'generation':generation-1,'kind':'state','success':True,'snapshot':snapshot(True)}),flush=True)
         """
@@ -85,24 +90,32 @@ private struct EngineFixture {
     func remove() { try? FileManager.default.removeItem(at: directory) }
     var recordedPID: Int32? { (try? String(contentsOf: pidFile, encoding: .utf8)).flatMap { Int32($0) } }
 }
-@MainActor private func eventually(_ predicate: () -> Bool, timeout: TimeInterval = 3) async throws {
+@MainActor private func eventually(_ predicate: () -> Bool, timeout: TimeInterval = 3, message: String = "Expected condition before test deadline", failureDetails: (() -> String)? = nil) async throws {
     let deadline = Date().addingTimeInterval(timeout)
     while !predicate(), Date() < deadline { try await Task.sleep(for: .milliseconds(10)) }
-    try #require(predicate())
+    try #require(predicate(), Comment(rawValue: failureDetails?() ?? message))
 }
 private func processGone(_ pid: Int32) -> Bool { kill(pid, 0) == -1 && errno == ESRCH }
+@MainActor private func fixtureRunning(_ client: EngineClient) async throws {
+    // Readiness is setup for control/fault assertions, not the deadline under
+    // test. Cold interpreter startup may exceed three seconds on a busy runner.
+    try await eventually({ client.running || client.errorMessage != nil }, timeout: 6,
+        failureDetails: { "Fixture did not become ready: PID=\(client.helperProcessID.map(String.init) ?? "nil"), error=\(client.errorMessage ?? "nil")" })
+    try #require(client.running, Comment(rawValue: client.errorMessage ?? "Fixture never reached running"))
+}
 
 @Suite(.serialized) struct EngineClientTests {
     @Test @MainActor func discoveryTimeoutKillsAndReapsUncooperativeChild() async throws {
         let fixture = try EngineFixture("hang"); defer { fixture.remove() }
         let client = EngineClient(helperURL: fixture.executable, timeouts: .init(discovery: 1.5))
         defer { client.shutdown() }
-        try await eventually { client.helperProcessID != nil }
+        try await eventually({ client.helperProcessID != nil }, message: "Discovery fixture launch was not observed; actor may have been blocked")
         let pid = try #require(client.helperProcessID)
-        try await eventually { client.errorMessage != nil }
+        #expect(kill(pid, SIGSTOP) == 0, "A stopped peer cannot act on TERM; cleanup must escalate to KILL")
+        try await eventually({ client.errorMessage != nil }, message: "Discovery deadline did not publish its failure")
         #expect(client.errorMessage?.contains("device discovery") == true)
         #expect(!client.running && !client.starting)
-        try await eventually { processGone(pid) }
+        try await eventually({ processGone(pid) }, message: "Discovery timeout failed to reap stopped helper PID \(pid)")
     }
     @Test @MainActor func abruptExitDoesNotRaiseSIGPIPEInClient() async throws {
         let fixture = try EngineFixture("crash"); defer { fixture.remove() }
@@ -116,19 +129,21 @@ private func processGone(_ pid: Int32) -> Bool { kill(pid, 0) == -1 && errno == 
     }
     @Test @MainActor func malformedFloodIsBoundedAndChildReaped() async throws {
         let fixture = try EngineFixture("flood"); defer { fixture.remove() }
-        let client = EngineClient(helperURL: fixture.executable)
+        let client = EngineClient(helperURL: fixture.executable, timeouts: .init(discovery: 5, start: 5))
         defer { client.shutdown() }
-        try await eventually { client.errorMessage != nil && fixture.recordedPID != nil }
+        try await eventually({ client.errorMessage != nil }, timeout: 6)
         let pid = try #require(fixture.recordedPID)
         #expect(client.errorMessage?.contains("4 MiB") == true)
         try await eventually { processGone(pid) }
     }
     @Test @MainActor func brokenPipeWhileChildRemainsAliveDoesNotRaiseSIGPIPE() async throws {
         let fixture = try EngineFixture("closed_input"); defer { fixture.remove() }
-        let client = EngineClient(helperURL: fixture.executable, autoDiscover: false)
+        let client = EngineClient(helperURL: fixture.executable, timeouts: .init(discovery: 5, start: 5), autoDiscover: false)
         defer { client.shutdown() }
         try client.start(session: .initial)
-        try await eventually { client.running && FileManager.default.fileExists(atPath: fixture.directory.appendingPathComponent("input_closed").path) }
+        try await fixtureRunning(client)
+        try await eventually({ FileManager.default.fileExists(atPath: fixture.directory.appendingPathComponent("input_closed").path) || client.errorMessage != nil }, timeout: 6)
+        try #require(client.errorMessage == nil)
         let pid = try #require(client.helperProcessID)
         #expect(kill(pid, 0) == 0, "The peer must remain alive so the next write reaches the EPIPE branch")
         client.stop()
@@ -136,14 +151,53 @@ private func processGone(_ pid: Int32) -> Bool { kill(pid, 0) == -1 && errno == 
         #expect(client.errorMessage?.contains("closed its control channel") == true)
         try await eventually { processGone(pid) }
     }
+    @Test(arguments: ["silent_running", "stale_heartbeat"]) @MainActor func runningHeartbeatDeadlineCannotBeMaskedByStaleState(_ mode: String) async throws {
+        let fixture = try EngineFixture(mode); defer { fixture.remove() }
+        let client = EngineClient(helperURL: fixture.executable, timeouts: .init(start: 5, heartbeat: 0.25), autoDiscover: false)
+        defer { client.shutdown() }
+        try client.start(session: .initial)
+        try await eventually({ client.running || client.errorMessage != nil }, timeout: 6)
+        try #require(client.running, Comment(rawValue: client.errorMessage ?? "Fixture did not start"))
+        let pid = try #require(client.helperProcessID)
+        try await eventually { client.errorMessage?.contains("stopped reporting its running state") == true }
+        #expect(!client.running)
+        try await eventually { processGone(pid) }
+    }
+    @Test @MainActor func sleepReapsActiveHelperAndWakeDiscoversWithoutResuming() async throws {
+        let fixture = try EngineFixture("echo"); defer { fixture.remove() }
+        let client = EngineClient(helperURL: fixture.executable, timeouts: .init(discovery: 5, start: 5), autoDiscover: false)
+        defer { client.shutdown() }
+        try client.start(session: .initial)
+        try await fixtureRunning(client)
+        let oldPID = try #require(client.helperProcessID)
+        client.handlePowerEvent(.sleep)
+        #expect(!client.running && !client.starting)
+        #expect(client.errorMessage?.contains("sleeping") == true)
+        #expect(throws: (any Error).self) { try client.start(session: .initial) }
+        try await eventually { processGone(oldPID) }
+        let sleepMessage = client.errorMessage
+        client.handlePowerEvent(.wake)
+        try await eventually({
+            if client.errorMessage != sleepMessage && client.helperProcessID == nil { return true }
+            guard let pid = client.helperProcessID, pid != oldPID else { return false }
+            return fixture.recordedPID == pid
+        }, timeout: 6)
+        try #require(client.errorMessage == sleepMessage, Comment(rawValue: client.errorMessage ?? "Unexpected wake discovery state"))
+        try await Task.sleep(for: .milliseconds(100))
+        #expect(!client.running && !client.starting)
+        let starts = try String(contentsOf: fixture.directory.appendingPathComponent("starts"), encoding: .utf8)
+        #expect(starts.split(separator: "\n").count == 1, "Wake may discover devices but must not resend the saved mix")
+        let newPID = try #require(client.helperProcessID)
+        client.shutdown(); try await eventually { processGone(newPID) }
+    }
     @Test @MainActor func missingSoundCheckSnapshotStopsAndReapsHelper() async throws {
         let fixture = try EngineFixture("echo"); defer { fixture.remove() }
-        let client = EngineClient(helperURL: fixture.executable, autoDiscover: false)
+        let client = EngineClient(helperURL: fixture.executable, timeouts: .init(discovery: 5, start: 5), autoDiscover: false)
         defer { client.shutdown() }
         let channel = MixerChannel(name: "Check", source: .init(kind: .tone))
         let session = try SoundCheckSession.make(channel: channel, output: .init(deviceUID: "fixture-output"))
         try client.startSoundCheck(session: session, channelID: channel.id)
-        try await eventually { client.errorMessage != nil }
+        try await eventually({ client.errorMessage != nil }, timeout: 6)
         #expect(client.errorMessage?.contains("stopped reporting its Sound Check") == true)
         #expect(!client.running && client.soundCheck == nil)
         let pid = try #require(fixture.recordedPID)
@@ -177,21 +231,24 @@ private func processGone(_ pid: Int32) -> Bool { kill(pid, 0) == -1 && errno == 
     }
     @Test @MainActor func staleTelemetryCannotRestartStoppedSession() async throws {
         let fixture = try EngineFixture("stale"); defer { fixture.remove() }
-        let client = EngineClient(helperURL: fixture.executable, autoDiscover: false)
+        let client = EngineClient(helperURL: fixture.executable, timeouts: .init(discovery: 5, start: 5), autoDiscover: false)
         defer { client.shutdown() }
         try client.start(session: .initial)
-        try await eventually { client.running }
+        try await eventually({ client.running || client.errorMessage != nil }, timeout: 6, failureDetails: {
+            "Stale fixture startup: PID=\(client.helperProcessID.map(String.init) ?? "nil"), recordedPID=\(fixture.recordedPID.map(String.init) ?? "nil"), error=\(client.errorMessage ?? "nil")"
+        })
+        try #require(client.running, Comment(rawValue: client.errorMessage ?? "Stale fixture did not reach running"))
         let pid = try #require(client.helperProcessID)
         client.stop()
         try await Task.sleep(for: .milliseconds(150))
         #expect(!client.running && !client.starting)
         #expect(client.errorMessage == nil)
         client.shutdown()
-        try await eventually { processGone(pid) }
+        try await eventually({ processGone(pid) }, message: "Stale fixture helper was not reaped after shutdown")
     }
     @Test @MainActor func editDuringStartReplacesOldProcessWithLatestSession() async throws {
         let fixture = try EngineFixture("slow_start"); defer { fixture.remove() }
-        let client = EngineClient(helperURL: fixture.executable, autoDiscover: false)
+        let client = EngineClient(helperURL: fixture.executable, timeouts: .init(discovery: 5, start: 5), autoDiscover: false)
         defer { client.shutdown() }
         var session = MixerSession.initial; session.name = "old"
         try client.start(session: session)
@@ -199,7 +256,7 @@ private func processGone(_ pid: Int32) -> Bool { kill(pid, 0) == -1 && errno == 
         let oldPID = try #require(client.helperProcessID)
         session.name = "new"
         try client.update(session: session)
-        try await eventually { client.running }
+        try await fixtureRunning(client)
         let newPID = try #require(client.helperProcessID)
         #expect(newPID != oldPID)
         #expect(!FileManager.default.fileExists(atPath: fixture.directory.appendingPathComponent("overlap").path), "Replacement must start after the previous child is reaped")
@@ -209,10 +266,10 @@ private func processGone(_ pid: Int32) -> Bool { kill(pid, 0) == -1 && errno == 
     }
     @Test @MainActor func sustainedControlInputSendsUpdatesBeforeProducerStops() async throws {
         let fixture = try EngineFixture("echo"); defer { fixture.remove() }
-        let client = EngineClient(helperURL: fixture.executable, autoDiscover: false)
+        let client = EngineClient(helperURL: fixture.executable, timeouts: .init(discovery: 5, start: 5), autoDiscover: false)
         defer { client.shutdown() }
         try client.start(session: .initial)
-        try await eventually { client.running }
+        try await fixtureRunning(client)
         let log = fixture.directory.appendingPathComponent("updates")
         var deliveredDuringInput = false
         for index in 0..<40 {
@@ -229,17 +286,18 @@ private func processGone(_ pid: Int32) -> Bool { kill(pid, 0) == -1 && errno == 
     }
     @Test @MainActor func pendingReplacementCoalescesRapidStartEdits() async throws {
         let fixture = try EngineFixture("slow_start"); defer { fixture.remove() }
-        let client = EngineClient(helperURL: fixture.executable, autoDiscover: false)
+        let client = EngineClient(helperURL: fixture.executable, timeouts: .init(discovery: 5, start: 5), autoDiscover: false)
         defer { client.shutdown() }
         var session = MixerSession.initial; session.name = "old"
         try client.start(session: session)
         let starts = fixture.directory.appendingPathComponent("starts")
-        try await eventually { (try? String(contentsOf: starts, encoding: .utf8).contains("old")) == true }
+        try await eventually({ (try? String(contentsOf: starts, encoding: .utf8).contains("old")) == true || client.errorMessage != nil }, timeout: 6)
+        try #require(client.errorMessage == nil, Comment(rawValue: client.errorMessage ?? "Old fixture start was not observed"))
         for index in 0..<100 {
             session.name = "pending-\(index)"
             try client.update(session: session)
         }
-        try await eventually { client.running }
+        try await fixtureRunning(client)
         let launches = try String(contentsOf: fixture.directory.appendingPathComponent("launches"), encoding: .utf8).split(separator: "\n")
         #expect(launches.count == 2)
         #expect(try String(contentsOf: starts, encoding: .utf8).contains("pending-99"))
@@ -274,7 +332,9 @@ private func processGone(_ pid: Int32) -> Bool { kill(pid, 0) == -1 && errno == 
         try await eventually({ client.running || client.errorMessage != nil }, timeout: 14)
         try #require(client.running, Comment(rawValue: client.errorMessage ?? "Engine did not start"))
         let pid = try #require(client.helperProcessID)
-        try await eventually { client.diagnostics.renderedFrames > 10000 }
+        // Survive two periodic health checks with the real device/listener path.
+        try await eventually({ client.diagnostics.renderedFrames > 200000 || client.errorMessage != nil }, timeout: 7)
+        #expect(client.running, Comment(rawValue: client.errorMessage ?? "Silent route unexpectedly stopped"))
         #expect(client.busMeters[bus.id] == 0)
         print("SUPERVISED_SILENT_OUTPUT uid=\(uid) frames=\(client.diagnostics.renderedFrames) peak=\(client.busMeters[bus.id] ?? -1) helperPID=\(pid)")
         client.stop()

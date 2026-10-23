@@ -75,3 +75,19 @@ gap prompted the failure-preserving orchestration above. Original engine metrics
 logs, provenance and the separate passing loopback/matrix captures are frozen in
 `research/evidence/installed-hal-39967965423/`. This run establishes a failed
 configuration, not a successful scale envelope.
+
+The first release baseline, run `39998798881` at `b787263`, retained the same
+24-capture graph and passed its engine counter assertions over 32.321674 seconds:
+37,355,520 captured frames, 3,108,352 rendered frames, and zero new drops,
+underruns or oversized blocks. Measured CPU was 0.44458 core equivalents and peak
+RSS 61,259,776 bytes on the same macOS 15.7.9/three-processor class of runner.
+However, the overall acceptance **failed**. Recorder A observed one timestamp
+discontinuity. Separate post-run inspection of the preserved PCM also rejected
+all eight buses for incorrect component levels; bus 0 at 10 s contained amplitudes
+0.00729535 and 0.00148798 instead of 0.01 for each tone, with substantial variation
+over time. This is a signal-integrity failure even though throughput counters
+improved. The timestamp failure and original failed analysis remain unchanged;
+post-run diagnosis does not replace that result. Full provenance and diagnostics
+are in `research/evidence/installed-hal-39998798881/`. Later probes additionally
+retain the first discontinuity's sample/host timestamps in stderr to distinguish
+onset and sustained failures; the zero-discontinuity criterion remains unchanged.

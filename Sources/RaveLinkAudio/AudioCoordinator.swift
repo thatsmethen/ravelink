@@ -92,6 +92,11 @@ private enum Hardware {
         guard result.isFinite, result >= 8000 else { throw AudioRoutingError.configuration("The selected device reports an unsupported sample rate.") }
         return result
     }
+    static func validateAlive(_ object: AudioObjectID) throws {
+        var addr = address(kAudioDevicePropertyDeviceIsAlive), alive: UInt32 = 0, size = UInt32(MemoryLayout<UInt32>.size)
+        try checked(AudioObjectGetPropertyData(object, &addr, 0, nil, &size, &alive), "Check audio device availability")
+        guard alive != 0 else { throw AudioRoutingError.configuration("An active audio device is no longer available. Reconnect it, then start audio again.") }
+    }
     static func channels(_ object: AudioObjectID, _ scope: AudioObjectPropertyScope) -> Int {
         var addr = address(kAudioDevicePropertyStreamConfiguration, scope), size: UInt32 = 0
         guard AudioObjectGetPropertyDataSize(object, &addr, 0, nil, &size) == noErr, size >= MemoryLayout<AudioBufferList>.size else { return 0 }
@@ -113,13 +118,7 @@ private enum Hardware {
         for stream in streams {
             var addr = address(kAudioStreamPropertyVirtualFormat), format = AudioStreamBasicDescription(), size = UInt32(MemoryLayout<AudioStreamBasicDescription>.size)
             try checked(AudioObjectGetPropertyData(stream, &addr, 0, nil, &size, &format), "Read stream format")
-            guard format.mFormatID == kAudioFormatLinearPCM, format.mFormatFlags & kAudioFormatFlagIsFloat != 0,
-                  format.mBitsPerChannel == 32, format.mFormatFlags & kAudioFormatFlagIsBigEndian == 0,
-                  format.mFormatFlags & kAudioFormatFlagIsPacked != 0,
-                  format.mFramesPerPacket == 1,
-                  format.mBytesPerFrame == 4 * (format.mFormatFlags & kAudioFormatFlagIsNonInterleaved != 0 ? 1 : format.mChannelsPerFrame),
-                  format.mBytesPerPacket == format.mBytesPerFrame,
-                  abs(format.mSampleRate - (try rate(object))) < 0.01 else {
+            guard isSupportedAudioStream(format, deviceRate: try rate(object)) else {
                 throw AudioRoutingError.configuration("This device does not expose native Float32 audio. Select a CoreAudio Float32 device or an aggregate device in Audio MIDI Setup.")
             }
         }
@@ -128,10 +127,10 @@ private enum Hardware {
         var addr = address(kAudioProcessPropertyPID), value: pid_t = 0, size = UInt32(MemoryLayout<pid_t>.size)
         return AudioObjectGetPropertyData(object, &addr, 0, nil, &size, &value) == noErr ? value : nil
     }
-    static func processes() -> [(id: AudioObjectID, bundle: String, pid: pid_t)] {
+    static func processes() -> [AudioProcessIdentity] {
         ids(system, kAudioHardwarePropertyProcessObjectList).compactMap {
             guard let pid = processPID($0) else { return nil }
-            return ($0, string($0, kAudioProcessPropertyBundleID) ?? "", pid)
+            return ApplicationIdentityResolver.process(id: $0, bundleID: string($0, kAudioProcessPropertyBundleID) ?? "", pid: pid)
         }
     }
     static func ownProcess() -> AudioObjectID? {
@@ -141,8 +140,8 @@ private enum Hardware {
     }
     static func applications() -> [AudioApplicationInfo] {
         var names: [String: String] = [:]
-        for p in processes() where p.pid != getpid() && !p.bundle.isEmpty {
-            names[p.bundle] = NSRunningApplication(processIdentifier: p.pid)?.localizedName ?? p.bundle
+        for p in processes() where p.pid != getpid() && !p.applicationBundleID.isEmpty && p.applicationBundleID != "au.textual.ravelink" {
+            names[p.applicationBundleID] = p.applicationName
         }
         return names.map { AudioApplicationInfo(id: $0.key, name: $0.value) }.sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
     }
@@ -158,6 +157,8 @@ private final class CaptureNode {
     var proc: AudioDeviceIOProcID?
     var tap: AudioObjectID = 0
     var tapDescription: CATapDescription?
+    var tapApplicationBundleID: String?
+    var rings: [OpaquePointer] = []
     var aggregate: AudioObjectID = 0
     var started = false
     var abandoned = false
@@ -264,12 +265,14 @@ private final class AudioGraph: @unchecked Sendable {
     let soundCheckChannelID: UUID?
     let excludedApplications: [String]
     var applicationProcesses: [String: [AudioObjectID]] = [:]
+    var events: HardwareEventMonitor?
     static let maxFrames: UInt32 = 16384
     init(session: MixerSession, channelParents: [UUID: UUID], soundCheckChannelID: UUID? = nil, excludedApplications: [String] = []) {
         self.session = session; self.channelParents = channelParents; self.soundCheckChannelID = soundCheckChannelID
         self.excludedApplications = excludedApplications
     }
     @discardableResult func stop() -> String? {
+        events?.removeAll(); events = nil
         var safe = true
         for capture in captures { if !capture.stop() { safe = false } }
         for output in outputs { if !output.stop() { safe = false } }
@@ -286,10 +289,12 @@ private final class AudioGraph: @unchecked Sendable {
     }
     deinit { stop() }
     func silence() {
+        suspend(true)
         for output in outputs {
             for (index, _) in output.buses.enumerated() { rl_render_bus_controls(output.context, UInt32(index), 0, true) }
         }
     }
+    func suspend(_ value: Bool) { outputs.forEach { rl_render_set_suspended($0.context, value) } }
     static func sameTopology(_ a: MixerSession, _ b: MixerSession) -> Bool {
         a.channels.map(\.id) == b.channels.map(\.id) && a.channels.map(\.source) == b.channels.map(\.source)
         && a.buses.map(\.id) == b.buses.map(\.id) && a.buses.map(\.deviceUID) == b.buses.map(\.deviceUID)
@@ -356,7 +361,7 @@ private final class AudioGraph: @unchecked Sendable {
         // Every tap uses one inventory snapshot, so the health watch describes
         // exactly the memberships used for inclusion and catch-all exclusion.
         let processes = (usesSystemRemainder || !dedicated.isEmpty) ? Hardware.processes() : []
-        applicationProcesses = applicationMemberships(bundleIDs: dedicated, processes: processes, excludingPID: getpid())
+        applicationProcesses = applicationMemberships(bundleIDs: usesSystemRemainder ? dedicated.union(["au.textual.ravelink"]) : dedicated, processes: processes, excludingPID: getpid())
         for (index, channel) in session.channels.enumerated() {
             try cancellation.check()
             if channel.source.kind == .tone {
@@ -372,16 +377,21 @@ private final class AudioGraph: @unchecked Sendable {
                     device = id
                 } else {
                     let description: CATapDescription
+                    let selection: TapProcessSelection
                     if channel.source.kind == .application {
                         guard let bundle = channel.source.bundleID, !bundle.isEmpty else { throw AudioRoutingError.configuration("\(channel.name): choose an application to capture.") }
                         _ = try validatedExcludedApplications([bundle])
-                        let ids = processes.filter { $0.bundle == bundle && $0.pid != getpid() }.map(\.id)
-                        guard !ids.isEmpty else { throw AudioRoutingError.configuration("\(channel.name): open the selected application and play audio before starting capture.") }
-                        description = CATapDescription(stereoMixdownOfProcesses: ids)
+                        selection = tapProcessSelection(bundleID: bundle, dedicated: dedicated, processes: processes, ownPID: getpid(), ownObjectID: 0)
+                        guard !selection.processIDs.isEmpty else { throw AudioRoutingError.configuration("\(channel.name): open the selected application and play audio before starting capture.") }
+                        description = CATapDescription(stereoMixdownOfProcesses: selection.processIDs)
                     } else {
                         guard let own = Hardware.ownProcess() else { throw AudioRoutingError.configuration("CoreAudio could not identify RaveLink's audio process. Restart RaveLink before using system audio capture.") }
-                        let excluded = Set(processes.filter { $0.pid == getpid() || dedicated.contains($0.bundle) }.map(\.id) + [own])
-                        description = CATapDescription(stereoGlobalTapButExcludeProcesses: Array(excluded))
+                        selection = tapProcessSelection(bundleID: nil, dedicated: dedicated, processes: processes, ownPID: getpid(), ownObjectID: own)
+                        description = CATapDescription(stereoGlobalTapButExcludeProcesses: selection.processIDs)
+                    }
+                    if #available(macOS 26.0, *) {
+                        description.bundleIDs = selection.bundleIDs
+                        description.isProcessRestoreEnabled = true
                     }
                     description.name = "RaveLink — \(channel.name)"
                     description.isPrivate = true
@@ -407,12 +417,14 @@ private final class AudioGraph: @unchecked Sendable {
                 let capture = CaptureNode(channelID: channel.id, device: device, rate: rate, context: context)
                 capture.tap = tap; capture.aggregate = aggregate; tap = 0; aggregate = 0
                 capture.tapDescription = tapDescription
+                capture.tapApplicationBundleID = channel.source.kind == .application ? channel.source.bundleID : nil
                 captures.append(capture)
                 for (outputIndex, output) in outputs.enumerated() {
                     let ringPlan = try AudioAllocationBudget.ring(ratio: rate / output.rate, frames: Self.maxFrames)
                     try allocation.reserve(ringPlan.bytes)
                     guard let ring = rl_ring_create(ringPlan.capacity) else { throw AudioRoutingError.configuration("Not enough memory to prepare audio buffers.") }
                     rings.append(ring)
+                    capture.rings.append(ring)
                     guard rl_ring_prepare_ratio(ring, rate / output.rate) else { throw AudioRoutingError.configuration("The input and output sample rates are too far apart. Choose rates between 8 kHz and 192 kHz in Audio MIDI Setup.") }
                     rl_capture_set_destination(context, UInt32(outputIndex), ring)
                     rl_render_set_source(output.context, UInt32(index), ring, rate, false)
@@ -445,7 +457,10 @@ private final class AudioGraph: @unchecked Sendable {
             }
             if session.channels.contains(where: { !$0.audioUnitEffects.isEmpty }) {
                 try cancellation.check()
-                let effects = try LiveAudioUnitGraph(session: session, channelParents: channelParents, sampleRate: output.rate, maxFrames: Self.maxFrames)
+                try allocation.reserve(LiveAudioUnitGraph.estimatedHostOverhead(session: session, channelParents: channelParents))
+                let effects = try LiveAudioUnitGraph(session: session, channelParents: channelParents, sampleRate: output.rate, maxFrames: Self.maxFrames,
+                    delayBudgetBytes: min(128 * 1024 * 1024, allocation.limit - allocation.reserved))
+                try allocation.reserve(effects.delayMemoryBytes)
                 try cancellation.check()
                 output.audioUnits = effects
                 effects.install(on: output.context)
@@ -473,6 +488,60 @@ private final class AudioGraph: @unchecked Sendable {
             try cancellation.check()
         }
     }
+    func installNotifications(callback: @escaping @Sendable (HardwareEventMonitor.Event) -> Void) throws {
+        let monitor = HardwareEventMonitor()
+        try monitor.add(object: Hardware.system, selector: kAudioHardwarePropertyDevices, event: .deviceConfiguration, callback: callback)
+        try monitor.add(object: Hardware.system, selector: kAudioHardwarePropertyProcessObjectList, event: .processMembership, callback: callback)
+        try monitor.add(object: Hardware.system, selector: kAudioHardwarePropertyServiceRestarted, event: .audioServiceRestart, callback: callback)
+        for (device, scope) in captures.map({ ($0.device, kAudioObjectPropertyScopeInput) }) + outputs.map({ ($0.device, kAudioObjectPropertyScopeOutput) }) {
+            try monitor.add(object: device, selector: kAudioDevicePropertyDeviceIsAlive, event: .deviceConfiguration, callback: callback)
+            try monitor.add(object: device, selector: kAudioDevicePropertyNominalSampleRate, event: .deviceConfiguration, callback: callback)
+            try monitor.add(object: device, selector: kAudioDevicePropertyStreams, scope: scope, event: .deviceConfiguration, callback: callback)
+            try monitor.add(object: device, selector: kAudioDevicePropertyStreamConfiguration, scope: scope, event: .deviceConfiguration, callback: callback)
+            for stream in Hardware.ids(device, kAudioDevicePropertyStreams, scope) {
+                try monitor.add(object: stream, selector: kAudioStreamPropertyVirtualFormat, event: .deviceConfiguration, callback: callback)
+            }
+        }
+        events = monitor
+    }
+    /// Caller gates all outputs before entering this transaction. Every tap uses
+    /// the same inventory. Stop/unregister prevents old capture callbacks from
+    /// appending frames after the consumer receives its reset request.
+    func retargetTaps(processes: [AudioProcessIdentity], dedicated: Set<String>, cancellation: GraphCancellation) throws {
+        // Inclusion taps are changed before catch-all exclusions. Keep original
+        // app playback suppressed while tap callbacks are briefly unregistered.
+        let taps = captures.filter { $0.tapDescription != nil }.sorted {
+            ($0.tapApplicationBundleID != nil ? 0 : 1) < ($1.tapApplicationBundleID != nil ? 0 : 1)
+        }
+        guard let own = Hardware.ownProcess() else { throw AudioRoutingError.configuration("RaveLink lost its CoreAudio process identity. Start audio again to rebuild capture.") }
+        for capture in taps {
+            try cancellation.check()
+            try setTapMute(capture, behavior: .muted)
+        }
+        try performTapRetargetTransaction(nodes: taps, checkCancellation: cancellation.check, stop: { capture in
+            guard capture.stop() else { throw AudioRoutingError.configuration("An application capture callback could not stop during rerouting. The engine must be restarted.") }
+        }, apply: { capture in
+            guard let description = capture.tapDescription else { return }
+            let selection = tapProcessSelection(bundleID: capture.tapApplicationBundleID, dedicated: dedicated, processes: processes, ownPID: getpid(), ownObjectID: own)
+            description.processes = selection.processIDs
+            if #available(macOS 26.0, *) {
+                description.bundleIDs = selection.bundleIDs
+                description.isProcessRestoreEnabled = true
+            }
+            var reference = Unmanaged.passUnretained(description)
+            var address = Hardware.address(kAudioTapPropertyDescription)
+            try checked(AudioObjectSetPropertyData(capture.tap, &address, 0, nil, UInt32(MemoryLayout.size(ofValue: reference)), &reference), "Refresh application capture and exclusions")
+        }, flush: { taps.flatMap(\.rings).forEach(rl_ring_request_reset) }, start: { try $0.start() })
+        for capture in taps { try cancellation.check(); try setTapMute(capture, behavior: .mutedWhenTapped) }
+        try cancellation.check()
+    }
+    private func setTapMute(_ capture: CaptureNode, behavior: CATapMuteBehavior) throws {
+        guard let description = capture.tapDescription else { return }
+        description.muteBehavior = behavior
+        var reference = Unmanaged.passUnretained(description)
+        var address = Hardware.address(kAudioTapPropertyDescription)
+        try checked(AudioObjectSetPropertyData(capture.tap, &address, 0, nil, UInt32(MemoryLayout.size(ofValue: reference)), &reference), "Preserve application monitoring during routing")
+    }
 }
 
 @MainActor public final class AudioCoordinator: ObservableObject {
@@ -497,8 +566,25 @@ private final class AudioGraph: @unchecked Sendable {
     private var pendingStart: GraphCancellation?
     private var pendingSoundCheckChannelID: UUID?
     private var pendingExcludedApplications: [String] = []
+    private var progressMonitor = RenderProgressMonitor()
+    private var healthCheckID: UUID?
+    private var healthCheckRequested = false
+    private var healthCancellation: GraphCancellation?
+    private var powerObserver: AudioPowerObserver?
 
     public init() {
+        powerObserver = AudioPowerObserver { [weak self] event in
+            Task { @MainActor [weak self] in
+                guard let self else { return }
+                switch event {
+                case .sleep:
+                    let active = self.running || self.starting
+                    self.stop()
+                    if active { self.errorMessage = "Audio stopped because this Mac is sleeping. Start audio again after it wakes." }
+                case .wake: self.refreshDevices()
+                }
+            }
+        }
         refreshDevices()
         timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { [weak self] _ in
             Task { @MainActor in self?.poll() }
@@ -561,6 +647,17 @@ private final class AudioGraph: @unchecked Sendable {
                 let candidate = AudioGraph(session: routed, channelParents: expanded.channelParents, soundCheckChannelID: soundCheckChannelID, excludedApplications: excludedApplications)
                 do {
                     try candidate.configure(cancellation: cancellation)
+                    try candidate.installNotifications { [weak self] event in
+                        Task { @MainActor [weak self] in
+                            guard let self, self.generation == request, self.graph != nil else { return }
+                            if case .audioServiceRestart = event {
+                                self.stop(); self.errorMessage = "The macOS audio service restarted. Start audio again to rebuild the devices and application captures."
+                                self.refreshDevices()
+                            } else if case .processMembership = event, self.graph?.applicationProcesses.isEmpty == true {
+                                return
+                            } else { self.checkDeviceHealth(suspend: true) }
+                        }
+                    }
                     Task { @MainActor [weak self] in
                         guard let self else { controlQueue.async { candidate.stop() }; return }
                         guard self.generation == request else { self.worker.async { candidate.stop() }; return }
@@ -628,6 +725,8 @@ private final class AudioGraph: @unchecked Sendable {
         }
     }
     public func stop() {
+        progressMonitor.reset()
+        healthCancellation?.cancel(); healthCancellation = nil; healthCheckID = nil; healthCheckRequested = false
         pendingStart?.cancel(); pendingStart = nil; pendingSoundCheckChannelID = nil; pendingExcludedApplications = []
         generation &+= 1; starting = false
         if let graph {
@@ -655,6 +754,10 @@ private final class AudioGraph: @unchecked Sendable {
         ticks += 1
         if ticks % 40 == 0 { refreshDevices(); checkDeviceHealth() }
         guard let graph else { return }
+        let progress = graph.outputs.map { OutputProgress(id: $0.uid, frames: rl_render_frames($0.context), sampleRate: $0.rate) }
+        if progressMonitor.observe(progress, at: Double(DispatchTime.now().uptimeNanoseconds) / 1_000_000_000, maxFrames: AudioGraph.maxFrames) != nil {
+            stop(); errorMessage = "An output device or effect stopped returning audio. Audio has stopped; check the device and effects, then start again."; return
+        }
         if let failure = graph.outputs.lazy.compactMap({ $0.audioUnits?.failureMessage }).first {
             stop(); errorMessage = failure; return
         }
@@ -681,33 +784,85 @@ private final class AudioGraph: @unchecked Sendable {
             stop(); errorMessage = "The audio device requested a buffer larger than 16,384 frames. Choose a smaller device buffer in Audio MIDI Setup and restart audio."
         }
     }
-    private func checkDeviceHealth() {
+    private func checkDeviceHealth(suspend: Bool = false) {
         guard let graph else { return }
-        let request = generation
-        // Snapshot control state before leaving the main actor.
-        let needed = graph.session.buses.compactMap(\.deviceUID) + graph.session.channels.filter { $0.source.kind == .device }.compactMap { $0.source.deviceUID }
-        let captureRates = graph.captures.map { ($0.device, $0.rate) }
-        let outputRates = graph.outputs.map { ($0.device, $0.rate) }
-        let applications = graph.applicationProcesses
+        if suspend { graph.suspend(true) }
+        guard healthCheckID == nil else { healthCheckRequested = true; return }
+        let request = generation, checkID = UUID(), cancellation = GraphCancellation()
+        healthCheckID = checkID; healthCancellation = cancellation
+        // Snapshot mutable actor state; worker accesses only immutable graph nodes.
+        let session = graph.session, memberships = graph.applicationProcesses
+        let needed = session.buses.compactMap(\.deviceUID) + session.channels.filter { $0.source.kind == .device }.compactMap { $0.source.deviceUID }
+        let captures = graph.captures.map { ($0.device, $0.rate) }
+        let outputs = graph.outputs.map { ($0.device, $0.rate) }
         worker.async { [weak self] in
-            var message: String?
-            let available = Set(Hardware.devices().map { $0.1.id })
-            if needed.contains(where: { !available.contains($0) }) {
-                message = "An active audio device was disconnected. Reconnect it or choose another device, then start audio."
-            } else if (captureRates + outputRates).contains(where: { (try? Hardware.rate($0.0)) != $0.1 }) {
-                message = "An audio device changed sample rate. Start audio again to rebuild its route."
-            } else if !applications.isEmpty {
-                let processes = Hardware.processes()
-                if applicationMemberships(bundleIDs: Set(applications.keys), processes: processes, excludingPID: getpid()) != applications {
-                    message = "A captured or excluded application changed its audio processes. Audio stopped to preserve application routing. Start audio again to refresh capture and exclusions."
+            do {
+                try cancellation.check()
+                let available = Dictionary(uniqueKeysWithValues: Hardware.devices().map { ($0.1.id, $0.1) })
+                guard !needed.contains(where: { available[$0] == nil }) else {
+                    throw AudioRoutingError.configuration("An active audio device was disconnected. Reconnect it or choose another device, then start audio.")
                 }
-            }
-            if let message {
+                for (nodes, scope) in [(captures, kAudioObjectPropertyScopeInput), (outputs, kAudioObjectPropertyScopeOutput)] {
+                    for (device, rate) in nodes {
+                        try cancellation.check(); try Hardware.validateAlive(device)
+                        guard try Hardware.rate(device) == rate else { throw AudioRoutingError.configuration("An audio device changed sample rate. Start audio again to rebuild its route.") }
+                        try Hardware.validateFloatStreams(device, scope: scope)
+                    }
+                }
+                for channel in session.channels where channel.source.kind == .device {
+                    guard let uid = channel.source.deviceUID, let info = available[uid], channel.source.channelOffset < info.inputChannels else {
+                        throw AudioRoutingError.configuration("An input device changed its available channels. Choose a valid input and start audio again.")
+                    }
+                }
+                for bus in session.buses {
+                    if let uid = bus.deviceUID, let info = available[uid], bus.channelOffset + 1 >= info.outputChannels {
+                        throw AudioRoutingError.configuration("An output device changed its available channels. Choose a valid stereo pair and start audio again.")
+                    }
+                }
+                let processes = memberships.isEmpty ? [] : Hardware.processes()
+                let current = applicationMemberships(bundleIDs: Set(memberships.keys), processes: processes, excludingPID: getpid())
+                try cancellation.check()
                 Task { @MainActor [weak self] in
-                    guard let self, self.generation == request else { return }
+                    guard let self, self.generation == request, self.healthCheckID == checkID else { return }
+                    if current == memberships { self.finishHealthCheck(checkID: checkID, graph: graph); return }
+                    graph.suspend(true)
+                    self.worker.async { [weak self] in
+                        do {
+                            try graph.retargetTaps(processes: processes, dedicated: Set(memberships.keys), cancellation: cancellation)
+                            Task { @MainActor [weak self] in
+                                guard let self, self.generation == request, self.healthCheckID == checkID else { return }
+                                graph.applicationProcesses = current
+                                self.finishHealthCheck(checkID: checkID, graph: graph)
+                            }
+                        } catch {
+                            let message = error.localizedDescription
+                            Task { @MainActor [weak self] in
+                                guard let self, self.generation == request, self.healthCheckID == checkID else { return }
+                                self.stop(); self.errorMessage = "Application routing could not refresh safely: \(message) Start audio again."
+                            }
+                        }
+                    }
+                }
+            } catch {
+                let message = error.localizedDescription
+                Task { @MainActor [weak self] in
+                    guard let self, self.generation == request, self.healthCheckID == checkID else { return }
                     self.stop(); self.errorMessage = message
                 }
             }
         }
+        Task { @MainActor [weak self] in
+            try? await Task.sleep(for: .seconds(3))
+            guard let self, self.generation == request, self.healthCheckID == checkID else { return }
+            self.stop(); self.workerTimedOut = true
+            self.errorMessage = "The audio driver stopped responding while checking or refreshing a route. Quit and reopen RaveLink before starting audio again."
+        }
+    }
+    private func finishHealthCheck(checkID: UUID, graph: AudioGraph) {
+        guard healthCheckID == checkID else { return }
+        healthCheckID = nil; healthCancellation = nil
+        if healthCheckRequested {
+            healthCheckRequested = false; checkDeviceHealth(suspend: true)
+        } else { graph.suspend(false) }
     }
 }

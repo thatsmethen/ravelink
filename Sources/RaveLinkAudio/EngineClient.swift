@@ -7,8 +7,10 @@ public struct EngineTimeouts: Sendable {
     public var discovery: TimeInterval
     public var start: TimeInterval
     public var stop: TimeInterval
-    public init(discovery: TimeInterval = 10, start: TimeInterval = 12, stop: TimeInterval = 2) {
+    public var heartbeat: TimeInterval
+    public init(discovery: TimeInterval = 10, start: TimeInterval = 12, stop: TimeInterval = 2, heartbeat: TimeInterval = 3) {
         self.discovery = max(0.05, min(discovery, 60)); self.start = max(0.05, min(start, 60)); self.stop = max(0.05, min(stop, 10))
+        self.heartbeat = max(0.1, min(heartbeat, 30))
     }
 }
 private enum EngineEvent: Sendable { case launched(Int32), message(EngineResponse), failed(String), exited(Int32) }
@@ -41,9 +43,14 @@ private final class EngineClientBundleMarker: NSObject {}
     private var updateIdentity: UUID?
     private var soundCheckChannelID: UUID?
     private var soundCheckExcludedApplications: [String] = []
+    private var powerObserver: AudioPowerObserver?
+    private var sleeping = false
 
     public init(helperURL: URL? = EngineClient.defaultHelperURL(), timeouts: EngineTimeouts = .init(), autoDiscover: Bool = true) {
         self.helperURL = helperURL; self.timeouts = timeouts
+        powerObserver = AudioPowerObserver { [weak self] event in
+            Task { @MainActor [weak self] in self?.handlePowerEvent(event) }
+        }
         if autoDiscover { refreshDevices() }
     }
     deinit { updateTask?.cancel(); transport?.cancel() }
@@ -61,7 +68,7 @@ private final class EngineClientBundleMarker: NSObject {}
         return candidates.first { FileManager.default.isExecutableFile(atPath: $0.path) }
     }
     public func refreshDevices() {
-        guard discoveryRequest == nil else { return }
+        guard !sleeping, discoveryRequest == nil else { return }
         do {
             try ensureTransport()
             let request = EngineRequest(generation: generation, operation: .discover)
@@ -85,6 +92,7 @@ private final class EngineClientBundleMarker: NSObject {}
         transport?.enqueue(request, timeout: timeouts.stop)
     }
     private func start(session: MixerSession, soundCheckChannelID: UUID?, excludedApplications: [String] = []) throws {
+        guard !sleeping else { throw AudioRoutingError.configuration("Audio is paused while this Mac sleeps. Start audio again after it wakes.") }
         _ = try session.validated()
         let operation: EngineOperation = soundCheckChannelID == nil ? .start : .startSoundCheck
         // Verify wire size before replacing a working helper.
@@ -160,7 +168,7 @@ private final class EngineClientBundleMarker: NSObject {}
         }
         connection = UUID(); helperProcessID = nil
         let identity = connection
-        let next = EngineTransport(executable: helperURL) { [weak self] event in
+        let next = EngineTransport(executable: helperURL, heartbeatTimeout: timeouts.heartbeat) { [weak self] event in
             Task { @MainActor [weak self] in
                 guard let self, self.connection == identity else { return }
                 self.receive(event)
@@ -221,6 +229,18 @@ private final class EngineClientBundleMarker: NSObject {}
     private func cancelUpdates() {
         updateTask?.cancel(); updateTask = nil; latestUpdate = nil; updateIdentity = nil
     }
+    func handlePowerEvent(_ event: AudioPowerEvent) {
+        switch event {
+        case .sleep:
+            sleeping = true
+            let wasActive = running || starting
+            shutdown() // Close/terminate now; a blocked HAL stop cannot delay sleep.
+            if wasActive { errorMessage = "Audio stopped because this Mac is sleeping. Start audio again after it wakes; temporary Sound Check audio was discarded." }
+        case .wake:
+            sleeping = false
+            refreshDevices() // Discovery only. Session audio never resumes itself.
+        }
+    }
 }
 
 /// A single worker owns Process and nonblocking descriptors. Only the bounded
@@ -228,6 +248,7 @@ private final class EngineClientBundleMarker: NSObject {}
 private final class EngineTransport: @unchecked Sendable {
     private struct Queued { let request: EngineRequest; let deadline: UInt64 }
     private let executable: URL
+    private let heartbeatTimeout: UInt64
     private let event: @Sendable (EngineEvent) -> Void
     private let lock = NSLock()
     private var cancelled = false
@@ -235,7 +256,9 @@ private final class EngineTransport: @unchecked Sendable {
     private var pid: Int32?
     private var launching = false
     private let finished = DispatchGroup()
-    init(executable: URL, event: @escaping @Sendable (EngineEvent) -> Void) { self.executable = executable; self.event = event; finished.enter() }
+    init(executable: URL, heartbeatTimeout: TimeInterval, event: @escaping @Sendable (EngineEvent) -> Void) {
+        self.executable = executable; self.heartbeatTimeout = UInt64(heartbeatTimeout * 1_000_000_000); self.event = event; finished.enter()
+    }
     func launch(after predecessor: EngineTransport?) {
         DispatchQueue.global(qos: .userInitiated).async {
             predecessor?.finished.wait()
@@ -304,12 +327,16 @@ private final class EngineTransport: @unchecked Sendable {
         var writing: Data?, writeOffset = 0
         var pending: [UUID: (deadline: UInt64, operation: EngineOperation, generation: UInt64)] = [:]
         var repliesThisSecond = 0, windowStart = DispatchTime.now().uptimeNanoseconds
+        var lastRunningHeartbeat: UInt64?, latestResponseGeneration: UInt64 = 0, latestIssuedGeneration: UInt64 = 0
         do {
             while !isCancelled {
                 if !process.isRunning {
                     throw AudioRoutingError.configuration("The audio engine exited unexpectedly (status \(process.terminationStatus)). Your session is saved; start audio again to launch a fresh engine.")
                 }
                 let now = DispatchTime.now().uptimeNanoseconds
+                if let heartbeat = lastRunningHeartbeat, now - heartbeat >= heartbeatTimeout {
+                    throw AudioRoutingError.configuration("The audio engine stopped reporting its running state and was stopped. Start audio again to launch a fresh engine.")
+                }
                 if now - windowStart >= 1_000_000_000 { repliesThisSecond = 0; windowStart = now }
                 if let operation = pending.values.first(where: { $0.deadline <= now })?.operation ?? queuedTimeout(now) {
                     let action = operation == .discover ? "device discovery" : operation == .stop ? "stop" : "audio routing"
@@ -317,6 +344,7 @@ private final class EngineTransport: @unchecked Sendable {
                 }
                 if writing == nil, let command = next() {
                     writing = try EngineWire.encode(command.request); writeOffset = 0
+                    latestIssuedGeneration = max(latestIssuedGeneration, command.request.generation)
                     pending[command.request.id] = (command.deadline, command.request.operation, command.request.generation)
                     guard pending.count <= 64 else { throw EngineProtocolError.malformed }
                 }
@@ -333,8 +361,14 @@ private final class EngineTransport: @unchecked Sendable {
                         repliesThisSecond += 1
                         guard repliesThisSecond <= 1000 else { throw EngineProtocolError.malformed }
                         let response = try EngineWire.response(line)
+                        guard response.generation <= latestIssuedGeneration else { throw EngineProtocolError.malformed }
                         if response.kind == .reply {
                             guard let id = response.id, let expected = pending.removeValue(forKey: id), expected.generation == response.generation else { throw EngineProtocolError.malformed }
+                        }
+                        // A stale generation must not mask a hung current graph.
+                        if response.generation >= max(latestResponseGeneration, latestIssuedGeneration) {
+                            latestResponseGeneration = response.generation
+                            lastRunningHeartbeat = response.snapshot.running ? now : nil
                         }
                         event(.message(response))
                     }

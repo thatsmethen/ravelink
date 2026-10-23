@@ -141,3 +141,35 @@ jobs:
       - name: Remove test device
         if: always()
         run: sudo python3 scripts/virtual-devices.py uninstall ci-loopback ci-mix-a ci-mix-b
+  driver-lifecycle:
+    runs-on: macos-15
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Installer upgrade, repair, removal and HAL format lifecycle
+        env:
+          RAVELINK_TEST_DRIVER_LIFECYCLE: '1'
+        run: python3 scripts/run-driver-lifecycle.py
+      - name: Clean up owned lifecycle fixtures
+        if: always()
+        env:
+          RAVELINK_TEST_DRIVER_LIFECYCLE: '1'
+        run: python3 scripts/run-driver-lifecycle.py --cleanup
+      - name: Independent probe callback ASan and UBSan controls
+        if: ${{ !cancelled() }}
+        env:
+          RAVELINK_TEST_PROBE_SANITIZER: '1'
+        run: |
+          set -o pipefail
+          mkdir -p build
+          python3 -m unittest Drivers.tests.test_soak_probe -v 2>&1 | tee build/driver-lifecycle-sanitizer.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: driver-lifecycle-evidence
+          path: |
+            build/driver-lifecycle/report.json
+            build/driver-lifecycle/owned-fixtures.json
+            build/driver-lifecycle/*.log
+            build/driver-lifecycle/*/manifest.json
+            build/driver-lifecycle-sanitizer.log

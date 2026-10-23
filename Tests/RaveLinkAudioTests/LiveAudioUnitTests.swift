@@ -28,7 +28,24 @@ private final class AUToneFixture {
     }
 }
 
-@Suite struct LiveAudioUnitTests {
+// Production prepares units sequentially on a dedicated control queue. Blocking
+// AU preparation must not occupy Swift Testing's cooperative executor threads;
+// assertions remain in the test task so failures retain their test attribution.
+private let liveAUPreparationQueue = DispatchQueue(label: "RaveLink.tests.au-preparation")
+private func makeLiveGraph(session: MixerSession, channelParents: [UUID: UUID], sampleRate: Double,
+                           maxFrames: UInt32, delayBudgetBytes: UInt64 = 128 * 1024 * 1024) async throws -> LiveAudioUnitGraph {
+    try await withCheckedThrowingContinuation { continuation in
+        liveAUPreparationQueue.async {
+            do {
+                let graph = try LiveAudioUnitGraph(session: session, channelParents: channelParents,
+                    sampleRate: sampleRate, maxFrames: maxFrames, delayBudgetBytes: delayBudgetBytes)
+                continuation.resume(returning: graph)
+            } catch { continuation.resume(throwing: error) }
+        }
+    }
+}
+
+@Suite(.serialized) struct LiveAudioUnitTests {
     private var descriptor: AudioUnitDescriptor { .init(component: .init(type: 0x61756678, subtype: 0x6c6d7472, manufacturer: 0x6170706c), name: "Apple: AUPeakLimiter", version: 67072) }
     private func session() -> MixerSession {
         var session = MixerSession.initial
@@ -43,6 +60,22 @@ private final class AUToneFixture {
         #expect(LiveAudioUnitGraph.topologyEquivalent(initial, changed))
         changed.channels[0].audioUnitEffects[0].id = UUID()
         #expect(!LiveAudioUnitGraph.topologyEquivalent(initial, changed))
+    }
+    @Test func hostScratchBudgetCountsRacksOncePerVisibleGroup() throws {
+        var grouped = session()
+        grouped.channels[0].additionalSources = [.init(kind: .application, bundleID: "test.member")]
+        let expanded = try grouped.expandedRouting()
+        let groupedBytes = try LiveAudioUnitGraph.estimatedHostOverhead(session: expanded.session, channelParents: expanded.channelParents)
+        let independentBytes = try LiveAudioUnitGraph.estimatedHostOverhead(session: expanded.session, channelParents: [:])
+        #expect(groupedBytes > 4 * 512 * MemoryLayout<Float>.size)
+        #expect(independentBytes - groupedBytes >= 4 * 512 * MemoryLayout<Float>.size)
+        var global = AudioAllocationBudget(limit: groupedBytes)
+        try global.reserve(groupedBytes)
+        #expect(throws: (any Error).self) { try global.reserve(1) }
+        #expect(throws: (any Error).self) {
+            var small = AudioAllocationBudget(limit: groupedBytes - 1)
+            try small.reserve(groupedBytes)
+        }
     }
     @Test func renderErrorLatchesSilenceAcrossTheEntireOutput() throws {
         let bridge = try #require(rl_au_graph_create(2, 512, 48000))
@@ -78,12 +111,12 @@ private final class AUToneFixture {
         #expect(rl_render_processor_error(fixture.render) == -70003)
     }
     @Test(.enabled(if: ProcessInfo.processInfo.environment["RAVELINK_PLUGIN_RENDER_APPLE"] == "1"))
-    func appleEffectRunsInNativeCallbackAndChangesWithoutRebuild() throws {
+    func appleEffectRunsInNativeCallbackAndChangesWithoutRebuild() async throws {
         var session = session()
         let id = session.channels[0].id
         session.channels[0].additionalSources = [.init(kind: .application, bundleID: "test.second-source")]
         let expanded = try session.expandedRouting()
-        let graph = try LiveAudioUnitGraph(session: expanded.session, channelParents: expanded.channelParents, sampleRate: 48000, maxFrames: 512)
+        let graph = try await makeLiveGraph(session: expanded.session, channelParents: expanded.channelParents, sampleRate: 48000, maxFrames: 512)
         let dry = try AUToneFixture(sources: 2), wet = try AUToneFixture(sources: 2)
         #expect(rl_render_set_source_group(dry.render, 1, 0))
         #expect(rl_render_set_source_group(wet.render, 1, 0))
@@ -95,6 +128,7 @@ private final class AUToneFixture {
         #expect(maxError < 0.000_03)
         #expect(graph.failureMessage == nil)
         #expect(abs(graph.alignmentLatencySeconds - 0.002) < 1e-9)
+        #expect(graph.delayMemoryBytes == 96 * 8)
         session.channels[0].audioUnitEffects[0].parameters = [.init(address: 2, value: -6.0206)]
         try graph.updateControls(session: session.expandedRouting().session)
         drySamples = []; wetSamples = []
@@ -160,13 +194,13 @@ private final class AUToneFixture {
         #expect(rl_au_graph_process(UnsafeMutableRawPointer(bridge), 0, &samples, 1) == -70001)
     }
     @Test(.enabled(if: ProcessInfo.processInfo.environment["RAVELINK_PLUGIN_RENDER_APPLE"] == "1"))
-    func emptyChannelAlignsWithTwoRealAppleEffects() throws {
+    func emptyChannelAlignsWithTwoRealAppleEffects() async throws {
         var session = session()
         let extra = AudioUnitEffectSlot(descriptor: descriptor, parameters: [.init(address: 2, value: 0)])
         session.channels[0].audioUnitEffects[0].parameters = [.init(address: 2, value: 0)]
         session.channels[0].audioUnitEffects.append(extra)
         session.addChannel(.init(name: "Dry", source: .init(kind: .tone)))
-        let graph = try LiveAudioUnitGraph(session: session, channelParents: [:], sampleRate: 48000, maxFrames: 512)
+        let graph = try await makeLiveGraph(session: session, channelParents: [:], sampleRate: 48000, maxFrames: 512)
         let dry = try AUToneFixture(sources: 2), wet = try AUToneFixture(sources: 2)
         graph.install(on: wet.render)
         var drySamples: [Float] = [], wetSamples: [Float] = []
@@ -175,12 +209,13 @@ private final class AUToneFixture {
         for index in 8192..<24576 { maxError = max(maxError, abs(wetSamples[index] - drySamples[index - 384])) }
         #expect(maxError < 0.000_01)
         #expect(abs(graph.alignmentLatencySeconds - 0.004) < 1e-9)
+        #expect(graph.delayMemoryBytes == 192 * 8 * 2)
         #expect(graph.failureMessage == nil)
     }
     @Test(.enabled(if: ProcessInfo.processInfo.environment["RAVELINK_PLUGIN_RENDER_APPLE"] == "1"))
-    func changingAppleAttackDelayStopsUntilGraphReconstruction() throws {
+    func changingAppleAttackDelayStopsUntilGraphReconstruction() async throws {
         var session = session()
-        let graph = try LiveAudioUnitGraph(session: session, channelParents: [:], sampleRate: 48000, maxFrames: 512)
+        let graph = try await makeLiveGraph(session: session, channelParents: [:], sampleRate: 48000, maxFrames: 512)
         let wet = try AUToneFixture()
         graph.install(on: wet.render)
         _ = wet.block()
@@ -189,28 +224,38 @@ private final class AUToneFixture {
         #expect(graph.failureMessage?.contains("changed its reported latency") == true)
         #expect(wet.block().allSatisfy { $0 == 0 })
         #expect(rl_render_processor_error(wet.render) == -70004)
-        let restarted = try LiveAudioUnitGraph(session: session, channelParents: [:], sampleRate: 48000, maxFrames: 512)
+        let restarted = try await makeLiveGraph(session: session, channelParents: [:], sampleRate: 48000, maxFrames: 512)
         #expect(abs(restarted.alignmentLatencySeconds - 0.01) < 1e-9)
         #expect(restarted.failureMessage == nil)
     }
     @Test(.enabled(if: ProcessInfo.processInfo.environment["RAVELINK_PLUGIN_RENDER_APPLE"] == "1"))
-    func failedPreparationCanReleasePartlyCreatedGraph() throws {
+    func remainingGraphBudgetBoundsActualAppleDelayStorage() async throws {
+        let session = session()
+        await #expect(throws: (any Error).self) {
+            try await makeLiveGraph(session: session, channelParents: [:], sampleRate: 48000, maxFrames: 512, delayBudgetBytes: 96 * 8 - 1)
+        }
+        let exact = try await makeLiveGraph(session: session, channelParents: [:], sampleRate: 48000, maxFrames: 512, delayBudgetBytes: 96 * 8)
+        #expect(exact.delayMemoryBytes == 96 * 8)
+        #expect(exact.failureMessage == nil)
+    }
+    @Test(.enabled(if: ProcessInfo.processInfo.environment["RAVELINK_PLUGIN_RENDER_APPLE"] == "1"))
+    func failedPreparationCanReleasePartlyCreatedGraph() async throws {
         var session = session()
         session.channels[0].audioUnitEffects[0].parameters = [.init(address: 2, value: 100)]
-        #expect(throws: (any Error).self) {
-            try LiveAudioUnitGraph(session: session, channelParents: [:], sampleRate: 48000, maxFrames: 512)
+        await #expect(throws: (any Error).self) {
+            try await makeLiveGraph(session: session, channelParents: [:], sampleRate: 48000, maxFrames: 512)
         }
         session.channels[0].audioUnitEffects[0].parameters = []
         session.channels[0].audioUnitEffects[0].state = .init(component: descriptor.component, componentVersion: descriptor.version, propertyList: Data([1, 2, 3]))
-        #expect(throws: (any Error).self) {
-            try LiveAudioUnitGraph(session: session, channelParents: [:], sampleRate: 48000, maxFrames: 512)
+        await #expect(throws: (any Error).self) {
+            try await makeLiveGraph(session: session, channelParents: [:], sampleRate: 48000, maxFrames: 512)
         }
         session.channels[0].audioUnitEffects[0].state = nil
         // Prepare a real first unit before failing a missing second unit, so the
         // partially built bridge and its retained block ownership are exercised.
         session.channels[0].audioUnitEffects.append(.init(descriptor: .init(component: .init(type: 0x61756678, subtype: 0xdeadbeef, manufacturer: 0xdeadbeef), name: "Missing test unit", version: nil)))
-        #expect(throws: (any Error).self) {
-            try LiveAudioUnitGraph(session: session, channelParents: [:], sampleRate: 48000, maxFrames: 512)
+        await #expect(throws: (any Error).self) {
+            try await makeLiveGraph(session: session, channelParents: [:], sampleRate: 48000, maxFrames: 512)
         }
     }
 }

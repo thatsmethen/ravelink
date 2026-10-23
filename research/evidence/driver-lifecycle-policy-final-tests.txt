@@ -1,0 +1,43 @@
+test_duplicate_uninstall_aliases_fail_before_root_or_filesystem_work (Drivers.tests.test_virtual_lifecycle.VirtualLifecycleTests.test_duplicate_uninstall_aliases_fail_before_root_or_filesystem_work) ... ok
+test_every_component_checks_later_downgrade_before_any_payload (Drivers.tests.test_virtual_lifecycle.VirtualLifecycleTests.test_every_component_checks_later_downgrade_before_any_payload) ... ok
+test_invalid_release_fails_before_creating_output (Drivers.tests.test_virtual_lifecycle.VirtualLifecycleTests.test_invalid_release_fails_before_creating_output) ... ok
+test_preinstall_allows_fresh_upgrade_and_same_build_repair (Drivers.tests.test_virtual_lifecycle.VirtualLifecycleTests.test_preinstall_allows_fresh_upgrade_and_same_build_repair) ... ok
+test_preinstall_refuses_redirected_parent_without_following_it (Drivers.tests.test_virtual_lifecycle.VirtualLifecycleTests.test_preinstall_refuses_redirected_parent_without_following_it) ... ok
+test_preinstall_refuses_symlink_destination (Drivers.tests.test_virtual_lifecycle.VirtualLifecycleTests.test_preinstall_refuses_symlink_destination) ... ok
+test_preinstall_rejects_downgrade_identity_mismatch_and_unknown_build (Drivers.tests.test_virtual_lifecycle.VirtualLifecycleTests.test_preinstall_rejects_downgrade_identity_mismatch_and_unknown_build) ... ok
+test_real_product_archive_has_per_device_receipts_and_versioned_payload (Drivers.tests.test_virtual_lifecycle.VirtualLifecycleTests.test_real_product_archive_has_per_device_receipts_and_versioned_payload) ... /private/var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/tmpd8q_ulk0/devices/.ravelink-y949jlh8/RaveLink-receipt-a.driver: replacing existing signature
+/private/var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/tmpd8q_ulk0/devices/.ravelink-lywy0kb6/RaveLink-receipt-b.driver: replacing existing signature
+/var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/tmpd8q_ulk0/devices/RaveLink-receipt-a.driver: replacing existing signature
+write: Permission denied
+write: Permission denied
+write: Permission denied
+write: Permission denied
+write: Permission denied
+write: Permission denied
+write: Permission denied
+write: Permission denied
+ok
+test_release_identifiers_and_build_numbers_are_explicit (Drivers.tests.test_virtual_lifecycle.VirtualLifecycleTests.test_release_identifiers_and_build_numbers_are_explicit) ... ok
+test_uninstall_preflights_all_bundles_and_forgets_only_owned_receipts (Drivers.tests.test_virtual_lifecycle.VirtualLifecycleTests.test_uninstall_preflights_all_bundles_and_forgets_only_owned_receipts) ... ok
+test_bad_ids_are_rejected (Drivers.tests.test_virtual_devices.DriverConfigurationTests.test_bad_ids_are_rejected) ... ok
+test_built_bundles_and_isolation (Drivers.tests.test_virtual_devices.DriverConfigurationTests.test_built_bundles_and_isolation) ... /private/var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/ravelink-driver-test-neakdw02/devices/.ravelink-138rd8rp/RaveLink-test-one.driver: replacing existing signature
+/private/var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/ravelink-driver-test-neakdw02/devices/.ravelink-e4t5vdiu/RaveLink-test-two.driver: replacing existing signature
+PASS: 2 bundles; identity, virtual transport, formats, hidden mirror, malformed request, 4096-block loopback per bundle, ring wrap, silence, clock, instance isolation, client lifecycle.
+/var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/ravelink-driver-test-neakdw02/devices/RaveLink-test-one.driver: a sealed resource is missing or invalid
+ok
+test_duplicate_id_fails_before_build (Drivers.tests.test_virtual_devices.DriverConfigurationTests.test_duplicate_id_fails_before_build) ... ok
+test_format_injection_and_controls_are_rejected (Drivers.tests.test_virtual_devices.DriverConfigurationTests.test_format_injection_and_controls_are_rejected) ... ok
+test_invalid_channel_counts_fail_before_build (Drivers.tests.test_virtual_devices.DriverConfigurationTests.test_invalid_channel_counts_fail_before_build) ... ok
+test_no_admin_install (Drivers.tests.test_virtual_devices.DriverConfigurationTests.test_no_admin_install) ... ok
+test_pinned_source_hashes (Drivers.tests.test_virtual_devices.DriverConfigurationTests.test_pinned_source_hashes) ... ok
+test_stable_id_and_editable_label (Drivers.tests.test_virtual_devices.DriverConfigurationTests.test_stable_id_and_editable_label) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 5.319s
+
+OK
+Created /var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/tmpd8q_ulk0/devices.pkg. macOS restart required after installation; package never restarts audio services.
+Package is unsigned.
+Removed /var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/tmp0gcmk7vv/RaveLink-voice.driver
+Removed /var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/tmp0gcmk7vv/RaveLink-music.driver
+Restart macOS after closing audio apps. Audio services were not restarted.

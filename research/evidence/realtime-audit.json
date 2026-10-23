@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "observedAtUTC": "2026-10-23T18:32:38.948926+00:00",
+  "baseCommitAtRegressionReproduction": "9929420e6259492887147ddccf9d647dcd240bf0",
+  "headAtEvidenceCollection": "59c17d7076afc0b687e41580c139413dd7ae4a80",
+  "workingTreeContainsUncommittedConcurrentChanges": true,
+  "host": {
+    "version": "27.0",
+    "build": "26A5406e",
+    "architecture": "arm64"
+  },
+  "nativeDSPRegression": {
+    "compiler": "xcrun clang -O2 -std=c11; CoreAudio linked",
+    "source": "realtime-overflow-probe.c",
+    "log": "realtime-overflow-probe.txt",
+    "beforeSource": "9929420:Sources/RaveLinkRealtime/Realtime.c",
+    "before": {
+      "spikeFinite": false,
+      "nonfiniteFollowingSamples": 1024
+    },
+    "after": {
+      "spikeFinite": true,
+      "nonfiniteFollowingSamples": 0
+    },
+    "fault": "One finite FLT_MAX stereo input frame overflowed gain/filter state and poisoned later valid audio.",
+    "fix": "Reject nonfinite or >1e6 magnitude samples before gain multiplication, recover nonfinite state, and reject complete malformed control updates."
+  },
+  "testRun": {
+    "command": "RAVELINK_PLUGIN_RENDER_APPLE=1 scripts/test.sh --filter 'DSPRecoveryTests|RealtimeTests|GroupedRealtimeTests|LiveAudioUnitTests'",
+    "configuration": "debug",
+    "passed": 25,
+    "skipped": 2,
+    "failed": 0,
+    "suites": 5,
+    "durationSeconds": 0.448,
+    "log": "realtime-audit-tests.txt",
+    "skippedCases": [
+      "testBlackHoleLoopbackAndLiveBusControls",
+      "testSilentPhysicalOutputLifecycle"
+    ],
+    "cases": [
+      "Exact post-spike PCM equality against independently sanitized-input path",
+      "Invalid NaN/Inf control assignments preserve previous settings",
+      "Apple 96-frame limiter rejects 767-byte delay budget, accepts 768 bytes",
+      "Two Apple limiters and empty leader require 3072 delay bytes",
+      "Existing group/route/SRC/AU error and latency regressions"
+    ]
+  },
+  "memoryChange": {
+    "preTouchedBeforeCallback": [
+      "AU planar ping-pong buffers",
+      "AU per-slot dry delay rings",
+      "AU per-leader alignment delay rings"
+    ],
+    "touchStrideBytes": 4096,
+    "delayBudgetPerOutputMaximumBytes": 134217728,
+    "delayBudgetAlsoRestrictedByRemainingGraphBudget": true,
+    "delayMemoryBytesExcludesVendorAllocations": true
+  },
+  "boundaries": [
+    "Generated PCM and actual installed Apple AU through native render hook; no HAL device started by this test run.",
+    "Page pre-touch is source-level preparation, not a measured realtime deadline or paging guarantee.",
+    "Global budget is an allocation estimate and excludes vendor-private allocations.",
+    "Other render/capture/ring pre-touch and physical multi-clock drift/lifecycle qualification remain separate work.",
+    "Source hashes cover owned files unchanged during the focused run; shared Realtime.c was concurrently modified outside the audited DSP regions."
+  ],
+  "sourceSHA256AtEvidenceCollection": {
+    "Sources/RaveLinkAudio/LiveAudioUnitGraph.swift": "f683f618f3ab2cefcfcf808d5a7d404533e1a42ad5bdee2470414c1f77bbc30f",
+    "Sources/RaveLinkAudioUnitBridge/AudioUnitBridge.m": "0b14c447a44b2275d941bb6958de3490165f9cc87f2883914c740ee141233b8e",
+    "Sources/RaveLinkAudioUnitBridge/include/RaveLinkAudioUnitBridge.h": "fda80c4658dc98d344acbd1bd95d3dace0339492dddcda37a55659e057f35225",
+    "Tests/RaveLinkAudioTests/LiveAudioUnitTests.swift": "5fbb82c7e5eb3b59b9d75c22907c8abb495c3e591899dbe0443d020b244525bc",
+    "Tests/RaveLinkAudioTests/DSPRecoveryTests.swift": "920713c6297bcaefd07a253d6361dbfec1b16d9507996f92fd9b9922a9f204c0",
+    "research/evidence/realtime-overflow-probe.c": "6ec05932175b5ac83305c5a6e6d9f9be1c6ae62d92c807dad9dc120bcbc29b76"
+  },
+  "followup": {
+    "observedAtUTC": "2026-10-23T18:46:25.797363+00:00",
+    "command": "RAVELINK_PLUGIN_RENDER_APPLE=1 scripts/test.sh --filter 'DSPRecoveryTests|RealtimeTests|GroupedRealtimeTests|LiveAudioUnitTests'",
+    "passed": 26,
+    "skipped": 2,
+    "failed": 0,
+    "suites": 5,
+    "durationSeconds": 1.616,
+    "log": "realtime-audit-followup-tests.txt",
+    "changes": [
+      "Reserve conservative bridge overhead before delay allocation; active leader racks each require 8192-byte planar scratch plus descriptor/node/block allowances.",
+      "Prepare selected Apple units sequentially on a dedicated DispatchQueue in tests, matching production; assertions remain in test tasks. AU deadlines and PCM acceptance unchanged."
+    ],
+    "ciFailurePromptingHarnessReview": {
+      "run": 39998798881,
+      "originalLog": "installed-hal-39998798881/original-run.log",
+      "observed": "Two direct Apple AU preparations timed out while many unrelated concurrent tests reported approximately 11.25 seconds. Installed-HAL AU acceptance passed.",
+      "causeNotEstablished": "Cooperative executor starvation is a hypothesis; no claim the harness change resolves CI until rerun."
+    },
+    "sourceSHA256AtCollection": {
+      "Sources/RaveLinkAudio/LiveAudioUnitGraph.swift": "b49ab469b984bbfff6b7fa02f828c924a106250fd3820d810ea0a3a6546e72bc",
+      "Sources/RaveLinkAudioUnitBridge/AudioUnitBridge.m": "0b14c447a44b2275d941bb6958de3490165f9cc87f2883914c740ee141233b8e",
+      "Sources/RaveLinkAudioUnitBridge/include/RaveLinkAudioUnitBridge.h": "fda80c4658dc98d344acbd1bd95d3dace0339492dddcda37a55659e057f35225",
+      "Tests/RaveLinkAudioTests/LiveAudioUnitTests.swift": "eca7d53a127fb2e72420664e22faedeaae16a4b06a8bdf7a5cf5052e4da24a7a",
+      "Tests/RaveLinkAudioTests/DSPRecoveryTests.swift": "920713c6297bcaefd07a253d6361dbfec1b16d9507996f92fd9b9922a9f204c0",
+      "research/evidence/realtime-overflow-probe.c": "6ec05932175b5ac83305c5a6e6d9f9be1c6ae62d92c807dad9dc120bcbc29b76"
+    }
+  }
+}

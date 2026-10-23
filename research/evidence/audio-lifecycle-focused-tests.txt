@@ -1,0 +1,95 @@
+[0/1] Planning build
+Building for debugging...
+[0/9] Write sources
+[1/9] Write swift-version--1AB21518FC5DEDBE.txt
+[3/5] Compiling RaveLinkAudioTests EngineClientTests.swift
+[4/5] Emitting module RaveLinkAudioTests
+[4/6] Write Objects.LinkFileList
+[5/6] Linking RaveLinkPackageTests
+Build complete! (2.35s)
+􀟈  Test run started.
+􀄵  Testing Library Version: 1400
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite RenderProgressMonitorTests started.
+􀟈  Suite ApplicationMembershipTests started.
+􀟈  Suite EngineProtocolTests started.
+􀟈  Suite DSPRecoveryTests started.
+􀟈  Suite AudioLifecycleTests started.
+􀟈  Suite TapRetargetTransactionTests started.
+􀟈  Suite EngineClientTests started.
+􀟈  Test boundsPartialLinesAndRejectsVersionMismatch() started.
+􀟈  Test rejectsContradictoryAndNonfiniteState() started.
+􀟈  Test inclusionAndCatchAllShareCanonicalHelpersAndOwnProcessExclusions() started.
+􀟈  Test initiallyAbsentExcludedApplicationRemainsWatched() started.
+􀟈  Test maximumBufferDurationAndGraphResetAreRespected() started.
+􀟈  Test chromiumHelpersUseOwnerIdentityWithoutPrefixGuessing() started.
+􀟈  Test progressingOutputCannotHideAnotherStalledDevice() started.
+􀟈  Test finiteOverflowSpikeDoesNotPoisonFollowingAudio() started.
+􀟈  Test orderingDuplicatesOwnProcessAndUnrelatedAppsDoNotChangeMembership() started.
+􀟈  Test outerApplicationMetadataWinsOverNestedHelper() started.
+􀟈  Test malformedControlUpdatesPreservePriorValidSettings() started.
+􀟈  Test failedExclusionUpdateNeverRestartsAnyCapture() started.
+􀟈  Test restartAdditionalProcessAndExitChangeExclusions() started.
+􀟈  Test nativeStreamValidationRejectsChangedStridesFlagsAndRate() started.
+􀟈  Test suspensionCannotBeOverriddenByLiveControlsAndDoesNotFreezeProcessing() started.
+􀟈  Test allExclusionsAreUpdatedBeforeAnyCaptureRestarts() started.
+􀟈  Test cancellationAfterDescriptionChangePreventsLateRestart() started.
+􀟈  Test discoveryTimeoutKillsAndReapsUncooperativeChild() started.
+􀟈  Test consumerResetDiscardsOldAudioAndReprimesWithFreshCapture() started.
+􁁛  Test nativeStreamValidationRejectsChangedStridesFlagsAndRate() passed after 0.001 seconds.
+􁁛  Test progressingOutputCannotHideAnotherStalledDevice() passed after 0.001 seconds.
+􁁛  Test orderingDuplicatesOwnProcessAndUnrelatedAppsDoNotChangeMembership() passed after 0.001 seconds.
+􁁛  Test initiallyAbsentExcludedApplicationRemainsWatched() passed after 0.001 seconds.
+􁁛  Test restartAdditionalProcessAndExitChangeExclusions() passed after 0.001 seconds.
+􁁛  Test allExclusionsAreUpdatedBeforeAnyCaptureRestarts() passed after 0.001 seconds.
+􁁛  Test inclusionAndCatchAllShareCanonicalHelpersAndOwnProcessExclusions() passed after 0.001 seconds.
+􁁛  Test outerApplicationMetadataWinsOverNestedHelper() passed after 0.001 seconds.
+􁁛  Test maximumBufferDurationAndGraphResetAreRespected() passed after 0.001 seconds.
+􁁛  Test chromiumHelpersUseOwnerIdentityWithoutPrefixGuessing() passed after 0.001 seconds.
+􁁛  Suite RenderProgressMonitorTests passed after 0.001 seconds.
+􁁛  Suite ApplicationMembershipTests passed after 0.001 seconds.
+􁁛  Test cancellationAfterDescriptionChangePreventsLateRestart() passed after 0.001 seconds.
+􁁛  Test failedExclusionUpdateNeverRestartsAnyCapture() passed after 0.001 seconds.
+􁁛  Suite TapRetargetTransactionTests passed after 0.001 seconds.
+􁁛  Test rejectsContradictoryAndNonfiniteState() passed after 0.001 seconds.
+􁁛  Test malformedControlUpdatesPreservePriorValidSettings() passed after 0.001 seconds.
+􁁛  Test finiteOverflowSpikeDoesNotPoisonFollowingAudio() passed after 0.001 seconds.
+􁁛  Suite DSPRecoveryTests passed after 0.001 seconds.
+􁁛  Test consumerResetDiscardsOldAudioAndReprimesWithFreshCapture() passed after 0.001 seconds.
+􁁛  Test suspensionCannotBeOverriddenByLiveControlsAndDoesNotFreezeProcessing() passed after 0.002 seconds.
+􁁛  Suite AudioLifecycleTests passed after 0.002 seconds.
+􁁛  Test boundsPartialLinesAndRejectsVersionMismatch() passed after 0.029 seconds.
+􁁛  Suite EngineProtocolTests passed after 0.029 seconds.
+􁁛  Test discoveryTimeoutKillsAndReapsUncooperativeChild() passed after 1.506 seconds.
+􀟈  Test abruptExitDoesNotRaiseSIGPIPEInClient() started.
+􁁛  Test abruptExitDoesNotRaiseSIGPIPEInClient() passed after 0.307 seconds.
+􀟈  Test malformedFloodIsBoundedAndChildReaped() started.
+􁁛  Test malformedFloodIsBoundedAndChildReaped() passed after 0.626 seconds.
+􀟈  Test brokenPipeWhileChildRemainsAliveDoesNotRaiseSIGPIPE() started.
+􁁛  Test brokenPipeWhileChildRemainsAliveDoesNotRaiseSIGPIPE() passed after 0.550 seconds.
+􀟈  Test runningHeartbeatDeadlineCannotBeMaskedByStaleState(_:) started.
+􀟈  Test case passing 1 argument mode → "silent_running" to runningHeartbeatDeadlineCannotBeMaskedByStaleState(_:) started.
+􀟈  Test case passing 1 argument mode → "stale_heartbeat" to runningHeartbeatDeadlineCannotBeMaskedByStaleState(_:) started.
+􁁛  Test runningHeartbeatDeadlineCannotBeMaskedByStaleState(_:) with 2 test cases passed after 1.663 seconds.
+􀟈  Test sleepReapsActiveHelperAndWakeDiscoversWithoutResuming() started.
+􁁛  Test sleepReapsActiveHelperAndWakeDiscoversWithoutResuming() passed after 0.446 seconds.
+􀟈  Test missingSoundCheckSnapshotStopsAndReapsHelper() started.
+􁁛  Test missingSoundCheckSnapshotStopsAndReapsHelper() passed after 0.108 seconds.
+􀟈  Test stopHasIndependentDeadlineAndReapsHungHelper() started.
+􁁛  Test stopHasIndependentDeadlineAndReapsHungHelper() passed after 0.776 seconds.
+􀟈  Test startHasHardRoutingDeadline() started.
+􁁛  Test startHasHardRoutingDeadline() passed after 1.766 seconds.
+􀟈  Test staleTelemetryCannotRestartStoppedSession() started.
+􁁛  Test staleTelemetryCannotRestartStoppedSession() passed after 0.267 seconds.
+􀟈  Test editDuringStartReplacesOldProcessWithLatestSession() started.
+􁁛  Test editDuringStartReplacesOldProcessWithLatestSession() passed after 0.118 seconds.
+􀟈  Test sustainedControlInputSendsUpdatesBeforeProducerStops() started.
+􁁛  Test sustainedControlInputSendsUpdatesBeforeProducerStops() passed after 0.348 seconds.
+􀟈  Test pendingReplacementCoalescesRapidStartEdits() started.
+􁁛  Test pendingReplacementCoalescesRapidStartEdits() passed after 0.424 seconds.
+􀟈  Test realHelperExitsWhenParentControlPipeCloses() started.
+􁁛  Test realHelperExitsWhenParentControlPipeCloses() passed after 0.289 seconds.
+􀙟  Test realSilentOutputThroughSupervisedProcess() skipped.
+􀙟  Test soundCheckCommandsAndLiveEditsThroughSilentDevice() skipped.
+􁁛  Suite EngineClientTests passed after 9.201 seconds.
+􁁛  Test run with 34 tests in 7 suites passed after 9.201 seconds.
