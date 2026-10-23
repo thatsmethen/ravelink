@@ -1,0 +1,19 @@
+{
+  "rust": "nightly-2025-11-10",
+  "rust_commit": "6647be936",
+  "target": "x86_64-pc-windows-msvc",
+  "sdk_header_version": "10.0.26100.0",
+  "msvc_validation_toolset": "14.44",
+  "packages": [
+    {
+      "id": "microsoft.windows.wdk.x64",
+      "version": "10.0.26100.6584",
+      "sha512_base64": "jhddaBnhMDqt3GVr32RVTtaR0KHmZDjY0JCTMn10OQpk4+AShXCK9QA09vBazp8ni1Mju84qM5SGXfIfnyOJ+g=="
+    },
+    {
+      "id": "microsoft.windows.sdk.cpp",
+      "version": "10.0.26100.6584",
+      "sha512_base64": "KrHXNRT0sr3BqmvVBir0Z/cr1I66MvmZ6YTwBazi0Tz7P356uRCCynjl3/rZwsS0JLYCdD/+flTSN101rcmm+g=="
+    }
+  ]
+}
