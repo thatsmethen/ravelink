@@ -21,7 +21,7 @@ struct StudioView: View {
                             Text("Mixes & routing").font(.system(size: 22, weight: .semibold))
                         }
                         Spacer()
-                        Button { studio.beginInput() } label: { Label("Add input", systemImage: "plus") }.buttonStyle(.borderedProminent).tint(accent).foregroundStyle(.black)
+                        Button { studio.beginInput() } label: { Label("Add input", systemImage: "plus") }.buttonStyle(AccentButtonStyle())
                     }.padding(24)
                     matrix
                 }
@@ -38,6 +38,7 @@ struct StudioView: View {
         .sheet(isPresented: $studio.showingOutputs) { MonitorOutputsSheet(studio: studio, audio: audio) }
         .sheet(isPresented: $studio.showingMix) { MixSheet(studio: studio, audio: audio) }
         .sheet(isPresented: $studio.showingSettings) { setupInfo }
+        .sheet(isPresented: $studio.showingDiagnostics) { EngineDiagnosticsView(audio: audio) }
         .alert("Studio needs attention", isPresented: Binding(get: { studio.notice != nil }, set: { if !$0 { studio.notice = nil } })) {
             Button("OK") { studio.notice = nil }
         } message: { Text(studio.notice ?? "") }
@@ -54,11 +55,12 @@ struct StudioView: View {
                 Button("Export studio…") { studio.exportSession() }
                 Divider()
                 Button("Audio setup…") { studio.showingSettings = true }
+                Button("Engine diagnostics…") { studio.showingDiagnostics = true }
                 Button("Refresh devices") { audio.refreshDevices() }
             } label: { Image(systemName: "ellipsis.circle").font(.title3) }.menuStyle(.borderlessButton).frame(width: 34).help("Studio options")
             Button { studio.toggleAudio() } label: {
                 Label(audio.starting ? "Cancel start" : (audio.running ? "Stop audio" : "Start audio"), systemImage: (audio.running || audio.starting) ? "stop.fill" : "play.fill").frame(width: 105)
-            }.buttonStyle(.borderedProminent).tint(audio.running ? .red.opacity(0.75) : accent).foregroundStyle(audio.running ? .white : .black)
+            }.buttonStyle(AccentButtonStyle(color: audio.running ? Color(red: 0.7, green: 0.16, blue: 0.2) : accent, foreground: audio.running ? .white : .black))
         }.padding(.horizontal, 24).padding(.top, 30).padding(.bottom, 18)
     }
     private var matrix: some View {
@@ -77,7 +79,7 @@ struct StudioView: View {
                         Image(systemName: "waveform.badge.plus").font(.system(size: 38)).foregroundStyle(accent)
                         Text("Build your first mix").font(.title2.weight(.semibold))
                         Text("Add a microphone, an app, or system audio.\nThen turn on the mixes that should hear it.").foregroundStyle(.secondary).multilineTextAlignment(.center)
-                        Button("Add your first input") { studio.beginInput() }.buttonStyle(.borderedProminent).tint(accent).foregroundStyle(.black)
+                        Button("Add your first input") { studio.beginInput() }.buttonStyle(AccentButtonStyle())
                         Button("Set up virtual outputs") { studio.showingSettings = true }.buttonStyle(.plain).foregroundStyle(.secondary)
                     }.frame(width: max(820, CGFloat(studio.session.buses.count * 196 + 296)), height: 330)
                 } else {
@@ -85,7 +87,7 @@ struct StudioView: View {
                     Button { studio.beginInput() } label: { Label("Add input", systemImage: "plus").frame(width: 260, height: 50, alignment: .leading) }.buttonStyle(.plain).foregroundStyle(accent).padding(.horizontal, 18)
                 }
             }.padding(.horizontal, 24).padding(.bottom, 24)
-        }
+        }.defaultScrollAnchor(.topLeading, for: .alignment)
     }
     private func busHeader(_ index: Int) -> some View {
         let bus = studio.session.buses[index]
@@ -182,10 +184,6 @@ struct StudioView: View {
                 effectSlider("Compressor threshold", value: $studio.session.channels[index].effects.compressorThresholdDB, range: -60...0, suffix: "dB")
                 effectSlider("Compressor ratio", value: $studio.session.channels[index].effects.compressorRatio, range: 1...20, suffix: ":1")
                 Button("Reset effects") { studio.session.channels[index].effects = .init() }.buttonStyle(.bordered)
-                Divider()
-                Text("Stereo pairs").font(.headline)
-                Stepper("First channel: \(studio.session.channels[index].source.channelOffset + 1)", value: $studio.session.channels[index].source.channelOffset, in: 0...4094, step: 2).font(.caption)
-                Text("Select the first channel of a stereo pair for multichannel hardware. Mono inputs are duplicated to both sides.").font(.caption).foregroundStyle(.secondary)
             }.padding(22)
         }.background(panel.opacity(0.6))
     }
@@ -275,5 +273,18 @@ struct LevelMeter: View {
                 Capsule().fill(level > 0.95 ? Color.orange : accent).frame(width: geo.size.width * CGFloat(active && level.isFinite ? min(1, max(0, (20 * log10(max(level, 0.001)) + 60) / 60)) : 0))
             }
         }.frame(height: 4).accessibilityLabel("Audio level").accessibilityValue(active ? "\(Int(20 * log10(max(level.isFinite ? level : 0, 0.001)))) decibels" : "Stopped")
+    }
+}
+
+struct AccentButtonStyle: ButtonStyle {
+    @Environment(\.isEnabled) private var enabled
+    var color = Color(red: 0.42, green: 0.87, blue: 0.75)
+    var foreground = Color.black
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label.font(.system(size: 13, weight: .semibold))
+            .foregroundStyle(foreground)
+            .padding(.horizontal, 14).padding(.vertical, 8)
+            .background(color.opacity(enabled ? (configuration.isPressed ? 0.75 : 1) : 0.35), in: RoundedRectangle(cornerRadius: 7))
+            .contentShape(RoundedRectangle(cornerRadius: 7))
     }
 }

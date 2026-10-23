@@ -3,6 +3,56 @@ import Testing
 @testable import RaveLinkCore
 
 @Suite struct ExpandedRoutingTests {
+    @Test func capacityRejectsOverflowAndNegativeCountsWithoutAllocatingMatrix() {
+        #expect(throws: (any Error).self) { try RoutingCapacityEstimate(expandedChannelCount: .max, expandedBusCount: 2) }
+        #expect(throws: (any Error).self) { try RoutingCapacityEstimate(expandedChannelCount: .max, expandedBusCount: 0) }
+        #expect(throws: (any Error).self) { try RoutingCapacityEstimate(expandedChannelCount: -1, expandedBusCount: 1) }
+    }
+
+    @Test func capacityBudgetBoundaryIsExplicitAndConfigurable() throws {
+        let session = groupedSession()
+        let estimate = try session.routingCapacityEstimate()
+        #expect(estimate.expandedChannelCount == 2)
+        #expect(estimate.expandedBusCount == 3)
+        #expect(estimate.expandedRouteCount == 6)
+        #expect(estimate.constructionWorkItems == 11)
+        #expect(estimate.estimatedBytes > 0)
+        #expect(throws: (any Error).self) { try session.expandedRouting(memoryBudgetBytes: estimate.estimatedBytes - 1) }
+        #expect(try session.expandedRouting(memoryBudgetBytes: estimate.estimatedBytes).session.sends.count == 6)
+        do {
+            _ = try session.expandedRouting(memoryBudgetBytes: 0)
+            Issue.record("Zero budget should reject the routing preparation")
+        } catch {
+            #expect(error.localizedDescription.contains("2 inputs, 3 outputs, and 6 routes"))
+            #expect(error.localizedDescription.contains("0-byte budget"))
+        }
+    }
+
+    @Test func sameVisibleCountsCanRequireDifferentExpansionBudgets() throws {
+        var compact = groupedSession()
+        compact.channels[0].additionalSources = []; compact.buses[0].additionalOutputs = []
+        let grouped = groupedSession()
+        #expect(compact.channels.count == grouped.channels.count)
+        #expect(compact.buses.count == grouped.buses.count)
+        let smaller = try compact.routingCapacityEstimate(), larger = try grouped.routingCapacityEstimate()
+        #expect(smaller.expandedRouteCount == 2 && larger.expandedRouteCount == 6)
+        #expect(smaller.estimatedBytes < larger.estimatedBytes)
+        _ = try compact.expandedRouting(memoryBudgetBytes: smaller.estimatedBytes)
+        #expect(throws: (any Error).self) { try grouped.expandedRouting(memoryBudgetBytes: smaller.estimatedBytes) }
+    }
+
+    @Test func compactMillionRouteExpansionFailsBeforeMaterialization() throws {
+        let sources = (0..<2_000).map { InputSource(kind: .application, bundleID: "test.app.\($0)") }
+        let destinations = (0..<2_000).map { MixDestination(deviceUID: "test.output.\($0)") }
+        let channel = MixerChannel(name: "Group", source: sources[0], additionalSources: Array(sources.dropFirst()))
+        let bus = MixBus(name: "Monitor", deviceUID: destinations[0].deviceUID, additionalOutputs: Array(destinations.dropFirst()))
+        let session = MixerSession(channels: [channel], buses: [bus], sends: [.init(channelID: channel.id, busID: bus.id)])
+        let estimate = try session.routingCapacityEstimate()
+        #expect(estimate.expandedRouteCount == 4_000_000)
+        #expect(estimate.estimatedBytes > 512 * 1024 * 1024)
+        #expect(throws: (any Error).self) { try session.expandedRouting(memoryBudgetBytes: 512 * 1024 * 1024) }
+    }
+
     private func groupedSession() -> MixerSession {
         var effects = ChannelEffects()
         effects.gainDB = -3; effects.highPassHz = 90; effects.compressorRatio = 3

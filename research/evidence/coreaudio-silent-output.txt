@@ -1,0 +1,10 @@
+enumerate-size status=0
+device id=155 uid=BuiltInSpeakerDevice name=MacBook Pro Speakers
+register-start rate=48000
+register-return status=0
+start-begin
+start-return status=0
+stop-begin
+stop-return status=0
+unregister-return status=0
+telemetry callbacks=94 outputFrames=48128 capturedFrames=0

@@ -44,6 +44,10 @@ RLRender *rl_render_create(double sampleRate, uint32_t maxFrames,
 void rl_render_destroy(RLRender *render);
 void rl_render_set_source(RLRender *render, uint32_t index, RLRing *ring,
                           double inputSampleRate, bool tone);
+// Configure while callbacks are stopped. Leaders must be direct roots; invalid
+// indices, chains, and reparenting a leader with children are rejected.
+// The leader's controls and sends apply once to the sum of all group members.
+bool rl_render_set_source_group(RLRender *render, uint32_t source, uint32_t leader);
 void rl_render_source_controls(RLRender *render, uint32_t index, bool audible,
                                float gainDB, float highPassHz, float gateDB,
                                float compressorDB, float compressorRatio);

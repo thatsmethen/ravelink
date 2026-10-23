@@ -10,6 +10,7 @@ struct InputSheet: View {
     @State private var name = ""
     @State private var deviceUID = ""
     @State private var bundleID = ""
+    @State private var channelOffset = 0
     private var valid: Bool { (kind == .device && !deviceUID.isEmpty) || (kind == .application && !bundleID.isEmpty) || kind == .system || kind == .tone }
     var body: some View {
         VStack(alignment: .leading, spacing: 22) {
@@ -24,9 +25,16 @@ struct InputSheet: View {
             Group {
                 switch kind {
                 case .device:
-                    Picker("Audio device", selection: $deviceUID) {
+                    Picker("Audio device", selection: Binding(get: { deviceUID }, set: { deviceUID = $0; channelOffset = 0 })) {
                         Text("Choose an input…").tag("")
                         ForEach(audio.devices.filter { $0.inputChannels > 0 }) { Text("\($0.name) (\($0.inputChannels) ch)").tag($0.id) }
+                    }
+                    if let device = audio.devices.first(where: { $0.id == deviceUID }), device.inputChannels > 1 {
+                        Picker("Input channels", selection: $channelOffset) {
+                            ForEach(Array(stride(from: 0, to: device.inputChannels, by: 2)), id: \.self) { value in
+                                Text(value + 1 < device.inputChannels ? "\(value + 1)–\(value + 2)" : "\(value + 1) (mono)").tag(value)
+                            }
+                        }
                     }
                     Text("Microphones, interfaces and virtual devices are supported. Use Input settings to select a different stereo pair.").font(.caption).foregroundStyle(.secondary)
                 case .application:
@@ -44,8 +52,18 @@ struct InputSheet: View {
                 }
             }.frame(minHeight: 80, alignment: .top)
             if studio.sourceTarget == nil { TextField("Name (optional)", text: $name).textFieldStyle(.roundedBorder) }
-            HStack { Button("Cancel") { dismiss() }.keyboardShortcut(.cancelAction); Spacer(); Button(studio.sourceReplacement == nil ? "Add input" : "Use source") { add() }.buttonStyle(.borderedProminent).disabled(!valid).keyboardShortcut(.defaultAction) }
+            HStack { Button("Cancel") { dismiss() }.keyboardShortcut(.cancelAction); Spacer(); Button(studio.sourceReplacement == nil ? "Add input" : "Use source") { add() }.buttonStyle(AccentButtonStyle()).disabled(!valid).keyboardShortcut(.defaultAction) }
         }.padding(30).frame(width: 560)
+        .onAppear {
+            if let target = studio.sourceTarget, let slot = studio.sourceReplacement,
+               let channel = studio.session.channels.first(where: { $0.id == target }) {
+                let sources = channel.allSources
+                if sources.indices.contains(slot) {
+                    let source = sources[slot]
+                    kind = source.kind; deviceUID = source.deviceUID ?? ""; bundleID = source.bundleID ?? ""; channelOffset = source.channelOffset
+                }
+            }
+        }
     }
     private func add() {
         let suggested: String
@@ -55,7 +73,7 @@ struct InputSheet: View {
         case .system: suggested = "System audio"
         case .tone: suggested = "Test tone"
         }
-        studio.add(MixerChannel(name: name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? suggested : name, source: InputSource(kind: kind, deviceUID: deviceUID.isEmpty ? nil : deviceUID, bundleID: bundleID.isEmpty ? nil : bundleID)))
+        studio.add(MixerChannel(name: name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? suggested : name, source: InputSource(kind: kind, deviceUID: deviceUID.isEmpty ? nil : deviceUID, bundleID: bundleID.isEmpty ? nil : bundleID, channelOffset: channelOffset)))
         dismiss()
     }
 }
@@ -75,7 +93,7 @@ struct MixSheet: View {
                 ForEach(audio.devices.filter { $0.outputChannels > 0 }) { Text($0.name).tag(Optional($0.id)) }
             }
             Text("For a streaming or chat app, choose a virtual device such as RaveLink Stream or BlackHole. For listening, choose your headphones.").font(.caption).foregroundStyle(.secondary)
-            HStack { Button("Cancel") { dismiss() }.keyboardShortcut(.cancelAction); Spacer(); Button("Add mix") { studio.add(MixBus(name: name, deviceUID: deviceUID)); dismiss() }.buttonStyle(.borderedProminent).disabled(name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty).keyboardShortcut(.defaultAction) }
+            HStack { Button("Cancel") { dismiss() }.keyboardShortcut(.cancelAction); Spacer(); Button("Add mix") { studio.add(MixBus(name: name, deviceUID: deviceUID)); dismiss() }.buttonStyle(AccentButtonStyle()).disabled(name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty).keyboardShortcut(.defaultAction) }
         }.padding(30).frame(width: 500)
     }
 }

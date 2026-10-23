@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "observedAtUTC": "2026-10-23T13:24:43.651787+00:00",
+  "host": {
+    "os": "macOS",
+    "version": "27.0",
+    "build": "26A5406e",
+    "architecture": "arm64"
+  },
+  "registry": {
+    "effectCount": 33,
+    "instantiated": false
+  },
+  "selectedProbe": {
+    "channelCapabilities": null,
+    "configurationAccepted": true,
+    "configurationError": null,
+    "descriptor": {
+      "component": {
+        "manufacturer": 1634758764,
+        "subtype": 1819112562,
+        "type": 1635083896
+      },
+      "flags": 2,
+      "name": "Apple: AUPeakLimiter",
+      "version": 67072
+    },
+    "inputBuses": [
+      {
+        "channelLayoutTag": null,
+        "channels": 2,
+        "commonFormat": 1,
+        "enabled": false,
+        "index": 0,
+        "interleaved": false,
+        "name": null,
+        "sampleRate": 48000
+      }
+    ],
+    "latencySeconds": 0.0020000000949949026,
+    "limitations": [
+      "Only main bus 0 input/output were configured as non-interleaved Float32 with a 512-frame maximum.",
+      "Instantiation and allocation succeeded only where reported. No audio was rendered, no UI was opened, and no hardware device was started.",
+      "Initial parameter values are observed instance state; declared defaults are null when the legacy parameter-info query is unsupported.",
+      "Out-of-process instantiation is requested; AUv2 still loads inside this disposable helper. This is crash containment, not a security sandbox."
+    ],
+    "outputBuses": [
+      {
+        "channelLayoutTag": null,
+        "channels": 2,
+        "commonFormat": 1,
+        "enabled": false,
+        "index": 0,
+        "interleaved": false,
+        "name": null,
+        "sampleRate": 48000
+      }
+    ],
+    "parameters": [
+      {
+        "address": 0,
+        "declaredDefaultValue": 0.0020000000949949026,
+        "flags": 3242196992,
+        "identifier": "0",
+        "initialValue": 0.0020000000949949026,
+        "maximum": 0.029999999329447746,
+        "minimum": 0.0005000000237487257,
+        "name": "Attack Time",
+        "unit": 4,
+        "unitName": "Secs"
+      },
+      {
+        "address": 1,
+        "declaredDefaultValue": 0.004999999888241291,
+        "flags": 3225419776,
+        "identifier": "1",
+        "initialValue": 0.004999999888241291,
+        "maximum": 0.03999999910593033,
+        "minimum": 0.0010000000474974513,
+        "name": "Release Time",
+        "unit": 4,
+        "unitName": "Secs"
+      },
+      {
+        "address": 2,
+        "declaredDefaultValue": 0,
+        "flags": 3221225472,
+        "identifier": "2",
+        "initialValue": 0,
+        "maximum": 40,
+        "minimum": -40,
+        "name": "Pre-Gain",
+        "unit": 13,
+        "unitName": "dB"
+      }
+    ],
+    "renderResourcesAllocated": true,
+    "requestedChannels": 2,
+    "requestedSampleRate": 48000,
+    "tailSeconds": 0.1
+  },
+  "testCommand": "RAVELINK_PLUGIN_PROBE_APPLE=1 scripts/test.sh --filter PluginCatalogTests",
+  "testResult": {
+    "passed": 8,
+    "failed": 0,
+    "durationSeconds": 2.223
+  },
+  "evidenceBoundary": "Registry metadata and one Apple AU offline allocation. No rendering, vendor UI, third-party plugin, or realtime qualification. Synthetic child faults test process containment only.",
+  "sourceSHA256": {
+    "Sources/RaveLinkPluginHost/main.swift": "db034afaa46b1aa3804c84dfe15d7fbbd4e358f127b3dff4cb0ecaed4d8e28df",
+    "Sources/RaveLinkAudio/PluginCatalog.swift": "f9aff0497c0926aab86977db5a172a5040784b45cc51055dbb04fa736ea014fc",
+    "Tests/RaveLinkAudioTests/PluginCatalogTests.swift": "2b8f910ae723e6eed458e9651a5e101bb4063ad883e6fd4fef0bab92b554fbde"
+  },
+  "helperSHA256": "5e794cdd2288123b8148a8650bf3266a3e5e100d8860ed867eff8869c414f0c4"
+}

@@ -165,13 +165,26 @@ import RaveLinkCore
     @Test(.enabled(if: ProcessInfo.processInfo.environment["RAVELINK_TEST_LOOPBACK"] == "1")) @MainActor func testBlackHoleLoopbackAndLiveBusControls() async throws {
         
         let coordinator = AudioCoordinator()
-        for _ in 0..<100 where coordinator.devices.isEmpty { try await Task.sleep(for: .milliseconds(50)) }
-        guard let blackHole = coordinator.devices.first(where: { $0.name == "BlackHole 2ch" && $0.inputChannels >= 2 && $0.outputChannels >= 2 }) else { Issue.record("Opt-in hardware test requires BlackHole 2ch"); return }
+        let requestedUID = ProcessInfo.processInfo.environment["RAVELINK_LOOPBACK_DEVICE_UID"]
+        for iteration in 0..<200 {
+            if coordinator.devices.contains(where: { device in requestedUID.map { device.id == $0 } ?? (device.name == "BlackHole 2ch") }) { break }
+            if iteration % 20 == 0 { coordinator.refreshDevices() }
+            try await Task.sleep(for: .milliseconds(50))
+        }
+        guard let blackHole = coordinator.devices.first(where: { device in
+            (requestedUID.map { device.id == $0 } ?? (device.name == "BlackHole 2ch")) && device.inputChannels >= 2 && device.outputChannels >= 2
+        }) else { Issue.record("Opt-in hardware test requires the requested virtual device (default BlackHole 2ch)"); return }
+        try #require(blackHole.isVirtual, "The loopback test must target a virtual device")
+        let originalDefaults = [defaultDevice(kAudioHardwarePropertyDefaultInputDevice), defaultDevice(kAudioHardwarePropertyDefaultOutputDevice)]
         let tone = MixerChannel(name: "Reference tone", source: .init(kind: .tone))
         let returnChannel = MixerChannel(name: "Actual driver return", source: .init(kind: .device, deviceUID: blackHole.id))
         var bus = MixBus(name: "Loopback test", deviceUID: blackHole.id)
         var session = MixerSession(channels: [tone, returnChannel], buses: [bus], sends: [.init(channelID: tone.id, busID: bus.id), .init(channelID: returnChannel.id, busID: bus.id, muted: true)])
         defer { coordinator.stop() }
+        if let readyFile = ProcessInfo.processInfo.environment["RAVELINK_CAPTURE_READY_FILE"] {
+            for _ in 0..<200 where !FileManager.default.fileExists(atPath: readyFile) { try await Task.sleep(for: .milliseconds(50)) }
+            try #require(FileManager.default.fileExists(atPath: readyFile), "Independent recorder did not become ready")
+        }
         try coordinator.start(session: session)
         for _ in 0..<240 where coordinator.starting { try await Task.sleep(for: .milliseconds(50)) }
         try #require(coordinator.running, Comment(rawValue: coordinator.errorMessage ?? "Audio did not start"))
@@ -192,7 +205,7 @@ import RaveLinkCore
         let mutedPeak = coordinator.channelMeters[returnChannel.id] ?? 0
         expectLess(mutedPeak, 0.00001)
         expectEqual(coordinator.diagnostics.oversizedBlocks, 0)
-        print("BLACKHOLE_LIVE_EVIDENCE rate=\(blackHole.sampleRate) unityPeak=\(unityPeak) minus12dBPeak=\(attenuatedPeak) mutedPeak=\(mutedPeak) capturedFrames=\(firstStats.capturedFrames) renderedFrames=\(firstStats.renderedFrames) droppedFrames=\(coordinator.diagnostics.droppedFrames) underrunFrames=\(coordinator.diagnostics.underrunFrames)")
+        print("VIRTUAL_DRIVER_LIVE_EVIDENCE uid=\(blackHole.id) rate=\(blackHole.sampleRate) unityPeak=\(unityPeak) minus12dBPeak=\(attenuatedPeak) mutedPeak=\(mutedPeak) capturedFrames=\(firstStats.capturedFrames) renderedFrames=\(firstStats.renderedFrames) droppedFrames=\(coordinator.diagnostics.droppedFrames) underrunFrames=\(coordinator.diagnostics.underrunFrames)")
         coordinator.stop()
         expectFalse(coordinator.running)
         for _ in 0..<3 {
@@ -201,7 +214,37 @@ import RaveLinkCore
             try #require(coordinator.running, Comment(rawValue: coordinator.errorMessage ?? "Restart failed"))
             coordinator.stop()
         }
+        expectEqual([defaultDevice(kAudioHardwarePropertyDefaultInputDevice), defaultDevice(kAudioHardwarePropertyDefaultOutputDevice)], originalDefaults)
     }
+
+    @Test(.enabled(if: ProcessInfo.processInfo.environment["RAVELINK_TEST_SILENT_OUTPUT"] == "1")) @MainActor func testSilentPhysicalOutputLifecycle() async throws {
+        let coordinator = AudioCoordinator()
+        let uid = ProcessInfo.processInfo.environment["RAVELINK_SILENT_OUTPUT_UID"] ?? "BuiltInSpeakerDevice"
+        for _ in 0..<100 where !coordinator.devices.contains(where: { $0.id == uid }) { try await Task.sleep(for: .milliseconds(50)) }
+        let device = try #require(coordinator.devices.first { $0.id == uid && $0.outputChannels >= 2 })
+        let source = MixerChannel(name: "Silent source", source: .init(kind: .tone), muted: true)
+        let bus = MixBus(name: "Silent hardware check", deviceUID: device.id)
+        let session = MixerSession(channels: [source], buses: [bus], sends: [.init(channelID: source.id, busID: bus.id, muted: true)])
+        defer { coordinator.stop() }
+        try coordinator.start(session: session)
+        for _ in 0..<240 where coordinator.starting { try await Task.sleep(for: .milliseconds(50)) }
+        try #require(coordinator.running, Comment(rawValue: coordinator.errorMessage ?? "Output did not start"))
+        try await Task.sleep(for: .seconds(1))
+        #expect(coordinator.diagnostics.renderedFrames >= 10000)
+        #expect(coordinator.busMeters[bus.id] == 0)
+        #expect(coordinator.diagnostics.oversizedBlocks == 0)
+        print("NATIVE_SILENT_OUTPUT uid=\(device.id) renderedFrames=\(coordinator.diagnostics.renderedFrames) peak=\(coordinator.busMeters[bus.id] ?? -1)")
+        coordinator.stop()
+        try await Task.sleep(for: .milliseconds(100))
+        #expect(coordinator.errorMessage == nil)
+    }
+}
+
+private func defaultDevice(_ selector: AudioObjectPropertySelector) -> AudioObjectID {
+    var address = AudioObjectPropertyAddress(mSelector: selector, mScope: kAudioObjectPropertyScopeGlobal, mElement: kAudioObjectPropertyElementMain)
+    var device: AudioObjectID = 0, size = UInt32(MemoryLayout<AudioObjectID>.size)
+    _ = AudioObjectGetPropertyData(AudioObjectID(kAudioObjectSystemObject), &address, 0, nil, &size, &device)
+    return device
 }
 
 // Small assertion helpers preserve source context under Swift Testing on the

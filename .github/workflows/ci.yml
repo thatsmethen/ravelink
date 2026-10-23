@@ -23,3 +23,54 @@ jobs:
         with:
           name: RaveLink-development
           path: build/RaveLink-development.zip
+  installed-driver:
+    runs-on: macos-15
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Host identity
+        run: |
+          sw_vers
+          uname -m
+      - name: Build isolated test device
+        run: python3 scripts/virtual-devices.py build --device ci-loopback:CILoopback --output build/ci-drivers
+      - name: Install into disposable runner
+        run: |
+          sudo python3 scripts/virtual-devices.py install build/ci-drivers/*.driver
+          sudo killall coreaudiod || true
+          sleep 5
+      - name: Compile integration tests
+        run: scripts/test.sh --filter testInvalidStartFailsWithActionableErrorAndStaysStopped
+      - name: Actual installed HAL loopback
+        env:
+          RAVELINK_TEST_LOOPBACK: '1'
+          RAVELINK_LOOPBACK_DEVICE_UID: RaveLink.ci-loopback_UID
+        run: |
+          set -o pipefail
+          python3 scripts/audio-device-probe.py --list > build/installed-devices.txt
+          python3 scripts/audio-device-probe.py --uid RaveLink.ci-loopback_UID --capture-seconds 12 --wav build/independent-loopback.wav --ready-file build/receiver-ready --timeout 25 > build/receiver.log 2>&1 &
+          receiver_pid=$!
+          trap 'kill "$receiver_pid" 2>/dev/null || true; wait "$receiver_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..15}; do
+            if [ -f build/receiver-ready ]; then break; fi
+            if ! kill -0 "$receiver_pid" 2>/dev/null; then cat build/receiver.log; exit 1; fi
+            sleep 1
+          done
+          test -f build/receiver-ready
+          scripts/test.sh --skip-build --filter testBlackHoleLoopbackAndLiveBusControls 2>&1 | tee build/installed-driver-test.log
+          wait "$receiver_pid"
+          python3 scripts/verify-loopback.py build/independent-loopback.wav | tee build/independent-loopback.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: installed-driver-evidence
+          path: |
+            build/installed-driver-test.log
+            build/installed-devices.txt
+            build/receiver.log
+            build/independent-loopback.*
+            build/ci-drivers/manifest.json
+            build/ci-drivers/*.driver/Contents/Resources/build-info.json
+      - name: Remove test device
+        if: always()
+        run: sudo python3 scripts/virtual-devices.py uninstall ci-loopback

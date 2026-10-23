@@ -55,13 +55,14 @@ class DriverConfigurationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory(prefix='ravelink-driver-test-') as directory:
             directory = Path(directory)
             output = directory / 'devices'
-            subprocess.run([str(SCRIPT), 'build', '--device', 'test-one:Test One', '--device', 'test-two:Test Two', '--output', str(output)], stdout=subprocess.DEVNULL, check=True)
+            subprocess.run([str(SCRIPT), 'build', '--device', 'test-one:Test "One" 🎵', '--device', 'test-two:Test Two', '--output', str(output)], stdout=subprocess.DEVNULL, check=True)
             bundles = sorted(output.glob('*.driver'))
             self.assertEqual(len(bundles), 2)
             metadata = [virtual.validate_bundle(bundle) for bundle in bundles]
             self.assertNotEqual(metadata[0]['factoryUUID'], metadata[1]['factoryUUID'])
             self.assertNotEqual(metadata[0]['deviceUID'], metadata[1]['deviceUID'])
             self.assertEqual(metadata[0]['architectures'], ['arm64', 'x86_64'])
+            self.assertEqual(metadata[0]['name'], 'RaveLink Test "One" 🎵')
             executable = directory / 'driver-contract'
             subprocess.run(['xcrun', 'clang', '-O2', '-Wall', '-Wextra', str(ROOT / 'Drivers/tests/driver_contract.c'), '-framework', 'CoreAudio', '-framework', 'CoreFoundation', '-o', str(executable)], check=True)
             args = [str(executable)]

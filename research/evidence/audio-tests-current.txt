@@ -1,0 +1,52 @@
+􀟈  Test run started.
+􀄵  Testing Library Version: 1400
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite AudioAllocationTests started.
+􀟈  Suite AudioCoordinatorTests started.
+􀟈  Suite RealtimeTests started.
+􀟈  Suite FeedbackValidationTests started.
+􀟈  Suite GroupedRealtimeTests started.
+􀟈  Test rateExtremesReserveEnoughFramesAndFilterSpace() started.
+􀟈  Test testBandLimitedDownsamplingRejectsAliasedHighFrequency() started.
+􀟈  Test testNonFiniteInputIsContainedAndInvalidConfigurationRejected() started.
+􀟈  Test testDSPGainHighPassGateAndCompression() started.
+􀟈  Test testIndependentBusGainPanMuteAndOffsets() started.
+􀟈  Test separatesStereoPairsAndRejectsOverlap() started.
+􀟈  Test testRingIsBoundedAndReportsOverflowAndUnderrun() started.
+􀟈  Test rejectsBudgetOverflowBeforeAllocating() started.
+􀟈  Test detectsMultiDeviceCycleAndAllowsMutedBreak() started.
+􀟈  Test testInvalidStartFailsWithActionableErrorAndStaysStopped() started.
+􀟈  Test testCaptureMonoDuplicationAndMeter() started.
+􀟈  Test defaultGroupsRemainIndependentAndInvalidGraphsAreRejected() started.
+􀟈  Test compressorProcessesSummedWaveformOnce() started.
+􀟈  Test testGainChangesRampAndMuteReachesSilence() started.
+􀟈  Test toneGroupReceivesGainExactlyOnce() started.
+􀟈  Test sumsGroupOnceAndUsesOnlyParentSendsForIndependentBuses() started.
+􀟈  Test captureSilencesItsDuplexOutputContribution() started.
+􁁛  Test testNonFiniteInputIsContainedAndInvalidConfigurationRejected() passed after 0.001 seconds.
+􁁛  Test captureSilencesItsDuplexOutputContribution() passed after 0.001 seconds.
+􁁛  Test rateExtremesReserveEnoughFramesAndFilterSpace() passed after 0.001 seconds.
+􁁛  Test rejectsBudgetOverflowBeforeAllocating() passed after 0.001 seconds.
+􁁛  Suite AudioAllocationTests passed after 0.001 seconds.
+􁁛  Test separatesStereoPairsAndRejectsOverlap() passed after 0.001 seconds.
+􁁛  Test detectsMultiDeviceCycleAndAllowsMutedBreak() passed after 0.001 seconds.
+􁁛  Suite FeedbackValidationTests passed after 0.001 seconds.
+􁁛  Test testRingIsBoundedAndReportsOverflowAndUnderrun() passed after 0.001 seconds.
+􁁛  Test testCaptureMonoDuplicationAndMeter() passed after 0.001 seconds.
+􁁛  Test testInvalidStartFailsWithActionableErrorAndStaysStopped() passed after 0.001 seconds.
+􀙟  Test testBlackHoleLoopbackAndLiveBusControls() skipped.
+􀟈  Test testSilentPhysicalOutputLifecycle() started.
+􁁛  Test testGainChangesRampAndMuteReachesSilence() passed after 0.001 seconds.
+􁁛  Test toneGroupReceivesGainExactlyOnce() passed after 0.002 seconds.
+􁁛  Test testIndependentBusGainPanMuteAndOffsets() passed after 0.002 seconds.
+􁁛  Test testDSPGainHighPassGateAndCompression() passed after 0.004 seconds.
+􁁛  Test sumsGroupOnceAndUsesOnlyParentSendsForIndependentBuses() passed after 0.024 seconds.
+􁁛  Test defaultGroupsRemainIndependentAndInvalidGraphsAreRejected() passed after 0.030 seconds.
+􁁛  Test compressorProcessesSummedWaveformOnce() passed after 0.030 seconds.
+􁁛  Suite GroupedRealtimeTests passed after 0.030 seconds.
+􁁛  Test testBandLimitedDownsamplingRejectsAliasedHighFrequency() passed after 0.079 seconds.
+􁁛  Suite RealtimeTests passed after 0.079 seconds.
+NATIVE_SILENT_OUTPUT uid=BuiltInSpeakerDevice renderedFrames=48128 peak=0.0
+􁁛  Test testSilentPhysicalOutputLifecycle() passed after 1.347 seconds.
+􁁛  Suite AudioCoordinatorTests passed after 1.349 seconds.
+􁁛  Test run with 19 tests in 5 suites passed after 1.349 seconds.

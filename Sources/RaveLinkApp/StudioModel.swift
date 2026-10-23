@@ -15,6 +15,7 @@ import RaveLinkAudio
     @Published var outputTarget: UUID?
     @Published var showingOutputs = false
     @Published var showingSettings = false
+    @Published var showingDiagnostics = false
     let audio = AudioCoordinator()
     private let store = SessionStore.standard
     private var pending: Task<Void, Never>?
@@ -77,7 +78,7 @@ import RaveLinkAudio
                 else if session.channels[i].additionalSources.indices.contains(slot - 1) { session.channels[i].additionalSources[slot - 1] = input.source }
             } else { session.channels[i].additionalSources.append(input.source) }
             selectedChannel = target
-        } else { session.addChannel(input); selectedChannel = input.id }
+        } else { session.addChannel(input); selectedChannel = nil }
     }
     func add(_ bus: MixBus) { session.addBus(bus) }
     func removeChannel(_ id: UUID) { if selectedChannel == id { selectedChannel = nil }; session.removeChannel(id) }

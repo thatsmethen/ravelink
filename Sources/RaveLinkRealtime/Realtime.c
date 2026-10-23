@@ -228,6 +228,10 @@ float rl_capture_take_peak(RLCapture *c) { return c ? atomic_exchange(&c->peak, 
 uint64_t rl_capture_frames(RLCapture *c) { return c ? atomic_load(&c->frames) : 0; }
 OSStatus rl_capture_callback(AudioObjectID device, const AudioTimeStamp *now, const AudioBufferList *input,
         const AudioTimeStamp *inputTime, AudioBufferList *output, const AudioTimeStamp *outputTime, void *context) {
+    // A capture IOProc on a duplex device still owns an output contribution.
+    // Silence it explicitly; CoreAudio may mix it with another render IOProc.
+    if (output) for (uint32_t b = 0; b < output->mNumberBuffers; b++)
+        if (output->mBuffers[b].mData) memset(output->mBuffers[b].mData, 0, output->mBuffers[b].mDataByteSize);
     RLCapture *c = context; if (!c) return noErr;
     uint32_t frames = list_frames(input), channels = list_channels(input);
     uint32_t right = c->channelOffset + 1 < channels ? c->channelOffset + 1 : c->channelOffset;
@@ -245,40 +249,61 @@ OSStatus rl_capture_callback(AudioObjectID device, const AudioTimeStamp *now, co
     atomic_fetch_add(&c->frames, frames); return noErr;
 }
 
-typedef struct { RLRing *ring; double ratio, phase; bool tone; _Atomic bool audible; RLDSP *dsp; _Atomic float peak; } RLSource;
+typedef struct { RLRing *ring; double ratio, phase; uint32_t leader; bool tone; _Atomic bool audible; RLDSP *dsp; _Atomic float peak; } RLSource;
 typedef struct { uint32_t offset; _Atomic float gain; _Atomic bool muted; _Atomic float peak; float smoothedGain; } RLBus;
 typedef struct { _Atomic float left, right; _Atomic bool muted; float smoothLeft, smoothRight; } RLSend;
 struct RLRender {
     double sampleRate;
     uint32_t maxFrames, sourceCount, busCount;
     RLSource *sources; RLBus *buses; RLSend *sends;
-    float *sourceScratch, *busScratch;
+    float *sourceScratch, *groupScratch, *busScratch;
     _Atomic uint64_t frames, oversized;
 };
 RLRender *rl_render_create(double rate, uint32_t maxFrames, uint32_t sourceCount, uint32_t busCount) {
     if (!atomics_supported() || !maxFrames || !isfinite(rate) || rate < 8000) return NULL;
+    // All size products are checked before allocation; public C inputs need not
+    // have passed the Swift model's validation.
+    size_t sources = sourceCount ? sourceCount : 1, buses = busCount ? busCount : 1;
+    if (sources > SIZE_MAX / buses / sizeof(RLSend) ||
+        (size_t)maxFrames > SIZE_MAX / 2 / sizeof(float) / sources ||
+        (size_t)maxFrames > SIZE_MAX / 2 / sizeof(float) / buses) return NULL;
     RLRender *r = calloc(1, sizeof(*r)); if (!r) return NULL;
     r->sampleRate = rate; r->maxFrames = maxFrames; r->sourceCount = sourceCount; r->busCount = busCount;
     r->sources = calloc(sourceCount ? sourceCount : 1, sizeof(RLSource));
     r->buses = calloc(busCount ? busCount : 1, sizeof(RLBus));
     r->sends = calloc((size_t)(sourceCount ? sourceCount : 1) * (busCount ? busCount : 1), sizeof(RLSend));
     r->sourceScratch = calloc((size_t)maxFrames * 2, sizeof(float));
-    r->busScratch = calloc((size_t)maxFrames * 2 * (busCount ? busCount : 1), sizeof(float));
-    if (!r->sources || !r->buses || !r->sends || !r->sourceScratch || !r->busScratch) { rl_render_destroy(r); return NULL; }
+    r->groupScratch = calloc((size_t)maxFrames * 2 * sources, sizeof(float));
+    r->busScratch = calloc((size_t)maxFrames * 2 * buses, sizeof(float));
+    if (!r->sources || !r->buses || !r->sends || !r->sourceScratch || !r->groupScratch || !r->busScratch) { rl_render_destroy(r); return NULL; }
     for (uint32_t i = 0; i < sourceCount; i++) {
+        r->sources[i].leader = i;
         r->sources[i].dsp = rl_dsp_create(rate); if (!r->sources[i].dsp) { rl_render_destroy(r); return NULL; }
     }
-    for (uint32_t i = 0; i < sourceCount * busCount; i++) atomic_store(&r->sends[i].muted, true);
+    for (size_t i = 0; i < (size_t)sourceCount * busCount; i++) atomic_store(&r->sends[i].muted, true);
     return r;
 }
 void rl_render_destroy(RLRender *r) {
     if (!r) return;
     if (r->sources) for (uint32_t i = 0; i < r->sourceCount; i++) rl_dsp_destroy(r->sources[i].dsp);
-    free(r->sources); free(r->buses); free(r->sends); free(r->sourceScratch); free(r->busScratch); free(r);
+    free(r->sources); free(r->buses); free(r->sends); free(r->sourceScratch); free(r->groupScratch); free(r->busScratch); free(r);
 }
 void rl_render_set_source(RLRender *r, uint32_t i, RLRing *ring, double inputRate, bool tone) {
     if (!r || i >= r->sourceCount) return;
     r->sources[i].ring = ring; r->sources[i].ratio = inputRate / r->sampleRate; r->sources[i].tone = tone;
+}
+bool rl_render_set_source_group(RLRender *r, uint32_t source, uint32_t leader) {
+    if (!r || source >= r->sourceCount || leader >= r->sourceCount) return false;
+    if (source == leader) { r->sources[source].leader = source; return true; }
+    if (r->sources[leader].leader != leader) return false;
+    if (source != leader) {
+        // Only direct parent links are allowed, so render never traverses a tree
+        // (or encounters a cycle) on the real-time thread.
+        for (uint32_t i = 0; i < r->sourceCount; i++)
+            if (i != source && r->sources[i].leader == source) return false;
+    }
+    r->sources[source].leader = leader;
+    return true;
 }
 void rl_render_source_controls(RLRender *r, uint32_t i, bool audible, float gain, float hp, float gate, float threshold, float ratio) {
     if (!r || i >= r->sourceCount) return;
@@ -290,7 +315,7 @@ void rl_render_bus_controls(RLRender *r, uint32_t i, float gain, bool muted) {
 }
 void rl_render_send_controls(RLRender *r, uint32_t source, uint32_t bus, float gain, float pan, bool muted) {
     if (!r || source >= r->sourceCount || bus >= r->busCount) return;
-    RLSend *s = &r->sends[source * r->busCount + bus]; float g = db_gain(gain); pan = fmaxf(-1, fminf(pan, 1));
+    RLSend *s = &r->sends[(size_t)source * r->busCount + bus]; float g = db_gain(gain); pan = fmaxf(-1, fminf(pan, 1));
     // Stereo balance: unity at centre; attenuate opposite side toward the edges.
     atomic_store(&s->left, g * (pan > 0 ? 1 - pan : 1)); atomic_store(&s->right, g * (pan < 0 ? 1 + pan : 1));
     atomic_store(&s->muted, muted);
@@ -306,6 +331,8 @@ OSStatus rl_render_callback(AudioObjectID device, const AudioTimeStamp *now, con
     for (uint32_t b = 0; b < output->mNumberBuffers; b++) if (output->mBuffers[b].mData) memset(output->mBuffers[b].mData, 0, output->mBuffers[b].mDataByteSize);
     if (frames > r->maxFrames) { atomic_fetch_add(&r->oversized, 1); return noErr; }
     memset(r->busScratch, 0, (size_t)frames * 2 * r->busCount * sizeof(float));
+    memset(r->groupScratch, 0, (size_t)frames * 2 * r->sourceCount * sizeof(float));
+    // Resample each member onto this output clock before summing its group.
     for (uint32_t s = 0; s < r->sourceCount; s++) {
         RLSource *src = &r->sources[s];
         if (src->tone) {
@@ -314,22 +341,33 @@ OSStatus rl_render_callback(AudioObjectID device, const AudioTimeStamp *now, con
                 src->phase += 2 * M_PI * 440 / r->sampleRate; if (src->phase >= 2 * M_PI) src->phase -= 2 * M_PI;
                 r->sourceScratch[f * 2] = value; r->sourceScratch[f * 2 + 1] = value;
             }
-            rl_dsp_process(src->dsp, r->sourceScratch, frames);
         } else {
             memset(r->sourceScratch, 0, (size_t)frames * 2 * sizeof(float));
             if (src->ring) rl_ring_read(src->ring, r->sourceScratch, frames, src->ratio);
         }
-        float peak = 0; for (uint32_t f = 0; f < frames * 2; f++) peak = fmaxf(peak, fabsf(r->sourceScratch[f])); peak_store(&src->peak, peak);
+        float *group = r->groupScratch + (size_t)src->leader * frames * 2;
+        for (size_t sample = 0; sample < (size_t)frames * 2; sample++) group[sample] += r->sourceScratch[sample];
+    }
+    // The parent owns one effect chain and one set of sends. Child sends are
+    // lowering metadata only: routing them again would duplicate the whole mix.
+    for (uint32_t s = 0; s < r->sourceCount; s++) {
+        RLSource *src = &r->sources[s];
+        if (src->leader != s) continue;
+        float *group = r->groupScratch + (size_t)s * frames * 2;
+        rl_dsp_process(src->dsp, group, frames);
+        float peak = 0;
+        for (size_t sample = 0; sample < (size_t)frames * 2; sample++) peak = fmaxf(peak, fabsf(group[sample]));
+        peak_store(&src->peak, peak);
         bool audible = atomic_load(&src->audible);
         float smoothing = (float)exp(-1 / (.005 * r->sampleRate));
         for (uint32_t b = 0; b < r->busCount; b++) {
-            RLSend *send = &r->sends[s * r->busCount + b]; bool muted = atomic_load(&send->muted) || !audible;
+            RLSend *send = &r->sends[(size_t)s * r->busCount + b]; bool muted = atomic_load(&send->muted) || !audible;
             float left = muted ? 0 : atomic_load(&send->left), right = muted ? 0 : atomic_load(&send->right);
             float *dst = r->busScratch + (size_t)b * frames * 2;
             for (uint32_t f = 0; f < frames; f++) {
                 send->smoothLeft = smoothing * send->smoothLeft + (1 - smoothing) * left;
                 send->smoothRight = smoothing * send->smoothRight + (1 - smoothing) * right;
-                dst[f * 2] += r->sourceScratch[f * 2] * send->smoothLeft; dst[f * 2 + 1] += r->sourceScratch[f * 2 + 1] * send->smoothRight;
+                dst[f * 2] += group[f * 2] * send->smoothLeft; dst[f * 2 + 1] += group[f * 2 + 1] * send->smoothRight;
             }
         }
     }

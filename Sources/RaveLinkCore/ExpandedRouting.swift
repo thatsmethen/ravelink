@@ -1,6 +1,68 @@
 import Foundation
 import CryptoKit
 
+/// Resource policy for preparation work, separate from audio performance limits.
+public enum RoutingCapacity {
+    /// At most one sixteenth of physical RAM and 512 MiB per preparation budget.
+    /// This is a conservative allowance, not a reading of currently free RAM.
+    public static var defaultMemoryBudgetBytes: UInt64 {
+        min(ProcessInfo.processInfo.physicalMemory / 16, 512 * 1024 * 1024)
+    }
+}
+
+/// Predicts the size of lowering before constructing its channel × output matrix.
+/// Includes spare array capacity and allowances for maps, validation sets, and
+/// generated route identifier strings. It excludes retained original-model data,
+/// audio buffers, Core Audio allocations, and allocator/runtime bookkeeping.
+/// This is a resource guard, not a guarantee about process RSS or realtime speed.
+public struct RoutingCapacityEstimate: Equatable, Sendable {
+    public let expandedChannelCount: Int
+    public let expandedBusCount: Int
+    public let expandedRouteCount: Int
+    public let estimatedBytes: UInt64
+    /// Node and route records visited during construction; not CPU-time units.
+    public let constructionWorkItems: UInt64
+
+    public init(expandedChannelCount: Int, expandedBusCount: Int) throws {
+        guard expandedChannelCount >= 0, expandedBusCount >= 0 else {
+            throw SessionError.invalid("Expanded routing counts cannot be negative.")
+        }
+        let (routes, overflow) = expandedChannelCount.multipliedReportingOverflow(by: expandedBusCount)
+        guard !overflow else { throw routingCapacityOverflow() }
+        self.expandedChannelCount = expandedChannelCount
+        self.expandedBusCount = expandedBusCount
+        expandedRouteCount = routes
+        let channels = UInt64(expandedChannelCount), buses = UInt64(expandedBusCount), sends = UInt64(routes)
+        // Allow two inline copies per record plus per-record container/string
+        // space. The named allowances are policy estimates, not ABI guarantees.
+        let channelAllowance = UInt64(MemoryLayout<MixerChannel>.stride * 2 + 256)
+        let busAllowance = UInt64(MemoryLayout<MixBus>.stride * 2 + 256)
+        let routeAllowance = UInt64(MemoryLayout<MixSend>.stride * 2 + 256)
+        var bytes: UInt64 = 16 * 1024 // Fixed dictionary/array and validation allowance.
+        for (count, allowance) in [(channels, channelAllowance), (buses, busAllowance), (sends, routeAllowance)] {
+            let (part, multiplyOverflow) = count.multipliedReportingOverflow(by: allowance)
+            let (total, addOverflow) = bytes.addingReportingOverflow(part)
+            guard !multiplyOverflow, !addOverflow else { throw routingCapacityOverflow() }
+            bytes = total
+        }
+        estimatedBytes = bytes
+        let (nodes, nodeOverflow) = channels.addingReportingOverflow(buses)
+        let (work, workOverflow) = nodes.addingReportingOverflow(sends)
+        guard !nodeOverflow, !workOverflow else { throw routingCapacityOverflow() }
+        constructionWorkItems = work
+    }
+
+    public func requireMemoryBudget(_ memoryBudgetBytes: UInt64) throws {
+        guard estimatedBytes <= memoryBudgetBytes else {
+            throw SessionError.invalid("This routing expands to \(expandedChannelCount) inputs, \(expandedBusCount) outputs, and \(expandedRouteCount) routes; preparation is estimated at \(estimatedBytes) bytes, above the \(memoryBudgetBytes)-byte budget. Reduce grouped sources, additional outputs, or mix buses before starting audio.")
+        }
+    }
+}
+
+private func routingCapacityOverflow() -> SessionError {
+    .invalid("The expanded routing resource estimate exceeds this machine's addressable size. Reduce grouped sources, additional outputs, or mix buses.")
+}
+
 /// A device-level graph derived from the user's grouped channel/mix model.
 /// IDs are stable across control and label edits. Primary nodes retain their IDs;
 /// additional nodes use UUID v5 identities derived from the parent and array slot.
@@ -11,8 +73,9 @@ public struct ExpandedRouting: Sendable, Equatable {
     /// Expanded bus ID → original visible bus ID, including primary nodes.
     public let busParents: [UUID: UUID]
 
-    /// Greatest member peak, representing activity in a source group. This is not
-    /// a reconstructed waveform peak for the sum; scalar peaks cannot provide it.
+    /// Greatest reported child peak. The grouped renderer reports its summed,
+    /// post-DSP waveform peak on the leader; other children report zero. Callers
+    /// supplying separate member peaks obtain activity, not a reconstructed sum.
     public func aggregateChannelPeaks(_ peaks: [UUID: Float]) -> [UUID: Float] {
         aggregate(peaks, parents: channelParents)
     }
@@ -31,17 +94,41 @@ public struct ExpandedRouting: Sendable, Equatable {
 }
 
 public extension MixerSession {
+    /// Counts members directly, without materializing allSources/allOutputs arrays.
+    func routingCapacityEstimate() throws -> RoutingCapacityEstimate {
+        var channelCount = channels.count, busCount = buses.count
+        for channel in channels {
+            let (total, overflow) = channelCount.addingReportingOverflow(channel.additionalSources.count)
+            guard !overflow else { throw routingCapacityOverflow() }
+            channelCount = total
+        }
+        for bus in buses {
+            let (total, overflow) = busCount.addingReportingOverflow(bus.additionalOutputs.count)
+            guard !overflow else { throw routingCapacityOverflow() }
+            busCount = total
+        }
+        return try RoutingCapacityEstimate(expandedChannelCount: channelCount, expandedBusCount: busCount)
+    }
+
     /// Expands every grouped source into a capture channel and every additional
     /// output into a bus. Each parent send is copied to the cross-product of its
     /// source members and destinations, preserving gain, pan, and mute settings.
-    /// Effect settings are copied to each member; nonlinear processing therefore
-    /// occurs per source, not after summing the group.
-    func expandedRouting() throws -> ExpandedRouting {
+    /// Effect settings are copied to each member as control metadata. The audio
+    /// backend uses channelParents to sum members before applying the parent
+    /// effect chain and routes that group once through the parent sends.
+    func expandedRouting(memoryBudgetBytes: UInt64 = RoutingCapacity.defaultMemoryBudgetBytes) throws -> ExpandedRouting {
+        let capacity = try routingCapacityEstimate()
+        try capacity.requireMemoryBudget(memoryBudgetBytes)
         _ = try validated()
         var channelGroups: [UUID: [UUID]] = [:], busGroups: [UUID: [UUID]] = [:]
         var channelParents: [UUID: UUID] = [:], busParents: [UUID: UUID] = [:]
         var lowered = MixerSession(name: name)
         lowered.schemaVersion = schemaVersion
+        lowered.channels.reserveCapacity(capacity.expandedChannelCount)
+        lowered.buses.reserveCapacity(capacity.expandedBusCount)
+        lowered.sends.reserveCapacity(capacity.expandedRouteCount)
+        channelParents.reserveCapacity(capacity.expandedChannelCount)
+        busParents.reserveCapacity(capacity.expandedBusCount)
         for parent in channels {
             var ids: [UUID] = []
             for (slot, source) in parent.allSources.enumerated() {
@@ -75,11 +162,6 @@ public extension MixerSession {
             }
             busGroups[parent.id] = ids
         }
-        let (routeCount, overflow) = lowered.channels.count.multipliedReportingOverflow(by: lowered.buses.count)
-        guard !overflow else { throw SessionError.invalid("The expanded routing matrix exceeds this machine's addressable size.") }
-        // Every visible route must exist before expansion (validated above).
-        // Do not reserve enormous virtual address ranges speculatively.
-        if routeCount < 65_536 { lowered.sends.reserveCapacity(routeCount) }
         for send in sends {
             guard let children = channelGroups[send.channelID], let outputs = busGroups[send.busID] else {
                 throw SessionError.invalid("A grouped route refers to a missing input or mix.")

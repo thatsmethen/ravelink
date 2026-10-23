@@ -1,0 +1,13 @@
+[0/1] Planning build
+􀟈  Test run started.
+􀄵  Testing Library Version: 1400
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite AudioCoordinatorTests started.
+􀟈  Test testBlackHoleLoopbackAndLiveBusControls() started.
+􀢄  Test testBlackHoleLoopbackAndLiveBusControls() recorded an issue at RealtimeTests.swift:177:13: Expectation failed: (coordinator → RaveLinkAudio.AudioCoordinator).running → false
+􀄵  The audio driver did not respond within 10 seconds. Quit and reopen RaveLink. If it persists, reconnect the device or restart macOS. System audio settings were not changed.
+􀢄  Test testBlackHoleLoopbackAndLiveBusControls() failed after 10.203 seconds with 1 issue.
+􀄵  /// Opt-in because this opens a real driver. It never changes the system default
+􀄵  /// devices and every return path stops both capture and render IOProcs.
+􀢄  Suite AudioCoordinatorTests failed after 10.203 seconds with 1 issue.
+􀢄  Test run with 1 test in 1 suite failed after 10.204 seconds with 1 issue.

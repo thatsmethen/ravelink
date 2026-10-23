@@ -42,6 +42,15 @@ public enum AudioRoutingError: LocalizedError {
 private func checked(_ status: OSStatus, _ operation: String) throws {
     guard status == noErr else { throw AudioRoutingError.coreAudio(operation, status) }
 }
+private final class GraphCancellation: @unchecked Sendable {
+    private let lock = NSLock()
+    private var cancelled = false
+    func cancel() { lock.lock(); cancelled = true; lock.unlock() }
+    func check() throws {
+        lock.lock(); let cancelled = self.cancelled; lock.unlock()
+        if cancelled { throw CancellationError() }
+    }
+}
 private enum Hardware {
     static let system = AudioObjectID(kAudioObjectSystemObject)
     static func address(_ selector: AudioObjectPropertySelector, _ scope: AudioObjectPropertyScope = kAudioObjectPropertyScopeGlobal) -> AudioObjectPropertyAddress {
@@ -135,6 +144,7 @@ private final class CaptureNode {
     let context: OpaquePointer
     var proc: AudioDeviceIOProcID?
     var tap: AudioObjectID = 0
+    var tapDescription: CATapDescription?
     var aggregate: AudioObjectID = 0
     var started = false
     var abandoned = false
@@ -200,9 +210,10 @@ private final class AudioGraph: @unchecked Sendable {
     var outputs: [OutputNode] = []
     var rings: [OpaquePointer] = []
     var session: MixerSession
+    let channelParents: [UUID: UUID]
     var applicationProcesses: [String: [AudioObjectID]] = [:]
     static let maxFrames: UInt32 = 16384
-    init(session: MixerSession) { self.session = session }
+    init(session: MixerSession, channelParents: [UUID: UUID]) { self.session = session; self.channelParents = channelParents }
     @discardableResult func stop() -> String? {
         var safe = true
         for capture in captures { if !capture.stop() { safe = false } }
@@ -219,6 +230,11 @@ private final class AudioGraph: @unchecked Sendable {
         return nil
     }
     deinit { stop() }
+    func silence() {
+        for output in outputs {
+            for (index, _) in output.buses.enumerated() { rl_render_bus_controls(output.context, UInt32(index), 0, true) }
+        }
+    }
     static func sameTopology(_ a: MixerSession, _ b: MixerSession) -> Bool {
         a.channels.map(\.id) == b.channels.map(\.id) && a.channels.map(\.source) == b.channels.map(\.source)
         && a.buses.map(\.id) == b.buses.map(\.id) && a.buses.map(\.deviceUID) == b.buses.map(\.deviceUID)
@@ -226,28 +242,35 @@ private final class AudioGraph: @unchecked Sendable {
     }
     func controls(_ session: MixerSession) {
         let anySolo = session.channels.contains { $0.solo }
+        let sendsByChannel = Dictionary(grouping: session.sends, by: \.channelID).mapValues {
+            Dictionary(uniqueKeysWithValues: $0.map { ($0.busID, $0) })
+        }
+        let busesByID = Dictionary(uniqueKeysWithValues: session.buses.map { ($0.id, $0) })
         for capture in captures {
-            guard let channel = session.channels.first(where: { $0.id == capture.channelID }) else { continue }
-            let fx = channel.effects
-            rl_capture_controls(capture.context, fx.gainDB, fx.highPassHz, fx.gateThresholdDB, fx.compressorThresholdDB, fx.compressorRatio)
+            // Effects are applied after grouped sources have been summed at each
+            // destination rate. Capture remains raw to avoid per-source compression.
+            rl_capture_controls(capture.context, 0, 0, -80, 0, 1)
         }
         for output in outputs {
             for (i, channel) in session.channels.enumerated() {
                 let fx = channel.effects
                 rl_render_source_controls(output.context, UInt32(i), !channel.muted && (!anySolo || channel.solo), fx.gainDB, fx.highPassHz, fx.gateThresholdDB, fx.compressorThresholdDB, fx.compressorRatio)
                 for (b, busID) in output.buses.enumerated() {
-                    let send = session.sends.first { $0.channelID == channel.id && $0.busID == busID }
+                    let send = sendsByChannel[channel.id]?[busID]
                     rl_render_send_controls(output.context, UInt32(i), UInt32(b), send?.gainDB ?? 0, send?.pan ?? 0, send?.muted ?? true)
                 }
             }
             for (b, id) in output.buses.enumerated() {
-                guard let bus = session.buses.first(where: { $0.id == id }) else { continue }
+                guard let bus = busesByID[id] else { continue }
                 rl_render_bus_controls(output.context, UInt32(b), bus.gainDB, bus.muted)
             }
         }
         self.session = session
     }
-    func configure() throws {
+    func configure(cancellation: GraphCancellation) throws {
+        try cancellation.check()
+        var allocation = AudioAllocationBudget()
+        guard session.channels.count <= UInt32.max, session.buses.count <= UInt32.max else { throw AudioRoutingError.configuration("This graph has too many nodes for the audio device API.") }
         let available = Dictionary(uniqueKeysWithValues: Hardware.devices().map { ($0.1.id, ($0.0, $0.1)) })
         let assigned = session.buses.filter { $0.deviceUID != nil }
         guard !session.channels.isEmpty else { throw AudioRoutingError.configuration("Add an input channel before starting audio.") }
@@ -255,24 +278,29 @@ private final class AudioGraph: @unchecked Sendable {
         // Bound memory by machine resources, rather than imposing a product channel limit.
         let outputGroups = Dictionary(grouping: assigned, by: { $0.deviceUID! })
         for uid in outputGroups.keys.sorted() {
+            try cancellation.check()
             guard let (device, info) = available[uid], let buses = outputGroups[uid] else { throw AudioRoutingError.configuration("An output device is disconnected. Select an available device on each assigned mix bus.") }
             for bus in buses {
                 guard bus.channelOffset >= 0, bus.channelOffset + 1 < info.outputChannels else { throw AudioRoutingError.configuration("\(bus.name): \(info.name) does not provide the requested stereo output pair.") }
             }
             try Hardware.validateFloatStreams(device, scope: kAudioObjectPropertyScopeOutput)
             let rate = try Hardware.rate(device)
+            try allocation.reserve(try AudioAllocationBudget.output(sources: session.channels.count, buses: buses.count, frames: Self.maxFrames))
             guard let context = rl_render_create(rate, Self.maxFrames, UInt32(session.channels.count), UInt32(buses.count)) else { throw AudioRoutingError.configuration("Not enough memory to prepare this mix. Reduce channels or mix buses.") }
             let output = OutputNode(device: device, uid: uid, rate: rate, buses: buses.map(\.id), context: context)
             outputs.append(output)
             for (index, bus) in buses.enumerated() { rl_render_set_bus(context, UInt32(index), UInt32(bus.channelOffset)) }
             try output.prepare() // Registers our audio process before creating an exclusion tap.
+            try cancellation.check()
         }
         for (index, channel) in session.channels.enumerated() {
+            try cancellation.check()
             if channel.source.kind == .tone {
                 for output in outputs { rl_render_set_source(output.context, UInt32(index), nil, output.rate, true) }
                 continue
             }
             var device: AudioObjectID = 0, tap: AudioObjectID = 0, aggregate: AudioObjectID = 0
+            var tapDescription: CATapDescription?
             do {
                 if channel.source.kind == .device {
                     guard let uid = channel.source.deviceUID, let (id, info) = available[uid] else { throw AudioRoutingError.configuration("\(channel.name): choose an available input device.") }
@@ -295,9 +323,10 @@ private final class AudioGraph: @unchecked Sendable {
                     }
                     description.name = "RaveLink — \(channel.name)"
                     description.isPrivate = true
-                    // Suppress the original playback only while capture is active.
-                    // This makes monitor gain/mute authoritative and avoids doubling.
-                    description.muteBehavior = .mutedWhenTapped
+                    // Preparation must never suppress another app. Playback is
+                    // suppressed only after the main actor accepts this generation.
+                    description.muteBehavior = .unmuted
+                    tapDescription = description
                     try checked(AudioHardwareCreateProcessTap(description, &tap), "Create application audio tap")
                     let composition: [String: Any] = [
                         kAudioAggregateDeviceNameKey: "RaveLink private capture",
@@ -311,13 +340,16 @@ private final class AudioGraph: @unchecked Sendable {
                 }
                 try Hardware.validateFloatStreams(device, scope: kAudioObjectPropertyScopeInput)
                 let rate = try Hardware.rate(device)
+                try allocation.reserve(UInt64(Self.maxFrames) * 8 + UInt64(outputs.count) * 8 + 4096)
                 guard let context = rl_capture_create(rate, UInt32(channel.source.kind == .device ? channel.source.channelOffset : 0), Self.maxFrames, UInt32(outputs.count)) else { throw AudioRoutingError.configuration("Not enough memory to prepare the input channel.") }
                 let capture = CaptureNode(channelID: channel.id, device: device, rate: rate, context: context)
                 capture.tap = tap; capture.aggregate = aggregate; tap = 0; aggregate = 0
+                capture.tapDescription = tapDescription
                 captures.append(capture)
                 for (outputIndex, output) in outputs.enumerated() {
-                    let ringCapacity = UInt32(max(65536, Double(Self.maxFrames) * max(1, rate / output.rate) * 3 + 2048))
-                    guard let ring = rl_ring_create(ringCapacity) else { throw AudioRoutingError.configuration("Not enough memory to prepare audio buffers.") }
+                    let ringPlan = try AudioAllocationBudget.ring(ratio: rate / output.rate, frames: Self.maxFrames)
+                    try allocation.reserve(ringPlan.bytes)
+                    guard let ring = rl_ring_create(ringPlan.capacity) else { throw AudioRoutingError.configuration("Not enough memory to prepare audio buffers.") }
                     rings.append(ring)
                     guard rl_ring_prepare_ratio(ring, rate / output.rate) else { throw AudioRoutingError.configuration("The input and output sample rates are too far apart. Choose rates between 8 kHz and 192 kHz in Audio MIDI Setup.") }
                     rl_capture_set_destination(context, UInt32(outputIndex), ring)
@@ -329,10 +361,35 @@ private final class AudioGraph: @unchecked Sendable {
                 throw error
             }
         }
+        let indexes = Dictionary(uniqueKeysWithValues: session.channels.enumerated().map { ($0.element.id, $0.offset) })
+        for output in outputs {
+            for (index, channel) in session.channels.enumerated() {
+                let parent = channelParents[channel.id] ?? channel.id
+                guard let leader = indexes[parent] else { throw AudioRoutingError.configuration("An input group is missing its primary source.") }
+                guard rl_render_set_source_group(output.context, UInt32(index), UInt32(leader)) else { throw AudioRoutingError.configuration("An input group has an invalid source ordering.") }
+            }
+        }
         controls(session)
+        // Prepare/start a silent candidate. A stale or cancelled generation can
+        // never broadcast old mix settings after a delayed HAL call returns.
+        for output in outputs {
+            for (index, _) in output.buses.enumerated() { rl_render_bus_controls(output.context, UInt32(index), 0, true) }
+        }
         // All objects are configured before any device callbacks can run.
-        for capture in captures { try capture.start() }
-        for output in outputs { try output.start() }
+        for capture in captures { try cancellation.check(); try capture.start() }
+        for output in outputs { try cancellation.check(); try output.start() }
+        try cancellation.check()
+    }
+    func activateTaps(cancellation: GraphCancellation) throws {
+        for capture in captures {
+            try cancellation.check()
+            guard let description = capture.tapDescription else { continue }
+            description.muteBehavior = .mutedWhenTapped
+            var reference = Unmanaged.passUnretained(description)
+            var address = Hardware.address(kAudioTapPropertyDescription)
+            try checked(AudioObjectSetPropertyData(capture.tap, &address, 0, nil, UInt32(MemoryLayout.size(ofValue: reference)), &reference), "Activate application monitoring")
+            try cancellation.check()
+        }
     }
 }
 
@@ -346,12 +403,14 @@ private final class AudioGraph: @unchecked Sendable {
     @Published public private(set) var busMeters: [UUID: Float] = [:]
     @Published public private(set) var diagnostics = AudioDiagnostics()
     private var graph: AudioGraph?
+    private var routing: ExpandedRouting?
     private var timer: Timer?
     private var ticks = 0
     private let worker = DispatchQueue(label: "au.textual.ravelink.audio-control", qos: .userInitiated)
     private var generation: UInt64 = 0
     private var refreshing = false
     private var workerTimedOut = false
+    private var pendingStart: GraphCancellation?
 
     public init() {
         refreshDevices()
@@ -376,12 +435,13 @@ private final class AudioGraph: @unchecked Sendable {
         guard !workerTimedOut else { throw AudioRoutingError.configuration("The audio driver stopped responding. Quit and reopen RaveLink before starting another route.") }
         stop()
         do {
-            _ = try session.validated()
-            try validateFeedback(session)
-            guard !session.channels.isEmpty else { throw AudioRoutingError.configuration("Add an input channel before starting audio.") }
-            guard session.buses.contains(where: { $0.deviceUID != nil }) else { throw AudioRoutingError.configuration("Choose an output device on at least one mix bus before starting audio.") }
+            let expanded = try session.expandedRouting()
+            let routed = expanded.session
+            try validateFeedback(routed)
+            guard !routed.channels.isEmpty else { throw AudioRoutingError.configuration("Add an input channel before starting audio.") }
+            guard routed.buses.contains(where: { $0.deviceUID != nil }) else { throw AudioRoutingError.configuration("Choose an output device on at least one mix bus before starting audio.") }
             let virtualIDs = Set(devices.filter(\.isVirtual).map(\.id))
-            if session.channels.contains(where: { $0.source.kind == .device && !virtualIDs.contains($0.source.deviceUID ?? "") }) {
+            if routed.channels.contains(where: { $0.source.kind == .device && !virtualIDs.contains($0.source.deviceUID ?? "") }) {
                 switch AVCaptureDevice.authorizationStatus(for: .audio) {
                 case .denied, .restricted:
                     throw AudioRoutingError.configuration("Allow microphone access for RaveLink in System Settings → Privacy & Security → Microphone, then start audio again.")
@@ -394,21 +454,41 @@ private final class AudioGraph: @unchecked Sendable {
             starting = true; errorMessage = nil
             let request = generation
             let controlQueue = worker
+            let cancellation = GraphCancellation()
+            pendingStart = cancellation
             worker.async { [weak self] in
-                let candidate = AudioGraph(session: session)
+                let candidate = AudioGraph(session: routed, channelParents: expanded.channelParents)
                 do {
-                    try candidate.configure()
+                    try candidate.configure(cancellation: cancellation)
                     Task { @MainActor [weak self] in
                         guard let self else { controlQueue.async { candidate.stop() }; return }
                         guard self.generation == request else { self.worker.async { candidate.stop() }; return }
-                        self.graph = candidate; self.errorMessage = nil; self.diagnostics = .init(); self.starting = false; self.running = true
+                        self.worker.async { [weak self] in
+                            do {
+                                try cancellation.check()
+                                try candidate.activateTaps(cancellation: cancellation)
+                                Task { @MainActor [weak self] in
+                                    guard let self else { controlQueue.async { candidate.stop() }; return }
+                                    guard self.generation == request else { controlQueue.async { candidate.stop() }; return }
+                                    candidate.controls(routed)
+                                    self.graph = candidate; self.routing = expanded; self.errorMessage = nil; self.diagnostics = .init(); self.starting = false; self.pendingStart = nil; self.running = true
+                                }
+                            } catch {
+                                candidate.stop()
+                                let message = error.localizedDescription
+                                Task { @MainActor [weak self] in
+                                    guard let self, self.generation == request else { return }
+                                    self.starting = false; self.pendingStart = nil; self.errorMessage = message
+                                }
+                            }
+                        }
                     }
                 } catch {
                     candidate.stop()
                     let message = error.localizedDescription
                     Task { @MainActor [weak self] in
                         guard let self, self.generation == request else { return }
-                        self.starting = false; self.errorMessage = message
+                        self.starting = false; self.pendingStart = nil; self.errorMessage = message
                     }
                 }
             }
@@ -417,6 +497,7 @@ private final class AudioGraph: @unchecked Sendable {
             Task { @MainActor [weak self] in
                 try? await Task.sleep(for: .seconds(10))
                 guard let self, self.generation == request, self.starting else { return }
+                self.pendingStart?.cancel(); self.pendingStart = nil
                 self.generation &+= 1; self.starting = false; self.workerTimedOut = true
                 self.errorMessage = "The audio driver did not respond within 10 seconds. Quit and reopen RaveLink. If it persists, reconnect the device or restart macOS. System audio settings were not changed."
             }
@@ -424,49 +505,35 @@ private final class AudioGraph: @unchecked Sendable {
     }
     public func update(session: MixerSession) throws {
         do {
-            _ = try session.validated()
-            try validateFeedback(session)
+            let expanded = try session.expandedRouting()
+            let routed = expanded.session
+            try validateFeedback(routed)
             guard let graph else {
                 if starting { try start(session: session) }
                 return
             }
-            if AudioGraph.sameTopology(graph.session, session) { graph.controls(session) }
+            if AudioGraph.sameTopology(graph.session, routed) { graph.controls(routed); routing = expanded }
             else { try start(session: session) }
         } catch {
             stop(); errorMessage = error.localizedDescription; throw error
         }
     }
     public func stop() {
+        pendingStart?.cancel(); pendingStart = nil
         generation &+= 1; starting = false
         if let graph {
+            graph.silence()
             worker.async { [weak self] in
                 if let message = graph.stop() {
                     Task { @MainActor [weak self] in self?.workerTimedOut = true; self?.errorMessage = message }
                 }
             }
         }
-        graph = nil; running = false; channelMeters = [:]; busMeters = [:]
+        graph = nil; routing = nil; running = false; channelMeters = [:]; busMeters = [:]
     }
     private func validateFeedback(_ session: MixerSession) throws {
         let virtualIDs = Set(devices.filter(\.isVirtual).map(\.id))
-        let anySolo = session.channels.contains(where: \.solo)
-        var edges: [String: Set<String>] = [:]
-        for channel in session.channels where channel.source.kind == .device && !channel.muted && (!anySolo || channel.solo) && virtualIDs.contains(channel.source.deviceUID ?? "") {
-            for bus in session.buses where !bus.muted && bus.deviceUID != nil && virtualIDs.contains(bus.deviceUID!) {
-                if session.sends.contains(where: { $0.channelID == channel.id && $0.busID == bus.id && !$0.muted }) {
-                    edges[channel.source.deviceUID!, default: []].insert(bus.deviceUID!)
-                }
-            }
-        }
-        var visiting: Set<String> = [], complete: Set<String> = []
-        func hasCycle(_ node: String) -> Bool {
-            if visiting.contains(node) { return true }
-            if complete.contains(node) { return false }
-            visiting.insert(node)
-            for next in edges[node] ?? [] { if hasCycle(next) { return true } }
-            visiting.remove(node); complete.insert(node); return false
-        }
-        if edges.keys.contains(where: { hasCycle($0) }) {
+        if hasVirtualFeedbackCycle(session, virtualDeviceUIDs: virtualIDs) {
             throw AudioRoutingError.configuration("The active routes form a feedback loop through virtual devices. Mute a send or choose another output to break the loop before starting audio.")
         }
     }
@@ -476,19 +543,21 @@ private final class AudioGraph: @unchecked Sendable {
         guard let graph else { return }
         var channels: [UUID: Float] = [:], buses: [UUID: Float] = [:], stats = AudioDiagnostics()
         for capture in graph.captures {
-            channels[capture.channelID] = rl_capture_take_peak(capture.context)
+            _ = rl_capture_take_peak(capture.context)
             stats.capturedFrames += rl_capture_frames(capture.context)
         }
         for output in graph.outputs {
             for (i, id) in output.buses.enumerated() { buses[id] = rl_render_take_bus_peak(output.context, UInt32(i)) }
-            for (i, channel) in graph.session.channels.enumerated() where channel.source.kind == .tone {
+            for (i, channel) in graph.session.channels.enumerated() {
                 channels[channel.id] = max(channels[channel.id] ?? 0, rl_render_take_source_peak(output.context, UInt32(i)))
             }
             stats.renderedFrames += rl_render_frames(output.context)
             stats.oversizedBlocks += rl_render_oversized_blocks(output.context)
         }
         for ring in graph.rings { stats.droppedFrames += rl_ring_dropped(ring); stats.underrunFrames += rl_ring_underruns(ring) }
-        channelMeters = channels; busMeters = buses; diagnostics = stats
+        channelMeters = routing?.aggregateChannelPeaks(channels) ?? channels
+        busMeters = routing?.aggregateBusPeaks(buses) ?? buses
+        diagnostics = stats
         if stats.oversizedBlocks > 0 {
             stop(); errorMessage = "The audio device requested a buffer larger than 16,384 frames. Choose a smaller device buffer in Audio MIDI Setup and restart audio."
         }

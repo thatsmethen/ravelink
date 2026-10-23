@@ -1,0 +1,27 @@
+Observed 2026-10-24 Australia/Melbourne, on the development host.
+Independent minimal C probe called AudioDeviceCreateIOProcID and, only on success,
+AudioDeviceDestroyIOProcID. It linked CoreAudio/CoreFoundation, no RaveLink symbols.
+The reproducible expanded probe is scripts/audio-device-probe.c with its timeout runner.
+
+BlackHole 2ch (device 108; UID BlackHole2ch_UID):
+  enumeration status 0
+  register-start
+  external subprocess timeout after 6 seconds; no return from AudioDeviceCreateIOProcID
+
+MacBook Pro Speakers (device 155; UID BuiltInSpeakerDevice):
+  enumeration status 0
+  register-start
+  register-return status 0
+  unregister-return status 0
+  process exit 0
+
+Installed BlackHole Info.plist:
+  CFBundleShortVersionString: v0.5.0
+  CFBundleVersion: 595
+  CFBundleIdentifier: audio.existential.BlackHole2ch
+  DTSDKName: macosx13.0
+
+This identifies a driver-specific registration failure in the current host HAL state.
+It does not establish the cause, prove every BlackHole installation is affected, or
+validate a working virtual loopback. No default device, sample rate, device volume,
+or coreaudiod service was changed by these probes.

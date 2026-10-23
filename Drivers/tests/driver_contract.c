@@ -48,6 +48,9 @@ static Instance open_instance(const char *binary, const char *uid, const char *c
     assert(CFStringGetCString(actual_uid, buffer, sizeof(buffer), kCFStringEncodingUTF8));
     assert(strcmp(buffer, uid) == 0);
     CFRelease(actual_uid);
+    UInt32 transport;
+    get_property(instance, 3, kAudioDevicePropertyTransportType, kAudioObjectPropertyScopeGlobal, sizeof(transport), &transport);
+    assert(transport == kAudioDeviceTransportTypeVirtual);
     Float64 rate;
     get_property(instance, 3, kAudioDevicePropertyNominalSampleRate, kAudioObjectPropertyScopeGlobal, sizeof(rate), &rate);
     assert(rate == 48000.0);
@@ -146,7 +149,7 @@ int main(int argc, const char **argv) {
         assert((*v.driver)->StopIO(v.driver, 3, 2) == kAudioHardwareIllegalOperationError);
         dlclose(v.handle);
     }
-    printf("PASS: %d bundles; identity, formats, hidden mirror, malformed request, 4096-block loopback per bundle, ring wrap, silence, clock, instance isolation, client lifecycle.\n", count);
+    printf("PASS: %d bundles; identity, virtual transport, formats, hidden mirror, malformed request, 4096-block loopback per bundle, ring wrap, silence, clock, instance isolation, client lifecycle.\n", count);
     free(instances);
     return 0;
 }

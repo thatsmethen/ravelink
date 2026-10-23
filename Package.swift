@@ -5,11 +5,13 @@ let package = Package(
     platforms: [.macOS(.v15)],
     products: [
         .executable(name: "RaveLink", targets: ["RaveLinkApp"]),
+        .executable(name: "RaveLinkPluginHost", targets: ["RaveLinkPluginHost"]),
         .library(name: "RaveLinkCore", targets: ["RaveLinkCore"]),
         .library(name: "RaveLinkAudio", targets: ["RaveLinkAudio"])
     ],
     targets: [
         .target(name: "RaveLinkCore"),
+        .executableTarget(name: "RaveLinkPluginHost"),
         .target(name: "RaveLinkRealtime", publicHeadersPath: "include"),
         .target(name: "RaveLinkAudio", dependencies: ["RaveLinkCore", "RaveLinkRealtime"]),
         .executableTarget(name: "RaveLinkApp", dependencies: ["RaveLinkCore", "RaveLinkAudio"]),

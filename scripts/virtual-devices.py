@@ -94,8 +94,8 @@ def build_one(destination: Path, device: tuple[str, str], channels: int, archs: 
         config = {
             'BlackHole_Create': 'RaveLink_Create',
             'kDriver_Name': json.dumps(driver_name),
-            'kDevice_Name': json.dumps('RaveLink ' + label),
-            'kDevice2_Name': json.dumps('RaveLink ' + label + ' (hidden)'),
+            'kDevice_Name': json.dumps('RaveLink ' + label, ensure_ascii=False),
+            'kDevice2_Name': json.dumps('RaveLink ' + label + ' (hidden)', ensure_ascii=False),
             'kPlugIn_BundleID': json.dumps(bundle_id),
             'kPlugIn_Icon': '"RaveLink.icns"',
             'kManufacturer_Name': '"RaveLink project"',

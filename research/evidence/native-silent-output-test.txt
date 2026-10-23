@@ -1,0 +1,9 @@
+􀟈  Test run started.
+􀄵  Testing Library Version: 1400
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite AudioCoordinatorTests started.
+􀟈  Test testSilentPhysicalOutputLifecycle() started.
+NATIVE_SILENT_OUTPUT uid=BuiltInSpeakerDevice renderedFrames=50688 peak=0.0
+􁁛  Test testSilentPhysicalOutputLifecycle() passed after 1.385 seconds.
+􁁛  Suite AudioCoordinatorTests passed after 1.386 seconds.
+􁁛  Test run with 1 test in 1 suite passed after 1.386 seconds.
