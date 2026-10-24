@@ -30,7 +30,7 @@ pub(crate) struct Format {
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-enum Encoding {
+pub(crate) enum Encoding {
     F32,
     F64,
     Signed { bits: u32, high: bool },
@@ -46,6 +46,18 @@ pub(crate) struct Plane {
     encoding: Encoding,
 }
 impl Plane {
+    // Read-only access to the already validated native representation. Output
+    // encoding shares format validation without changing capture decoding.
+    pub(crate) fn sample_bytes(&self) -> usize {
+        self.sample_bytes
+    }
+    pub(crate) fn big_endian(&self) -> bool {
+        self.big_endian
+    }
+    pub(crate) fn encoding(&self) -> Encoding {
+        self.encoding
+    }
+
     fn sample(&self, bytes: &[u8], frame: usize, channel: usize) -> f32 {
         let offset = frame * self.frame_bytes + channel * self.sample_bytes;
         let bytes = &bytes[offset..offset + self.sample_bytes];

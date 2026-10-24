@@ -1,6 +1,9 @@
-# Native output ownership — feasibility review, not implemented
+# Native output ownership — owner implementation still pending
 
-Reviewed 2026-10-24. Original Rust CoreAudio IOProc and WASAPI render owners can
+Reviewed 2026-10-24. The [whole-callback sink](OUTPUT-SINK.md) and portable
+CoreAudio/WASAPI encoding and lease prerequisites are now implemented and tested.
+The native owner work below remains a feasibility/design review. Original Rust
+CoreAudio IOProc and WASAPI render owners can
 replace CPAL output while keeping the mixer, coherent control bank, capture
 consumers, epoch cancellation and offline fanout transport. This is a source/SDK
 review, not evidence of native startup, timing, permissions or teardown. No device
@@ -47,8 +50,8 @@ Revalidate the selection after listener registration and immediately before star
 
 `native_packet::Format`/`Layout` already validate PCM widths, endian flags, packed
 or high-aligned integers, floating point, interleaved/planar shapes and callback
-sizes (`src/native_packet.rs:21–196`). They currently **decode only**. Add an
-original byte-oriented output encoder with checked extents, native endianness,
+sizes (`src/native_packet.rs:21–196`). The separate `native_output_packet` now
+provides an original byte-oriented output encoder with checked extents, native endianness,
 valid-bit alignment, finite-value handling and saturation. Write stereo to the
 first pair and equilibrium to every other channel. Unsigned 8-bit equilibrium is
 128: CoreAudio's zeroed buffer is not sufficient silence for that encoding,

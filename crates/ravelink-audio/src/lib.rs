@@ -10,6 +10,8 @@
 mod capture;
 mod capture_transport;
 mod control_bank;
+mod output_sink;
+use output_sink::{InterleavedSink, RenderOutcome, StereoSink};
 mod output_plan;
 pub use output_plan::{OutputPlan, OutputPlanError, OutputRoute};
 mod fault;
@@ -22,6 +24,10 @@ use fault::{FaultLatch, FaultSource};
 mod native_capture;
 #[cfg(any(target_os = "macos", test))]
 mod native_packet;
+// Portable prerequisite only; no native CoreAudio render owner is connected yet.
+#[cfg(any(target_os = "macos", test))]
+#[allow(dead_code)]
+mod native_output_packet;
 mod native_timing;
 pub use native_timing::{
     NativeCallbackCompletion, NativeCallbackOutcome, NativeCaptureFault, NativeCapturePacket,
@@ -31,6 +37,10 @@ pub use native_timing::{
 mod wasapi_capture;
 #[cfg(any(target_os = "windows", test))]
 mod wasapi_packet;
+// Portable prerequisite only; no native WASAPI render owner is connected yet.
+#[cfg(any(target_os = "windows", test))]
+#[allow(dead_code)]
+mod wasapi_render_packet;
 use capture::{CaptureRender, CaptureState};
 use control_bank::ControlBank;
 
@@ -1231,28 +1241,36 @@ impl RenderState {
             && self.telemetry.fault.load(Ordering::Acquire) == 0
     }
     fn write<T: cpal::SizedSample + cpal::FromSample<f32>>(&mut self, output: &mut [T]) {
-        output.fill(T::EQUILIBRIUM);
+        let mut sink = InterleavedSink {
+            samples: output,
+            channels: self.channels,
+        };
+        let _ = self.write_to(&mut sink);
+    }
+    /// One whole callback transaction; native buffer acquisition/submission and
+    /// their success/failure observables belong to the platform owner.
+    fn write_to(&mut self, sink: &mut impl StereoSink) -> RenderOutcome {
+        sink.clear();
         if !self.authorized() {
-            return;
+            return RenderOutcome::Silence;
         }
-        if self.channels < 2
-            || !output.len().is_multiple_of(self.channels)
-            || output.len() / self.channels > MAX_CALLBACK_FRAMES
-        {
-            self.fail(AudioFault::InvalidBuffer, FaultOrigin::OutputBuffer);
-            return;
-        }
+        let frames = match sink.frames() {
+            Ok(frames) if frames <= MAX_CALLBACK_FRAMES => frames,
+            _ => {
+                self.fail(AudioFault::InvalidBuffer, FaultOrigin::OutputBuffer);
+                return RenderOutcome::Silence;
+            }
+        };
         if let Some(version) = self
             .bank
             .copy_if_new(&mut self.control_scratch, self.applied_version)
         {
             if self.mixer.apply_controls(&self.control_scratch).is_err() {
                 self.fail(AudioFault::Render, FaultOrigin::MixerControls);
-                return;
+                return RenderOutcome::Silence;
             }
             self.applied_version = version;
         }
-        let frames = output.len() / self.channels;
         let mut ready = true;
         let mut first_unready = None;
         for (index, capture) in self.captures.iter_mut().enumerate() {
@@ -1270,7 +1288,7 @@ impl RenderState {
                         FaultSource::input(index),
                         FaultMetadata::now(self.epoch),
                     );
-                    return;
+                    return RenderOutcome::Silence;
                 }
             }
         }
@@ -1284,7 +1302,7 @@ impl RenderState {
                     FaultMetadata::now(self.epoch),
                 );
             }
-            return;
+            return RenderOutcome::Silence;
         }
         for start in (0..frames).step_by(RENDER_CHUNK) {
             let count = (frames - start).min(RENDER_CHUNK);
@@ -1311,14 +1329,16 @@ impl RenderState {
                 .is_err()
             {
                 self.fail(AudioFault::Render, FaultOrigin::MixerRender);
-                output.fill(T::EQUILIBRIUM);
-                return;
+                sink.clear();
+                return RenderOutcome::Silence;
             }
-            for frame in 0..count {
-                output[(start + frame) * self.channels] =
-                    T::from_sample(self.left[frame].clamp(-1.0, 1.0));
-                output[(start + frame) * self.channels + 1] =
-                    T::from_sample(self.right[frame].clamp(-1.0, 1.0));
+            if sink
+                .write_stereo(start, &self.left[..count], &self.right[..count])
+                .is_err()
+            {
+                self.fail(AudioFault::InvalidBuffer, FaultOrigin::OutputBuffer);
+                sink.clear();
+                return RenderOutcome::Silence;
             }
             for (target, meter) in self.telemetry.inputs.iter().zip(self.mixer.input_meters()) {
                 target.publish(meter);
@@ -1329,8 +1349,8 @@ impl RenderState {
         }
         // Revoke output even if a stop/fault arrived while this callback rendered.
         if !self.authorized() {
-            output.fill(T::EQUILIBRIUM);
-            return;
+            sink.clear();
+            return RenderOutcome::Silence;
         }
         self.telemetry
             .frames
@@ -1342,6 +1362,12 @@ impl RenderState {
             self.telemetry
                 .applied_control_version
                 .store(self.applied_version, Ordering::Release);
+            RenderOutcome::Rendered {
+                frames,
+                accepted_version: self.applied_version,
+            }
+        } else {
+            RenderOutcome::Silence
         }
     }
 }
@@ -1353,3 +1379,5 @@ mod tests;
 mod capture_tests;
 #[cfg(test)]
 mod native_packet_tests;
+#[cfg(test)]
+mod output_sink_tests;
