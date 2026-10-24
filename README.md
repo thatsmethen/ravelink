@@ -10,11 +10,11 @@ The [current requirements and acceptance gates](research/RUST-MIGRATION.md) supe
 
 The [pre-rename development preview](https://github.com/thatsmethen/relink/releases/tag/v0.1.0-preview.20261024) includes macOS Apple silicon and Windows x64 application ZIPs, screenshots and the original icon. [Package checks and download verification](research/evidence/rust-preview-40045963463/README.md) passed; production qualification remains incomplete. Installed-audio evidence is labelled separately.
 
-![Pre-rename development preview on macOS with four test-tone sources and three mixes](docs/screenshots/mixer-macos.png)
+![ReLink on macOS with four test-tone sources and three mixes, audio stopped](docs/screenshots/mixer-macos.png)
 
 [Mix effects screenshot](docs/screenshots/mix-effects-macos.png) · [Original app icon](packaging/branding/ravelink.svg)
 
-These macOS screenshots show a stopped development build with an explicit test-tone fixture and predate the ReLink rename. They do not demonstrate live hardware capture or Windows interaction. [Screenshot observations](research/evidence/rust-effects-editor/README.md) record the tested build and restoration of the original studio.
+These actual macOS screenshots show ReLink at `9cd350f`, with audio stopped and an explicit test-tone fixture. They do not demonstrate live hardware capture or Windows interaction. [Screenshot provenance](research/evidence/relink-screenshots-9cd350f/README.md) records the isolated source build, image hashes and exact restoration of the original studio.
 
 ## Rust workspace
 

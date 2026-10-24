@@ -1,0 +1,6 @@
+   Compiling ravelink-app v0.1.0 (<workspace>/build/relink-screenshots-9cd350f/source/crates/ravelink-app)
+   Compiling ravelink-core v0.1.0 (<workspace>/build/relink-screenshots-9cd350f/source/crates/ravelink-core)
+   Compiling ravelink-audio v0.1.0 (<workspace>/build/relink-screenshots-9cd350f/source/crates/ravelink-audio)
+    Finished `dev` profile [unoptimized] target(s) in 2.55s
+<workspace>/build/relink-screenshots-9cd350f/source/dist/macos/ReLink.app: replacing existing signature
+<workspace>/build/relink-screenshots-9cd350f/source/dist/macos/ReLink.app

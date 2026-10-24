@@ -1,0 +1,67 @@
+{
+  "source_commit": "9cd350fcae96c5043da877b718aac60f2e4366be",
+  "source_tree": "b8b0a53cddb25067699c13cfddd6135c17faff29",
+  "source_verification": "All 79 extracted build inputs matched commit bytes before build and SHA256 after build; no modified audio-owner workspace sources included.",
+  "build": {
+    "kind": "local debug build from isolated committed source; not a CI package",
+    "toolchain": "rustc 1.91.1 (ed61e7d7e 2025-11-07)",
+    "host_os": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0\nBuildVersion:\t\t26A5406e",
+    "architecture": "arm64",
+    "command": "RAVELINK_BUILD_PROFILE=debug CARGO_TARGET_DIR=<shared-cache> sh scripts/build-macos-app.sh",
+    "exit_code": 0,
+    "bundle_name": "ReLink",
+    "bundle_identifier": "au.textual.ravelink.rust",
+    "binary_sha256": "7d9b17dd1af9d7a5960a295136b5545263fed610f31a103611701b7ffe240731",
+    "strict_codesign_exit": 0,
+    "signing": "ad hoc; no notarization"
+  },
+  "capture": {
+    "method": "Documented cua native getAXStateAndScreenshot; original JPEG bytes retained. Decoded RGB pixels losslessly encoded as PNG for docs paths and verified equal.",
+    "mixer": "Four test-tone sources, three mixes, twelve routes, all meters silent, no output selected.",
+    "effects": "Actual Mix effects UI opened; compressor settings shown, limiter enabled. Pointer moved into empty margin for final capture. Native macOS capture badge remains visible.",
+    "visual_edits": false,
+    "audio_started": false,
+    "native_device_stream_opened": false,
+    "driver_or_default_route_changed": false,
+    "permissions_granted": false,
+    "scope": "Stopped macOS UI screenshots only; no hardware audio or Windows interaction qualification."
+  },
+  "fixture": {
+    "path": "research/evidence/rust-effects-editor/preview-session.json",
+    "sha256": "03d2c6e51192c051111d244a1cf99ef95a1ff160ce990cdd6f77866418dedaaa"
+  },
+  "original_studio": {
+    "before_sha256": "94efd0f900d0d205944bbd291fa87a078ea469d7a3c1b462fedc5b123f3a6615",
+    "after_sha256": "94efd0f900d0d205944bbd291fa87a078ea469d7a3c1b462fedc5b123f3a6615",
+    "restored_exact": true,
+    "app_process_exited": true,
+    "verified_at_utc": "2026-10-24T04:32:32.743499+00:00"
+  },
+  "images": [
+    {
+      "path": "docs/screenshots/mixer-macos.png",
+      "bytes": 596114,
+      "sha256": "b2483d97e5e426ebba42a2785d6bd7c4de6234aed69ddb65ec04f84bee1aa2ec",
+      "width": 2560,
+      "height": 1704,
+      "captured_at_utc": "2026-10-24T04:12:49.618644+00:00",
+      "raw_capture": "research/evidence/relink-screenshots-9cd350f/mixer-macos-original.jpg",
+      "raw_capture_sha256": "51c483577aec684c3aed4cfe2cad3820f2fac160321d425a14bc2bcff2bd44ad",
+      "decoded_rgb_sha256": "d6fe5eee9ca4b5428b27b901dd58ed6b8a99dba61d63d81aca9cc1cdbfac46fe",
+      "decoded_pixels_identical": true
+    },
+    {
+      "path": "docs/screenshots/mix-effects-macos.png",
+      "bytes": 654698,
+      "sha256": "4528abfc46746e55028abbd6a434d3cc679ba558bddcae9b9d43838d756d881f",
+      "width": 2560,
+      "height": 1704,
+      "captured_at_utc": "2026-10-24T04:26:35.883667+00:00",
+      "raw_capture": "research/evidence/relink-screenshots-9cd350f/mix-effects-macos-original.jpg",
+      "raw_capture_sha256": "2a0cc6be3bd5dce6750fc3d54f99917148d31aae6588de2386aea2f79f489e3f",
+      "decoded_rgb_sha256": "bf856a08c096ebab82b6a0c29bcae571902ee17adbff99b011ee98c32880d62e",
+      "decoded_pixels_identical": true
+    }
+  ],
+  "ci_limit": "The 9cd350f desktop CI run40060985488 failed the Rust formatting gate and did not produce these screenshots or packages. A subsequent formatting-only source fix is separate."
+}

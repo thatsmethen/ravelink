@@ -316,12 +316,7 @@ impl Studio {
                 ui.add_space(12.0);
                 ui.horizontal(|ui| {
                     ui.add_space(12.0);
-                    ui.label(
-                        RichText::new("RE / LINK")
-                            .strong()
-                            .size(21.0)
-                            .color(ACCENT),
-                    );
+                    ui.label(RichText::new("RE / LINK").strong().size(21.0).color(ACCENT));
                     ui.separator();
                     ui.label(&self.session.name);
                     ui.label(

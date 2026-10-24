@@ -1,0 +1,401 @@
+{
+  "commit": "9cd350fcae96c5043da877b718aac60f2e4366be",
+  "tree": "b8b0a53cddb25067699c13cfddd6135c17faff29",
+  "files": [
+    {
+      "path": "Cargo.lock",
+      "bytes": 101479,
+      "sha256": "386333dada7c9b29dce3350e811bbdf0c5a63ddc0d56c836d5f1d003b8c697a5"
+    },
+    {
+      "path": "Cargo.toml",
+      "bytes": 625,
+      "sha256": "8753c112fd1cc4bc67ac3925d5b6624a64d1aa41848e1f066ff4714ddedf67df"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 865,
+      "sha256": "81e89942ae4b17621060badb304d7ffc1db6f8232e284d46cd041d4e3ce7c3ea"
+    },
+    {
+      "path": "THIRD-PARTY-NOTICES.txt",
+      "bytes": 2110263,
+      "sha256": "fe976646d20d2b00e9bca17275e927ff3e6cb412aba82883a71e2fdaeb5f4006"
+    },
+    {
+      "path": "crates/ravelink-app/Cargo.toml",
+      "bytes": 726,
+      "sha256": "d6219f44e49955d29945ffa022fa8a81160810364823420bad2e73d402b5e7f0"
+    },
+    {
+      "path": "crates/ravelink-app/build.rs",
+      "bytes": 620,
+      "sha256": "74ae9f2df914bb208f4b61bef3a86721a4a9b65e9b1e9f8ff5beaaf90b713e99"
+    },
+    {
+      "path": "crates/ravelink-app/src/audio_ui.rs",
+      "bytes": 14486,
+      "sha256": "044a4feb3d3de923e98de50343a4ad311206ef0ec362536d1dc3ef3fd53ded7a"
+    },
+    {
+      "path": "crates/ravelink-app/src/effects.rs",
+      "bytes": 5602,
+      "sha256": "460d641c644317de1134af09d466e1ea7173f623aa6eb4a9ca754b78e82223c9"
+    },
+    {
+      "path": "crates/ravelink-app/src/main.rs",
+      "bytes": 43951,
+      "sha256": "a0c68763dcfe4b1ac7d6be329a507c7137df8a32dccf0246ff053ba119f846f5"
+    },
+    {
+      "path": "crates/ravelink-app/src/store.rs",
+      "bytes": 4268,
+      "sha256": "40a5fef2f89c6982548e2dc15e94328ad82e5a56a446803b6a9c591516a6288f"
+    },
+    {
+      "path": "crates/ravelink-audio/CAPTURE.md",
+      "bytes": 13803,
+      "sha256": "537435076d779cf21d67a00b175b6432bf547df01ee9a82e86e7d5ee55df7283"
+    },
+    {
+      "path": "crates/ravelink-audio/Cargo.toml",
+      "bytes": 1062,
+      "sha256": "8d891145d2b03cc6b5aa9dc2769317396f37f553380bbed43d97b62e813470ca"
+    },
+    {
+      "path": "crates/ravelink-audio/FANOUT-TRANSPORT.md",
+      "bytes": 8123,
+      "sha256": "de908b5084711917513f40856c5ed98c35237e8e928234ba0a7484ffcc2622d5"
+    },
+    {
+      "path": "crates/ravelink-audio/FAULT-ATTRIBUTION.md",
+      "bytes": 5993,
+      "sha256": "ae09f8abffe8537abdb62317972a39d66fe23bc240b71a2a8d52716999ebf281"
+    },
+    {
+      "path": "crates/ravelink-audio/MULTI-OUTPUT-DESIGN.md",
+      "bytes": 11075,
+      "sha256": "3c3f957065520a383332e882268a92419935ebcbac53defbdc098acafe86708d"
+    },
+    {
+      "path": "crates/ravelink-audio/NATIVE-CAPTURE-VALIDATION.md",
+      "bytes": 4639,
+      "sha256": "b9ae8bda511e00cee0a113d769fc54c59ddba7e658e6b362f880b2c514d0d42c"
+    },
+    {
+      "path": "crates/ravelink-audio/NATIVE-OUTPUT-PCM.md",
+      "bytes": 4827,
+      "sha256": "1efa2d83b83b49fd6f406968a01e19e87237564508042a807ee93141feab0adf"
+    },
+    {
+      "path": "crates/ravelink-audio/OUTPUT-OWNERSHIP-DESIGN.md",
+      "bytes": 12047,
+      "sha256": "da09b8c1873b902df87698a042f9034817cb3f01edb0711b25ac730da16a53f4"
+    },
+    {
+      "path": "crates/ravelink-audio/OUTPUT-SINK.md",
+      "bytes": 2164,
+      "sha256": "5077d0dfa20bbe1cfaa44c981fd550a6ba7061b0e5bbb9f83af288d5217f53fa"
+    },
+    {
+      "path": "crates/ravelink-audio/WASAPI-RENDER-PACKET.md",
+      "bytes": 5867,
+      "sha256": "56161bd04a2fb19baff176e09004822872ba04264c50afeb618864a5a1b8842c"
+    },
+    {
+      "path": "crates/ravelink-audio/examples/runtime-capture-probe.rs",
+      "bytes": 28249,
+      "sha256": "3c71d4f4ef25a1513aacdc59d0528905be41d15562ac89f7a18c6a579a15a88d"
+    },
+    {
+      "path": "crates/ravelink-audio/src/capture.rs",
+      "bytes": 13534,
+      "sha256": "62bbf1b6e3a9fce5516aadc126c046bfead95a3f437138f94d078ca50a460c8c"
+    },
+    {
+      "path": "crates/ravelink-audio/src/capture_tests.rs",
+      "bytes": 12985,
+      "sha256": "02cad7be4d41ab3571d41634a43d898c495d94e52d5f59152feb9e1fd9fd9622"
+    },
+    {
+      "path": "crates/ravelink-audio/src/capture_transport.rs",
+      "bytes": 12442,
+      "sha256": "4b433f61eeb1fee24bd99d68b365fdf9571140ee91d233305773e87aa58ee09d"
+    },
+    {
+      "path": "crates/ravelink-audio/src/control_bank.rs",
+      "bytes": 5109,
+      "sha256": "c7d74779c5e5089e09cd2de114cf61313943f3ddf182a8dd4b9b1ea5aea8ed83"
+    },
+    {
+      "path": "crates/ravelink-audio/src/fanout.rs",
+      "bytes": 16974,
+      "sha256": "28c5b935957f17454c3696efba2b792b2892889291e00622eb87c51ff4968bb8"
+    },
+    {
+      "path": "crates/ravelink-audio/src/fanout_tests.rs",
+      "bytes": 21875,
+      "sha256": "fa76fb0dad89e5529c588751ed9b1ac2544dafe61bf86a84001ab67e3fad75ca"
+    },
+    {
+      "path": "crates/ravelink-audio/src/fault.rs",
+      "bytes": 8666,
+      "sha256": "62dca72b15703d0fa747ccc5b346c9575470adfd1d89100d25efb90046c19bb1"
+    },
+    {
+      "path": "crates/ravelink-audio/src/fault_tests.rs",
+      "bytes": 5081,
+      "sha256": "194eeb905f057cf5eda291914a129eba70d160488307d106800c2e430be7e31f"
+    },
+    {
+      "path": "crates/ravelink-audio/src/lib.rs",
+      "bytes": 51581,
+      "sha256": "6048e908cf85969387ebabce98e342c2202f0c54543b8d44891ff4a62e117ad8"
+    },
+    {
+      "path": "crates/ravelink-audio/src/native_capture.rs",
+      "bytes": 38538,
+      "sha256": "80cbd39decf4384bebb8f6f924ae8fba9850fd7acbab6ca9c9d0ed9c071fc87e"
+    },
+    {
+      "path": "crates/ravelink-audio/src/native_capture_tests.rs",
+      "bytes": 16861,
+      "sha256": "89f060225832d74c4837ca599d54a0fdc31e4cb2545b20a57d28b57d0f892776"
+    },
+    {
+      "path": "crates/ravelink-audio/src/native_output_packet.rs",
+      "bytes": 9267,
+      "sha256": "b7dfa46f3b41f09da8b3f86699296b892aff51b9c2af89a51b8c760b13d5b16b"
+    },
+    {
+      "path": "crates/ravelink-audio/src/native_output_packet_tests.rs",
+      "bytes": 18602,
+      "sha256": "97ae0f1c616791494c3116b78ffb3f2245d528af375bc13a5207d83250159269"
+    },
+    {
+      "path": "crates/ravelink-audio/src/native_packet.rs",
+      "bytes": 20098,
+      "sha256": "21e1d258ced03267c91772c93f10726b212454950d1cdf87b551e539e3c0d5a4"
+    },
+    {
+      "path": "crates/ravelink-audio/src/native_packet_tests.rs",
+      "bytes": 12474,
+      "sha256": "025709ace31e8a6bf74ee978588f08c31acfbeaab0504540f190dc9c96732969"
+    },
+    {
+      "path": "crates/ravelink-audio/src/native_timing.rs",
+      "bytes": 3371,
+      "sha256": "f482abf64838e4ec5af167be4437bb5b7f3e8a0eaf34b234cbe178c9e279ac46"
+    },
+    {
+      "path": "crates/ravelink-audio/src/output_plan.rs",
+      "bytes": 13088,
+      "sha256": "0fa5deae34de693737b118719b3d805a4275e32906e1231634f69f5b49fb5fbc"
+    },
+    {
+      "path": "crates/ravelink-audio/src/output_sink.rs",
+      "bytes": 2479,
+      "sha256": "6f8501ce142426c94ec79acc37cc6136413ae36e5882dfa0524468f14938684b"
+    },
+    {
+      "path": "crates/ravelink-audio/src/output_sink_tests.rs",
+      "bytes": 5822,
+      "sha256": "15521839c80454957b341130c350c0e33d698c9792d03501a02917becc02ffd9"
+    },
+    {
+      "path": "crates/ravelink-audio/src/tests.rs",
+      "bytes": 21809,
+      "sha256": "7d6f187956e394c46d96fcee99e7a0023384e7555d1795c848be80281230ceca"
+    },
+    {
+      "path": "crates/ravelink-audio/src/wasapi_capture.rs",
+      "bytes": 19750,
+      "sha256": "41b239734dcf844621d3a20a06b0abea1ee429e5c44ad51de751717b68f3d29c"
+    },
+    {
+      "path": "crates/ravelink-audio/src/wasapi_packet.rs",
+      "bytes": 13885,
+      "sha256": "cc3991618614916c14ed89d8da4d4c34b5cc1d9c6f943d51b813ca83069ae1f9"
+    },
+    {
+      "path": "crates/ravelink-audio/src/wasapi_render_packet.rs",
+      "bytes": 8919,
+      "sha256": "fad18cf767ac74660fcd23c383d447a667726acd3c86845de26695c66f21174f"
+    },
+    {
+      "path": "crates/ravelink-audio/src/wasapi_render_packet_tests.rs",
+      "bytes": 17487,
+      "sha256": "b9095a42bcaf5076a1495c70ca04313c23a704020fa0221f7c739fa2aa7f9c06"
+    },
+    {
+      "path": "crates/ravelink-core/BUS-ACCESS.md",
+      "bytes": 3523,
+      "sha256": "7091b1b3203c1eebfd162d501dbabd1a55184b692e1d4174baf61fa3402fe9d5"
+    },
+    {
+      "path": "crates/ravelink-core/Cargo.toml",
+      "bytes": 342,
+      "sha256": "c9f13f8123fafc3a179681dccb3f43f9903964e375ebd43e2bcb4c8701c0115d"
+    },
+    {
+      "path": "crates/ravelink-core/SMOOTHING.md",
+      "bytes": 3129,
+      "sha256": "20e2f940ba07ea9dba751cedca0365f858895393645c46222d36401030aa8e92"
+    },
+    {
+      "path": "crates/ravelink-core/src/controls.rs",
+      "bytes": 4312,
+      "sha256": "43912fcb608db2c624cfd93113ee2d06da495b41a3e34877eceb3eaf8ad28d7b"
+    },
+    {
+      "path": "crates/ravelink-core/src/dsp.rs",
+      "bytes": 5717,
+      "sha256": "bb1bb833c58cbbdc942d474db5e31501cb570d4690eff8e37979f094c1a6d87b"
+    },
+    {
+      "path": "crates/ravelink-core/src/lib.rs",
+      "bytes": 1235,
+      "sha256": "cbe198b1b09f9728b0197ce7d1379fc2ae63bfcfaa13973deb21788e96d86231"
+    },
+    {
+      "path": "crates/ravelink-core/src/mixer.rs",
+      "bytes": 24397,
+      "sha256": "614fab9f68d6dc9e03326629233417e7ad115c5d8b63b703c27205436c44915c"
+    },
+    {
+      "path": "crates/ravelink-core/src/session.rs",
+      "bytes": 17794,
+      "sha256": "fb62dcdb68992b3915bc5078fef28a697bb25a66af4c72f09b92866b2347e158"
+    },
+    {
+      "path": "crates/ravelink-core/src/smoothing.rs",
+      "bytes": 2091,
+      "sha256": "2789936bfd454b47efcff13eab42ad7b3d3d24efba0afc3c067ec46dc04353e7"
+    },
+    {
+      "path": "crates/ravelink-core/tests/bus_views.rs",
+      "bytes": 12885,
+      "sha256": "ec478cf1bac7bd97958c95125882f4ec99bd6fab729556f79801854d8c0badce"
+    },
+    {
+      "path": "crates/ravelink-core/tests/controls.rs",
+      "bytes": 5337,
+      "sha256": "9fdf3be9abb5be6dcc7ab6fcfb38db783bfa3dd3dcf5273555d6b31587a32c89"
+    },
+    {
+      "path": "crates/ravelink-core/tests/engine.rs",
+      "bytes": 20510,
+      "sha256": "cc28dd988d4057c286ca0d05043ca56bee9c3a08d89a6639dacba9abd4651a74"
+    },
+    {
+      "path": "crates/ravelink-core/tests/smoothing.rs",
+      "bytes": 15836,
+      "sha256": "800c42cebb175051a7d123d22be893989bc5bd8c218396bd8e5dad89adc65685"
+    },
+    {
+      "path": "crates/ravelink-hal/Cargo.toml",
+      "bytes": 263,
+      "sha256": "06269690924b272bb349aa80c667a4451f5bb26ec2abd352fef644662e7e63d8"
+    },
+    {
+      "path": "crates/ravelink-hal/src/abi.rs",
+      "bytes": 7372,
+      "sha256": "b075c915e8c0ef933c092a98ae52a329cc04a0fa506aaff136d942d19bf2e43b"
+    },
+    {
+      "path": "crates/ravelink-hal/src/device.rs",
+      "bytes": 5682,
+      "sha256": "dbd67b392fb76db5ae54896eafaa5073c831d2108d1b4feae3c239ab12b51d5d"
+    },
+    {
+      "path": "crates/ravelink-hal/src/lib.rs",
+      "bytes": 10786,
+      "sha256": "b8e803dcff5ca36142934fb818129414d4a52824f1d004d3358008985e31c846"
+    },
+    {
+      "path": "crates/ravelink-hal/src/properties.rs",
+      "bytes": 12596,
+      "sha256": "c6d262761a2a4b8c4ddd646e31f9eb7a1f42eea81e3361038cee32d5570e4320"
+    },
+    {
+      "path": "crates/ravelink-hal/src/ring.rs",
+      "bytes": 3729,
+      "sha256": "f2c439320118db8c2b3a6884b1c63e6af312341340b338310b8aef8fbaad14b6"
+    },
+    {
+      "path": "crates/ravelink-hal/src/tests.rs",
+      "bytes": 16015,
+      "sha256": "78b34a71d1976037526b25fe8cc80dc616bd0bf7bfa2f0a5ef4d88f607347a15"
+    },
+    {
+      "path": "docs/third-party-licenses/rust-1.91.1/COPYRIGHT-library.html",
+      "bytes": 398128,
+      "sha256": "3aa41caccecaeddad6fcf2f36ce14146ab7baae57064b05b12ecc6b52d5e917f"
+    },
+    {
+      "path": "docs/third-party-licenses/rust-1.91.1/LICENSE-APACHE.txt",
+      "bytes": 10280,
+      "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff"
+    },
+    {
+      "path": "docs/third-party-licenses/rust-1.91.1/LICENSE-MIT.txt",
+      "bytes": 1078,
+      "sha256": "b85dcd3e453d05982552c52b5fc9e0bdd6d23c6f8e844b984a88af32570b0cc0"
+    },
+    {
+      "path": "docs/third-party-licenses/rust-1.91.1/sources.json",
+      "bytes": 1188,
+      "sha256": "82bc318b768c18639a8a317fa72df9933f215678c9378c98ee60676e28a4b374"
+    },
+    {
+      "path": "packaging/branding/README.md",
+      "bytes": 1056,
+      "sha256": "cf9a8f9c27f93f1ac6899426d45f5fcf8d287db0c5ce35b331dc4beda7a34430"
+    },
+    {
+      "path": "packaging/branding/ravelink-256.png",
+      "bytes": 7875,
+      "sha256": "2684071ed1c315fb16bc63a771331ff16fcdfd0d33c75d53003c73df6caf4198"
+    },
+    {
+      "path": "packaging/branding/ravelink.icns",
+      "bytes": 79329,
+      "sha256": "8139a60320ac879f2dd36dfccce5672d86000740ee3ddba9b31ca2c3f0389ec9"
+    },
+    {
+      "path": "packaging/branding/ravelink.ico",
+      "bytes": 19448,
+      "sha256": "73acb7848b948fd5f9a36ef4f7f0193e7742334058e666a334f5fcfa4595f122"
+    },
+    {
+      "path": "packaging/branding/ravelink.png",
+      "bytes": 34168,
+      "sha256": "1765e282640affab5d2e3e6173c41078bb3730efb8031341e65df81d5a0632df"
+    },
+    {
+      "path": "packaging/branding/ravelink.res",
+      "bytes": 19736,
+      "sha256": "4a173b83966f63007f976a6e1f1cecba604ec3541fb7da5548b83ac4ff4fd9c1"
+    },
+    {
+      "path": "packaging/branding/ravelink.svg",
+      "bytes": 602,
+      "sha256": "864c5728a8734a1a83d2ab81d8e1d68903a27b45dd165522b0fc2d491b7eb164"
+    },
+    {
+      "path": "packaging/macos/Info.plist",
+      "bytes": 1030,
+      "sha256": "d979909b6cd44a2e20f038ab1dcb55767fbd92a43ef8015698f83a94ef8c18f4"
+    },
+    {
+      "path": "rust-toolchain.toml",
+      "bytes": 86,
+      "sha256": "2645003e83d0075da4fc5119dcfc4dfba02df3b9cf3cde702abfa27dc7221ae3"
+    },
+    {
+      "path": "scripts/build-macos-app.sh",
+      "bytes": 1067,
+      "sha256": "cab0dbcac88d7acd0ebfd1ee8c956c9a2764969c7ee162332b6ff2025a558007"
+    }
+  ]
+}

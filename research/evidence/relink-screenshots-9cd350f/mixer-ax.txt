@@ -1,0 +1,108 @@
+Window: "ReLink", App: ReLink.
+0 standard window ReLink, Secondary Actions: Raise
+	1 container
+		2 text (settable) RE / LINK
+		3 text (settable) Development preview · test tones
+		4 text (settable) Saved locally
+		5 button Start audio
+		6 button Save
+		7 button (disabled) Redo
+		8 button (disabled) Undo
+		9 button + Source
+		10 text (settable) ○ AUDIO STOPPED
+		11 text (settable) Choose a mix, add sources, then select an output.
+		12 unknown
+			13 text (settable) YOUR MIXES
+			14 button Monitor
+			15 button Stream
+			16 button Voice chat
+			17 button + Create mix
+			18 text (settable) STUDIO
+			19 text (settable) 4 sources
+			20 text (settable) 3 mixes
+			21 text (settable) 12 active routes
+			22 text (settable) Rust development build
+Windows + macOS
+		23 unknown
+			24 text (settable) Mix output
+			25 text field (settable) Monitor
+			26 checkbox (settable, boolean) Link stereo levels, Value: on
+			27 slider (settable, float) dB, Value: 0
+			28 stepper (settable) dB, Value: 0
+			29 text (settable) dB
+			30 checkbox (settable, boolean) Mute, Value: off
+			31 checkbox (settable, boolean) Solo, Value: off
+			32 button Mix effects
+			33 text (settable) Listening device
+			34 pop up button (settable) Select an output…
+			35 button Refresh devices
+			36 button Remove mix
+			37 text (settable) OUTPUT LEVEL
+			38 progress indicator (settable, float) L  −∞ dBFS, Value: 0
+			39 progress indicator (settable, float) R  −∞ dBFS, Value: 0
+			40 text (settable) Select a source to adjust its input level and effects.
+		41 text (settable) Monitor
+		42 text field (settable) Find a source
+		43 text (settable) Shape this mix with independent source levels.
+		44 button Low tone
+		45 text (settable) TEST TONE
+		46 button Mute
+		47 button Solo
+		48 slider (settable, float) dB, Value: -9
+		49 stepper (settable) dB, Value: -9
+		50 text (settable) dB
+		51 text (settable) Balance
+		52 slider (settable, float) Balance, Value: 0
+		53 stepper (settable) 0.00
+		54 button Remove from mix
+		55 text (settable) SOURCE LEVEL
+		56 progress indicator (settable, float) L  −∞ dBFS, Value: 0
+		57 progress indicator (settable, float) R  −∞ dBFS, Value: 0
+		58 button Mid tone
+		59 text (settable) TEST TONE
+		60 button Mute
+		61 button Solo
+		62 slider (settable, float) dB, Value: -12
+		63 stepper (settable) dB, Value: -12
+		64 text (settable) dB
+		65 text (settable) Balance
+		66 slider (settable, float) Balance, Value: 0
+		67 stepper (settable) 0.00
+		68 button Remove from mix
+		69 text (settable) SOURCE LEVEL
+		70 progress indicator (settable, float) L  −∞ dBFS, Value: 0
+		71 progress indicator (settable, float) R  −∞ dBFS, Value: 0
+		72 button High tone
+		73 text (settable) TEST TONE
+		74 button Mute
+		75 button Solo
+		76 slider (settable, float) dB, Value: -18
+		77 stepper (settable) dB, Value: -18
+		78 text (settable) dB
+		79 text (settable) Balance
+		80 slider (settable, float) Balance, Value: 0
+		81 stepper (settable) 0.00
+		82 button Remove from mix
+		83 text (settable) SOURCE LEVEL
+		84 progress indicator (settable, float) L  −∞ dBFS, Value: 0
+		85 progress indicator (settable, float) R  −∞ dBFS, Value: 0
+		86 button Reference
+		87 text (settable) TEST TONE
+		88 button Mute
+		89 button Solo
+		90 slider (settable, float) dB, Value: -24
+		91 stepper (settable) dB, Value: -24
+		92 text (settable) dB
+		93 text (settable) Balance
+		94 slider (settable, float) Balance, Value: 0
+		95 stepper (settable) 0.00
+		96 button Remove from mix
+		97 text (settable) SOURCE LEVEL
+		98 progress indicator (settable, float) L  −∞ dBFS, Value: 0
+		99 progress indicator (settable, float) R  −∞ dBFS, Value: 0
+	100 close button
+	101 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	102 minimize button
+	103 text ReLink
+104 menu bar
+	105 ReLink
