@@ -1,0 +1,434 @@
+{
+  "schema": 1,
+  "source_revision": "a4b21a393b1b1a9929d16da5d4e8ad0cea5cbfc7",
+  "overall_result": "FAIL",
+  "runtime_first_fault": {
+    "direction": "Input",
+    "endpoint_id": "coreaudio:au.textual.ravelink.cable.1",
+    "endpoint_index": 0,
+    "fault": 11,
+    "metadata": {
+      "epoch": 1,
+      "native_object": null,
+      "observed_mach_host_time": 13915888552,
+      "packet_index": null,
+      "property": null,
+      "status": null
+    },
+    "metadata_pending": false,
+    "origin": "CaptureTransportConsumer"
+  },
+  "seconds_from_started_to_fault": 7.329696124999999,
+  "phases": [
+    {
+      "event": "phase",
+      "phase": 0,
+      "gain_db": -6,
+      "muted": false,
+      "requested_host_time": 13765358960,
+      "acknowledged_host_time": 13766382391,
+      "version": 2,
+      "rendered_frames": 52736,
+      "callback_count": 103,
+      "acknowledgment_ms": 42.642958333333326,
+      "fault_ms_after_request": 6272.066333333333,
+      "fault_ms_after_acknowledgment": 6229.423374999999
+    },
+    {
+      "event": "phase",
+      "phase": 1,
+      "gain_db": -12,
+      "muted": false,
+      "requested_host_time": 13911277530,
+      "acknowledged_host_time": 13912456015,
+      "version": 4,
+      "rendered_frames": 345088,
+      "callback_count": 674,
+      "acknowledgment_ms": 49.10354166666666,
+      "fault_ms_after_request": 192.12591666666665,
+      "fault_ms_after_acknowledgment": 143.02237499999998
+    }
+  ],
+  "last_native_packet": {
+    "epoch": 1,
+    "flags": 7,
+    "frames": 512,
+    "host_time": 13915252339,
+    "observed_host_time": 13915514035,
+    "packet_index": 688,
+    "queue_frame": 351744,
+    "rate_scalar": 1.0,
+    "rate_scalar_bits": 4607182418800017408,
+    "sample_time": 408808.0,
+    "sample_time_bits": 4690766880426688512
+  },
+  "last_native_completed_callback": {
+    "after_pcm_host_time": 13915514193,
+    "completion_host_time": 13915514196,
+    "entry_host_time": 13915514035,
+    "os_now_flags": 7,
+    "os_now_host_time": 13915512235,
+    "os_now_sample_time": 409328.0,
+    "os_now_sample_time_bits": 4690775813958664192,
+    "outcome": {
+      "kind": "published"
+    },
+    "packet_index": 688
+  },
+  "native_packet_fault": null,
+  "last_native_entry_minus_input_ms": 10.903999999999998,
+  "last_native_callback_work_us": 6.708333333333332,
+  "last_native_completion_before_fault_ms": 15.598166666666664,
+  "independent_observers": {
+    "source-writer": {
+      "callbacks": [
+        {
+          "index": 726,
+          "entry_host_time": 13915357982,
+          "after_pcm_host_time": 13915358141,
+          "exit_host_time": 13915358160,
+          "current_present": true,
+          "current_host_time": 13915356830,
+          "current_flags": 7,
+          "current_sample_time": 409017,
+          "native_sample_time": 409464.0,
+          "native_host_time": 13915580339,
+          "entry_relative_to_fault_ms": -22.107083333333332,
+          "entry_minus_native_ms": -9.264874999999998,
+          "callback_work_us": 7.416666666666666
+        },
+        {
+          "index": 727,
+          "entry_host_time": 13915616607,
+          "after_pcm_host_time": 13915616764,
+          "exit_host_time": 13915616784,
+          "current_present": true,
+          "current_host_time": 13915615406,
+          "current_flags": 7,
+          "current_sample_time": 409534,
+          "native_sample_time": 409976.0,
+          "native_host_time": 13915836339,
+          "entry_relative_to_fault_ms": -11.331041666666666,
+          "entry_minus_native_ms": -9.155499999999998,
+          "callback_work_us": 7.375
+        },
+        {
+          "index": 728,
+          "entry_host_time": 13915889486,
+          "after_pcm_host_time": 13915889647,
+          "exit_host_time": 13915889667,
+          "current_present": true,
+          "current_host_time": 13915887567,
+          "current_flags": 7,
+          "current_sample_time": 410078,
+          "native_sample_time": 410488.0,
+          "native_host_time": 13916092339,
+          "entry_relative_to_fault_ms": 0.03891666666666667,
+          "entry_minus_native_ms": -8.452208333333333,
+          "callback_work_us": 7.541666666666666
+        },
+        {
+          "index": 729,
+          "entry_host_time": 13916093359,
+          "after_pcm_host_time": 13916093528,
+          "exit_host_time": 13916093554,
+          "current_present": true,
+          "current_host_time": 13916092317,
+          "current_flags": 7,
+          "current_sample_time": 410488,
+          "native_sample_time": 411000.0,
+          "native_host_time": 13916348339,
+          "entry_relative_to_fault_ms": 8.533624999999999,
+          "entry_minus_native_ms": -10.624166666666666,
+          "callback_work_us": 8.125
+        },
+        {
+          "index": 730,
+          "entry_host_time": 13916349626,
+          "after_pcm_host_time": 13916349781,
+          "exit_host_time": 13916349807,
+          "current_present": true,
+          "current_host_time": 13916348378,
+          "current_flags": 7,
+          "current_sample_time": 411000,
+          "native_sample_time": 411512.0,
+          "native_host_time": 13916604339,
+          "entry_relative_to_fault_ms": 19.211416666666665,
+          "entry_minus_native_ms": -10.613041666666666,
+          "callback_work_us": 7.541666666666666
+        }
+      ],
+      "notifications": [
+        {
+          "index": 0,
+          "host_time": 13729211247,
+          "object": 92,
+          "selector": 1735354734,
+          "scope": 1735159650,
+          "element": 0
+        },
+        {
+          "index": 1,
+          "host_time": 15170398826,
+          "object": 92,
+          "selector": 1735354734,
+          "scope": 1735159650,
+          "element": 0
+        }
+      ]
+    },
+    "runtime-reader": {
+      "callbacks": [
+        {
+          "index": 653,
+          "entry_host_time": 13915388797,
+          "after_pcm_host_time": 13915388811,
+          "exit_host_time": 13915388838,
+          "current_present": true,
+          "current_host_time": 13915387641,
+          "current_flags": 7,
+          "current_sample_time": 409079,
+          "native_sample_time": 408548.0,
+          "native_host_time": 13915122339,
+          "entry_relative_to_fault_ms": -20.823124999999997,
+          "entry_minus_native_ms": 11.102416666666665,
+          "callback_work_us": 1.7083333333333333
+        },
+        {
+          "index": 654,
+          "entry_host_time": 13915643368,
+          "after_pcm_host_time": 13915643385,
+          "exit_host_time": 13915643411,
+          "current_present": true,
+          "current_host_time": 13915642272,
+          "current_flags": 7,
+          "current_sample_time": 409588,
+          "native_sample_time": 409060.0,
+          "native_host_time": 13915378339,
+          "entry_relative_to_fault_ms": -10.216,
+          "entry_minus_native_ms": 11.042874999999999,
+          "callback_work_us": 1.7916666666666665
+        },
+        {
+          "index": 655,
+          "entry_host_time": 13915890993,
+          "after_pcm_host_time": 13915891010,
+          "exit_host_time": 13915891031,
+          "current_present": true,
+          "current_host_time": 13915890263,
+          "current_flags": 7,
+          "current_sample_time": 410084,
+          "native_sample_time": 409572.0,
+          "native_host_time": 13915634339,
+          "entry_relative_to_fault_ms": 0.10170833333333333,
+          "entry_minus_native_ms": 10.693916666666667,
+          "callback_work_us": 1.583333333333333
+        },
+        {
+          "index": 656,
+          "entry_host_time": 13916147409,
+          "after_pcm_host_time": 13916147558,
+          "exit_host_time": 13916147583,
+          "current_present": true,
+          "current_host_time": 13916146308,
+          "current_flags": 7,
+          "current_sample_time": 410596,
+          "native_sample_time": 410084.0,
+          "native_host_time": 13915890339,
+          "entry_relative_to_fault_ms": 10.785708333333332,
+          "entry_minus_native_ms": 10.711249999999998,
+          "callback_work_us": 7.249999999999999
+        },
+        {
+          "index": 657,
+          "entry_host_time": 13916403742,
+          "after_pcm_host_time": 13916403758,
+          "exit_host_time": 13916403778,
+          "current_present": true,
+          "current_host_time": 13916402282,
+          "current_flags": 7,
+          "current_sample_time": 411108,
+          "native_sample_time": 410596.0,
+          "native_host_time": 13916146339,
+          "entry_relative_to_fault_ms": 21.46625,
+          "entry_minus_native_ms": 10.725124999999998,
+          "callback_work_us": 1.4999999999999998
+        }
+      ],
+      "notifications": [
+        {
+          "index": 0,
+          "host_time": 13747953801,
+          "object": 100,
+          "selector": 1735354734,
+          "scope": 1735159650,
+          "element": 0
+        },
+        {
+          "index": 1,
+          "host_time": 14517249558,
+          "object": 100,
+          "selector": 1735354734,
+          "scope": 1735159650,
+          "element": 0
+        }
+      ]
+    }
+  },
+  "terminal_native_snapshot": {
+    "captures": [
+      {
+        "captured_frames": 352256,
+        "input_id": "coreaudio:au.textual.ravelink.cable.1",
+        "native_timing": {
+          "callback_completion_contended": false,
+          "first_fault": null,
+          "last_completed_callback": {
+            "after_pcm_host_time": 13915514193,
+            "completion_host_time": 13915514196,
+            "entry_host_time": 13915514035,
+            "os_now_flags": 7,
+            "os_now_host_time": 13915512235,
+            "os_now_sample_time": 409328.0,
+            "os_now_sample_time_bits": 4690775813958664192,
+            "outcome": {
+              "kind": "published"
+            },
+            "packet_index": 688
+          },
+          "last_packet": {
+            "epoch": 1,
+            "flags": 7,
+            "frames": 512,
+            "host_time": 13915252339,
+            "observed_host_time": 13915514035,
+            "packet_index": 688,
+            "queue_frame": 351744,
+            "rate_scalar": 1.0,
+            "rate_scalar_bits": 4607182418800017408,
+            "sample_time": 408808.0,
+            "sample_time_bits": 4690766880426688512
+          },
+          "last_packet_contended": false,
+          "lifecycle": [
+            {
+              "callbacks_in_flight": 0,
+              "host_time": 13737865237,
+              "phase": "CreateRequested",
+              "status": null
+            },
+            {
+              "callbacks_in_flight": 0,
+              "host_time": 13737949402,
+              "phase": "CreateReturned",
+              "status": 0
+            },
+            {
+              "callbacks_in_flight": 0,
+              "host_time": 13739294411,
+              "phase": "StartRequested",
+              "status": null
+            },
+            {
+              "callbacks_in_flight": 0,
+              "host_time": 13739609566,
+              "phase": "StartReturned",
+              "status": 0
+            },
+            {
+              "callbacks_in_flight": null,
+              "host_time": 13919367852,
+              "phase": "HandleCancelled",
+              "status": null
+            },
+            {
+              "callbacks_in_flight": 0,
+              "host_time": 13917887101,
+              "phase": "GatesRevoked",
+              "status": null
+            },
+            {
+              "callbacks_in_flight": 0,
+              "host_time": 13917887104,
+              "phase": "StopRequested",
+              "status": null
+            },
+            {
+              "callbacks_in_flight": 0,
+              "host_time": 13917922899,
+              "phase": "StopReturned",
+              "status": 0
+            },
+            {
+              "callbacks_in_flight": 0,
+              "host_time": 13917922900,
+              "phase": "DestroyRequested",
+              "status": null
+            },
+            {
+              "callbacks_in_flight": 0,
+              "host_time": 13917925853,
+              "phase": "DestroyReturned",
+              "status": 0
+            },
+            {
+              "callbacks_in_flight": 0,
+              "host_time": 13917925855,
+              "phase": "ListenersRemovalRequested",
+              "status": null
+            },
+            {
+              "callbacks_in_flight": 0,
+              "host_time": 13917956066,
+              "phase": "ListenersRemovalReturned",
+              "status": 0
+            },
+            {
+              "callbacks_in_flight": 0,
+              "host_time": 13917956078,
+              "phase": "QuiescenceChecked",
+              "status": null
+            },
+            {
+              "callbacks_in_flight": 0,
+              "host_time": 13917956079,
+              "phase": "OwnerCompleted",
+              "status": null
+            }
+          ],
+          "packets_seen": 688
+        }
+      }
+    ],
+    "error": null,
+    "fault": 11,
+    "first_fault": {
+      "direction": "Input",
+      "endpoint_id": "coreaudio:au.textual.ravelink.cable.1",
+      "endpoint_index": 0,
+      "fault": 11,
+      "metadata": {
+        "epoch": 1,
+        "native_object": null,
+        "observed_mach_host_time": 13915888552,
+        "packet_index": null,
+        "property": null,
+        "status": null
+      },
+      "metadata_pending": false,
+      "origin": "CaptureTransportConsumer"
+    },
+    "native_shutdown_observed": true,
+    "observation": "post-stop-final",
+    "observed_host_time": 13919368873,
+    "running": false,
+    "schema": 1
+  },
+  "limits": [
+    "Attribution identifies the capture consumer underflow report, not the scheduler or clock cause.",
+    "Native snapshots are polled; no complete native-input or runtime-output callback journal exists.",
+    "Final buffered_frames is the previous successful prepare occupancy, not the underflow-time cursor.",
+    "Missing required protocol phases keep runtime acceptance failed; completed phases are not a replacement test.",
+    "Diagnostic instrumentation may perturb scheduling. Frozen PCM, reports and limits are unchanged."
+  ]
+}

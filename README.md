@@ -43,6 +43,8 @@ A [subsequent installed HAL observation](research/evidence/rust-hal-failed-40041
 
 The [first native-capture diagnostic observation](research/evidence/rust-native-runtime-installed-40046411757/README.md) failed with an Xrun during the first control phase; the existing record cannot distinguish its reporting path. Three [incidental observations](research/evidence/rust-incidental-hal-observations/README.md) also failed and remain separate results. Original archives are available on linked evidence release pages, with byte-for-byte public download verification. No passing subset replaces these failures.
 
+The [first run with fault attribution](research/evidence/rust-attribution-installed-40048380199/README.md) identified a capture-consumer underflow on Cable 1 after 7.33 seconds. Its separate basic HAL observation passed, but the incomplete runtime sequence failed. This identifies the reporting path, not the scheduling cause; continuous installed application audio remains unqualified.
+
 New studios use `RaveLinkRust/session.json` in the user's application-data directory, separate from the archived prototype's studio. Permissively licensed dependencies retain their licenses. ASIO and GPL audio drivers are excluded from the shipping dependency graph.
 
 See [LICENSE](LICENSE) for the new first-party proprietary notice and [legacy/LICENSE](legacy/LICENSE) for archived-code terms. Public repository visibility does not change the proprietary license or the archived code’s original terms.

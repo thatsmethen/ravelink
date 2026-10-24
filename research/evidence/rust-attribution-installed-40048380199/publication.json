@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "run_id": 40048380199,
+  "run_attempt": 1,
+  "source_revision": "a4b21a393b1b1a9929d16da5d4e8ad0cea5cbfc7",
+  "tag": "evidence-attribution-runtime-40048380199",
+  "tag_resolves_to_source": true,
+  "release_url": "https://github.com/thatsmethen/ravelink/releases/tag/evidence-attribution-runtime-40048380199",
+  "release_id": 422439280,
+  "prerelease": true,
+  "repository_public": true,
+  "verified_at": "2026-10-24T01:16:02.171523+00:00",
+  "assets": [
+    {
+      "name": "original-hal.zip",
+      "url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-attribution-runtime-40048380199/original-hal.zip",
+      "asset_id": 670908710,
+      "bytes": 10536082,
+      "sha256": "520b0d57fcc2037b1e640aa28e0b5b1e42b8b09b0bde831edd60a6bd5acfee22",
+      "redownload_archive_bytes_identical": true,
+      "redownload_all_member_bytes_identical": true,
+      "members_compared": 66
+    },
+    {
+      "name": "original-runtime.zip",
+      "url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-attribution-runtime-40048380199/original-runtime.zip",
+      "asset_id": 670908715,
+      "bytes": 2855211,
+      "sha256": "182d402aba8ef2141dd55b84afc5ee6b9f0267f92d338a1eccc7400f498e9478",
+      "redownload_archive_bytes_identical": true,
+      "redownload_all_member_bytes_identical": true,
+      "members_compared": 57
+    }
+  ],
+  "derived_timing_reproduced_byte_for_byte": true,
+  "verification": "Downloaded anonymously from public browser_download_url into a fresh temporary directory; compared complete archives and every ZIP member with originals, verified frozen GitHub digests and all manifest members, and reproduced derived timing byte for byte."
+}

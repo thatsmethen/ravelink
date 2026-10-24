@@ -1,0 +1,20 @@
+{
+  "pass": true,
+  "archives": [
+    {
+      "archive": "original-runtime.zip",
+      "bytes": 2855211,
+      "sha256": "182d402aba8ef2141dd55b84afc5ee6b9f0267f92d338a1eccc7400f498e9478",
+      "manifest_files_verified": 56,
+      "source_revision": "a4b21a393b1b1a9929d16da5d4e8ad0cea5cbfc7"
+    },
+    {
+      "archive": "original-hal.zip",
+      "bytes": 10536082,
+      "sha256": "520b0d57fcc2037b1e640aa28e0b5b1e42b8b09b0bde831edd60a6bd5acfee22",
+      "manifest_files_verified": 65,
+      "source_revision": "a4b21a393b1b1a9929d16da5d4e8ad0cea5cbfc7"
+    }
+  ],
+  "scope": "Original archive and member custody only; installed runtime FAILED, separate basic HAL observation PASSED."
+}
