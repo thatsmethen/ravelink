@@ -1,0 +1,98 @@
+{
+  "assets": [
+    {
+      "browser_download_url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-incidental-hal-20261024/ASSET-SHA256SUMS.txt",
+      "digest": "sha256:14c78b8d613d25d24d47c928c2eb0f9a2a175e3deacc59d4f01e44c609b830a4",
+      "id": 670883886,
+      "name": "ASSET-SHA256SUMS.txt",
+      "size": 906,
+      "state": "uploaded"
+    },
+    {
+      "browser_download_url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-incidental-hal-20261024/run-40044311801-hal-evidence.zip",
+      "digest": "sha256:8213d7e4e3316fe6b6a71f8568bed779b7ba489f097e3e188ceeadaa5dcc3d3c",
+      "id": 670874540,
+      "name": "run-40044311801-hal-evidence.zip",
+      "size": 10304066,
+      "state": "uploaded"
+    },
+    {
+      "browser_download_url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-incidental-hal-20261024/run-40044311801-runtime-evidence.zip",
+      "digest": "sha256:50fdb800f8c5c019f9a0866254628a58af69880e45d9192c749948136d3c6983",
+      "id": 670874553,
+      "name": "run-40044311801-runtime-evidence.zip",
+      "size": 90162,
+      "state": "uploaded"
+    },
+    {
+      "browser_download_url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-incidental-hal-20261024/run-40044311801-workflow-logs.zip",
+      "digest": "sha256:c9a6c22672ae8bb6df7be9147d1e7707f651e5776b0433be682c1b7abcc220f0",
+      "id": 670874552,
+      "name": "run-40044311801-workflow-logs.zip",
+      "size": 31185,
+      "state": "uploaded"
+    },
+    {
+      "browser_download_url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-incidental-hal-20261024/run-40045101519-hal-evidence.zip",
+      "digest": "sha256:c5bbaf5b3517e2919b8d67addf38678a502a6d0cfb75a45f2f60dc5eb96a5e8e",
+      "id": 670874548,
+      "name": "run-40045101519-hal-evidence.zip",
+      "size": 10289792,
+      "state": "uploaded"
+    },
+    {
+      "browser_download_url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-incidental-hal-20261024/run-40045101519-runtime-evidence.zip",
+      "digest": "sha256:5a6366f0a55bf7b488030ea8f223d67034ff051c8dd93014f64abe97077a974f",
+      "id": 670874554,
+      "name": "run-40045101519-runtime-evidence.zip",
+      "size": 6346598,
+      "state": "uploaded"
+    },
+    {
+      "browser_download_url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-incidental-hal-20261024/run-40045101519-workflow-logs.zip",
+      "digest": "sha256:6d32afaff92d69142cfc6a6d3606d93dd62632a58b5e34d661f7bcff0c3324c9",
+      "id": 670874829,
+      "name": "run-40045101519-workflow-logs.zip",
+      "size": 31239,
+      "state": "uploaded"
+    },
+    {
+      "browser_download_url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-incidental-hal-20261024/run-40046044508-hal-evidence.zip",
+      "digest": "sha256:92868147abc0dce11b3a2ec32871de9d6928aa5a27d96f4ece79bc8feba75b36",
+      "id": 670874989,
+      "name": "run-40046044508-hal-evidence.zip",
+      "size": 10299518,
+      "state": "uploaded"
+    },
+    {
+      "browser_download_url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-incidental-hal-20261024/run-40046044508-runtime-evidence.zip",
+      "digest": "sha256:62ce393faa55dd6e2576e51030237cb7ac32ac797584e59ee74ff946a0f7672d",
+      "id": 670874998,
+      "name": "run-40046044508-runtime-evidence.zip",
+      "size": 4916944,
+      "state": "uploaded"
+    },
+    {
+      "browser_download_url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-incidental-hal-20261024/run-40046044508-workflow-logs.zip",
+      "digest": "sha256:3216f87ccaf2fc43bac2876893dc6774a743fc9fa9b5a64247a28e1e8d3c8b4c",
+      "id": 670879208,
+      "name": "run-40046044508-workflow-logs.zip",
+      "size": 31081,
+      "state": "uploaded"
+    }
+  ],
+  "created_at": "2026-10-24T00:43:47Z",
+  "draft": false,
+  "html_url": "https://github.com/thatsmethen/ravelink/releases/tag/evidence-incidental-hal-20261024",
+  "id": 422432458,
+  "metadata_projection": true,
+  "name": "Incidental HAL evidence \u2014 three failed observations (2026-10-24)",
+  "note": "Selected public release fields; raw API response remains unchanged in local redownload directory.",
+  "original_release_api_sha256": "663768d097ae914f5fef6ea9df6a28c7dc6691d195d786de7223271c3c716f3c",
+  "original_tag_api_sha256": "02752013a1b1e921a217ac90dda55a90675d4791b81900b43b847bd9cf875de0",
+  "prerelease": true,
+  "published_at": "2026-10-24T01:03:12Z",
+  "resolved_tag_commit": "db639ffefcb49020b9c0cea08d5ca03b8bfa2cf0",
+  "tag_name": "evidence-incidental-hal-20261024",
+  "target_commitish": "db639ffefcb49020b9c0cea08d5ca03b8bfa2cf0"
+}

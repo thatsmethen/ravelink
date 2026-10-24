@@ -1,0 +1,103 @@
+{
+  "asset_checksum_file_matches": true,
+  "assets": [
+    {
+      "bytes": 31185,
+      "name": "run-40044311801-workflow-logs.zip",
+      "original_archive_digest_matches": true,
+      "release_asset_id": 670874552,
+      "release_digest_matches": true,
+      "sha256": "c9a6c22672ae8bb6df7be9147d1e7707f651e5776b0433be682c1b7abcc220f0",
+      "zip_crc_verified": true
+    },
+    {
+      "bytes": 90162,
+      "name": "run-40044311801-runtime-evidence.zip",
+      "original_archive_digest_matches": true,
+      "release_asset_id": 670874553,
+      "release_digest_matches": true,
+      "runner_custody_entries_verified": 44,
+      "sha256": "50fdb800f8c5c019f9a0866254628a58af69880e45d9192c749948136d3c6983",
+      "zip_crc_verified": true
+    },
+    {
+      "bytes": 10304066,
+      "name": "run-40044311801-hal-evidence.zip",
+      "original_archive_digest_matches": true,
+      "release_asset_id": 670874540,
+      "release_digest_matches": true,
+      "runner_custody_entries_verified": 57,
+      "sha256": "8213d7e4e3316fe6b6a71f8568bed779b7ba489f097e3e188ceeadaa5dcc3d3c",
+      "zip_crc_verified": true
+    },
+    {
+      "bytes": 31239,
+      "name": "run-40045101519-workflow-logs.zip",
+      "original_archive_digest_matches": true,
+      "release_asset_id": 670874829,
+      "release_digest_matches": true,
+      "sha256": "6d32afaff92d69142cfc6a6d3606d93dd62632a58b5e34d661f7bcff0c3324c9",
+      "zip_crc_verified": true
+    },
+    {
+      "bytes": 6346598,
+      "name": "run-40045101519-runtime-evidence.zip",
+      "original_archive_digest_matches": true,
+      "release_asset_id": 670874554,
+      "release_digest_matches": true,
+      "runner_custody_entries_verified": 51,
+      "sha256": "5a6366f0a55bf7b488030ea8f223d67034ff051c8dd93014f64abe97077a974f",
+      "zip_crc_verified": true
+    },
+    {
+      "bytes": 10289792,
+      "name": "run-40045101519-hal-evidence.zip",
+      "original_archive_digest_matches": true,
+      "release_asset_id": 670874548,
+      "release_digest_matches": true,
+      "runner_custody_entries_verified": 57,
+      "sha256": "c5bbaf5b3517e2919b8d67addf38678a502a6d0cfb75a45f2f60dc5eb96a5e8e",
+      "zip_crc_verified": true
+    },
+    {
+      "bytes": 31081,
+      "name": "run-40046044508-workflow-logs.zip",
+      "original_archive_digest_matches": true,
+      "release_asset_id": 670879208,
+      "release_digest_matches": true,
+      "sha256": "3216f87ccaf2fc43bac2876893dc6774a743fc9fa9b5a64247a28e1e8d3c8b4c",
+      "zip_crc_verified": true
+    },
+    {
+      "bytes": 10299518,
+      "name": "run-40046044508-hal-evidence.zip",
+      "original_archive_digest_matches": true,
+      "release_asset_id": 670874989,
+      "release_digest_matches": true,
+      "runner_custody_entries_verified": 57,
+      "sha256": "92868147abc0dce11b3a2ec32871de9d6928aa5a27d96f4ece79bc8feba75b36",
+      "zip_crc_verified": true
+    },
+    {
+      "bytes": 4916944,
+      "name": "run-40046044508-runtime-evidence.zip",
+      "original_archive_digest_matches": true,
+      "release_asset_id": 670874998,
+      "release_digest_matches": true,
+      "runner_custody_entries_verified": 51,
+      "sha256": "62ce393faa55dd6e2576e51030237cb7ac32ac797584e59ee74ff946a0f7672d",
+      "zip_crc_verified": true
+    }
+  ],
+  "audio_analyses_rerun": false,
+  "commands_sha256": "f9d09d07307ffb0f48f165a3ca4432e809eb9dfd325e8d859af39c02ddab6d13",
+  "note": "Custody verification only. All three original overall acceptance results remain FAIL.",
+  "plan_sha256": "d7d0c16cb4112f4c24b5870d88c5aeb6efa4dc2b760c89b3a5218c8038e44389",
+  "programs_executed_from_archives": false,
+  "release_url": "https://github.com/thatsmethen/ravelink/releases/tag/evidence-incidental-hal-20261024",
+  "schema": 1,
+  "status": "verified",
+  "target_commit": "db639ffefcb49020b9c0cea08d5ca03b8bfa2cf0",
+  "verified_at_utc": "2026-10-24T01:03:59.442509+00:00",
+  "verifier_sha256": "87a830ddaf98daa1f81e8a2128453c62449cb9712b62639be929c79d8c5f3869"
+}

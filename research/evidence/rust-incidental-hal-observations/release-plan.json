@@ -1,0 +1,156 @@
+{
+  "assets": [
+    {
+      "bytes": 31185,
+      "kind": "workflow-logs",
+      "name": "run-40044311801-workflow-logs.zip",
+      "original_artifact_name": "logs",
+      "original_bytes_unchanged": true,
+      "original_github_digest": null,
+      "original_local_archive": "build/rust-hal-failed-40044311801/logs.zip",
+      "run_id": 40044311801,
+      "sha256": "c9a6c22672ae8bb6df7be9147d1e7707f651e5776b0433be682c1b7abcc220f0",
+      "url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-incidental-hal-20261024/run-40044311801-workflow-logs.zip"
+    },
+    {
+      "bytes": 90162,
+      "kind": "runtime-evidence",
+      "name": "run-40044311801-runtime-evidence.zip",
+      "original_artifact_name": "original-rust-runtime-40044311801-1",
+      "original_bytes_unchanged": true,
+      "original_github_digest": "sha256:50fdb800f8c5c019f9a0866254628a58af69880e45d9192c749948136d3c6983",
+      "original_local_archive": "build/rust-hal-failed-40044311801/artifact-12540533344.zip",
+      "run_id": 40044311801,
+      "sha256": "50fdb800f8c5c019f9a0866254628a58af69880e45d9192c749948136d3c6983",
+      "url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-incidental-hal-20261024/run-40044311801-runtime-evidence.zip"
+    },
+    {
+      "bytes": 10304066,
+      "kind": "hal-evidence",
+      "name": "run-40044311801-hal-evidence.zip",
+      "original_artifact_name": "original-rust-hal-40044311801-1",
+      "original_bytes_unchanged": true,
+      "original_github_digest": "sha256:8213d7e4e3316fe6b6a71f8568bed779b7ba489f097e3e188ceeadaa5dcc3d3c",
+      "original_local_archive": "build/rust-hal-failed-40044311801/artifact-12540423242.zip",
+      "run_id": 40044311801,
+      "sha256": "8213d7e4e3316fe6b6a71f8568bed779b7ba489f097e3e188ceeadaa5dcc3d3c",
+      "url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-incidental-hal-20261024/run-40044311801-hal-evidence.zip"
+    },
+    {
+      "bytes": 31239,
+      "kind": "workflow-logs",
+      "name": "run-40045101519-workflow-logs.zip",
+      "original_artifact_name": "logs",
+      "original_bytes_unchanged": true,
+      "original_github_digest": null,
+      "original_local_archive": "build/rust-hal-failed-40045101519/logs.zip",
+      "run_id": 40045101519,
+      "sha256": "6d32afaff92d69142cfc6a6d3606d93dd62632a58b5e34d661f7bcff0c3324c9",
+      "url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-incidental-hal-20261024/run-40045101519-workflow-logs.zip"
+    },
+    {
+      "bytes": 6346598,
+      "kind": "runtime-evidence",
+      "name": "run-40045101519-runtime-evidence.zip",
+      "original_artifact_name": "original-rust-runtime-40045101519-1",
+      "original_bytes_unchanged": true,
+      "original_github_digest": "sha256:5a6366f0a55bf7b488030ea8f223d67034ff051c8dd93014f64abe97077a974f",
+      "original_local_archive": "build/rust-hal-failed-40045101519/artifact-12540634166.zip",
+      "run_id": 40045101519,
+      "sha256": "5a6366f0a55bf7b488030ea8f223d67034ff051c8dd93014f64abe97077a974f",
+      "url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-incidental-hal-20261024/run-40045101519-runtime-evidence.zip"
+    },
+    {
+      "bytes": 10289792,
+      "kind": "hal-evidence",
+      "name": "run-40045101519-hal-evidence.zip",
+      "original_artifact_name": "original-rust-hal-40045101519-1",
+      "original_bytes_unchanged": true,
+      "original_github_digest": "sha256:c5bbaf5b3517e2919b8d67addf38678a502a6d0cfb75a45f2f60dc5eb96a5e8e",
+      "original_local_archive": "build/rust-hal-failed-40045101519/artifact-12540149104.zip",
+      "run_id": 40045101519,
+      "sha256": "c5bbaf5b3517e2919b8d67addf38678a502a6d0cfb75a45f2f60dc5eb96a5e8e",
+      "url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-incidental-hal-20261024/run-40045101519-hal-evidence.zip"
+    },
+    {
+      "bytes": 31081,
+      "kind": "workflow-logs",
+      "name": "run-40046044508-workflow-logs.zip",
+      "original_artifact_name": "logs",
+      "original_bytes_unchanged": true,
+      "original_github_digest": null,
+      "original_local_archive": "build/rust-hal-failed-40046044508/logs.zip",
+      "run_id": 40046044508,
+      "sha256": "3216f87ccaf2fc43bac2876893dc6774a743fc9fa9b5a64247a28e1e8d3c8b4c",
+      "url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-incidental-hal-20261024/run-40046044508-workflow-logs.zip"
+    },
+    {
+      "bytes": 10299518,
+      "kind": "hal-evidence",
+      "name": "run-40046044508-hal-evidence.zip",
+      "original_artifact_name": "original-rust-hal-40046044508-1",
+      "original_bytes_unchanged": true,
+      "original_github_digest": "sha256:92868147abc0dce11b3a2ec32871de9d6928aa5a27d96f4ece79bc8feba75b36",
+      "original_local_archive": "build/rust-hal-failed-40046044508/artifact-12540974278.zip",
+      "run_id": 40046044508,
+      "sha256": "92868147abc0dce11b3a2ec32871de9d6928aa5a27d96f4ece79bc8feba75b36",
+      "url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-incidental-hal-20261024/run-40046044508-hal-evidence.zip"
+    },
+    {
+      "bytes": 4916944,
+      "kind": "runtime-evidence",
+      "name": "run-40046044508-runtime-evidence.zip",
+      "original_artifact_name": "original-rust-runtime-40046044508-1",
+      "original_bytes_unchanged": true,
+      "original_github_digest": "sha256:62ce393faa55dd6e2576e51030237cb7ac32ac797584e59ee74ff946a0f7672d",
+      "original_local_archive": "build/rust-hal-failed-40046044508/artifact-12540564349.zip",
+      "run_id": 40046044508,
+      "sha256": "62ce393faa55dd6e2576e51030237cb7ac32ac797584e59ee74ff946a0f7672d",
+      "url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-incidental-hal-20261024/run-40046044508-runtime-evidence.zip"
+    }
+  ],
+  "note": "Independent incidental failed observations. Release target is an archive anchor, not a claim that all runs used that revision. No rerun, rescore, threshold change or causal attribution.",
+  "prerelease": true,
+  "repository": "thatsmethen/ravelink",
+  "runs": [
+    {
+      "assets": [
+        "run-40044311801-workflow-logs.zip",
+        "run-40044311801-runtime-evidence.zip",
+        "run-40044311801-hal-evidence.zip"
+      ],
+      "conclusion": "FAIL",
+      "run_id": 40044311801,
+      "source_revision": "4fad7fca69415bc86aae17caa5cab2641576a26e",
+      "source_tree": "f8d559ad78bad1c89853e7196657a2455fe1cc7b",
+      "url": "https://github.com/thatsmethen/ravelink/actions/runs/40044311801"
+    },
+    {
+      "assets": [
+        "run-40045101519-workflow-logs.zip",
+        "run-40045101519-runtime-evidence.zip",
+        "run-40045101519-hal-evidence.zip"
+      ],
+      "conclusion": "FAIL",
+      "run_id": 40045101519,
+      "source_revision": "eebc08b19ba04f6b7d22d8593211532957633d5a",
+      "source_tree": "f8d559ad78bad1c89853e7196657a2455fe1cc7b",
+      "url": "https://github.com/thatsmethen/ravelink/actions/runs/40045101519"
+    },
+    {
+      "assets": [
+        "run-40046044508-workflow-logs.zip",
+        "run-40046044508-hal-evidence.zip",
+        "run-40046044508-runtime-evidence.zip"
+      ],
+      "conclusion": "FAIL",
+      "run_id": 40046044508,
+      "source_revision": "03ff13a4f3b38fd4568ffdf96d893f7c05564f17",
+      "source_tree": "537b4bc7c159ef791e17ace44464b96c1666be87",
+      "url": "https://github.com/thatsmethen/ravelink/actions/runs/40046044508"
+    }
+  ],
+  "schema": 1,
+  "tag": "evidence-incidental-hal-20261024",
+  "target_commit": "db639ffefcb49020b9c0cea08d5ca03b8bfa2cf0"
+}

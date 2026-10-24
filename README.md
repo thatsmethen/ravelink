@@ -41,6 +41,8 @@ At `6484db8`, the installed macOS HAL delivered two independently recorded stere
 
 A [subsequent installed HAL observation](research/evidence/rust-hal-failed-40041055533/README.md) failed with 568 missing frames in one reader; another repeat passed. Both outcomes remain distinct, and the intermittent missed callback deadline is unresolved. The [first complete installed runtime observation](research/evidence/rust-runtime-installed-40042679024/README.md) also failed timestamp continuity despite passing every mixer PCM phase and live-control check. The separate [installed runtime protocol](drivers/macos/tests/RUNTIME-ACCEPTANCE.md) measures capture, mixing, live controls and stop through two independent cables with fixed PCM criteria.
 
+The [first native-capture diagnostic observation](research/evidence/rust-native-runtime-installed-40046411757/README.md) failed with an Xrun during the first control phase; the existing record cannot distinguish its reporting path. Three [incidental observations](research/evidence/rust-incidental-hal-observations/README.md) also failed and remain separate results. Original archives are available on linked evidence release pages, with byte-for-byte public download verification. No passing subset replaces these failures.
+
 New studios use `RaveLinkRust/session.json` in the user's application-data directory, separate from the archived prototype's studio. Permissively licensed dependencies retain their licenses. ASIO and GPL audio drivers are excluded from the shipping dependency graph.
 
 See [LICENSE](LICENSE) for the new first-party proprietary notice and [legacy/LICENSE](legacy/LICENSE) for archived-code terms. Public repository visibility does not change the proprietary license or the archived code’s original terms.

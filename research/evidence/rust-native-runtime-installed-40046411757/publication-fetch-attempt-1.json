@@ -1,0 +1,12 @@
+{
+  "operation": "Read release/tag/public repository metadata after successful release upload",
+  "outcome": "TimeoutExpired",
+  "command": [
+    "gh",
+    "api",
+    "repos/thatsmethen/ravelink/releases/tags/evidence-native-runtime-40046411757"
+  ],
+  "timeout_seconds": 30,
+  "release_creation_completed": true,
+  "artifact_verification_completed": false
+}

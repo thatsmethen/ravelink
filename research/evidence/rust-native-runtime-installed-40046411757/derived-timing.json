@@ -1,0 +1,442 @@
+{
+  "schema": 1,
+  "source_revision": "db639ffefcb49020b9c0cea08d5ca03b8bfa2cf0",
+  "overall_result": "FAIL",
+  "runtime": {
+    "first_fault_code": 5,
+    "last_good_observation_host_time": 7629213388,
+    "first_bad_observation_host_time": 7630893624,
+    "fault_observation_bracket_ms": 70.00983333333333,
+    "last_native_packet": {
+      "epoch": 1,
+      "flags": 7,
+      "frames": 512,
+      "host_time": 7630253297,
+      "observed_host_time": 7630803273,
+      "packet_index": 276,
+      "queue_frame": 140800,
+      "rate_scalar": 1.0,
+      "rate_scalar_bits": 4607182418800017408,
+      "sample_time": 212072.0,
+      "sample_time_bits": 4686526751273123840
+    },
+    "last_native_completed_callback": {
+      "after_pcm_host_time": 7630803832,
+      "completion_host_time": 7630803842,
+      "entry_host_time": 7630803273,
+      "os_now_flags": 7,
+      "os_now_host_time": 7630785706,
+      "os_now_sample_time": 213137.0,
+      "os_now_sample_time_bits": 4686563344394485760,
+      "outcome": {
+        "kind": "published"
+      },
+      "packet_index": 276
+    },
+    "last_native_entry_minus_input_ms": 22.915666666666663,
+    "last_native_callback_work_us": 23.708333333333332,
+    "last_native_completion_before_first_bad_ms": 3.7409166666666662,
+    "first_packet_fault": null,
+    "independent_observers": {
+      "source-writer": {
+        "nearby_callbacks": [
+          {
+            "index": 331,
+            "sample_time": 212456.0,
+            "native_host_time": 7630445297,
+            "entry_host_time": 7630190522,
+            "after_pcm_host_time": 7630190763,
+            "exit_host_time": 7630190793,
+            "current_present": true,
+            "current_host_time": 7630189283,
+            "current_flags": 7,
+            "current_sample_time": 211944,
+            "entry_minus_native_ms": -10.615624999999998,
+            "work_us": 11.291666666666666,
+            "entry_minus_os_now_ms": 0.051625,
+            "entry_relative_to_last_native_ms": -25.531291666666664
+          },
+          {
+            "index": 332,
+            "sample_time": 212968.0,
+            "native_host_time": 7630701297,
+            "entry_host_time": 7630446567,
+            "after_pcm_host_time": 7630447093,
+            "exit_host_time": 7630447124,
+            "current_present": true,
+            "current_host_time": 7630445491,
+            "current_flags": 7,
+            "current_sample_time": 212456,
+            "entry_minus_native_ms": -10.613749999999998,
+            "work_us": 23.20833333333333,
+            "entry_minus_os_now_ms": 0.04483333333333333,
+            "entry_relative_to_last_native_ms": -14.862749999999998
+          },
+          {
+            "index": 333,
+            "sample_time": 213480.0,
+            "native_host_time": 7630957297,
+            "entry_host_time": 7630851425,
+            "after_pcm_host_time": 7630851938,
+            "exit_host_time": 7630851962,
+            "current_present": true,
+            "current_host_time": 7630812722,
+            "current_flags": 7,
+            "current_sample_time": 213191,
+            "entry_minus_native_ms": -4.411333333333333,
+            "work_us": 22.375,
+            "entry_minus_os_now_ms": 1.612625,
+            "entry_relative_to_last_native_ms": 2.006333333333333
+          },
+          {
+            "index": 334,
+            "sample_time": 213992.0,
+            "native_host_time": 7631213297,
+            "entry_host_time": 7630958623,
+            "after_pcm_host_time": 7630959135,
+            "exit_host_time": 7630959165,
+            "current_present": true,
+            "current_host_time": 7630957507,
+            "current_flags": 7,
+            "current_sample_time": 213480,
+            "entry_minus_native_ms": -10.611416666666665,
+            "work_us": 22.583333333333332,
+            "entry_minus_os_now_ms": 0.0465,
+            "entry_relative_to_last_native_ms": 6.4729166666666655
+          },
+          {
+            "index": 335,
+            "sample_time": 214504.0,
+            "native_host_time": 7631469297,
+            "entry_host_time": 7631231956,
+            "after_pcm_host_time": 7631232535,
+            "exit_host_time": 7631232570,
+            "current_present": true,
+            "current_host_time": 7631229848,
+            "current_flags": 7,
+            "current_sample_time": 214025,
+            "entry_minus_native_ms": -9.889208333333332,
+            "work_us": 25.58333333333333,
+            "entry_minus_os_now_ms": 0.08783333333333332,
+            "entry_relative_to_last_native_ms": 17.861791666666665
+          }
+        ],
+        "notifications": [
+          {
+            "index": 0,
+            "host_time": 7545196956,
+            "object": 92,
+            "selector": 1735354734,
+            "scope": 1735159650,
+            "element": 0,
+            "selector_fourcc": "goin"
+          },
+          {
+            "index": 1,
+            "host_time": 8986324060,
+            "object": 92,
+            "selector": 1735354734,
+            "scope": 1735159650,
+            "element": 0,
+            "selector_fourcc": "goin"
+          }
+        ]
+      },
+      "runtime-reader": {
+        "nearby_callbacks": [
+          {
+            "index": 240,
+            "sample_time": 211164.0,
+            "native_host_time": 7629799297,
+            "entry_host_time": 7630057320,
+            "after_pcm_host_time": 7630057408,
+            "exit_host_time": 7630057450,
+            "current_present": true,
+            "current_host_time": 7630055522,
+            "current_flags": 7,
+            "current_sample_time": 211676,
+            "entry_minus_native_ms": 10.750958333333333,
+            "work_us": 5.416666666666666,
+            "entry_minus_os_now_ms": 0.07491666666666666,
+            "entry_relative_to_last_native_ms": -31.081374999999998
+          },
+          {
+            "index": 241,
+            "sample_time": 211676.0,
+            "native_host_time": 7630055297,
+            "entry_host_time": 7630418724,
+            "after_pcm_host_time": 7630418767,
+            "exit_host_time": 7630418797,
+            "current_present": true,
+            "current_host_time": 7630363279,
+            "current_flags": 7,
+            "current_sample_time": 212292,
+            "entry_minus_native_ms": 15.142791666666666,
+            "work_us": 3.041666666666666,
+            "entry_minus_os_now_ms": 2.3102083333333328,
+            "entry_relative_to_last_native_ms": -16.022875
+          },
+          {
+            "index": 242,
+            "sample_time": 212188.0,
+            "native_host_time": 7630311297,
+            "entry_host_time": 7630816979,
+            "after_pcm_host_time": 7630817007,
+            "exit_host_time": 7630817032,
+            "current_present": true,
+            "current_host_time": 7630815568,
+            "current_flags": 7,
+            "current_sample_time": 213197,
+            "entry_minus_native_ms": 21.07008333333333,
+            "work_us": 2.208333333333333,
+            "entry_minus_os_now_ms": 0.05879166666666666,
+            "entry_relative_to_last_native_ms": 0.5710833333333333
+          },
+          {
+            "index": 243,
+            "sample_time": 212700.0,
+            "native_host_time": 7630567297,
+            "entry_host_time": 7630824365,
+            "after_pcm_host_time": 7630824377,
+            "exit_host_time": 7630824386,
+            "current_present": true,
+            "current_host_time": 7630823297,
+            "current_flags": 7,
+            "current_sample_time": 213212,
+            "entry_minus_native_ms": 10.711166666666665,
+            "work_us": 0.8749999999999999,
+            "entry_minus_os_now_ms": 0.0445,
+            "entry_relative_to_last_native_ms": 0.8788333333333332
+          },
+          {
+            "index": 244,
+            "sample_time": 213212.0,
+            "native_host_time": 7630823297,
+            "entry_host_time": 7631119389,
+            "after_pcm_host_time": 7631119580,
+            "exit_host_time": 7631119609,
+            "current_present": true,
+            "current_host_time": 7631117142,
+            "current_flags": 7,
+            "current_sample_time": 213800,
+            "entry_minus_native_ms": 12.337166666666665,
+            "work_us": 9.166666666666666,
+            "entry_minus_os_now_ms": 0.09362499999999999,
+            "entry_relative_to_last_native_ms": 13.1715
+          }
+        ],
+        "notifications": [
+          {
+            "index": 0,
+            "host_time": 7568357787,
+            "object": 100,
+            "selector": 1735354734,
+            "scope": 1735159650,
+            "element": 0,
+            "selector_fourcc": "goin"
+          },
+          {
+            "index": 1,
+            "host_time": 8337002772,
+            "object": 100,
+            "selector": 1735354734,
+            "scope": 1735159650,
+            "element": 0,
+            "selector_fourcc": "goin"
+          }
+        ]
+      }
+    },
+    "terminal_native_snapshot": {
+      "captures": [
+        {
+          "captured_frames": 141312,
+          "input_id": "coreaudio:au.textual.ravelink.cable.1",
+          "native_timing": {
+            "callback_completion_contended": false,
+            "first_fault": null,
+            "last_completed_callback": {
+              "after_pcm_host_time": 7630803832,
+              "completion_host_time": 7630803842,
+              "entry_host_time": 7630803273,
+              "os_now_flags": 7,
+              "os_now_host_time": 7630785706,
+              "os_now_sample_time": 213137.0,
+              "os_now_sample_time_bits": 4686563344394485760,
+              "outcome": {
+                "kind": "published"
+              },
+              "packet_index": 276
+            },
+            "last_packet": {
+              "epoch": 1,
+              "flags": 7,
+              "frames": 512,
+              "host_time": 7630253297,
+              "observed_host_time": 7630803273,
+              "packet_index": 276,
+              "queue_frame": 140800,
+              "rate_scalar": 1.0,
+              "rate_scalar_bits": 4607182418800017408,
+              "sample_time": 212072.0,
+              "sample_time_bits": 4686526751273123840
+            },
+            "last_packet_contended": false,
+            "lifecycle": [
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 7555992299,
+                "phase": "CreateRequested",
+                "status": null
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 7556130293,
+                "phase": "CreateReturned",
+                "status": 0
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 7559356655,
+                "phase": "StartRequested",
+                "status": null
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 7561611917,
+                "phase": "StartReturned",
+                "status": 0
+              },
+              {
+                "callbacks_in_flight": null,
+                "host_time": 7634765659,
+                "phase": "HandleCancelled",
+                "status": null
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 7632608076,
+                "phase": "GatesRevoked",
+                "status": null
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 7632608081,
+                "phase": "StopRequested",
+                "status": null
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 7632859924,
+                "phase": "StopReturned",
+                "status": 0
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 7632859931,
+                "phase": "DestroyRequested",
+                "status": null
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 7632863782,
+                "phase": "DestroyReturned",
+                "status": 0
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 7632863784,
+                "phase": "ListenersRemovalRequested",
+                "status": null
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 7632885530,
+                "phase": "ListenersRemovalReturned",
+                "status": 0
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 7632885541,
+                "phase": "QuiescenceChecked",
+                "status": null
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 7632885542,
+                "phase": "OwnerCompleted",
+                "status": null
+              }
+            ],
+            "packets_seen": 276
+          }
+        }
+      ],
+      "error": null,
+      "fault": 5,
+      "native_shutdown_observed": true,
+      "observation": "post-stop-final",
+      "observed_host_time": 7634772564,
+      "running": false,
+      "schema": 1
+    }
+  },
+  "basic_hal_writer_gaps": [
+    {
+      "delta_frames": 764.0,
+      "previous": {
+        "index": 2357,
+        "sample_time": 1238632.0,
+        "native_host_time": 6543535363,
+        "entry_host_time": 6543656889,
+        "after_pcm_host_time": 6543657054,
+        "exit_host_time": 6543657075,
+        "current_present": true,
+        "current_host_time": 6543654738,
+        "current_flags": 7,
+        "current_sample_time": 1238871,
+        "entry_minus_native_ms": 5.063583333333333,
+        "work_us": 7.749999999999998,
+        "entry_minus_os_now_ms": 0.089625
+      },
+      "current": {
+        "index": 2358,
+        "sample_time": 1239908.0,
+        "native_host_time": 6544173363,
+        "entry_host_time": 6543919493,
+        "after_pcm_host_time": 6543919669,
+        "exit_host_time": 6543919692,
+        "current_present": true,
+        "current_host_time": 6543918006,
+        "current_flags": 7,
+        "current_sample_time": 1239397,
+        "entry_minus_native_ms": -10.577916666666667,
+        "work_us": 8.291666666666666,
+        "entry_minus_os_now_ms": 0.061958333333333324
+      },
+      "overload_notifications": [
+        {
+          "index": 1,
+          "host_time": 6543659267,
+          "object": 96,
+          "selector": 1870030194,
+          "scope": 1735159650,
+          "element": 0,
+          "selector_fourcc": "over",
+          "ms_after_previous_entry": 0.09908333333333331
+        }
+      ],
+      "seconds_after_reader_stop": {
+        "reader-a": 4.894247958333333,
+        "reader-b": 4.673667999999999
+      }
+    }
+  ],
+  "limits": [
+    "Native snapshots are polled, not a full callback journal.",
+    "Xrun code 5 has three possible origins: native input reentry, native input overload, CPAL output overload.",
+    "No exact first-fault source/timestamp or output callback duration was recorded.",
+    "Late independent callback entry supports a scheduling-disturbance hypothesis but does not identify its cause.",
+    "Diagnostic instrumentation can perturb scheduling. No original failure or threshold is changed."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "artifact_id": 12541612201,
+  "artifact_name": "original-rust-hal-40046411757-1",
+  "archive": "original-hal.zip",
+  "bytes": 10535374,
+  "sha256": "5561b48ae602bd1a2da04982882660edff15760cdcaaa054a520e89b0590486d",
+  "github_digest_matches": true,
+  "manifest_members_match": true,
+  "member_count": 66,
+  "manifest_file_count": 65,
+  "source_revision": "db639ffefcb49020b9c0cea08d5ca03b8bfa2cf0"
+}

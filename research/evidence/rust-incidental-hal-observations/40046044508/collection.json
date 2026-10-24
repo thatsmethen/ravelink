@@ -1,0 +1,48 @@
+{
+  "archives": [
+    {
+      "archive": "logs.zip",
+      "bytes": 31081,
+      "github_digest": null,
+      "github_digest_matches": false,
+      "name": "logs",
+      "sha256": "3216f87ccaf2fc43bac2876893dc6774a743fc9fa9b5a64247a28e1e8d3c8b4c",
+      "zip_crc_verified": true
+    },
+    {
+      "archive": "artifact-12540974278.zip",
+      "bytes": 10299518,
+      "github_digest": "sha256:92868147abc0dce11b3a2ec32871de9d6928aa5a27d96f4ece79bc8feba75b36",
+      "github_digest_matches": true,
+      "name": "original-rust-hal-40046044508-1",
+      "sha256": "92868147abc0dce11b3a2ec32871de9d6928aa5a27d96f4ece79bc8feba75b36",
+      "zip_crc_verified": true
+    },
+    {
+      "archive": "artifact-12540564349.zip",
+      "bytes": 4916944,
+      "github_digest": "sha256:62ce393faa55dd6e2576e51030237cb7ac32ac797584e59ee74ff946a0f7672d",
+      "github_digest_matches": true,
+      "name": "original-rust-runtime-40046044508-1",
+      "sha256": "62ce393faa55dd6e2576e51030237cb7ac32ac797584e59ee74ff946a0f7672d",
+      "zip_crc_verified": true
+    }
+  ],
+  "collected_at_utc": "2026-10-24T00:46:58.932225+00:00",
+  "collection_does_not_rerun_or_publish": true,
+  "collector_sha256": "55f9774a1c65b2deb6e50294593b13543ced0cf54bd4258a6ebafeb8199e13c2",
+  "conclusion": "failure",
+  "failed_steps": [
+    {
+      "conclusion": "failure",
+      "job": "installed-runtime-capture",
+      "name": "Install, capture Cable1 through actual mixer into Cable2, verify live controls and stop",
+      "number": 6
+    }
+  ],
+  "head_sha": "03ff13a4f3b38fd4568ffdf96d893f7c05564f17",
+  "repository": "thatsmethen/ravelink",
+  "run_attempt": 1,
+  "run_id": 40046044508,
+  "run_url": "https://github.com/thatsmethen/ravelink/actions/runs/40046044508"
+}

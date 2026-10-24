@@ -1,0 +1,12 @@
+{
+  "artifact_id": 12541960470,
+  "artifact_name": "original-rust-runtime-40046411757-1",
+  "archive": "original-runtime.zip",
+  "bytes": 1318980,
+  "sha256": "305f7fb58d47ed58a0463f34a5d260e649c56545255663df12400ec11a18b6a3",
+  "github_digest_matches": true,
+  "manifest_members_match": true,
+  "member_count": 57,
+  "manifest_file_count": 56,
+  "source_revision": "db639ffefcb49020b9c0cea08d5ca03b8bfa2cf0"
+}

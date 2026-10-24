@@ -1,0 +1,26 @@
+{
+  "all_custody_manifests_verified": true,
+  "artifacts": [
+    {
+      "all_manifest_files_verified": true,
+      "archive": "artifact-12540974278.zip",
+      "manifest_sha256": "78450dfd91876bf2da18b9e546b753a0d34f790f6dfe51766ecb4e125203b3e0",
+      "verified_bytes": 16891949,
+      "verified_file_count": 57
+    },
+    {
+      "all_manifest_files_verified": true,
+      "archive": "artifact-12540564349.zip",
+      "manifest_sha256": "27cc77e691cd7851d9aef87e91adddd2aa00302e0fd53c1f7402694d10e0f1d5",
+      "verified_bytes": 12702111,
+      "verified_file_count": 51
+    }
+  ],
+  "note": "Custody verification only; frozen acceptance outcomes are unchanged.",
+  "run_id": 40046044508,
+  "schema": 1,
+  "source_revision": "03ff13a4f3b38fd4568ffdf96d893f7c05564f17",
+  "source_tree": "537b4bc7c159ef791e17ace44464b96c1666be87",
+  "verified_at_utc": "2026-10-24T00:47:10.835863+00:00",
+  "verifier_sha256": "667625eca252f3dc3ee49cf619e3fe481bca7013ffaa4942379b0b0f442e74c2"
+}

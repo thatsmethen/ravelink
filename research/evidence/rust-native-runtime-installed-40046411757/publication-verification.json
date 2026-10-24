@@ -1,0 +1,20 @@
+{
+  "pass": true,
+  "archives": [
+    {
+      "archive": "original-runtime.zip",
+      "bytes": 1318980,
+      "sha256": "305f7fb58d47ed58a0463f34a5d260e649c56545255663df12400ec11a18b6a3",
+      "manifest_files_verified": 56,
+      "source_revision": "db639ffefcb49020b9c0cea08d5ca03b8bfa2cf0"
+    },
+    {
+      "archive": "original-hal.zip",
+      "bytes": 10535374,
+      "sha256": "5561b48ae602bd1a2da04982882660edff15760cdcaaa054a520e89b0590486d",
+      "manifest_files_verified": 65,
+      "source_revision": "db639ffefcb49020b9c0cea08d5ca03b8bfa2cf0"
+    }
+  ],
+  "scope": "Original archive and member custody only; both installed observations FAILED."
+}

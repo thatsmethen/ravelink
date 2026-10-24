@@ -1,0 +1,6 @@
+# Original archives are preserved locally and published as verified release assets.
+original-runtime.zip
+original-hal.zip
+runtime-artifact/
+hal-artifact/
+__pycache__/

@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "run_id": 40046411757,
+  "run_attempt": 1,
+  "source_revision": "db639ffefcb49020b9c0cea08d5ca03b8bfa2cf0",
+  "tag": "evidence-native-runtime-40046411757",
+  "tag_resolves_to_source": true,
+  "release_url": "https://github.com/thatsmethen/ravelink/releases/tag/evidence-native-runtime-40046411757",
+  "release_id": 422432336,
+  "prerelease": true,
+  "repository_public": true,
+  "verified_at": "2026-10-24T01:02:10.487185+00:00",
+  "assets": [
+    {
+      "name": "original-hal.zip",
+      "url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-native-runtime-40046411757/original-hal.zip",
+      "asset_id": 670873803,
+      "bytes": 10535374,
+      "sha256": "5561b48ae602bd1a2da04982882660edff15760cdcaaa054a520e89b0590486d",
+      "redownload_archive_bytes_identical": true,
+      "redownload_all_member_bytes_identical": true,
+      "members_compared": 66
+    },
+    {
+      "name": "original-runtime.zip",
+      "url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-native-runtime-40046411757/original-runtime.zip",
+      "asset_id": 670873802,
+      "bytes": 1318980,
+      "sha256": "305f7fb58d47ed58a0463f34a5d260e649c56545255663df12400ec11a18b6a3",
+      "redownload_archive_bytes_identical": true,
+      "redownload_all_member_bytes_identical": true,
+      "members_compared": 57
+    }
+  ],
+  "verification": "Downloaded anonymously from each public browser_download_url into a fresh temporary directory; compared complete archive bytes and every ZIP member with originals, then independently verified frozen GitHub digests and all manifest members."
+}
