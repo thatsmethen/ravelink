@@ -10,6 +10,9 @@
 mod capture;
 mod capture_transport;
 mod control_bank;
+mod fault;
+pub use fault::{FaultAttribution, FaultDirection, FaultMetadata, FaultOrigin, FaultProperty};
+use fault::{FaultLatch, FaultSource};
 #[cfg(target_os = "macos")]
 mod native_capture;
 #[cfg(any(target_os = "macos", test))]
@@ -224,6 +227,8 @@ pub struct AudioSnapshot {
     pub input_meters: Vec<MeterReading>,
     pub bus_meters: Vec<MeterReading>,
     pub fault: AudioFault,
+    /// Write-once source attribution; metadata can briefly be pending.
+    pub first_fault: Option<FaultAttribution>,
     pub error: Option<AudioError>,
 }
 
@@ -271,7 +276,7 @@ impl AtomicMeter {
     }
 }
 struct Telemetry {
-    fault: AtomicU32,
+    fault: FaultLatch,
     frames: AtomicU64,
     callbacks: AtomicU64,
     applied_control_version: AtomicU64,
@@ -282,7 +287,7 @@ struct Telemetry {
 impl Telemetry {
     fn new(session: &Session) -> Self {
         Self {
-            fault: AtomicU32::new(0),
+            fault: FaultLatch::default(),
             frames: AtomicU64::new(0),
             callbacks: AtomicU64::new(0),
             applied_control_version: AtomicU64::new(0),
@@ -299,10 +304,14 @@ impl Telemetry {
                 .collect(),
         }
     }
+    #[cfg(test)]
     fn fail(&self, fault: AudioFault) {
-        let _ = self
-            .fault
-            .compare_exchange(0, fault as u32, Ordering::AcqRel, Ordering::Relaxed);
+        self.fault.record(
+            fault,
+            FaultOrigin::Runtime,
+            FaultSource::RUNTIME,
+            FaultMetadata::now(0),
+        );
     }
 }
 #[derive(Default)]
@@ -479,9 +488,23 @@ impl AudioRuntime {
     }
     pub fn snapshot(&self) -> AudioSnapshot {
         let state = self.shared.state();
-        let fault = state.telemetry.as_ref().map_or(AudioFault::None, |t| {
-            AudioFault::from_code(t.fault.load(Ordering::Acquire))
-        });
+        let mut first_fault = state.telemetry.as_ref().and_then(|t| t.fault.snapshot());
+        if let Some(record) = &mut first_fault {
+            record.endpoint_id = match record.direction {
+                FaultDirection::Input => state.telemetry.as_ref().and_then(|t| {
+                    t.captures
+                        .get(record.endpoint_index? as usize)
+                        .map(|(id, _)| id.0.clone())
+                }),
+                FaultDirection::Output => {
+                    state.configuration.as_ref().map(|c| c.output.id.0.clone())
+                }
+                FaultDirection::Runtime => None,
+            };
+        }
+        let fault = first_fault
+            .as_ref()
+            .map_or(AudioFault::None, |record| record.fault);
         let authorized = state.authorization.as_ref().is_some_and(|(wanted, epoch)| {
             wanted.load(Ordering::Acquire) && self.shared.epoch.load(Ordering::Acquire) == *epoch
         });
@@ -533,6 +556,7 @@ impl AudioRuntime {
             input_meters: inputs,
             bus_meters: buses,
             fault,
+            first_fault,
             error: state.error.clone(),
         }
     }
@@ -902,12 +926,13 @@ fn start_stream(
         streams: Vec::with_capacity(selected_inputs.len()),
         wanted: wanted.clone(),
     };
-    for (selected, capture) in selected_inputs.iter().zip(&render.captures) {
+    for (index, (selected, capture)) in selected_inputs.iter().zip(&render.captures).enumerate() {
         if !wanted.load(Ordering::Acquire) || shared.epoch.load(Ordering::Acquire) != epoch {
             return Err(AudioError::Cancelled);
         }
         let state = CaptureState::new(
             capture.consumer.ring.clone(),
+            index,
             usize::from(selected.config.channels()),
             epoch,
             wanted.clone(),
@@ -1022,6 +1047,7 @@ fn make_stream<T>(
 where
     T: cpal::SizedSample + cpal::FromSample<f32>,
 {
+    let epoch = render.epoch;
     device.build_output_stream_raw(
         *config,
         T::FORMAT,
@@ -1029,14 +1055,31 @@ where
             if let Some(samples) = data.as_slice_mut::<T>() {
                 render.write(samples);
             } else {
-                render.telemetry.fail(AudioFault::InvalidBuffer);
+                render.fail(AudioFault::InvalidBuffer, FaultOrigin::OutputBuffer);
             }
         },
         move |error| {
-            telemetry.fail(stream_fault(error.kind()));
+            record_output_error(&telemetry, epoch, error.kind());
         },
         Some(COMMAND_TIMEOUT),
     )
+}
+
+fn record_output_error(telemetry: &Telemetry, epoch: u64, kind: cpal::ErrorKind) {
+    telemetry.fault.record(
+        stream_fault(kind),
+        output_error_origin(kind),
+        FaultSource::OUTPUT,
+        FaultMetadata::now(epoch),
+    );
+}
+
+fn output_error_origin(kind: cpal::ErrorKind) -> FaultOrigin {
+    if cfg!(target_os = "macos") && kind == cpal::ErrorKind::Xrun {
+        FaultOrigin::CpalCoreAudioOutputOverload
+    } else {
+        FaultOrigin::CpalOutputError
+    }
 }
 
 fn stream_fault(kind: cpal::ErrorKind) -> AudioFault {
@@ -1115,6 +1158,7 @@ impl RenderState {
             .and_then(|n| n.checked_add(2 * RENDER_CHUNK * std::mem::size_of::<f32>()))
             .and_then(|n| n.checked_add(control_bytes))
             .and_then(|n| n.checked_add(capture_bytes))
+            .and_then(|n| n.checked_add(std::mem::size_of::<Telemetry>()))
             .and_then(|n| GRAPH_BYTES.checked_sub(n))
             .ok_or_else(|| {
                 AudioError::InvalidSession("the graph exceeds the runtime memory budget".into())
@@ -1165,6 +1209,14 @@ impl RenderState {
             telemetry,
         })
     }
+    fn fail(&self, fault: AudioFault, origin: FaultOrigin) {
+        self.telemetry.fault.record(
+            fault,
+            origin,
+            FaultSource::OUTPUT,
+            FaultMetadata::now(self.epoch),
+        );
+    }
     fn authorized(&self) -> bool {
         self.wanted.load(Ordering::Acquire)
             && self.shared.epoch.load(Ordering::Acquire) == self.epoch
@@ -1179,7 +1231,7 @@ impl RenderState {
             || !output.len().is_multiple_of(self.channels)
             || output.len() / self.channels > MAX_CALLBACK_FRAMES
         {
-            self.telemetry.fail(AudioFault::InvalidBuffer);
+            self.fail(AudioFault::InvalidBuffer, FaultOrigin::OutputBuffer);
             return;
         }
         if let Some(version) = self
@@ -1187,7 +1239,7 @@ impl RenderState {
             .copy_if_new(&mut self.control_scratch, self.applied_version)
         {
             if self.mixer.apply_controls(&self.control_scratch).is_err() {
-                self.telemetry.fail(AudioFault::Render);
+                self.fail(AudioFault::Render, FaultOrigin::MixerControls);
                 return;
             }
             self.applied_version = version;
@@ -1197,11 +1249,22 @@ impl RenderState {
         }
         let frames = output.len() / self.channels;
         let mut ready = true;
-        for capture in &mut self.captures {
+        let mut first_unready = None;
+        for (index, capture) in self.captures.iter_mut().enumerate() {
             match capture.consumer.prepare(frames) {
-                Ok(primed) => ready &= primed,
+                Ok(primed) => {
+                    ready &= primed;
+                    if !primed && first_unready.is_none() {
+                        first_unready = Some(index);
+                    }
+                }
                 Err(error) => {
-                    self.telemetry.fail(capture::fault(error));
+                    self.telemetry.fault.record(
+                        capture::fault(error),
+                        FaultOrigin::CaptureTransportConsumer,
+                        FaultSource::input(index),
+                        FaultMetadata::now(self.epoch),
+                    );
                     return;
                 }
             }
@@ -1209,7 +1272,12 @@ impl RenderState {
         if !ready {
             self.priming_frames += frames as u64;
             if self.priming_frames > u64::from(self.sample_rate) * 2 {
-                self.telemetry.fail(AudioFault::CaptureStartup);
+                self.telemetry.fault.record(
+                    AudioFault::CaptureStartup,
+                    FaultOrigin::CaptureStartup,
+                    first_unready.map_or(FaultSource::RUNTIME, FaultSource::input),
+                    FaultMetadata::now(self.epoch),
+                );
             }
             return;
         }
@@ -1237,7 +1305,7 @@ impl RenderState {
                 .render_sources(sources, &mut destinations, count)
                 .is_err()
             {
-                self.telemetry.fail(AudioFault::Render);
+                self.fail(AudioFault::Render, FaultOrigin::MixerRender);
                 output.fill(T::EQUILIBRIUM);
                 return;
             }

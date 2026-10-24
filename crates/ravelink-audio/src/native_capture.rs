@@ -5,8 +5,9 @@ use super::{
     capture::{CapturePermit, CaptureState},
     capture_transport::Ring,
     native_packet::{Format, Layout, Tracker},
-    AudioError, AudioFault, NativeCallbackCompletion, NativeCallbackOutcome, NativeCapturePacket,
-    NativeLifecycleEvent, NativeLifecyclePhase, COMMAND_TIMEOUT, MAX_DEVICE_CHANNELS,
+    AudioError, AudioFault, FaultMetadata, FaultOrigin, FaultProperty, NativeCallbackCompletion,
+    NativeCallbackOutcome, NativeCapturePacket, NativeLifecycleEvent, NativeLifecyclePhase,
+    COMMAND_TIMEOUT, MAX_DEVICE_CHANNELS,
 };
 use block2::RcBlock;
 use objc2_core_audio::*;
@@ -425,7 +426,14 @@ fn owner_loop(
                     .start()
                     .map_err(|error| backend("native input activation", None, error));
                 if result.is_err() {
-                    permit.fail(AudioFault::Backend);
+                    permit.fail_at(
+                        AudioFault::Backend,
+                        FaultOrigin::NativeInputLifecycle,
+                        FaultMetadata {
+                            native_object: Some(native.selection.id),
+                            ..permit.metadata()
+                        },
+                    );
                 }
                 let success = result.is_ok();
                 if !active.load(Ordering::Acquire) || !permit.authorized() {
@@ -494,6 +502,7 @@ struct PacketState {
     queue_frame: u64,
 }
 struct Context {
+    object: AudioObjectID,
     layout: Layout,
     gate: Arc<Gate>,
     ring: Arc<Ring>,
@@ -539,7 +548,15 @@ unsafe fn io_proc(
         .compare_exchange(false, true, Ordering::Acquire, Ordering::Relaxed)
         .is_err()
     {
-        context.gate.permit.fail(AudioFault::Xrun);
+        context.gate.permit.fail_at(
+            AudioFault::Xrun,
+            FaultOrigin::NativeInputReentry,
+            FaultMetadata {
+                native_object: Some(context.object),
+                observed_mach_host_time: Some(entry_host_time),
+                ..context.gate.permit.metadata()
+            },
+        );
         return;
     }
     let _entered = Entered(&context.entered);
@@ -553,7 +570,15 @@ unsafe fn io_proc(
             / context.layout.planes[0].frame_bytes
     };
     let Some(index) = state.packet_index.checked_add(1) else {
-        context.gate.permit.fail(AudioFault::ResourceExhausted);
+        context.gate.permit.fail_at(
+            AudioFault::ResourceExhausted,
+            FaultOrigin::NativeInputPacket,
+            FaultMetadata {
+                native_object: Some(context.object),
+                observed_mach_host_time: Some(entry_host_time),
+                ..context.gate.permit.metadata()
+            },
+        );
         return;
     };
     state.packet_index = index;
@@ -590,7 +615,24 @@ unsafe fn io_proc(
                 .ring
                 .native_timing
                 .record(packet, state.tracker.previous, Some(fault));
-            context.gate.permit.fail(fault);
+            let origin = if matches!(
+                fault,
+                AudioFault::CaptureOverflow | AudioFault::CaptureUnderflow
+            ) {
+                FaultOrigin::CaptureTransportProducer
+            } else {
+                FaultOrigin::NativeInputPacket
+            };
+            context.gate.permit.fail_at(
+                fault,
+                origin,
+                FaultMetadata {
+                    native_object: Some(context.object),
+                    packet_index: Some(index),
+                    observed_mach_host_time: Some(after_pcm_host_time),
+                    ..context.gate.permit.metadata()
+                },
+            );
         }
     }
     let now = unsafe { now.as_ref() };
@@ -655,6 +697,7 @@ unsafe fn process_packet(
 type ListenerBlock = RcBlock<dyn Fn(u32, NonNull<AudioObjectPropertyAddress>)>;
 fn listener_block(
     gate: Arc<Gate>,
+    object: AudioObjectID,
     address: AudioObjectPropertyAddress,
     fault: AudioFault,
 ) -> ListenerBlock {
@@ -664,15 +707,39 @@ fn listener_block(
                 return;
             }
             if count as usize > MAX_PROPERTY_BYTES / size_of::<AudioObjectPropertyAddress>() {
-                gate.permit.fail(AudioFault::InvalidBuffer);
+                gate.permit.fail_at(
+                    AudioFault::InvalidBuffer,
+                    FaultOrigin::NativeInputProperty,
+                    FaultMetadata {
+                        native_object: Some(object),
+                        ..gate.permit.metadata()
+                    },
+                );
                 return;
             }
             let changed = unsafe { std::slice::from_raw_parts(changed.as_ptr(), count as usize) };
-            if changed
+            if let Some(item) = changed
                 .iter()
-                .any(|item| item.mSelector == address.mSelector)
+                .find(|item| item.mSelector == address.mSelector)
             {
-                gate.permit.fail(fault);
+                let origin = if item.mSelector == kAudioDeviceProcessorOverload {
+                    FaultOrigin::NativeInputOverload
+                } else {
+                    FaultOrigin::NativeInputProperty
+                };
+                gate.permit.fail_at(
+                    fault,
+                    origin,
+                    FaultMetadata {
+                        native_object: Some(object),
+                        property: Some(FaultProperty {
+                            selector: item.mSelector,
+                            scope: item.mScope,
+                            element: item.mElement,
+                        }),
+                        ..gate.permit.metadata()
+                    },
+                );
             }
         },
     )
@@ -733,6 +800,7 @@ impl Owner {
             accepting: AtomicBool::new(false),
         });
         let context = Arc::new(Context {
+            object: selection.id,
             layout: selection.layout.clone(),
             gate: gate.clone(),
             ring: state.ring(),
@@ -860,7 +928,7 @@ impl Owner {
         address: AudioObjectPropertyAddress,
         fault: AudioFault,
     ) -> Result<(), String> {
-        let block = listener_block(self.gate.clone(), address, fault);
+        let block = listener_block(self.gate.clone(), object, address, fault);
         status(unsafe {
             AudioObjectAddPropertyListenerBlock(
                 object,
@@ -924,6 +992,15 @@ impl Owner {
         let result = status(started);
         if result.is_err() {
             self.gate.accepting.store(false, Ordering::Release);
+            self.gate.permit.fail_at(
+                AudioFault::Backend,
+                FaultOrigin::NativeInputLifecycle,
+                FaultMetadata {
+                    native_object: Some(self.selection.id),
+                    status: Some(started),
+                    ..self.gate.permit.metadata()
+                },
+            );
         }
         result
     }
@@ -935,17 +1012,32 @@ impl Drop for Owner {
         self.gate.accepting.store(false, Ordering::Release);
         self.mark(NativeLifecyclePhase::GatesRevoked, None);
         let mut quiescent = true;
+        let mut first_failure = None;
         if self.started {
             self.mark(NativeLifecyclePhase::StopRequested, None);
             let stopped = unsafe { AudioDeviceStop(self.selection.id, self.proc_id) };
             self.mark(NativeLifecyclePhase::StopReturned, Some(stopped));
             quiescent &= stopped == 0;
+            if stopped != 0 {
+                first_failure = Some(FaultMetadata {
+                    native_object: Some(self.selection.id),
+                    status: Some(stopped),
+                    ..self.gate.permit.metadata()
+                });
+            }
         }
         if self.proc_id.is_some() {
             self.mark(NativeLifecyclePhase::DestroyRequested, None);
             let destroyed = unsafe { AudioDeviceDestroyIOProcID(self.selection.id, self.proc_id) };
             self.mark(NativeLifecyclePhase::DestroyReturned, Some(destroyed));
             quiescent &= destroyed == 0;
+            if destroyed != 0 && first_failure.is_none() {
+                first_failure = Some(FaultMetadata {
+                    native_object: Some(self.selection.id),
+                    status: Some(destroyed),
+                    ..self.gate.permit.metadata()
+                });
+            }
         }
         self.mark(NativeLifecyclePhase::ListenersRemovalRequested, None);
         let mut removal_status = 0;
@@ -962,6 +1054,18 @@ impl Drop for Owner {
                 removal_status = removed;
             }
             quiescent &= removed == 0;
+            if removed != 0 && first_failure.is_none() {
+                first_failure = Some(FaultMetadata {
+                    native_object: Some(listener.object),
+                    status: Some(removed),
+                    property: Some(FaultProperty {
+                        selector: listener.address.mSelector,
+                        scope: listener.address.mScope,
+                        element: listener.address.mElement,
+                    }),
+                    ..self.gate.permit.metadata()
+                });
+            }
         }
         self.mark(
             NativeLifecyclePhase::ListenersRemovalReturned,
@@ -983,7 +1087,14 @@ impl Drop for Owner {
             if let Some(context) = self.context.take() {
                 std::mem::forget(context);
             }
-            self.gate.permit.fail(AudioFault::Backend);
+            self.gate.permit.fail_at(
+                AudioFault::Backend,
+                FaultOrigin::NativeInputLifecycle,
+                first_failure.unwrap_or_else(|| FaultMetadata {
+                    native_object: Some(self.selection.id),
+                    ..self.gate.permit.metadata()
+                }),
+            );
         } else {
             self.mark(NativeLifecyclePhase::OwnerCompleted, None);
         }

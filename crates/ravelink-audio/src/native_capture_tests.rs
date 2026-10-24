@@ -33,6 +33,7 @@ fn context() -> (Arc<Context>, Arc<Shared>, Arc<Telemetry>) {
     )));
     let state = CaptureState::new(
         ring.clone(),
+        0,
         2,
         7,
         Arc::new(AtomicBool::new(true)),
@@ -54,6 +55,7 @@ fn context() -> (Arc<Context>, Arc<Shared>, Arc<Telemetry>) {
     )
     .unwrap();
     let context = Arc::new(Context {
+        object: 71,
         layout,
         gate: Arc::new(Gate {
             permit: state.permit(),
@@ -127,7 +129,20 @@ fn original_native_callback_publishes_expected_pcm_and_exact_gap_evidence() {
     assert_eq!(context.ring.test_sample(511), [0.25, -0.5]);
     // The exact 568-frame loss observed in the frozen system run must reject
     // this entire packet, rather than stitch discontinuous PCM together.
+    crate::tests::OPERATIONS.with(|n| n.set(0));
+    crate::tests::COUNTING.with(|on| on.set(true));
     invoke(&callback, &mut input, 52024.0, 2000);
+    crate::tests::COUNTING.with(|on| on.set(false));
+    assert_eq!(crate::tests::OPERATIONS.with(std::cell::Cell::get), 0);
+    let attribution = telemetry.fault.snapshot().unwrap();
+    assert_eq!(attribution.origin, FaultOrigin::NativeInputPacket);
+    assert_eq!(attribution.direction, crate::FaultDirection::Input);
+    assert_eq!(attribution.endpoint_index, Some(0));
+    let raw = attribution.metadata.unwrap();
+    assert_eq!(raw.native_object, Some(71));
+    assert_eq!(raw.packet_index, Some(2));
+    assert_eq!(raw.epoch, 7);
+    assert!(raw.observed_mach_host_time.is_some());
     assert_eq!(fault(&telemetry), AudioFault::Xrun);
     assert_eq!(context.ring.captured.load(Ordering::Relaxed), 512);
     let timing = context.ring.native_timing.snapshot().unwrap();
@@ -224,6 +239,13 @@ fn stale_epoch_cancelled_and_reentrant_native_callbacks_cannot_publish() {
         }
         let mut pcm = [0.25_f32; 4];
         invoke(&callback, &mut buffers(&mut pcm), 0.0, 1);
+        if case == 4 {
+            let attribution = telemetry.fault.snapshot().unwrap();
+            assert_eq!(attribution.origin, FaultOrigin::NativeInputReentry);
+            assert_eq!(attribution.metadata.unwrap().native_object, Some(71));
+        } else {
+            assert_eq!(telemetry.fault.snapshot(), None);
+        }
         assert_eq!(context.ring.captured.load(Ordering::Relaxed), 0);
         assert_eq!(context.in_flight.load(Ordering::Acquire), 0);
         assert_eq!(
@@ -287,7 +309,12 @@ fn native_format_notification_latches_fault_without_allocating_and_gates_late_pc
         kAudioStreamPropertyVirtualFormat,
         kAudioObjectPropertyScopeGlobal,
     );
-    let listener = listener_block(context.gate.clone(), format, AudioFault::StreamInvalidated);
+    let listener = listener_block(
+        context.gate.clone(),
+        72,
+        format,
+        AudioFault::StreamInvalidated,
+    );
     let mut unrelated = address(
         kAudioStreamPropertyStartingChannel,
         kAudioObjectPropertyScopeGlobal,
@@ -300,6 +327,17 @@ fn native_format_notification_latches_fault_without_allocating_and_gates_late_pc
     crate::tests::COUNTING.with(|on| on.set(false));
     assert_eq!(crate::tests::OPERATIONS.with(std::cell::Cell::get), 0);
     assert_eq!(fault(&telemetry), AudioFault::StreamInvalidated);
+    let attribution = telemetry.fault.snapshot().unwrap();
+    assert_eq!(attribution.origin, FaultOrigin::NativeInputProperty);
+    assert_eq!(attribution.metadata.unwrap().native_object, Some(72));
+    assert_eq!(
+        attribution.metadata.unwrap().property,
+        Some(FaultProperty {
+            selector: format.mSelector,
+            scope: format.mScope,
+            element: format.mElement,
+        })
+    );
     let mut pcm = [0.25_f32; 4];
     invoke(&callback, &mut buffers(&mut pcm), 0.0, 1);
     assert_eq!(context.ring.captured.load(Ordering::Relaxed), 0);
@@ -356,4 +394,36 @@ fn unproven_native_quiescence_retains_context_and_blocks_uid_reuse() {
     drop(recovered);
     assert!(weak.upgrade().is_none());
     RESERVED.get().unwrap().lock().unwrap().remove(uid);
+}
+
+#[test]
+fn native_overload_is_distinct_from_packet_and_reentry_faults_and_keeps_actual_address() {
+    let (context, _shared, telemetry) = context();
+    let registered = address(
+        kAudioDeviceProcessorOverload,
+        kAudioObjectPropertyScopeGlobal,
+    );
+    let listener = listener_block(context.gate.clone(), 93, registered, AudioFault::Xrun);
+    let mut notification = registered;
+    notification.mElement = 19;
+    crate::tests::OPERATIONS.with(|n| n.set(0));
+    crate::tests::COUNTING.with(|on| on.set(true));
+    listener.call((1, NonNull::from(&mut notification)));
+    crate::tests::COUNTING.with(|on| on.set(false));
+    assert_eq!(crate::tests::OPERATIONS.with(std::cell::Cell::get), 0);
+    let attribution = telemetry.fault.snapshot().unwrap();
+    assert_eq!(attribution.fault, AudioFault::Xrun);
+    assert_eq!(attribution.origin, FaultOrigin::NativeInputOverload);
+    let raw = attribution.metadata.unwrap();
+    assert_eq!(raw.native_object, Some(93));
+    assert_eq!(
+        raw.property,
+        Some(FaultProperty {
+            selector: kAudioDeviceProcessorOverload,
+            scope: kAudioObjectPropertyScopeGlobal,
+            element: 19,
+        })
+    );
+    assert_eq!(raw.packet_index, None);
+    assert!(context.ring.native_timing.snapshot().is_none());
 }

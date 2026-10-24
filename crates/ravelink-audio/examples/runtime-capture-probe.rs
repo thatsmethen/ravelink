@@ -4,8 +4,8 @@
 #[cfg(target_os = "macos")]
 mod native {
     use ravelink_audio::{
-        AudioFault, AudioRuntime, AudioSnapshot, NativeCallbackOutcome, NativeCapturePacket,
-        NativeLifecyclePhase, NativeTimingSnapshot, OutputId,
+        AudioFault, AudioRuntime, AudioSnapshot, FaultAttribution, NativeCallbackOutcome,
+        NativeCapturePacket, NativeLifecyclePhase, NativeTimingSnapshot, OutputId,
     };
     use ravelink_core::{Bus, DspConfig, Input, InputKind, Send, Session};
     use serde_json::{json, Value};
@@ -79,6 +79,18 @@ mod native {
             "last_packet_contended": timing.last_packet_contended, "first_fault": first_fault,
             "last_completed_callback": completed, "callback_completion_contended": timing.callback_completion_contended,
             "lifecycle": lifecycle,
+        })
+    }
+    fn fault_json(record: &FaultAttribution) -> Value {
+        json!({
+            "fault": record.fault as u32, "origin": format!("{:?}", record.origin),
+            "direction": format!("{:?}", record.direction), "endpoint_index":record.endpoint_index,
+            "endpoint_id":record.endpoint_id, "metadata_pending":record.metadata.is_none(),
+            "metadata":record.metadata.map(|m| json!({
+                "epoch":m.epoch, "observed_mach_host_time":m.observed_mach_host_time,
+                "native_object":m.native_object, "status":m.status, "packet_index":m.packet_index,
+                "property":m.property.map(|p| json!({"selector":p.selector,"scope":p.scope,"element":p.element})),
+            }))
         })
     }
     fn native_shutdown_observed(snapshot: &AudioSnapshot) -> bool {
@@ -179,6 +191,7 @@ mod native {
                 .collect();
             let record = json!({"schema":1, "observation":observation, "observed_host_time":ticks(),
                 "running":snapshot.running, "fault": snapshot.fault as u32,
+                "first_fault":snapshot.first_fault.as_ref().map(fault_json),
                 "error":snapshot.error.as_ref().map(ToString::to_string), "captures": captures,
                 "native_shutdown_observed":shutdown_complete});
             writeln!(self.native_timing, "{record}")
@@ -516,6 +529,51 @@ mod native {
             assert_eq!(parsed["lifecycle"][0]["callbacks_in_flight"], Value::Null);
             assert_eq!(parsed["lifecycle"][1]["host_time"].as_u64(), Some(u64::MAX));
             assert_eq!(parsed["lifecycle"][1]["status"], -2000);
+        }
+
+        #[test]
+        fn fault_json_preserves_source_raw_metadata_and_explicit_pending_state() {
+            use ravelink_audio::{FaultDirection, FaultMetadata, FaultOrigin, FaultProperty};
+            let mut record = FaultAttribution {
+                fault: AudioFault::Xrun,
+                origin: FaultOrigin::NativeInputOverload,
+                direction: FaultDirection::Input,
+                endpoint_index: Some(3),
+                endpoint_id: Some("CoreAudio:device\n\"".into()),
+                metadata: None,
+            };
+            let pending = fault_json(&record);
+            assert_eq!(pending["metadata_pending"], true);
+            assert_eq!(pending["metadata"], Value::Null);
+            record.metadata = Some(FaultMetadata {
+                epoch: 7,
+                observed_mach_host_time: Some(u64::MAX),
+                native_object: Some(91),
+                property: Some(FaultProperty {
+                    selector: u32::MAX,
+                    scope: 5,
+                    element: 0,
+                }),
+                status: Some(-2000),
+                packet_index: None,
+            });
+            let decoded: Value = serde_json::from_str(&fault_json(&record).to_string()).unwrap();
+            assert_eq!(decoded["fault"], 5);
+            assert_eq!(decoded["origin"], "NativeInputOverload");
+            assert_eq!(decoded["direction"], "Input");
+            assert_eq!(decoded["endpoint_index"], 3);
+            assert_eq!(decoded["endpoint_id"], record.endpoint_id.unwrap());
+            assert_eq!(decoded["metadata_pending"], false);
+            assert_eq!(
+                decoded["metadata"]["observed_mach_host_time"].as_u64(),
+                Some(u64::MAX)
+            );
+            assert_eq!(
+                decoded["metadata"]["property"]["selector"].as_u64(),
+                Some(u64::from(u32::MAX))
+            );
+            assert_eq!(decoded["metadata"]["status"], -2000);
+            assert_eq!(decoded["metadata"]["packet_index"], Value::Null);
         }
 
         #[test]

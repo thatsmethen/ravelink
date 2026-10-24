@@ -225,6 +225,7 @@ mod tests {
         let telemetry = std::sync::Arc::new(crate::Telemetry::new(&session));
         let mut capture = crate::capture::CaptureState::new(
             ring.clone(),
+            0,
             2,
             0,
             std::sync::Arc::new(std::sync::atomic::AtomicBool::new(true)),

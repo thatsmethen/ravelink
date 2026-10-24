@@ -2,8 +2,8 @@ use super::capture_transport::{Consumer, Kernel, Producer, Ring, TransportError}
 #[cfg(any(not(target_os = "macos"), test))]
 use super::supported_pcm;
 use super::{
-    backend, native_host, AudioError, AudioFault, InputDevice, InputId, RunningInput, Shared,
-    Telemetry, RENDER_CHUNK,
+    backend, native_host, AudioError, AudioFault, FaultMetadata, FaultOrigin, FaultSource,
+    InputDevice, InputId, RunningInput, Shared, Telemetry, RENDER_CHUNK,
 };
 use cpal::traits::{DeviceTrait, HostTrait};
 use ravelink_core::{InputKind, Session, Uuid};
@@ -208,6 +208,7 @@ pub(crate) struct CaptureState {
 }
 #[derive(Clone)]
 pub(crate) struct CapturePermit {
+    source: FaultSource,
     epoch: u64,
     wanted: Arc<AtomicBool>,
     shared: Arc<Shared>,
@@ -219,9 +220,15 @@ impl CapturePermit {
             && self.shared.epoch.load(Ordering::Acquire) == self.epoch
             && self.telemetry.fault.load(Ordering::Acquire) == 0
     }
-    pub(crate) fn fail(&self, fault: AudioFault) {
-        self.telemetry.fail(fault);
+    pub(crate) fn fail_at(&self, fault: AudioFault, origin: FaultOrigin, metadata: FaultMetadata) {
+        self.telemetry
+            .fault
+            .record(fault, origin, self.source, metadata);
     }
+    pub(crate) fn metadata(&self) -> FaultMetadata {
+        FaultMetadata::now(self.epoch)
+    }
+
     #[cfg(target_os = "macos")]
     pub(crate) fn epoch(&self) -> u64 {
         self.epoch
@@ -230,6 +237,7 @@ impl CapturePermit {
 impl CaptureState {
     pub(crate) fn new(
         ring: Arc<Ring>,
+        source_index: usize,
         channels: usize,
         epoch: u64,
         wanted: Arc<AtomicBool>,
@@ -243,6 +251,7 @@ impl CaptureState {
             #[cfg(any(not(any(target_os = "windows", target_os = "macos")), test))]
             channels,
             permit: CapturePermit {
+                source: FaultSource::input(source_index),
                 epoch,
                 wanted,
                 shared,
@@ -253,9 +262,21 @@ impl CaptureState {
     pub(crate) fn authorized(&self) -> bool {
         self.permit.authorized()
     }
-    #[cfg(any(not(target_os = "macos"), test))]
+    #[cfg(not(target_os = "macos"))]
     pub(crate) fn fail(&self, fault: AudioFault) {
-        self.permit.fail(fault);
+        self.permit
+            .fail_at(fault, FaultOrigin::WasapiInput, self.permit.metadata());
+    }
+    #[cfg(target_os = "windows")]
+    pub(crate) fn fail_status(&self, fault: AudioFault, status: i32) {
+        self.permit.fail_at(
+            fault,
+            FaultOrigin::WasapiInput,
+            FaultMetadata {
+                status: Some(status),
+                ..self.permit.metadata()
+            },
+        );
     }
     #[cfg(target_os = "macos")]
     pub(crate) fn permit(&self) -> CapturePermit {
@@ -274,7 +295,11 @@ impl CaptureState {
             return;
         }
         if let Err(error) = self.producer.push(samples, self.channels) {
-            self.fail(fault(error));
+            self.permit.fail_at(
+                fault(error),
+                FaultOrigin::CaptureTransportProducer,
+                self.permit.metadata(),
+            );
         }
     }
     #[cfg(any(target_os = "windows", test))]
@@ -283,7 +308,11 @@ impl CaptureState {
             return;
         }
         if let Err(error) = self.producer.push_frames(frames, read) {
-            self.fail(fault(error));
+            self.permit.fail_at(
+                fault(error),
+                FaultOrigin::CaptureTransportProducer,
+                self.permit.metadata(),
+            );
         }
     }
     #[cfg(target_os = "macos")]
@@ -314,7 +343,7 @@ fn make_typed<T: cpal::SizedSample>(
 where
     f32: cpal::FromSample<T>,
 {
-    let telemetry = state.permit.telemetry.clone();
+    let error_permit = state.permit.clone();
     selected.device.build_input_stream_raw(
         selected.config.config(),
         T::FORMAT,
@@ -326,7 +355,11 @@ where
             }
         },
         move |error| {
-            telemetry.fail(super::stream_fault(error.kind()));
+            error_permit.fail_at(
+                super::stream_fault(error.kind()),
+                FaultOrigin::CpalInputError,
+                error_permit.metadata(),
+            );
         },
         Some(super::COMMAND_TIMEOUT),
     )

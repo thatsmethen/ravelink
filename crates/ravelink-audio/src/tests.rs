@@ -525,3 +525,66 @@ fn live_update_while_stopped_cannot_create_a_stream() {
     assert_eq!(runtime.snapshot().applied_control_version, 0);
     assert!(runtime.snapshot().configuration.is_none());
 }
+
+#[test]
+fn output_error_callback_keeps_original_fault_code_and_distinct_output_origin_without_allocation() {
+    for kind in [cpal::ErrorKind::Xrun, cpal::ErrorKind::DeviceChanged] {
+        let (session, bus) = session();
+        let mut render = render(&session, bus, 2);
+        OPERATIONS.with(|n| n.set(0));
+        COUNTING.with(|on| on.set(true));
+        record_output_error(&render.telemetry, 31, kind);
+        let mut out = [0.5_f32; 128];
+        render.write(&mut out);
+        COUNTING.with(|on| on.set(false));
+        assert_eq!(OPERATIONS.with(Cell::get), 0);
+        assert!(out.iter().all(|v| *v == 0.0));
+        let first = render.telemetry.fault.snapshot().unwrap();
+        assert_eq!(first.fault, stream_fault(kind));
+        assert_eq!(first.direction, FaultDirection::Output);
+        assert_eq!(first.endpoint_index, Some(0));
+        assert_eq!(first.metadata.unwrap().epoch, 31);
+        assert_eq!(
+            first.origin,
+            if cfg!(target_os = "macos") && kind == cpal::ErrorKind::Xrun {
+                FaultOrigin::CpalCoreAudioOutputOverload
+            } else {
+                FaultOrigin::CpalOutputError
+            }
+        );
+        assert_eq!(first.metadata.unwrap().native_object, None);
+        assert_eq!(first.metadata.unwrap().property, None);
+    }
+}
+
+#[test]
+fn snapshot_resolves_fault_against_its_unique_capture_identity_and_keeps_code_coupled() {
+    let (mut session, bus) = session();
+    for id in ["test:z", "test:a", "test:z"] {
+        session
+            .add_input(Input::new(
+                id,
+                InputKind::Hardware {
+                    device_id: id.into(),
+                },
+            ))
+            .unwrap();
+    }
+    let render = render(&session, bus, 2);
+    assert_eq!(render.telemetry.captures.len(), 2);
+    render.telemetry.fault.record(
+        AudioFault::Xrun,
+        FaultOrigin::NativeInputOverload,
+        FaultSource::input(1),
+        FaultMetadata::now(0),
+    );
+    let runtime = AudioRuntime::new().unwrap(); // stopped; never discovers/opens devices
+    runtime.shared.state().telemetry = Some(render.telemetry.clone());
+    let snapshot = runtime.snapshot();
+    assert!(!snapshot.running);
+    let first = snapshot.first_fault.unwrap();
+    assert_eq!(snapshot.fault, first.fault);
+    assert_eq!(first.endpoint_index, Some(1));
+    assert_eq!(first.endpoint_id.as_deref(), Some("test:z"));
+    assert_eq!(first.origin, FaultOrigin::NativeInputOverload);
+}

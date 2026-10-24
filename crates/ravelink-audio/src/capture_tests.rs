@@ -162,6 +162,7 @@ fn capture_and_mixer_callbacks_allocate_nothing_and_share_one_input_stream() {
     let ring = render.captures[0].consumer.ring.clone();
     let mut capture = CaptureState::new(
         ring,
+        0,
         2,
         0,
         render.wanted.clone(),
@@ -223,6 +224,7 @@ fn cancelled_capture_cannot_publish_and_new_start_has_no_stale_audio() {
     let ring = render.captures[0].consumer.ring.clone();
     let mut state = CaptureState::new(
         ring.clone(),
+        0,
         2,
         0,
         render.wanted.clone(),
@@ -258,6 +260,10 @@ fn missing_capture_faults_after_bounded_startup_silence() {
         AudioFault::from_code(render.telemetry.fault.load(Ordering::Acquire)),
         AudioFault::CaptureStartup
     );
+    let first = render.telemetry.fault.snapshot().unwrap();
+    assert_eq!(first.origin, FaultOrigin::CaptureStartup);
+    assert_eq!(first.direction, FaultDirection::Input);
+    assert_eq!(first.endpoint_index, Some(0));
 }
 
 #[test]

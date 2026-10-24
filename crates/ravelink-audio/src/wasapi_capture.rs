@@ -176,7 +176,7 @@ fn owner_loop(
                     return;
                 }
                 if let Err(error) = native.start() {
-                    state.fail(hresult_fault(error.code()));
+                    state.fail_status(hresult_fault(error.code()), error.code().0);
                     let _ = reply.send(Err(backend("WASAPI input activation", Some(name), error)));
                     return;
                 }
@@ -344,8 +344,11 @@ impl NativeCapture {
             if !active.load(Ordering::Acquire) || !state.authorized() {
                 return Ok(());
             }
-            let available =
-                unsafe { self.capture.GetNextPacketSize() }.map_err(|e| hresult_fault(e.code()))?;
+            let available = unsafe { self.capture.GetNextPacketSize() }.map_err(|e| {
+                let fault = hresult_fault(e.code());
+                state.fail_status(fault, e.code().0);
+                fault
+            })?;
             if available == 0 {
                 return Ok(());
             }
@@ -366,12 +369,20 @@ impl NativeCapture {
                     Some(&mut qpc_100ns),
                 )
             }
-            .map_err(|e| hresult_fault(e.code()))?;
+            .map_err(|e| {
+                let fault = hresult_fault(e.code());
+                state.fail_status(fault, e.code().0);
+                fault
+            })?;
             if frames == 0 {
                 return Ok(());
             } // AUDCLNT_S_BUFFER_EMPTY: no lease.
+            let release_status = std::cell::Cell::new(None);
             let release = ReleaseGuard::new(frames, |count| {
-                unsafe { self.capture.ReleaseBuffer(count) }.map_err(|e| hresult_fault(e.code()))
+                unsafe { self.capture.ReleaseBuffer(count) }.map_err(|e| {
+                    release_status.set(Some(e.code().0));
+                    hresult_fault(e.code())
+                })
             });
             let processed = (|| {
                 if frames > self.maximum_frames {
@@ -406,14 +417,23 @@ impl NativeCapture {
             })();
             let released = release.finish();
             processed?;
-            released?;
+            if let Err(fault) = released {
+                if let Some(status) = release_status.get() {
+                    state.fail_status(fault, status);
+                }
+                return Err(fault);
+            }
         }
         if !active.load(Ordering::Acquire) || !state.authorized() {
             return Ok(());
         }
         // Exactly 64 packets can exhaust the queue without exhausting resources.
         // One final count query distinguishes that case without another lease.
-        match unsafe { self.capture.GetNextPacketSize() }.map_err(|e| hresult_fault(e.code()))? {
+        match unsafe { self.capture.GetNextPacketSize() }.map_err(|e| {
+            let fault = hresult_fault(e.code());
+            state.fail_status(fault, e.code().0);
+            fault
+        })? {
             0 => Ok(()),
             _ => Err(AudioFault::ResourceExhausted),
         }
