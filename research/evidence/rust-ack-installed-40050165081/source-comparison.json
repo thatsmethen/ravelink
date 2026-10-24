@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "previous_revision": "a4b21a393b1b1a9929d16da5d4e8ad0cea5cbfc7",
+  "observed_revision": "db052e4fb790801c6692fc0caba82f0545e2055e",
+  "protocol_path": "drivers/macos/tests",
+  "previous_protocol_tree": "9f42d4ddb1421b58962d6f365356bdd2acf8b57e",
+  "observed_protocol_tree": "9f42d4ddb1421b58962d6f365356bdd2acf8b57e",
+  "protocol_tree_unchanged": true,
+  "capture_transport_diff": "diff --git a/crates/ravelink-audio/src/capture_transport.rs b/crates/ravelink-audio/src/capture_transport.rs\nindex 66bb347..60e6cfa 100644\n--- a/crates/ravelink-audio/src/capture_transport.rs\n+++ b/crates/ravelink-audio/src/capture_transport.rs\n@@ -13,7 +13,7 @@ pub(crate) const CAPACITY: usize = 65536;\n const TAPS: usize = 128;\n const HALF: usize = TAPS / 2;\n const PHASES: usize = 1024;\n-const MAX_CORRECTION: f64 = 0.002; // +/- 2,000 ppm; nominal rates must match.\n+pub(crate) const MAX_CORRECTION: f64 = 0.002; // +/- 2,000 ppm; nominal rates must match.\n \n pub(crate) struct Ring {\n     frames: Box<[AtomicU64]>,\n@@ -134,6 +134,23 @@ pub(crate) struct Kernel {\n     rows: Box<[[f32; TAPS]]>,\n }\n impl Kernel {\n+    pub(crate) const fn taps() -> usize {\n+        TAPS\n+    }\n+    pub(crate) const fn half() -> usize {\n+        HALF\n+    }\n+    /// Borrow adjacent rows for the independent output reader. Capture keeps\n+    /// its existing arithmetic and priming policy unchanged.\n+    pub(crate) fn phase_rows(&self, fraction: f64) -> (&[f32; TAPS], &[f32; TAPS], f32) {\n+        let phase = fraction * PHASES as f64;\n+        let row = phase.floor() as usize;\n+        (\n+            &self.rows[row],\n+            &self.rows[row + 1],\n+            (phase - row as f64) as f32,\n+        )\n+    }\n     pub(crate) fn new() -> Arc<Self> {\n         let mut rows = Vec::with_capacity(PHASES + 1);\n         for phase in 0..=PHASES {\n",
+  "scope": "Source comparison only. Newly exposed constant/kernel accessors do not change the existing capture path; a passing observation does not establish earlier failures repaired."
+}

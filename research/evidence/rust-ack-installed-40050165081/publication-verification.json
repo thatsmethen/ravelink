@@ -1,0 +1,20 @@
+{
+  "pass": true,
+  "archives": [
+    {
+      "archive": "original-runtime.zip",
+      "bytes": 6838012,
+      "sha256": "245d1b455888aba8f51272431f618beba928ff3914c7ee5a9e162f8d29f4f596",
+      "manifest_files_verified": 56,
+      "source_revision": "db052e4fb790801c6692fc0caba82f0545e2055e"
+    },
+    {
+      "archive": "original-hal.zip",
+      "bytes": 10535621,
+      "sha256": "8d1f11c66d2cf16f31cfd2bd71a1309d1834bafdf5afca1d983f86e7030c2f4b",
+      "manifest_files_verified": 65,
+      "source_revision": "db052e4fb790801c6692fc0caba82f0545e2055e"
+    }
+  ],
+  "scope": "Original archive and member custody only; acceptance outcomes are retained separately in original-jobs.json and original artifact reports."
+}

@@ -1,0 +1,502 @@
+installed-runtime-capture	Set up job	﻿2026-10-24T01:31:19.9597230Z Current runner version: '2.338.0'
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9632730Z ##[group]Runner Image Provisioner
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9633720Z Hosted Compute Agent
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9634190Z Version: 20260828.587
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9634730Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9635320Z Build Date: 2026-08-28T16:44:25Z
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9635870Z Worker ID: {d86fe29e-0639-4798-9ac4-144fa7833b08}
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9636440Z Azure Region: westus
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9636920Z ##[endgroup]
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9638140Z ##[group]Operating System
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9638660Z macOS
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9639090Z 15.7.9
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9639530Z 24G830
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9639970Z ##[endgroup]
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9640430Z ##[group]Runner Image
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9640930Z Image: macos-15-arm64
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9641410Z Version: 20260907.0337.1
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9642270Z Included Software: https://github.com/actions/runner-images/blob/macos-15-arm64/20260907.0337/images/macos/macos-15-arm64-Readme.md
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9643590Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-15-arm64%2F20260907.0337
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9644390Z ##[endgroup]
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9645450Z ##[group]GITHUB_TOKEN Permissions
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9647270Z Contents: read
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9647740Z Metadata: read
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9648210Z ##[endgroup]
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9649760Z Secret source: Actions
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9650500Z Cache mode: write
+installed-runtime-capture	Set up job	2026-10-24T01:31:19.9651070Z Prepare workflow directory
+installed-runtime-capture	Set up job	2026-10-24T01:31:20.0052730Z Prepare all required actions
+installed-runtime-capture	Set up job	2026-10-24T01:31:20.0127310Z Getting action download info
+installed-runtime-capture	Set up job	2026-10-24T01:31:20.4717850Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+installed-runtime-capture	Set up job	2026-10-24T01:31:20.8152670Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+installed-runtime-capture	Set up job	2026-10-24T01:31:21.1383040Z Complete job name: installed-runtime-capture
+installed-runtime-capture	Run actions/checkout@v4	﻿2026-10-24T01:31:21.2243480Z ##[group]Run actions/checkout@v4
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.2244290Z with:
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.2244750Z   repository: thatsmethen/ravelink
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.2247900Z   token: ***
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.2248320Z   ssh-strict: true
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.2248750Z   ssh-user: git
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.2249190Z   persist-credentials: true
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.2249650Z   clean: true
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.2250100Z   sparse-checkout-cone-mode: true
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.2250590Z   fetch-depth: 1
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.2251020Z   fetch-tags: false
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.2251450Z   show-progress: true
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.2251880Z   lfs: false
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.2252290Z   submodules: false
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.2252730Z   set-safe-directory: true
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.2253210Z   allow-unsafe-pr-checkout: false
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.2253820Z env:
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.2254240Z   RAVELINK_OBSERVER_DIAGNOSTICS: 1
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.2254720Z ##[endgroup]
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.7322930Z Syncing repository: thatsmethen/ravelink
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.7324800Z ##[group]Getting Git version info
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.7325560Z Working directory is '/Users/runner/work/ravelink/ravelink'
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.7326450Z [command]/opt/homebrew/bin/git version
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.7921830Z git version 2.55.0
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.7946930Z ##[endgroup]
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.7961270Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/e2c383b8-ab8e-4309-adac-2bd607028757/.gitconfig'
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.7965170Z Temporarily overriding HOME='/Users/runner/work/_temp/e2c383b8-ab8e-4309-adac-2bd607028757' before making global git config changes
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.7967030Z Adding repository directory to the temporary git global config as a safe directory
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.7968030Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8090740Z Deleting the contents of '/Users/runner/work/ravelink/ravelink'
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8094600Z ##[group]Initializing the repository
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8097480Z [command]/opt/homebrew/bin/git init /Users/runner/work/ravelink/ravelink
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8370380Z hint: Using 'master' as the name for the initial branch. This default branch name
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8371570Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8372360Z hint: to use in all of your new repositories, which will suppress this warning,
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8373180Z hint: call:
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8373600Z hint:
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8374160Z hint: 	git config --global init.defaultBranch <name>
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8374740Z hint:
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8375290Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8376060Z hint: 'development'. The just-created branch can be renamed via this command:
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8376700Z hint:
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8377960Z hint: 	git branch -m <name>
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8378940Z hint:
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8379580Z hint: Disable this message with "git config set advice.defaultBranchName false"
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8392870Z Initialized empty Git repository in /Users/runner/work/ravelink/ravelink/.git/
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8410220Z [command]/opt/homebrew/bin/git remote add origin https://github.com/thatsmethen/ravelink
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8523320Z ##[endgroup]
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8525870Z ##[group]Disabling automatic garbage collection
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8526880Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8620550Z ##[endgroup]
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8623670Z ##[group]Setting up auth
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8627600Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:21.8705160Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:22.0296000Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:22.0385460Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:22.1351390Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:22.1418860Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:22.2388210Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:22.2470710Z ##[endgroup]
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:22.2472890Z ##[group]Fetching the repository
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:22.2476520Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +db052e4fb790801c6692fc0caba82f0545e2055e:refs/remotes/origin/main
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:23.5322300Z From https://github.com/thatsmethen/ravelink
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:23.5326390Z  * [new ref]         db052e4fb790801c6692fc0caba82f0545e2055e -> origin/main
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:23.5519400Z ##[endgroup]
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:23.5521390Z ##[group]Determining the checkout info
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:23.5523500Z ##[endgroup]
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:23.5525010Z [command]/opt/homebrew/bin/git sparse-checkout disable
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:23.5613020Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:23.5693980Z ##[group]Checking out the ref
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:23.5697590Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:23.9319930Z Switched to a new branch 'main'
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:23.9331990Z branch 'main' set up to track 'origin/main'.
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:23.9340590Z ##[endgroup]
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:23.9461840Z [command]/opt/homebrew/bin/git log -1 --format=%H
+installed-runtime-capture	Run actions/checkout@v4	2026-10-24T01:31:23.9551330Z db052e4fb790801c6692fc0caba82f0545e2055e
+installed-runtime-capture	Install pinned Rust	﻿2026-10-24T01:31:23.9775720Z ##[group]Run rustup toolchain install 1.91.1 --profile minimal
+installed-runtime-capture	Install pinned Rust	2026-10-24T01:31:23.9776480Z [36;1mrustup toolchain install 1.91.1 --profile minimal[0m
+installed-runtime-capture	Install pinned Rust	2026-10-24T01:31:23.9819770Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+installed-runtime-capture	Install pinned Rust	2026-10-24T01:31:23.9820130Z env:
+installed-runtime-capture	Install pinned Rust	2026-10-24T01:31:23.9820340Z   RAVELINK_OBSERVER_DIAGNOSTICS: 1
+installed-runtime-capture	Install pinned Rust	2026-10-24T01:31:23.9820570Z ##[endgroup]
+installed-runtime-capture	Install pinned Rust	2026-10-24T01:31:24.1228230Z info: syncing channel updates for 1.91.1-aarch64-apple-darwin
+installed-runtime-capture	Install pinned Rust	2026-10-24T01:31:24.3329180Z info: latest update on 2025-11-10 for version 1.91.1 (ed61e7d7e 2025-11-07)
+installed-runtime-capture	Install pinned Rust	2026-10-24T01:31:24.3335650Z info: downloading 3 components
+installed-runtime-capture	Install pinned Rust	2026-10-24T01:31:31.9620030Z 
+installed-runtime-capture	Install pinned Rust	2026-10-24T01:31:32.0124090Z info: self-update is disabled for this build of rustup
+installed-runtime-capture	Install pinned Rust	2026-10-24T01:31:32.0126410Z   1.91.1-aarch64-apple-darwin installed - rustc 1.91.1 (ed61e7d7e 2025-11-07)
+installed-runtime-capture	Install pinned Rust	2026-10-24T01:31:32.0141540Z info: any updates to rustup will need to be fetched with your system package manager
+installed-runtime-capture	Install pinned Rust	2026-10-24T01:31:32.0142740Z 
+installed-runtime-capture	Build original dual-cable driver, actual runtime client and independent observer	﻿2026-10-24T01:31:32.0436700Z ##[group]Run mkdir -p build/rust-runtime-system
+installed-runtime-capture	Build original dual-cable driver, actual runtime client and independent observer	2026-10-24T01:31:32.0437600Z [36;1mmkdir -p build/rust-runtime-system[0m
+installed-runtime-capture	Build original dual-cable driver, actual runtime client and independent observer	2026-10-24T01:31:32.0438130Z [36;1msh drivers/macos/build-bundle.sh > build/rust-runtime-system/build-driver.log 2>&1[0m
+installed-runtime-capture	Build original dual-cable driver, actual runtime client and independent observer	2026-10-24T01:31:32.0439210Z [36;1mcargo build -p ravelink-audio --release --example runtime-capture-probe --locked > build/rust-runtime-system/build-runtime.log 2>&1[0m
+installed-runtime-capture	Build original dual-cable driver, actual runtime client and independent observer	2026-10-24T01:31:32.0441150Z [36;1mxcrun clang -std=c11 -O2 -Wall -Wextra -Werror drivers/macos/tests/system-probe.c -framework CoreAudio -framework CoreFoundation -o build/rust-runtime-system/system-probe[0m
+installed-runtime-capture	Build original dual-cable driver, actual runtime client and independent observer	2026-10-24T01:31:32.0443880Z [36;1mshasum -a 256 crates/ravelink-audio/examples/runtime-capture-probe.rs target/release/examples/runtime-capture-probe drivers/macos/tests/system-probe.c drivers/macos/tests/probe-diagnostics.h drivers/macos/tests/analyze_diagnostics.py drivers/macos/tests/OBSERVER-DIAGNOSTICS.md drivers/macos/tests/run_system.py drivers/macos/tests/run_runtime.py build/rust-runtime-system/system-probe dist/macos/RaveLink.driver/Contents/MacOS/RaveLinkHAL drivers/macos/tests/analyze_runtime.py drivers/macos/tests/RUNTIME-ACCEPTANCE.md > build/rust-runtime-system/build-sha256.txt[0m
+installed-runtime-capture	Build original dual-cable driver, actual runtime client and independent observer	2026-10-24T01:31:32.0446150Z [36;1msw_vers > build/rust-runtime-system/environment.txt[0m
+installed-runtime-capture	Build original dual-cable driver, actual runtime client and independent observer	2026-10-24T01:31:32.0446580Z [36;1muname -a >> build/rust-runtime-system/environment.txt[0m
+installed-runtime-capture	Build original dual-cable driver, actual runtime client and independent observer	2026-10-24T01:31:32.0447080Z [36;1mxcrun --show-sdk-version >> build/rust-runtime-system/environment.txt[0m
+installed-runtime-capture	Build original dual-cable driver, actual runtime client and independent observer	2026-10-24T01:31:32.0447630Z [36;1mrustc -vV >> build/rust-runtime-system/environment.txt[0m
+installed-runtime-capture	Build original dual-cable driver, actual runtime client and independent observer	2026-10-24T01:31:32.0500530Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+installed-runtime-capture	Build original dual-cable driver, actual runtime client and independent observer	2026-10-24T01:31:32.0501020Z env:
+installed-runtime-capture	Build original dual-cable driver, actual runtime client and independent observer	2026-10-24T01:31:32.0501280Z   RAVELINK_OBSERVER_DIAGNOSTICS: 1
+installed-runtime-capture	Build original dual-cable driver, actual runtime client and independent observer	2026-10-24T01:31:32.0501690Z ##[endgroup]
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	﻿2026-10-24T01:32:11.2383940Z ##[group]Run python3 -m unittest discover -s drivers/macos/tests -p 'test_*.py' -v 2>&1 | tee build/rust-runtime-system/observer-controls.txt
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:11.2387830Z [36;1mpython3 -m unittest discover -s drivers/macos/tests -p 'test_*.py' -v 2>&1 | tee build/rust-runtime-system/observer-controls.txt[0m
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:11.2606150Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:11.2606650Z env:
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:11.2606880Z   RAVELINK_OBSERVER_DIAGNOSTICS: 1
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:11.2610050Z ##[endgroup]
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:13.6137110Z test_descendant_cannot_outlive_timed_out_parent (test_diagnostics.DeadlineControls.test_descendant_cannot_outlive_timed_out_parent) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:13.8724950Z test_failed_child_does_not_cancel_other_evidence (test_diagnostics.DeadlineControls.test_failed_child_does_not_cancel_other_evidence) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:13.8740570Z test_prior_log_is_not_overwritten (test_diagnostics.DeadlineControls.test_prior_log_is_not_overwritten) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:14.7939430Z test_short_child_deadline_is_enforced_while_waiting_for_long_sibling (test_diagnostics.DeadlineControls.test_short_child_deadline_is_enforced_while_waiting_for_long_sibling) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:15.9380880Z test_sigterm_ignoring_child_is_killed_and_reaped (test_diagnostics.DeadlineControls.test_sigterm_ignoring_child_is_killed_and_reaped) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:15.9465940Z test_gap_timing_and_callback_work_are_separate_observations (test_diagnostics.DiagnosticControls.test_gap_timing_and_callback_work_are_separate_observations) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:15.9522820Z test_malformed_timing_or_original_csv_mismatch_is_rejected (test_diagnostics.DiagnosticControls.test_malformed_timing_or_original_csv_mismatch_is_rejected) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:15.9541370Z test_missing_current_timestamp_is_preserved_not_fabricated (test_diagnostics.DiagnosticControls.test_missing_current_timestamp_is_preserved_not_fabricated) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:16.3348510Z test_native_notification_storage_is_bounded_and_concurrent (test_diagnostics.DiagnosticControls.test_native_notification_storage_is_bounded_and_concurrent) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:16.3393470Z test_overflow_uncommitted_and_listener_failures_remain_failures (test_diagnostics.DiagnosticControls.test_overflow_uncommitted_and_listener_failures_remain_failures) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:16.3421710Z test_repeated_notification_index_is_rejected (test_diagnostics.DiagnosticControls.test_repeated_notification_index_is_rejected) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:16.3457640Z test_existing_second_uid_prevents_install (test_runtime.OwnershipControls.test_existing_second_uid_prevents_install) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:16.3481310Z test_runtime_evidence_is_not_overwritten_or_launched (test_runtime.OwnershipControls.test_runtime_evidence_is_not_overwritten_or_launched) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:19.8989630Z test_complete_fixed_sequence_passes (test_runtime.ProtocolControls.test_complete_fixed_sequence_passes) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:21.3522780Z test_delayed_mute_is_measured_and_fails (test_runtime.ProtocolControls.test_delayed_mute_is_measured_and_fails) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:22.5891840Z test_delayed_restore_is_measured_and_fails (test_runtime.ProtocolControls.test_delayed_restore_is_measured_and_fails) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:23.8393820Z test_delayed_stop_and_stale_tail_fail (test_runtime.ProtocolControls.test_delayed_stop_and_stale_tail_fail) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:25.4649240Z test_gain_handoff_margin_cannot_hide_silent_packet (test_runtime.ProtocolControls.test_gain_handoff_margin_cannot_hide_silent_packet) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:30.5833630Z test_late_valid_ack_does_not_extend_output_response_deadline (test_runtime.ProtocolControls.test_late_valid_ack_does_not_extend_output_response_deadline) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:31.8613390Z test_report_cannot_redefine_expected_gain_or_ack_deadline (test_runtime.ProtocolControls.test_report_cannot_redefine_expected_gain_or_ack_deadline) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:32.6124490Z test_fixed_and_valid_continuous_asrc_drift_pass (test_runtime.SignalControls.test_fixed_and_valid_continuous_asrc_drift_pass) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:32.9131420Z test_outside_declared_drift_fails_frequency_bound (test_runtime.SignalControls.test_outside_declared_drift_fails_frequency_bound) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:32.9132920Z test_timeline_uses_actual_callback_clock_without_whole_capture_drift (test_runtime.SignalControls.test_timeline_uses_actual_callback_clock_without_whole_capture_drift) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:33.5062540Z test_wrong_gain_channels_silence_and_single_sample_skip_fail (test_runtime.SignalControls.test_wrong_gain_channels_silence_and_single_sample_skip_fail) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:33.6208340Z test_correct_distinct_stereo_tone_and_nonzero_phase_pass (test_system.AnalysisControls.test_correct_distinct_stereo_tone_and_nonzero_phase_pass) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:33.7492880Z test_exact_zero_packet_hole_is_rejected (test_system.AnalysisControls.test_exact_zero_packet_hole_is_rejected) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:33.8759850Z test_generator_metadata_cannot_change_acceptance_signal (test_system.AnalysisControls.test_generator_metadata_cannot_change_acceptance_signal) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:34.0154570Z test_half_amplitude_is_rejected (test_system.AnalysisControls.test_half_amplitude_is_rejected) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:34.0469200Z test_nonfinite_or_truncated_pcm_is_observer_failure (test_system.AnalysisControls.test_nonfinite_or_truncated_pcm_is_observer_failure) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:34.1663110Z test_phase_discontinuity_without_zeros_is_rejected (test_system.AnalysisControls.test_phase_discontinuity_without_zeros_is_rejected) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:34.2734350Z test_probe_failure_and_partial_counts_are_not_promoted (test_system.AnalysisControls.test_probe_failure_and_partial_counts_are_not_promoted) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:34.3468900Z test_stale_audio_after_restart_is_rejected (test_system.AnalysisControls.test_stale_audio_after_restart_is_rejected) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:34.4646260Z test_swapped_channels_fail (test_system.AnalysisControls.test_swapped_channels_fail) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:34.5860830Z test_timestamp_gap_fails_even_with_valid_pcm (test_system.AnalysisControls.test_timestamp_gap_fails_even_with_valid_pcm) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:34.5921670Z test_cleanup_refuses_foreign_bundle_without_mutating (test_system.EnvironmentControls.test_cleanup_refuses_foreign_bundle_without_mutating) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:34.5933210Z test_cleanup_requires_matching_run_ownership (test_system.EnvironmentControls.test_cleanup_requires_matching_run_ownership) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:34.5939610Z test_cleanup_target_is_exact_owned_bundle (test_system.EnvironmentControls.test_cleanup_target_is_exact_owned_bundle) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:34.5940480Z test_existing_record_is_never_overwritten (test_system.EnvironmentControls.test_existing_record_is_never_overwritten) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:34.5953010Z test_local_mutating_execution_is_refused (test_system.EnvironmentControls.test_local_mutating_execution_is_refused) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:34.5981720Z test_manifest_retains_original_failed_bytes_and_hash (test_system.EnvironmentControls.test_manifest_retains_original_failed_bytes_and_hash) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:34.5988340Z test_only_query_errors_expire_without_successful_absence (test_system.EnvironmentControls.test_only_query_errors_expire_without_successful_absence) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:34.5994110Z test_restart_retries_query_error_without_calling_it_absence (test_system.EnvironmentControls.test_restart_retries_query_error_without_calling_it_absence) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:34.6012740Z test_successful_cleanup_recheck_does_not_restart_daemon (test_system.EnvironmentControls.test_successful_cleanup_recheck_does_not_restart_daemon) ... ok
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:34.6029070Z 
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:34.6029680Z ----------------------------------------------------------------------
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:34.6030430Z Ran 43 tests in 22.760s
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:34.6030790Z 
+installed-runtime-capture	Fixed runtime analyzer and ownership controls without audio	2026-10-24T01:32:34.6031000Z OK
+installed-runtime-capture	Install, capture Cable1 through actual mixer into Cable2, verify live controls and stop	﻿2026-10-24T01:32:34.6682300Z ##[group]Run python3 drivers/macos/tests/run_runtime.py run
+installed-runtime-capture	Install, capture Cable1 through actual mixer into Cable2, verify live controls and stop	2026-10-24T01:32:34.6682910Z [36;1mpython3 drivers/macos/tests/run_runtime.py run[0m
+installed-runtime-capture	Install, capture Cable1 through actual mixer into Cable2, verify live controls and stop	2026-10-24T01:32:34.6730040Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+installed-runtime-capture	Install, capture Cable1 through actual mixer into Cable2, verify live controls and stop	2026-10-24T01:32:34.6730540Z env:
+installed-runtime-capture	Install, capture Cable1 through actual mixer into Cable2, verify live controls and stop	2026-10-24T01:32:34.6730900Z   RAVELINK_OBSERVER_DIAGNOSTICS: 1
+installed-runtime-capture	Install, capture Cable1 through actual mixer into Cable2, verify live controls and stop	2026-10-24T01:32:34.6731180Z ##[endgroup]
+installed-runtime-capture	Ensure owned driver cleanup and both device UIDs absent	﻿2026-10-24T01:33:39.1165510Z ##[group]Run python3 drivers/macos/tests/run_runtime.py cleanup
+installed-runtime-capture	Ensure owned driver cleanup and both device UIDs absent	2026-10-24T01:33:39.1168580Z [36;1mpython3 drivers/macos/tests/run_runtime.py cleanup[0m
+installed-runtime-capture	Ensure owned driver cleanup and both device UIDs absent	2026-10-24T01:33:39.1729690Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+installed-runtime-capture	Ensure owned driver cleanup and both device UIDs absent	2026-10-24T01:33:39.1730420Z env:
+installed-runtime-capture	Ensure owned driver cleanup and both device UIDs absent	2026-10-24T01:33:39.1730730Z   RAVELINK_OBSERVER_DIAGNOSTICS: 1
+installed-runtime-capture	Ensure owned driver cleanup and both device UIDs absent	2026-10-24T01:33:39.1731250Z ##[endgroup]
+installed-runtime-capture	Hash original evidence including failed observations	﻿2026-10-24T01:33:39.7847780Z ##[group]Run python3 drivers/macos/tests/run_runtime.py manifest
+installed-runtime-capture	Hash original evidence including failed observations	2026-10-24T01:33:39.7848550Z [36;1mpython3 drivers/macos/tests/run_runtime.py manifest[0m
+installed-runtime-capture	Hash original evidence including failed observations	2026-10-24T01:33:39.7892130Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+installed-runtime-capture	Hash original evidence including failed observations	2026-10-24T01:33:39.7892680Z env:
+installed-runtime-capture	Hash original evidence including failed observations	2026-10-24T01:33:39.7893050Z   RAVELINK_OBSERVER_DIAGNOSTICS: 1
+installed-runtime-capture	Hash original evidence including failed observations	2026-10-24T01:33:39.7893400Z ##[endgroup]
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	﻿2026-10-24T01:33:39.9396760Z ##[group]Run actions/upload-artifact@v4
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:39.9397020Z with:
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:39.9398010Z   name: original-rust-runtime-40050165081-1
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:39.9398350Z   path: build/rust-runtime-system/
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:39.9398560Z   if-no-files-found: error
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:39.9398750Z   retention-days: 30
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:39.9398910Z   compression-level: 6
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:39.9399260Z   overwrite: false
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:39.9399440Z   include-hidden-files: false
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:39.9399750Z env:
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:39.9399910Z   RAVELINK_OBSERVER_DIAGNOSTICS: 1
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:39.9400100Z ##[endgroup]
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:40.4447690Z (node:3371) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:40.4451970Z (Use `node --trace-deprecation ...` to show where the warning was created)
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:40.4634860Z With the provided path, there will be 57 files uploaded
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:40.4647170Z Artifact name is valid!
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:40.4647690Z Root directory input is valid!
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:40.9141630Z Beginning upload of artifact content to blob storage
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:41.3237550Z (node:3371) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:42.1501500Z Uploaded bytes 6838012
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:42.2229140Z Finished uploading artifact content to blob storage!
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:42.2230630Z SHA256 digest of uploaded artifact zip is 245d1b455888aba8f51272431f618beba928ff3914c7ee5a9e162f8d29f4f596
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:42.2232470Z Finalizing artifact upload
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:42.7244660Z Artifact original-rust-runtime-40050165081-1.zip successfully finalized. Artifact ID 12542474990
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:42.7246670Z Artifact original-rust-runtime-40050165081-1 has been successfully uploaded! Final size is 6838012 bytes. Artifact ID is 12542474990
+installed-runtime-capture	Preserve original runtime PCM, timestamps and failed results	2026-10-24T01:33:42.7266740Z Artifact download URL: https://github.com/thatsmethen/ravelink/actions/runs/40050165081/artifacts/12542474990
+installed-runtime-capture	Post Run actions/checkout@v4	﻿2026-10-24T01:33:42.7842900Z Post job cleanup.
+installed-runtime-capture	Post Run actions/checkout@v4	2026-10-24T01:33:42.9430900Z [command]/opt/homebrew/bin/git version
+installed-runtime-capture	Post Run actions/checkout@v4	2026-10-24T01:33:42.9749790Z git version 2.55.0
+installed-runtime-capture	Post Run actions/checkout@v4	2026-10-24T01:33:42.9802580Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/7f27ea64-ad70-40fe-b3c4-3d0de38da177/.gitconfig'
+installed-runtime-capture	Post Run actions/checkout@v4	2026-10-24T01:33:42.9819990Z Temporarily overriding HOME='/Users/runner/work/_temp/7f27ea64-ad70-40fe-b3c4-3d0de38da177' before making global git config changes
+installed-runtime-capture	Post Run actions/checkout@v4	2026-10-24T01:33:42.9821830Z Adding repository directory to the temporary git global config as a safe directory
+installed-runtime-capture	Post Run actions/checkout@v4	2026-10-24T01:33:42.9829510Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+installed-runtime-capture	Post Run actions/checkout@v4	2026-10-24T01:33:43.0073030Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+installed-runtime-capture	Post Run actions/checkout@v4	2026-10-24T01:33:43.0164000Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+installed-runtime-capture	Post Run actions/checkout@v4	2026-10-24T01:33:43.1373720Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+installed-runtime-capture	Post Run actions/checkout@v4	2026-10-24T01:33:43.1433710Z http.https://github.com/.extraheader
+installed-runtime-capture	Post Run actions/checkout@v4	2026-10-24T01:33:43.1443090Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+installed-runtime-capture	Post Run actions/checkout@v4	2026-10-24T01:33:43.1515480Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+installed-runtime-capture	Post Run actions/checkout@v4	2026-10-24T01:33:43.2548700Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+installed-runtime-capture	Post Run actions/checkout@v4	2026-10-24T01:33:43.2667140Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+installed-runtime-capture	Complete job	﻿2026-10-24T01:33:43.4015750Z Cleaning up orphan processes
+installed-runtime-capture	Complete job	2026-10-24T01:33:44.6751830Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+installed-hal	Set up job	﻿2026-10-24T01:31:18.3186940Z Current runner version: '2.338.0'
+installed-hal	Set up job	2026-10-24T01:31:18.3221730Z ##[group]Runner Image Provisioner
+installed-hal	Set up job	2026-10-24T01:31:18.3222630Z Hosted Compute Agent
+installed-hal	Set up job	2026-10-24T01:31:18.3223170Z Version: 20260828.587
+installed-hal	Set up job	2026-10-24T01:31:18.3223730Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+installed-hal	Set up job	2026-10-24T01:31:18.3224390Z Build Date: 2026-08-28T16:44:25Z
+installed-hal	Set up job	2026-10-24T01:31:18.3225080Z Worker ID: {11e7c100-3091-4418-98fa-dc008d176e78}
+installed-hal	Set up job	2026-10-24T01:31:18.3225820Z Azure Region: westus
+installed-hal	Set up job	2026-10-24T01:31:18.3226850Z ##[endgroup]
+installed-hal	Set up job	2026-10-24T01:31:18.3230440Z ##[group]Operating System
+installed-hal	Set up job	2026-10-24T01:31:18.3232420Z macOS
+installed-hal	Set up job	2026-10-24T01:31:18.3233710Z 15.7.9
+installed-hal	Set up job	2026-10-24T01:31:18.3235520Z 24G830
+installed-hal	Set up job	2026-10-24T01:31:18.3237190Z ##[endgroup]
+installed-hal	Set up job	2026-10-24T01:31:18.3238800Z ##[group]Runner Image
+installed-hal	Set up job	2026-10-24T01:31:18.3240310Z Image: macos-15-arm64
+installed-hal	Set up job	2026-10-24T01:31:18.3241960Z Version: 20260907.0337.1
+installed-hal	Set up job	2026-10-24T01:31:18.3244600Z Included Software: https://github.com/actions/runner-images/blob/macos-15-arm64/20260907.0337/images/macos/macos-15-arm64-Readme.md
+installed-hal	Set up job	2026-10-24T01:31:18.3248050Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-15-arm64%2F20260907.0337
+installed-hal	Set up job	2026-10-24T01:31:18.3250360Z ##[endgroup]
+installed-hal	Set up job	2026-10-24T01:31:18.3253310Z ##[group]GITHUB_TOKEN Permissions
+installed-hal	Set up job	2026-10-24T01:31:18.3260340Z Contents: read
+installed-hal	Set up job	2026-10-24T01:31:18.3262350Z Metadata: read
+installed-hal	Set up job	2026-10-24T01:31:18.3263650Z ##[endgroup]
+installed-hal	Set up job	2026-10-24T01:31:18.3268870Z Secret source: Actions
+installed-hal	Set up job	2026-10-24T01:31:18.3270620Z Cache mode: write
+installed-hal	Set up job	2026-10-24T01:31:18.3275560Z Prepare workflow directory
+installed-hal	Set up job	2026-10-24T01:31:18.3930140Z Prepare all required actions
+installed-hal	Set up job	2026-10-24T01:31:18.3972020Z Getting action download info
+installed-hal	Set up job	2026-10-24T01:31:18.5680900Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+installed-hal	Set up job	2026-10-24T01:31:18.9102750Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+installed-hal	Set up job	2026-10-24T01:31:19.2019370Z Complete job name: installed-hal
+installed-hal	Run actions/checkout@v4	﻿2026-10-24T01:31:19.3165570Z ##[group]Run actions/checkout@v4
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.3166260Z with:
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.3166610Z   repository: thatsmethen/ravelink
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.3169610Z   token: ***
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.3169960Z   ssh-strict: true
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.3170290Z   ssh-user: git
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.3170620Z   persist-credentials: true
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.3171000Z   clean: true
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.3171360Z   sparse-checkout-cone-mode: true
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.3171740Z   fetch-depth: 1
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.3172140Z   fetch-tags: false
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.3172480Z   show-progress: true
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.3172810Z   lfs: false
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.3173120Z   submodules: false
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.3173460Z   set-safe-directory: true
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.3173830Z   allow-unsafe-pr-checkout: false
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.3174570Z env:
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.3174910Z   RAVELINK_OBSERVER_DIAGNOSTICS: 1
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.3175300Z ##[endgroup]
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.7372280Z Syncing repository: thatsmethen/ravelink
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.7374050Z ##[group]Getting Git version info
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.7374660Z Working directory is '/Users/runner/work/ravelink/ravelink'
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.7397160Z [command]/opt/homebrew/bin/git version
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.7970680Z git version 2.55.0
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.7982950Z ##[endgroup]
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.7990440Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/fa78d216-8c4c-4fb6-bc26-cdaf258fcc9c/.gitconfig'
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8001540Z Temporarily overriding HOME='/Users/runner/work/_temp/fa78d216-8c4c-4fb6-bc26-cdaf258fcc9c' before making global git config changes
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8002700Z Adding repository directory to the temporary git global config as a safe directory
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8003570Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8111530Z Deleting the contents of '/Users/runner/work/ravelink/ravelink'
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8115370Z ##[group]Initializing the repository
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8119710Z [command]/opt/homebrew/bin/git init /Users/runner/work/ravelink/ravelink
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8373710Z hint: Using 'master' as the name for the initial branch. This default branch name
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8376100Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8378190Z hint: to use in all of your new repositories, which will suppress this warning,
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8379750Z hint: call:
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8380580Z hint:
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8381680Z hint: 	git config --global init.defaultBranch <name>
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8383090Z hint:
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8384300Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8386170Z hint: 'development'. The just-created branch can be renamed via this command:
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8387670Z hint:
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8388550Z hint: 	git branch -m <name>
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8389530Z hint:
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8390800Z hint: Disable this message with "git config set advice.defaultBranchName false"
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8393170Z Initialized empty Git repository in /Users/runner/work/ravelink/ravelink/.git/
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8396850Z [command]/opt/homebrew/bin/git remote add origin https://github.com/thatsmethen/ravelink
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8507620Z ##[endgroup]
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8509230Z ##[group]Disabling automatic garbage collection
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8510750Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8578200Z ##[endgroup]
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8580750Z ##[group]Setting up auth
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8582500Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.8672290Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.9716790Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:19.9773530Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:20.0525440Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:20.0584130Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:20.1397760Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:20.1462560Z ##[endgroup]
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:20.1464540Z ##[group]Fetching the repository
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:20.1469380Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +db052e4fb790801c6692fc0caba82f0545e2055e:refs/remotes/origin/main
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:21.6506590Z From https://github.com/thatsmethen/ravelink
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:21.6508310Z  * [new ref]         db052e4fb790801c6692fc0caba82f0545e2055e -> origin/main
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:21.6511080Z ##[endgroup]
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:21.6512600Z ##[group]Determining the checkout info
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:21.6514130Z ##[endgroup]
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:21.6516640Z [command]/opt/homebrew/bin/git sparse-checkout disable
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:21.6610570Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:21.6688580Z ##[group]Checking out the ref
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:21.6691270Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:22.0836530Z Switched to a new branch 'main'
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:22.0845730Z branch 'main' set up to track 'origin/main'.
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:22.0853890Z ##[endgroup]
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:22.0950240Z [command]/opt/homebrew/bin/git log -1 --format=%H
+installed-hal	Run actions/checkout@v4	2026-10-24T01:31:22.1025660Z db052e4fb790801c6692fc0caba82f0545e2055e
+installed-hal	Install pinned Rust	﻿2026-10-24T01:31:22.1223090Z ##[group]Run rustup toolchain install 1.91.1 --profile minimal
+installed-hal	Install pinned Rust	2026-10-24T01:31:22.1223950Z [36;1mrustup toolchain install 1.91.1 --profile minimal[0m
+installed-hal	Install pinned Rust	2026-10-24T01:31:22.1268260Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+installed-hal	Install pinned Rust	2026-10-24T01:31:22.1268540Z env:
+installed-hal	Install pinned Rust	2026-10-24T01:31:22.1268720Z   RAVELINK_OBSERVER_DIAGNOSTICS: 1
+installed-hal	Install pinned Rust	2026-10-24T01:31:22.1268910Z ##[endgroup]
+installed-hal	Install pinned Rust	2026-10-24T01:31:22.2100570Z info: syncing channel updates for 1.91.1-aarch64-apple-darwin
+installed-hal	Install pinned Rust	2026-10-24T01:31:22.3178670Z info: latest update on 2025-11-10 for version 1.91.1 (ed61e7d7e 2025-11-07)
+installed-hal	Install pinned Rust	2026-10-24T01:31:22.3181760Z info: downloading 3 components
+installed-hal	Install pinned Rust	2026-10-24T01:31:29.1128600Z 
+installed-hal	Install pinned Rust	2026-10-24T01:31:29.2251050Z   1.91.1-aarch64-apple-darwin installed - rustc 1.91.1 (ed61e7d7e 2025-11-07)
+installed-hal	Install pinned Rust	2026-10-24T01:31:29.2252510Z info: self-update is disabled for this build of rustup
+installed-hal	Install pinned Rust	2026-10-24T01:31:29.2252890Z 
+installed-hal	Install pinned Rust	2026-10-24T01:31:29.2253810Z info: any updates to rustup will need to be fetched with your system package manager
+installed-hal	Build original driver bundle and independent observer	﻿2026-10-24T01:31:29.2712360Z ##[group]Run mkdir -p build/rust-hal-system
+installed-hal	Build original driver bundle and independent observer	2026-10-24T01:31:29.2713030Z [36;1mmkdir -p build/rust-hal-system[0m
+installed-hal	Build original driver bundle and independent observer	2026-10-24T01:31:29.2713440Z [36;1msh drivers/macos/build-bundle.sh > build/rust-hal-system/build-driver.log 2>&1[0m
+installed-hal	Build original driver bundle and independent observer	2026-10-24T01:31:29.2714250Z [36;1mxcrun clang -std=c11 -O2 -Wall -Wextra -Werror drivers/macos/tests/system-probe.c -framework CoreAudio -framework CoreFoundation -o build/rust-hal-system/system-probe[0m
+installed-hal	Build original driver bundle and independent observer	2026-10-24T01:31:29.2715780Z [36;1mshasum -a 256 drivers/macos/tests/system-probe.c drivers/macos/tests/probe-diagnostics.h drivers/macos/tests/analyze_diagnostics.py drivers/macos/tests/OBSERVER-DIAGNOSTICS.md drivers/macos/tests/run_system.py build/rust-hal-system/system-probe dist/macos/RaveLink.driver/Contents/MacOS/RaveLinkHAL > build/rust-hal-system/build-sha256.txt[0m
+installed-hal	Build original driver bundle and independent observer	2026-10-24T01:31:29.2716980Z [36;1msw_vers > build/rust-hal-system/environment.txt[0m
+installed-hal	Build original driver bundle and independent observer	2026-10-24T01:31:29.2717500Z [36;1muname -a >> build/rust-hal-system/environment.txt[0m
+installed-hal	Build original driver bundle and independent observer	2026-10-24T01:31:29.2718050Z [36;1mxcrun --show-sdk-version >> build/rust-hal-system/environment.txt[0m
+installed-hal	Build original driver bundle and independent observer	2026-10-24T01:31:29.2718430Z [36;1mrustc -vV >> build/rust-hal-system/environment.txt[0m
+installed-hal	Build original driver bundle and independent observer	2026-10-24T01:31:29.2774340Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+installed-hal	Build original driver bundle and independent observer	2026-10-24T01:31:29.2774670Z env:
+installed-hal	Build original driver bundle and independent observer	2026-10-24T01:31:29.2775080Z   RAVELINK_OBSERVER_DIAGNOSTICS: 1
+installed-hal	Build original driver bundle and independent observer	2026-10-24T01:31:29.2775340Z ##[endgroup]
+installed-hal	Observer and analyzer controls without audio	﻿2026-10-24T01:31:37.6185760Z ##[group]Run python3 -m unittest discover -s drivers/macos/tests -p 'test_*.py' -v 2>&1 | tee build/rust-hal-system/observer-controls.txt
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:37.6186690Z [36;1mpython3 -m unittest discover -s drivers/macos/tests -p 'test_*.py' -v 2>&1 | tee build/rust-hal-system/observer-controls.txt[0m
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:37.6227110Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:37.6227590Z env:
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:37.6227910Z   RAVELINK_OBSERVER_DIAGNOSTICS: 1
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:37.6228240Z ##[endgroup]
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:39.8078230Z test_descendant_cannot_outlive_timed_out_parent (test_diagnostics.DeadlineControls.test_descendant_cannot_outlive_timed_out_parent) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:40.1917510Z test_failed_child_does_not_cancel_other_evidence (test_diagnostics.DeadlineControls.test_failed_child_does_not_cancel_other_evidence) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:40.1925250Z test_prior_log_is_not_overwritten (test_diagnostics.DeadlineControls.test_prior_log_is_not_overwritten) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:41.1892470Z test_short_child_deadline_is_enforced_while_waiting_for_long_sibling (test_diagnostics.DeadlineControls.test_short_child_deadline_is_enforced_while_waiting_for_long_sibling) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:42.3381750Z test_sigterm_ignoring_child_is_killed_and_reaped (test_diagnostics.DeadlineControls.test_sigterm_ignoring_child_is_killed_and_reaped) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:42.3393100Z test_gap_timing_and_callback_work_are_separate_observations (test_diagnostics.DiagnosticControls.test_gap_timing_and_callback_work_are_separate_observations) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:42.3437650Z test_malformed_timing_or_original_csv_mismatch_is_rejected (test_diagnostics.DiagnosticControls.test_malformed_timing_or_original_csv_mismatch_is_rejected) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:42.3446500Z test_missing_current_timestamp_is_preserved_not_fabricated (test_diagnostics.DiagnosticControls.test_missing_current_timestamp_is_preserved_not_fabricated) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:42.6568630Z test_native_notification_storage_is_bounded_and_concurrent (test_diagnostics.DiagnosticControls.test_native_notification_storage_is_bounded_and_concurrent) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:42.6639580Z test_overflow_uncommitted_and_listener_failures_remain_failures (test_diagnostics.DiagnosticControls.test_overflow_uncommitted_and_listener_failures_remain_failures) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:42.6665510Z test_repeated_notification_index_is_rejected (test_diagnostics.DiagnosticControls.test_repeated_notification_index_is_rejected) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:42.6676550Z test_existing_second_uid_prevents_install (test_runtime.OwnershipControls.test_existing_second_uid_prevents_install) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:42.6681380Z test_runtime_evidence_is_not_overwritten_or_launched (test_runtime.OwnershipControls.test_runtime_evidence_is_not_overwritten_or_launched) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:45.3918710Z test_complete_fixed_sequence_passes (test_runtime.ProtocolControls.test_complete_fixed_sequence_passes) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:46.3445580Z test_delayed_mute_is_measured_and_fails (test_runtime.ProtocolControls.test_delayed_mute_is_measured_and_fails) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:47.2670700Z test_delayed_restore_is_measured_and_fails (test_runtime.ProtocolControls.test_delayed_restore_is_measured_and_fails) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:48.2231610Z test_delayed_stop_and_stale_tail_fail (test_runtime.ProtocolControls.test_delayed_stop_and_stale_tail_fail) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:49.1934210Z test_gain_handoff_margin_cannot_hide_silent_packet (test_runtime.ProtocolControls.test_gain_handoff_margin_cannot_hide_silent_packet) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:52.4766270Z test_late_valid_ack_does_not_extend_output_response_deadline (test_runtime.ProtocolControls.test_late_valid_ack_does_not_extend_output_response_deadline) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:53.3786900Z test_report_cannot_redefine_expected_gain_or_ack_deadline (test_runtime.ProtocolControls.test_report_cannot_redefine_expected_gain_or_ack_deadline) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:53.9476680Z test_fixed_and_valid_continuous_asrc_drift_pass (test_runtime.SignalControls.test_fixed_and_valid_continuous_asrc_drift_pass) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:54.0789590Z test_outside_declared_drift_fails_frequency_bound (test_runtime.SignalControls.test_outside_declared_drift_fails_frequency_bound) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:54.0790880Z test_timeline_uses_actual_callback_clock_without_whole_capture_drift (test_runtime.SignalControls.test_timeline_uses_actual_callback_clock_without_whole_capture_drift) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:54.5239470Z test_wrong_gain_channels_silence_and_single_sample_skip_fail (test_runtime.SignalControls.test_wrong_gain_channels_silence_and_single_sample_skip_fail) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:54.6128070Z test_correct_distinct_stereo_tone_and_nonzero_phase_pass (test_system.AnalysisControls.test_correct_distinct_stereo_tone_and_nonzero_phase_pass) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:54.7028690Z test_exact_zero_packet_hole_is_rejected (test_system.AnalysisControls.test_exact_zero_packet_hole_is_rejected) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:54.7915860Z test_generator_metadata_cannot_change_acceptance_signal (test_system.AnalysisControls.test_generator_metadata_cannot_change_acceptance_signal) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:54.8987310Z test_half_amplitude_is_rejected (test_system.AnalysisControls.test_half_amplitude_is_rejected) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:54.9194070Z test_nonfinite_or_truncated_pcm_is_observer_failure (test_system.AnalysisControls.test_nonfinite_or_truncated_pcm_is_observer_failure) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:55.0145020Z test_phase_discontinuity_without_zeros_is_rejected (test_system.AnalysisControls.test_phase_discontinuity_without_zeros_is_rejected) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:55.1038010Z test_probe_failure_and_partial_counts_are_not_promoted (test_system.AnalysisControls.test_probe_failure_and_partial_counts_are_not_promoted) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:55.1517490Z test_stale_audio_after_restart_is_rejected (test_system.AnalysisControls.test_stale_audio_after_restart_is_rejected) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:55.2469670Z test_swapped_channels_fail (test_system.AnalysisControls.test_swapped_channels_fail) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:55.3366500Z test_timestamp_gap_fails_even_with_valid_pcm (test_system.AnalysisControls.test_timestamp_gap_fails_even_with_valid_pcm) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:55.3393400Z test_cleanup_refuses_foreign_bundle_without_mutating (test_system.EnvironmentControls.test_cleanup_refuses_foreign_bundle_without_mutating) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:55.3402330Z test_cleanup_requires_matching_run_ownership (test_system.EnvironmentControls.test_cleanup_requires_matching_run_ownership) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:55.3404280Z test_cleanup_target_is_exact_owned_bundle (test_system.EnvironmentControls.test_cleanup_target_is_exact_owned_bundle) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:55.3405680Z test_existing_record_is_never_overwritten (test_system.EnvironmentControls.test_existing_record_is_never_overwritten) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:55.3409320Z test_local_mutating_execution_is_refused (test_system.EnvironmentControls.test_local_mutating_execution_is_refused) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:55.3417720Z test_manifest_retains_original_failed_bytes_and_hash (test_system.EnvironmentControls.test_manifest_retains_original_failed_bytes_and_hash) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:55.3423130Z test_only_query_errors_expire_without_successful_absence (test_system.EnvironmentControls.test_only_query_errors_expire_without_successful_absence) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:55.3429620Z test_restart_retries_query_error_without_calling_it_absence (test_system.EnvironmentControls.test_restart_retries_query_error_without_calling_it_absence) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:55.3442000Z test_successful_cleanup_recheck_does_not_restart_daemon (test_system.EnvironmentControls.test_successful_cleanup_recheck_does_not_restart_daemon) ... ok
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:55.3442620Z 
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:55.3442820Z ----------------------------------------------------------------------
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:55.3443350Z Ran 43 tests in 17.308s
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:55.3443550Z 
+installed-hal	Observer and analyzer controls without audio	2026-10-24T01:31:55.3443750Z OK
+installed-hal	Install, observe independent clients, verify silence after restart, remove	﻿2026-10-24T01:31:55.3843130Z ##[group]Run python3 drivers/macos/tests/run_system.py run
+installed-hal	Install, observe independent clients, verify silence after restart, remove	2026-10-24T01:31:55.3843510Z [36;1mpython3 drivers/macos/tests/run_system.py run[0m
+installed-hal	Install, observe independent clients, verify silence after restart, remove	2026-10-24T01:31:55.3900660Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+installed-hal	Install, observe independent clients, verify silence after restart, remove	2026-10-24T01:31:55.3901150Z env:
+installed-hal	Install, observe independent clients, verify silence after restart, remove	2026-10-24T01:31:55.3901390Z   RAVELINK_OBSERVER_DIAGNOSTICS: 1
+installed-hal	Install, observe independent clients, verify silence after restart, remove	2026-10-24T01:31:55.3901780Z ##[endgroup]
+installed-hal	Ensure owned driver cleanup	﻿2026-10-24T01:32:43.1139020Z ##[group]Run python3 drivers/macos/tests/run_system.py cleanup
+installed-hal	Ensure owned driver cleanup	2026-10-24T01:32:43.1139520Z [36;1mpython3 drivers/macos/tests/run_system.py cleanup[0m
+installed-hal	Ensure owned driver cleanup	2026-10-24T01:32:43.1338880Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+installed-hal	Ensure owned driver cleanup	2026-10-24T01:32:43.1344570Z env:
+installed-hal	Ensure owned driver cleanup	2026-10-24T01:32:43.1349330Z   RAVELINK_OBSERVER_DIAGNOSTICS: 1
+installed-hal	Ensure owned driver cleanup	2026-10-24T01:32:43.1350380Z ##[endgroup]
+installed-hal	Hash original evidence including failed observations	﻿2026-10-24T01:32:43.4508520Z ##[group]Run python3 drivers/macos/tests/run_system.py manifest
+installed-hal	Hash original evidence including failed observations	2026-10-24T01:32:43.4509150Z [36;1mpython3 drivers/macos/tests/run_system.py manifest[0m
+installed-hal	Hash original evidence including failed observations	2026-10-24T01:32:43.4549680Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+installed-hal	Hash original evidence including failed observations	2026-10-24T01:32:43.4550130Z env:
+installed-hal	Hash original evidence including failed observations	2026-10-24T01:32:43.4550530Z   RAVELINK_OBSERVER_DIAGNOSTICS: 1
+installed-hal	Hash original evidence including failed observations	2026-10-24T01:32:43.4550830Z ##[endgroup]
+installed-hal	Preserve original observations and failed results	﻿2026-10-24T01:32:43.5890810Z ##[group]Run actions/upload-artifact@v4
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:43.5891090Z with:
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:43.5891260Z   name: original-rust-hal-40050165081-1
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:43.5891470Z   path: build/rust-hal-system/
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:43.5891710Z   if-no-files-found: error
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:43.5891920Z   retention-days: 30
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:43.5892110Z   compression-level: 6
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:43.5892360Z   overwrite: false
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:43.5892550Z   include-hidden-files: false
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:43.5892740Z env:
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:43.5892890Z   RAVELINK_OBSERVER_DIAGNOSTICS: 1
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:43.5893470Z ##[endgroup]
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:43.9853430Z (node:3300) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:43.9855060Z (Use `node --trace-deprecation ...` to show where the warning was created)
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:43.9997100Z With the provided path, there will be 66 files uploaded
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:44.0000020Z Artifact name is valid!
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:44.0000460Z Root directory input is valid!
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:44.2389230Z Beginning upload of artifact content to blob storage
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:44.6395330Z (node:3300) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:44.8517780Z Uploaded bytes 8388608
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:44.9044520Z Uploaded bytes 10535621
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:44.9221410Z Finished uploading artifact content to blob storage!
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:44.9222880Z SHA256 digest of uploaded artifact zip is 8d1f11c66d2cf16f31cfd2bd71a1309d1834bafdf5afca1d983f86e7030c2f4b
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:44.9223920Z Finalizing artifact upload
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:45.3503540Z Artifact original-rust-hal-40050165081-1.zip successfully finalized. Artifact ID 12542922152
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:45.3505680Z Artifact original-rust-hal-40050165081-1 has been successfully uploaded! Final size is 10535621 bytes. Artifact ID is 12542922152
+installed-hal	Preserve original observations and failed results	2026-10-24T01:32:45.3516080Z Artifact download URL: https://github.com/thatsmethen/ravelink/actions/runs/40050165081/artifacts/12542922152
+installed-hal	Post Run actions/checkout@v4	﻿2026-10-24T01:32:45.3840890Z Post job cleanup.
+installed-hal	Post Run actions/checkout@v4	2026-10-24T01:32:45.4926930Z [command]/opt/homebrew/bin/git version
+installed-hal	Post Run actions/checkout@v4	2026-10-24T01:32:45.5174850Z git version 2.55.0
+installed-hal	Post Run actions/checkout@v4	2026-10-24T01:32:45.5210670Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/2350545e-42d7-4bfe-a806-34ae17b8ea60/.gitconfig'
+installed-hal	Post Run actions/checkout@v4	2026-10-24T01:32:45.5219340Z Temporarily overriding HOME='/Users/runner/work/_temp/2350545e-42d7-4bfe-a806-34ae17b8ea60' before making global git config changes
+installed-hal	Post Run actions/checkout@v4	2026-10-24T01:32:45.5220230Z Adding repository directory to the temporary git global config as a safe directory
+installed-hal	Post Run actions/checkout@v4	2026-10-24T01:32:45.5222490Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/ravelink/ravelink
+installed-hal	Post Run actions/checkout@v4	2026-10-24T01:32:45.5346210Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+installed-hal	Post Run actions/checkout@v4	2026-10-24T01:32:45.5412300Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+installed-hal	Post Run actions/checkout@v4	2026-10-24T01:32:45.6372260Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+installed-hal	Post Run actions/checkout@v4	2026-10-24T01:32:45.6425490Z http.https://github.com/.extraheader
+installed-hal	Post Run actions/checkout@v4	2026-10-24T01:32:45.6433090Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+installed-hal	Post Run actions/checkout@v4	2026-10-24T01:32:45.6497320Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+installed-hal	Post Run actions/checkout@v4	2026-10-24T01:32:45.7225710Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+installed-hal	Post Run actions/checkout@v4	2026-10-24T01:32:45.7277100Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+installed-hal	Complete job	﻿2026-10-24T01:32:45.8226270Z Cleaning up orphan processes
+installed-hal	Complete job	2026-10-24T01:32:46.5423730Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

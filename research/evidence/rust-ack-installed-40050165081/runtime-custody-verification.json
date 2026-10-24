@@ -1,0 +1,9 @@
+{
+  "archive": "original-runtime.zip",
+  "artifact_id": 12542474990,
+  "bytes": 6838012,
+  "sha256": "245d1b455888aba8f51272431f618beba928ff3914c7ee5a9e162f8d29f4f596",
+  "manifest_file_count": 56,
+  "source_revision": "db052e4fb790801c6692fc0caba82f0545e2055e",
+  "all_manifest_members_verified": true
+}

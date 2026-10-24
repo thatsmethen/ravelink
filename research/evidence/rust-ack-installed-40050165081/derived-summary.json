@@ -1,0 +1,616 @@
+{
+  "schema": 1,
+  "source_revision": "db052e4fb790801c6692fc0caba82f0545e2055e",
+  "run_id": 40050165081,
+  "run_attempt": 1,
+  "run_conclusion": "success",
+  "jobs": [
+    {
+      "name": "installed-runtime-capture",
+      "conclusion": "success"
+    },
+    {
+      "name": "installed-hal",
+      "conclusion": "success"
+    }
+  ],
+  "runtime": {
+    "acceptance_pass": true,
+    "client_result": {
+      "schema": 1,
+      "pass": true,
+      "error": null
+    },
+    "pcm_pass": true,
+    "criteria": {
+      "relative_amplitude_error": 0.01,
+      "frequency_error_ppm": 2500.0,
+      "recurrence_peak_relative": 0.005,
+      "recurrence_rms_relative": 0.0005,
+      "mean_relative": 0.001,
+      "control_ack_seconds": 0.25,
+      "transition_seconds": 0.25,
+      "steady_leading_margin_seconds": 0.25,
+      "steady_trailing_margin_seconds": 0.05,
+      "transition_envelope_window_seconds": 0.02,
+      "transition_envelope_relative_tolerance": 0.08,
+      "forbidden_zero_run_frames": 8
+    },
+    "phases": [
+      {
+        "phase": 0,
+        "gain_db": -6,
+        "muted": false,
+        "version": 2,
+        "pass": true,
+        "acknowledgment_seconds": 0.01111975,
+        "detected_response_seconds": -0.050001,
+        "channels": [
+          {
+            "expected_hz": 440.0,
+            "measured_hz": 439.99289818126334,
+            "expected_peak": 0.06264840420340903,
+            "rms_equivalent_peak": 0.06264885975274875,
+            "relative_amplitude_error": 7.27152344126472e-06,
+            "frequency_error_ppm": 16.140497128724896,
+            "recurrence_peak_relative": 1.9396400061551295e-06,
+            "recurrence_rms_relative": 3.2310590883938516e-07,
+            "mean_relative": 0.00011414997487790073,
+            "pass": true
+          },
+          {
+            "expected_hz": 997.0,
+            "measured_hz": 996.9839087827417,
+            "expected_peak": 0.06264840420340903,
+            "rms_equivalent_peak": 0.06264873990652425,
+            "relative_amplitude_error": 5.358526198575381e-06,
+            "frequency_error_ppm": 16.139636166867533,
+            "recurrence_peak_relative": 3.6719213498314554e-06,
+            "recurrence_rms_relative": 6.549817835691142e-07,
+            "mean_relative": 2.4401817489809203e-05,
+            "pass": true
+          }
+        ],
+        "mute_peak": null,
+        "longest_stereo_zero_run": 0
+      },
+      {
+        "phase": 1,
+        "gain_db": -12,
+        "muted": false,
+        "version": 4,
+        "pass": true,
+        "acknowledgment_seconds": 0.02465745833333333,
+        "detected_response_seconds": 0.03000970833333333,
+        "channels": [
+          {
+            "expected_hz": 440.0,
+            "measured_hz": 439.98816916958447,
+            "expected_peak": 0.03139858039386975,
+            "rms_equivalent_peak": 0.03139794792830902,
+            "relative_amplitude_error": 2.0143125988356775e-05,
+            "frequency_error_ppm": 26.88825094443459,
+            "recurrence_peak_relative": 2.2845442621453544e-06,
+            "recurrence_rms_relative": 3.4425074148965245e-07,
+            "mean_relative": 3.678503273694969e-05,
+            "pass": true
+          },
+          {
+            "expected_hz": 997.0,
+            "measured_hz": 996.9731945653276,
+            "expected_peak": 0.03139858039386975,
+            "rms_equivalent_peak": 0.03139832342361555,
+            "relative_amplitude_error": 8.184136065292693e-06,
+            "frequency_error_ppm": 26.88609295120603,
+            "recurrence_peak_relative": 4.601072225727151e-06,
+            "recurrence_rms_relative": 8.698079361860042e-07,
+            "mean_relative": 2.959157681548294e-05,
+            "pass": true
+          }
+        ],
+        "mute_peak": null,
+        "longest_stereo_zero_run": 0
+      },
+      {
+        "phase": 2,
+        "gain_db": -12,
+        "muted": true,
+        "version": 6,
+        "pass": true,
+        "acknowledgment_seconds": 0.024257749999999998,
+        "detected_response_seconds": 0.029996624999999996,
+        "channels": null,
+        "mute_peak": 0.0,
+        "longest_stereo_zero_run": null
+      },
+      {
+        "phase": 3,
+        "gain_db": -6,
+        "muted": false,
+        "version": 8,
+        "pass": true,
+        "acknowledgment_seconds": 0.008884499999999998,
+        "detected_response_seconds": 0.025007875,
+        "channels": [
+          {
+            "expected_hz": 440.0,
+            "measured_hz": 439.99363207585,
+            "expected_peak": 0.06264840420340903,
+            "rms_equivalent_peak": 0.06264918600213547,
+            "relative_amplitude_error": 1.2479148294010721e-05,
+            "frequency_error_ppm": 14.4725548864022,
+            "recurrence_peak_relative": 2.3611955935171373e-06,
+            "recurrence_rms_relative": 3.458791680665115e-07,
+            "mean_relative": 5.5054685069142736e-05,
+            "pass": true
+          },
+          {
+            "expected_hz": 997.0,
+            "measured_hz": 996.9855709762419,
+            "expected_peak": 0.06264840420340903,
+            "rms_equivalent_peak": 0.06264851461431072,
+            "relative_amplitude_error": 1.7623896903551005e-06,
+            "frequency_error_ppm": 14.472441081325726,
+            "recurrence_peak_relative": 4.369639819054252e-06,
+            "recurrence_rms_relative": 8.827350861582318e-07,
+            "mean_relative": 4.197893164546951e-06,
+            "pass": true
+          }
+        ],
+        "mute_peak": null,
+        "longest_stereo_zero_run": 0
+      }
+    ],
+    "clock": {
+      "callback_count": 3000,
+      "sample_gaps": [],
+      "host_reversals": 0,
+      "measured_sample_rate": 48000.0,
+      "pass": true
+    },
+    "unmuted_zero_runs": [
+      0,
+      0
+    ],
+    "stopped_tail_peak": 0.0,
+    "stop_response_seconds": 0.035010374999999996,
+    "source_writer": {
+      "schema": 1,
+      "source_report": "/Users/runner/work/ravelink/ravelink/build/rust-runtime-system/source-writer.json",
+      "clock": {
+        "callback_count": 5625,
+        "sample_gaps": [],
+        "host_reversals": 0,
+        "measured_sample_rate": 48000.0,
+        "pass": true
+      },
+      "frames": 2880000,
+      "mode": "play",
+      "failures": [],
+      "pass": true
+    },
+    "events": [
+      {
+        "event": "started",
+        "host_time": 3688924131,
+        "input_id": "coreaudio:au.textual.ravelink.cable.1",
+        "output_id": "coreaudio:au.textual.ravelink.cable.2",
+        "sample_rate": 48000,
+        "input_format": "2ch 32-bit float",
+        "output_format": "f32"
+      },
+      {
+        "event": "phase",
+        "phase": 0,
+        "gain_db": -6,
+        "muted": false,
+        "requested_host_time": 3711551606,
+        "acknowledged_host_time": 3711818480,
+        "version": 2,
+        "rendered_frames": 45568,
+        "callback_count": 89
+      },
+      {
+        "event": "phase",
+        "phase": 1,
+        "gain_db": -12,
+        "muted": false,
+        "requested_host_time": 3856008349,
+        "acknowledged_host_time": 3856600128,
+        "version": 4,
+        "rendered_frames": 335360,
+        "callback_count": 655
+      },
+      {
+        "event": "phase",
+        "phase": 2,
+        "gain_db": -12,
+        "muted": true,
+        "requested_host_time": 4002695663,
+        "acknowledged_host_time": 4003277849,
+        "version": 6,
+        "rendered_frames": 628224,
+        "callback_count": 1227
+      },
+      {
+        "event": "phase",
+        "phase": 3,
+        "gain_db": -6,
+        "muted": false,
+        "requested_host_time": 4100791893,
+        "acknowledged_host_time": 4101005121,
+        "version": 8,
+        "rendered_frames": 823808,
+        "callback_count": 1609
+      },
+      {
+        "event": "stopped",
+        "requested_host_time": 4247007833,
+        "returned_host_time": 4249491471,
+        "rendered_frames": 1116160,
+        "callback_count": 2180
+      }
+    ],
+    "fault_codes_in_polled_records": [
+      0
+    ],
+    "terminal_native_snapshot": {
+      "captures": [
+        {
+          "captured_frames": 1120768,
+          "input_id": "coreaudio:au.textual.ravelink.cable.1",
+          "native_timing": {
+            "callback_completion_contended": false,
+            "first_fault": null,
+            "last_completed_callback": {
+              "after_pcm_host_time": 4246922704,
+              "completion_host_time": 4246922712,
+              "entry_host_time": 4246922146,
+              "os_now_flags": 7,
+              "os_now_host_time": 4246918867,
+              "os_now_sample_time": 1184266.0,
+              "os_now_sample_time_bits": 4697837195459821568,
+              "outcome": {
+                "kind": "published"
+              },
+              "packet_index": 2189
+            },
+            "last_packet": {
+              "epoch": 1,
+              "flags": 7,
+              "frames": 512,
+              "host_time": 4246662082,
+              "observed_host_time": 4246922146,
+              "packet_index": 2189,
+              "queue_frame": 1120256,
+              "rate_scalar": 1.0,
+              "rate_scalar_bits": 4607182418800017408,
+              "sample_time": 1183752.0,
+              "sample_time_bits": 4697834987846631424
+            },
+            "last_packet_contended": false,
+            "lifecycle": [
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 3683809493,
+                "phase": "CreateRequested",
+                "status": null
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 3683869792,
+                "phase": "CreateReturned",
+                "status": 0
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 3686377107,
+                "phase": "StartRequested",
+                "status": null
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 3686647963,
+                "phase": "StartReturned",
+                "status": 0
+              },
+              {
+                "callbacks_in_flight": null,
+                "host_time": 4249490799,
+                "phase": "HandleCancelled",
+                "status": null
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 4247335780,
+                "phase": "GatesRevoked",
+                "status": null
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 4247335784,
+                "phase": "StopRequested",
+                "status": null
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 4247898219,
+                "phase": "StopReturned",
+                "status": 0
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 4247898223,
+                "phase": "DestroyRequested",
+                "status": null
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 4247904410,
+                "phase": "DestroyReturned",
+                "status": 0
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 4247904413,
+                "phase": "ListenersRemovalRequested",
+                "status": null
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 4247933460,
+                "phase": "ListenersRemovalReturned",
+                "status": 0
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 4247933503,
+                "phase": "QuiescenceChecked",
+                "status": null
+              },
+              {
+                "callbacks_in_flight": 0,
+                "host_time": 4247933505,
+                "phase": "OwnerCompleted",
+                "status": null
+              }
+            ],
+            "packets_seen": 2189
+          }
+        }
+      ],
+      "error": null,
+      "fault": 0,
+      "first_fault": null,
+      "native_shutdown_observed": true,
+      "observation": "post-stop-final",
+      "observed_host_time": 4249493304,
+      "running": false,
+      "schema": 1
+    },
+    "cleanup": {
+      "pass": true,
+      "devices": {
+        "au.textual.ravelink.cable.1": {
+          "schema": 1,
+          "mode": "discover",
+          "uid": "au.textual.ravelink.cable.1",
+          "device_id": 0,
+          "matches": 0,
+          "status": 0,
+          "stop_status": 0,
+          "destroy_status": 0,
+          "fault": 0,
+          "complete": true,
+          "ready": false,
+          "frames": 0,
+          "events": 0,
+          "target_frames": 0,
+          "sample_rate": 48000,
+          "channels": 2,
+          "amplitude": 0.125,
+          "left_hz": 440,
+          "right_hz": 997,
+          "started_monotonic_ns": 0,
+          "ended_monotonic_ns": 0,
+          "host_time_numer": 125,
+          "host_time_denom": 3
+        },
+        "au.textual.ravelink.cable.2": {
+          "schema": 1,
+          "mode": "discover",
+          "uid": "au.textual.ravelink.cable.2",
+          "device_id": 0,
+          "matches": 0,
+          "status": 0,
+          "stop_status": 0,
+          "destroy_status": 0,
+          "fault": 0,
+          "complete": true,
+          "ready": false,
+          "frames": 0,
+          "events": 0,
+          "target_frames": 0,
+          "sample_rate": 48000,
+          "channels": 2,
+          "amplitude": 0.125,
+          "left_hz": 440,
+          "right_hz": 997,
+          "started_monotonic_ns": 0,
+          "ended_monotonic_ns": 0,
+          "host_time_numer": 125,
+          "host_time_denom": 3
+        }
+      },
+      "removed_only": "/Library/Audio/Plug-Ins/HAL/RustRaveLink.driver",
+      "attempt": 3
+    }
+  },
+  "basic_hal": {
+    "acceptance_pass": true,
+    "reader_pair": {
+      "pass": true,
+      "overlap_frames": 759516,
+      "maximum_difference": 0.0,
+      "differing_samples_above_1e-6": 0,
+      "relative_start_frames": 8484.0
+    },
+    "observations": [
+      {
+        "source_report": "/Users/runner/work/ravelink/ravelink/build/rust-hal-system/tone-writer.json",
+        "pass": true,
+        "clock": {
+          "callback_count": 3750,
+          "sample_gaps": [],
+          "host_reversals": 0,
+          "measured_sample_rate": 48000.0,
+          "pass": true
+        },
+        "frames": 1920000,
+        "mode": "play"
+      },
+      {
+        "pass": true
+      },
+      {
+        "source_report": "/Users/runner/work/ravelink/ravelink/build/rust-hal-system/reader-a.json",
+        "pass": true,
+        "clock": {
+          "callback_count": 1875,
+          "sample_gaps": [],
+          "host_reversals": 0,
+          "measured_sample_rate": 48000.00000000001,
+          "pass": true
+        },
+        "frames": 960000,
+        "mode": "record",
+        "longest_stereo_zero_run": 0
+      },
+      {
+        "pass": true
+      },
+      {
+        "source_report": "/Users/runner/work/ravelink/ravelink/build/rust-hal-system/reader-b.json",
+        "pass": true,
+        "clock": {
+          "callback_count": 1875,
+          "sample_gaps": [],
+          "host_reversals": 0,
+          "measured_sample_rate": 48000.00000000001,
+          "pass": true
+        },
+        "frames": 960000,
+        "mode": "record",
+        "longest_stereo_zero_run": 0
+      },
+      {
+        "pass": true
+      },
+      {
+        "pass": true
+      },
+      {
+        "pass": true
+      },
+      {
+        "source_report": "/Users/runner/work/ravelink/ravelink/build/rust-hal-system/restarted-silence.json",
+        "pass": true,
+        "clock": {
+          "callback_count": 282,
+          "sample_gaps": [],
+          "host_reversals": 0,
+          "measured_sample_rate": 47999.99999999999,
+          "pass": true
+        },
+        "frames": 144000,
+        "mode": "silence",
+        "peak": 0.0
+      }
+    ],
+    "cleanup": {
+      "pass": true,
+      "devices": {
+        "au.textual.ravelink.cable.1": {
+          "schema": 1,
+          "mode": "discover",
+          "uid": "au.textual.ravelink.cable.1",
+          "device_id": 0,
+          "matches": 0,
+          "status": 0,
+          "stop_status": 0,
+          "destroy_status": 0,
+          "fault": 0,
+          "complete": true,
+          "ready": false,
+          "frames": 0,
+          "events": 0,
+          "target_frames": 0,
+          "sample_rate": 48000,
+          "channels": 2,
+          "amplitude": 0.125,
+          "left_hz": 440,
+          "right_hz": 997,
+          "started_monotonic_ns": 0,
+          "ended_monotonic_ns": 0,
+          "host_time_numer": 125,
+          "host_time_denom": 3
+        },
+        "au.textual.ravelink.cable.2": {
+          "schema": 1,
+          "mode": "discover",
+          "uid": "au.textual.ravelink.cable.2",
+          "device_id": 0,
+          "matches": 0,
+          "status": 0,
+          "stop_status": 0,
+          "destroy_status": 0,
+          "fault": 0,
+          "complete": true,
+          "ready": false,
+          "frames": 0,
+          "events": 0,
+          "target_frames": 0,
+          "sample_rate": 48000,
+          "channels": 2,
+          "amplitude": 0.125,
+          "left_hz": 440,
+          "right_hz": 997,
+          "started_monotonic_ns": 0,
+          "ended_monotonic_ns": 0,
+          "host_time_numer": 125,
+          "host_time_denom": 3
+        }
+      },
+      "removed_only": "/Library/Audio/Plug-Ins/HAL/RustRaveLink.driver",
+      "attempt": 3
+    }
+  },
+  "custody": {
+    "pass": true,
+    "archives": [
+      {
+        "archive": "original-runtime.zip",
+        "bytes": 6838012,
+        "sha256": "245d1b455888aba8f51272431f618beba928ff3914c7ee5a9e162f8d29f4f596",
+        "manifest_files_verified": 56,
+        "source_revision": "db052e4fb790801c6692fc0caba82f0545e2055e"
+      },
+      {
+        "archive": "original-hal.zip",
+        "bytes": 10535621,
+        "sha256": "8d1f11c66d2cf16f31cfd2bd71a1309d1834bafdf5afca1d983f86e7030c2f4b",
+        "manifest_files_verified": 65,
+        "source_revision": "db052e4fb790801c6692fc0caba82f0545e2055e"
+      }
+    ],
+    "scope": "Original archive and member custody only; acceptance outcomes are retained separately in original-jobs.json and original artifact reports."
+  },
+  "limits": [
+    "One original automatic run; no retry or threshold changes.",
+    "Phase zero already matches the initial compiled gain; its negative response offset is not measured response latency.",
+    "Subsequent response estimates use the fixed envelope detector and are not acoustic latency measurements.",
+    "Native and runtime telemetry are polled, while independent recorder timestamps cover each observer callback.",
+    "Earlier failed observations remain valid; this does not prove their root causes repaired.",
+    "The output remains CPAL. Native output adapters, multiple outputs, Windows installed operation and production qualification are not established."
+  ]
+}

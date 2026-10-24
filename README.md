@@ -43,7 +43,9 @@ A [subsequent installed HAL observation](research/evidence/rust-hal-failed-40041
 
 The [first native-capture diagnostic observation](research/evidence/rust-native-runtime-installed-40046411757/README.md) failed with an Xrun during the first control phase; the existing record cannot distinguish its reporting path. Three [incidental observations](research/evidence/rust-incidental-hal-observations/README.md) also failed and remain separate results. Original archives are available on linked evidence release pages, with byte-for-byte public download verification. No passing subset replaces these failures.
 
-The [first run with fault attribution](research/evidence/rust-attribution-installed-40048380199/README.md) identified a capture-consumer underflow on Cable 1 after 7.33 seconds. Its separate basic HAL observation passed, but the incomplete runtime sequence failed. This identifies the reporting path, not the scheduling cause; continuous installed application audio remains unqualified.
+The [first run with fault attribution](research/evidence/rust-attribution-installed-40048380199/README.md) identified a capture-consumer underflow on Cable 1 after 7.33 seconds. Its separate basic HAL observation passed, but the incomplete runtime sequence failed. This identifies the reporting path, not the scheduling cause.
+
+At `db052e4`, [one complete installed application runtime observation](research/evidence/rust-ack-installed-40050165081/README.md) passed capture through mixing, all volume/mute/unmute phases, independent continuous PCM recording and silence after Stop. The separate basic HAL job also passed. Original archives and public download verification are preserved. This short successful observation does not resolve the earlier intermittent failures or qualify sustained reliability, native output adapters, multiple outputs or installed Windows audio.
 
 New studios use `RaveLinkRust/session.json` in the user's application-data directory, separate from the archived prototype's studio. Permissively licensed dependencies retain their licenses. ASIO and GPL audio drivers are excluded from the shipping dependency graph.
 
