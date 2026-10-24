@@ -1,6 +1,6 @@
-RaveLink proprietary source license notice
+ReLink proprietary source license notice
 
-Copyright (c) 2026 RaveLink authors. All rights reserved.
+Copyright (c) 2026 ReLink authors. All rights reserved.
 
 The newly authored first-party Rust product code in crates/ and drivers/,
 and supporting product code introduced after the legacy-swift-gpl-freeze tag,

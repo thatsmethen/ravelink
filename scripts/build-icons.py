@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render RaveLink's original geometric mixer mark. Requires Pillow 10.3+.
+"""Render ReLink's original geometric mixer mark. Requires Pillow 10.3+.
 
 No downloaded artwork, font or vendor mark is used. Geometry is shared with
 an editable SVG. PNG, ICO, ICNS and MSVC resource outputs are checked in, so
@@ -34,7 +34,7 @@ def render(size):
 
 
 svg = ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">',
-       '<title>RaveLink mixer mark</title>',
+       '<title>ReLink mixer mark</title>',
        f'<rect x="48" y="48" width="928" height="928" rx="216" fill="{BG}"/>']
 for x, y in RAILS:
     svg += [f'<rect x="{x-24}" y="240" width="48" height="544" rx="24" fill="{MINT}"/>',
@@ -74,4 +74,4 @@ for index, (size, data) in enumerate(images, 1):
     group.append(struct.pack('<BBBBHHIH', size % 256, size % 256, 0, 0, 1, 32, len(data), index))
 records.append(resource(14, 1, b''.join(group)))  # RT_GROUP_ICON
 (OUT / 'ravelink.res').write_bytes(b''.join(records))
-print('Rendered original RaveLink mark, macOS icon and Windows resources.')
+print('Rendered original ReLink mark, macOS icon and Windows resources.')

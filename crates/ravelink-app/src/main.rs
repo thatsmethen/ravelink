@@ -29,12 +29,12 @@ fn main() -> eframe::Result {
                 eframe::icon_data::from_png_bytes(include_bytes!(
                     "../../../packaging/branding/ravelink-256.png"
                 ))
-                .expect("bundled RaveLink icon"),
+                .expect("bundled ReLink icon"),
             ),
         ..Default::default()
     };
     eframe::run_native(
-        "RaveLink",
+        "ReLink",
         options,
         Box::new(|cc| Ok(Box::new(Studio::new(cc)))),
     )

@@ -1,4 +1,4 @@
-# RaveLink
+# ReLink
 
 A proprietary Rust audio mixer and routing application under development for **Windows and macOS**, with independently authored virtual-device drivers. Reference research uses pinned Elgato Wave Link artifacts and [morluto/rea](https://github.com/morluto/rea). No Elgato code or artwork is packaged.
 
@@ -8,15 +8,17 @@ The [current requirements and acceptance gates](research/RUST-MIGRATION.md) supe
 
 ## Preview
 
-The [development preview](https://github.com/thatsmethen/ravelink/releases/tag/v0.1.0-preview.20261024) includes macOS Apple silicon and Windows x64 application ZIPs, screenshots and the original icon. [Package checks and download verification](research/evidence/rust-preview-40045963463/README.md) passed; production qualification remains incomplete. Installed-audio evidence is labelled separately.
+The [pre-rename development preview](https://github.com/thatsmethen/relink/releases/tag/v0.1.0-preview.20261024) includes macOS Apple silicon and Windows x64 application ZIPs, screenshots and the original icon. [Package checks and download verification](research/evidence/rust-preview-40045963463/README.md) passed; production qualification remains incomplete. Installed-audio evidence is labelled separately.
 
-![RaveLink running on macOS with four test-tone sources and three mixes](docs/screenshots/mixer-macos.png)
+![Pre-rename development preview on macOS with four test-tone sources and three mixes](docs/screenshots/mixer-macos.png)
 
 [Mix effects screenshot](docs/screenshots/mix-effects-macos.png) · [Original app icon](packaging/branding/ravelink.svg)
 
-These are actual macOS screenshots of a stopped development build with an explicit test-tone fixture. They do not demonstrate live hardware capture or Windows interaction. [Screenshot observations](research/evidence/rust-effects-editor/README.md) record the tested build and restoration of the original studio.
+These macOS screenshots show a stopped development build with an explicit test-tone fixture and predate the ReLink rename. They do not demonstrate live hardware capture or Windows interaction. [Screenshot observations](research/evidence/rust-effects-editor/README.md) record the tested build and restoration of the original studio.
 
 ## Rust workspace
+
+The product is named ReLink. Existing crate names, executable identifiers, bundle ID and session paths remain compatible with earlier development builds.
 
 - `ravelink-core`: validated sessions, routing, stereo mixing, meters and built-in DSP.
 - `ravelink-audio`: CoreAudio/WASAPI device I/O, explicit output selection and runtime state.
@@ -30,6 +32,8 @@ Both virtual drivers are implemented. Their qualification remains separate: inde
 cargo test --workspace
 cargo run -p ravelink-app
 ```
+
+On macOS, `scripts/build-macos-app.sh` builds `dist/macos/ReLink.app`. Windows CI packages the application as `ReLink.exe`; a direct `cargo build -p ravelink-app --release` retains the internal filename `target/release/ravelink-app.exe`.
 
 Rust is pinned in `rust-toolchain.toml`. Current development targets are macOS and Windows; native builds and installed-driver acceptance are tracked separately. Audio starts stopped and requires an explicitly selected output. No system default audio device is changed.
 
@@ -47,6 +51,6 @@ The [first run with fault attribution](research/evidence/rust-attribution-instal
 
 At `db052e4`, [one complete installed application runtime observation](research/evidence/rust-ack-installed-40050165081/README.md) passed capture through mixing, all volume/mute/unmute phases, independent continuous PCM recording and silence after Stop. The separate basic HAL job also passed. Original archives and public download verification are preserved. This short successful observation does not resolve the earlier intermittent failures or qualify sustained reliability, native output adapters, multiple outputs or installed Windows audio.
 
-New studios use `RaveLinkRust/session.json` in the user's application-data directory, separate from the archived prototype's studio. Permissively licensed dependencies retain their licenses. ASIO and GPL audio drivers are excluded from the shipping dependency graph.
+ReLink retains the existing `RaveLinkRust/session.json` studio location in the user's application-data directory, separate from the archived prototype's studio. Permissively licensed dependencies retain their licenses. ASIO and GPL audio drivers are excluded from the shipping dependency graph.
 
 See [LICENSE](LICENSE) for the new first-party proprietary notice and [legacy/LICENSE](legacy/LICENSE) for archived-code terms. Public repository visibility does not change the proprietary license or the archived code’s original terms.

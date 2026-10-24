@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify the built Windows PE icon bytes against RaveLink's checked-in ICO/RES.
+"""Verify the built Windows PE icon bytes against ReLink's checked-in ICO/RES.
 
 Python standard library only. Native verification maps the executable as resource
 data; it never starts the application or invokes its entry point. This verifies

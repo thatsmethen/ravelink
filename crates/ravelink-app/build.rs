@@ -9,7 +9,7 @@ fn main() {
             "cargo:rustc-link-arg-bin=ravelink-app={}",
             resource
                 .canonicalize()
-                .expect("RaveLink icon resource")
+                .expect("ReLink icon resource")
                 .display()
         );
     }

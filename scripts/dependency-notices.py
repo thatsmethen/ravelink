@@ -33,9 +33,9 @@ def generate():
             record['target_features'][target] = sorted(active[package['id']]['features'])
     checksums = {(p['name'], p['version']): p.get('checksum') for p in tomllib.loads((ROOT/'Cargo.lock').read_text(encoding="utf-8"))['package']}
     notes = [
-        'RaveLink third-party software and font notices',
+        'ReLink third-party software and font notices',
         'Generated from Cargo.lock and Cargo metadata for the listed targets.',
-        'First-party RaveLink code is proprietary. These dependencies retain their own licenses.',
+        'First-party ReLink code is proprietary. These dependencies retain their own licenses.',
         'Targets: '+', '.join(TARGETS),
         'All bundled license alternatives are reproduced; no third-party ownership is claimed.',
     ]

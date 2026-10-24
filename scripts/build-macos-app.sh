@@ -8,12 +8,12 @@ case "$profile" in
     debug) cargo build --locked -p ravelink-app ;;
     *) echo 'RAVELINK_BUILD_PROFILE must be release or debug' >&2; exit 1 ;;
 esac
-bundle="$root_dir/dist/macos/RaveLink Rust.app"
+bundle="$root_dir/dist/macos/ReLink.app"
 mkdir -p "$bundle/Contents/MacOS" "$bundle/Contents/Resources"
 cp "${CARGO_TARGET_DIR:-target}/$profile/ravelink-app" "$bundle/Contents/MacOS/"
 cp packaging/branding/ravelink.icns "$bundle/Contents/Resources/RaveLink.icns"
 cp packaging/macos/Info.plist "$bundle/Contents/Info.plist"
-cp LICENSE "$bundle/Contents/Resources/RaveLink-LICENSE.txt"
+cp LICENSE "$bundle/Contents/Resources/ReLink-LICENSE.txt"
 cp THIRD-PARTY-NOTICES.txt "$bundle/Contents/Resources/"
 mkdir -p "$bundle/Contents/Resources/Rust-runtime-notices"
 cp docs/third-party-licenses/rust-1.91.1/* "$bundle/Contents/Resources/Rust-runtime-notices/"
