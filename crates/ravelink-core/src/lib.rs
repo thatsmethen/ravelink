@@ -19,7 +19,8 @@ mod smoothing;
 
 pub use controls::{ControlError, PreparedControls, ResolvedControl};
 pub use mixer::{
-    CompiledMixer, MeterReading, RenderError, ResourceBudget, StereoInput, StereoOutput,
+    BusHandle, BusReadError, CompiledMixer, MeterReading, RenderError, ResourceBudget, StereoInput,
+    StereoOutput,
 };
 pub use session::{
     Bus, ChannelControls, CompressorConfig, DspConfig, GateConfig, HighPassConfig, Input,

@@ -34,6 +34,88 @@ fn native_test_id() -> &'static str {
         "ALSA:fixture"
     }
 }
+
+#[test]
+fn controls_are_acknowledged_only_after_rendering_not_priming_or_underflow() {
+    let (session, bus) = input_session(native_test_id());
+    let mut render = tests::render(&session, bus, 2);
+    let mut producer = Producer::new(render.captures[0].consumer.ring.clone());
+    let mut changed = session.clone();
+    changed.buses[0].controls.set_gain_db(-6.0);
+    let first = render
+        .bank
+        .publish(&prepare_live_update(&session, &changed).unwrap())
+        .unwrap();
+    let mut output = [9.0_f32; 128];
+    render.write(&mut output);
+    assert_eq!(output, [0.0; 128]);
+    assert_eq!(
+        render.applied_version, first,
+        "target is prepared while priming"
+    );
+    assert_eq!(
+        render
+            .telemetry
+            .applied_control_version
+            .load(Ordering::Acquire),
+        0
+    );
+
+    // This request replaces the first before any program frame was rendered.
+    // The eventual watermark must not imply that the intermediate target played.
+    changed.buses[0].controls.set_gain_db(-12.0);
+    let latest = render
+        .bank
+        .publish(&prepare_live_update(&session, &changed).unwrap())
+        .unwrap();
+    render.write(&mut output);
+    assert_eq!(
+        render
+            .telemetry
+            .applied_control_version
+            .load(Ordering::Acquire),
+        0
+    );
+    for _ in 0..5 {
+        producer.push_frames(256, |_| [0.25, -0.25]).unwrap();
+    }
+    render.write(&mut output);
+    assert_eq!(
+        render
+            .telemetry
+            .applied_control_version
+            .load(Ordering::Acquire),
+        latest
+    );
+    assert!(
+        output[0] > 0.2,
+        "acknowledgment does not claim the 5 ms ramp has completed"
+    );
+    assert_eq!(render.telemetry.frames.load(Ordering::Relaxed), 64);
+
+    changed.buses[0].controls.set_gain_db(-18.0);
+    let rejected = render
+        .bank
+        .publish(&prepare_live_update(&session, &changed).unwrap())
+        .unwrap();
+    let mut too_much_output = [9.0_f32; 8192];
+    render.write(&mut too_much_output);
+    assert_eq!(render.applied_version, rejected);
+    assert_eq!(
+        render.telemetry.fault.load(Ordering::Acquire),
+        AudioFault::CaptureUnderflow as u32
+    );
+    assert!(too_much_output.iter().all(|sample| *sample == 0.0));
+    assert_eq!(
+        render
+            .telemetry
+            .applied_control_version
+            .load(Ordering::Acquire),
+        latest
+    );
+    assert_eq!(render.telemetry.frames.load(Ordering::Relaxed), 64);
+}
+
 fn transport() -> (Producer, Consumer) {
     let ring = Ring::new();
     (

@@ -13,7 +13,7 @@ pub(crate) const CAPACITY: usize = 65536;
 const TAPS: usize = 128;
 const HALF: usize = TAPS / 2;
 const PHASES: usize = 1024;
-const MAX_CORRECTION: f64 = 0.002; // +/- 2,000 ppm; nominal rates must match.
+pub(crate) const MAX_CORRECTION: f64 = 0.002; // +/- 2,000 ppm; nominal rates must match.
 
 pub(crate) struct Ring {
     frames: Box<[AtomicU64]>,
@@ -134,6 +134,23 @@ pub(crate) struct Kernel {
     rows: Box<[[f32; TAPS]]>,
 }
 impl Kernel {
+    pub(crate) const fn taps() -> usize {
+        TAPS
+    }
+    pub(crate) const fn half() -> usize {
+        HALF
+    }
+    /// Borrow adjacent rows for the independent output reader. Capture keeps
+    /// its existing arithmetic and priming policy unchanged.
+    pub(crate) fn phase_rows(&self, fraction: f64) -> (&[f32; TAPS], &[f32; TAPS], f32) {
+        let phase = fraction * PHASES as f64;
+        let row = phase.floor() as usize;
+        (
+            &self.rows[row],
+            &self.rows[row + 1],
+            (phase - row as f64) as f32,
+        )
+    }
     pub(crate) fn new() -> Arc<Self> {
         let mut rows = Vec::with_capacity(PHASES + 1);
         for phase in 0..=PHASES {

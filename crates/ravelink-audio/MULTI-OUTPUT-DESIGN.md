@@ -4,6 +4,12 @@ The current runtime opens one explicitly selected output. This document records
 the proposed next implementation. It does not qualify multi-device playback or
 change the frozen single-output installed-runtime protocol.
 
+The [bus accessor](../ravelink-core/BUS-ACCESS.md), pure `OutputPlan` validation
+and [offline fanout transport](FANOUT-TRANSPORT.md) are implemented prerequisites.
+They are not yet connected to native output streams or the app. The
+[native output ownership review](OUTPUT-OWNERSHIP-DESIGN.md) records the remaining
+startup, encoding and teardown work.
+
 ## Public plan and validation
 
 Add `OutputPlan { clock_output: OutputId, routes: Vec<OutputRoute> }`, where each
@@ -28,14 +34,22 @@ test-tone/DSP state and capture consumers. Native input IDs remain deduplicated
 across logical channels. Each input stream and capture FIFO is opened and drained
 once. Secondary callbacks never render the graph or consume input rings.
 
-The core already processes all buses on each render. Add a bounded read-only view
-of each bus's last successful post-DSP block. Render once with no output copy
-descriptors, then fan out those borrowed planes through a precompiled bus-to-route
-map. This avoids rendering a source, effect, ramp or meter once per destination.
+The core already processes all buses on each render. Add a graph-bound handle to
+a bounded read-only view of each bus's last successful post-DSP interleaved
+`&[[f32; 2]]` block. Render once with no output copy descriptors, then fan out those
+borrowed frames through a precompiled bus-to-route map. This avoids rendering a
+source, effect, ramp or meter once per destination.
 The primary output receives its selected bus directly. Every secondary output
 gets an independent bounded SPSC queue and ASRC reader driven by its own device
 callback. Reuse the original 128-tap bandlimited kernel and bounded ±2000 ppm
 clock correction after separately validating the output-fanout adaptation.
+
+Follower playback starts at primary source frame zero, with explicit zero FIR
+prehistory and fresh version history. Do not reuse capture priming's
+`position = written - target`: it can discard the beginning of the program when
+the first follower callback is late. Priming may delay playback but must not skip
+the queued source prefix. Test an initial impulse with delayed first callbacks,
+different callback sizes and the required FIR lookahead.
 
 Start with equal nominal device/session rates. Independent devices still drift;
 the secondary queue's occupancy governs its ASRC correction. A queue cannot wait
@@ -48,17 +62,27 @@ bounds; logical input/bus/route counts are governed by checked memory budgets.
 
 Preflight the complete primary callback's capacity in every secondary queue
 before consuming capture PCM or advancing graph state. Produce all chunks into
-reserved, unpublished space, then commit only after the entire primary callback
-has rendered successfully. A consumer can only free more capacity during this
-operation. Any fault invalidates the shared epoch; no secondary may authorize
-PCM solely because its queue contains data.
+reserved, unpublished space, then release-publish one shared epoch-wide committed
+source cursor only after the entire primary callback has rendered successfully
+and every queue's PCM and version tags are written. Followers acquire that shared
+cursor and cannot read beyond it; independently publishing each queue's cursor
+would expose partial fanout if the producer were suspended between stores. A
+consumer can only free more capacity during this operation. No fallible render or
+queue operation remains after commit. Test producer suspension between queue
+writes, failed final chunks and cancellation at publication. Any fault invalidates
+the shared epoch; no secondary may authorize PCM solely because its queue
+contains data. This transaction controls visibility of source frames, not
+simultaneous handoff to independent hardware buffers. A fault racing an already
+authorized hardware handoff cannot recall that buffer.
 
 Publish a global control acknowledgment only after the entire primary block has
 been processed and committed to every enabled secondary queue. This is a graph
 render/publication acknowledgment, not proof that hardware or an acoustic output
-has played it. The existing single-output acknowledgment occurs earlier and must
-be corrected as part of this feature with explicit compatibility tests. The 5 ms
-control ramps advance once on the primary render clock and may span blocks.
+has played it. The single-output implementation now publishes its watermark
+only after a complete, nonempty, authorized render; priming, empty callbacks and
+underflow do not acknowledge prepared controls. Multi-output integration must
+add the all-route commit boundary. The 5 ms control ramps advance once on the
+primary render clock and may span blocks.
 
 Each secondary reports submitted device frames, consumed primary source position,
 priming state, queue occupancy and clock correction. Exact per-device control
@@ -67,15 +91,29 @@ acknowledgments need version tags alongside PCM: one u64 per source frame adds
 minimum version across all FIR-support samples contributing to the whole submitted
 callback; merely reading a new control tag does not mean old filter history is
 gone. Queue epoch is immutable; no old tags or ASRC history survive a restart.
+These tags identify accepted control targets, not completed 5 ms ramps or settled
+DSP tails. A control bank can coalesce updates before rendering: an acknowledgment
+at or above a requested version does not prove that exact intermediate request
+was rendered. Publish acknowledgments only for successfully prepared, authorized
+program buffers; priming silence or a buffer zeroed after cancellation cannot
+advance them.
 
 ## Atomic activation, cancellation and faults
 
 Build the complete set of streams with a shared activation gate closed. Start
-outputs while their callbacks emit silence, then start captures. Validate native
-start results and cancellation before opening the gate once for the new epoch.
+outputs while their callbacks emit silence, then start captures. Require each
+endpoint's native start completion or positive running-callback evidence for this
+epoch before opening the gate. CPAL WASAPI `play()` only enqueues `PlayStream`;
+its success does not establish that the worker's later `IAudioClient::Start`
+succeeded. Validate endpoint evidence, first fault and cancellation before
+opening the gate once for the new epoch. The activation gate is separate from
+owner cancellation so closed-gate startup does not tear down a starting stream.
 Partially successful startup cannot emit program audio. Start success means the
 native activation transaction was accepted; secondary priming/readiness remains
 separately visible, with a bounded startup failure condition.
+Use independent monotonic wall-time deadlines and progress observation outside
+callbacks; a missing primary or follower callback cannot be responsible for
+advancing its own failure deadline.
 
 Every start uses fresh queues, transport positions, ASRC history and epoch. Stop
 first revokes the common gate, then asks owner threads to release native resources.
@@ -89,7 +127,15 @@ of native teardown.
 
 The bounded first-fault attribution checkpoint precedes this implementation so
 the endpoint, direction and reporting path survive an all-output cancellation.
-Native teardown retention and explicit-ID reservation rules continue to apply.
+Native capture teardown retention does not establish the same guarantee for CPAL
+output streams. The pinned macOS `coreaudio-rs` destructor ignores native stop
+and uninitialize errors before freeing callback storage; the pinned WASAPI CPAL
+destructor joins its worker without a deadline. The implementation must explicitly
+represent this limitation or supply an output owner with observable completion.
+Keep shared plan resources and explicit endpoint reservations until native owner
+completion is proven; a control request timeout is not proof of teardown. Test
+that one blocked owner leaves every callback unauthorized and cannot permit
+endpoint reuse while ownership remains unresolved.
 
 ## Budget and user-visible limits
 

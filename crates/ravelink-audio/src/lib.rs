@@ -10,7 +10,12 @@
 mod capture;
 mod capture_transport;
 mod control_bank;
+mod output_plan;
+pub use output_plan::{OutputPlan, OutputPlanError, OutputRoute};
 mod fault;
+// Offline transport prerequisite; runtime/OS integration is a separate checkpoint.
+#[allow(dead_code)]
+mod fanout;
 pub use fault::{FaultAttribution, FaultDirection, FaultMetadata, FaultOrigin, FaultProperty};
 use fault::{FaultLatch, FaultSource};
 #[cfg(target_os = "macos")]
@@ -222,6 +227,9 @@ pub struct AudioSnapshot {
     pub configuration: Option<RunningConfiguration>,
     pub rendered_frames: u64,
     pub callback_count: u64,
+    /// Accepted target version used by a complete, nonempty, authorized render.
+    /// This is not hardware playback, ramp completion, or proof that every
+    /// intermediate (possibly coalesced) control request was rendered.
     pub applied_control_version: u64,
     pub captures: Vec<CaptureSnapshot>,
     pub input_meters: Vec<MeterReading>,
@@ -1243,9 +1251,6 @@ impl RenderState {
                 return;
             }
             self.applied_version = version;
-            self.telemetry
-                .applied_control_version
-                .store(version, Ordering::Release);
         }
         let frames = output.len() / self.channels;
         let mut ready = true;
@@ -1331,6 +1336,13 @@ impl RenderState {
             .frames
             .fetch_add(frames as u64, Ordering::Relaxed);
         self.telemetry.callbacks.fetch_add(1, Ordering::Relaxed);
+        // Preparing controls alone does not render them. Priming, rejected or
+        // cancelled callbacks and empty buffers must not advance this watermark.
+        if frames != 0 {
+            self.telemetry
+                .applied_control_version
+                .store(self.applied_version, Ordering::Release);
+        }
     }
 }
 

@@ -4,8 +4,17 @@ use crate::{
     smoothing::ControlRamp,
     InputKind, Session, SessionError,
 };
-use std::{error::Error, fmt, mem::size_of};
+use std::{
+    error::Error,
+    fmt,
+    mem::size_of,
+    sync::atomic::{AtomicU64, Ordering},
+};
 use uuid::Uuid;
+
+// Allocated only during off-callback compilation. Checked advancement prevents
+// graph identities being reused after wraparound; moving a graph preserves it.
+static NEXT_GRAPH_TOKEN: AtomicU64 = AtomicU64::new(1);
 
 /// A host-selected memory and callback-size budget. Channel counts are derived
 /// from available memory rather than a fixed input or mix count in the product.
@@ -39,6 +48,37 @@ pub struct StereoOutput<'a> {
     pub left: &'a mut [f32],
     pub right: &'a mut [f32],
 }
+
+/// A bus resolved off callback for one compiled graph. Handles survive moving
+/// that graph, but are not valid for a separately compiled replacement, even
+/// when the replacement uses the same session and bus IDs.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct BusHandle {
+    graph_token: u64,
+    index: usize,
+}
+
+/// Errors from reading already-rendered bus audio. They never advance or change
+/// the graph. Resolve unknown bus IDs with [`CompiledMixer::resolve_bus`].
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum BusReadError {
+    /// The handle does not belong to this graph or its index is invalid.
+    InvalidHandle,
+    /// No render has succeeded, or the most recent render attempt was rejected.
+    NoSuccessfulRender,
+}
+
+impl fmt::Display for BusReadError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::InvalidHandle => f.write_str("bus handle does not belong to this compiled graph"),
+            Self::NoSuccessfulRender => {
+                f.write_str("the latest render attempt has no readable bus block")
+            }
+        }
+    }
+}
+impl Error for BusReadError {}
 
 /// Post-control, post-DSP meters for the last rendered block. Hosts can copy
 /// these fixed-size values into their own callback-safe meter transport.
@@ -154,6 +194,8 @@ struct CompiledSend {
 }
 
 pub struct CompiledMixer {
+    graph_token: u64,
+    rendered_frames: Option<usize>,
     sample_rate: u32,
     control_ramp_frames: u32,
     max_block_frames: usize,
@@ -285,6 +327,14 @@ impl CompiledMixer {
             });
         }
         Ok(Self {
+            graph_token: NEXT_GRAPH_TOKEN
+                .fetch_update(Ordering::Relaxed, Ordering::Relaxed, |token| {
+                    token.checked_add(1)
+                })
+                .map_err(|_| {
+                    SessionError::Invalid("compiled graph identity space exhausted".into())
+                })?,
+            rendered_frames: None,
             sample_rate: session.sample_rate,
             control_ramp_frames: session.sample_rate.div_ceil(200),
             max_block_frames: budget.max_block_frames,
@@ -383,6 +433,47 @@ impl CompiledMixer {
         &self.bus_meters
     }
 
+    /// Resolve a stable bus ID once on the control thread. This searches the
+    /// compiled bus list; use the returned handle for constant-time callback
+    /// access through [`Self::rendered_bus`]. No audio state advances here.
+    pub fn resolve_bus(&self, id: Uuid) -> Result<BusHandle, RenderError> {
+        self.buses
+            .iter()
+            .position(|bus| bus.id == id)
+            .map(|index| BusHandle {
+                graph_token: self.graph_token,
+                index,
+            })
+            .ok_or(RenderError::UnknownBus(id))
+    }
+
+    /// Borrow one bus's post-control, post-DSP stereo frames in constant time.
+    /// All buses are available, including those omitted from render outputs.
+    /// Reusing a handle or reading several buses does not advance oscillators,
+    /// ramps, processors or meters. This method allocates nothing and takes no
+    /// locks; it checks only the graph token, index and valid frame extent.
+    ///
+    /// Before a successful render, or after any rejected render attempt, this
+    /// returns [`BusReadError::NoSuccessfulRender`]. A successful zero-frame
+    /// render returns an empty slice. A shorter render exposes only its own
+    /// frames, never the previous block's tail. Applying controls does not alter
+    /// the previously rendered block. The shared borrow prevents a new mutable
+    /// render while these frames are still in use. Foreign handles are rejected
+    /// before checking whether a readable block exists.
+    pub fn rendered_bus(&self, handle: BusHandle) -> Result<&[[f32; 2]], BusReadError> {
+        if handle.graph_token != self.graph_token {
+            return Err(BusReadError::InvalidHandle);
+        }
+        let bus = self
+            .buses
+            .get(handle.index)
+            .ok_or(BusReadError::InvalidHandle)?;
+        let frames = self
+            .rendered_frames
+            .ok_or(BusReadError::NoSuccessfulRender)?;
+        Ok(&bus.frames[..frames])
+    }
+
     /// Render planar stereo buffers. Buffer order is arbitrary; IDs select the
     /// graph channels. Missing external inputs are silent, except test-tone
     /// inputs, which synthesize an internal sine. A provided buffer overrides a
@@ -412,6 +503,8 @@ impl CompiledMixer {
     /// call; the iterator is traversed for validation and channel lookup. The
     /// mixer itself does not allocate, but callers must also supply an iterator
     /// whose `clone` and `next` operations are suitable for an audio callback.
+    /// Each attempt invalidates previous [`Self::rendered_bus`] access before
+    /// validation. Only a complete successful render publishes a readable extent.
     pub fn render_sources<'a, I>(
         &mut self,
         sources: I,
@@ -421,6 +514,7 @@ impl CompiledMixer {
     where
         I: Iterator<Item = StereoInput<'a>> + Clone,
     {
+        self.rendered_frames = None;
         self.validate_buffers(sources.clone(), outputs, frames)?;
         for (index, input) in self.inputs.iter_mut().enumerate() {
             let source = sources.clone().find(|source| source.id == input.id);
@@ -475,6 +569,7 @@ impl CompiledMixer {
                 }
             }
         }
+        self.rendered_frames = Some(frames);
         Ok(())
     }
 

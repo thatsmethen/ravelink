@@ -432,6 +432,37 @@ fn in_flight_control_write_keeps_the_previous_complete_bank() {
 }
 
 #[test]
+fn empty_callbacks_do_not_acknowledge_unrendered_controls() {
+    let (session, bus) = session();
+    let mut render = render(&session, bus, 2);
+    let mut changed = session.clone();
+    changed.buses[0].controls.set_gain_db(-6.0);
+    let version = render
+        .bank
+        .publish(&prepare_live_update(&session, &changed).unwrap())
+        .unwrap();
+    render.write(&mut [] as &mut [f32]);
+    assert_eq!(render.applied_version, version);
+    assert_eq!(
+        render
+            .telemetry
+            .applied_control_version
+            .load(Ordering::Acquire),
+        0
+    );
+    assert_eq!(render.telemetry.frames.load(Ordering::Relaxed), 0);
+    render.write(&mut [0.0_f32; 2]);
+    assert_eq!(
+        render
+            .telemetry
+            .applied_control_version
+            .load(Ordering::Acquire),
+        version
+    );
+    assert_eq!(render.telemetry.frames.load(Ordering::Relaxed), 1);
+}
+
+#[test]
 fn concurrent_bank_reader_never_observes_mixed_mute_and_gain_records() {
     let (session, _) = session();
     let mut a = PreparedControls::compile(&session, GRAPH_BYTES).unwrap();
