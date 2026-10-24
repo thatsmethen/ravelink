@@ -1,0 +1,28 @@
+{
+  "baseline": "research/evidence/rust-dependency-audit",
+  "baseline_manifest_sha256": "367c89de7383ff8cd38d43b6cb4f6a01d40b3940d754ee326171cb9a72e2d476",
+  "baseline_verified_files": 485,
+  "cargo_version": "cargo 1.91.1 (ea2d97820 2025-10-10)",
+  "input_sha256": {
+    "Cargo.toml": "8753c112fd1cc4bc67ac3925d5b6624a64d1aa41848e1f066ff4714ddedf67df",
+    "crates/ravelink-app/Cargo.toml": "d6219f44e49955d29945ffa022fa8a81160810364823420bad2e73d402b5e7f0",
+    "crates/ravelink-audio/Cargo.toml": "8d891145d2b03cc6b5aa9dc2769317396f37f553380bbed43d97b62e813470ca",
+    "crates/ravelink-audio/src/native_capture.rs": "357b5fd2349f46376185f9a9676b8244797169af9a0018bfc4fc044746778c9a",
+    "crates/ravelink-audio/src/native_capture_tests.rs": "7676ebfa33b478e4023398465e1815bdbce141aad41255b6fa8c3c2ee0f54c4a",
+    "crates/ravelink-audio/src/native_packet.rs": "11869afc2439a20c8b0fb8e277d42f7e8434f75813836a2d78cc8e010ea96f13",
+    "crates/ravelink-audio/src/native_packet_tests.rs": "025709ace31e8a6bf74ee978588f08c31acfbeaab0504540f190dc9c96732969",
+    "crates/ravelink-audio/src/native_timing.rs": "f482abf64838e4ec5af167be4437bb5b7f3e8a0eaf34b234cbe178c9e279ac46",
+    "crates/ravelink-core/Cargo.toml": "c9f13f8123fafc3a179681dccb3f43f9903964e375ebd43e2bcb4c8701c0115d",
+    "crates/ravelink-hal/Cargo.toml": "06269690924b272bb349aa80c667a4451f5bb26ec2abd352fef644662e7e63d8",
+    "crates/ravelink-windows-driver/Cargo.toml": "f12a892d502c880de0c2e0568dfc538c68e278ef1660a1553715c751dac73359",
+    "rust-toolchain.toml": "2645003e83d0075da4fc5119dcfc4dfba02df3b9cf3cde702abfa27dc7221ae3"
+  },
+  "network_access": false,
+  "new_lockfile_sha256": "386333dada7c9b29dce3350e811bbdf0c5a63ddc0d56c836d5f1d003b8c697a5",
+  "old_lockfile_sha256": "547f5fce785f43efad75d697e8a68212fcd161215c2787b30d4823080588aa6b",
+  "repository_head_at_start": "eebc08b19ba04f6b7d22d8593211532957633d5a",
+  "rustc_version": "rustc 1.91.1 (ed61e7d7e 2025-11-07)",
+  "scope": "uncommitted frozen native capture candidate, identified by retained file hashes",
+  "script_sha256": "800f2621a15b6ed185204c5b0b8e68808bffe335aa14bc8556bcd9932b7d5f36",
+  "started_at_utc": "2026-10-24T00:30:38.264081+00:00"
+}

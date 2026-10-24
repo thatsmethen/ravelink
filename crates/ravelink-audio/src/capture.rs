@@ -1,7 +1,9 @@
 use super::capture_transport::{Consumer, Kernel, Producer, Ring, TransportError};
+#[cfg(any(not(target_os = "macos"), test))]
+use super::supported_pcm;
 use super::{
-    backend, native_host, supported_pcm, AudioError, AudioFault, InputDevice, InputId,
-    RunningInput, Shared, Telemetry, RENDER_CHUNK,
+    backend, native_host, AudioError, AudioFault, InputDevice, InputId, RunningInput, Shared,
+    Telemetry, RENDER_CHUNK,
 };
 use cpal::traits::{DeviceTrait, HostTrait};
 use ravelink_core::{InputKind, Session, Uuid};
@@ -51,8 +53,10 @@ pub(crate) fn source_groups(session: &Session) -> BTreeMap<String, Vec<Uuid>> {
     groups
 }
 pub(crate) struct Selected {
-    #[cfg(not(target_os = "windows"))]
+    #[cfg(not(any(target_os = "windows", target_os = "macos")))]
     device: cpal::Device,
+    #[cfg(target_os = "macos")]
+    native: super::native_capture::Selection,
     pub(crate) config: cpal::SupportedStreamConfig,
     pub(crate) configuration: RunningInput,
 }
@@ -82,6 +86,11 @@ pub(crate) fn select(session: &Session, host: &cpal::Host) -> Result<Vec<Selecte
             .map_err(|e| backend("input description", Some(id.clone()), e))?
             .name()
             .to_owned();
+        #[cfg(target_os = "macos")]
+        let native = super::native_capture::select(&id, session.sample_rate)?;
+        #[cfg(target_os = "macos")]
+        let config = native.configuration();
+        #[cfg(not(target_os = "macos"))]
         let config = select_config(
             device
                 .supported_input_configs()
@@ -99,17 +108,29 @@ pub(crate) fn select(session: &Session, host: &cpal::Host) -> Result<Vec<Selecte
             },
             source_ids,
             device_channels: config.channels(),
-            sample_format: config.sample_format().to_string(),
+            sample_format: {
+                #[cfg(target_os = "macos")]
+                {
+                    native.description()
+                }
+                #[cfg(not(target_os = "macos"))]
+                {
+                    config.sample_format().to_string()
+                }
+            },
         };
         selected.push(Selected {
-            #[cfg(not(target_os = "windows"))]
+            #[cfg(not(any(target_os = "windows", target_os = "macos")))]
             device,
+            #[cfg(target_os = "macos")]
+            native,
             config,
             configuration,
         });
     }
     Ok(selected)
 }
+#[cfg(any(not(target_os = "macos"), test))]
 pub(crate) fn select_config(
     configs: impl Iterator<Item = cpal::SupportedStreamConfigRange>,
     sample_rate: u32,
@@ -138,6 +159,7 @@ pub(crate) fn select_config(
         })
 }
 
+#[cfg(any(not(target_os = "macos"), test))]
 fn native_encoding_supported(format: cpal::SampleFormat) -> bool {
     #[cfg(target_os = "windows")]
     {
@@ -151,7 +173,9 @@ fn native_encoding_supported(format: cpal::SampleFormat) -> bool {
 }
 #[cfg(target_os = "windows")]
 pub(crate) type CaptureStream = super::wasapi_capture::WasapiCapture;
-#[cfg(not(target_os = "windows"))]
+#[cfg(target_os = "macos")]
+pub(crate) type CaptureStream = super::native_capture::NativeCapture;
+#[cfg(not(any(target_os = "windows", target_os = "macos")))]
 pub(crate) type CaptureStream = cpal::Stream;
 
 pub(crate) struct CaptureRender {
@@ -178,12 +202,30 @@ pub(crate) fn bytes_per_capture() -> usize {
 
 pub(crate) struct CaptureState {
     producer: Producer,
-    #[cfg(any(not(target_os = "windows"), test))]
+    #[cfg(any(not(any(target_os = "windows", target_os = "macos")), test))]
     channels: usize,
+    permit: CapturePermit,
+}
+#[derive(Clone)]
+pub(crate) struct CapturePermit {
     epoch: u64,
     wanted: Arc<AtomicBool>,
     shared: Arc<Shared>,
     telemetry: Arc<Telemetry>,
+}
+impl CapturePermit {
+    pub(crate) fn authorized(&self) -> bool {
+        self.wanted.load(Ordering::Acquire)
+            && self.shared.epoch.load(Ordering::Acquire) == self.epoch
+            && self.telemetry.fault.load(Ordering::Acquire) == 0
+    }
+    pub(crate) fn fail(&self, fault: AudioFault) {
+        self.telemetry.fail(fault);
+    }
+    #[cfg(target_os = "macos")]
+    pub(crate) fn epoch(&self) -> u64 {
+        self.epoch
+    }
 }
 impl CaptureState {
     pub(crate) fn new(
@@ -194,27 +236,36 @@ impl CaptureState {
         shared: Arc<Shared>,
         telemetry: Arc<Telemetry>,
     ) -> Self {
-        #[cfg(all(target_os = "windows", not(test)))]
+        #[cfg(all(any(target_os = "windows", target_os = "macos"), not(test)))]
         let _ = channels;
         Self {
             producer: Producer::new(ring),
-            #[cfg(any(not(target_os = "windows"), test))]
+            #[cfg(any(not(any(target_os = "windows", target_os = "macos")), test))]
             channels,
-            epoch,
-            wanted,
-            shared,
-            telemetry,
+            permit: CapturePermit {
+                epoch,
+                wanted,
+                shared,
+                telemetry,
+            },
         }
     }
     pub(crate) fn authorized(&self) -> bool {
-        self.wanted.load(Ordering::Acquire)
-            && self.shared.epoch.load(Ordering::Acquire) == self.epoch
-            && self.telemetry.fault.load(Ordering::Acquire) == 0
+        self.permit.authorized()
     }
+    #[cfg(any(not(target_os = "macos"), test))]
     pub(crate) fn fail(&self, fault: AudioFault) {
-        self.telemetry.fail(fault);
+        self.permit.fail(fault);
     }
-    #[cfg(any(not(target_os = "windows"), test))]
+    #[cfg(target_os = "macos")]
+    pub(crate) fn permit(&self) -> CapturePermit {
+        self.permit.clone()
+    }
+    #[cfg(target_os = "macos")]
+    pub(crate) fn ring(&self) -> Arc<Ring> {
+        self.producer.ring.clone()
+    }
+    #[cfg(any(not(any(target_os = "windows", target_os = "macos")), test))]
     pub(crate) fn push<T: cpal::Sample>(&mut self, samples: &[T])
     where
         f32: cpal::FromSample<T>,
@@ -235,6 +286,18 @@ impl CaptureState {
             self.fail(fault(error));
         }
     }
+    #[cfg(target_os = "macos")]
+    pub(crate) fn push_native_frames(
+        &mut self,
+        frames: usize,
+        read: impl FnMut(usize) -> [f32; 2],
+    ) -> Result<bool, AudioFault> {
+        if !self.authorized() {
+            return Ok(false);
+        }
+        self.producer.push_frames(frames, read).map_err(fault)?;
+        Ok(true)
+    }
 }
 pub(crate) fn fault(error: TransportError) -> AudioFault {
     match error {
@@ -243,7 +306,7 @@ pub(crate) fn fault(error: TransportError) -> AudioFault {
         TransportError::InvalidBuffer => AudioFault::InvalidBuffer,
     }
 }
-#[cfg(not(target_os = "windows"))]
+#[cfg(not(any(target_os = "windows", target_os = "macos")))]
 fn make_typed<T: cpal::SizedSample>(
     selected: &Selected,
     mut state: CaptureState,
@@ -251,7 +314,7 @@ fn make_typed<T: cpal::SizedSample>(
 where
     f32: cpal::FromSample<T>,
 {
-    let telemetry = state.telemetry.clone();
+    let telemetry = state.permit.telemetry.clone();
     selected.device.build_input_stream_raw(
         selected.config.config(),
         T::FORMAT,
@@ -259,7 +322,7 @@ where
             if let Some(samples) = data.as_slice::<T>() {
                 state.push(samples);
             } else {
-                state.telemetry.fail(AudioFault::InvalidBuffer);
+                state.fail(AudioFault::InvalidBuffer);
             }
         },
         move |error| {
@@ -268,7 +331,7 @@ where
         Some(super::COMMAND_TIMEOUT),
     )
 }
-#[cfg(not(target_os = "windows"))]
+#[cfg(not(any(target_os = "windows", target_os = "macos")))]
 pub(crate) fn make_stream(
     selected: &Selected,
     state: CaptureState,
@@ -313,4 +376,12 @@ pub(crate) fn make_stream(
     state: CaptureState,
 ) -> Result<CaptureStream, AudioError> {
     CaptureStream::build(&selected.configuration, &selected.config, state)
+}
+
+#[cfg(target_os = "macos")]
+pub(crate) fn make_stream(
+    selected: &Selected,
+    state: CaptureState,
+) -> Result<CaptureStream, AudioError> {
+    CaptureStream::build(&selected.native, state)
 }

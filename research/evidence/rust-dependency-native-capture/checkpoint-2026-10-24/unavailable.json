@@ -1,0 +1,25 @@
+{
+  "status": "unavailable",
+  "recorded_at_utc": "2026-10-24T00:30:32.158445+00:00",
+  "exit_code": 2,
+  "script_sha256": "800f2621a15b6ed185204c5b0b8e68808bffe335aa14bc8556bcd9932b7d5f36",
+  "failed_command": [
+    "cargo",
+    "tree",
+    "--offline",
+    "--locked",
+    "--color",
+    "never",
+    "-p",
+    "ravelink-app",
+    "--target",
+    "aarch64-apple-darwin",
+    "--edges",
+    "normal,build",
+    "--prefix",
+    "none",
+    "--format",
+    "{p}"
+  ],
+  "cause": "Cargo returned 101: lock file needs updating. A new serde_json dev-dependency was being added to the candidate manifest before the matching lockfile edge. No completed graph comparison; original inputs retained."
+}

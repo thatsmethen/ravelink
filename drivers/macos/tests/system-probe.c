@@ -21,6 +21,7 @@
 #define MAX_CALLBACK_FRAMES 8192u
 #define MAX_EVENTS 262144u
 #define PI 3.14159265358979323846
+#include "probe-diagnostics.h"
 
 typedef struct {
     double sample_time;
@@ -34,12 +35,13 @@ typedef struct {
     uint64_t target_frames;
     float *pcm;
     Event *events;
+    Diagnostics *diagnostics;
     atomic_bool accepting;
     atomic_uint in_flight, fault;
     atomic_uint_fast64_t frames, event_count;
 } Context;
 typedef struct {
-    const char *mode, *uid, *report, *wav, *events, *ready;
+    const char *mode, *uid, *report, *wav, *events, *ready, *diagnostics;
     double seconds, amplitude, left_hz, right_hz;
 } Options;
 
@@ -110,6 +112,71 @@ static OSStatus set_direction(AudioObjectID device, AudioDeviceIOProcID proc, Au
     AudioObjectPropertyAddress property = address(kAudioDevicePropertyIOProcStreamUsage, scope);
     return AudioObjectSetPropertyData(device, &property, 0, NULL, sizeof usage, &usage);
 }
+static OSStatus diagnostic_listener(AudioObjectID object, UInt32 count,
+                                    const AudioObjectPropertyAddress *addresses, void *context) {
+    diagnostic_notify(context, object, count, addresses, mach_absolute_time());
+    return noErr;
+}
+static void diagnostic_register(Diagnostics *diagnostics, AudioObjectID object,
+                                 AudioObjectPropertySelector selector) {
+    DiagnosticListener *listener = &diagnostics->listeners[diagnostics->listener_count++];
+    listener->object = object;
+    listener->address = address(selector, kAudioObjectPropertyScopeGlobal);
+    listener->available = AudioObjectHasProperty(object, &listener->address);
+    if (listener->available) {
+        listener->add_status = AudioObjectAddPropertyListener(object, &listener->address, diagnostic_listener, diagnostics);
+        listener->added = listener->add_status == noErr;
+    }
+}
+static OSStatus diagnostic_start(Context *context, AudioObjectID device) {
+    Diagnostics *diagnostics = calloc(1, sizeof *diagnostics);
+    if (!diagnostics) return kAudioHardwareUnspecifiedError;
+    diagnostic_initialize(diagnostics);
+    context->diagnostics = diagnostics;
+    diagnostics->timings = calloc(MAX_EVENTS, sizeof(TimingEvent));
+    if (!diagnostics->timings) return kAudioHardwareUnspecifiedError;
+    volatile unsigned char *bytes = (volatile unsigned char *)diagnostics->timings;
+    for (size_t p = 0; p < MAX_EVENTS * sizeof(TimingEvent); p += 4096) bytes[p] = 0;
+    const AudioObjectPropertySelector selectors[] = { kAudioDeviceProcessorOverload,
+        kAudioDevicePropertyDeviceIsRunning, kAudioDevicePropertyDeviceIsAlive,
+        kAudioDevicePropertyNominalSampleRate, kAudioDevicePropertyBufferFrameSize };
+    _Static_assert(sizeof selectors / sizeof selectors[0] + 2 <= DIAGNOSTIC_LISTENERS,
+        "Diagnostic registration must fit its fixed listener storage");
+    for (unsigned index = 0; index < sizeof selectors / sizeof selectors[0]; index++)
+        diagnostic_register(diagnostics, device, selectors[index]);
+    const AudioObjectPropertyScope scopes[] = { kAudioObjectPropertyScopeInput, kAudioObjectPropertyScopeOutput };
+    for (unsigned index = 0; index < 2; index++) {
+        AudioObjectID stream = 0;
+        OSStatus status = read_exact(device, address(kAudioDevicePropertyStreams, scopes[index]), &stream, sizeof stream);
+        if (status != noErr) return status;
+        diagnostic_register(diagnostics, stream, kAudioStreamPropertyPhysicalFormat);
+    }
+    return noErr;
+}
+static void diagnostic_stop(Diagnostics *diagnostics) {
+    // No new publisher may enter after this gate, even if an unregister fails.
+    // Diagnostics storage is deliberately retained until process exit: a late
+    // CoreAudio notification can still safely inspect its closed gate.
+    atomic_store_explicit(&diagnostics->accepting, false, memory_order_seq_cst);
+    for (unsigned index = 0; index < diagnostics->listener_count; index++) {
+        DiagnosticListener *listener = &diagnostics->listeners[index];
+        if (listener->added) listener->remove_status = AudioObjectRemovePropertyListener(
+            listener->object, &listener->address, diagnostic_listener, diagnostics);
+    }
+    uint64_t deadline = monotonic_ns() + 2000000000ULL;
+    while (atomic_load_explicit(&diagnostics->in_flight, memory_order_seq_cst) && monotonic_ns() < deadline) sleep_ms(1);
+    diagnostics->quiescent = atomic_load_explicit(&diagnostics->in_flight, memory_order_seq_cst) == 0;
+    diagnostics->listeners_stopped = true;
+}
+static bool diagnostic_complete(const Diagnostics *diagnostics) {
+    if (!diagnostics || !diagnostics->timings || !diagnostics->listeners_stopped || !diagnostics->quiescent
+        || atomic_load_explicit(&diagnostics->dropped, memory_order_acquire)) return false;
+    for (unsigned index = 0; index < diagnostics->listener_count; index++) {
+        const DiagnosticListener *listener = &diagnostics->listeners[index];
+        if (listener->available && (!listener->added || listener->add_status || listener->remove_status)) return false;
+    }
+    return true;
+}
 static void latch_fault(Context *context, unsigned value) {
     unsigned expected = 0;
     atomic_compare_exchange_strong_explicit(&context->fault, &expected, value, memory_order_release, memory_order_relaxed);
@@ -124,11 +191,16 @@ static void silence(AudioBufferList *buffers) {
 static OSStatus io_proc(AudioObjectID device, const AudioTimeStamp *now, const AudioBufferList *input,
                         const AudioTimeStamp *input_time, AudioBufferList *output,
                         const AudioTimeStamp *output_time, void *data) {
-    (void)device; (void)now;
+    (void)device;
     Context *context = data;
-    atomic_fetch_add_explicit(&context->in_flight, 1, memory_order_acq_rel);
+    uint64_t entry_tick = context->diagnostics ? mach_absolute_time() : 0;
+    uint64_t timing_index = UINT64_MAX;
+    unsigned already_active = atomic_fetch_add_explicit(&context->in_flight, 1, memory_order_seq_cst);
     silence(output);
-    if (!atomic_load_explicit(&context->accepting, memory_order_acquire)) goto done;
+    // Buffer/event storage has one owner. An unexpected overlapping invocation
+    // is an observer failure, never permission to race or invent a timing row.
+    if (already_active) { latch_fault(context, 8); goto done; }
+    if (!atomic_load_explicit(&context->accepting, memory_order_seq_cst)) goto done;
     const AudioBufferList *buffers = context->recording ? input : output;
     const AudioTimeStamp *timestamp = context->recording ? input_time : output_time;
     uint64_t position = atomic_load_explicit(&context->frames, memory_order_relaxed);
@@ -154,10 +226,18 @@ static OSStatus io_proc(AudioObjectID device, const AudioTimeStamp *now, const A
         }
     }
     context->events[event_index] = (Event){ timestamp->mSampleTime, timestamp->mHostTime, mach_absolute_time(), timestamp->mFlags, frames, count };
+    if (context->diagnostics) {
+        context->diagnostics->timings[event_index] = (TimingEvent){
+            .entry_host_time = entry_tick, .current_host_time = now ? now->mHostTime : 0,
+            .current_sample_time = now ? now->mSampleTime : 0,
+            .current_flags = now ? now->mFlags : 0, .current_present = now != NULL };
+        timing_index = event_index;
+    }
     atomic_store_explicit(&context->event_count, event_index + 1, memory_order_release);
     atomic_store_explicit(&context->frames, position + count, memory_order_release);
 done:
-    atomic_fetch_sub_explicit(&context->in_flight, 1, memory_order_release);
+    if (timing_index != UINT64_MAX) context->diagnostics->timings[timing_index].exit_host_time = mach_absolute_time();
+    atomic_fetch_sub_explicit(&context->in_flight, 1, memory_order_seq_cst);
     return noErr;
 }
 static void json_string(FILE *file, const char *value) {
@@ -196,6 +276,50 @@ static bool write_events(const char *path, const Event *events, uint64_t count) 
                 (unsigned long long)e->observed_host_time, e->flags, e->frames, e->stored_frames);
     }
     return fclose(file) == 0;
+}
+static bool write_diagnostics(const char *path, const Context *context, bool io_quiescent) {
+    const Diagnostics *d = context->diagnostics;
+    FILE *file = fopen(path, "wx"); if (!file) return false;
+    mach_timebase_info_data_t timebase; mach_timebase_info(&timebase);
+    uint64_t count = atomic_load_explicit(&context->event_count, memory_order_acquire);
+    uint64_t notifications = atomic_load_explicit(&d->notification_count, memory_order_acquire);
+    fprintf(file, "{\"schema\":1,\"complete\":%s,\"io_quiescent\":%s,\"listener_quiescent\":%s,\"host_time_numer\":%u,\"host_time_denom\":%u,\"event_count\":%llu,\"notification_reservations\":%llu,\"dropped_notifications\":%llu,\"lifecycle\":{\"start_request\":%llu,\"start_return\":%llu,\"stop_request\":%llu,\"stop_return\":%llu,\"destroy_request\":%llu,\"destroy_return\":%llu},\"listeners\":[",
+        diagnostic_complete(d) && io_quiescent ? "true" : "false", io_quiescent ? "true" : "false", d->quiescent ? "true" : "false",
+        timebase.numer, timebase.denom, (unsigned long long)count, (unsigned long long)notifications,
+        (unsigned long long)atomic_load_explicit(&d->dropped, memory_order_acquire),
+        (unsigned long long)d->start_request, (unsigned long long)d->start_return,
+        (unsigned long long)d->stop_request, (unsigned long long)d->stop_return,
+        (unsigned long long)d->destroy_request, (unsigned long long)d->destroy_return);
+    for (unsigned index = 0; index < d->listener_count; index++) {
+        const DiagnosticListener *l = &d->listeners[index];
+        fprintf(file, "%s{\"object\":%u,\"selector\":%u,\"scope\":%u,\"element\":%u,\"available\":%s,\"added\":%s,\"add_status\":%d,\"remove_status\":%d}",
+            index ? "," : "", l->object, l->address.mSelector, l->address.mScope, l->address.mElement,
+            l->available ? "true" : "false", l->added ? "true" : "false", l->add_status, l->remove_status);
+    }
+    fputs("],\"notifications\":[", file);
+    bool comma = false;
+    for (uint64_t index = 0; index < notifications && index < DIAGNOSTIC_NOTIFICATION_CAPACITY; index++) {
+        const NotificationEvent *event = &d->notifications[index];
+        if (atomic_load_explicit(&event->committed, memory_order_acquire) != index + 1) continue;
+        fprintf(file, "%s{\"index\":%llu,\"host_time\":%llu,\"object\":%u,\"selector\":%u,\"scope\":%u,\"element\":%u}",
+            comma ? "," : "", (unsigned long long)index, (unsigned long long)event->host_time, event->object,
+            event->address.mSelector, event->address.mScope, event->address.mElement);
+        comma = true;
+    }
+    fputs("],\"timings\":[", file);
+    if (io_quiescent && d->timings) for (uint64_t index = 0; index < count; index++) {
+        const TimingEvent *event = &d->timings[index];
+        fprintf(file, "%s{\"index\":%llu,\"entry_host_time\":%llu,\"after_pcm_host_time\":%llu,\"exit_host_time\":%llu,\"current_present\":%s,\"current_host_time\":%llu,\"current_flags\":%u,\"current_sample_time\":",
+            index ? "," : "", (unsigned long long)index, (unsigned long long)event->entry_host_time,
+            (unsigned long long)context->events[index].observed_host_time, (unsigned long long)event->exit_host_time,
+            event->current_present ? "true" : "false", (unsigned long long)event->current_host_time, event->current_flags);
+        if (isfinite(event->current_sample_time)) fprintf(file, "%.17g", event->current_sample_time);
+        else fputs("null", file);
+        fputc('}', file);
+    }
+    fputs("]}\n", file);
+    bool saved = !ferror(file);
+    return fclose(file) == 0 && saved;
 }
 static bool ready_file(const char *path, uint64_t frames, uint64_t now) {
     if (!path) return true;
@@ -248,6 +372,7 @@ static bool options(int argc, char **argv, Options *o) {
         else if (!strcmp(key, "--wav")) o->wav = value;
         else if (!strcmp(key, "--events")) o->events = value;
         else if (!strcmp(key, "--ready")) o->ready = value;
+        else if (!strcmp(key, "--diagnostics")) o->diagnostics = value;
         else if (!strcmp(key, "--seconds")) { if (!numeric(value, &o->seconds)) return false; }
         else if (!strcmp(key, "--amplitude")) { if (!numeric(value, &o->amplitude)) return false; }
         else if (!strcmp(key, "--left-hz")) { if (!numeric(value, &o->left_hz)) return false; }
@@ -263,7 +388,7 @@ static bool options(int argc, char **argv, Options *o) {
 int main(int argc, char **argv) {
     Options o;
     if (!options(argc, argv, &o)) {
-        fprintf(stderr, "usage: system-probe discover|play|record --uid UID --report JSON [--seconds 20 --events CSV --ready FILE --wav WAV --amplitude .125 --left-hz 440 --right-hz 997]\n");
+        fprintf(stderr, "usage: system-probe discover|play|record --uid UID --report JSON [--seconds 20 --events CSV --ready FILE --wav WAV --diagnostics JSON --amplitude .125 --left-hz 440 --right-hz 997]\n");
         return 2;
     }
     AudioObjectID device = kAudioObjectUnknown; unsigned matches = 0;
@@ -309,12 +434,17 @@ int main(int argc, char **argv) {
             for (size_t p = 0; bytes && p < context->target_frames * 8u; p += 4096) bytes[p] = 0;
         }
     }
+    if (status == noErr && o.diagnostics) status = diagnostic_start(context, device);
     if (status == noErr) status = AudioDeviceCreateIOProcID(device, io_proc, context, &proc);
     if (status == noErr) status = set_direction(device, proc, kAudioObjectPropertyScopeInput, context->recording);
     if (status == noErr) status = set_direction(device, proc, kAudioObjectPropertyScopeOutput, !context->recording);
     if (status == noErr) {
-        atomic_store_explicit(&context->accepting, true, memory_order_release);
-        started_ns = monotonic_ns(); status = AudioDeviceStart(device, proc); started = status == noErr;
+        atomic_store_explicit(&context->accepting, true, memory_order_seq_cst);
+        started_ns = monotonic_ns();
+        if (context->diagnostics) context->diagnostics->start_request = mach_absolute_time();
+        status = AudioDeviceStart(device, proc);
+        if (context->diagnostics) context->diagnostics->start_return = mach_absolute_time();
+        started = status == noErr;
     }
     if (started) {
         uint64_t deadline = started_ns + (uint64_t)((o.seconds + 8.0) * 1e9), last_progress_ns = started_ns, previous_frames = 0;
@@ -330,15 +460,26 @@ int main(int argc, char **argv) {
             sleep_ms(5);
         }
     }
-    if (context) atomic_store_explicit(&context->accepting, false, memory_order_release);
-    if (started) stop_status = AudioDeviceStop(device, proc);
-    if (proc) destroy_status = AudioDeviceDestroyIOProcID(device, proc);
+    if (context) atomic_store_explicit(&context->accepting, false, memory_order_seq_cst);
+    if (started) {
+        if (context->diagnostics) context->diagnostics->stop_request = mach_absolute_time();
+        stop_status = AudioDeviceStop(device, proc);
+        if (context->diagnostics) context->diagnostics->stop_return = mach_absolute_time();
+    }
+    if (proc) {
+        if (context->diagnostics) context->diagnostics->destroy_request = mach_absolute_time();
+        destroy_status = AudioDeviceDestroyIOProcID(device, proc);
+        if (context->diagnostics) context->diagnostics->destroy_return = mach_absolute_time();
+    }
     if (context) {
         uint64_t deadline = monotonic_ns() + 2000000000ULL;
-        while (atomic_load_explicit(&context->in_flight, memory_order_acquire) && monotonic_ns() < deadline) sleep_ms(1);
-        quiescent = atomic_load_explicit(&context->in_flight, memory_order_acquire) == 0;
+        // This count and the admission gate share one order: after closing and
+        // observing zero, no future callback may modify the retained PCM/events.
+        while (atomic_load_explicit(&context->in_flight, memory_order_seq_cst) && monotonic_ns() < deadline) sleep_ms(1);
+        quiescent = atomic_load_explicit(&context->in_flight, memory_order_seq_cst) == 0;
         if (!quiescent) latch_fault(context, 7);
     }
+    if (context && context->diagnostics) diagnostic_stop(context->diagnostics);
     ended_ns = monotonic_ns();
     bool saved = true;
     if (context && quiescent) {
@@ -347,8 +488,10 @@ int main(int argc, char **argv) {
         if (context->events) saved = write_events(o.events, context->events, count) && saved;
     }
     saved = write_report(&o, device, matches, status, stop_status, destroy_status, context, complete, ready, started_ns, ended_ns) && saved;
+    if (o.diagnostics && context && context->diagnostics) saved = write_diagnostics(o.diagnostics, context, quiescent) && saved;
     bool success = saved && status == noErr && stop_status == noErr && destroy_status == noErr && complete && ready
-        && context && atomic_load(&context->fault) == 0;
+        && context && atomic_load(&context->fault) == 0
+        && (!o.diagnostics || diagnostic_complete(context->diagnostics));
     // Keep context alive until process exit if unregistering failed. No unsafe
     // freeing of storage still reachable from an OS callback.
     if (context && quiescent && destroy_status == noErr) { free(context->pcm); free(context->events); free(context); }

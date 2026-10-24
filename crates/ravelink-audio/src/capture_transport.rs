@@ -23,6 +23,8 @@ pub(crate) struct Ring {
     pub(crate) captured: AtomicU64,
     pub(crate) buffered: AtomicU64,
     pub(crate) correction_ppm: AtomicU64,
+    #[cfg(any(target_os = "macos", test))]
+    pub(crate) native_timing: super::native_packet::Evidence,
 }
 impl Ring {
     pub(crate) fn new() -> Arc<Self> {
@@ -34,6 +36,8 @@ impl Ring {
             captured: AtomicU64::new(0),
             buffered: AtomicU64::new(0),
             correction_ppm: AtomicU64::new(0),
+            #[cfg(any(target_os = "macos", test))]
+            native_timing: super::native_packet::Evidence::new(),
         })
     }
     pub(crate) fn bytes() -> usize {
@@ -60,7 +64,7 @@ impl Producer {
     pub(crate) fn new(ring: Arc<Ring>) -> Self {
         Self { ring, cursor: 0 }
     }
-    #[cfg(any(not(target_os = "windows"), test))]
+    #[cfg(any(not(any(target_os = "windows", target_os = "macos")), test))]
     pub(crate) fn push<T: cpal::Sample>(
         &mut self,
         input: &[T],

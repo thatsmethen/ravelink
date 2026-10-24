@@ -31,14 +31,7 @@ class RuntimeProcess(system.ProbeProcess):
         environment = dict(os.environ, RAVELINK_RUNTIME_ACCEPTANCE="1")
         command = [str(binary), "--input-id", f"coreaudio:{system.UIDS[0]}",
                    "--output-id", f"coreaudio:{system.UIDS[1]}", "--directory", str(output)]
-        self.log = (output / "runtime.log").open("xb")
-        try:
-            self.process = subprocess.Popen(command, env=environment, stdout=self.log,
-                                            stderr=subprocess.STDOUT, start_new_session=True)
-        except OSError:
-            self.log.close()
-            raise
-        self.deadline, self.timed_out = time.monotonic() + 50, False
+        self._spawn(command, output / "runtime.log", 50, environment)
 
     def wait_ready(self):
         deadline = time.monotonic() + 12
@@ -80,6 +73,10 @@ def observe(probe: Path, output: Path, runtime_binary: Path) -> dict:
                 errors.append(f"{child.name} finish failed: {error}")
                 exits.append({"name": child.name, "exit_code": None, "timed_out": True})
     observations = []
+    for child in children:
+        diagnostics = system.child_diagnostics(child)
+        if diagnostics is not None:
+            observations.append(diagnostics)
     for label, operation in [
         ("source-writer", lambda: analyze(output / "source-writer.json", output / "source-writer.csv", None)),
         ("runtime-output", lambda: analyze_runtime.analyze(output)),
@@ -90,7 +87,8 @@ def observe(probe: Path, output: Path, runtime_binary: Path) -> dict:
             result = {"pass": False, "observer_error": str(error)}
         system.save(output / f"{label}-analysis.json", result)
         observations.append(result)
-    result = {"schema": 1, "pass": len(children) == 3 and not errors
+    result = {"schema": 1, "observer_diagnostics_enabled": os.environ.get("RAVELINK_OBSERVER_DIAGNOSTICS") == "1",
+              "pass": len(children) == 3 and not errors
               and all(o["pass"] for o in observations)
               and all(e["exit_code"] == 0 and not e["timed_out"] for e in exits),
               "exceptions": errors, "processes": exits, "observations": observations}

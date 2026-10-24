@@ -1,0 +1,435 @@
+ravelink-app v0.1.0 (/Users/textual/projects/notify/ravelink/crates/ravelink-app)
+eframe v0.33.3
+ahash v0.8.12
+cfg-if v1.0.5
+once_cell v1.21.4
+zerocopy v0.8.63
+zerocopy-derive v0.8.63 (proc-macro)
+proc-macro2 v1.0.107
+unicode-ident v1.0.27
+quote v1.0.47
+proc-macro2 v1.0.107 (*)
+syn v2.0.119
+proc-macro2 v1.0.107 (*)
+quote v1.0.47 (*)
+unicode-ident v1.0.27
+version_check v0.9.5
+document-features v0.2.12 (proc-macro)
+litrs v1.0.1
+egui v0.33.3
+accesskit v0.21.1
+ahash v0.8.12 (*)
+bitflags v2.13.2
+emath v0.33.3
+bytemuck v1.25.2
+bytemuck_derive v1.12.1 (proc-macro)
+proc-macro2 v1.0.107 (*)
+quote v1.0.47 (*)
+syn v3.0.9
+proc-macro2 v1.0.107 (*)
+quote v1.0.47 (*)
+unicode-ident v1.0.27
+epaint v0.33.3
+ab_glyph v0.2.32
+ab_glyph_rasterizer v0.1.10
+owned_ttf_parser v0.25.1
+ttf-parser v0.25.1
+ahash v0.8.12 (*)
+bytemuck v1.25.2 (*)
+ecolor v0.33.3
+bytemuck v1.25.2 (*)
+emath v0.33.3 (*)
+emath v0.33.3 (*)
+epaint_default_fonts v0.33.3
+log v0.4.34
+nohash-hasher v0.2.0
+parking_lot v0.12.5
+lock_api v0.4.14
+scopeguard v1.2.0
+parking_lot_core v0.9.12
+cfg-if v1.0.5
+libc v0.2.191
+smallvec v1.16.4
+profiling v1.0.18
+log v0.4.34
+nohash-hasher v0.2.0
+profiling v1.0.18
+smallvec v1.16.4
+unicode-segmentation v1.13.3
+egui-wgpu v0.33.3
+ahash v0.8.12 (*)
+bytemuck v1.25.2 (*)
+document-features v0.2.12 (proc-macro) (*)
+egui v0.33.3 (*)
+epaint v0.33.3 (*)
+log v0.4.34
+profiling v1.0.18
+thiserror v2.0.21
+thiserror-impl v2.0.21 (proc-macro)
+proc-macro2 v1.0.107 (*)
+quote v1.0.47 (*)
+syn v3.0.9 (*)
+type-map v0.5.1
+rustc-hash v2.1.3
+web-time v1.1.0
+wgpu v27.0.1
+arrayvec v0.7.8
+bitflags v2.13.2
+cfg-if v1.0.5
+document-features v0.2.12 (proc-macro) (*)
+hashbrown v0.16.1
+foldhash v0.2.0
+log v0.4.34
+profiling v1.0.18
+raw-window-handle v0.6.2
+smallvec v1.16.4
+static_assertions v1.1.0
+wgpu-core v27.0.3
+arrayvec v0.7.8
+bit-set v0.8.0
+bit-vec v0.8.0
+bit-vec v0.8.0
+bitflags v2.13.2
+bytemuck v1.25.2 (*)
+document-features v0.2.12 (proc-macro) (*)
+hashbrown v0.16.1 (*)
+indexmap v2.14.2
+equivalent v1.0.3
+hashbrown v0.17.1
+log v0.4.34
+naga v27.0.3
+arrayvec v0.7.8
+bit-set v0.8.0 (*)
+bitflags v2.13.2
+cfg-if v1.0.5
+codespan-reporting v0.12.0
+unicode-width v0.2.2
+half v2.7.1
+cfg-if v1.0.5
+num-traits v0.2.19
+libm v0.2.16
+autocfg v1.5.1
+zerocopy v0.8.63 (*)
+hashbrown v0.16.1 (*)
+hexf-parse v0.2.1
+indexmap v2.14.2 (*)
+libm v0.2.16
+log v0.4.34
+num-traits v0.2.19 (*)
+once_cell v1.21.4
+rustc-hash v1.1.0
+thiserror v2.0.21 (*)
+unicode-ident v1.0.27
+cfg_aliases v0.2.2
+once_cell v1.21.4
+parking_lot v0.12.5 (*)
+profiling v1.0.18
+raw-window-handle v0.6.2
+rustc-hash v1.1.0
+smallvec v1.16.4
+thiserror v2.0.21 (*)
+wgpu-core-deps-apple v27.0.0
+wgpu-hal v27.0.4
+arrayvec v0.7.8
+bitflags v2.13.2
+block v0.1.6
+cfg-if v1.0.5
+core-graphics-types v0.2.0
+bitflags v2.13.2
+core-foundation v0.10.1
+core-foundation-sys v0.8.7
+libc v0.2.191
+libc v0.2.191
+hashbrown v0.16.1 (*)
+libc v0.2.191
+log v0.4.34
+metal v0.32.0
+bitflags v2.13.2
+block v0.1.6
+core-graphics-types v0.2.0 (*)
+foreign-types v0.5.0
+foreign-types-macros v0.2.4 (proc-macro)
+proc-macro2 v1.0.107 (*)
+quote v1.0.47 (*)
+syn v3.0.9 (*)
+foreign-types-shared v0.3.1
+log v0.4.34
+objc v0.2.7
+malloc_buf v0.0.6
+libc v0.2.191
+paste v1.0.15 (proc-macro)
+naga v27.0.3 (*)
+objc v0.2.7 (*)
+parking_lot v0.12.5 (*)
+profiling v1.0.18
+raw-window-handle v0.6.2
+thiserror v2.0.21 (*)
+wgpu-types v27.0.1
+bitflags v2.13.2
+bytemuck v1.25.2 (*)
+log v0.4.34
+thiserror v2.0.21 (*)
+cfg_aliases v0.2.2
+wgpu-hal v27.0.4 (*)
+wgpu-types v27.0.1 (*)
+cfg_aliases v0.2.2
+wgpu-hal v27.0.4 (*)
+wgpu-types v27.0.1 (*)
+cfg_aliases v0.2.2
+winit v0.30.13
+bitflags v2.13.2
+block2 v0.5.1
+objc2 v0.5.3
+objc-sys v0.3.5
+objc2-encode v4.1.0
+core-foundation v0.9.4
+core-foundation-sys v0.8.7
+libc v0.2.191
+core-graphics v0.23.2
+bitflags v1.3.2
+core-foundation v0.9.4 (*)
+core-graphics-types v0.1.3
+bitflags v1.3.2
+core-foundation v0.9.4 (*)
+libc v0.2.191
+foreign-types v0.5.0 (*)
+libc v0.2.191
+cursor-icon v1.2.0
+dpi v0.1.2
+objc2 v0.5.3 (*)
+objc2-app-kit v0.2.2
+bitflags v2.13.2
+objc2 v0.5.3 (*)
+objc2-foundation v0.2.2
+bitflags v2.13.2
+block2 v0.5.1 (*)
+dispatch v0.2.0
+objc2 v0.5.3 (*)
+objc2-foundation v0.2.2 (*)
+raw-window-handle v0.6.2
+smol_str v0.2.2
+tracing v0.1.44
+pin-project-lite v0.2.17
+tracing-core v0.1.36
+cfg_aliases v0.2.2
+egui-winit v0.33.3
+accesskit_winit v0.29.2
+accesskit v0.21.1
+accesskit_macos v0.22.2
+accesskit v0.21.1
+accesskit_consumer v0.31.0
+accesskit v0.21.1
+hashbrown v0.15.5
+foldhash v0.1.5
+hashbrown v0.15.5 (*)
+objc2 v0.5.3 (*)
+objc2-app-kit v0.2.2 (*)
+objc2-foundation v0.2.2 (*)
+raw-window-handle v0.6.2
+winit v0.30.13 (*)
+arboard v3.7.0
+image v0.25.10
+bytemuck v1.25.2 (*)
+byteorder-lite v0.1.0
+moxcms v0.8.1
+num-traits v0.2.19 (*)
+pxfm v0.1.30
+num-traits v0.2.19 (*)
+png v0.18.1
+bitflags v2.13.2
+crc32fast v1.5.3
+cfg-if v1.0.5
+fdeflate v0.3.7
+simd-adler32 v0.3.10
+flate2 v1.1.10
+crc32fast v1.5.3 (*)
+miniz_oxide v0.9.1
+adler2 v2.0.1
+simd-adler32 v0.3.10
+miniz_oxide v0.8.9
+adler2 v2.0.1
+simd-adler32 v0.3.10
+tiff v0.11.3
+fax v0.2.7
+flate2 v1.1.10 (*)
+half v2.7.1 (*)
+quick-error v2.0.1
+weezl v0.1.12
+zune-jpeg v0.5.15
+zune-core v0.5.3
+objc2 v0.6.5
+objc2-encode v4.1.0
+objc2-app-kit v0.3.2
+bitflags v2.13.2
+objc2 v0.6.5 (*)
+objc2-core-graphics v0.3.2
+bitflags v2.13.2
+objc2 v0.6.5 (*)
+objc2-core-foundation v0.3.2
+bitflags v2.13.2
+block2 v0.6.2
+objc2 v0.6.5 (*)
+dispatch2 v0.3.1
+bitflags v2.13.2
+objc2 v0.6.5 (*)
+libc v0.2.191
+objc2 v0.6.5 (*)
+objc2-foundation v0.3.2
+bitflags v2.13.2
+objc2 v0.6.5 (*)
+objc2-core-foundation v0.3.2 (*)
+objc2-core-foundation v0.3.2 (*)
+objc2-core-graphics v0.3.2 (*)
+objc2-foundation v0.3.2 (*)
+bytemuck v1.25.2 (*)
+egui v0.33.3 (*)
+log v0.4.34
+profiling v1.0.18
+raw-window-handle v0.6.2
+web-time v1.1.0
+webbrowser v1.2.5
+log v0.4.34
+objc2 v0.6.5 (*)
+objc2-app-kit v0.3.2 (*)
+objc2-foundation v0.3.2 (*)
+url v2.5.8
+form_urlencoded v1.2.2
+percent-encoding v2.3.2
+idna v1.1.0
+idna_adapter v1.2.2
+icu_normalizer v2.4.0
+icu_collections v2.4.0
+displaydoc v0.2.7 (proc-macro)
+proc-macro2 v1.0.107 (*)
+quote v1.0.47 (*)
+syn v3.0.9 (*)
+potential_utf v0.1.6
+zerovec v0.11.9
+yoke v0.8.4
+stable_deref_trait v1.2.1
+yoke-derive v0.8.4 (proc-macro)
+proc-macro2 v1.0.107 (*)
+quote v1.0.47 (*)
+syn v3.0.9 (*)
+synstructure v0.14.0
+proc-macro2 v1.0.107 (*)
+quote v1.0.47 (*)
+syn v3.0.9 (*)
+zerofrom v0.1.8
+zerofrom-derive v0.1.8 (proc-macro)
+proc-macro2 v1.0.107 (*)
+quote v1.0.47 (*)
+syn v3.0.9 (*)
+synstructure v0.14.0 (*)
+zerofrom v0.1.8 (*)
+zerovec-derive v0.11.7 (proc-macro)
+proc-macro2 v1.0.107 (*)
+quote v1.0.47 (*)
+syn v3.0.9 (*)
+utf8_iter v1.0.4
+yoke v0.8.4 (*)
+zerofrom v0.1.8 (*)
+zerovec v0.11.9 (*)
+icu_normalizer_data v2.4.0
+icu_provider v2.4.0
+displaydoc v0.2.7 (proc-macro) (*)
+icu_locale_core v2.4.0
+displaydoc v0.2.7 (proc-macro) (*)
+litemap v0.8.3
+tinystr v0.8.5
+displaydoc v0.2.7 (proc-macro) (*)
+zerovec v0.11.9 (*)
+writeable v0.6.4
+zerovec v0.11.9 (*)
+writeable v0.6.4
+yoke v0.8.4 (*)
+zerofrom v0.1.8 (*)
+zerotrie v0.2.5
+displaydoc v0.2.7 (proc-macro) (*)
+yoke v0.8.4 (*)
+zerofrom v0.1.8 (*)
+zerovec v0.11.9 (*)
+smallvec v1.16.4
+zerovec v0.11.9 (*)
+icu_properties v2.4.0
+displaydoc v0.2.7 (proc-macro) (*)
+icu_collections v2.4.0 (*)
+icu_locale_core v2.4.0 (*)
+icu_properties_data v2.4.0
+icu_provider v2.4.0 (*)
+zerotrie v0.2.5 (*)
+zerovec v0.11.9 (*)
+smallvec v1.16.4
+utf8_iter v1.0.4
+percent-encoding v2.3.2
+winit v0.30.13 (*)
+image v0.25.10 (*)
+log v0.4.34
+objc2 v0.5.3 (*)
+objc2-app-kit v0.2.2 (*)
+objc2-foundation v0.2.2 (*)
+parking_lot v0.12.5 (*)
+pollster v0.4.0
+profiling v1.0.18
+raw-window-handle v0.6.2
+static_assertions v1.1.0
+web-time v1.1.0
+wgpu v27.0.1 (*)
+winit v0.30.13 (*)
+ravelink-audio v0.1.0 (/Users/textual/projects/notify/ravelink/crates/ravelink-audio)
+block2 v0.6.2 (*)
+cpal v0.18.2
+coreaudio-rs v0.14.2
+bitflags v2.13.2
+libc v0.2.191
+objc2-audio-toolbox v0.3.2
+bitflags v2.13.2
+libc v0.2.191
+objc2 v0.6.5 (*)
+objc2-core-audio v0.3.2
+block2 v0.6.2 (*)
+dispatch2 v0.3.1 (*)
+objc2 v0.6.5 (*)
+objc2-core-audio-types v0.3.2
+bitflags v2.13.2
+objc2 v0.6.5 (*)
+objc2-core-foundation v0.3.2 (*)
+objc2-foundation v0.3.2 (*)
+objc2-core-audio-types v0.3.2 (*)
+objc2-core-foundation v0.3.2 (*)
+objc2-foundation v0.3.2 (*)
+objc2-core-audio v0.3.2 (*)
+objc2-core-audio-types v0.3.2 (*)
+objc2-core-foundation v0.3.2 (*)
+dasp_sample v0.11.0
+mach2 v0.6.0
+objc2 v0.6.5 (*)
+objc2-audio-toolbox v0.3.2 (*)
+objc2-core-audio v0.3.2 (*)
+objc2-core-audio-types v0.3.2 (*)
+objc2-core-foundation v0.3.2 (*)
+objc2-foundation v0.3.2 (*)
+objc2-core-audio v0.3.2 (*)
+objc2-core-audio-types v0.3.2 (*)
+objc2-core-foundation v0.3.2 (*)
+ravelink-core v0.1.0 (/Users/textual/projects/notify/ravelink/crates/ravelink-core)
+serde v1.0.229
+serde_core v1.0.229
+serde_derive v1.0.229 (proc-macro)
+proc-macro2 v1.0.107 (*)
+quote v1.0.47 (*)
+syn v3.0.9 (*)
+serde_json v1.0.154
+itoa v1.0.18
+memchr v2.8.3
+serde_core v1.0.229
+zmij v1.0.23
+uuid v1.29.0
+getrandom v0.4.3
+cfg-if v1.0.5
+libc v0.2.191
+serde_core v1.0.229
+ravelink-core v0.1.0 (/Users/textual/projects/notify/ravelink/crates/ravelink-core) (*)
+serde_json v1.0.154 (*)
+uuid v1.29.0 (*)
+wgpu v27.0.1 (*)

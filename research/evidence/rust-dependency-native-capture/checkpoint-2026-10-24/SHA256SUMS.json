@@ -1,0 +1,18 @@
+{
+  "Cargo.lock.snapshot": "3087ef70c3b0e432de6952d54ca663445f904dd333e4ada4681888428d9e0779",
+  "compare.executed.py": "800f2621a15b6ed185204c5b0b8e68808bffe335aa14bc8556bcd9932b7d5f36",
+  "input.json": "5b6cab1c5c7886d793b883c597c4babb6779c9181d18fd1d9396fcf508ce69e0",
+  "inputs/Cargo.toml": "8753c112fd1cc4bc67ac3925d5b6624a64d1aa41848e1f066ff4714ddedf67df",
+  "inputs/crates/ravelink-app/Cargo.toml": "d6219f44e49955d29945ffa022fa8a81160810364823420bad2e73d402b5e7f0",
+  "inputs/crates/ravelink-audio/Cargo.toml": "8d891145d2b03cc6b5aa9dc2769317396f37f553380bbed43d97b62e813470ca",
+  "inputs/crates/ravelink-audio/src/native_capture.rs": "357b5fd2349f46376185f9a9676b8244797169af9a0018bfc4fc044746778c9a",
+  "inputs/crates/ravelink-audio/src/native_capture_tests.rs": "7676ebfa33b478e4023398465e1815bdbce141aad41255b6fa8c3c2ee0f54c4a",
+  "inputs/crates/ravelink-audio/src/native_packet.rs": "11869afc2439a20c8b0fb8e277d42f7e8434f75813836a2d78cc8e010ea96f13",
+  "inputs/crates/ravelink-audio/src/native_packet_tests.rs": "025709ace31e8a6bf74ee978588f08c31acfbeaab0504540f190dc9c96732969",
+  "inputs/crates/ravelink-audio/src/native_timing.rs": "f482abf64838e4ec5af167be4437bb5b7f3e8a0eaf34b234cbe178c9e279ac46",
+  "inputs/crates/ravelink-core/Cargo.toml": "c9f13f8123fafc3a179681dccb3f43f9903964e375ebd43e2bcb4c8701c0115d",
+  "inputs/crates/ravelink-hal/Cargo.toml": "06269690924b272bb349aa80c667a4451f5bb26ec2abd352fef644662e7e63d8",
+  "inputs/crates/ravelink-windows-driver/Cargo.toml": "f12a892d502c880de0c2e0568dfc538c68e278ef1660a1553715c751dac73359",
+  "inputs/rust-toolchain.toml": "2645003e83d0075da4fc5119dcfc4dfba02df3b9cf3cde702abfa27dc7221ae3",
+  "unavailable.json": "db26c47dbcdde630b1709a63ba55f6a09e0848678dd6bc6356da19e88f31ff8e"
+}

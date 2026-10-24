@@ -10,6 +10,15 @@
 mod capture;
 mod capture_transport;
 mod control_bank;
+#[cfg(target_os = "macos")]
+mod native_capture;
+#[cfg(any(target_os = "macos", test))]
+mod native_packet;
+mod native_timing;
+pub use native_timing::{
+    NativeCallbackCompletion, NativeCallbackOutcome, NativeCaptureFault, NativeCapturePacket,
+    NativeLifecycleEvent, NativeLifecyclePhase, NativeTimingSnapshot, NATIVE_LIFECYCLE_PHASES,
+};
 #[cfg(target_os = "windows")]
 mod wasapi_capture;
 #[cfg(any(target_os = "windows", test))]
@@ -73,6 +82,9 @@ pub struct CaptureSnapshot {
     pub captured_frames: u64,
     pub buffered_frames: u64,
     pub clock_correction_ppm: f64,
+    /// Native macOS packet evidence, retained after a fault. Other backends
+    /// currently return None. Reading this never waits for an audio callback.
+    pub native_timing: Option<NativeTimingSnapshot>,
 }
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct RunningConfiguration {
@@ -505,6 +517,16 @@ impl AudioRuntime {
                         clock_correction_ppm: f64::from_bits(
                             ring.correction_ppm.load(Ordering::Relaxed),
                         ),
+                        native_timing: {
+                            #[cfg(target_os = "macos")]
+                            {
+                                ring.native_timing.snapshot()
+                            }
+                            #[cfg(not(target_os = "macos"))]
+                            {
+                                None
+                            }
+                        },
                     })
                     .collect()
             }),
@@ -1249,3 +1271,5 @@ mod tests;
 
 #[cfg(test)]
 mod capture_tests;
+#[cfg(test)]
+mod native_packet_tests;

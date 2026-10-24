@@ -1,0 +1,30 @@
+[workspace]
+members = ["crates/ravelink-core", "crates/ravelink-audio", "crates/ravelink-app", "crates/ravelink-hal"]
+exclude = ["crates/ravelink-windows-driver"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.88"
+license-file = "LICENSE"
+publish = false
+
+[workspace.dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+uuid = { version = "1.0", features = ["v4", "serde"] }
+
+[profile.dev]
+debug = 0
+incremental = false
+
+[profile.test]
+debug = 0
+incremental = false
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+panic = "abort"
+strip = "debuginfo"

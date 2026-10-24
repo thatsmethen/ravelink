@@ -1,6 +1,7 @@
 name: Original Rust Windows driver
 on:
   push:
+    branches: [main]
     paths:
       - 'crates/ravelink-windows-driver/**'
       - 'drivers/windows/**'

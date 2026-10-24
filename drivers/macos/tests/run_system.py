@@ -16,9 +16,11 @@ import signal
 import struct
 import subprocess
 import sys
+import threading
 import time
 
 from analyze_system import analyze, load_events, load_wav
+from analyze_diagnostics import summarize as summarize_diagnostics
 
 UID = "au.textual.ravelink.cable.1"
 UIDS = (UID, "au.textual.ravelink.cable.2")
@@ -60,11 +62,12 @@ def bounded(command: list[str], log: Path, timeout: float = 20) -> subprocess.Co
     return subprocess.CompletedProcess(command, code)
 
 
-def signal_group(process: subprocess.Popen, value: int) -> None:
+def signal_group(process: subprocess.Popen, value: int) -> bool:
     try:
         os.killpg(process.pid, value)
+        return True
     except ProcessLookupError:
-        pass  # The child exited between its timeout and this signal.
+        return False  # The child exited between its timeout and this signal.
 
 
 def restart_service(output: Path, label: str) -> None:
@@ -150,7 +153,84 @@ def cleanup(output: Path, probe: Path) -> dict:
     return result
 
 
-class ProbeProcess:
+class ManagedProcess:
+    """Observe/reap every child immediately, independently of finish order.
+
+    Completion observed after its deadline is conservatively a timeout even if
+    the OS has already reaped it. A stalled sibling cannot grant extra runtime.
+    """
+    TERM_GRACE_SECONDS = 2
+    KILL_GRACE_SECONDS = 5
+
+    def _spawn(self, command: list[str], log: Path, seconds: float, environment=None):
+        self.log = log.open("xb")
+        self.started_at = time.monotonic()
+        self.deadline = self.started_at + seconds
+        self.timed_out = False
+        self.result = None
+        try:
+            self.process = subprocess.Popen(command, env=environment, stdout=self.log,
+                                            stderr=subprocess.STDOUT, start_new_session=True)
+        except OSError:
+            self.log.close()
+            raise
+        self._supervisor = threading.Thread(target=self._watch, name=f"observe-{self.name}", daemon=True)
+        try:
+            self._supervisor.start()
+        except RuntimeError:
+            signal_group(self.process, signal.SIGKILL)
+            self.process.wait(timeout=self.KILL_GRACE_SECONDS)
+            self.log.close()
+            raise
+
+    def _watch(self):
+        code, error, term, kill = None, None, False, False
+        observed_at = None
+        try:
+            try:
+                code = self.process.wait(timeout=max(0.0, self.deadline - time.monotonic()))
+                observed_at = time.monotonic()
+                self.timed_out = observed_at > self.deadline
+            except subprocess.TimeoutExpired:
+                self.timed_out = True
+                term = signal_group(self.process, signal.SIGTERM)
+                try:
+                    code = self.process.wait(timeout=self.TERM_GRACE_SECONDS)
+                except subprocess.TimeoutExpired:
+                    pass
+                # The parent can exit on TERM while a descendant ignores it.
+                # Always end the timed-out process group before cleanup proceeds.
+                kill = signal_group(self.process, signal.SIGKILL)
+                code = self.process.wait(timeout=self.KILL_GRACE_SECONDS)
+                observed_at = time.monotonic()
+        except (OSError, subprocess.SubprocessError) as caught:
+            error = str(caught)
+            self.timed_out = True
+            try:
+                kill = signal_group(self.process, signal.SIGKILL) or kill
+                code = self.process.wait(timeout=self.KILL_GRACE_SECONDS)
+                observed_at = time.monotonic()
+            except (OSError, subprocess.SubprocessError) as cleanup_error:
+                error += f"; final reap failed: {cleanup_error}"
+        finally:
+            self.log.close()
+            self.result = {"name": self.name, "mode": self.mode, "exit_code": code,
+                "timed_out": self.timed_out, "deadline_seconds": self.deadline - self.started_at,
+                "completion_observed_seconds": observed_at - self.started_at if observed_at is not None else None,
+                "supervision_finished_seconds": time.monotonic() - self.started_at,
+                "term_sent": term, "kill_sent": kill, "supervision_error": error}
+
+    def finish(self) -> dict:
+        self._supervisor.join(timeout=max(0.0, self.deadline - time.monotonic())
+                              + self.TERM_GRACE_SECONDS + 2 * self.KILL_GRACE_SECONDS + 1)
+        if self._supervisor.is_alive() or self.result is None:
+            signal_group(self.process, signal.SIGKILL)
+            self.process.wait(timeout=self.KILL_GRACE_SECONDS)
+            raise RuntimeError(f"{self.name} supervisor did not finish within its bounded cleanup deadline")
+        return self.result
+
+
+class ProbeProcess(ManagedProcess):
     def __init__(self, probe: Path, output: Path, name: str, mode: str, seconds: float, uid: str = UID):
         self.name, self.mode, self.output = name, mode, output
         self.report, self.events = output / f"{name}.json", output / f"{name}.csv"
@@ -161,14 +241,12 @@ class ProbeProcess:
                    "--events", str(self.events), "--ready", str(self.ready)]
         if mode == "record":
             command += ["--wav", str(self.wav)]
-        self.log = (output / f"{name}.log").open("wb")
-        try:
-            self.process = subprocess.Popen(command, stdout=self.log, stderr=subprocess.STDOUT, start_new_session=True)
-        except OSError:
-            self.log.close()
-            raise
-        self.deadline = time.monotonic() + seconds + 15
-        self.timed_out = False
+        self.diagnostics = output / f"{name}-diagnostics.json" if os.environ.get("RAVELINK_OBSERVER_DIAGNOSTICS") == "1" else None
+        if self.diagnostics:
+            if self.diagnostics.exists():
+                raise RuntimeError(f"refusing to overwrite diagnostics {name}")
+            command += ["--diagnostics", str(self.diagnostics)]
+        self._spawn(command, output / f"{name}.log", seconds + 15)
 
     def wait_ready(self) -> None:
         deadline = time.monotonic() + 8
@@ -179,22 +257,16 @@ class ProbeProcess:
         if not json.loads(self.ready.read_text()).get("ready"):
             raise RuntimeError(f"{self.name} published malformed readiness")
 
-    def finish(self) -> dict:
-        try:
-            try:
-                code = self.process.wait(timeout=max(0.01, self.deadline - time.monotonic()))
-            except subprocess.TimeoutExpired:
-                self.timed_out = True
-                signal_group(self.process, signal.SIGTERM)
-                try:
-                    code = self.process.wait(timeout=2)
-                except subprocess.TimeoutExpired:
-                    signal_group(self.process, signal.SIGKILL)
-                    code = self.process.wait(timeout=5)
-        finally:
-            self.log.close()
-        return {"name": self.name, "mode": self.mode, "exit_code": code, "timed_out": self.timed_out}
-
+def child_diagnostics(child) -> dict | None:
+    path = getattr(child, "diagnostics", None)
+    if path is None:
+        return None
+    try:
+        result = summarize_diagnostics(path, child.events, child.report)
+    except OBSERVATION_ERRORS + (TypeError, IndexError, OverflowError) as error:
+        result = {"pass": False, "observer_error": str(error)}
+    save(child.output / f"{child.name}-diagnostics-analysis.json", result)
+    return result
 
 def pair_consistency(first: ProbeProcess, second: ProbeProcess) -> dict:
     a, b = load_wav(first.wav), load_wav(second.wav)
@@ -245,6 +317,9 @@ def run_observation(probe: Path, output: Path) -> dict:
         except OBSERVATION_ERRORS as error:
             analysis = {"pass": False, "observer_error": str(error)}
         save(output / f"{child.name}-analysis.json", analysis); observations.append(analysis)
+        diagnostics = child_diagnostics(child)
+        if diagnostics is not None:
+            observations.append(diagnostics)
     if len(children) == 3:
         try:
             pair = pair_consistency(children[1], children[2])
@@ -257,10 +332,14 @@ def run_observation(probe: Path, output: Path) -> dict:
         silence = ProbeProcess(probe, output, "restarted-silence", "record", 3)
         exits.append(silence.finish())
         silent = analyze(silence.report, silence.events, silence.wav, silence=True)
+        diagnostics = child_diagnostics(silence)
+        if diagnostics is not None:
+            observations.append(diagnostics)
     except OBSERVATION_ERRORS + (RuntimeError, subprocess.SubprocessError) as error:
         silent = {"pass": False, "observer_error": str(error)}
     save(output / "restarted-silence-analysis.json", silent); observations.append(silent)
-    result = {"schema": 1, "pass": not exceptions and all(o["pass"] for o in observations)
+    result = {"schema": 1, "observer_diagnostics_enabled": os.environ.get("RAVELINK_OBSERVER_DIAGNOSTICS") == "1",
+              "pass": not exceptions and all(o["pass"] for o in observations)
               and all(e["exit_code"] == 0 and not e["timed_out"] for e in exits),
               "exceptions": exceptions, "processes": exits, "observations": observations}
     save(output / "acceptance.json", result)

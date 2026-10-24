@@ -1,0 +1,4092 @@
+[
+  {
+    "added": [],
+    "graph": "app-all",
+    "members": [
+      {
+        "name": "ab_glyph",
+        "version": "0.2.32"
+      },
+      {
+        "name": "ab_glyph_rasterizer",
+        "version": "0.1.10"
+      },
+      {
+        "name": "accesskit",
+        "version": "0.21.1"
+      },
+      {
+        "name": "accesskit_consumer",
+        "version": "0.31.0"
+      },
+      {
+        "name": "accesskit_macos",
+        "version": "0.22.2"
+      },
+      {
+        "name": "accesskit_winit",
+        "version": "0.29.2"
+      },
+      {
+        "name": "adler2",
+        "version": "2.0.1"
+      },
+      {
+        "name": "ahash",
+        "version": "0.8.12"
+      },
+      {
+        "name": "arboard",
+        "version": "3.7.0"
+      },
+      {
+        "name": "arrayvec",
+        "version": "0.7.8"
+      },
+      {
+        "name": "autocfg",
+        "version": "1.5.1"
+      },
+      {
+        "name": "bit-set",
+        "version": "0.8.0"
+      },
+      {
+        "name": "bit-vec",
+        "version": "0.8.0"
+      },
+      {
+        "name": "bitflags",
+        "version": "1.3.2"
+      },
+      {
+        "name": "bitflags",
+        "version": "2.13.2"
+      },
+      {
+        "name": "block",
+        "version": "0.1.6"
+      },
+      {
+        "name": "block2",
+        "version": "0.5.1"
+      },
+      {
+        "name": "block2",
+        "version": "0.6.2"
+      },
+      {
+        "name": "bytemuck",
+        "version": "1.25.2"
+      },
+      {
+        "name": "bytemuck_derive",
+        "version": "1.12.1"
+      },
+      {
+        "name": "byteorder-lite",
+        "version": "0.1.0"
+      },
+      {
+        "name": "cfg-if",
+        "version": "1.0.5"
+      },
+      {
+        "name": "cfg_aliases",
+        "version": "0.2.2"
+      },
+      {
+        "name": "codespan-reporting",
+        "version": "0.12.0"
+      },
+      {
+        "name": "core-foundation",
+        "version": "0.10.1"
+      },
+      {
+        "name": "core-foundation",
+        "version": "0.9.4"
+      },
+      {
+        "name": "core-foundation-sys",
+        "version": "0.8.7"
+      },
+      {
+        "name": "core-graphics",
+        "version": "0.23.2"
+      },
+      {
+        "name": "core-graphics-types",
+        "version": "0.1.3"
+      },
+      {
+        "name": "core-graphics-types",
+        "version": "0.2.0"
+      },
+      {
+        "name": "coreaudio-rs",
+        "version": "0.14.2"
+      },
+      {
+        "name": "cpal",
+        "version": "0.18.2"
+      },
+      {
+        "name": "crc32fast",
+        "version": "1.5.3"
+      },
+      {
+        "name": "cursor-icon",
+        "version": "1.2.0"
+      },
+      {
+        "name": "dasp_sample",
+        "version": "0.11.0"
+      },
+      {
+        "name": "dispatch",
+        "version": "0.2.0"
+      },
+      {
+        "name": "dispatch2",
+        "version": "0.3.1"
+      },
+      {
+        "name": "displaydoc",
+        "version": "0.2.7"
+      },
+      {
+        "name": "document-features",
+        "version": "0.2.12"
+      },
+      {
+        "name": "dpi",
+        "version": "0.1.2"
+      },
+      {
+        "name": "ecolor",
+        "version": "0.33.3"
+      },
+      {
+        "name": "eframe",
+        "version": "0.33.3"
+      },
+      {
+        "name": "egui",
+        "version": "0.33.3"
+      },
+      {
+        "name": "egui-wgpu",
+        "version": "0.33.3"
+      },
+      {
+        "name": "egui-winit",
+        "version": "0.33.3"
+      },
+      {
+        "name": "emath",
+        "version": "0.33.3"
+      },
+      {
+        "name": "epaint",
+        "version": "0.33.3"
+      },
+      {
+        "name": "epaint_default_fonts",
+        "version": "0.33.3"
+      },
+      {
+        "name": "equivalent",
+        "version": "1.0.3"
+      },
+      {
+        "name": "fax",
+        "version": "0.2.7"
+      },
+      {
+        "name": "fdeflate",
+        "version": "0.3.7"
+      },
+      {
+        "name": "flate2",
+        "version": "1.1.10"
+      },
+      {
+        "name": "foldhash",
+        "version": "0.1.5"
+      },
+      {
+        "name": "foldhash",
+        "version": "0.2.0"
+      },
+      {
+        "name": "foreign-types",
+        "version": "0.5.0"
+      },
+      {
+        "name": "foreign-types-macros",
+        "version": "0.2.4"
+      },
+      {
+        "name": "foreign-types-shared",
+        "version": "0.3.1"
+      },
+      {
+        "name": "form_urlencoded",
+        "version": "1.2.2"
+      },
+      {
+        "name": "getrandom",
+        "version": "0.4.3"
+      },
+      {
+        "name": "half",
+        "version": "2.7.1"
+      },
+      {
+        "name": "hashbrown",
+        "version": "0.15.5"
+      },
+      {
+        "name": "hashbrown",
+        "version": "0.16.1"
+      },
+      {
+        "name": "hashbrown",
+        "version": "0.17.1"
+      },
+      {
+        "name": "hexf-parse",
+        "version": "0.2.1"
+      },
+      {
+        "name": "icu_collections",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_locale_core",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_normalizer",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_normalizer_data",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_properties",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_properties_data",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_provider",
+        "version": "2.4.0"
+      },
+      {
+        "name": "idna",
+        "version": "1.1.0"
+      },
+      {
+        "name": "idna_adapter",
+        "version": "1.2.2"
+      },
+      {
+        "name": "image",
+        "version": "0.25.10"
+      },
+      {
+        "name": "indexmap",
+        "version": "2.14.2"
+      },
+      {
+        "name": "itoa",
+        "version": "1.0.18"
+      },
+      {
+        "name": "libc",
+        "version": "0.2.191"
+      },
+      {
+        "name": "libm",
+        "version": "0.2.16"
+      },
+      {
+        "name": "litemap",
+        "version": "0.8.3"
+      },
+      {
+        "name": "litrs",
+        "version": "1.0.1"
+      },
+      {
+        "name": "lock_api",
+        "version": "0.4.14"
+      },
+      {
+        "name": "log",
+        "version": "0.4.34"
+      },
+      {
+        "name": "mach2",
+        "version": "0.6.0"
+      },
+      {
+        "name": "malloc_buf",
+        "version": "0.0.6"
+      },
+      {
+        "name": "memchr",
+        "version": "2.8.3"
+      },
+      {
+        "name": "metal",
+        "version": "0.32.0"
+      },
+      {
+        "name": "miniz_oxide",
+        "version": "0.8.9"
+      },
+      {
+        "name": "miniz_oxide",
+        "version": "0.9.1"
+      },
+      {
+        "name": "moxcms",
+        "version": "0.8.1"
+      },
+      {
+        "name": "naga",
+        "version": "27.0.3"
+      },
+      {
+        "name": "nohash-hasher",
+        "version": "0.2.0"
+      },
+      {
+        "name": "num-traits",
+        "version": "0.2.19"
+      },
+      {
+        "name": "objc",
+        "version": "0.2.7"
+      },
+      {
+        "name": "objc-sys",
+        "version": "0.3.5"
+      },
+      {
+        "name": "objc2",
+        "version": "0.5.3"
+      },
+      {
+        "name": "objc2",
+        "version": "0.6.5"
+      },
+      {
+        "name": "objc2-app-kit",
+        "version": "0.2.2"
+      },
+      {
+        "name": "objc2-app-kit",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-audio-toolbox",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-core-audio",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-core-audio-types",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-core-foundation",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-core-graphics",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-encode",
+        "version": "4.1.0"
+      },
+      {
+        "name": "objc2-foundation",
+        "version": "0.2.2"
+      },
+      {
+        "name": "objc2-foundation",
+        "version": "0.3.2"
+      },
+      {
+        "name": "once_cell",
+        "version": "1.21.4"
+      },
+      {
+        "name": "owned_ttf_parser",
+        "version": "0.25.1"
+      },
+      {
+        "name": "parking_lot",
+        "version": "0.12.5"
+      },
+      {
+        "name": "parking_lot_core",
+        "version": "0.9.12"
+      },
+      {
+        "name": "paste",
+        "version": "1.0.15"
+      },
+      {
+        "name": "percent-encoding",
+        "version": "2.3.2"
+      },
+      {
+        "name": "pin-project-lite",
+        "version": "0.2.17"
+      },
+      {
+        "name": "png",
+        "version": "0.18.1"
+      },
+      {
+        "name": "pollster",
+        "version": "0.4.0"
+      },
+      {
+        "name": "potential_utf",
+        "version": "0.1.6"
+      },
+      {
+        "name": "proc-macro2",
+        "version": "1.0.107"
+      },
+      {
+        "name": "profiling",
+        "version": "1.0.18"
+      },
+      {
+        "name": "pxfm",
+        "version": "0.1.30"
+      },
+      {
+        "name": "quick-error",
+        "version": "2.0.1"
+      },
+      {
+        "name": "quote",
+        "version": "1.0.47"
+      },
+      {
+        "name": "ravelink-app",
+        "version": "0.1.0"
+      },
+      {
+        "name": "ravelink-audio",
+        "version": "0.1.0"
+      },
+      {
+        "name": "ravelink-core",
+        "version": "0.1.0"
+      },
+      {
+        "name": "raw-window-handle",
+        "version": "0.6.2"
+      },
+      {
+        "name": "rustc-hash",
+        "version": "1.1.0"
+      },
+      {
+        "name": "rustc-hash",
+        "version": "2.1.3"
+      },
+      {
+        "name": "scopeguard",
+        "version": "1.2.0"
+      },
+      {
+        "name": "serde",
+        "version": "1.0.229"
+      },
+      {
+        "name": "serde_core",
+        "version": "1.0.229"
+      },
+      {
+        "name": "serde_derive",
+        "version": "1.0.229"
+      },
+      {
+        "name": "serde_json",
+        "version": "1.0.154"
+      },
+      {
+        "name": "simd-adler32",
+        "version": "0.3.10"
+      },
+      {
+        "name": "smallvec",
+        "version": "1.16.4"
+      },
+      {
+        "name": "smol_str",
+        "version": "0.2.2"
+      },
+      {
+        "name": "stable_deref_trait",
+        "version": "1.2.1"
+      },
+      {
+        "name": "static_assertions",
+        "version": "1.1.0"
+      },
+      {
+        "name": "syn",
+        "version": "2.0.119"
+      },
+      {
+        "name": "syn",
+        "version": "3.0.9"
+      },
+      {
+        "name": "synstructure",
+        "version": "0.14.0"
+      },
+      {
+        "name": "thiserror",
+        "version": "2.0.21"
+      },
+      {
+        "name": "thiserror-impl",
+        "version": "2.0.21"
+      },
+      {
+        "name": "tiff",
+        "version": "0.11.3"
+      },
+      {
+        "name": "tinystr",
+        "version": "0.8.5"
+      },
+      {
+        "name": "tracing",
+        "version": "0.1.44"
+      },
+      {
+        "name": "tracing-core",
+        "version": "0.1.36"
+      },
+      {
+        "name": "ttf-parser",
+        "version": "0.25.1"
+      },
+      {
+        "name": "type-map",
+        "version": "0.5.1"
+      },
+      {
+        "name": "unicode-ident",
+        "version": "1.0.27"
+      },
+      {
+        "name": "unicode-segmentation",
+        "version": "1.13.3"
+      },
+      {
+        "name": "unicode-width",
+        "version": "0.2.2"
+      },
+      {
+        "name": "url",
+        "version": "2.5.8"
+      },
+      {
+        "name": "utf8_iter",
+        "version": "1.0.4"
+      },
+      {
+        "name": "uuid",
+        "version": "1.29.0"
+      },
+      {
+        "name": "version_check",
+        "version": "0.9.5"
+      },
+      {
+        "name": "web-time",
+        "version": "1.1.0"
+      },
+      {
+        "name": "webbrowser",
+        "version": "1.2.5"
+      },
+      {
+        "name": "weezl",
+        "version": "0.1.12"
+      },
+      {
+        "name": "wgpu",
+        "version": "27.0.1"
+      },
+      {
+        "name": "wgpu-core",
+        "version": "27.0.3"
+      },
+      {
+        "name": "wgpu-core-deps-apple",
+        "version": "27.0.0"
+      },
+      {
+        "name": "wgpu-hal",
+        "version": "27.0.4"
+      },
+      {
+        "name": "wgpu-types",
+        "version": "27.0.1"
+      },
+      {
+        "name": "winit",
+        "version": "0.30.13"
+      },
+      {
+        "name": "writeable",
+        "version": "0.6.4"
+      },
+      {
+        "name": "yoke",
+        "version": "0.8.4"
+      },
+      {
+        "name": "yoke-derive",
+        "version": "0.8.4"
+      },
+      {
+        "name": "zerocopy",
+        "version": "0.8.63"
+      },
+      {
+        "name": "zerocopy-derive",
+        "version": "0.8.63"
+      },
+      {
+        "name": "zerofrom",
+        "version": "0.1.8"
+      },
+      {
+        "name": "zerofrom-derive",
+        "version": "0.1.8"
+      },
+      {
+        "name": "zerotrie",
+        "version": "0.2.5"
+      },
+      {
+        "name": "zerovec",
+        "version": "0.11.9"
+      },
+      {
+        "name": "zerovec-derive",
+        "version": "0.11.7"
+      },
+      {
+        "name": "zmij",
+        "version": "1.0.23"
+      },
+      {
+        "name": "zune-core",
+        "version": "0.5.3"
+      },
+      {
+        "name": "zune-jpeg",
+        "version": "0.5.15"
+      }
+    ],
+    "new_count": 177,
+    "old_count": 177,
+    "removed": [],
+    "target": "aarch64-apple-darwin"
+  },
+  {
+    "added": [],
+    "graph": "app-runtime",
+    "members": [
+      {
+        "name": "ab_glyph",
+        "version": "0.2.32"
+      },
+      {
+        "name": "ab_glyph_rasterizer",
+        "version": "0.1.10"
+      },
+      {
+        "name": "accesskit",
+        "version": "0.21.1"
+      },
+      {
+        "name": "accesskit_consumer",
+        "version": "0.31.0"
+      },
+      {
+        "name": "accesskit_macos",
+        "version": "0.22.2"
+      },
+      {
+        "name": "accesskit_winit",
+        "version": "0.29.2"
+      },
+      {
+        "name": "adler2",
+        "version": "2.0.1"
+      },
+      {
+        "name": "ahash",
+        "version": "0.8.12"
+      },
+      {
+        "name": "arboard",
+        "version": "3.7.0"
+      },
+      {
+        "name": "arrayvec",
+        "version": "0.7.8"
+      },
+      {
+        "name": "bit-set",
+        "version": "0.8.0"
+      },
+      {
+        "name": "bit-vec",
+        "version": "0.8.0"
+      },
+      {
+        "name": "bitflags",
+        "version": "1.3.2"
+      },
+      {
+        "name": "bitflags",
+        "version": "2.13.2"
+      },
+      {
+        "name": "block",
+        "version": "0.1.6"
+      },
+      {
+        "name": "block2",
+        "version": "0.5.1"
+      },
+      {
+        "name": "block2",
+        "version": "0.6.2"
+      },
+      {
+        "name": "bytemuck",
+        "version": "1.25.2"
+      },
+      {
+        "name": "byteorder-lite",
+        "version": "0.1.0"
+      },
+      {
+        "name": "cfg-if",
+        "version": "1.0.5"
+      },
+      {
+        "name": "codespan-reporting",
+        "version": "0.12.0"
+      },
+      {
+        "name": "core-foundation",
+        "version": "0.10.1"
+      },
+      {
+        "name": "core-foundation",
+        "version": "0.9.4"
+      },
+      {
+        "name": "core-foundation-sys",
+        "version": "0.8.7"
+      },
+      {
+        "name": "core-graphics",
+        "version": "0.23.2"
+      },
+      {
+        "name": "core-graphics-types",
+        "version": "0.1.3"
+      },
+      {
+        "name": "core-graphics-types",
+        "version": "0.2.0"
+      },
+      {
+        "name": "coreaudio-rs",
+        "version": "0.14.2"
+      },
+      {
+        "name": "cpal",
+        "version": "0.18.2"
+      },
+      {
+        "name": "crc32fast",
+        "version": "1.5.3"
+      },
+      {
+        "name": "cursor-icon",
+        "version": "1.2.0"
+      },
+      {
+        "name": "dasp_sample",
+        "version": "0.11.0"
+      },
+      {
+        "name": "dispatch",
+        "version": "0.2.0"
+      },
+      {
+        "name": "dispatch2",
+        "version": "0.3.1"
+      },
+      {
+        "name": "dpi",
+        "version": "0.1.2"
+      },
+      {
+        "name": "ecolor",
+        "version": "0.33.3"
+      },
+      {
+        "name": "eframe",
+        "version": "0.33.3"
+      },
+      {
+        "name": "egui",
+        "version": "0.33.3"
+      },
+      {
+        "name": "egui-wgpu",
+        "version": "0.33.3"
+      },
+      {
+        "name": "egui-winit",
+        "version": "0.33.3"
+      },
+      {
+        "name": "emath",
+        "version": "0.33.3"
+      },
+      {
+        "name": "epaint",
+        "version": "0.33.3"
+      },
+      {
+        "name": "epaint_default_fonts",
+        "version": "0.33.3"
+      },
+      {
+        "name": "equivalent",
+        "version": "1.0.3"
+      },
+      {
+        "name": "fax",
+        "version": "0.2.7"
+      },
+      {
+        "name": "fdeflate",
+        "version": "0.3.7"
+      },
+      {
+        "name": "flate2",
+        "version": "1.1.10"
+      },
+      {
+        "name": "foldhash",
+        "version": "0.1.5"
+      },
+      {
+        "name": "foldhash",
+        "version": "0.2.0"
+      },
+      {
+        "name": "foreign-types",
+        "version": "0.5.0"
+      },
+      {
+        "name": "foreign-types-shared",
+        "version": "0.3.1"
+      },
+      {
+        "name": "form_urlencoded",
+        "version": "1.2.2"
+      },
+      {
+        "name": "getrandom",
+        "version": "0.4.3"
+      },
+      {
+        "name": "half",
+        "version": "2.7.1"
+      },
+      {
+        "name": "hashbrown",
+        "version": "0.15.5"
+      },
+      {
+        "name": "hashbrown",
+        "version": "0.16.1"
+      },
+      {
+        "name": "hashbrown",
+        "version": "0.17.1"
+      },
+      {
+        "name": "hexf-parse",
+        "version": "0.2.1"
+      },
+      {
+        "name": "icu_collections",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_locale_core",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_normalizer",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_normalizer_data",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_properties",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_properties_data",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_provider",
+        "version": "2.4.0"
+      },
+      {
+        "name": "idna",
+        "version": "1.1.0"
+      },
+      {
+        "name": "idna_adapter",
+        "version": "1.2.2"
+      },
+      {
+        "name": "image",
+        "version": "0.25.10"
+      },
+      {
+        "name": "indexmap",
+        "version": "2.14.2"
+      },
+      {
+        "name": "itoa",
+        "version": "1.0.18"
+      },
+      {
+        "name": "libc",
+        "version": "0.2.191"
+      },
+      {
+        "name": "libm",
+        "version": "0.2.16"
+      },
+      {
+        "name": "litemap",
+        "version": "0.8.3"
+      },
+      {
+        "name": "lock_api",
+        "version": "0.4.14"
+      },
+      {
+        "name": "log",
+        "version": "0.4.34"
+      },
+      {
+        "name": "mach2",
+        "version": "0.6.0"
+      },
+      {
+        "name": "malloc_buf",
+        "version": "0.0.6"
+      },
+      {
+        "name": "memchr",
+        "version": "2.8.3"
+      },
+      {
+        "name": "metal",
+        "version": "0.32.0"
+      },
+      {
+        "name": "miniz_oxide",
+        "version": "0.8.9"
+      },
+      {
+        "name": "miniz_oxide",
+        "version": "0.9.1"
+      },
+      {
+        "name": "moxcms",
+        "version": "0.8.1"
+      },
+      {
+        "name": "naga",
+        "version": "27.0.3"
+      },
+      {
+        "name": "nohash-hasher",
+        "version": "0.2.0"
+      },
+      {
+        "name": "num-traits",
+        "version": "0.2.19"
+      },
+      {
+        "name": "objc",
+        "version": "0.2.7"
+      },
+      {
+        "name": "objc-sys",
+        "version": "0.3.5"
+      },
+      {
+        "name": "objc2",
+        "version": "0.5.3"
+      },
+      {
+        "name": "objc2",
+        "version": "0.6.5"
+      },
+      {
+        "name": "objc2-app-kit",
+        "version": "0.2.2"
+      },
+      {
+        "name": "objc2-app-kit",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-audio-toolbox",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-core-audio",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-core-audio-types",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-core-foundation",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-core-graphics",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-encode",
+        "version": "4.1.0"
+      },
+      {
+        "name": "objc2-foundation",
+        "version": "0.2.2"
+      },
+      {
+        "name": "objc2-foundation",
+        "version": "0.3.2"
+      },
+      {
+        "name": "once_cell",
+        "version": "1.21.4"
+      },
+      {
+        "name": "owned_ttf_parser",
+        "version": "0.25.1"
+      },
+      {
+        "name": "parking_lot",
+        "version": "0.12.5"
+      },
+      {
+        "name": "parking_lot_core",
+        "version": "0.9.12"
+      },
+      {
+        "name": "percent-encoding",
+        "version": "2.3.2"
+      },
+      {
+        "name": "pin-project-lite",
+        "version": "0.2.17"
+      },
+      {
+        "name": "png",
+        "version": "0.18.1"
+      },
+      {
+        "name": "pollster",
+        "version": "0.4.0"
+      },
+      {
+        "name": "potential_utf",
+        "version": "0.1.6"
+      },
+      {
+        "name": "profiling",
+        "version": "1.0.18"
+      },
+      {
+        "name": "pxfm",
+        "version": "0.1.30"
+      },
+      {
+        "name": "quick-error",
+        "version": "2.0.1"
+      },
+      {
+        "name": "ravelink-app",
+        "version": "0.1.0"
+      },
+      {
+        "name": "ravelink-audio",
+        "version": "0.1.0"
+      },
+      {
+        "name": "ravelink-core",
+        "version": "0.1.0"
+      },
+      {
+        "name": "raw-window-handle",
+        "version": "0.6.2"
+      },
+      {
+        "name": "rustc-hash",
+        "version": "1.1.0"
+      },
+      {
+        "name": "rustc-hash",
+        "version": "2.1.3"
+      },
+      {
+        "name": "scopeguard",
+        "version": "1.2.0"
+      },
+      {
+        "name": "serde",
+        "version": "1.0.229"
+      },
+      {
+        "name": "serde_core",
+        "version": "1.0.229"
+      },
+      {
+        "name": "serde_json",
+        "version": "1.0.154"
+      },
+      {
+        "name": "simd-adler32",
+        "version": "0.3.10"
+      },
+      {
+        "name": "smallvec",
+        "version": "1.16.4"
+      },
+      {
+        "name": "smol_str",
+        "version": "0.2.2"
+      },
+      {
+        "name": "stable_deref_trait",
+        "version": "1.2.1"
+      },
+      {
+        "name": "static_assertions",
+        "version": "1.1.0"
+      },
+      {
+        "name": "thiserror",
+        "version": "2.0.21"
+      },
+      {
+        "name": "tiff",
+        "version": "0.11.3"
+      },
+      {
+        "name": "tinystr",
+        "version": "0.8.5"
+      },
+      {
+        "name": "tracing",
+        "version": "0.1.44"
+      },
+      {
+        "name": "tracing-core",
+        "version": "0.1.36"
+      },
+      {
+        "name": "ttf-parser",
+        "version": "0.25.1"
+      },
+      {
+        "name": "type-map",
+        "version": "0.5.1"
+      },
+      {
+        "name": "unicode-ident",
+        "version": "1.0.27"
+      },
+      {
+        "name": "unicode-segmentation",
+        "version": "1.13.3"
+      },
+      {
+        "name": "unicode-width",
+        "version": "0.2.2"
+      },
+      {
+        "name": "url",
+        "version": "2.5.8"
+      },
+      {
+        "name": "utf8_iter",
+        "version": "1.0.4"
+      },
+      {
+        "name": "uuid",
+        "version": "1.29.0"
+      },
+      {
+        "name": "web-time",
+        "version": "1.1.0"
+      },
+      {
+        "name": "webbrowser",
+        "version": "1.2.5"
+      },
+      {
+        "name": "weezl",
+        "version": "0.1.12"
+      },
+      {
+        "name": "wgpu",
+        "version": "27.0.1"
+      },
+      {
+        "name": "wgpu-core",
+        "version": "27.0.3"
+      },
+      {
+        "name": "wgpu-core-deps-apple",
+        "version": "27.0.0"
+      },
+      {
+        "name": "wgpu-hal",
+        "version": "27.0.4"
+      },
+      {
+        "name": "wgpu-types",
+        "version": "27.0.1"
+      },
+      {
+        "name": "winit",
+        "version": "0.30.13"
+      },
+      {
+        "name": "writeable",
+        "version": "0.6.4"
+      },
+      {
+        "name": "yoke",
+        "version": "0.8.4"
+      },
+      {
+        "name": "zerocopy",
+        "version": "0.8.63"
+      },
+      {
+        "name": "zerofrom",
+        "version": "0.1.8"
+      },
+      {
+        "name": "zerotrie",
+        "version": "0.2.5"
+      },
+      {
+        "name": "zerovec",
+        "version": "0.11.9"
+      },
+      {
+        "name": "zmij",
+        "version": "1.0.23"
+      },
+      {
+        "name": "zune-core",
+        "version": "0.5.3"
+      },
+      {
+        "name": "zune-jpeg",
+        "version": "0.5.15"
+      }
+    ],
+    "new_count": 157,
+    "old_count": 157,
+    "removed": [],
+    "target": "aarch64-apple-darwin"
+  },
+  {
+    "added": [],
+    "graph": "hal-all",
+    "members": [
+      {
+        "name": "ravelink-hal",
+        "version": "0.1.0"
+      }
+    ],
+    "new_count": 1,
+    "old_count": 1,
+    "removed": [],
+    "target": "aarch64-apple-darwin"
+  },
+  {
+    "added": [],
+    "graph": "app-all",
+    "members": [
+      {
+        "name": "ab_glyph",
+        "version": "0.2.32"
+      },
+      {
+        "name": "ab_glyph_rasterizer",
+        "version": "0.1.10"
+      },
+      {
+        "name": "accesskit",
+        "version": "0.21.1"
+      },
+      {
+        "name": "accesskit_consumer",
+        "version": "0.31.0"
+      },
+      {
+        "name": "accesskit_macos",
+        "version": "0.22.2"
+      },
+      {
+        "name": "accesskit_winit",
+        "version": "0.29.2"
+      },
+      {
+        "name": "adler2",
+        "version": "2.0.1"
+      },
+      {
+        "name": "ahash",
+        "version": "0.8.12"
+      },
+      {
+        "name": "arboard",
+        "version": "3.7.0"
+      },
+      {
+        "name": "arrayvec",
+        "version": "0.7.8"
+      },
+      {
+        "name": "autocfg",
+        "version": "1.5.1"
+      },
+      {
+        "name": "bit-set",
+        "version": "0.8.0"
+      },
+      {
+        "name": "bit-vec",
+        "version": "0.8.0"
+      },
+      {
+        "name": "bitflags",
+        "version": "1.3.2"
+      },
+      {
+        "name": "bitflags",
+        "version": "2.13.2"
+      },
+      {
+        "name": "block",
+        "version": "0.1.6"
+      },
+      {
+        "name": "block2",
+        "version": "0.5.1"
+      },
+      {
+        "name": "block2",
+        "version": "0.6.2"
+      },
+      {
+        "name": "bytemuck",
+        "version": "1.25.2"
+      },
+      {
+        "name": "bytemuck_derive",
+        "version": "1.12.1"
+      },
+      {
+        "name": "byteorder-lite",
+        "version": "0.1.0"
+      },
+      {
+        "name": "cfg-if",
+        "version": "1.0.5"
+      },
+      {
+        "name": "cfg_aliases",
+        "version": "0.2.2"
+      },
+      {
+        "name": "codespan-reporting",
+        "version": "0.12.0"
+      },
+      {
+        "name": "core-foundation",
+        "version": "0.10.1"
+      },
+      {
+        "name": "core-foundation",
+        "version": "0.9.4"
+      },
+      {
+        "name": "core-foundation-sys",
+        "version": "0.8.7"
+      },
+      {
+        "name": "core-graphics",
+        "version": "0.23.2"
+      },
+      {
+        "name": "core-graphics-types",
+        "version": "0.1.3"
+      },
+      {
+        "name": "core-graphics-types",
+        "version": "0.2.0"
+      },
+      {
+        "name": "coreaudio-rs",
+        "version": "0.14.2"
+      },
+      {
+        "name": "cpal",
+        "version": "0.18.2"
+      },
+      {
+        "name": "crc32fast",
+        "version": "1.5.3"
+      },
+      {
+        "name": "cursor-icon",
+        "version": "1.2.0"
+      },
+      {
+        "name": "dasp_sample",
+        "version": "0.11.0"
+      },
+      {
+        "name": "dispatch",
+        "version": "0.2.0"
+      },
+      {
+        "name": "dispatch2",
+        "version": "0.3.1"
+      },
+      {
+        "name": "displaydoc",
+        "version": "0.2.7"
+      },
+      {
+        "name": "document-features",
+        "version": "0.2.12"
+      },
+      {
+        "name": "dpi",
+        "version": "0.1.2"
+      },
+      {
+        "name": "ecolor",
+        "version": "0.33.3"
+      },
+      {
+        "name": "eframe",
+        "version": "0.33.3"
+      },
+      {
+        "name": "egui",
+        "version": "0.33.3"
+      },
+      {
+        "name": "egui-wgpu",
+        "version": "0.33.3"
+      },
+      {
+        "name": "egui-winit",
+        "version": "0.33.3"
+      },
+      {
+        "name": "emath",
+        "version": "0.33.3"
+      },
+      {
+        "name": "epaint",
+        "version": "0.33.3"
+      },
+      {
+        "name": "epaint_default_fonts",
+        "version": "0.33.3"
+      },
+      {
+        "name": "equivalent",
+        "version": "1.0.3"
+      },
+      {
+        "name": "fax",
+        "version": "0.2.7"
+      },
+      {
+        "name": "fdeflate",
+        "version": "0.3.7"
+      },
+      {
+        "name": "flate2",
+        "version": "1.1.10"
+      },
+      {
+        "name": "foldhash",
+        "version": "0.1.5"
+      },
+      {
+        "name": "foldhash",
+        "version": "0.2.0"
+      },
+      {
+        "name": "foreign-types",
+        "version": "0.5.0"
+      },
+      {
+        "name": "foreign-types-macros",
+        "version": "0.2.4"
+      },
+      {
+        "name": "foreign-types-shared",
+        "version": "0.3.1"
+      },
+      {
+        "name": "form_urlencoded",
+        "version": "1.2.2"
+      },
+      {
+        "name": "getrandom",
+        "version": "0.4.3"
+      },
+      {
+        "name": "half",
+        "version": "2.7.1"
+      },
+      {
+        "name": "hashbrown",
+        "version": "0.15.5"
+      },
+      {
+        "name": "hashbrown",
+        "version": "0.16.1"
+      },
+      {
+        "name": "hashbrown",
+        "version": "0.17.1"
+      },
+      {
+        "name": "hexf-parse",
+        "version": "0.2.1"
+      },
+      {
+        "name": "icu_collections",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_locale_core",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_normalizer",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_normalizer_data",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_properties",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_properties_data",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_provider",
+        "version": "2.4.0"
+      },
+      {
+        "name": "idna",
+        "version": "1.1.0"
+      },
+      {
+        "name": "idna_adapter",
+        "version": "1.2.2"
+      },
+      {
+        "name": "image",
+        "version": "0.25.10"
+      },
+      {
+        "name": "indexmap",
+        "version": "2.14.2"
+      },
+      {
+        "name": "itoa",
+        "version": "1.0.18"
+      },
+      {
+        "name": "libc",
+        "version": "0.2.191"
+      },
+      {
+        "name": "libm",
+        "version": "0.2.16"
+      },
+      {
+        "name": "litemap",
+        "version": "0.8.3"
+      },
+      {
+        "name": "litrs",
+        "version": "1.0.1"
+      },
+      {
+        "name": "lock_api",
+        "version": "0.4.14"
+      },
+      {
+        "name": "log",
+        "version": "0.4.34"
+      },
+      {
+        "name": "mach2",
+        "version": "0.6.0"
+      },
+      {
+        "name": "malloc_buf",
+        "version": "0.0.6"
+      },
+      {
+        "name": "memchr",
+        "version": "2.8.3"
+      },
+      {
+        "name": "metal",
+        "version": "0.32.0"
+      },
+      {
+        "name": "miniz_oxide",
+        "version": "0.8.9"
+      },
+      {
+        "name": "miniz_oxide",
+        "version": "0.9.1"
+      },
+      {
+        "name": "moxcms",
+        "version": "0.8.1"
+      },
+      {
+        "name": "naga",
+        "version": "27.0.3"
+      },
+      {
+        "name": "nohash-hasher",
+        "version": "0.2.0"
+      },
+      {
+        "name": "num-traits",
+        "version": "0.2.19"
+      },
+      {
+        "name": "objc",
+        "version": "0.2.7"
+      },
+      {
+        "name": "objc-sys",
+        "version": "0.3.5"
+      },
+      {
+        "name": "objc2",
+        "version": "0.5.3"
+      },
+      {
+        "name": "objc2",
+        "version": "0.6.5"
+      },
+      {
+        "name": "objc2-app-kit",
+        "version": "0.2.2"
+      },
+      {
+        "name": "objc2-app-kit",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-audio-toolbox",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-core-audio",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-core-audio-types",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-core-foundation",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-core-graphics",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-encode",
+        "version": "4.1.0"
+      },
+      {
+        "name": "objc2-foundation",
+        "version": "0.2.2"
+      },
+      {
+        "name": "objc2-foundation",
+        "version": "0.3.2"
+      },
+      {
+        "name": "once_cell",
+        "version": "1.21.4"
+      },
+      {
+        "name": "owned_ttf_parser",
+        "version": "0.25.1"
+      },
+      {
+        "name": "parking_lot",
+        "version": "0.12.5"
+      },
+      {
+        "name": "parking_lot_core",
+        "version": "0.9.12"
+      },
+      {
+        "name": "paste",
+        "version": "1.0.15"
+      },
+      {
+        "name": "percent-encoding",
+        "version": "2.3.2"
+      },
+      {
+        "name": "pin-project-lite",
+        "version": "0.2.17"
+      },
+      {
+        "name": "png",
+        "version": "0.18.1"
+      },
+      {
+        "name": "pollster",
+        "version": "0.4.0"
+      },
+      {
+        "name": "potential_utf",
+        "version": "0.1.6"
+      },
+      {
+        "name": "proc-macro2",
+        "version": "1.0.107"
+      },
+      {
+        "name": "profiling",
+        "version": "1.0.18"
+      },
+      {
+        "name": "pxfm",
+        "version": "0.1.30"
+      },
+      {
+        "name": "quick-error",
+        "version": "2.0.1"
+      },
+      {
+        "name": "quote",
+        "version": "1.0.47"
+      },
+      {
+        "name": "ravelink-app",
+        "version": "0.1.0"
+      },
+      {
+        "name": "ravelink-audio",
+        "version": "0.1.0"
+      },
+      {
+        "name": "ravelink-core",
+        "version": "0.1.0"
+      },
+      {
+        "name": "raw-window-handle",
+        "version": "0.6.2"
+      },
+      {
+        "name": "rustc-hash",
+        "version": "1.1.0"
+      },
+      {
+        "name": "rustc-hash",
+        "version": "2.1.3"
+      },
+      {
+        "name": "scopeguard",
+        "version": "1.2.0"
+      },
+      {
+        "name": "serde",
+        "version": "1.0.229"
+      },
+      {
+        "name": "serde_core",
+        "version": "1.0.229"
+      },
+      {
+        "name": "serde_derive",
+        "version": "1.0.229"
+      },
+      {
+        "name": "serde_json",
+        "version": "1.0.154"
+      },
+      {
+        "name": "simd-adler32",
+        "version": "0.3.10"
+      },
+      {
+        "name": "smallvec",
+        "version": "1.16.4"
+      },
+      {
+        "name": "smol_str",
+        "version": "0.2.2"
+      },
+      {
+        "name": "stable_deref_trait",
+        "version": "1.2.1"
+      },
+      {
+        "name": "static_assertions",
+        "version": "1.1.0"
+      },
+      {
+        "name": "syn",
+        "version": "2.0.119"
+      },
+      {
+        "name": "syn",
+        "version": "3.0.9"
+      },
+      {
+        "name": "synstructure",
+        "version": "0.14.0"
+      },
+      {
+        "name": "thiserror",
+        "version": "2.0.21"
+      },
+      {
+        "name": "thiserror-impl",
+        "version": "2.0.21"
+      },
+      {
+        "name": "tiff",
+        "version": "0.11.3"
+      },
+      {
+        "name": "tinystr",
+        "version": "0.8.5"
+      },
+      {
+        "name": "tracing",
+        "version": "0.1.44"
+      },
+      {
+        "name": "tracing-core",
+        "version": "0.1.36"
+      },
+      {
+        "name": "ttf-parser",
+        "version": "0.25.1"
+      },
+      {
+        "name": "type-map",
+        "version": "0.5.1"
+      },
+      {
+        "name": "unicode-ident",
+        "version": "1.0.27"
+      },
+      {
+        "name": "unicode-segmentation",
+        "version": "1.13.3"
+      },
+      {
+        "name": "unicode-width",
+        "version": "0.2.2"
+      },
+      {
+        "name": "url",
+        "version": "2.5.8"
+      },
+      {
+        "name": "utf8_iter",
+        "version": "1.0.4"
+      },
+      {
+        "name": "uuid",
+        "version": "1.29.0"
+      },
+      {
+        "name": "version_check",
+        "version": "0.9.5"
+      },
+      {
+        "name": "web-time",
+        "version": "1.1.0"
+      },
+      {
+        "name": "webbrowser",
+        "version": "1.2.5"
+      },
+      {
+        "name": "weezl",
+        "version": "0.1.12"
+      },
+      {
+        "name": "wgpu",
+        "version": "27.0.1"
+      },
+      {
+        "name": "wgpu-core",
+        "version": "27.0.3"
+      },
+      {
+        "name": "wgpu-core-deps-apple",
+        "version": "27.0.0"
+      },
+      {
+        "name": "wgpu-hal",
+        "version": "27.0.4"
+      },
+      {
+        "name": "wgpu-types",
+        "version": "27.0.1"
+      },
+      {
+        "name": "winit",
+        "version": "0.30.13"
+      },
+      {
+        "name": "writeable",
+        "version": "0.6.4"
+      },
+      {
+        "name": "yoke",
+        "version": "0.8.4"
+      },
+      {
+        "name": "yoke-derive",
+        "version": "0.8.4"
+      },
+      {
+        "name": "zerocopy",
+        "version": "0.8.63"
+      },
+      {
+        "name": "zerocopy-derive",
+        "version": "0.8.63"
+      },
+      {
+        "name": "zerofrom",
+        "version": "0.1.8"
+      },
+      {
+        "name": "zerofrom-derive",
+        "version": "0.1.8"
+      },
+      {
+        "name": "zerotrie",
+        "version": "0.2.5"
+      },
+      {
+        "name": "zerovec",
+        "version": "0.11.9"
+      },
+      {
+        "name": "zerovec-derive",
+        "version": "0.11.7"
+      },
+      {
+        "name": "zmij",
+        "version": "1.0.23"
+      },
+      {
+        "name": "zune-core",
+        "version": "0.5.3"
+      },
+      {
+        "name": "zune-jpeg",
+        "version": "0.5.15"
+      }
+    ],
+    "new_count": 177,
+    "old_count": 177,
+    "removed": [],
+    "target": "x86_64-apple-darwin"
+  },
+  {
+    "added": [],
+    "graph": "app-runtime",
+    "members": [
+      {
+        "name": "ab_glyph",
+        "version": "0.2.32"
+      },
+      {
+        "name": "ab_glyph_rasterizer",
+        "version": "0.1.10"
+      },
+      {
+        "name": "accesskit",
+        "version": "0.21.1"
+      },
+      {
+        "name": "accesskit_consumer",
+        "version": "0.31.0"
+      },
+      {
+        "name": "accesskit_macos",
+        "version": "0.22.2"
+      },
+      {
+        "name": "accesskit_winit",
+        "version": "0.29.2"
+      },
+      {
+        "name": "adler2",
+        "version": "2.0.1"
+      },
+      {
+        "name": "ahash",
+        "version": "0.8.12"
+      },
+      {
+        "name": "arboard",
+        "version": "3.7.0"
+      },
+      {
+        "name": "arrayvec",
+        "version": "0.7.8"
+      },
+      {
+        "name": "bit-set",
+        "version": "0.8.0"
+      },
+      {
+        "name": "bit-vec",
+        "version": "0.8.0"
+      },
+      {
+        "name": "bitflags",
+        "version": "1.3.2"
+      },
+      {
+        "name": "bitflags",
+        "version": "2.13.2"
+      },
+      {
+        "name": "block",
+        "version": "0.1.6"
+      },
+      {
+        "name": "block2",
+        "version": "0.5.1"
+      },
+      {
+        "name": "block2",
+        "version": "0.6.2"
+      },
+      {
+        "name": "bytemuck",
+        "version": "1.25.2"
+      },
+      {
+        "name": "byteorder-lite",
+        "version": "0.1.0"
+      },
+      {
+        "name": "cfg-if",
+        "version": "1.0.5"
+      },
+      {
+        "name": "codespan-reporting",
+        "version": "0.12.0"
+      },
+      {
+        "name": "core-foundation",
+        "version": "0.10.1"
+      },
+      {
+        "name": "core-foundation",
+        "version": "0.9.4"
+      },
+      {
+        "name": "core-foundation-sys",
+        "version": "0.8.7"
+      },
+      {
+        "name": "core-graphics",
+        "version": "0.23.2"
+      },
+      {
+        "name": "core-graphics-types",
+        "version": "0.1.3"
+      },
+      {
+        "name": "core-graphics-types",
+        "version": "0.2.0"
+      },
+      {
+        "name": "coreaudio-rs",
+        "version": "0.14.2"
+      },
+      {
+        "name": "cpal",
+        "version": "0.18.2"
+      },
+      {
+        "name": "crc32fast",
+        "version": "1.5.3"
+      },
+      {
+        "name": "cursor-icon",
+        "version": "1.2.0"
+      },
+      {
+        "name": "dasp_sample",
+        "version": "0.11.0"
+      },
+      {
+        "name": "dispatch",
+        "version": "0.2.0"
+      },
+      {
+        "name": "dispatch2",
+        "version": "0.3.1"
+      },
+      {
+        "name": "dpi",
+        "version": "0.1.2"
+      },
+      {
+        "name": "ecolor",
+        "version": "0.33.3"
+      },
+      {
+        "name": "eframe",
+        "version": "0.33.3"
+      },
+      {
+        "name": "egui",
+        "version": "0.33.3"
+      },
+      {
+        "name": "egui-wgpu",
+        "version": "0.33.3"
+      },
+      {
+        "name": "egui-winit",
+        "version": "0.33.3"
+      },
+      {
+        "name": "emath",
+        "version": "0.33.3"
+      },
+      {
+        "name": "epaint",
+        "version": "0.33.3"
+      },
+      {
+        "name": "epaint_default_fonts",
+        "version": "0.33.3"
+      },
+      {
+        "name": "equivalent",
+        "version": "1.0.3"
+      },
+      {
+        "name": "fax",
+        "version": "0.2.7"
+      },
+      {
+        "name": "fdeflate",
+        "version": "0.3.7"
+      },
+      {
+        "name": "flate2",
+        "version": "1.1.10"
+      },
+      {
+        "name": "foldhash",
+        "version": "0.1.5"
+      },
+      {
+        "name": "foldhash",
+        "version": "0.2.0"
+      },
+      {
+        "name": "foreign-types",
+        "version": "0.5.0"
+      },
+      {
+        "name": "foreign-types-shared",
+        "version": "0.3.1"
+      },
+      {
+        "name": "form_urlencoded",
+        "version": "1.2.2"
+      },
+      {
+        "name": "getrandom",
+        "version": "0.4.3"
+      },
+      {
+        "name": "half",
+        "version": "2.7.1"
+      },
+      {
+        "name": "hashbrown",
+        "version": "0.15.5"
+      },
+      {
+        "name": "hashbrown",
+        "version": "0.16.1"
+      },
+      {
+        "name": "hashbrown",
+        "version": "0.17.1"
+      },
+      {
+        "name": "hexf-parse",
+        "version": "0.2.1"
+      },
+      {
+        "name": "icu_collections",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_locale_core",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_normalizer",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_normalizer_data",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_properties",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_properties_data",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_provider",
+        "version": "2.4.0"
+      },
+      {
+        "name": "idna",
+        "version": "1.1.0"
+      },
+      {
+        "name": "idna_adapter",
+        "version": "1.2.2"
+      },
+      {
+        "name": "image",
+        "version": "0.25.10"
+      },
+      {
+        "name": "indexmap",
+        "version": "2.14.2"
+      },
+      {
+        "name": "itoa",
+        "version": "1.0.18"
+      },
+      {
+        "name": "libc",
+        "version": "0.2.191"
+      },
+      {
+        "name": "libm",
+        "version": "0.2.16"
+      },
+      {
+        "name": "litemap",
+        "version": "0.8.3"
+      },
+      {
+        "name": "lock_api",
+        "version": "0.4.14"
+      },
+      {
+        "name": "log",
+        "version": "0.4.34"
+      },
+      {
+        "name": "mach2",
+        "version": "0.6.0"
+      },
+      {
+        "name": "malloc_buf",
+        "version": "0.0.6"
+      },
+      {
+        "name": "memchr",
+        "version": "2.8.3"
+      },
+      {
+        "name": "metal",
+        "version": "0.32.0"
+      },
+      {
+        "name": "miniz_oxide",
+        "version": "0.8.9"
+      },
+      {
+        "name": "miniz_oxide",
+        "version": "0.9.1"
+      },
+      {
+        "name": "moxcms",
+        "version": "0.8.1"
+      },
+      {
+        "name": "naga",
+        "version": "27.0.3"
+      },
+      {
+        "name": "nohash-hasher",
+        "version": "0.2.0"
+      },
+      {
+        "name": "num-traits",
+        "version": "0.2.19"
+      },
+      {
+        "name": "objc",
+        "version": "0.2.7"
+      },
+      {
+        "name": "objc-sys",
+        "version": "0.3.5"
+      },
+      {
+        "name": "objc2",
+        "version": "0.5.3"
+      },
+      {
+        "name": "objc2",
+        "version": "0.6.5"
+      },
+      {
+        "name": "objc2-app-kit",
+        "version": "0.2.2"
+      },
+      {
+        "name": "objc2-app-kit",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-audio-toolbox",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-core-audio",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-core-audio-types",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-core-foundation",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-core-graphics",
+        "version": "0.3.2"
+      },
+      {
+        "name": "objc2-encode",
+        "version": "4.1.0"
+      },
+      {
+        "name": "objc2-foundation",
+        "version": "0.2.2"
+      },
+      {
+        "name": "objc2-foundation",
+        "version": "0.3.2"
+      },
+      {
+        "name": "once_cell",
+        "version": "1.21.4"
+      },
+      {
+        "name": "owned_ttf_parser",
+        "version": "0.25.1"
+      },
+      {
+        "name": "parking_lot",
+        "version": "0.12.5"
+      },
+      {
+        "name": "parking_lot_core",
+        "version": "0.9.12"
+      },
+      {
+        "name": "percent-encoding",
+        "version": "2.3.2"
+      },
+      {
+        "name": "pin-project-lite",
+        "version": "0.2.17"
+      },
+      {
+        "name": "png",
+        "version": "0.18.1"
+      },
+      {
+        "name": "pollster",
+        "version": "0.4.0"
+      },
+      {
+        "name": "potential_utf",
+        "version": "0.1.6"
+      },
+      {
+        "name": "profiling",
+        "version": "1.0.18"
+      },
+      {
+        "name": "pxfm",
+        "version": "0.1.30"
+      },
+      {
+        "name": "quick-error",
+        "version": "2.0.1"
+      },
+      {
+        "name": "ravelink-app",
+        "version": "0.1.0"
+      },
+      {
+        "name": "ravelink-audio",
+        "version": "0.1.0"
+      },
+      {
+        "name": "ravelink-core",
+        "version": "0.1.0"
+      },
+      {
+        "name": "raw-window-handle",
+        "version": "0.6.2"
+      },
+      {
+        "name": "rustc-hash",
+        "version": "1.1.0"
+      },
+      {
+        "name": "rustc-hash",
+        "version": "2.1.3"
+      },
+      {
+        "name": "scopeguard",
+        "version": "1.2.0"
+      },
+      {
+        "name": "serde",
+        "version": "1.0.229"
+      },
+      {
+        "name": "serde_core",
+        "version": "1.0.229"
+      },
+      {
+        "name": "serde_json",
+        "version": "1.0.154"
+      },
+      {
+        "name": "simd-adler32",
+        "version": "0.3.10"
+      },
+      {
+        "name": "smallvec",
+        "version": "1.16.4"
+      },
+      {
+        "name": "smol_str",
+        "version": "0.2.2"
+      },
+      {
+        "name": "stable_deref_trait",
+        "version": "1.2.1"
+      },
+      {
+        "name": "static_assertions",
+        "version": "1.1.0"
+      },
+      {
+        "name": "thiserror",
+        "version": "2.0.21"
+      },
+      {
+        "name": "tiff",
+        "version": "0.11.3"
+      },
+      {
+        "name": "tinystr",
+        "version": "0.8.5"
+      },
+      {
+        "name": "tracing",
+        "version": "0.1.44"
+      },
+      {
+        "name": "tracing-core",
+        "version": "0.1.36"
+      },
+      {
+        "name": "ttf-parser",
+        "version": "0.25.1"
+      },
+      {
+        "name": "type-map",
+        "version": "0.5.1"
+      },
+      {
+        "name": "unicode-ident",
+        "version": "1.0.27"
+      },
+      {
+        "name": "unicode-segmentation",
+        "version": "1.13.3"
+      },
+      {
+        "name": "unicode-width",
+        "version": "0.2.2"
+      },
+      {
+        "name": "url",
+        "version": "2.5.8"
+      },
+      {
+        "name": "utf8_iter",
+        "version": "1.0.4"
+      },
+      {
+        "name": "uuid",
+        "version": "1.29.0"
+      },
+      {
+        "name": "web-time",
+        "version": "1.1.0"
+      },
+      {
+        "name": "webbrowser",
+        "version": "1.2.5"
+      },
+      {
+        "name": "weezl",
+        "version": "0.1.12"
+      },
+      {
+        "name": "wgpu",
+        "version": "27.0.1"
+      },
+      {
+        "name": "wgpu-core",
+        "version": "27.0.3"
+      },
+      {
+        "name": "wgpu-core-deps-apple",
+        "version": "27.0.0"
+      },
+      {
+        "name": "wgpu-hal",
+        "version": "27.0.4"
+      },
+      {
+        "name": "wgpu-types",
+        "version": "27.0.1"
+      },
+      {
+        "name": "winit",
+        "version": "0.30.13"
+      },
+      {
+        "name": "writeable",
+        "version": "0.6.4"
+      },
+      {
+        "name": "yoke",
+        "version": "0.8.4"
+      },
+      {
+        "name": "zerocopy",
+        "version": "0.8.63"
+      },
+      {
+        "name": "zerofrom",
+        "version": "0.1.8"
+      },
+      {
+        "name": "zerotrie",
+        "version": "0.2.5"
+      },
+      {
+        "name": "zerovec",
+        "version": "0.11.9"
+      },
+      {
+        "name": "zmij",
+        "version": "1.0.23"
+      },
+      {
+        "name": "zune-core",
+        "version": "0.5.3"
+      },
+      {
+        "name": "zune-jpeg",
+        "version": "0.5.15"
+      }
+    ],
+    "new_count": 157,
+    "old_count": 157,
+    "removed": [],
+    "target": "x86_64-apple-darwin"
+  },
+  {
+    "added": [],
+    "graph": "hal-all",
+    "members": [
+      {
+        "name": "ravelink-hal",
+        "version": "0.1.0"
+      }
+    ],
+    "new_count": 1,
+    "old_count": 1,
+    "removed": [],
+    "target": "x86_64-apple-darwin"
+  },
+  {
+    "added": [],
+    "graph": "app-all",
+    "members": [
+      {
+        "name": "ab_glyph",
+        "version": "0.2.32"
+      },
+      {
+        "name": "ab_glyph_rasterizer",
+        "version": "0.1.10"
+      },
+      {
+        "name": "accesskit",
+        "version": "0.21.1"
+      },
+      {
+        "name": "accesskit_consumer",
+        "version": "0.31.0"
+      },
+      {
+        "name": "accesskit_windows",
+        "version": "0.29.2"
+      },
+      {
+        "name": "accesskit_winit",
+        "version": "0.29.2"
+      },
+      {
+        "name": "adler2",
+        "version": "2.0.1"
+      },
+      {
+        "name": "ahash",
+        "version": "0.8.12"
+      },
+      {
+        "name": "arboard",
+        "version": "3.7.0"
+      },
+      {
+        "name": "arrayvec",
+        "version": "0.7.8"
+      },
+      {
+        "name": "autocfg",
+        "version": "1.5.1"
+      },
+      {
+        "name": "bit-set",
+        "version": "0.8.0"
+      },
+      {
+        "name": "bit-vec",
+        "version": "0.8.0"
+      },
+      {
+        "name": "bitflags",
+        "version": "2.13.2"
+      },
+      {
+        "name": "bytemuck",
+        "version": "1.25.2"
+      },
+      {
+        "name": "bytemuck_derive",
+        "version": "1.12.1"
+      },
+      {
+        "name": "byteorder-lite",
+        "version": "0.1.0"
+      },
+      {
+        "name": "cfg-if",
+        "version": "1.0.5"
+      },
+      {
+        "name": "cfg_aliases",
+        "version": "0.2.2"
+      },
+      {
+        "name": "clipboard-win",
+        "version": "5.4.3"
+      },
+      {
+        "name": "codespan-reporting",
+        "version": "0.12.0"
+      },
+      {
+        "name": "cpal",
+        "version": "0.18.2"
+      },
+      {
+        "name": "crc32fast",
+        "version": "1.5.3"
+      },
+      {
+        "name": "cursor-icon",
+        "version": "1.2.0"
+      },
+      {
+        "name": "dasp_sample",
+        "version": "0.11.0"
+      },
+      {
+        "name": "displaydoc",
+        "version": "0.2.7"
+      },
+      {
+        "name": "document-features",
+        "version": "0.2.12"
+      },
+      {
+        "name": "dpi",
+        "version": "0.1.2"
+      },
+      {
+        "name": "ecolor",
+        "version": "0.33.3"
+      },
+      {
+        "name": "eframe",
+        "version": "0.33.3"
+      },
+      {
+        "name": "egui",
+        "version": "0.33.3"
+      },
+      {
+        "name": "egui-wgpu",
+        "version": "0.33.3"
+      },
+      {
+        "name": "egui-winit",
+        "version": "0.33.3"
+      },
+      {
+        "name": "emath",
+        "version": "0.33.3"
+      },
+      {
+        "name": "epaint",
+        "version": "0.33.3"
+      },
+      {
+        "name": "epaint_default_fonts",
+        "version": "0.33.3"
+      },
+      {
+        "name": "equivalent",
+        "version": "1.0.3"
+      },
+      {
+        "name": "error-code",
+        "version": "3.4.0"
+      },
+      {
+        "name": "fdeflate",
+        "version": "0.3.7"
+      },
+      {
+        "name": "flate2",
+        "version": "1.1.10"
+      },
+      {
+        "name": "foldhash",
+        "version": "0.1.5"
+      },
+      {
+        "name": "foldhash",
+        "version": "0.2.0"
+      },
+      {
+        "name": "form_urlencoded",
+        "version": "1.2.2"
+      },
+      {
+        "name": "getrandom",
+        "version": "0.4.3"
+      },
+      {
+        "name": "gpu-allocator",
+        "version": "0.27.0"
+      },
+      {
+        "name": "half",
+        "version": "2.7.1"
+      },
+      {
+        "name": "hashbrown",
+        "version": "0.15.5"
+      },
+      {
+        "name": "hashbrown",
+        "version": "0.16.1"
+      },
+      {
+        "name": "hashbrown",
+        "version": "0.17.1"
+      },
+      {
+        "name": "hexf-parse",
+        "version": "0.2.1"
+      },
+      {
+        "name": "icu_collections",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_locale_core",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_normalizer",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_normalizer_data",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_properties",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_properties_data",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_provider",
+        "version": "2.4.0"
+      },
+      {
+        "name": "idna",
+        "version": "1.1.0"
+      },
+      {
+        "name": "idna_adapter",
+        "version": "1.2.2"
+      },
+      {
+        "name": "image",
+        "version": "0.25.10"
+      },
+      {
+        "name": "indexmap",
+        "version": "2.14.2"
+      },
+      {
+        "name": "itoa",
+        "version": "1.0.18"
+      },
+      {
+        "name": "libloading",
+        "version": "0.8.9"
+      },
+      {
+        "name": "libm",
+        "version": "0.2.16"
+      },
+      {
+        "name": "litemap",
+        "version": "0.8.3"
+      },
+      {
+        "name": "litrs",
+        "version": "1.0.1"
+      },
+      {
+        "name": "lock_api",
+        "version": "0.4.14"
+      },
+      {
+        "name": "log",
+        "version": "0.4.34"
+      },
+      {
+        "name": "memchr",
+        "version": "2.8.3"
+      },
+      {
+        "name": "miniz_oxide",
+        "version": "0.8.9"
+      },
+      {
+        "name": "miniz_oxide",
+        "version": "0.9.1"
+      },
+      {
+        "name": "moxcms",
+        "version": "0.8.1"
+      },
+      {
+        "name": "naga",
+        "version": "27.0.3"
+      },
+      {
+        "name": "nohash-hasher",
+        "version": "0.2.0"
+      },
+      {
+        "name": "num-traits",
+        "version": "0.2.19"
+      },
+      {
+        "name": "once_cell",
+        "version": "1.21.4"
+      },
+      {
+        "name": "ordered-float",
+        "version": "5.5.0"
+      },
+      {
+        "name": "owned_ttf_parser",
+        "version": "0.25.1"
+      },
+      {
+        "name": "parking_lot",
+        "version": "0.12.5"
+      },
+      {
+        "name": "parking_lot_core",
+        "version": "0.9.12"
+      },
+      {
+        "name": "percent-encoding",
+        "version": "2.3.2"
+      },
+      {
+        "name": "pin-project-lite",
+        "version": "0.2.17"
+      },
+      {
+        "name": "png",
+        "version": "0.18.1"
+      },
+      {
+        "name": "pollster",
+        "version": "0.4.0"
+      },
+      {
+        "name": "potential_utf",
+        "version": "0.1.6"
+      },
+      {
+        "name": "presser",
+        "version": "0.3.1"
+      },
+      {
+        "name": "proc-macro2",
+        "version": "1.0.107"
+      },
+      {
+        "name": "profiling",
+        "version": "1.0.18"
+      },
+      {
+        "name": "pxfm",
+        "version": "0.1.30"
+      },
+      {
+        "name": "quote",
+        "version": "1.0.47"
+      },
+      {
+        "name": "range-alloc",
+        "version": "0.1.5"
+      },
+      {
+        "name": "ravelink-app",
+        "version": "0.1.0"
+      },
+      {
+        "name": "ravelink-audio",
+        "version": "0.1.0"
+      },
+      {
+        "name": "ravelink-core",
+        "version": "0.1.0"
+      },
+      {
+        "name": "raw-window-handle",
+        "version": "0.6.2"
+      },
+      {
+        "name": "renderdoc-sys",
+        "version": "1.1.0"
+      },
+      {
+        "name": "rustc-hash",
+        "version": "1.1.0"
+      },
+      {
+        "name": "rustc-hash",
+        "version": "2.1.3"
+      },
+      {
+        "name": "scopeguard",
+        "version": "1.2.0"
+      },
+      {
+        "name": "serde",
+        "version": "1.0.229"
+      },
+      {
+        "name": "serde_core",
+        "version": "1.0.229"
+      },
+      {
+        "name": "serde_derive",
+        "version": "1.0.229"
+      },
+      {
+        "name": "serde_json",
+        "version": "1.0.154"
+      },
+      {
+        "name": "simd-adler32",
+        "version": "0.3.10"
+      },
+      {
+        "name": "smallvec",
+        "version": "1.16.4"
+      },
+      {
+        "name": "smol_str",
+        "version": "0.2.2"
+      },
+      {
+        "name": "stable_deref_trait",
+        "version": "1.2.1"
+      },
+      {
+        "name": "static_assertions",
+        "version": "1.1.0"
+      },
+      {
+        "name": "syn",
+        "version": "2.0.119"
+      },
+      {
+        "name": "syn",
+        "version": "3.0.9"
+      },
+      {
+        "name": "synstructure",
+        "version": "0.14.0"
+      },
+      {
+        "name": "thiserror",
+        "version": "1.0.69"
+      },
+      {
+        "name": "thiserror",
+        "version": "2.0.21"
+      },
+      {
+        "name": "thiserror-impl",
+        "version": "1.0.69"
+      },
+      {
+        "name": "thiserror-impl",
+        "version": "2.0.21"
+      },
+      {
+        "name": "tinystr",
+        "version": "0.8.5"
+      },
+      {
+        "name": "tracing",
+        "version": "0.1.44"
+      },
+      {
+        "name": "tracing-core",
+        "version": "0.1.36"
+      },
+      {
+        "name": "ttf-parser",
+        "version": "0.25.1"
+      },
+      {
+        "name": "type-map",
+        "version": "0.5.1"
+      },
+      {
+        "name": "unicode-ident",
+        "version": "1.0.27"
+      },
+      {
+        "name": "unicode-segmentation",
+        "version": "1.13.3"
+      },
+      {
+        "name": "unicode-width",
+        "version": "0.2.2"
+      },
+      {
+        "name": "url",
+        "version": "2.5.8"
+      },
+      {
+        "name": "utf8_iter",
+        "version": "1.0.4"
+      },
+      {
+        "name": "uuid",
+        "version": "1.29.0"
+      },
+      {
+        "name": "version_check",
+        "version": "0.9.5"
+      },
+      {
+        "name": "web-time",
+        "version": "1.1.0"
+      },
+      {
+        "name": "webbrowser",
+        "version": "1.2.5"
+      },
+      {
+        "name": "wgpu",
+        "version": "27.0.1"
+      },
+      {
+        "name": "wgpu-core",
+        "version": "27.0.3"
+      },
+      {
+        "name": "wgpu-core-deps-windows-linux-android",
+        "version": "27.0.0"
+      },
+      {
+        "name": "wgpu-hal",
+        "version": "27.0.4"
+      },
+      {
+        "name": "wgpu-types",
+        "version": "27.0.1"
+      },
+      {
+        "name": "windows",
+        "version": "0.58.0"
+      },
+      {
+        "name": "windows",
+        "version": "0.61.3"
+      },
+      {
+        "name": "windows",
+        "version": "0.62.2"
+      },
+      {
+        "name": "windows-collections",
+        "version": "0.2.0"
+      },
+      {
+        "name": "windows-collections",
+        "version": "0.3.2"
+      },
+      {
+        "name": "windows-core",
+        "version": "0.58.0"
+      },
+      {
+        "name": "windows-core",
+        "version": "0.61.2"
+      },
+      {
+        "name": "windows-core",
+        "version": "0.62.2"
+      },
+      {
+        "name": "windows-future",
+        "version": "0.2.1"
+      },
+      {
+        "name": "windows-future",
+        "version": "0.3.2"
+      },
+      {
+        "name": "windows-implement",
+        "version": "0.58.0"
+      },
+      {
+        "name": "windows-implement",
+        "version": "0.60.2"
+      },
+      {
+        "name": "windows-interface",
+        "version": "0.58.0"
+      },
+      {
+        "name": "windows-interface",
+        "version": "0.59.3"
+      },
+      {
+        "name": "windows-link",
+        "version": "0.1.3"
+      },
+      {
+        "name": "windows-link",
+        "version": "0.2.1"
+      },
+      {
+        "name": "windows-numerics",
+        "version": "0.2.0"
+      },
+      {
+        "name": "windows-numerics",
+        "version": "0.3.1"
+      },
+      {
+        "name": "windows-result",
+        "version": "0.2.0"
+      },
+      {
+        "name": "windows-result",
+        "version": "0.3.4"
+      },
+      {
+        "name": "windows-result",
+        "version": "0.4.1"
+      },
+      {
+        "name": "windows-strings",
+        "version": "0.1.0"
+      },
+      {
+        "name": "windows-strings",
+        "version": "0.4.2"
+      },
+      {
+        "name": "windows-strings",
+        "version": "0.5.1"
+      },
+      {
+        "name": "windows-sys",
+        "version": "0.52.0"
+      },
+      {
+        "name": "windows-sys",
+        "version": "0.61.2"
+      },
+      {
+        "name": "windows-targets",
+        "version": "0.52.6"
+      },
+      {
+        "name": "windows-threading",
+        "version": "0.1.0"
+      },
+      {
+        "name": "windows-threading",
+        "version": "0.2.1"
+      },
+      {
+        "name": "windows_x86_64_msvc",
+        "version": "0.52.6"
+      },
+      {
+        "name": "winit",
+        "version": "0.30.13"
+      },
+      {
+        "name": "writeable",
+        "version": "0.6.4"
+      },
+      {
+        "name": "yoke",
+        "version": "0.8.4"
+      },
+      {
+        "name": "yoke-derive",
+        "version": "0.8.4"
+      },
+      {
+        "name": "zerocopy",
+        "version": "0.8.63"
+      },
+      {
+        "name": "zerocopy-derive",
+        "version": "0.8.63"
+      },
+      {
+        "name": "zerofrom",
+        "version": "0.1.8"
+      },
+      {
+        "name": "zerofrom-derive",
+        "version": "0.1.8"
+      },
+      {
+        "name": "zerotrie",
+        "version": "0.2.5"
+      },
+      {
+        "name": "zerovec",
+        "version": "0.11.9"
+      },
+      {
+        "name": "zerovec-derive",
+        "version": "0.11.7"
+      },
+      {
+        "name": "zmij",
+        "version": "1.0.23"
+      }
+    ],
+    "new_count": 176,
+    "old_count": 176,
+    "removed": [],
+    "target": "x86_64-pc-windows-msvc"
+  },
+  {
+    "added": [],
+    "graph": "app-runtime",
+    "members": [
+      {
+        "name": "ab_glyph",
+        "version": "0.2.32"
+      },
+      {
+        "name": "ab_glyph_rasterizer",
+        "version": "0.1.10"
+      },
+      {
+        "name": "accesskit",
+        "version": "0.21.1"
+      },
+      {
+        "name": "accesskit_consumer",
+        "version": "0.31.0"
+      },
+      {
+        "name": "accesskit_windows",
+        "version": "0.29.2"
+      },
+      {
+        "name": "accesskit_winit",
+        "version": "0.29.2"
+      },
+      {
+        "name": "adler2",
+        "version": "2.0.1"
+      },
+      {
+        "name": "ahash",
+        "version": "0.8.12"
+      },
+      {
+        "name": "arboard",
+        "version": "3.7.0"
+      },
+      {
+        "name": "arrayvec",
+        "version": "0.7.8"
+      },
+      {
+        "name": "bit-set",
+        "version": "0.8.0"
+      },
+      {
+        "name": "bit-vec",
+        "version": "0.8.0"
+      },
+      {
+        "name": "bitflags",
+        "version": "2.13.2"
+      },
+      {
+        "name": "bytemuck",
+        "version": "1.25.2"
+      },
+      {
+        "name": "byteorder-lite",
+        "version": "0.1.0"
+      },
+      {
+        "name": "cfg-if",
+        "version": "1.0.5"
+      },
+      {
+        "name": "clipboard-win",
+        "version": "5.4.3"
+      },
+      {
+        "name": "codespan-reporting",
+        "version": "0.12.0"
+      },
+      {
+        "name": "cpal",
+        "version": "0.18.2"
+      },
+      {
+        "name": "crc32fast",
+        "version": "1.5.3"
+      },
+      {
+        "name": "cursor-icon",
+        "version": "1.2.0"
+      },
+      {
+        "name": "dasp_sample",
+        "version": "0.11.0"
+      },
+      {
+        "name": "dpi",
+        "version": "0.1.2"
+      },
+      {
+        "name": "ecolor",
+        "version": "0.33.3"
+      },
+      {
+        "name": "eframe",
+        "version": "0.33.3"
+      },
+      {
+        "name": "egui",
+        "version": "0.33.3"
+      },
+      {
+        "name": "egui-wgpu",
+        "version": "0.33.3"
+      },
+      {
+        "name": "egui-winit",
+        "version": "0.33.3"
+      },
+      {
+        "name": "emath",
+        "version": "0.33.3"
+      },
+      {
+        "name": "epaint",
+        "version": "0.33.3"
+      },
+      {
+        "name": "epaint_default_fonts",
+        "version": "0.33.3"
+      },
+      {
+        "name": "equivalent",
+        "version": "1.0.3"
+      },
+      {
+        "name": "error-code",
+        "version": "3.4.0"
+      },
+      {
+        "name": "fdeflate",
+        "version": "0.3.7"
+      },
+      {
+        "name": "flate2",
+        "version": "1.1.10"
+      },
+      {
+        "name": "foldhash",
+        "version": "0.1.5"
+      },
+      {
+        "name": "foldhash",
+        "version": "0.2.0"
+      },
+      {
+        "name": "form_urlencoded",
+        "version": "1.2.2"
+      },
+      {
+        "name": "getrandom",
+        "version": "0.4.3"
+      },
+      {
+        "name": "gpu-allocator",
+        "version": "0.27.0"
+      },
+      {
+        "name": "half",
+        "version": "2.7.1"
+      },
+      {
+        "name": "hashbrown",
+        "version": "0.15.5"
+      },
+      {
+        "name": "hashbrown",
+        "version": "0.16.1"
+      },
+      {
+        "name": "hashbrown",
+        "version": "0.17.1"
+      },
+      {
+        "name": "hexf-parse",
+        "version": "0.2.1"
+      },
+      {
+        "name": "icu_collections",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_locale_core",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_normalizer",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_normalizer_data",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_properties",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_properties_data",
+        "version": "2.4.0"
+      },
+      {
+        "name": "icu_provider",
+        "version": "2.4.0"
+      },
+      {
+        "name": "idna",
+        "version": "1.1.0"
+      },
+      {
+        "name": "idna_adapter",
+        "version": "1.2.2"
+      },
+      {
+        "name": "image",
+        "version": "0.25.10"
+      },
+      {
+        "name": "indexmap",
+        "version": "2.14.2"
+      },
+      {
+        "name": "itoa",
+        "version": "1.0.18"
+      },
+      {
+        "name": "libloading",
+        "version": "0.8.9"
+      },
+      {
+        "name": "libm",
+        "version": "0.2.16"
+      },
+      {
+        "name": "litemap",
+        "version": "0.8.3"
+      },
+      {
+        "name": "lock_api",
+        "version": "0.4.14"
+      },
+      {
+        "name": "log",
+        "version": "0.4.34"
+      },
+      {
+        "name": "memchr",
+        "version": "2.8.3"
+      },
+      {
+        "name": "miniz_oxide",
+        "version": "0.8.9"
+      },
+      {
+        "name": "miniz_oxide",
+        "version": "0.9.1"
+      },
+      {
+        "name": "moxcms",
+        "version": "0.8.1"
+      },
+      {
+        "name": "naga",
+        "version": "27.0.3"
+      },
+      {
+        "name": "nohash-hasher",
+        "version": "0.2.0"
+      },
+      {
+        "name": "num-traits",
+        "version": "0.2.19"
+      },
+      {
+        "name": "once_cell",
+        "version": "1.21.4"
+      },
+      {
+        "name": "ordered-float",
+        "version": "5.5.0"
+      },
+      {
+        "name": "owned_ttf_parser",
+        "version": "0.25.1"
+      },
+      {
+        "name": "parking_lot",
+        "version": "0.12.5"
+      },
+      {
+        "name": "parking_lot_core",
+        "version": "0.9.12"
+      },
+      {
+        "name": "percent-encoding",
+        "version": "2.3.2"
+      },
+      {
+        "name": "pin-project-lite",
+        "version": "0.2.17"
+      },
+      {
+        "name": "png",
+        "version": "0.18.1"
+      },
+      {
+        "name": "pollster",
+        "version": "0.4.0"
+      },
+      {
+        "name": "potential_utf",
+        "version": "0.1.6"
+      },
+      {
+        "name": "presser",
+        "version": "0.3.1"
+      },
+      {
+        "name": "profiling",
+        "version": "1.0.18"
+      },
+      {
+        "name": "pxfm",
+        "version": "0.1.30"
+      },
+      {
+        "name": "range-alloc",
+        "version": "0.1.5"
+      },
+      {
+        "name": "ravelink-app",
+        "version": "0.1.0"
+      },
+      {
+        "name": "ravelink-audio",
+        "version": "0.1.0"
+      },
+      {
+        "name": "ravelink-core",
+        "version": "0.1.0"
+      },
+      {
+        "name": "raw-window-handle",
+        "version": "0.6.2"
+      },
+      {
+        "name": "renderdoc-sys",
+        "version": "1.1.0"
+      },
+      {
+        "name": "rustc-hash",
+        "version": "1.1.0"
+      },
+      {
+        "name": "rustc-hash",
+        "version": "2.1.3"
+      },
+      {
+        "name": "scopeguard",
+        "version": "1.2.0"
+      },
+      {
+        "name": "serde",
+        "version": "1.0.229"
+      },
+      {
+        "name": "serde_core",
+        "version": "1.0.229"
+      },
+      {
+        "name": "serde_json",
+        "version": "1.0.154"
+      },
+      {
+        "name": "simd-adler32",
+        "version": "0.3.10"
+      },
+      {
+        "name": "smallvec",
+        "version": "1.16.4"
+      },
+      {
+        "name": "smol_str",
+        "version": "0.2.2"
+      },
+      {
+        "name": "stable_deref_trait",
+        "version": "1.2.1"
+      },
+      {
+        "name": "static_assertions",
+        "version": "1.1.0"
+      },
+      {
+        "name": "thiserror",
+        "version": "1.0.69"
+      },
+      {
+        "name": "thiserror",
+        "version": "2.0.21"
+      },
+      {
+        "name": "tinystr",
+        "version": "0.8.5"
+      },
+      {
+        "name": "tracing",
+        "version": "0.1.44"
+      },
+      {
+        "name": "tracing-core",
+        "version": "0.1.36"
+      },
+      {
+        "name": "ttf-parser",
+        "version": "0.25.1"
+      },
+      {
+        "name": "type-map",
+        "version": "0.5.1"
+      },
+      {
+        "name": "unicode-ident",
+        "version": "1.0.27"
+      },
+      {
+        "name": "unicode-segmentation",
+        "version": "1.13.3"
+      },
+      {
+        "name": "unicode-width",
+        "version": "0.2.2"
+      },
+      {
+        "name": "url",
+        "version": "2.5.8"
+      },
+      {
+        "name": "utf8_iter",
+        "version": "1.0.4"
+      },
+      {
+        "name": "uuid",
+        "version": "1.29.0"
+      },
+      {
+        "name": "web-time",
+        "version": "1.1.0"
+      },
+      {
+        "name": "webbrowser",
+        "version": "1.2.5"
+      },
+      {
+        "name": "wgpu",
+        "version": "27.0.1"
+      },
+      {
+        "name": "wgpu-core",
+        "version": "27.0.3"
+      },
+      {
+        "name": "wgpu-core-deps-windows-linux-android",
+        "version": "27.0.0"
+      },
+      {
+        "name": "wgpu-hal",
+        "version": "27.0.4"
+      },
+      {
+        "name": "wgpu-types",
+        "version": "27.0.1"
+      },
+      {
+        "name": "windows",
+        "version": "0.58.0"
+      },
+      {
+        "name": "windows",
+        "version": "0.61.3"
+      },
+      {
+        "name": "windows",
+        "version": "0.62.2"
+      },
+      {
+        "name": "windows-collections",
+        "version": "0.2.0"
+      },
+      {
+        "name": "windows-collections",
+        "version": "0.3.2"
+      },
+      {
+        "name": "windows-core",
+        "version": "0.58.0"
+      },
+      {
+        "name": "windows-core",
+        "version": "0.61.2"
+      },
+      {
+        "name": "windows-core",
+        "version": "0.62.2"
+      },
+      {
+        "name": "windows-future",
+        "version": "0.2.1"
+      },
+      {
+        "name": "windows-future",
+        "version": "0.3.2"
+      },
+      {
+        "name": "windows-link",
+        "version": "0.1.3"
+      },
+      {
+        "name": "windows-link",
+        "version": "0.2.1"
+      },
+      {
+        "name": "windows-numerics",
+        "version": "0.2.0"
+      },
+      {
+        "name": "windows-numerics",
+        "version": "0.3.1"
+      },
+      {
+        "name": "windows-result",
+        "version": "0.2.0"
+      },
+      {
+        "name": "windows-result",
+        "version": "0.3.4"
+      },
+      {
+        "name": "windows-result",
+        "version": "0.4.1"
+      },
+      {
+        "name": "windows-strings",
+        "version": "0.1.0"
+      },
+      {
+        "name": "windows-strings",
+        "version": "0.4.2"
+      },
+      {
+        "name": "windows-strings",
+        "version": "0.5.1"
+      },
+      {
+        "name": "windows-sys",
+        "version": "0.52.0"
+      },
+      {
+        "name": "windows-sys",
+        "version": "0.61.2"
+      },
+      {
+        "name": "windows-targets",
+        "version": "0.52.6"
+      },
+      {
+        "name": "windows-threading",
+        "version": "0.1.0"
+      },
+      {
+        "name": "windows-threading",
+        "version": "0.2.1"
+      },
+      {
+        "name": "windows_x86_64_msvc",
+        "version": "0.52.6"
+      },
+      {
+        "name": "winit",
+        "version": "0.30.13"
+      },
+      {
+        "name": "writeable",
+        "version": "0.6.4"
+      },
+      {
+        "name": "yoke",
+        "version": "0.8.4"
+      },
+      {
+        "name": "zerocopy",
+        "version": "0.8.63"
+      },
+      {
+        "name": "zerofrom",
+        "version": "0.1.8"
+      },
+      {
+        "name": "zerotrie",
+        "version": "0.2.5"
+      },
+      {
+        "name": "zerovec",
+        "version": "0.11.9"
+      },
+      {
+        "name": "zmij",
+        "version": "1.0.23"
+      }
+    ],
+    "new_count": 153,
+    "old_count": 153,
+    "removed": [],
+    "target": "x86_64-pc-windows-msvc"
+  },
+  {
+    "added": [],
+    "graph": "hal-all",
+    "members": [
+      {
+        "name": "ravelink-hal",
+        "version": "0.1.0"
+      }
+    ],
+    "new_count": 1,
+    "old_count": 1,
+    "removed": [],
+    "target": "x86_64-pc-windows-msvc"
+  }
+]

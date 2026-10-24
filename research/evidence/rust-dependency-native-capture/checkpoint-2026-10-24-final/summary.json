@@ -1,0 +1,33 @@
+{
+  "all_package_identities_and_checksums_unchanged": true,
+  "graph_membership_unchanged": true,
+  "historical_observations_cover_current_selected_versions": true,
+  "limitations": [
+    "This is an offline package-membership comparison, not a new advisory or yank audit.",
+    "Historical records cover package versions at their original observations, not current security/yank status.",
+    "Feature sets, dependency edges, function reachability, generated output and binary behavior are not proven equivalent.",
+    "Rust std/core/compiler builtins, system SDKs/libraries and the separately locked dependency-free Windows kernel crate are outside this root-lock comparison."
+  ],
+  "lock_packages": {
+    "added": [],
+    "changed_checksums": [],
+    "changed_dependency_lists": [
+      [
+        "objc2-core-audio",
+        "0.3.2",
+        "registry+https://github.com/rust-lang/crates.io-index"
+      ],
+      [
+        "ravelink-audio",
+        "0.1.0",
+        "workspace"
+      ]
+    ],
+    "new_count": 394,
+    "old_count": 394,
+    "removed": []
+  },
+  "security_status_refreshed": false,
+  "selected_registry_versions": 216,
+  "uncovered_by_historical_yank_records": []
+}

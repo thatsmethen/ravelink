@@ -1,0 +1,202 @@
+[
+  {
+    "advisory": "RUSTSEC-2024-0436",
+    "candidate_targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "historical_targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "kind": "unmaintained",
+    "package": "paste",
+    "version": "1.0.15"
+  },
+  {
+    "advisory": "RUSTSEC-2026-0192",
+    "candidate_targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "historical_targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "kind": "unmaintained",
+    "package": "ttf-parser",
+    "version": "0.25.1"
+  },
+  {
+    "advisory": "RUSTSEC-2026-0371",
+    "candidate_targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "historical_targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "kind": "unmaintained",
+    "package": "zbus_names",
+    "version": "4.3.5"
+  },
+  {
+    "advisory": "RUSTSEC-2026-0370",
+    "candidate_targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "historical_targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "kind": "unmaintained",
+    "package": "zvariant",
+    "version": "5.15.1"
+  },
+  {
+    "advisory": "RUSTSEC-2026-0372",
+    "candidate_targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "historical_targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "kind": "unmaintained",
+    "package": "zvariant_derive",
+    "version": "5.15.1"
+  }
+]

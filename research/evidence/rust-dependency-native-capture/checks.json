@@ -1,0 +1,12 @@
+{
+  "verified_at_utc": "2026-10-24T00:34:08.392909+00:00",
+  "original_audit_unchanged": true,
+  "per_checkpoint_manifests_verified": true,
+  "independent_lock_identity_checksum_comparison": 394,
+  "security_status_refreshed": false,
+  "comparison_host": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "python": "3.12.4"
+  }
+}

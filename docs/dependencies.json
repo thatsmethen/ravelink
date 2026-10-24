@@ -2978,7 +2978,10 @@
         "aarch64-apple-darwin": [
           "AudioHardware",
           "AudioHardwareDeprecated",
+          "HostTime",
           "alloc",
+          "block2",
+          "dispatch2",
           "objc2",
           "objc2-core-audio-types",
           "objc2-foundation",
@@ -3052,6 +3055,7 @@
           "CFAttributedString",
           "CFAvailability",
           "CFBag",
+          "CFBase",
           "CFBinaryHeap",
           "CFBitVector",
           "CFBundle",

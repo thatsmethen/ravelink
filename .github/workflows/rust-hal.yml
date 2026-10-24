@@ -2,6 +2,7 @@ name: Original Rust HAL installed acceptance
 on:
   workflow_dispatch:
   push:
+    branches: [main]
     paths:
       - 'crates/ravelink-hal/**'
       - 'crates/ravelink-audio/**'
@@ -19,6 +20,8 @@ jobs:
   installed-hal:
     runs-on: macos-15
     timeout-minutes: 12
+    env:
+      RAVELINK_OBSERVER_DIAGNOSTICS: "1"
     steps:
       - uses: actions/checkout@v4
       - name: Install pinned Rust
@@ -28,13 +31,13 @@ jobs:
           mkdir -p build/rust-hal-system
           sh drivers/macos/build-bundle.sh > build/rust-hal-system/build-driver.log 2>&1
           xcrun clang -std=c11 -O2 -Wall -Wextra -Werror drivers/macos/tests/system-probe.c -framework CoreAudio -framework CoreFoundation -o build/rust-hal-system/system-probe
-          shasum -a 256 drivers/macos/tests/system-probe.c build/rust-hal-system/system-probe dist/macos/RaveLink.driver/Contents/MacOS/RaveLinkHAL > build/rust-hal-system/build-sha256.txt
+          shasum -a 256 drivers/macos/tests/system-probe.c drivers/macos/tests/probe-diagnostics.h drivers/macos/tests/analyze_diagnostics.py drivers/macos/tests/OBSERVER-DIAGNOSTICS.md drivers/macos/tests/run_system.py build/rust-hal-system/system-probe dist/macos/RaveLink.driver/Contents/MacOS/RaveLinkHAL > build/rust-hal-system/build-sha256.txt
           sw_vers > build/rust-hal-system/environment.txt
           uname -a >> build/rust-hal-system/environment.txt
           xcrun --show-sdk-version >> build/rust-hal-system/environment.txt
           rustc -vV >> build/rust-hal-system/environment.txt
       - name: Observer and analyzer controls without audio
-        run: python3 -m unittest discover -s drivers/macos/tests -p 'test_system.py' -v 2>&1 | tee build/rust-hal-system/observer-controls.txt
+        run: python3 -m unittest discover -s drivers/macos/tests -p 'test_*.py' -v 2>&1 | tee build/rust-hal-system/observer-controls.txt
       - name: Install, observe independent clients, verify silence after restart, remove
         run: python3 drivers/macos/tests/run_system.py run
       - name: Ensure owned driver cleanup
@@ -54,6 +57,8 @@ jobs:
   installed-runtime-capture:
     runs-on: macos-15
     timeout-minutes: 12
+    env:
+      RAVELINK_OBSERVER_DIAGNOSTICS: "1"
     steps:
       - uses: actions/checkout@v4
       - name: Install pinned Rust
@@ -64,7 +69,7 @@ jobs:
           sh drivers/macos/build-bundle.sh > build/rust-runtime-system/build-driver.log 2>&1
           cargo build -p ravelink-audio --release --example runtime-capture-probe --locked > build/rust-runtime-system/build-runtime.log 2>&1
           xcrun clang -std=c11 -O2 -Wall -Wextra -Werror drivers/macos/tests/system-probe.c -framework CoreAudio -framework CoreFoundation -o build/rust-runtime-system/system-probe
-          shasum -a 256 crates/ravelink-audio/examples/runtime-capture-probe.rs target/release/examples/runtime-capture-probe drivers/macos/tests/system-probe.c build/rust-runtime-system/system-probe dist/macos/RaveLink.driver/Contents/MacOS/RaveLinkHAL drivers/macos/tests/analyze_runtime.py drivers/macos/tests/RUNTIME-ACCEPTANCE.md > build/rust-runtime-system/build-sha256.txt
+          shasum -a 256 crates/ravelink-audio/examples/runtime-capture-probe.rs target/release/examples/runtime-capture-probe drivers/macos/tests/system-probe.c drivers/macos/tests/probe-diagnostics.h drivers/macos/tests/analyze_diagnostics.py drivers/macos/tests/OBSERVER-DIAGNOSTICS.md drivers/macos/tests/run_system.py drivers/macos/tests/run_runtime.py build/rust-runtime-system/system-probe dist/macos/RaveLink.driver/Contents/MacOS/RaveLinkHAL drivers/macos/tests/analyze_runtime.py drivers/macos/tests/RUNTIME-ACCEPTANCE.md > build/rust-runtime-system/build-sha256.txt
           sw_vers > build/rust-runtime-system/environment.txt
           uname -a >> build/rust-runtime-system/environment.txt
           xcrun --show-sdk-version >> build/rust-runtime-system/environment.txt
