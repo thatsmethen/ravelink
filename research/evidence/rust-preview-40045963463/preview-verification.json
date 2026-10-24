@@ -1,0 +1,147 @@
+{
+  "limitations": [
+    "Windows native resource comparison checks embedded bytes; it does not start the application or verify Explorer/taskbar rendering.",
+    "Local checks inspect archived bytes and metadata without starting either application or opening an audio device.",
+    "The desktop build is distinct from installed driver/runtime acceptance."
+  ],
+  "packages": [
+    {
+      "architecture": "x86_64 PE",
+      "bytes": 4175269,
+      "executable_sha256": "a18c0df1eb70b24b43f30e33c7fec3106a2f57649881005bc47c9e8c655af761",
+      "executable_started_locally": false,
+      "filename": "RaveLink-Windows-development.zip",
+      "files": [
+        {
+          "bytes": 398128,
+          "path": "Rust-runtime-notices/COPYRIGHT-library.html",
+          "sha256": "3aa41caccecaeddad6fcf2f36ce14146ab7baae57064b05b12ecc6b52d5e917f"
+        },
+        {
+          "bytes": 10280,
+          "path": "Rust-runtime-notices/LICENSE-APACHE.txt",
+          "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff"
+        },
+        {
+          "bytes": 1078,
+          "path": "Rust-runtime-notices/LICENSE-MIT.txt",
+          "sha256": "b85dcd3e453d05982552c52b5fc9e0bdd6d23c6f8e844b984a88af32570b0cc0"
+        },
+        {
+          "bytes": 1188,
+          "path": "Rust-runtime-notices/sources.json",
+          "sha256": "82bc318b768c18639a8a317fa72df9933f215678c9378c98ee60676e28a4b374"
+        },
+        {
+          "bytes": 2128,
+          "path": "icon-resource-verification.json",
+          "sha256": "435100738ed4d7c40e1f3a2b8bad1c836b210be04daaf77400f901936ce98347"
+        },
+        {
+          "bytes": 869,
+          "path": "LICENSE",
+          "sha256": "1f89782821056ada6963c2663c506c2cc206e9ddf4b1e16d52ae82611bf5c2db"
+        },
+        {
+          "bytes": 8618496,
+          "path": "ravelink-app.exe",
+          "sha256": "a18c0df1eb70b24b43f30e33c7fec3106a2f57649881005bc47c9e8c655af761"
+        },
+        {
+          "bytes": 2110267,
+          "path": "THIRD-PARTY-NOTICES.txt",
+          "sha256": "4de63d1f3d9f96d43cb6b83417010cc96d0ef1e880c00221ae5e0269d37c2218"
+        }
+      ],
+      "icon_resource_count": 8,
+      "native_icon_report_matches_packaged_executable_and_source": true,
+      "sha256": "80910265e67b7abaac5c5868f38864398a898bf7d858637b03f8b7e51e0cfc98",
+      "shell_rendering_verified": false,
+      "zip_crc_verified": true
+    },
+    {
+      "architecture": "arm64 Mach-O",
+      "bytes": 4222610,
+      "checked_in_icon_and_notices_match": true,
+      "executable_permission_preserved": true,
+      "executable_sha256": "7a4dd379d5efe4b67559eeeaa860e4673aea3630974fab927d86d74091cb3e65",
+      "executable_started_locally": false,
+      "filename": "RaveLink-macOS-development.zip",
+      "files": [
+        {
+          "bytes": 4072,
+          "path": "RaveLink Rust.app/Contents/_CodeSignature/CodeResources",
+          "sha256": "7d69d97a4fe7bf36f6cf05fa49825d4f730de4b57092b06f97e4b471ed56a12a"
+        },
+        {
+          "bytes": 9090656,
+          "path": "RaveLink Rust.app/Contents/MacOS/ravelink-app",
+          "sha256": "7a4dd379d5efe4b67559eeeaa860e4673aea3630974fab927d86d74091cb3e65"
+        },
+        {
+          "bytes": 1188,
+          "path": "RaveLink Rust.app/Contents/Resources/Rust-runtime-notices/sources.json",
+          "sha256": "82bc318b768c18639a8a317fa72df9933f215678c9378c98ee60676e28a4b374"
+        },
+        {
+          "bytes": 10280,
+          "path": "RaveLink Rust.app/Contents/Resources/Rust-runtime-notices/LICENSE-APACHE.txt",
+          "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff"
+        },
+        {
+          "bytes": 1078,
+          "path": "RaveLink Rust.app/Contents/Resources/Rust-runtime-notices/LICENSE-MIT.txt",
+          "sha256": "b85dcd3e453d05982552c52b5fc9e0bdd6d23c6f8e844b984a88af32570b0cc0"
+        },
+        {
+          "bytes": 398128,
+          "path": "RaveLink Rust.app/Contents/Resources/Rust-runtime-notices/COPYRIGHT-library.html",
+          "sha256": "3aa41caccecaeddad6fcf2f36ce14146ab7baae57064b05b12ecc6b52d5e917f"
+        },
+        {
+          "bytes": 869,
+          "path": "RaveLink Rust.app/Contents/Resources/RaveLink-LICENSE.txt",
+          "sha256": "1f89782821056ada6963c2663c506c2cc206e9ddf4b1e16d52ae82611bf5c2db"
+        },
+        {
+          "bytes": 79329,
+          "path": "RaveLink Rust.app/Contents/Resources/RaveLink.icns",
+          "sha256": "8139a60320ac879f2dd36dfccce5672d86000740ee3ddba9b31ca2c3f0389ec9"
+        },
+        {
+          "bytes": 2110267,
+          "path": "RaveLink Rust.app/Contents/Resources/THIRD-PARTY-NOTICES.txt",
+          "sha256": "4de63d1f3d9f96d43cb6b83417010cc96d0ef1e880c00221ae5e0269d37c2218"
+        },
+        {
+          "bytes": 1046,
+          "path": "RaveLink Rust.app/Contents/Info.plist",
+          "sha256": "c0e3139693fc567210706efe5ee60800a0993325224ffbc33488098ba305c2bc"
+        }
+      ],
+      "plist": {
+        "CFBundleDevelopmentRegion": "en",
+        "CFBundleDisplayName": "RaveLink Rust",
+        "CFBundleExecutable": "ravelink-app",
+        "CFBundleIconFile": "RaveLink.icns",
+        "CFBundleIdentifier": "au.textual.ravelink.rust",
+        "CFBundleInfoDictionaryVersion": "6.0",
+        "CFBundleName": "RaveLink Rust",
+        "CFBundlePackageType": "APPL",
+        "CFBundleShortVersionString": "0.1.0",
+        "CFBundleVersion": "1",
+        "LSMinimumSystemVersion": "13.0",
+        "NSHighResolutionCapable": true,
+        "NSMicrophoneUsageDescription": "RaveLink captures the input devices you select to create your audio mixes.",
+        "NSSupportsAutomaticGraphicsSwitching": true
+      },
+      "sha256": "426d7f1dd159c0c4e300dfceed9bb2bb3bd683d710c9828f913e9a8e9f6f83c7",
+      "zip_crc_verified": true
+    }
+  ],
+  "run_id": 40045963463,
+  "run_url": "https://github.com/thatsmethen/ravelink/actions/runs/40045963463",
+  "schema": 1,
+  "source_revision": "03ff13a4f3b38fd4568ffdf96d893f7c05564f17",
+  "verified_at_utc": "2026-10-24T00:48:51.329750+00:00"
+}

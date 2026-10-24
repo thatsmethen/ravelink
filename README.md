@@ -8,7 +8,7 @@ The [current requirements and acceptance gates](research/RUST-MIGRATION.md) supe
 
 ## Preview
 
-The [release page](https://github.com/thatsmethen/ravelink/releases) contains development checkpoints and separately labelled test evidence. Production qualification remains incomplete.
+The [development preview](https://github.com/thatsmethen/ravelink/releases/tag/v0.1.0-preview.20261024) includes macOS Apple silicon and Windows x64 application ZIPs, screenshots and the original icon. [Package checks and download verification](research/evidence/rust-preview-40045963463/README.md) passed; production qualification remains incomplete. Installed-audio evidence is labelled separately.
 
 ![RaveLink running on macOS with four test-tone sources and three mixes](docs/screenshots/mixer-macos.png)
 

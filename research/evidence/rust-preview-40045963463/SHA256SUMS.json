@@ -1,0 +1,11 @@
+{
+  "README.md": "7e741cf7ff48d2d72c8f27094ad06b11d8484fe1282aad968a34c26f772d5db6",
+  "SHA256SUMS.txt": "0c6ad9489908d47955b21d3635e8a6a570c9bf06c00ddc70e978553ef3feb219",
+  "artifacts.json": "b6f1f2af97dd84d8c5912bb3a27a89fc43f75ebeea9d88eed31929bb4d239848",
+  "jobs.json": "44df76232b8e14b9f401578bd06d925e4c24d9500766e64b59ea0e8e0b5b5cb9",
+  "preview-verification.json": "7b2165a0c861aa717c08f2303c8b1a570a84228c04a58cdf17a550571c0893f6",
+  "publication-verification.json": "d2a48bc61575d75b5d84b7822700b3c4383e2e95552e15af683c21ac39a1f071",
+  "publication.json": "ba3287043370f440cf8af4952bb5e5f36bdef3cd6713b45e0cb607c5ba914554",
+  "run.json": "5d35f6edf0dad551429f4687593265415be942163bd173c0f1c3ff6139086e8e",
+  "windows-icon-resource-verification.json": "435100738ed4d7c40e1f3a2b8bad1c836b210be04daaf77400f901936ce98347"
+}

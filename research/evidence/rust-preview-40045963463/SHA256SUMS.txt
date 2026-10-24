@@ -1,0 +1,2 @@
+426d7f1dd159c0c4e300dfceed9bb2bb3bd683d710c9828f913e9a8e9f6f83c7  RaveLink-macOS-development.zip
+80910265e67b7abaac5c5868f38864398a898bf7d858637b03f8b7e51e0cfc98  RaveLink-Windows-development.zip

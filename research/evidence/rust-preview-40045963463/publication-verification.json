@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "source_commit": "03ff13a4f3b38fd4568ffdf96d893f7c05564f17",
+  "release_url": "https://github.com/thatsmethen/ravelink/releases/tag/v0.1.0-preview.20261024",
+  "release_redownload_verified": true,
+  "release_archive_hashes": {
+    "RaveLink-macOS-development.zip": "426d7f1dd159c0c4e300dfceed9bb2bb3bd683d710c9828f913e9a8e9f6f83c7",
+    "RaveLink-Windows-development.zip": "80910265e67b7abaac5c5868f38864398a898bf7d858637b03f8b7e51e0cfc98"
+  },
+  "public_screenshots_byte_exact": true,
+  "macos_finder_original_icon_rendering_observed": true,
+  "finder_observation_scope": "Local debug UI candidate; original mark shown in small icon, titlebar icon and large Preview. Not a native launch of the CI package.",
+  "finder_observation_local_capture_sha256": "05d2970b3afbfcddeb93b31f56d20185aed55ee5eaae2ff4d5bf5f67c1bd9e23",
+  "windows_native_resource_check": "7 RT_ICON and 1 RT_GROUP_ICON match source exactly; no Explorer/taskbar rendering observation",
+  "original_user_studio_restored": true
+}
