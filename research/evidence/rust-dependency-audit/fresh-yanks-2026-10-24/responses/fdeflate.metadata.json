@@ -1,0 +1,24 @@
+{
+  "body_bytes": 7571,
+  "body_complete": true,
+  "body_file": "responses/fdeflate.jsonl.gz",
+  "body_sha256": "db72e15338fe09dbb96da7072e4aa13e7f0b7942cf55e78c83296b6cbc2600b1",
+  "ended_at_utc": "2026-10-24T00:02:30.842404+00:00",
+  "headers": {
+    "age": "117",
+    "cache-control": "public,max-age=600",
+    "content-length": "7571",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:30 GMT",
+    "etag": "\"e00f11bc88f9e96a8f00e8d3bf68c00a\"",
+    "last-modified": "Sun, 01 Feb 2026 11:49:11 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "fdeflate",
+  "started_at_utc": "2026-10-24T00:02:24.875523+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/fd/ef/fdeflate"
+}

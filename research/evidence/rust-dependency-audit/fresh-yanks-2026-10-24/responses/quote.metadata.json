@@ -1,0 +1,24 @@
+{
+  "body_bytes": 42026,
+  "body_complete": true,
+  "body_file": "responses/quote.jsonl.gz",
+  "body_sha256": "4359f39471050245ed6788ac1d3ee77f398405fb410433a755435f5ec1adb745",
+  "ended_at_utc": "2026-10-24T00:03:45.304355+00:00",
+  "headers": {
+    "age": "361",
+    "cache-control": "public,max-age=600",
+    "content-length": "42026",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:45 GMT",
+    "etag": "\"7296b7c948e281168b0eae7465fe3918\"",
+    "last-modified": "Sun, 19 Jul 2026 00:16:58 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "3"
+  },
+  "http_status": 200,
+  "name": "quote",
+  "started_at_utc": "2026-10-24T00:03:41.037172+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/qu/ot/quote"
+}

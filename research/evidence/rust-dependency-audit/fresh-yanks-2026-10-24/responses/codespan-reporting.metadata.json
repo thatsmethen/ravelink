@@ -1,0 +1,24 @@
+{
+  "body_bytes": 30107,
+  "body_complete": true,
+  "body_file": "responses/codespan-reporting.jsonl.gz",
+  "body_sha256": "22dbe1efef25d94c42d8a70c464dca4dd4a95ed7f683b3520d5e3b04f520ba13",
+  "ended_at_utc": "2026-10-24T00:01:55.105408+00:00",
+  "headers": {
+    "age": "362",
+    "cache-control": "public,max-age=600",
+    "content-length": "30107",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:01:55 GMT",
+    "etag": "\"176290d7220503decacf6e539dd6fcbf\"",
+    "last-modified": "Sun, 01 Feb 2026 11:35:15 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "codespan-reporting",
+  "started_at_utc": "2026-10-24T00:01:54.775632+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/co/de/codespan-reporting"
+}

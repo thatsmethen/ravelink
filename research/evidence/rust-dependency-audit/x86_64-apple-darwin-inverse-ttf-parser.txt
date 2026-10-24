@@ -1,0 +1,12 @@
+ttf-parser v0.25.1
+`-- owned_ttf_parser v0.25.1
+    `-- ab_glyph v0.2.32
+        `-- epaint v0.33.3
+            |-- egui v0.33.3
+            |   |-- eframe v0.33.3
+            |   |   `-- ravelink-app v0.1.0 (/Users/textual/projects/notify/ravelink/crates/ravelink-app)
+            |   |-- egui-wgpu v0.33.3
+            |   |   `-- eframe v0.33.3 (*)
+            |   `-- egui-winit v0.33.3
+            |       `-- eframe v0.33.3 (*)
+            `-- egui-wgpu v0.33.3 (*)

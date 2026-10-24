@@ -1,0 +1,24 @@
+{
+  "body_bytes": 72832,
+  "body_complete": true,
+  "body_file": "responses/profiling.jsonl.gz",
+  "body_sha256": "8b383e14ccf2775f54df8d3e9c6e731552032d3e4d777dc1f71d5487296f72ad",
+  "ended_at_utc": "2026-10-24T00:03:42.132281+00:00",
+  "headers": {
+    "age": "134",
+    "cache-control": "public,max-age=600",
+    "content-length": "72832",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:42 GMT",
+    "etag": "\"76ddd7c17091e8bce2aae6d119c30e6a\"",
+    "last-modified": "Mon, 04 May 2026 03:33:17 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "profiling",
+  "started_at_utc": "2026-10-24T00:03:37.927629+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/pr/of/profiling"
+}

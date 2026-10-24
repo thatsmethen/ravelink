@@ -1,0 +1,13 @@
+paste v1.0.15 (proc-macro)
+`-- metal v0.32.0
+    `-- wgpu-hal v27.0.4
+        |-- wgpu v27.0.1
+        |   |-- eframe v0.33.3
+        |   |   `-- ravelink-app v0.1.0 (/Users/textual/projects/notify/ravelink/crates/ravelink-app)
+        |   |-- egui-wgpu v0.33.3
+        |   |   `-- eframe v0.33.3 (*)
+        |   `-- ravelink-app v0.1.0 (/Users/textual/projects/notify/ravelink/crates/ravelink-app)
+        |-- wgpu-core v27.0.3
+        |   `-- wgpu v27.0.1 (*)
+        `-- wgpu-core-deps-apple v27.0.0
+            `-- wgpu-core v27.0.3 (*)

@@ -1,0 +1,24 @@
+{
+  "body_bytes": 2505,
+  "body_complete": true,
+  "body_file": "responses/foreign-types.jsonl.gz",
+  "body_sha256": "90eca43741e82a114751ac67fa1d96fbe7f012aab7fe20a118f275b9a9cd0e23",
+  "ended_at_utc": "2026-10-24T00:02:32.010253+00:00",
+  "headers": {
+    "age": "304",
+    "cache-control": "public,max-age=600",
+    "content-length": "2505",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:31 GMT",
+    "etag": "\"2a18bd5580c99d10ec0dc973b1df3281\"",
+    "last-modified": "Sun, 01 Feb 2026 11:52:05 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "foreign-types",
+  "started_at_utc": "2026-10-24T00:02:30.842998+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/fo/re/foreign-types"
+}

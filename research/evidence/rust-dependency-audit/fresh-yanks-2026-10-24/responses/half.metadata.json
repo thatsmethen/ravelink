@@ -1,0 +1,24 @@
+{
+  "body_bytes": 38004,
+  "body_complete": true,
+  "body_file": "responses/half.jsonl.gz",
+  "body_sha256": "b4c64b31eab4b68c7205a33ab93d7691934454c865528776ea1858b6453eaf7a",
+  "ended_at_utc": "2026-10-24T00:02:42.623661+00:00",
+  "headers": {
+    "age": "129",
+    "cache-control": "public,max-age=600",
+    "content-length": "38004",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:41 GMT",
+    "etag": "\"8a6e71e30334a0de8f116315ef8bd884\"",
+    "last-modified": "Sun, 01 Feb 2026 11:59:28 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "half",
+  "started_at_utc": "2026-10-24T00:02:37.318048+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ha/lf/half"
+}

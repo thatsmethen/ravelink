@@ -1,0 +1,10 @@
+{
+  "asset": {
+    "filename": "cargo-audit-aarch64-apple-darwin-v0.22.2.tgz",
+    "sha256": "ec7ca4263769593df4d909be85b94a6b79efa2897be5d2bb8ebd516e823175af",
+    "url": "https://github.com/rustsec/rustsec/releases/download/cargo-audit/v0.22.2/cargo-audit-aarch64-apple-darwin-v0.22.2.tgz"
+  },
+  "binary_sha256": "33fbe81adca1b794f4ffe98574d59b0ebe6fcfdb310976fafed98a094c795111",
+  "target": "aarch64-apple-darwin",
+  "version_output": "cargo-audit 0.22.2"
+}

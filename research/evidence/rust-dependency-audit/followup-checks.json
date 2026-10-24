@@ -1,0 +1,7 @@
+{
+  "original_script_reconstructed_by_reverting_only_utf8_change_and_matches_original_recorded_sha256": "7bd85c4bddeb1869dc60997842446dee607c71c1a003970b1e909bc3ac7ff2e3",
+  "utf8_replay_json_equals_original": true,
+  "frozen_original_files_unchanged_before_report_update": true,
+  "offline_test_count": 12,
+  "offline_test_exit_code": 0
+}

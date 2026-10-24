@@ -1,0 +1,24 @@
+{
+  "body_bytes": 73586,
+  "body_complete": true,
+  "body_file": "responses/tracing.jsonl.gz",
+  "body_sha256": "cc3729d2157b49521b392d44449c33dbda73d4481335d95beb43187652f93302",
+  "ended_at_utc": "2026-10-24T00:04:09.695183+00:00",
+  "headers": {
+    "age": "529",
+    "cache-control": "public,max-age=600",
+    "content-length": "73586",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:09 GMT",
+    "etag": "\"6345dba91b87a278f083c01e8898ef22\"",
+    "last-modified": "Sun, 01 Feb 2026 13:07:57 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "5"
+  },
+  "http_status": 200,
+  "name": "tracing",
+  "started_at_utc": "2026-10-24T00:04:08.186269+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/tr/ac/tracing"
+}

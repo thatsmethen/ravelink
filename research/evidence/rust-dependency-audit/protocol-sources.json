@@ -1,0 +1,13 @@
+[
+  {
+    "url": "https://doc.rust-lang.org/cargo/reference/registry-index.html",
+    "retrieved_at_utc": "2026-10-24T00:02:09.811322+00:00",
+    "body_sha256": "9e458427827df353c5e4f311fe066731489d89aa4a87f09bc5e92794b6ad76fa",
+    "body_bytes": 44109,
+    "status": 200
+  },
+  {
+    "url": "https://raw.githubusercontent.com/rust-lang/cargo/rust-1.91.1/src/doc/src/reference/registry-index.md",
+    "unavailable": "HTTPError"
+  }
+]

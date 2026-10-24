@@ -1,0 +1,24 @@
+{
+  "body_bytes": 6791,
+  "body_complete": true,
+  "body_file": "responses/zerofrom-derive.jsonl.gz",
+  "body_sha256": "d199a522e99e98bac3033990aeab947a7c5dd82b12ea0026e8bf4d1016681f51",
+  "ended_at_utc": "2026-10-24T00:04:59.390788+00:00",
+  "headers": {
+    "age": "123",
+    "cache-control": "public,max-age=600",
+    "content-length": "6791",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:59 GMT",
+    "etag": "\"857522bb668f43f05145d5f348b07d8d\"",
+    "last-modified": "Tue, 15 Sep 2026 21:39:22 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "zerofrom-derive",
+  "started_at_utc": "2026-10-24T00:04:51.884039+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ze/ro/zerofrom-derive"
+}

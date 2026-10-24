@@ -1,0 +1,24 @@
+{
+  "body_bytes": 3204,
+  "body_complete": true,
+  "body_file": "responses/idna_adapter.jsonl.gz",
+  "body_sha256": "9e9a556126d59f040f216ec600c383aa5f2c6602a1f3a1eeb1f7dadcaf875e28",
+  "ended_at_utc": "2026-10-24T00:02:47.810208+00:00",
+  "headers": {
+    "age": "444",
+    "cache-control": "public,max-age=600",
+    "content-length": "3204",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:47 GMT",
+    "etag": "\"9988db25c4d480f2c4d561d852db8bce\"",
+    "last-modified": "Mon, 27 Apr 2026 17:45:56 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "2"
+  },
+  "http_status": 200,
+  "name": "idna_adapter",
+  "started_at_utc": "2026-10-24T00:02:47.624042+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/id/na/idna_adapter"
+}

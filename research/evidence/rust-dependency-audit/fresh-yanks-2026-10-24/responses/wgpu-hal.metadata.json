@@ -1,0 +1,24 @@
+{
+  "body_bytes": 568369,
+  "body_complete": true,
+  "body_file": "responses/wgpu-hal.jsonl.gz",
+  "body_sha256": "2d43ec799a8286b43f5828fef0c62fe5c273332bd51cba430fa4185e1220eae8",
+  "ended_at_utc": "2026-10-24T00:04:31.746319+00:00",
+  "headers": {
+    "age": "134",
+    "cache-control": "public,max-age=600",
+    "content-length": "568369",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:30 GMT",
+    "etag": "\"b5c373e29980870c86fdd2b434778876\"",
+    "last-modified": "Sat, 22 Aug 2026 02:53:32 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "wgpu-hal",
+  "started_at_utc": "2026-10-24T00:04:25.587208+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/wg/pu/wgpu-hal"
+}

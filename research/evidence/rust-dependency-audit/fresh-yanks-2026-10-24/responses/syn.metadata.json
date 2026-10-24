@@ -1,0 +1,24 @@
+{
+  "body_bytes": 657596,
+  "body_complete": true,
+  "body_file": "responses/syn.jsonl.gz",
+  "body_sha256": "bf3c3b2623e984ab1d93f0c88d35e2fb2d9e0579cd3eacecd992fcb29a487a51",
+  "ended_at_utc": "2026-10-24T00:04:08.354166+00:00",
+  "headers": {
+    "age": "380",
+    "cache-control": "public,max-age=600",
+    "content-length": "657596",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:04 GMT",
+    "etag": "\"3cbc980b5ba8cfe72334def1395cf491\"",
+    "last-modified": "Mon, 12 Oct 2026 15:04:11 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "syn",
+  "started_at_utc": "2026-10-24T00:04:04.172237+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/3/s/syn"
+}

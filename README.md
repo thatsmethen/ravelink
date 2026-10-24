@@ -6,6 +6,16 @@ A proprietary Rust audio mixer and routing application under development for **W
 
 The [current requirements and acceptance gates](research/RUST-MIGRATION.md) supersede the original prototype scope. Inputs and mix buses are dynamic; practical capacity is constrained by verified CPU, memory, devices and OS behavior, rather than a product-imposed channel count.
 
+## Preview
+
+The [release page](https://github.com/thatsmethen/ravelink/releases) contains development checkpoints and separately labelled test evidence. Production qualification remains incomplete.
+
+![RaveLink running on macOS with four test-tone sources and three mixes](docs/screenshots/mixer-macos.png)
+
+[Mix effects screenshot](docs/screenshots/mix-effects-macos.png) · [Original app icon](packaging/branding/ravelink.svg)
+
+These are actual macOS screenshots of a stopped development build with an explicit test-tone fixture. They do not demonstrate live hardware capture or Windows interaction. [Screenshot observations](research/evidence/rust-effects-editor/README.md) record the tested build and restoration of the original studio.
+
 ## Rust workspace
 
 - `ravelink-core`: validated sessions, routing, stereo mixing, meters and built-in DSP.
@@ -29,8 +39,8 @@ Desktop CI at `01a2222` built release artifacts and passed deterministic tests o
 
 At `6484db8`, the installed macOS HAL delivered two independently recorded stereo sine signals continuously, with bit-identical overlap between readers and silence after all clients restarted ([preserved PCM and measurements](research/evidence/rust-hal-installed-40039161891/)). The corresponding [Windows build evidence](research/evidence/rust-windows-native-40039161836/README.md) retains the original unsigned driver package. These checkpoints do not establish the full application's capture/mix/output path. Windows capture now uses an original event-driven WASAPI adapter with explicit silent-packet and packet-lifetime handling; native capture qualification remains pending.
 
-A [subsequent installed HAL observation](research/evidence/rust-hal-failed-40041055533/README.md) failed with 568 missing frames in one reader; another repeat passed. Both outcomes remain distinct, and the intermittent missed callback deadline is unresolved. The separate [installed runtime protocol](drivers/macos/tests/RUNTIME-ACCEPTANCE.md) measures capture, mixing, live controls and stop through two independent cables with fixed PCM criteria.
+A [subsequent installed HAL observation](research/evidence/rust-hal-failed-40041055533/README.md) failed with 568 missing frames in one reader; another repeat passed. Both outcomes remain distinct, and the intermittent missed callback deadline is unresolved. The [first complete installed runtime observation](research/evidence/rust-runtime-installed-40042679024/README.md) also failed timestamp continuity despite passing every mixer PCM phase and live-control check. The separate [installed runtime protocol](drivers/macos/tests/RUNTIME-ACCEPTANCE.md) measures capture, mixing, live controls and stop through two independent cables with fixed PCM criteria.
 
 New studios use `RaveLinkRust/session.json` in the user's application-data directory, separate from the archived prototype's studio. Permissively licensed dependencies retain their licenses. ASIO and GPL audio drivers are excluded from the shipping dependency graph.
 
-See [LICENSE](LICENSE) for the new first-party proprietary notice and [legacy/LICENSE](legacy/LICENSE) for archived-code terms. Private repository visibility does not change previously distributed licensing.
+See [LICENSE](LICENSE) for the new first-party proprietary notice and [legacy/LICENSE](legacy/LICENSE) for archived-code terms. Public repository visibility does not change the proprietary license or the archived code’s original terms.

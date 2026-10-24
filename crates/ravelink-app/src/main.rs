@@ -1,13 +1,11 @@
 #![cfg_attr(target_os = "windows", windows_subsystem = "windows")]
 mod audio_ui;
+mod effects;
 mod store;
 
 use audio_ui::{AudioUi, Request};
 use eframe::egui::{self, Color32, RichText, Vec2};
-use ravelink_core::{
-    Bus, ChannelControls, CompressorConfig, GateConfig, HighPassConfig, Input, InputKind, Send,
-    Session,
-};
+use ravelink_core::{Bus, ChannelControls, Input, InputKind, Send, Session};
 use std::{
     collections::HashMap,
     path::PathBuf,
@@ -26,7 +24,13 @@ fn main() -> eframe::Result {
     let options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
             .with_inner_size([1280.0, 820.0])
-            .with_min_inner_size([900.0, 600.0]),
+            .with_min_inner_size([900.0, 600.0])
+            .with_icon(
+                eframe::icon_data::from_png_bytes(include_bytes!(
+                    "../../../packaging/branding/ravelink-256.png"
+                ))
+                .expect("bundled RaveLink icon"),
+            ),
         ..Default::default()
     };
     eframe::run_native(
@@ -58,6 +62,7 @@ enum Edit {
     BusControls(Uuid, ChannelControls),
     Route(Uuid, Uuid, Option<ChannelControls>),
     InputDsp(Uuid, ravelink_core::DspConfig),
+    BusDsp(Uuid, ravelink_core::DspConfig),
     Tone(Uuid, f32, f32),
 }
 
@@ -219,6 +224,11 @@ impl Studio {
             Edit::InputDsp(id, dsp) => {
                 if let Some(i) = self.session.inputs.iter_mut().find(|i| i.id == id) {
                     i.dsp = dsp;
+                }
+            }
+            Edit::BusDsp(id, dsp) => {
+                if let Some(bus) = self.session.buses.iter_mut().find(|bus| bus.id == id) {
+                    bus.dsp = dsp;
                 }
             }
             Edit::Tone(id, frequency_hz, amplitude_db) => {
@@ -481,6 +491,23 @@ impl Studio {
                                 edits.push(Edit::BusControls(bus.id, controls));
                             }
                         });
+                        egui::CollapsingHeader::new("Mix effects")
+                            .id_salt(("mix-effects", bus.id))
+                            .show(ui, |ui| {
+                                if self.audio.running() {
+                                    ui.label("Stop audio to edit effects.");
+                                }
+                                ui.add_enabled_ui(
+                                    !self.audio.running() && !self.audio.busy,
+                                    |ui| {
+                                        let mut dsp = bus.dsp.clone();
+                                        effects::editor(ui, &mut dsp, self.session.sample_rate);
+                                        if dsp != bus.dsp {
+                                            edits.push(Edit::BusDsp(bus.id, dsp));
+                                        }
+                                    },
+                                );
+                            });
                         ui.add_enabled_ui(!self.audio.running() && !self.audio.busy, |ui| {
                             ui.add_space(8.0);
                             ui.label("Listening device");
@@ -556,38 +583,9 @@ impl Studio {
                             ui.separator();
                             ui.label(RichText::new("EFFECTS · ALL MIXES").size(11.0).color(MUTED));
                             let mut dsp = input.dsp.clone();
-                            let mut hp = dsp.high_pass.is_some();
-                            if ui.checkbox(&mut hp, "High-pass filter").changed() {
-                                dsp.high_pass = hp.then_some(HighPassConfig { cutoff_hz: 80.0 });
-                            }
-                            if let Some(p) = &mut dsp.high_pass {
-                                ui.add(
-                                    egui::Slider::new(&mut p.cutoff_hz, 20.0..=1000.0)
-                                        .logarithmic(true)
-                                        .text("Hz"),
-                                );
-                            }
-                            let mut gate = dsp.gate.is_some();
-                            if ui.checkbox(&mut gate, "Noise gate").changed() {
-                                dsp.gate = gate.then(GateConfig::default);
-                            }
-                            if let Some(p) = &mut dsp.gate {
-                                ui.add(
-                                    egui::Slider::new(&mut p.threshold_db, -90.0..=-6.0)
-                                        .text("dB threshold"),
-                                );
-                            }
-                            let mut compressor = dsp.compressor.is_some();
-                            if ui.checkbox(&mut compressor, "Compressor").changed() {
-                                dsp.compressor = compressor.then(CompressorConfig::default);
-                            }
-                            if let Some(p) = &mut dsp.compressor {
-                                ui.add(
-                                    egui::Slider::new(&mut p.threshold_db, -60.0..=0.0)
-                                        .text("dB threshold"),
-                                );
-                                ui.add(egui::Slider::new(&mut p.ratio, 1.0..=20.0).text("ratio"));
-                            }
+                            ui.push_id(("input-effects", input.id), |ui| {
+                                effects::editor(ui, &mut dsp, self.session.sample_rate);
+                            });
                             if dsp != input.dsp {
                                 edits.push(Edit::InputDsp(input.id, dsp));
                             }
@@ -863,11 +861,10 @@ impl eframe::App for Studio {
         if ctx.input_mut(|i| i.consume_key(egui::Modifiers::COMMAND, egui::Key::S)) {
             self.save();
         }
-        if !self.audio.running()
-            && !self.audio.busy
-            && ctx.input_mut(|i| i.consume_key(egui::Modifiers::COMMAND, egui::Key::Z))
-        {
-            self.history(false);
+        if !self.audio.running() && !self.audio.busy && !text_editor_focused(ctx) {
+            if let Some(redo) = history_shortcut(ctx) {
+                self.history(redo);
+            }
         }
         let mut edits = Vec::new();
         self.toolbar(ctx);
@@ -925,5 +922,85 @@ impl eframe::App for Studio {
     fn on_exit(&mut self) {
         self.save();
         self.audio.send(Request::Stop);
+    }
+}
+
+fn text_editor_focused(ctx: &egui::Context) -> bool {
+    ctx.memory(|memory| memory.focused())
+        .is_some_and(|id| egui::TextEdit::load_state(ctx, id).is_some())
+}
+
+fn history_shortcut(ctx: &egui::Context) -> Option<bool> {
+    ctx.input_mut(|input| {
+        // egui permits extra Shift modifiers in a less-specific match. Consume
+        // redo first so Command-Shift-Z cannot be mistaken for Command-Z.
+        let redo = egui::Modifiers {
+            shift: true,
+            ..egui::Modifiers::COMMAND
+        };
+        if input.consume_key(redo, egui::Key::Z)
+            || input.consume_key(egui::Modifiers::COMMAND, egui::Key::Y)
+        {
+            Some(true)
+        } else if input.consume_key(egui::Modifiers::COMMAND, egui::Key::Z) {
+            Some(false)
+        } else {
+            None
+        }
+    })
+}
+
+#[cfg(test)]
+mod shortcut_tests {
+    use super::*;
+
+    #[test]
+    fn only_text_focus_reserves_text_history_shortcuts() {
+        let context = egui::Context::default();
+        let mut value = String::from("Studio");
+        let _ = context.run(egui::RawInput::default(), |ctx| {
+            egui::CentralPanel::default().show(ctx, |ui| {
+                let button = ui.button("Save");
+                button.request_focus();
+                assert!(!text_editor_focused(ctx));
+                let editor = ui.text_edit_singleline(&mut value);
+                editor.request_focus();
+                assert!(text_editor_focused(ctx));
+                button.request_focus();
+                assert!(!text_editor_focused(ctx));
+            });
+        });
+    }
+
+    #[test]
+    fn redo_shortcuts_never_dispatch_undo_or_dispatch_twice() {
+        for (key, shift, expected) in [
+            (egui::Key::Z, true, true),
+            (egui::Key::Y, false, true),
+            (egui::Key::Z, false, false),
+        ] {
+            let modifiers = egui::Modifiers {
+                shift,
+                ..egui::Modifiers::COMMAND
+            };
+            let context = egui::Context::default();
+            let _ = context.run(
+                egui::RawInput {
+                    modifiers,
+                    events: vec![egui::Event::Key {
+                        key,
+                        physical_key: None,
+                        pressed: true,
+                        repeat: false,
+                        modifiers,
+                    }],
+                    ..Default::default()
+                },
+                |ctx| {
+                    assert_eq!(history_shortcut(ctx), Some(expected));
+                    assert_eq!(history_shortcut(ctx), None);
+                },
+            );
+        }
     }
 }

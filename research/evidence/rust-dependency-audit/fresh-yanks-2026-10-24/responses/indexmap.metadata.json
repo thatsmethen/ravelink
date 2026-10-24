@@ -1,0 +1,24 @@
+{
+  "body_bytes": 96299,
+  "body_complete": true,
+  "body_file": "responses/indexmap.jsonl.gz",
+  "body_sha256": "40c32ec5860cc3e23155cafc712892fe7b7ac3558b75115d8bb3d70b89247792",
+  "ended_at_utc": "2026-10-24T00:02:50.365221+00:00",
+  "headers": {
+    "age": "166",
+    "cache-control": "public,max-age=600",
+    "content-length": "96299",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:50 GMT",
+    "etag": "\"b05a0db0aa53103cca024eabdb841190\"",
+    "last-modified": "Sat, 05 Sep 2026 01:53:49 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "indexmap",
+  "started_at_utc": "2026-10-24T00:02:49.089340+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/in/de/indexmap"
+}

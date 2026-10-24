@@ -1,0 +1,24 @@
+{
+  "body_bytes": 11913,
+  "body_complete": true,
+  "body_file": "responses/weezl.jsonl.gz",
+  "body_sha256": "3c8365216f2ed327e0792447796327166758c580cc71647072fad7d58b3cfb6d",
+  "ended_at_utc": "2026-10-24T00:04:27.458132+00:00",
+  "headers": {
+    "age": "131",
+    "cache-control": "public,max-age=600",
+    "content-length": "11913",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:27 GMT",
+    "etag": "\"419d71cd330e9fe96faabf4206838699\"",
+    "last-modified": "Fri, 15 May 2026 22:35:11 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "weezl",
+  "started_at_utc": "2026-10-24T00:04:20.884508+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/we/ez/weezl"
+}

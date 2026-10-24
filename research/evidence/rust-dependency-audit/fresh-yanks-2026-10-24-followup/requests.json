@@ -1,0 +1,49 @@
+[
+  {
+    "body_bytes": 82389,
+    "body_complete": true,
+    "body_file": "responses/libc.jsonl.gz",
+    "body_sha256": "de437e8dbc298365b02d7ec43a8e8480094eecde6bd7d4ddbc52553d92ae571f",
+    "ended_at_utc": "2026-10-24T00:06:53.911251+00:00",
+    "headers": {
+      "age": "81",
+      "cache-control": "public,max-age=600",
+      "content-length": "82389",
+      "content-type": "text/plain",
+      "date": "Sat, 24 Oct 2026 00:06:53 GMT",
+      "etag": "\"3493734e19f35430b70d023b1c1ad969\"",
+      "last-modified": "Fri, 16 Oct 2026 22:56:47 GMT",
+      "via": "1.1 varnish",
+      "x-cache": "HIT",
+      "x-cache-hits": "1"
+    },
+    "http_status": 200,
+    "name": "libc",
+    "started_at_utc": "2026-10-24T00:06:52.884971+00:00",
+    "status": "observed",
+    "url": "https://index.crates.io/li/bc/libc"
+  },
+  {
+    "body_bytes": 76,
+    "body_complete": true,
+    "body_file": "responses/registry-config.jsonl.gz",
+    "body_sha256": "5b943a2c6f7eb743f7308aba07bdbb47d9ae44aafecd832d7f15df186afbafb3",
+    "ended_at_utc": "2026-10-24T00:06:52.883965+00:00",
+    "headers": {
+      "age": "1873",
+      "content-length": "76",
+      "content-type": "application/octet-stream",
+      "date": "Sat, 24 Oct 2026 00:06:52 GMT",
+      "etag": "\"652b69f181634dbf60fc8c3ec9f776e5\"",
+      "last-modified": "Tue, 12 Mar 2024 07:31:15 GMT",
+      "via": "1.1 varnish",
+      "x-cache": "HIT",
+      "x-cache-hits": "4"
+    },
+    "http_status": 200,
+    "name": "registry-config",
+    "started_at_utc": "2026-10-24T00:06:52.668926+00:00",
+    "status": "observed",
+    "url": "https://index.crates.io/config.json"
+  }
+]

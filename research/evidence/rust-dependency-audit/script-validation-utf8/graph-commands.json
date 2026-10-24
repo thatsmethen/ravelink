@@ -1,0 +1,173 @@
+[
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "aarch64-apple-darwin",
+      "--edges",
+      "normal,build",
+      "--prefix",
+      "none",
+      "--format",
+      "{p}"
+    ],
+    "stderr": "",
+    "stdout": "aarch64-apple-darwin-app-all.txt"
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "aarch64-apple-darwin",
+      "--edges",
+      "normal,no-proc-macro",
+      "--prefix",
+      "none",
+      "--format",
+      "{p}"
+    ],
+    "stderr": "",
+    "stdout": "aarch64-apple-darwin-app-runtime.txt"
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-hal",
+      "--target",
+      "aarch64-apple-darwin",
+      "--edges",
+      "normal,build",
+      "--prefix",
+      "none",
+      "--format",
+      "{p}"
+    ],
+    "stderr": "",
+    "stdout": "aarch64-apple-darwin-hal-all.txt"
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "x86_64-apple-darwin",
+      "--edges",
+      "normal,build",
+      "--prefix",
+      "none",
+      "--format",
+      "{p}"
+    ],
+    "stderr": "",
+    "stdout": "x86_64-apple-darwin-app-all.txt"
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "x86_64-apple-darwin",
+      "--edges",
+      "normal,no-proc-macro",
+      "--prefix",
+      "none",
+      "--format",
+      "{p}"
+    ],
+    "stderr": "",
+    "stdout": "x86_64-apple-darwin-app-runtime.txt"
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-hal",
+      "--target",
+      "x86_64-apple-darwin",
+      "--edges",
+      "normal,build",
+      "--prefix",
+      "none",
+      "--format",
+      "{p}"
+    ],
+    "stderr": "",
+    "stdout": "x86_64-apple-darwin-hal-all.txt"
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "x86_64-pc-windows-msvc",
+      "--edges",
+      "normal,build",
+      "--prefix",
+      "none",
+      "--format",
+      "{p}"
+    ],
+    "stderr": "",
+    "stdout": "x86_64-pc-windows-msvc-app-all.txt"
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "x86_64-pc-windows-msvc",
+      "--edges",
+      "normal,no-proc-macro",
+      "--prefix",
+      "none",
+      "--format",
+      "{p}"
+    ],
+    "stderr": "",
+    "stdout": "x86_64-pc-windows-msvc-app-runtime.txt"
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-hal",
+      "--target",
+      "x86_64-pc-windows-msvc",
+      "--edges",
+      "normal,build",
+      "--prefix",
+      "none",
+      "--format",
+      "{p}"
+    ],
+    "stderr": "",
+    "stdout": "x86_64-pc-windows-msvc-hal-all.txt"
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "body_bytes": 212005,
+  "body_complete": true,
+  "body_file": "responses/image.jsonl.gz",
+  "body_sha256": "417b8383ded498c1fe7940390a26f0e91ce5581350272eee9d9c232d772eb3fa",
+  "ended_at_utc": "2026-10-24T00:02:49.082963+00:00",
+  "headers": {
+    "age": "536",
+    "cache-control": "public,max-age=600",
+    "content-length": "212005",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:48 GMT",
+    "etag": "\"590d2eefb3ee167464f142a290e55784\"",
+    "last-modified": "Tue, 10 Mar 2026 16:29:20 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "image",
+  "started_at_utc": "2026-10-24T00:02:47.810857+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/im/ag/image"
+}

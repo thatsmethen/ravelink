@@ -1,0 +1,24 @@
+{
+  "body_bytes": 14979,
+  "body_complete": true,
+  "body_file": "responses/windows-core.jsonl.gz",
+  "body_sha256": "0d59f00a7ddda72230d726ce583da65ea71498a84ccf492617e1a4b18c13536b",
+  "ended_at_utc": "2026-10-24T00:04:31.763061+00:00",
+  "headers": {
+    "age": "222",
+    "cache-control": "public,max-age=600",
+    "content-length": "14979",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:31 GMT",
+    "etag": "\"083b2dfa2ec1c530bb97adafc7247931\"",
+    "last-modified": "Thu, 03 Sep 2026 16:42:57 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "windows-core",
+  "started_at_utc": "2026-10-24T00:04:31.403671+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/wi/nd/windows-core"
+}

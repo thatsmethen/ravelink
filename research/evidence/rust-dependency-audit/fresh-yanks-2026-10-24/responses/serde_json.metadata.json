@@ -1,0 +1,24 @@
+{
+  "body_bytes": 284026,
+  "body_complete": true,
+  "body_file": "responses/serde_json.jsonl.gz",
+  "body_sha256": "320ccb6ff902a966f5a6b47d8592d9778cd39ef225e5fbc300990f02db91995c",
+  "ended_at_utc": "2026-10-24T00:04:04.831189+00:00",
+  "headers": {
+    "age": "351",
+    "cache-control": "public,max-age=600",
+    "content-length": "284026",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:03 GMT",
+    "etag": "\"7f59728e0b1d1dae90b81f04f402ca9f\"",
+    "last-modified": "Sun, 11 Oct 2026 15:31:48 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "serde_json",
+  "started_at_utc": "2026-10-24T00:03:50.501745+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/se/rd/serde_json"
+}

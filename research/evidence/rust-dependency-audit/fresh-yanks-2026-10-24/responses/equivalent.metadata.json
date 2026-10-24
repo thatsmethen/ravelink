@@ -1,0 +1,24 @@
+{
+  "body_bytes": 1025,
+  "body_complete": true,
+  "body_file": "responses/equivalent.jsonl.gz",
+  "body_sha256": "357c762682a097493601e2a51a75e473ab3c1d0e876b543352c67c8a9b3b4152",
+  "ended_at_utc": "2026-10-24T00:02:22.609529+00:00",
+  "headers": {
+    "age": "143",
+    "cache-control": "public,max-age=600",
+    "content-length": "1025",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:22 GMT",
+    "etag": "\"35a7faa8b2e9da232dedd10d856b89f2\"",
+    "last-modified": "Tue, 13 Oct 2026 23:06:50 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "equivalent",
+  "started_at_utc": "2026-10-24T00:02:20.558180+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/eq/ui/equivalent"
+}

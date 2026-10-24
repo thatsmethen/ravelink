@@ -1,0 +1,36 @@
+zvariant v5.15.1
+|-- accesskit_atspi_common v0.14.2
+|   `-- accesskit_unix v0.17.2
+|       `-- accesskit_winit v0.29.2
+|           `-- egui-winit v0.33.3
+|               `-- eframe v0.33.3
+|                   `-- ravelink-app v0.1.0 (/Users/textual/projects/notify/ravelink/crates/ravelink-app)
+|-- atspi-common v0.9.0
+|   |-- accesskit_atspi_common v0.14.2 (*)
+|   |-- atspi v0.25.0
+|   |   `-- accesskit_unix v0.17.2 (*)
+|   |-- atspi-connection v0.9.0
+|   |   `-- atspi v0.25.0 (*)
+|   `-- atspi-proxies v0.9.0
+|       |-- atspi v0.25.0 (*)
+|       `-- atspi-connection v0.9.0 (*)
+|-- zbus v5.19.0
+|   |-- accesskit_unix v0.17.2 (*)
+|   |-- atspi-common v0.9.0 (*)
+|   |-- atspi-connection v0.9.0 (*)
+|   `-- atspi-proxies v0.9.0 (*)
+|-- zbus-lockstep v0.5.2
+|   |-- atspi-common v0.9.0 (*)
+|   `-- zbus-lockstep-macros v0.5.2 (proc-macro)
+|       `-- atspi-common v0.9.0 (*)
+|-- zbus-lockstep-macros v0.5.2 (proc-macro) (*)
+|-- zbus_macros v5.19.0 (proc-macro)
+|   `-- zbus v5.19.0 (*)
+|-- zbus_names v4.3.5
+|   |-- atspi-common v0.9.0 (*)
+|   |-- zbus v5.19.0 (*)
+|   |-- zbus_macros v5.19.0 (proc-macro) (*)
+|   `-- zbus_xml v5.2.1
+|       |-- zbus-lockstep v0.5.2 (*)
+|       `-- zbus-lockstep-macros v0.5.2 (proc-macro) (*)
+`-- zbus_xml v5.2.1 (*)

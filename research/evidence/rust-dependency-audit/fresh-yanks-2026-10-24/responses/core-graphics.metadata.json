@@ -1,0 +1,24 @@
+{
+  "body_bytes": 33955,
+  "body_complete": true,
+  "body_file": "responses/core-graphics.jsonl.gz",
+  "body_sha256": "3f9eca9ec0960d4a7699a20b1fde2820c8a8b2baa52695114034a2f04b3c68a5",
+  "ended_at_utc": "2026-10-24T00:01:58.284364+00:00",
+  "headers": {
+    "age": "33",
+    "cache-control": "public,max-age=600",
+    "content-length": "33955",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:01:58 GMT",
+    "etag": "\"6a536840b1944cc47d1bbed6a33328ee\"",
+    "last-modified": "Sun, 01 Feb 2026 11:36:54 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "core-graphics",
+  "started_at_utc": "2026-10-24T00:01:57.199436+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/co/re/core-graphics"
+}

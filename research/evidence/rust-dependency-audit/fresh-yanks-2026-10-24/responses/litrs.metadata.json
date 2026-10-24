@@ -1,0 +1,24 @@
+{
+  "body_bytes": 5715,
+  "body_complete": true,
+  "body_file": "responses/litrs.jsonl.gz",
+  "body_sha256": "863496c36bb2e111880fa7fe29cdf2f698bb9b17316c7787f0c95ec7352657ba",
+  "ended_at_utc": "2026-10-24T00:03:00.424299+00:00",
+  "headers": {
+    "age": "240",
+    "cache-control": "public,max-age=600",
+    "content-length": "5715",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:00 GMT",
+    "etag": "\"4b70278160ff64b949894f0d541836e6\"",
+    "last-modified": "Mon, 12 Oct 2026 11:59:38 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "litrs",
+  "started_at_utc": "2026-10-24T00:02:56.584306+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/li/tr/litrs"
+}

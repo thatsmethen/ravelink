@@ -1,0 +1,24 @@
+{
+  "body_bytes": 3098,
+  "body_complete": true,
+  "body_file": "responses/core-graphics-types.jsonl.gz",
+  "body_sha256": "f3b690e11fddf5c59670a81f4cb243984833955619667ca5357e430d22934960",
+  "ended_at_utc": "2026-10-24T00:02:00.451162+00:00",
+  "headers": {
+    "age": "34",
+    "cache-control": "public,max-age=600",
+    "content-length": "3098",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:00 GMT",
+    "etag": "\"509efc3b65c55accc4b1436ed2dddc15\"",
+    "last-modified": "Sun, 01 Feb 2026 11:36:54 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "core-graphics-types",
+  "started_at_utc": "2026-10-24T00:01:58.285819+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/co/re/core-graphics-types"
+}

@@ -1,0 +1,117 @@
+[
+  {
+    "advisory": "RUSTSEC-2024-0436",
+    "kind": "unmaintained",
+    "package": "paste",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "1.0.15"
+  },
+  {
+    "advisory": "RUSTSEC-2026-0192",
+    "kind": "unmaintained",
+    "package": "ttf-parser",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.25.1"
+  },
+  {
+    "advisory": "RUSTSEC-2026-0371",
+    "kind": "unmaintained",
+    "package": "zbus_names",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "4.3.5"
+  },
+  {
+    "advisory": "RUSTSEC-2026-0370",
+    "kind": "unmaintained",
+    "package": "zvariant",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "5.15.1"
+  },
+  {
+    "advisory": "RUSTSEC-2026-0372",
+    "kind": "unmaintained",
+    "package": "zvariant_derive",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "5.15.1"
+  }
+]

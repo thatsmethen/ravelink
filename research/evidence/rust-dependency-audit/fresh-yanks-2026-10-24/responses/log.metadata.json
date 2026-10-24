@@ -1,0 +1,24 @@
+{
+  "body_bytes": 67224,
+  "body_complete": true,
+  "body_file": "responses/log.jsonl.gz",
+  "body_sha256": "77bf6b28e1f98f2177ddd68b0234ca3f6e1e6bc6e89d2523cdb6db393f4f3ea2",
+  "ended_at_utc": "2026-10-24T00:02:59.420227+00:00",
+  "headers": {
+    "age": "130",
+    "cache-control": "public,max-age=600",
+    "content-length": "67224",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:59 GMT",
+    "etag": "\"4a4dbe26e9d919ba1f6441374e389a54\"",
+    "last-modified": "Sat, 22 Aug 2026 11:44:29 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "4"
+  },
+  "http_status": 200,
+  "name": "log",
+  "started_at_utc": "2026-10-24T00:02:58.473122+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/3/l/log"
+}

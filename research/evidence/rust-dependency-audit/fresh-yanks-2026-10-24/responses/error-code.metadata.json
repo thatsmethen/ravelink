@@ -1,0 +1,24 @@
+{
+  "body_bytes": 8740,
+  "body_complete": true,
+  "body_file": "responses/error-code.jsonl.gz",
+  "body_sha256": "7dab0723830f58666586b6d992943deca661dc1c80e613d9cfad5f76c5e58f5c",
+  "ended_at_utc": "2026-10-24T00:02:24.745331+00:00",
+  "headers": {
+    "age": "0",
+    "cache-control": "public,max-age=600",
+    "content-length": "8740",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:24 GMT",
+    "etag": "\"6f41a10ca5691dcb76553179aba1638e\"",
+    "last-modified": "Sat, 15 Aug 2026 09:38:49 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "error-code",
+  "started_at_utc": "2026-10-24T00:02:22.610149+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/er/ro/error-code"
+}

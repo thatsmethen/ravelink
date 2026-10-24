@@ -1,0 +1,24 @@
+{
+  "body_bytes": 74305,
+  "body_complete": true,
+  "body_file": "responses/ordered-float.jsonl.gz",
+  "body_sha256": "f2259bdc955e16839963b5232f48c675a8f2cdf5fd49dadc2cf0b80b6d8dedec",
+  "ended_at_utc": "2026-10-24T00:03:23.670298+00:00",
+  "headers": {
+    "age": "65",
+    "cache-control": "public,max-age=600",
+    "content-length": "74305",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:23 GMT",
+    "etag": "\"5b78754d7e9ac6a4766ef409f0cad6cf\"",
+    "last-modified": "Fri, 21 Aug 2026 18:24:43 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "ordered-float",
+  "started_at_utc": "2026-10-24T00:03:22.606553+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/or/de/ordered-float"
+}

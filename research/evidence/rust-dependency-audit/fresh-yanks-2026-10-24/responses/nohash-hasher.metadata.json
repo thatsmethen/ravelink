@@ -1,0 +1,24 @@
+{
+  "body_bytes": 987,
+  "body_complete": true,
+  "body_file": "responses/nohash-hasher.jsonl.gz",
+  "body_sha256": "9d62bdd5ffbef7a7b6c22e79fefca66ed76e9a83cc37a682d318f1fb84daaead",
+  "ended_at_utc": "2026-10-24T00:03:12.095188+00:00",
+  "headers": {
+    "age": "403",
+    "cache-control": "public,max-age=600",
+    "content-length": "987",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:12 GMT",
+    "etag": "\"46e2f12ea8f874b8bc8a22b52c430629\"",
+    "last-modified": "Sun, 01 Feb 2026 12:29:22 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "nohash-hasher",
+  "started_at_utc": "2026-10-24T00:03:11.902538+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/no/ha/nohash-hasher"
+}

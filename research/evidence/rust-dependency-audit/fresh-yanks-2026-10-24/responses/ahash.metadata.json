@@ -1,0 +1,24 @@
+{
+  "body_bytes": 174759,
+  "body_complete": true,
+  "body_file": "responses/ahash.jsonl.gz",
+  "body_sha256": "b565da2d0e47b8c6b360cdcc2f3eeb406297298a95ac0da1386cf62cd91bf555",
+  "ended_at_utc": "2026-10-24T00:01:56.321388+00:00",
+  "headers": {
+    "age": "369",
+    "cache-control": "public,max-age=600",
+    "content-length": "174759",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:01:56 GMT",
+    "etag": "\"e9e12cbf2fe918acf849d080a21b8f69\"",
+    "last-modified": "Sun, 01 Feb 2026 11:20:33 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "ahash",
+  "started_at_utc": "2026-10-24T00:01:41.288646+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ah/as/ahash"
+}

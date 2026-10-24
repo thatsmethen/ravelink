@@ -1,0 +1,24 @@
+{
+  "body_bytes": 9473,
+  "body_complete": true,
+  "body_file": "responses/itoa.jsonl.gz",
+  "body_sha256": "5e275f1d7a32dd49bc850af460efbf99064cd058f4566f5f86a969e2a535eece",
+  "ended_at_utc": "2026-10-24T00:02:53.265300+00:00",
+  "headers": {
+    "age": "175",
+    "cache-control": "public,max-age=600",
+    "content-length": "9473",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:53 GMT",
+    "etag": "\"ea8494d560f1b8174443495b370e272f\"",
+    "last-modified": "Fri, 20 Mar 2026 00:12:38 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "itoa",
+  "started_at_utc": "2026-10-24T00:02:50.367395+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/it/oa/itoa"
+}

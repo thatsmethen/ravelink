@@ -1,0 +1,24 @@
+{
+  "body_bytes": 9265,
+  "body_complete": true,
+  "body_file": "responses/writeable.jsonl.gz",
+  "body_sha256": "6d9c1e896ca09c893c5335d9a995ceee0629c1b15439aca692f18792df0a6e19",
+  "ended_at_utc": "2026-10-24T00:04:53.978067+00:00",
+  "headers": {
+    "age": "119",
+    "cache-control": "public,max-age=600",
+    "content-length": "9265",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:53 GMT",
+    "etag": "\"36a854bad6b802aeff751f67687b256c\"",
+    "last-modified": "Thu, 13 Aug 2026 23:28:10 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "writeable",
+  "started_at_utc": "2026-10-24T00:04:46.534018+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/wr/it/writeable"
+}

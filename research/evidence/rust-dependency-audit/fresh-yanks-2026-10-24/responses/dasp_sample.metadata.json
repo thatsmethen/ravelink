@@ -1,0 +1,24 @@
+{
+  "body_bytes": 212,
+  "body_complete": true,
+  "body_file": "responses/dasp_sample.jsonl.gz",
+  "body_sha256": "a363b6e6da20e365d12c187497bcc23110338008f5f9210786a85137e77b08c1",
+  "ended_at_utc": "2026-10-24T00:02:12.064344+00:00",
+  "headers": {
+    "age": "462",
+    "cache-control": "public,max-age=600",
+    "content-length": "212",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:12 GMT",
+    "etag": "\"ec2fc5b396c87d796fc4a5bc793efa62\"",
+    "last-modified": "Sun, 01 Feb 2026 11:39:52 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "dasp_sample",
+  "started_at_utc": "2026-10-24T00:02:07.811562+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/da/sp/dasp_sample"
+}

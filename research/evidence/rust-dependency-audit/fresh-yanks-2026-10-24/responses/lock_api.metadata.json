@@ -1,0 +1,24 @@
+{
+  "body_bytes": 16284,
+  "body_complete": true,
+  "body_file": "responses/lock_api.jsonl.gz",
+  "body_sha256": "d7a74b6e2c178ebe08b19b5996036caef9f840367ccb73771ea765c3486ce8ad",
+  "ended_at_utc": "2026-10-24T00:03:02.553249+00:00",
+  "headers": {
+    "age": "288",
+    "cache-control": "public,max-age=600",
+    "content-length": "16284",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:02 GMT",
+    "etag": "\"7bfd4e0482ad27090f8d93b1d7ea03de\"",
+    "last-modified": "Wed, 21 Oct 2026 10:30:38 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "lock_api",
+  "started_at_utc": "2026-10-24T00:02:57.527781+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/lo/ck/lock_api"
+}

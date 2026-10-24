@@ -1,0 +1,24 @@
+{
+  "body_bytes": 31411,
+  "body_complete": true,
+  "body_file": "responses/icu_collections.jsonl.gz",
+  "body_sha256": "7225bffc15e75f91e0db1fbab35ee74af193a25fe837c672cb773806144962c1",
+  "ended_at_utc": "2026-10-24T00:02:43.409596+00:00",
+  "headers": {
+    "age": "0",
+    "cache-control": "public,max-age=600",
+    "content-length": "31411",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:43 GMT",
+    "etag": "\"9fc54c564f43ea04bc48697be595c411\"",
+    "last-modified": "Thu, 22 Oct 2026 08:56:11 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "icu_collections",
+  "started_at_utc": "2026-10-24T00:02:40.529186+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ic/u_/icu_collections"
+}

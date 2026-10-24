@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/private/var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/ravelink-audit-tools/cargo-audit",
+    "audit",
+    "--file",
+    "/Users/textual/projects/notify/ravelink/research/evidence/rust-dependency-audit/script-validation-utf8/Cargo.lock.snapshot",
+    "--db",
+    "/var/folders/f0/p274xmjs5bz40qksmbh6f9ym0000gs/T/ravelink-dependency-audit-kqgnd1qk/advisory-db",
+    "--no-fetch",
+    "--deny",
+    "warnings",
+    "--json"
+  ],
+  "exit_code": 1,
+  "working_directory": "temporary directory with explicit empty .cargo/audit.toml",
+  "yanked_check": "cached index only: --no-fetch also prevents crates.io index refresh in cargo-audit 0.22.2"
+}

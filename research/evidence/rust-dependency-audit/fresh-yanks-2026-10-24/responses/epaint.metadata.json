@@ -1,0 +1,24 @@
+{
+  "body_bytes": 120373,
+  "body_complete": true,
+  "body_file": "responses/epaint.jsonl.gz",
+  "body_sha256": "d0e10bf1d54d78deba0684024457dc0c6f0f7311ccf562a458ad716621d5d68e",
+  "ended_at_utc": "2026-10-24T00:02:42.978264+00:00",
+  "headers": {
+    "age": "373",
+    "cache-control": "public,max-age=600",
+    "content-length": "120373",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:42 GMT",
+    "etag": "\"6a44f8345441c2dcda6bbed824f9118b\"",
+    "last-modified": "Thu, 15 Oct 2026 14:49:07 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "epaint",
+  "started_at_utc": "2026-10-24T00:02:18.510202+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ep/ai/epaint"
+}

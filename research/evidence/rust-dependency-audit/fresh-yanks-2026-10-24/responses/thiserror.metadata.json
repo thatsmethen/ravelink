@@ -1,0 +1,24 @@
+{
+  "body_bytes": 73024,
+  "body_complete": true,
+  "body_file": "responses/thiserror.jsonl.gz",
+  "body_sha256": "320c3e915f0afe44092342b497ec2189a5c502fbc0e1bd816e8db3e8c6d82914",
+  "ended_at_utc": "2026-10-24T00:04:07.471166+00:00",
+  "headers": {
+    "age": "526",
+    "cache-control": "public,max-age=600",
+    "content-length": "73024",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:06 GMT",
+    "etag": "\"4bfc7961f795fa99bb7d3a9490fb2bd6\"",
+    "last-modified": "Wed, 23 Sep 2026 20:24:09 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "5"
+  },
+  "http_status": 200,
+  "name": "thiserror",
+  "started_at_utc": "2026-10-24T00:04:04.722957+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/th/is/thiserror"
+}

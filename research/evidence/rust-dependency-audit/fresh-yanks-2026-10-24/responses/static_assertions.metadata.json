@@ -1,0 +1,24 @@
+{
+  "body_bytes": 3292,
+  "body_complete": true,
+  "body_file": "responses/static_assertions.jsonl.gz",
+  "body_sha256": "684f5d09e9f84759af65d0cacd47935f0107b0d77c4f4bd855bc391edf30a0ac",
+  "ended_at_utc": "2026-10-24T00:04:04.191503+00:00",
+  "headers": {
+    "age": "274",
+    "cache-control": "public,max-age=600",
+    "content-length": "3292",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:03 GMT",
+    "etag": "\"44715f0d1107e2c099827a00c90752d3\"",
+    "last-modified": "Sun, 01 Feb 2026 13:01:31 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "static_assertions",
+  "started_at_utc": "2026-10-24T00:03:56.038987+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/st/at/static_assertions"
+}

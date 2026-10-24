@@ -1,0 +1,24 @@
+{
+  "body_bytes": 22654,
+  "body_complete": true,
+  "body_file": "responses/zerotrie.jsonl.gz",
+  "body_sha256": "0c60e54aa8351ed94c45e8235ed43afde2ae2119d45c5278d7bb9d7393fbef01",
+  "ended_at_utc": "2026-10-24T00:04:57.136447+00:00",
+  "headers": {
+    "age": "122",
+    "cache-control": "public,max-age=600",
+    "content-length": "22654",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:57 GMT",
+    "etag": "\"b0dfac366ed055b46b39cfddddb7749f\"",
+    "last-modified": "Thu, 13 Aug 2026 23:28:21 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "zerotrie",
+  "started_at_utc": "2026-10-24T00:04:53.855382+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ze/ro/zerotrie"
+}

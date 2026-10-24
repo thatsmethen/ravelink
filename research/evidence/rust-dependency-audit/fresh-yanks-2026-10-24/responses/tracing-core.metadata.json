@@ -1,0 +1,24 @@
+{
+  "body_bytes": 16623,
+  "body_complete": true,
+  "body_file": "responses/tracing-core.jsonl.gz",
+  "body_sha256": "fa141f94b31205f180344004d268bdf5800ba6b0708c5e5122b5416fb992466f",
+  "ended_at_utc": "2026-10-24T00:04:11.689979+00:00",
+  "headers": {
+    "age": "528",
+    "cache-control": "public,max-age=600",
+    "content-length": "16623",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:11 GMT",
+    "etag": "\"992156a7eb1d128c0b1168d15b788d91\"",
+    "last-modified": "Sun, 01 Feb 2026 13:07:58 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "2"
+  },
+  "http_status": 200,
+  "name": "tracing-core",
+  "started_at_utc": "2026-10-24T00:04:08.370754+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/tr/ac/tracing-core"
+}

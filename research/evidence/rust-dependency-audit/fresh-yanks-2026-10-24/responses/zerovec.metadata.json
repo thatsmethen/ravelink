@@ -1,0 +1,24 @@
+{
+  "body_bytes": 79565,
+  "body_complete": true,
+  "body_file": "responses/zerovec.jsonl.gz",
+  "body_sha256": "e7ca39edb30c6f2c5f6dd968bef98dfaf6628c9e463736e1c9e0fdcafe052e65",
+  "ended_at_utc": "2026-10-24T00:05:01.462162+00:00",
+  "headers": {
+    "age": "127",
+    "cache-control": "public,max-age=600",
+    "content-length": "79565",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:05:01 GMT",
+    "etag": "\"5af7970112b46fef29e7b0cb5611107a\"",
+    "last-modified": "Thu, 22 Oct 2026 08:51:46 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "zerovec",
+  "started_at_utc": "2026-10-24T00:04:53.979068+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ze/ro/zerovec"
+}

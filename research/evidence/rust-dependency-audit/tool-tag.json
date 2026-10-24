@@ -1,0 +1,10 @@
+{
+  "ref": "refs/tags/cargo-audit/v0.22.2",
+  "node_id": "MDM6UmVmODExOTI4OTQ6cmVmcy90YWdzL2NhcmdvLWF1ZGl0L3YwLjIyLjI=",
+  "url": "https://api.github.com/repos/rustsec/rustsec/git/refs/tags/cargo-audit/v0.22.2",
+  "object": {
+    "sha": "78bd4d48923d207898e94827cbd79d73903a85fa",
+    "type": "tag",
+    "url": "https://api.github.com/repos/rustsec/rustsec/git/tags/78bd4d48923d207898e94827cbd79d73903a85fa"
+  }
+}

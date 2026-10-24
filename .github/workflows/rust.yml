@@ -35,9 +35,19 @@ jobs:
         if: runner.os == 'Windows'
         run: |
           cargo build --locked -p ravelink-app --release
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           New-Item -ItemType Directory -Force dist/windows
           Copy-Item target/release/ravelink-app.exe,LICENSE,THIRD-PARTY-NOTICES.txt dist/windows/
           Copy-Item -Recurse docs/third-party-licenses/rust-1.91.1 dist/windows/Rust-runtime-notices
+      - name: Verify embedded Windows icon resources
+        if: runner.os == 'Windows'
+        run: |
+          python scripts/verify-windows-icon.py --self-test
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python scripts/verify-windows-icon.py dist/windows/ravelink-app.exe --output dist/windows/icon-resource-verification.json
+      - name: Package Windows application
+        if: runner.os == 'Windows'
+        run: |
           Compress-Archive -Path dist/windows/* -DestinationPath dist/RaveLink-Windows-development.zip
       - name: macOS driver ABI harness
         if: runner.os == 'macOS'

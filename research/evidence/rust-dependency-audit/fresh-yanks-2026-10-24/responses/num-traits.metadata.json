@@ -1,0 +1,24 @@
+{
+  "body_bytes": 9624,
+  "body_complete": true,
+  "body_file": "responses/num-traits.jsonl.gz",
+  "body_sha256": "15b5132965f616441319773bc71cc14547a115e8f2023e93d18e02a5b23240df",
+  "ended_at_utc": "2026-10-24T00:03:13.111940+00:00",
+  "headers": {
+    "age": "472",
+    "cache-control": "public,max-age=600",
+    "content-length": "9624",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:13 GMT",
+    "etag": "\"76a21bb3c96a942255e245aa9971cbcc\"",
+    "last-modified": "Sun, 01 Feb 2026 12:30:29 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "num-traits",
+  "started_at_utc": "2026-10-24T00:03:11.957300+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/nu/m-/num-traits"
+}

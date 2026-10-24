@@ -1,0 +1,24 @@
+{
+  "body_bytes": 915,
+  "body_complete": true,
+  "body_file": "responses/utf8_iter.jsonl.gz",
+  "body_sha256": "bfcf55cc026b8e20add7a36da3296f84697dc15c79d67cf05424848f1f90839d",
+  "ended_at_utc": "2026-10-24T00:04:15.880282+00:00",
+  "headers": {
+    "age": "82",
+    "cache-control": "public,max-age=600",
+    "content-length": "915",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:15 GMT",
+    "etag": "\"1f0525066d3319e6adc2b93a2be3b96e\"",
+    "last-modified": "Sun, 01 Feb 2026 13:10:55 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "utf8_iter",
+  "started_at_utc": "2026-10-24T00:04:14.851822+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ut/f8/utf8_iter"
+}

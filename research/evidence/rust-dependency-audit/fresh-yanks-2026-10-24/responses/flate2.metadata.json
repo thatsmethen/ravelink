@@ -1,0 +1,24 @@
+{
+  "body_bytes": 103927,
+  "body_complete": true,
+  "body_file": "responses/flate2.jsonl.gz",
+  "body_sha256": "d036228439b2c61249d694b94f5bc9f9cac4ed83b25e5ef4394c842210bcd4be",
+  "ended_at_utc": "2026-10-24T00:02:31.068204+00:00",
+  "headers": {
+    "age": "431",
+    "cache-control": "public,max-age=600",
+    "content-length": "103927",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:30 GMT",
+    "etag": "\"b6862c6df3bf3151f5d7f05df01d972e\"",
+    "last-modified": "Fri, 28 Aug 2026 04:35:24 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "flate2",
+  "started_at_utc": "2026-10-24T00:02:30.826011+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/fl/at/flate2"
+}

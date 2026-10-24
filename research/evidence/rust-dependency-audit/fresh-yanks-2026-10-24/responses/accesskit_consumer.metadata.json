@@ -1,0 +1,24 @@
+{
+  "body_bytes": 26240,
+  "body_complete": true,
+  "body_file": "responses/accesskit_consumer.jsonl.gz",
+  "body_sha256": "417371cffb874496c172fd82da462a5e42ea38e66ebf3a3ffe1481230ed04ea8",
+  "ended_at_utc": "2026-10-24T00:01:33.531393+00:00",
+  "headers": {
+    "age": "0",
+    "cache-control": "public,max-age=600",
+    "content-length": "26240",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:01:33 GMT",
+    "etag": "\"cb3e6268d359790d36dbc7db3888cfea\"",
+    "last-modified": "Fri, 25 Sep 2026 19:40:57 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "accesskit_consumer",
+  "started_at_utc": "2026-10-24T00:01:31.873482+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ac/ce/accesskit_consumer"
+}

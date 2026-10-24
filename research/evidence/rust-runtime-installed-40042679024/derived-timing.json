@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "source_run": 40042679024,
+  "source_revision": "4fad7fca69415bc86aae17caa5cab2641576a26e",
+  "acceptance": "FAIL; derived timing does not repair original observations",
+  "origin": "Runtime started event, after start() returned",
+  "stop_requested_seconds": 23.17793533333333,
+  "stop_returned_seconds": 23.303161208333332,
+  "gap_observations": [
+    {
+      "process": "source-writer",
+      "event_index_zero_based": 33,
+      "missing_sample_frames": 768.0,
+      "context": [
+        {
+          "sample_time": 53812.0,
+          "callback_frames": 512,
+          "native_host_seconds": -0.26347462499999996,
+          "observed_after_pcm_seconds": -0.27381741666666665,
+          "observed_minus_native_seconds": -0.010342791666666665
+        },
+        {
+          "sample_time": 54324.0,
+          "callback_frames": 512,
+          "native_host_seconds": -0.2528079583333333,
+          "observed_after_pcm_seconds": -0.24770345833333332,
+          "observed_minus_native_seconds": 0.0051045
+        },
+        {
+          "sample_time": 55604.0,
+          "callback_frames": 512,
+          "native_host_seconds": -0.22614129166666663,
+          "observed_after_pcm_seconds": -0.23670366666666665,
+          "observed_minus_native_seconds": -0.010562374999999999
+        },
+        {
+          "sample_time": 56116.0,
+          "callback_frames": 512,
+          "native_host_seconds": -0.21547462499999998,
+          "observed_after_pcm_seconds": -0.225982,
+          "observed_minus_native_seconds": -0.010507375
+        }
+      ]
+    },
+    {
+      "process": "source-writer",
+      "event_index_zero_based": 2276,
+      "missing_sample_frames": 1168.0,
+      "context": [
+        {
+          "sample_time": 1202996.0,
+          "callback_frames": 512,
+          "native_host_seconds": 23.677858708333332,
+          "observed_after_pcm_seconds": 23.667712041666665,
+          "observed_minus_native_seconds": -0.010146666666666665
+        },
+        {
+          "sample_time": 1203508.0,
+          "callback_frames": 512,
+          "native_host_seconds": 23.688525374999998,
+          "observed_after_pcm_seconds": 23.701144749999997,
+          "observed_minus_native_seconds": 0.012619374999999999
+        },
+        {
+          "sample_time": 1205188.0,
+          "callback_frames": 512,
+          "native_host_seconds": 23.723525374999998,
+          "observed_after_pcm_seconds": 23.716316,
+          "observed_minus_native_seconds": -0.007209375
+        },
+        {
+          "sample_time": 1205700.0,
+          "callback_frames": 512,
+          "native_host_seconds": 23.734192041666663,
+          "observed_after_pcm_seconds": 23.724522916666665,
+          "observed_minus_native_seconds": -0.009669124999999999
+        }
+      ]
+    },
+    {
+      "process": "runtime-reader",
+      "event_index_zero_based": 2193,
+      "missing_sample_frames": 1412.0,
+      "context": [
+        {
+          "sample_time": 1201760.0,
+          "callback_frames": 512,
+          "native_host_seconds": 23.65210870833333,
+          "observed_after_pcm_seconds": 23.66539358333333,
+          "observed_minus_native_seconds": 0.013284874999999998
+        },
+        {
+          "sample_time": 1202272.0,
+          "callback_frames": 512,
+          "native_host_seconds": 23.662775375,
+          "observed_after_pcm_seconds": 23.702610749999998,
+          "observed_minus_native_seconds": 0.039835375
+        },
+        {
+          "sample_time": 1204196.0,
+          "callback_frames": 512,
+          "native_host_seconds": 23.70285870833333,
+          "observed_after_pcm_seconds": 23.716467416666664,
+          "observed_minus_native_seconds": 0.013608708333333332
+        },
+        {
+          "sample_time": 1204708.0,
+          "callback_frames": 512,
+          "native_host_seconds": 23.713525374999996,
+          "observed_after_pcm_seconds": 23.724601666666665,
+          "observed_minus_native_seconds": 0.011076291666666665
+        }
+      ]
+    }
+  ]
+}

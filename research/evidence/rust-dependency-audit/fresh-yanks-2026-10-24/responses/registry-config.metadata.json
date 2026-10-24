@@ -1,0 +1,23 @@
+{
+  "body_bytes": 76,
+  "body_complete": true,
+  "body_file": "responses/registry-config.jsonl.gz",
+  "body_sha256": "5b943a2c6f7eb743f7308aba07bdbb47d9ae44aafecd832d7f15df186afbafb3",
+  "ended_at_utc": "2026-10-24T00:01:31.872384+00:00",
+  "headers": {
+    "age": "1552",
+    "content-length": "76",
+    "content-type": "application/octet-stream",
+    "date": "Sat, 24 Oct 2026 00:01:31 GMT",
+    "etag": "\"652b69f181634dbf60fc8c3ec9f776e5\"",
+    "last-modified": "Tue, 12 Mar 2024 07:31:15 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "7"
+  },
+  "http_status": 200,
+  "name": "registry-config",
+  "started_at_utc": "2026-10-24T00:01:31.653025+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/config.json"
+}

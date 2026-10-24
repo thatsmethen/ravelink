@@ -1,0 +1,24 @@
+{
+  "body_bytes": 13095,
+  "body_complete": true,
+  "body_file": "responses/bit-vec.jsonl.gz",
+  "body_sha256": "948d403b2a577f2d2379425e87c43cf4a06709ae3bd13e47d190776d34784d5d",
+  "ended_at_utc": "2026-10-24T00:01:49.390208+00:00",
+  "headers": {
+    "age": "0",
+    "cache-control": "public,max-age=600",
+    "content-length": "13095",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:01:49 GMT",
+    "etag": "\"8fc4d5109f0bfe18dfc87d005b55767b\"",
+    "last-modified": "Fri, 10 Jul 2026 12:48:25 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "bit-vec",
+  "started_at_utc": "2026-10-24T00:01:44.261030+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/bi/t-/bit-vec"
+}

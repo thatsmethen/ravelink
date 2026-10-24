@@ -1,0 +1,24 @@
+{
+  "body_bytes": 4972,
+  "body_complete": true,
+  "body_file": "responses/cfg-if.jsonl.gz",
+  "body_sha256": "093922503d2239eb28afdcc1d3c334aac7abc9d9269f96907d5ff1144e841010",
+  "ended_at_utc": "2026-10-24T00:01:57.198568+00:00",
+  "headers": {
+    "age": "69",
+    "cache-control": "public,max-age=600",
+    "content-length": "4972",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:01:57 GMT",
+    "etag": "\"6080fbc76b90d35eeb6603653b6330ef\"",
+    "last-modified": "Wed, 16 Sep 2026 17:36:12 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "cfg-if",
+  "started_at_utc": "2026-10-24T00:01:50.886787+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/cf/g-/cfg-if"
+}

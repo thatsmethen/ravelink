@@ -1,0 +1,24 @@
+{
+  "body_bytes": 1403289,
+  "body_complete": true,
+  "body_file": "responses/windows.jsonl.gz",
+  "body_sha256": "9481b1c16f863f8ab57e7d5378eb5feb27b64d64135a4017988672e387e9cb20",
+  "ended_at_utc": "2026-10-24T00:04:31.379198+00:00",
+  "headers": {
+    "age": "130",
+    "cache-control": "public,max-age=600",
+    "content-length": "1403289",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:28 GMT",
+    "etag": "\"3b6d2d1231ed1d6f5666eda166e190dc\"",
+    "last-modified": "Sun, 01 Feb 2026 13:14:49 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "windows",
+  "started_at_utc": "2026-10-24T00:04:27.459239+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/wi/nd/windows"
+}

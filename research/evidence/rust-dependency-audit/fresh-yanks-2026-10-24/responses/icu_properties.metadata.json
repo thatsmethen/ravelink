@@ -1,0 +1,24 @@
+{
+  "body_bytes": 47837,
+  "body_complete": true,
+  "body_file": "responses/icu_properties.jsonl.gz",
+  "body_sha256": "bb918d83a2b92d72920b39a497230b3abacccacbce53e61e0f886c24380635b4",
+  "ended_at_utc": "2026-10-24T00:02:44.667474+00:00",
+  "headers": {
+    "age": "0",
+    "cache-control": "public,max-age=600",
+    "content-length": "47837",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:44 GMT",
+    "etag": "\"9345345a3b4f827b981b71167621fc17\"",
+    "last-modified": "Thu, 22 Oct 2026 08:56:23 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "icu_properties",
+  "started_at_utc": "2026-10-24T00:02:43.410695+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ic/u_/icu_properties"
+}

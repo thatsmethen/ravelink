@@ -11,6 +11,7 @@ esac
 bundle="$root_dir/dist/macos/RaveLink Rust.app"
 mkdir -p "$bundle/Contents/MacOS" "$bundle/Contents/Resources"
 cp "${CARGO_TARGET_DIR:-target}/$profile/ravelink-app" "$bundle/Contents/MacOS/"
+cp packaging/branding/ravelink.icns "$bundle/Contents/Resources/RaveLink.icns"
 cp packaging/macos/Info.plist "$bundle/Contents/Info.plist"
 cp LICENSE "$bundle/Contents/Resources/RaveLink-LICENSE.txt"
 cp THIRD-PARTY-NOTICES.txt "$bundle/Contents/Resources/"

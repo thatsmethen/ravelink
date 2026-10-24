@@ -1,0 +1,24 @@
+{
+  "body_bytes": 9741,
+  "body_complete": true,
+  "body_file": "responses/unicode-width.jsonl.gz",
+  "body_sha256": "2e0cf1fe242f88f67f7eb3560482239e4ded9327342d93e7b9d88afb059a9d4e",
+  "ended_at_utc": "2026-10-24T00:04:16.904118+00:00",
+  "headers": {
+    "age": "118",
+    "cache-control": "public,max-age=600",
+    "content-length": "9741",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:16 GMT",
+    "etag": "\"7133fd45d6c2a08112ac73a1ec2b8100\"",
+    "last-modified": "Sun, 01 Feb 2026 13:10:12 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "2"
+  },
+  "http_status": 200,
+  "name": "unicode-width",
+  "started_at_utc": "2026-10-24T00:04:12.759566+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/un/ic/unicode-width"
+}

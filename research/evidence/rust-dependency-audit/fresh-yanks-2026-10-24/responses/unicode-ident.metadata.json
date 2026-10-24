@@ -1,0 +1,24 @@
+{
+  "body_bytes": 25546,
+  "body_complete": true,
+  "body_file": "responses/unicode-ident.jsonl.gz",
+  "body_sha256": "4c12cadce7c0428aeaac8dc8f2f607bdc523b42be795c7fda601dd42a0f4cbeb",
+  "ended_at_utc": "2026-10-24T00:04:13.786193+00:00",
+  "headers": {
+    "age": "317",
+    "cache-control": "public,max-age=600",
+    "content-length": "25546",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:13 GMT",
+    "etag": "\"1dba390b2b4688955a22def0e3f15ccc\"",
+    "last-modified": "Mon, 12 Oct 2026 04:20:29 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "2"
+  },
+  "http_status": 200,
+  "name": "unicode-ident",
+  "started_at_utc": "2026-10-24T00:04:10.705231+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/un/ic/unicode-ident"
+}

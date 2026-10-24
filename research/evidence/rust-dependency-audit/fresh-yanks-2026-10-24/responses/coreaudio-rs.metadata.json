@@ -1,0 +1,24 @@
+{
+  "body_bytes": 24573,
+  "body_complete": true,
+  "body_file": "responses/coreaudio-rs.jsonl.gz",
+  "body_sha256": "04918d0fc05be13e61701fe740cb0a2d5fa92d26341c73808b5ffb6830ad6f3b",
+  "ended_at_utc": "2026-10-24T00:02:07.810699+00:00",
+  "headers": {
+    "age": "456",
+    "cache-control": "public,max-age=600",
+    "content-length": "24573",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:07 GMT",
+    "etag": "\"ef167867281ed2b71a1d13b610010b8f\"",
+    "last-modified": "Wed, 29 Apr 2026 05:53:35 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "coreaudio-rs",
+  "started_at_utc": "2026-10-24T00:01:59.329150+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/co/re/coreaudio-rs"
+}

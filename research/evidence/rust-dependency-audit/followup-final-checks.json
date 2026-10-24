@@ -1,0 +1,12 @@
+{
+  "script-validation_executed_source_hash_verified": true,
+  "script-validation-utf8_executed_source_hash_verified": true,
+  "fresh-yanks-2026-10-24_executed_source_hash_verified": true,
+  "fresh-yanks-2026-10-24-followup_executed_source_hash_verified": true,
+  "all_frozen_run_manifests_valid": true,
+  "retained_http_body_hashes_verified": 188,
+  "offline_raw_response_replay_verified_not_yanked_versions": 216,
+  "maximum_package_cdn_age_seconds": 593,
+  "offline_test_count": 13,
+  "offline_test_exit_code": 0
+}

@@ -1,0 +1,24 @@
+{
+  "body_bytes": 269228,
+  "body_complete": true,
+  "body_file": "responses/objc2-app-kit.jsonl.gz",
+  "body_sha256": "4dbc31454a9cb28ed8c6aaa4768b2aa5bb9c6cacd83b3794e1169bede3b5e214",
+  "ended_at_utc": "2026-10-24T00:03:15.346331+00:00",
+  "headers": {
+    "age": "110",
+    "cache-control": "public,max-age=600",
+    "content-length": "269228",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:15 GMT",
+    "etag": "\"2bfcf9642ec947fae68296f32ec8f6c4\"",
+    "last-modified": "Sun, 01 Feb 2026 12:31:14 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "objc2-app-kit",
+  "started_at_utc": "2026-10-24T00:03:13.112692+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ob/jc/objc2-app-kit"
+}

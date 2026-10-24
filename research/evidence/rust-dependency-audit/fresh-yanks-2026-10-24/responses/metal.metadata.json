@@ -1,0 +1,24 @@
+{
+  "body_bytes": 50804,
+  "body_complete": true,
+  "body_file": "responses/metal.jsonl.gz",
+  "body_sha256": "e2ab7cd9d21aa8255fed7fb801ef724640d6eaa41e79fe19f6ec2ab07ba6ec65",
+  "ended_at_utc": "2026-10-24T00:03:12.602868+00:00",
+  "headers": {
+    "age": "0",
+    "cache-control": "public,max-age=600",
+    "content-length": "50804",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:12 GMT",
+    "etag": "\"249d59ca40bb01716e3c04d741d5be84\"",
+    "last-modified": "Sun, 01 Feb 2026 12:22:12 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "metal",
+  "started_at_utc": "2026-10-24T00:03:02.554093+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/me/ta/metal"
+}

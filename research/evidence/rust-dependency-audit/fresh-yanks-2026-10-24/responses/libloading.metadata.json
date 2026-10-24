@@ -1,0 +1,24 @@
+{
+  "body_bytes": 27456,
+  "body_complete": true,
+  "body_file": "responses/libloading.jsonl.gz",
+  "body_sha256": "7e110277e44fc5582ad99a895a9d0c9e7e8473c3373bd1c1fbaa2568562d799c",
+  "ended_at_utc": "2026-10-24T00:02:54.682371+00:00",
+  "headers": {
+    "age": "423",
+    "cache-control": "public,max-age=600",
+    "content-length": "27456",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:54 GMT",
+    "etag": "\"e31760f91f502d76bd4ac1ba2670b18a\"",
+    "last-modified": "Sun, 01 Feb 2026 12:14:16 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "libloading",
+  "started_at_utc": "2026-10-24T00:02:53.266028+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/li/bl/libloading"
+}

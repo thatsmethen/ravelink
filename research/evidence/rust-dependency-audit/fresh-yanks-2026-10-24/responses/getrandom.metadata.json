@@ -1,0 +1,24 @@
+{
+  "body_bytes": 91650,
+  "body_complete": true,
+  "body_file": "responses/getrandom.jsonl.gz",
+  "body_sha256": "4f871328d4b65bd7c3511d8a359e8f2ff119866af406254a86ff7c675512913a",
+  "ended_at_utc": "2026-10-24T00:02:35.237433+00:00",
+  "headers": {
+    "age": "106",
+    "cache-control": "public,max-age=600",
+    "content-length": "91650",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:35 GMT",
+    "etag": "\"6359f7be20d9b7eb51d2083fe3fb6e24\"",
+    "last-modified": "Wed, 17 Jun 2026 18:02:07 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "getrandom",
+  "started_at_utc": "2026-10-24T00:02:34.131990+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ge/tr/getrandom"
+}

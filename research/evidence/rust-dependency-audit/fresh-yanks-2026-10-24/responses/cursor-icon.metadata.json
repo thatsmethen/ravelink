@@ -1,0 +1,24 @@
+{
+  "body_bytes": 2216,
+  "body_complete": true,
+  "body_file": "responses/cursor-icon.jsonl.gz",
+  "body_sha256": "066f475f41673235bfb7cd0461451930aeb7d3f90905e47d8cd35714838f6062",
+  "ended_at_utc": "2026-10-24T00:02:10.577279+00:00",
+  "headers": {
+    "age": "0",
+    "cache-control": "public,max-age=600",
+    "content-length": "2216",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:10 GMT",
+    "etag": "\"1331c1fbdc3a82c91938c194a91c79c8\"",
+    "last-modified": "Sun, 01 Feb 2026 11:39:02 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "cursor-icon",
+  "started_at_utc": "2026-10-24T00:02:07.757391+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/cu/rs/cursor-icon"
+}

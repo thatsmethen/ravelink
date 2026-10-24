@@ -1,0 +1,14 @@
+{
+  "body_bytes": 0,
+  "body_complete": false,
+  "body_file": "responses/libc.jsonl.gz",
+  "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "ended_at_utc": "2026-10-24T00:03:11.901846+00:00",
+  "headers": {},
+  "http_status": null,
+  "name": "libc",
+  "reason": "URLError",
+  "started_at_utc": "2026-10-24T00:02:51.015611+00:00",
+  "status": "unavailable",
+  "url": "https://index.crates.io/li/bc/libc"
+}

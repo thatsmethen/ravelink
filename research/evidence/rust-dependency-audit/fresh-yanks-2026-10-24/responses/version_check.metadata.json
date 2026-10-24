@@ -1,0 +1,24 @@
+{
+  "body_bytes": 2244,
+  "body_complete": true,
+  "body_file": "responses/version_check.jsonl.gz",
+  "body_sha256": "b5e6471ac234b3d292a466da5e856c09da2081bcee8f0f285202d5d54f3ce417",
+  "ended_at_utc": "2026-10-24T00:04:21.186252+00:00",
+  "headers": {
+    "age": "48",
+    "cache-control": "public,max-age=600",
+    "content-length": "2244",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:21 GMT",
+    "etag": "\"17b1b3c08f3d26897fa82888c5409cfa\"",
+    "last-modified": "Sun, 01 Feb 2026 13:11:51 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "version_check",
+  "started_at_utc": "2026-10-24T00:04:16.904769+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ve/rs/version_check"
+}

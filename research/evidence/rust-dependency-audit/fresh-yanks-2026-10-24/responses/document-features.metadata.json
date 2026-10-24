@@ -1,0 +1,24 @@
+{
+  "body_bytes": 3894,
+  "body_complete": true,
+  "body_file": "responses/document-features.jsonl.gz",
+  "body_sha256": "913e9b7ae00a580d9ed8595f834f385b753a0b6e6241907bf6c39c3a48a06ae8",
+  "ended_at_utc": "2026-10-24T00:02:11.089170+00:00",
+  "headers": {
+    "age": "379",
+    "cache-control": "public,max-age=600",
+    "content-length": "3894",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:11 GMT",
+    "etag": "\"437870cd7cb233925d8dee976dd088ed\"",
+    "last-modified": "Sun, 01 Feb 2026 11:42:57 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "document-features",
+  "started_at_utc": "2026-10-24T00:02:10.578012+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/do/cu/document-features"
+}

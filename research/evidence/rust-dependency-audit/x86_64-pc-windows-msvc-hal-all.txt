@@ -1,0 +1,1 @@
+ravelink-hal v0.1.0 (/Users/textual/projects/notify/ravelink/crates/ravelink-hal)

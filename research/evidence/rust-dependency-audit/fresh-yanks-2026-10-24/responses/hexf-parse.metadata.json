@@ -1,0 +1,24 @@
+{
+  "body_bytes": 552,
+  "body_complete": true,
+  "body_file": "responses/hexf-parse.jsonl.gz",
+  "body_sha256": "d749b58339747b1b4dce803b980321b0edb6ffe3829b20a15a43298d5678ce45",
+  "ended_at_utc": "2026-10-24T00:02:40.528334+00:00",
+  "headers": {
+    "age": "0",
+    "cache-control": "public,max-age=600",
+    "content-length": "552",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:40 GMT",
+    "etag": "\"d7365c2faacd5e74cda1706d1f841bce\"",
+    "last-modified": "Sun, 01 Feb 2026 12:00:39 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "hexf-parse",
+  "started_at_utc": "2026-10-24T00:02:39.158212+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/he/xf/hexf-parse"
+}

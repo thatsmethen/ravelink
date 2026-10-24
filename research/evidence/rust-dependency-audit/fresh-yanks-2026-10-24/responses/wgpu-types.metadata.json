@@ -1,0 +1,24 @@
+{
+  "body_bytes": 45769,
+  "body_complete": true,
+  "body_file": "responses/wgpu-types.jsonl.gz",
+  "body_sha256": "f38c190a56d534daf62fbdf9ce0b700ee8df3250eed37af2dc8a68f64affe9e7",
+  "ended_at_utc": "2026-10-24T00:04:30.626898+00:00",
+  "headers": {
+    "age": "133",
+    "cache-control": "public,max-age=600",
+    "content-length": "45769",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:30 GMT",
+    "etag": "\"60ec32706eb778403039112add630d30\"",
+    "last-modified": "Sat, 22 Aug 2026 02:53:28 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "wgpu-types",
+  "started_at_utc": "2026-10-24T00:04:26.409551+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/wg/pu/wgpu-types"
+}

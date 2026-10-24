@@ -1,0 +1,24 @@
+{
+  "body_bytes": 7547,
+  "body_complete": true,
+  "body_file": "responses/windows_x86_64_msvc.jsonl.gz",
+  "body_sha256": "4ece67c0169b40a384e90ee21c630603f7a27d04aa840dc0f1a708eeb647a7ef",
+  "ended_at_utc": "2026-10-24T00:04:46.610126+00:00",
+  "headers": {
+    "age": "563",
+    "cache-control": "public,max-age=600",
+    "content-length": "7547",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:46 GMT",
+    "etag": "\"b93b25c5223f70b10177090989a62fb6\"",
+    "last-modified": "Sun, 01 Feb 2026 13:14:58 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "5"
+  },
+  "http_status": 200,
+  "name": "windows_x86_64_msvc",
+  "started_at_utc": "2026-10-24T00:04:45.498581+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/wi/nd/windows_x86_64_msvc"
+}

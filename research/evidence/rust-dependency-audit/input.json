@@ -1,0 +1,13 @@
+{
+  "captured_at_utc": "2026-10-23T23:45:00.182364+00:00",
+  "repository_head": "f9b96e8dfb3cc3e0b0051ebd27bbab32b09d8452",
+  "lockfile_sha256": "547f5fce785f43efad75d697e8a68212fcd161215c2787b30d4823080588aa6b",
+  "manifest_sha256": {
+    "Cargo.toml": "8753c112fd1cc4bc67ac3925d5b6624a64d1aa41848e1f066ff4714ddedf67df",
+    "crates/ravelink-core/Cargo.toml": "c9f13f8123fafc3a179681dccb3f43f9903964e375ebd43e2bcb4c8701c0115d",
+    "crates/ravelink-audio/Cargo.toml": "0ed301332f5c88be7390d736a3902751323c2500c567f1e88f1aa6d2be26c69c",
+    "crates/ravelink-app/Cargo.toml": "d6219f44e49955d29945ffa022fa8a81160810364823420bad2e73d402b5e7f0",
+    "crates/ravelink-hal/Cargo.toml": "06269690924b272bb349aa80c667a4451f5bb26ec2abd352fef644662e7e63d8"
+  },
+  "scope": "candidate working-tree shipping root workspace; no production changes by audit"
+}

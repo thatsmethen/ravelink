@@ -1,0 +1,24 @@
+{
+  "body_bytes": 14000,
+  "body_complete": true,
+  "body_file": "responses/crc32fast.jsonl.gz",
+  "body_sha256": "6fd15f783d9f1c9a32cf2ea39da6fff78be2fe81cf12fcaca4b29b4bf71e6e30",
+  "ended_at_utc": "2026-10-24T00:02:08.101276+00:00",
+  "headers": {
+    "age": "95",
+    "cache-control": "public,max-age=600",
+    "content-length": "14000",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:07 GMT",
+    "etag": "\"fae88edc46b9baf1a307b187b030ae15\"",
+    "last-modified": "Tue, 20 Oct 2026 13:35:22 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "crc32fast",
+  "started_at_utc": "2026-10-24T00:02:07.743715+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/cr/c3/crc32fast"
+}

@@ -1,0 +1,24 @@
+{
+  "body_bytes": 16538,
+  "body_complete": true,
+  "body_file": "responses/owned_ttf_parser.jsonl.gz",
+  "body_sha256": "a6084ed1e3980bdcbec2e138bfdf18f81bdb69783854a516dda3f2ec5da1f805",
+  "ended_at_utc": "2026-10-24T00:03:26.776321+00:00",
+  "headers": {
+    "age": "521",
+    "cache-control": "public,max-age=600",
+    "content-length": "16538",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:26 GMT",
+    "etag": "\"be4345e7f1c4646b518b9b16d4578053\"",
+    "last-modified": "Sun, 01 Feb 2026 12:34:28 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "owned_ttf_parser",
+  "started_at_utc": "2026-10-24T00:03:23.672698+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ow/ne/owned_ttf_parser"
+}

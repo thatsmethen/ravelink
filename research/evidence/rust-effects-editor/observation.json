@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "observed_date": "2026-10-24",
+  "platform": "macOS arm64",
+  "audio_started": false,
+  "new_permissions_granted": false,
+  "devices_installed": false,
+  "original_studio_sha256": "94efd0f900d0d205944bbd291fa87a078ea469d7a3c1b462fedc5b123f3a6615",
+  "original_studio_restored_byte_exact": true,
+  "native_restore_inspected": true,
+  "second_screenshot_fixture_restore_byte_exact": true,
+  "initial_effects_binary_sha256": "50dc04f5d2fb1a25fbafd307a7df5962bb503a15a27aa45137ac9d77e9d184db",
+  "first_shortcut_binary_sha256": "6213cfa1289f79ad87d695ce283f689274a1988bbc09c5cf1f1922b7be5095e0",
+  "final_ui_icon_binary_sha256": "c3c2fb858015e2bb57a5883dc6de5d9fe3f40e28f737942178195fdff6135d28",
+  "final_ui_sources": {
+    "crates/ravelink-app/src/main.rs": "1977e4d97c81c4da2cbdadfe3cbee506f297d9aec04034e2e8b2767625575585",
+    "crates/ravelink-app/src/effects.rs": "460d641c644317de1134af09d466e1ea7173f623aa6eb4a9ca754b78e82223c9",
+    "crates/ravelink-app/build.rs": "4c6ad639036531fba957e76faf36ed59922291c0402871c9a4a5ff56425a5cdc",
+    "packaging/macos/Info.plist": "c0e3139693fc567210706efe5ee60800a0993325224ffbc33488098ba305c2bc",
+    "scripts/build-macos-app.sh": "c4363ddde741b25428d8db08c2acd899830a8da1fbef210c264a0ad8ae602796",
+    "packaging/branding/ravelink-256.png": "2684071ed1c315fb16bc63a771331ff16fcdfd0d33c75d53003c73df6caf4198",
+    "packaging/branding/ravelink.icns": "8139a60320ac879f2dd36dfccce5672d86000740ee3ddba9b31ca2c3f0389ec9",
+    "packaging/branding/ravelink.res": "4a173b83966f63007f976a6e1f1cecba604ec3541fb7da5548b83ac4ff4fd9c1"
+  },
+  "checks": [
+    "Bus compressor attack25ms and makeup2dB, limiter ceiling−1dBFS saved and retained after relaunch",
+    "Source gate hold75ms and release250ms saved and retained after relaunch",
+    "Original Command-Shift-Z bug observed; corrected shortcut dispatch tested in actual app",
+    "Final native button focus: Tab focused Start audio; Command-Z reverted bus mute; Command-Shift-Z restored bus mute without starting audio",
+    "Six application tests passed including real egui text/button focus and specific redo consumption",
+    "Original studio restored, original bus compressor off and limiter−0.3dBFS observed, closed; after preview fixture restored byteexact again"
+  ],
+  "limitations": [
+    "Stopped macOS interaction only; no DSP audition or audio latency measurement",
+    "No native Windows interaction or shell icon rendering",
+    "Screenshot fixture uses four explicitly labelled test tones; no hardware or application capture represented",
+    "Initial source/master screenshots predate shortcut/focus/icon fixes; final public screenshots use final UI/icon binary",
+    "Native audio adapter was being developed separately; no capture behaviour inferred from stopped UI"
+  ]
+}

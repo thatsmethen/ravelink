@@ -1,0 +1,24 @@
+{
+  "body_bytes": 5823,
+  "body_complete": true,
+  "body_file": "responses/pollster.jsonl.gz",
+  "body_sha256": "4fcfa8b9b4373f2c049c63b2e806b8141dfd61336e6c9b577d7dae55980d652b",
+  "ended_at_utc": "2026-10-24T00:03:41.036561+00:00",
+  "headers": {
+    "age": "475",
+    "cache-control": "public,max-age=600",
+    "content-length": "5823",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:41 GMT",
+    "etag": "\"7f61f71e0302c929849e6049b9922ffa\"",
+    "last-modified": "Fri, 10 Jul 2026 16:05:13 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "pollster",
+  "started_at_utc": "2026-10-24T00:03:35.775957+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/po/ll/pollster"
+}

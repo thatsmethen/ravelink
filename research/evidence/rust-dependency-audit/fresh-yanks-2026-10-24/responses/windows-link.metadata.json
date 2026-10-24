@@ -1,0 +1,24 @@
+{
+  "body_bytes": 1665,
+  "body_complete": true,
+  "body_file": "responses/windows-link.jsonl.gz",
+  "body_sha256": "2f6055c24a984135453c9932bd3c2d82e5885d0cc9a27877f7b24a405e7c8830",
+  "ended_at_utc": "2026-10-24T00:04:34.903078+00:00",
+  "headers": {
+    "age": "177",
+    "cache-control": "public,max-age=600",
+    "content-length": "1665",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:34 GMT",
+    "etag": "\"8a139c5ab8bf38a5513b4961de82f0cc\"",
+    "last-modified": "Thu, 03 Sep 2026 16:39:04 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "windows-link",
+  "started_at_utc": "2026-10-24T00:04:33.773643+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/wi/nd/windows-link"
+}

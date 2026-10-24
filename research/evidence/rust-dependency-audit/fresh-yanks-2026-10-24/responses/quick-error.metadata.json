@@ -1,0 +1,24 @@
+{
+  "body_bytes": 2960,
+  "body_complete": true,
+  "body_file": "responses/quick-error.jsonl.gz",
+  "body_sha256": "7006e618051766d19656e4858f3013c40ee8454a17674574700bd7d4e65b4b76",
+  "ended_at_utc": "2026-10-24T00:03:44.263481+00:00",
+  "headers": {
+    "age": "586",
+    "cache-control": "public,max-age=600",
+    "content-length": "2960",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:44 GMT",
+    "etag": "\"844d2f7096c65313618dcc3a448ad748\"",
+    "last-modified": "Sun, 01 Feb 2026 12:42:19 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "quick-error",
+  "started_at_utc": "2026-10-24T00:03:39.988445+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/qu/ic/quick-error"
+}

@@ -1,0 +1,24 @@
+{
+  "body_bytes": 52899,
+  "body_complete": true,
+  "body_file": "responses/accesskit_macos.jsonl.gz",
+  "body_sha256": "12cbc8a1a3dc29c8c6cc6d43cb5cfbe660d95f34cedaa281eb4d0bf53e4f02f6",
+  "ended_at_utc": "2026-10-24T00:01:41.287227+00:00",
+  "headers": {
+    "age": "0",
+    "cache-control": "public,max-age=600",
+    "content-length": "52899",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:01:40 GMT",
+    "etag": "\"31da69e7d94bbdda1dd63471ad991531\"",
+    "last-modified": "Fri, 25 Sep 2026 19:41:01 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "accesskit_macos",
+  "started_at_utc": "2026-10-24T00:01:33.532507+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ac/ce/accesskit_macos"
+}

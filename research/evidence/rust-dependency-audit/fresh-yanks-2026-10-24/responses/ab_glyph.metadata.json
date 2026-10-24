@@ -1,0 +1,24 @@
+{
+  "body_bytes": 25448,
+  "body_complete": true,
+  "body_file": "responses/ab_glyph.jsonl.gz",
+  "body_sha256": "93dc2c49a0b5f805739bdb79ff9ebbff09afd0f3a47e8b8ed821f1eb7c2a351b",
+  "ended_at_utc": "2026-10-24T00:01:33.903184+00:00",
+  "headers": {
+    "age": "409",
+    "cache-control": "public,max-age=600",
+    "content-length": "25448",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:01:33 GMT",
+    "etag": "\"cb9bce22083cb714538ce4cc3fa12082\"",
+    "last-modified": "Sun, 01 Feb 2026 11:19:10 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "ab_glyph",
+  "started_at_utc": "2026-10-24T00:01:31.873328+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ab/_g/ab_glyph"
+}

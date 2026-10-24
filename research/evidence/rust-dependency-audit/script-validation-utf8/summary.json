@@ -1,0 +1,11 @@
+{
+  "audit_exit_code": 1,
+  "database_commit": "84d943a6deeb8cc6c6f632531aaf4f1c62275239",
+  "limitations": [
+    "Package graph membership is not function-level reachability or exploit analysis.",
+    "Yanked status uses the host's cached crates.io index, not a fresh index snapshot.",
+    "Rust standard/core/compiler builtins, SDKs and system libraries are outside Cargo.lock."
+  ],
+  "vulnerability_count": 0,
+  "warning_count": 5
+}

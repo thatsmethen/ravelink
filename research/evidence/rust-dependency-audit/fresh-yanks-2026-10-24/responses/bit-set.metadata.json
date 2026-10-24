@@ -1,0 +1,24 @@
+{
+  "body_bytes": 12763,
+  "body_complete": true,
+  "body_file": "responses/bit-set.jsonl.gz",
+  "body_sha256": "68090fec86aa25f92e1b0cbf32d826f6d99b4a9a08547d9496ad961f2476c8bb",
+  "ended_at_utc": "2026-10-24T00:01:45.259491+00:00",
+  "headers": {
+    "age": "0",
+    "cache-control": "public,max-age=600",
+    "content-length": "12763",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:01:45 GMT",
+    "etag": "\"8ddd469781bab0e59adda82c86ce9ff1\"",
+    "last-modified": "Fri, 10 Jul 2026 12:48:29 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "bit-set",
+  "started_at_utc": "2026-10-24T00:01:42.453908+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/bi/t-/bit-set"
+}

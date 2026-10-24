@@ -1,0 +1,24 @@
+{
+  "body_bytes": 1355,
+  "body_complete": true,
+  "body_file": "responses/presser.jsonl.gz",
+  "body_sha256": "ea7be1ec15ae48ef5100e5d6dc8493505f92fb9a257921c1dc0c87cfa58f66f7",
+  "ended_at_utc": "2026-10-24T00:03:37.927079+00:00",
+  "headers": {
+    "age": "79",
+    "cache-control": "public,max-age=600",
+    "content-length": "1355",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:37 GMT",
+    "etag": "\"a6f5536788b82fd46c7ac5d80617116f\"",
+    "last-modified": "Sun, 01 Feb 2026 12:39:46 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "presser",
+  "started_at_utc": "2026-10-24T00:03:35.944743+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/pr/es/presser"
+}

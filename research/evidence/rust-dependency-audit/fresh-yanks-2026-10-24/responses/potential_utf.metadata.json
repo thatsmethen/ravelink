@@ -1,0 +1,24 @@
+{
+  "body_bytes": 6728,
+  "body_complete": true,
+  "body_file": "responses/potential_utf.jsonl.gz",
+  "body_sha256": "67750c514d38aea92e8851e16f6103a59dc3c86eb694e51d9aef9998407594bb",
+  "ended_at_utc": "2026-10-24T00:03:36.789951+00:00",
+  "headers": {
+    "age": "41",
+    "cache-control": "public,max-age=600",
+    "content-length": "6728",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:36 GMT",
+    "etag": "\"a854d81e3e40dba3f18a925bbb856406\"",
+    "last-modified": "Thu, 13 Aug 2026 23:28:15 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "potential_utf",
+  "started_at_utc": "2026-10-24T00:03:35.802057+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/po/te/potential_utf"
+}

@@ -1,0 +1,24 @@
+{
+  "body_bytes": 3869,
+  "body_complete": true,
+  "body_file": "responses/foreign-types-macros.jsonl.gz",
+  "body_sha256": "21c2cc680cdf6d52049f7a52a1fe53df19127207ae2b3a3eee7dcf0891e1c0b7",
+  "ended_at_utc": "2026-10-24T00:02:38.544452+00:00",
+  "headers": {
+    "age": "161",
+    "cache-control": "public,max-age=600",
+    "content-length": "3869",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:38 GMT",
+    "etag": "\"720b2c2580553573a4b4a0ee01097e2c\"",
+    "last-modified": "Wed, 22 Jul 2026 20:34:01 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "foreign-types-macros",
+  "started_at_utc": "2026-10-24T00:02:31.072462+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/fo/re/foreign-types-macros"
+}

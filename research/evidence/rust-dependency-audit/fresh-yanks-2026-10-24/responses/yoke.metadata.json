@@ -1,0 +1,24 @@
+{
+  "body_bytes": 24414,
+  "body_complete": true,
+  "body_file": "responses/yoke.jsonl.gz",
+  "body_sha256": "8b2c8747e79fcad3c052e3528df907a81e8d4d66426e17a51fabfebc465fbfef",
+  "ended_at_utc": "2026-10-24T00:04:48.741970+00:00",
+  "headers": {
+    "age": "113",
+    "cache-control": "public,max-age=600",
+    "content-length": "24414",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:48 GMT",
+    "etag": "\"27f90fa1d84fe7119c68845d2deaf9d6\"",
+    "last-modified": "Thu, 22 Oct 2026 08:51:36 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "yoke",
+  "started_at_utc": "2026-10-24T00:04:46.611239+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/yo/ke/yoke"
+}

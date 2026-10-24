@@ -1,0 +1,24 @@
+{
+  "body_bytes": 34796,
+  "body_complete": true,
+  "body_file": "responses/bytemuck.jsonl.gz",
+  "body_sha256": "75adb41646bbe374f95fdba25a33dfd19c2fc7cfc4e2e9f63130d238c72a1787",
+  "ended_at_utc": "2026-10-24T00:01:52.152362+00:00",
+  "headers": {
+    "age": "366",
+    "cache-control": "public,max-age=600",
+    "content-length": "34796",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:01:52 GMT",
+    "etag": "\"202bb3a21d168154a663736877dbb0b0\"",
+    "last-modified": "Sun, 19 Jul 2026 19:36:17 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "bytemuck",
+  "started_at_utc": "2026-10-24T00:01:47.805962+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/by/te/bytemuck"
+}

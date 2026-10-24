@@ -1,0 +1,24 @@
+{
+  "body_bytes": 1493,
+  "body_complete": true,
+  "body_file": "responses/type-map.jsonl.gz",
+  "body_sha256": "668c25b315fabaed5fab7efa1dabcf63b4c61e8b5e26a3f7703a620f675887f9",
+  "ended_at_utc": "2026-10-24T00:04:10.704615+00:00",
+  "headers": {
+    "age": "461",
+    "cache-control": "public,max-age=600",
+    "content-length": "1493",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:10 GMT",
+    "etag": "\"a338349e44862d3f3acb50aba34f658e\"",
+    "last-modified": "Sun, 01 Feb 2026 13:09:39 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "type-map",
+  "started_at_utc": "2026-10-24T00:04:09.697135+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ty/pe/type-map"
+}

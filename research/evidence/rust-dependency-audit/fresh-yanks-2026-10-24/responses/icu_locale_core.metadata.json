@@ -1,0 +1,24 @@
+{
+  "body_bytes": 17207,
+  "body_complete": true,
+  "body_file": "responses/icu_locale_core.jsonl.gz",
+  "body_sha256": "5c547ba1031fab53c0c1f834cea9d28197e95b2d68c59f9138f3ffffe0983233",
+  "ended_at_utc": "2026-10-24T00:02:56.583220+00:00",
+  "headers": {
+    "age": "2",
+    "cache-control": "public,max-age=600",
+    "content-length": "17207",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:56 GMT",
+    "etag": "\"8fafd8715ad016f8dc3bd52d4391492e\"",
+    "last-modified": "Thu, 22 Oct 2026 08:51:56 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "icu_locale_core",
+  "started_at_utc": "2026-10-24T00:02:42.626978+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ic/u_/icu_locale_core"
+}

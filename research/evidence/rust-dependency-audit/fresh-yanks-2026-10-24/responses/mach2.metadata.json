@@ -1,0 +1,24 @@
+{
+  "body_bytes": 2255,
+  "body_complete": true,
+  "body_file": "responses/mach2.jsonl.gz",
+  "body_sha256": "461c7b34a1e2d74395bc23570b38f7e5630c014307865c5ec96bd2ae5d22bda4",
+  "ended_at_utc": "2026-10-24T00:03:01.516277+00:00",
+  "headers": {
+    "age": "510",
+    "cache-control": "public,max-age=600",
+    "content-length": "2255",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:01 GMT",
+    "etag": "\"40cfdbe98362df5b8416bd3c5be40d1d\"",
+    "last-modified": "Sun, 30 Aug 2026 10:48:43 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "mach2",
+  "started_at_utc": "2026-10-24T00:02:59.422090+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ma/ch/mach2"
+}

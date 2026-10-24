@@ -1,0 +1,24 @@
+{
+  "body_bytes": 26645,
+  "body_complete": true,
+  "body_file": "responses/litemap.jsonl.gz",
+  "body_sha256": "4da30080bd41655d53f389e079eeb2cda22c40fdb8795e711bf65c21bbb06c70",
+  "ended_at_utc": "2026-10-24T00:02:57.523211+00:00",
+  "headers": {
+    "age": "2",
+    "cache-control": "public,max-age=600",
+    "content-length": "26645",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:57 GMT",
+    "etag": "\"ea428a1750344ce49d998faf8f37ad76\"",
+    "last-modified": "Thu, 13 Aug 2026 23:27:59 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "37500"
+  },
+  "http_status": 200,
+  "name": "litemap",
+  "started_at_utc": "2026-10-24T00:02:55.502889+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/li/te/litemap"
+}

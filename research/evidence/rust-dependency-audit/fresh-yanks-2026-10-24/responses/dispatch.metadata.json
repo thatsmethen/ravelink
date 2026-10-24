@@ -1,0 +1,24 @@
+{
+  "body_bytes": 1986,
+  "body_complete": true,
+  "body_file": "responses/dispatch.jsonl.gz",
+  "body_sha256": "b06b561ec5e8f91886366e0b413ec2f711c55b8ccf01cb067d195141ded26558",
+  "ended_at_utc": "2026-10-24T00:02:19.427322+00:00",
+  "headers": {
+    "age": "3",
+    "cache-control": "public,max-age=600",
+    "content-length": "1986",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:19 GMT",
+    "etag": "\"bebf213b0ee541ee8744943c5d944c28\"",
+    "last-modified": "Sun, 01 Feb 2026 11:42:27 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "dispatch",
+  "started_at_utc": "2026-10-24T00:02:08.067283+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/di/sp/dispatch"
+}

@@ -1,0 +1,5401 @@
+[
+  {
+    "index_checksum": "01c0457472c38ea5bd1c3b5ada5e368271cb550be7a4ca4a0b4634e9913f6cc2",
+    "locked_checksum": "01c0457472c38ea5bd1c3b5ada5e368271cb550be7a4ca4a0b4634e9913f6cc2",
+    "name": "ab_glyph",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.32",
+    "yanked": false
+  },
+  {
+    "index_checksum": "366ffbaa4442f4684d91e2cd7c5ea7c4ed8add41959a31447066e279e432b618",
+    "locked_checksum": "366ffbaa4442f4684d91e2cd7c5ea7c4ed8add41959a31447066e279e432b618",
+    "name": "ab_glyph_rasterizer",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.1.10",
+    "yanked": false
+  },
+  {
+    "index_checksum": "cf203f9d3bd8f29f98833d1fbef628df18f759248a547e7e01cfbf63cda36a99",
+    "locked_checksum": "cf203f9d3bd8f29f98833d1fbef628df18f759248a547e7e01cfbf63cda36a99",
+    "name": "accesskit",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.21.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "db81010a6895d8707f9072e6ce98070579b43b717193d2614014abd5cb17dd43",
+    "locked_checksum": "db81010a6895d8707f9072e6ce98070579b43b717193d2614014abd5cb17dd43",
+    "name": "accesskit_consumer",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.31.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "a0089e5c0ac0ca281e13ea374773898d9354cc28d15af9f0f7394d44a495b575",
+    "locked_checksum": "a0089e5c0ac0ca281e13ea374773898d9354cc28d15af9f0f7394d44a495b575",
+    "name": "accesskit_macos",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.22.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "d2d63dd5041e49c363d83f5419a896ecb074d309c414036f616dc0b04faca971",
+    "locked_checksum": "d2d63dd5041e49c363d83f5419a896ecb074d309c414036f616dc0b04faca971",
+    "name": "accesskit_windows",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.29.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "c8cfabe59d0eaca7412bfb1f70198dd31e3b0496fee7e15b066f9c36a1a140a0",
+    "locked_checksum": "c8cfabe59d0eaca7412bfb1f70198dd31e3b0496fee7e15b066f9c36a1a140a0",
+    "name": "accesskit_winit",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.29.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "320119579fcad9c21884f5c4861d16174d0e06250625266f50fe6898340abefa",
+    "locked_checksum": "320119579fcad9c21884f5c4861d16174d0e06250625266f50fe6898340abefa",
+    "name": "adler2",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "2.0.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "5a15f179cd60c4584b8a8c596927aadc462e27f2ca70c04e0071964a73ba7a75",
+    "locked_checksum": "5a15f179cd60c4584b8a8c596927aadc462e27f2ca70c04e0071964a73ba7a75",
+    "name": "ahash",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.8.12",
+    "yanked": false
+  },
+  {
+    "index_checksum": "aeb9553e62312c8756a5979254fc6d7da8bbeb5986a1e17037fab932f7037917",
+    "locked_checksum": "aeb9553e62312c8756a5979254fc6d7da8bbeb5986a1e17037fab932f7037917",
+    "name": "arboard",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "3.7.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "d3fb67a6e08acf24fdeccbac2cb6ac4305825bd1f117462e0e6f2f193345ad56",
+    "locked_checksum": "d3fb67a6e08acf24fdeccbac2cb6ac4305825bd1f117462e0e6f2f193345ad56",
+    "name": "arrayvec",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.7.8",
+    "yanked": false
+  },
+  {
+    "index_checksum": "f2032f911046de80f0a198e0901378627c33f59ea0ac00e363d481118bd70a53",
+    "locked_checksum": "f2032f911046de80f0a198e0901378627c33f59ea0ac00e363d481118bd70a53",
+    "name": "autocfg",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "1.5.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "08807e080ed7f9d5433fa9b275196cfc35414f66a0c79d864dc51a0d825231a3",
+    "locked_checksum": "08807e080ed7f9d5433fa9b275196cfc35414f66a0c79d864dc51a0d825231a3",
+    "name": "bit-set",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.8.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "5e764a1d40d510daf35e07be9eb06e75770908c27d411ee6c92109c9840eaaf7",
+    "locked_checksum": "5e764a1d40d510daf35e07be9eb06e75770908c27d411ee6c92109c9840eaaf7",
+    "name": "bit-vec",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.8.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "bef38d45163c2f1dde094a7dfd33ccf595c92905c8f8f4fdc18d06fb1037718a",
+    "locked_checksum": "bef38d45163c2f1dde094a7dfd33ccf595c92905c8f8f4fdc18d06fb1037718a",
+    "name": "bitflags",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "1.3.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "3ded4057c258ba199e2d26386d3af3780957ecaee6c4ef4041c6b4b8b97c0b06",
+    "locked_checksum": "3ded4057c258ba199e2d26386d3af3780957ecaee6c4ef4041c6b4b8b97c0b06",
+    "name": "bitflags",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "2.13.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "0d8c1fef690941d3e7788d328517591fecc684c084084702d6ff1641e993699a",
+    "locked_checksum": "0d8c1fef690941d3e7788d328517591fecc684c084084702d6ff1641e993699a",
+    "name": "block",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.1.6",
+    "yanked": false
+  },
+  {
+    "index_checksum": "2c132eebf10f5cad5289222520a4a058514204aed6d791f1cf4fe8088b82d15f",
+    "locked_checksum": "2c132eebf10f5cad5289222520a4a058514204aed6d791f1cf4fe8088b82d15f",
+    "name": "block2",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.5.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "cdeb9d870516001442e364c5220d3574d2da8dc765554b4a617230d33fa58ef5",
+    "locked_checksum": "cdeb9d870516001442e364c5220d3574d2da8dc765554b4a617230d33fa58ef5",
+    "name": "block2",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.6.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "95832e849adfb21180ccb6826a99da14e5d266ae5c2e668e1602cf234f153797",
+    "locked_checksum": "95832e849adfb21180ccb6826a99da14e5d266ae5c2e668e1602cf234f153797",
+    "name": "bytemuck",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.25.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "6a1f896587b6f2c069c73d2f0913e2d590c3990285cd2f0b6aa02b786b4c679c",
+    "locked_checksum": "6a1f896587b6f2c069c73d2f0913e2d590c3990285cd2f0b6aa02b786b4c679c",
+    "name": "bytemuck_derive",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "1.12.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "8f1fe948ff07f4bd06c30984e69f5b4899c516a3ef74f34df92a2df2ab535495",
+    "locked_checksum": "8f1fe948ff07f4bd06c30984e69f5b4899c516a3ef74f34df92a2df2ab535495",
+    "name": "byteorder-lite",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.1.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "4e7648175b45a9a48536d676f68d918270699102aa8dab5496df06904c914600",
+    "locked_checksum": "4e7648175b45a9a48536d676f68d918270699102aa8dab5496df06904c914600",
+    "name": "cfg-if",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.0.5",
+    "yanked": false
+  },
+  {
+    "index_checksum": "f079e83a288787bcd14a6aea84cee5c87a67c5a3e660c30f557a3d24761b3527",
+    "locked_checksum": "f079e83a288787bcd14a6aea84cee5c87a67c5a3e660c30f557a3d24761b3527",
+    "name": "cfg_aliases",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "052af7878466feccda12ba7a6a67d019d712f296809559b47c12c8cc196d3a9a",
+    "locked_checksum": "052af7878466feccda12ba7a6a67d019d712f296809559b47c12c8cc196d3a9a",
+    "name": "clipboard-win",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "5.4.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "fe6d2e5af09e8c8ad56c969f2157a3d4238cebc7c55f0a517728c38f7b200f81",
+    "locked_checksum": "fe6d2e5af09e8c8ad56c969f2157a3d4238cebc7c55f0a517728c38f7b200f81",
+    "name": "codespan-reporting",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.12.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "b2a6cd9ae233e7f62ba4e9353e81a88df7fc8a5987b8d445b4d90c879bd156f6",
+    "locked_checksum": "b2a6cd9ae233e7f62ba4e9353e81a88df7fc8a5987b8d445b4d90c879bd156f6",
+    "name": "core-foundation",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.10.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "91e195e091a93c46f7102ec7818a2aa394e1e1771c3ab4825963fa03e45afb8f",
+    "locked_checksum": "91e195e091a93c46f7102ec7818a2aa394e1e1771c3ab4825963fa03e45afb8f",
+    "name": "core-foundation",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.9.4",
+    "yanked": false
+  },
+  {
+    "index_checksum": "773648b94d0e5d620f64f280777445740e61fe701025087ec8b57f45c791888b",
+    "locked_checksum": "773648b94d0e5d620f64f280777445740e61fe701025087ec8b57f45c791888b",
+    "name": "core-foundation-sys",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.8.7",
+    "yanked": false
+  },
+  {
+    "index_checksum": "c07782be35f9e1140080c6b96f0d44b739e2278479f64e02fdab4e32dfd8b081",
+    "locked_checksum": "c07782be35f9e1140080c6b96f0d44b739e2278479f64e02fdab4e32dfd8b081",
+    "name": "core-graphics",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.23.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "45390e6114f68f718cc7a830514a96f903cccd70d02a8f6d9f643ac4ba45afaf",
+    "locked_checksum": "45390e6114f68f718cc7a830514a96f903cccd70d02a8f6d9f643ac4ba45afaf",
+    "name": "core-graphics-types",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.1.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "3d44a101f213f6c4cdc1853d4b78aef6db6bdfa3468798cc1d9912f4735013eb",
+    "locked_checksum": "3d44a101f213f6c4cdc1853d4b78aef6db6bdfa3468798cc1d9912f4735013eb",
+    "name": "core-graphics-types",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "7d5d7dca3ebcf65a035582c9ad4385371a9d9ee6537474d2a278f4e1e475bb58",
+    "locked_checksum": "7d5d7dca3ebcf65a035582c9ad4385371a9d9ee6537474d2a278f4e1e475bb58",
+    "name": "coreaudio-rs",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.14.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "6f02e8d0327b42d3e2e4ab2119af397344eb9fc54a34bf0ddeaa1277af8681f1",
+    "locked_checksum": "6f02e8d0327b42d3e2e4ab2119af397344eb9fc54a34bf0ddeaa1277af8681f1",
+    "name": "cpal",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.18.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "0ba106e844045ddc02c20768ac4b0b7cb45f2cc2ecbd833ac9f5dacb183c2055",
+    "locked_checksum": "0ba106e844045ddc02c20768ac4b0b7cb45f2cc2ecbd833ac9f5dacb183c2055",
+    "name": "crc32fast",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.5.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "f27ae1dd37df86211c42e150270f82743308803d90a6f6e6651cd730d5e1732f",
+    "locked_checksum": "f27ae1dd37df86211c42e150270f82743308803d90a6f6e6651cd730d5e1732f",
+    "name": "cursor-icon",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.2.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "0c87e182de0887fd5361989c677c4e8f5000cd9491d6d563161a8f3a5519fc7f",
+    "locked_checksum": "0c87e182de0887fd5361989c677c4e8f5000cd9491d6d563161a8f3a5519fc7f",
+    "name": "dasp_sample",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.11.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "bd0c93bb4b0c6d9b77f4435b0ae98c24d17f1c45b2ff844c6151a07256ca923b",
+    "locked_checksum": "bd0c93bb4b0c6d9b77f4435b0ae98c24d17f1c45b2ff844c6151a07256ca923b",
+    "name": "dispatch",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "1e0e367e4e7da84520dedcac1901e4da967309406d1e51017ae1abfb97adbd38",
+    "locked_checksum": "1e0e367e4e7da84520dedcac1901e4da967309406d1e51017ae1abfb97adbd38",
+    "name": "dispatch2",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.3.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "c6232dd377dcc64799954cbd3a9bb882e9cdc1308ccd87b1c098f1fb2eaf82a8",
+    "locked_checksum": "c6232dd377dcc64799954cbd3a9bb882e9cdc1308ccd87b1c098f1fb2eaf82a8",
+    "name": "displaydoc",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.7",
+    "yanked": false
+  },
+  {
+    "index_checksum": "d4b8a88685455ed29a21542a33abd9cb6510b6b129abadabdcef0f4c55bc8f61",
+    "locked_checksum": "d4b8a88685455ed29a21542a33abd9cb6510b6b129abadabdcef0f4c55bc8f61",
+    "name": "document-features",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.12",
+    "yanked": false
+  },
+  {
+    "index_checksum": "d8b14ccef22fc6f5a8f4d7d768562a182c04ce9a3b3157b91390b52ddfdf1a76",
+    "locked_checksum": "d8b14ccef22fc6f5a8f4d7d768562a182c04ce9a3b3157b91390b52ddfdf1a76",
+    "name": "dpi",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.1.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "71ddb8ac7643d1dba1bb02110e804406dd459a838efcb14011ced10556711a8e",
+    "locked_checksum": "71ddb8ac7643d1dba1bb02110e804406dd459a838efcb14011ced10556711a8e",
+    "name": "ecolor",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.33.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "457481173e6db5ca9fa2be93a58df8f4c7be639587aeb4853b526c6cf87db4e6",
+    "locked_checksum": "457481173e6db5ca9fa2be93a58df8f4c7be639587aeb4853b526c6cf87db4e6",
+    "name": "eframe",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.33.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "6a9b567d356674e9a5121ed3fedfb0a7c31e059fe71f6972b691bcd0bfc284e3",
+    "locked_checksum": "6a9b567d356674e9a5121ed3fedfb0a7c31e059fe71f6972b691bcd0bfc284e3",
+    "name": "egui",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.33.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "5e4d209971c84b2352a06174abdba701af1e552ce56b144d96f2bd50a3c91236",
+    "locked_checksum": "5e4d209971c84b2352a06174abdba701af1e552ce56b144d96f2bd50a3c91236",
+    "name": "egui-wgpu",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.33.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "ec6687e5bb551702f4ad10ac428bab12acf9d53047ebb1082d4a0ed8c6251a29",
+    "locked_checksum": "ec6687e5bb551702f4ad10ac428bab12acf9d53047ebb1082d4a0ed8c6251a29",
+    "name": "egui-winit",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.33.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "491bdf728bf25ddd9ad60d4cf1c48588fa82c013a2440b91aa7fc43e34a07c32",
+    "locked_checksum": "491bdf728bf25ddd9ad60d4cf1c48588fa82c013a2440b91aa7fc43e34a07c32",
+    "name": "emath",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.33.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "009d0dd3c2163823a0abdb899451ecbc78798dec545ee91b43aff1fa790bab62",
+    "locked_checksum": "009d0dd3c2163823a0abdb899451ecbc78798dec545ee91b43aff1fa790bab62",
+    "name": "epaint",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.33.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "5c4fbe202b6578d3d56428fa185cdf114a05e49da05f477b3c7f0fbb221f1862",
+    "locked_checksum": "5c4fbe202b6578d3d56428fa185cdf114a05e49da05f477b3c7f0fbb221f1862",
+    "name": "epaint_default_fonts",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.33.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "00d174d5400e5e8fd687ad1049e2f578285fa914201b1af7e8b112a4546bd826",
+    "locked_checksum": "00d174d5400e5e8fd687ad1049e2f578285fa914201b1af7e8b112a4546bd826",
+    "name": "equivalent",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.0.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "0b5343afd4a8365a643ac588dab4cf234a190c7f6c88c9f6dd6ffe00837661b7",
+    "locked_checksum": "0b5343afd4a8365a643ac588dab4cf234a190c7f6c88c9f6dd6ffe00837661b7",
+    "name": "error-code",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "3.4.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "caf1079563223d5d59d83c85886a56e586cfd5c1a26292e971a0fa266531ac5a",
+    "locked_checksum": "caf1079563223d5d59d83c85886a56e586cfd5c1a26292e971a0fa266531ac5a",
+    "name": "fax",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.7",
+    "yanked": false
+  },
+  {
+    "index_checksum": "1e6853b52649d4ac5c0bd02320cddc5ba956bdb407c4b75a2c6b75bf51500f8c",
+    "locked_checksum": "1e6853b52649d4ac5c0bd02320cddc5ba956bdb407c4b75a2c6b75bf51500f8c",
+    "name": "fdeflate",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.3.7",
+    "yanked": false
+  },
+  {
+    "index_checksum": "6e634e2e0ebac1ee034020da1ca582e17ffe4e0f5e985823721e168928136dcb",
+    "locked_checksum": "6e634e2e0ebac1ee034020da1ca582e17ffe4e0f5e985823721e168928136dcb",
+    "name": "flate2",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.1.10",
+    "yanked": false
+  },
+  {
+    "index_checksum": "d9c4f5dac5e15c24eb999c26181a6ca40b39fe946cbe4c263c7209467bc83af2",
+    "locked_checksum": "d9c4f5dac5e15c24eb999c26181a6ca40b39fe946cbe4c263c7209467bc83af2",
+    "name": "foldhash",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.1.5",
+    "yanked": false
+  },
+  {
+    "index_checksum": "77ce24cb58228fbb8aa041425bb1050850ac19177686ea6e0f41a70416f56fdb",
+    "locked_checksum": "77ce24cb58228fbb8aa041425bb1050850ac19177686ea6e0f41a70416f56fdb",
+    "name": "foldhash",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "d737d9aa519fb7b749cbc3b962edcf310a8dd1f4b67c91c4f83975dbdd17d965",
+    "locked_checksum": "d737d9aa519fb7b749cbc3b962edcf310a8dd1f4b67c91c4f83975dbdd17d965",
+    "name": "foreign-types",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.5.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "ea5190182e6915eb873ddbc16e23b711b6eb1f9c00a0d0a3a91b5f6228475225",
+    "locked_checksum": "ea5190182e6915eb873ddbc16e23b711b6eb1f9c00a0d0a3a91b5f6228475225",
+    "name": "foreign-types-macros",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.4",
+    "yanked": false
+  },
+  {
+    "index_checksum": "aa9a19cbb55df58761df49b23516a86d432839add4af60fc256da840f66ed35b",
+    "locked_checksum": "aa9a19cbb55df58761df49b23516a86d432839add4af60fc256da840f66ed35b",
+    "name": "foreign-types-shared",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.3.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "cb4cb245038516f5f85277875cdaa4f7d2c9a0fa0468de06ed190163b1581fcf",
+    "locked_checksum": "cb4cb245038516f5f85277875cdaa4f7d2c9a0fa0468de06ed190163b1581fcf",
+    "name": "form_urlencoded",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.2.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "300e883d756b2e4ec94e02791f39b04b522276138852cfc41d9fb7e904106099",
+    "locked_checksum": "300e883d756b2e4ec94e02791f39b04b522276138852cfc41d9fb7e904106099",
+    "name": "getrandom",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.4.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "c151a2a5ef800297b4e79efa4f4bec035c5f51d5ae587287c9b952bdf734cacd",
+    "locked_checksum": "c151a2a5ef800297b4e79efa4f4bec035c5f51d5ae587287c9b952bdf734cacd",
+    "name": "gpu-allocator",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.27.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "6ea2d84b969582b4b1864a92dc5d27cd2b77b622a8d79306834f1be5ba20d84b",
+    "locked_checksum": "6ea2d84b969582b4b1864a92dc5d27cd2b77b622a8d79306834f1be5ba20d84b",
+    "name": "half",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "2.7.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "9229cfe53dfd69f0609a49f65461bd93001ea1ef889cd5529dd176593f5338a1",
+    "locked_checksum": "9229cfe53dfd69f0609a49f65461bd93001ea1ef889cd5529dd176593f5338a1",
+    "name": "hashbrown",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.15.5",
+    "yanked": false
+  },
+  {
+    "index_checksum": "841d1cc9bed7f9236f321df977030373f4a4163ae1a7dbfe1a51a2c1a51d9100",
+    "locked_checksum": "841d1cc9bed7f9236f321df977030373f4a4163ae1a7dbfe1a51a2c1a51d9100",
+    "name": "hashbrown",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.16.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "ed5909b6e89a2db4456e54cd5f673791d7eca6732202bbf2a9cc504fe2f9b84a",
+    "locked_checksum": "ed5909b6e89a2db4456e54cd5f673791d7eca6732202bbf2a9cc504fe2f9b84a",
+    "name": "hashbrown",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.17.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "dfa686283ad6dd069f105e5ab091b04c62850d3e4cf5d67debad1933f55023df",
+    "locked_checksum": "dfa686283ad6dd069f105e5ab091b04c62850d3e4cf5d67debad1933f55023df",
+    "name": "hexf-parse",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "fe090a42a0d3140fed8c63263ed1fecc02422cb2f4bfe55cd8de2de1b8e105dd",
+    "locked_checksum": "fe090a42a0d3140fed8c63263ed1fecc02422cb2f4bfe55cd8de2de1b8e105dd",
+    "name": "icu_collections",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "2.4.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "25d29b57c17c6528d0dc4c2141cfa2d08200465acb537a3909c8b9b8a4a984c0",
+    "locked_checksum": "25d29b57c17c6528d0dc4c2141cfa2d08200465acb537a3909c8b9b8a4a984c0",
+    "name": "icu_locale_core",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "2.4.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "404a3b8c486f205c87fe7f23ab6894d84a4ad76d6e4671ae1981ba7def87c599",
+    "locked_checksum": "404a3b8c486f205c87fe7f23ab6894d84a4ad76d6e4671ae1981ba7def87c599",
+    "name": "icu_normalizer",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "2.4.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "20f0088bfb7441f7a37fa0c9e20cb1e9cba1cac6b9ce8cd2a6dc44294f8e8cbc",
+    "locked_checksum": "20f0088bfb7441f7a37fa0c9e20cb1e9cba1cac6b9ce8cd2a6dc44294f8e8cbc",
+    "name": "icu_normalizer_data",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "2.4.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "2ea83d991c56158f7cf898bf86436c1dfe7c07ee82fe88951f2695c9f37a379f",
+    "locked_checksum": "2ea83d991c56158f7cf898bf86436c1dfe7c07ee82fe88951f2695c9f37a379f",
+    "name": "icu_properties",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "2.4.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "b98f29af82d02b163fe50161388350e743bb3107cc8e8c2f7314cb505faddfcf",
+    "locked_checksum": "b98f29af82d02b163fe50161388350e743bb3107cc8e8c2f7314cb505faddfcf",
+    "name": "icu_properties_data",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "2.4.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "413099315636c588ee8f011190b329b971a09a8fae9d157e01dcae8379468514",
+    "locked_checksum": "413099315636c588ee8f011190b329b971a09a8fae9d157e01dcae8379468514",
+    "name": "icu_provider",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "2.4.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "3b0875f23caa03898994f6ddc501886a45c7d3d62d04d2d90788d47be1b1e4de",
+    "locked_checksum": "3b0875f23caa03898994f6ddc501886a45c7d3d62d04d2d90788d47be1b1e4de",
+    "name": "idna",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.1.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "cb68373c0d6620ef8105e855e7745e18b0d00d3bdb07fb532e434244cdb9a714",
+    "locked_checksum": "cb68373c0d6620ef8105e855e7745e18b0d00d3bdb07fb532e434244cdb9a714",
+    "name": "idna_adapter",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.2.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "85ab80394333c02fe689eaf900ab500fbd0c2213da414687ebf995a65d5a6104",
+    "locked_checksum": "85ab80394333c02fe689eaf900ab500fbd0c2213da414687ebf995a65d5a6104",
+    "name": "image",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.25.10",
+    "yanked": false
+  },
+  {
+    "index_checksum": "cc4e190f5d26ca7051642629da2c52fc03bde85a03197c99408dcd291734c855",
+    "locked_checksum": "cc4e190f5d26ca7051642629da2c52fc03bde85a03197c99408dcd291734c855",
+    "name": "indexmap",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "2.14.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "8f42a60cbdf9a97f5d2305f08a87dc4e09308d1276d28c869c684d7777685682",
+    "locked_checksum": "8f42a60cbdf9a97f5d2305f08a87dc4e09308d1276d28c869c684d7777685682",
+    "name": "itoa",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.0.18",
+    "yanked": false
+  },
+  {
+    "checksum": "65cd87c9a6d60536580b316ad985726104730a5151c99845f2490428ef91240a",
+    "name": "libc",
+    "reason": "URLError",
+    "status": "unavailable",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.191"
+  },
+  {
+    "index_checksum": "d7c4b02199fee7c5d21a5ae7d8cfa79a6ef5bb2fc834d6e9058e89c825efdc55",
+    "locked_checksum": "d7c4b02199fee7c5d21a5ae7d8cfa79a6ef5bb2fc834d6e9058e89c825efdc55",
+    "name": "libloading",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.8.9",
+    "yanked": false
+  },
+  {
+    "index_checksum": "b6d2cec3eae94f9f509c767b45932f1ada8350c4bdb85af2fcab4a3c14807981",
+    "locked_checksum": "b6d2cec3eae94f9f509c767b45932f1ada8350c4bdb85af2fcab4a3c14807981",
+    "name": "libm",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.16",
+    "yanked": false
+  },
+  {
+    "index_checksum": "47d9d19d1d6efa0109d2f65ff4c85cddd50bd572e5a00127ab10987290bcefae",
+    "locked_checksum": "47d9d19d1d6efa0109d2f65ff4c85cddd50bd572e5a00127ab10987290bcefae",
+    "name": "litemap",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.8.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "4744e383959f0db86ede514b809b1c53251889093803c05267acc7d4e7030d70",
+    "locked_checksum": "4744e383959f0db86ede514b809b1c53251889093803c05267acc7d4e7030d70",
+    "name": "litrs",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "1.0.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "224399e74b87b5f3557511d98dff8b14089b3dadafcab6bb93eab67d3aace965",
+    "locked_checksum": "224399e74b87b5f3557511d98dff8b14089b3dadafcab6bb93eab67d3aace965",
+    "name": "lock_api",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.4.14",
+    "yanked": false
+  },
+  {
+    "index_checksum": "f9f8bd3e56ce4dfc153cf470fffbfa98c7620958b312ca5c3a4b8d5181fd13c6",
+    "locked_checksum": "f9f8bd3e56ce4dfc153cf470fffbfa98c7620958b312ca5c3a4b8d5181fd13c6",
+    "name": "log",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.4.34",
+    "yanked": false
+  },
+  {
+    "index_checksum": "dae608c151f68243f2b000364e1f7b186d9c29845f7d2d85bd31b9ad77ad552b",
+    "locked_checksum": "dae608c151f68243f2b000364e1f7b186d9c29845f7d2d85bd31b9ad77ad552b",
+    "name": "mach2",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.6.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "62bb907fe88d54d8d9ce32a3cceab4218ed2f6b7d35617cafe9adf84e43919cb",
+    "locked_checksum": "62bb907fe88d54d8d9ce32a3cceab4218ed2f6b7d35617cafe9adf84e43919cb",
+    "name": "malloc_buf",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.0.6",
+    "yanked": false
+  },
+  {
+    "index_checksum": "cf8baf1c55e62ffcace7a9f06f4bd9cd3f0c4beb022d3b367256b91b87513d98",
+    "locked_checksum": "cf8baf1c55e62ffcace7a9f06f4bd9cd3f0c4beb022d3b367256b91b87513d98",
+    "name": "memchr",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "2.8.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "00c15a6f673ff72ddcc22394663290f870fb224c1bfce55734a75c414150e605",
+    "locked_checksum": "00c15a6f673ff72ddcc22394663290f870fb224c1bfce55734a75c414150e605",
+    "name": "metal",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.32.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "1fa76a2c86f704bdb222d66965fb3d63269ce38518b83cb0575fca855ebb6316",
+    "locked_checksum": "1fa76a2c86f704bdb222d66965fb3d63269ce38518b83cb0575fca855ebb6316",
+    "name": "miniz_oxide",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.8.9",
+    "yanked": false
+  },
+  {
+    "index_checksum": "b63fbc4a50860e98e7b2aa7804ded1db5cbc3aff9193adaff57a6931bf7c4b4c",
+    "locked_checksum": "b63fbc4a50860e98e7b2aa7804ded1db5cbc3aff9193adaff57a6931bf7c4b4c",
+    "name": "miniz_oxide",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.9.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "bb85c154ba489f01b25c0d36ae69a87e4a1c73a72631fc6c0eb6dde34a73e44b",
+    "locked_checksum": "bb85c154ba489f01b25c0d36ae69a87e4a1c73a72631fc6c0eb6dde34a73e44b",
+    "name": "moxcms",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.8.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "066cf25f0e8b11ee0df221219010f213ad429855f57c494f995590c861a9a7d8",
+    "locked_checksum": "066cf25f0e8b11ee0df221219010f213ad429855f57c494f995590c861a9a7d8",
+    "name": "naga",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "27.0.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "2bf50223579dc7cdcfb3bfcacf7069ff68243f8c363f62ffa99cf000a6b9c451",
+    "locked_checksum": "2bf50223579dc7cdcfb3bfcacf7069ff68243f8c363f62ffa99cf000a6b9c451",
+    "name": "nohash-hasher",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "071dfc062690e90b734c0b2273ce72ad0ffa95f0c74596bc250dcfd960262841",
+    "locked_checksum": "071dfc062690e90b734c0b2273ce72ad0ffa95f0c74596bc250dcfd960262841",
+    "name": "num-traits",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.19",
+    "yanked": false
+  },
+  {
+    "index_checksum": "915b1b472bc21c53464d6c8461c9d3af805ba1ef837e1cac254428f4a77177b1",
+    "locked_checksum": "915b1b472bc21c53464d6c8461c9d3af805ba1ef837e1cac254428f4a77177b1",
+    "name": "objc",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.7",
+    "yanked": false
+  },
+  {
+    "index_checksum": "cdb91bdd390c7ce1a8607f35f3ca7151b65afc0ff5ff3b34fa350f7d7c7e4310",
+    "locked_checksum": "cdb91bdd390c7ce1a8607f35f3ca7151b65afc0ff5ff3b34fa350f7d7c7e4310",
+    "name": "objc-sys",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.3.5",
+    "yanked": false
+  },
+  {
+    "index_checksum": "19d5490aaf8f1d7cf7688dfa9b0ce07900e168852c45cd2c03f534dfd27cfd0b",
+    "locked_checksum": "19d5490aaf8f1d7cf7688dfa9b0ce07900e168852c45cd2c03f534dfd27cfd0b",
+    "name": "objc2",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.5.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "08849bbd4767dfae9457696856ae1c84fe4e0281bbe4a7abff2d0e06fb7981f8",
+    "locked_checksum": "08849bbd4767dfae9457696856ae1c84fe4e0281bbe4a7abff2d0e06fb7981f8",
+    "name": "objc2",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.6.5",
+    "yanked": false
+  },
+  {
+    "index_checksum": "e4e89ad9e3d7d297152b17d39ed92cd50ca8063a89a9fa569046d41568891eff",
+    "locked_checksum": "e4e89ad9e3d7d297152b17d39ed92cd50ca8063a89a9fa569046d41568891eff",
+    "name": "objc2-app-kit",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "d49e936b501e5c5bf01fda3a9452ff86dc3ea98ad5f283e1455153142d97518c",
+    "locked_checksum": "d49e936b501e5c5bf01fda3a9452ff86dc3ea98ad5f283e1455153142d97518c",
+    "name": "objc2-app-kit",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.3.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "6948501a91121d6399b79abaa33a8aa4ea7857fe019f341b8c23ad6e81b79b08",
+    "locked_checksum": "6948501a91121d6399b79abaa33a8aa4ea7857fe019f341b8c23ad6e81b79b08",
+    "name": "objc2-audio-toolbox",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.3.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "e1eebcea8b0dbff5f7c8504f3107c68fc061a3eb44932051c8cf8a68d969c3b2",
+    "locked_checksum": "e1eebcea8b0dbff5f7c8504f3107c68fc061a3eb44932051c8cf8a68d969c3b2",
+    "name": "objc2-core-audio",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.3.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "5a89f2ec274a0cf4a32642b2991e8b351a404d290da87bb6a9a9d8632490bd1c",
+    "locked_checksum": "5a89f2ec274a0cf4a32642b2991e8b351a404d290da87bb6a9a9d8632490bd1c",
+    "name": "objc2-core-audio-types",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.3.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "2a180dd8642fa45cdb7dd721cd4c11b1cadd4929ce112ebd8b9f5803cc79d536",
+    "locked_checksum": "2a180dd8642fa45cdb7dd721cd4c11b1cadd4929ce112ebd8b9f5803cc79d536",
+    "name": "objc2-core-foundation",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.3.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "e022c9d066895efa1345f8e33e584b9f958da2fd4cd116792e15e07e4720a807",
+    "locked_checksum": "e022c9d066895efa1345f8e33e584b9f958da2fd4cd116792e15e07e4720a807",
+    "name": "objc2-core-graphics",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.3.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "ef25abbcd74fb2609453eb695bd2f860d389e457f67dc17cafc8b8cbc89d0c33",
+    "locked_checksum": "ef25abbcd74fb2609453eb695bd2f860d389e457f67dc17cafc8b8cbc89d0c33",
+    "name": "objc2-encode",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "4.1.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "0ee638a5da3799329310ad4cfa62fbf045d5f56e3ef5ba4149e7452dcf89d5a8",
+    "locked_checksum": "0ee638a5da3799329310ad4cfa62fbf045d5f56e3ef5ba4149e7452dcf89d5a8",
+    "name": "objc2-foundation",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "e3e0adef53c21f888deb4fa59fc59f7eb17404926ee8a6f59f5df0fd7f9f3272",
+    "locked_checksum": "e3e0adef53c21f888deb4fa59fc59f7eb17404926ee8a6f59f5df0fd7f9f3272",
+    "name": "objc2-foundation",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.3.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "9f7c3e4beb33f85d45ae3e3a1792185706c8e16d043238c593331cc7cd313b50",
+    "locked_checksum": "9f7c3e4beb33f85d45ae3e3a1792185706c8e16d043238c593331cc7cd313b50",
+    "name": "once_cell",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.21.4",
+    "yanked": false
+  },
+  {
+    "index_checksum": "8c7c9e0d9b23589f26070720bac724174bfec1083e82f7854cdd0267518343c0",
+    "locked_checksum": "8c7c9e0d9b23589f26070720bac724174bfec1083e82f7854cdd0267518343c0",
+    "name": "ordered-float",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "5.5.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "36820e9051aca1014ddc75770aab4d68bc1e9e632f0f5627c4086bc216fb583b",
+    "locked_checksum": "36820e9051aca1014ddc75770aab4d68bc1e9e632f0f5627c4086bc216fb583b",
+    "name": "owned_ttf_parser",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.25.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "93857453250e3077bd71ff98b6a65ea6621a19bb0f559a85248955ac12c45a1a",
+    "locked_checksum": "93857453250e3077bd71ff98b6a65ea6621a19bb0f559a85248955ac12c45a1a",
+    "name": "parking_lot",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.12.5",
+    "yanked": false
+  },
+  {
+    "index_checksum": "2621685985a2ebf1c516881c026032ac7deafcda1a2c9b7850dc81e3dfcb64c1",
+    "locked_checksum": "2621685985a2ebf1c516881c026032ac7deafcda1a2c9b7850dc81e3dfcb64c1",
+    "name": "parking_lot_core",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.9.12",
+    "yanked": false
+  },
+  {
+    "index_checksum": "57c0d7b74b563b49d38dae00a0c37d4d6de9b432382b2892f0574ddcae73fd0a",
+    "locked_checksum": "57c0d7b74b563b49d38dae00a0c37d4d6de9b432382b2892f0574ddcae73fd0a",
+    "name": "paste",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "1.0.15",
+    "yanked": false
+  },
+  {
+    "index_checksum": "9b4f627cb1b25917193a259e49bdad08f671f8d9708acfd5fe0a8c1455d87220",
+    "locked_checksum": "9b4f627cb1b25917193a259e49bdad08f671f8d9708acfd5fe0a8c1455d87220",
+    "name": "percent-encoding",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "2.3.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "a89322df9ebe1c1578d689c92318e070967d1042b512afbe49518723f4e6d5cd",
+    "locked_checksum": "a89322df9ebe1c1578d689c92318e070967d1042b512afbe49518723f4e6d5cd",
+    "name": "pin-project-lite",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.17",
+    "yanked": false
+  },
+  {
+    "index_checksum": "60769b8b31b2a9f263dae2776c37b1b28ae246943cf719eb6946a1db05128a61",
+    "locked_checksum": "60769b8b31b2a9f263dae2776c37b1b28ae246943cf719eb6946a1db05128a61",
+    "name": "png",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.18.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "2f3a9f18d041e6d0e102a0a46750538147e5e8992d3b4873aaafee2520b00ce3",
+    "locked_checksum": "2f3a9f18d041e6d0e102a0a46750538147e5e8992d3b4873aaafee2520b00ce3",
+    "name": "pollster",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.4.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "d83eb9bc6d8e5cf568e7a1101d60ee05e81ed50ea106026f3d18deeb046d7661",
+    "locked_checksum": "d83eb9bc6d8e5cf568e7a1101d60ee05e81ed50ea106026f3d18deeb046d7661",
+    "name": "potential_utf",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.1.6",
+    "yanked": false
+  },
+  {
+    "index_checksum": "e8cf8e6a8aa66ce33f63993ffc4ea4271eb5b0530a9002db8455ea6050c77bfa",
+    "locked_checksum": "e8cf8e6a8aa66ce33f63993ffc4ea4271eb5b0530a9002db8455ea6050c77bfa",
+    "name": "presser",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.3.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "985e7ec9bb745e6ce6535b544d84d6cd6f7ad8bd711c398938ae983b91a766d9",
+    "locked_checksum": "985e7ec9bb745e6ce6535b544d84d6cd6f7ad8bd711c398938ae983b91a766d9",
+    "name": "proc-macro2",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "1.0.107",
+    "yanked": false
+  },
+  {
+    "index_checksum": "3d595e54a326bc53c1c197b32d295e14b169e3cfeaa8dc82b529f947fba6bcf5",
+    "locked_checksum": "3d595e54a326bc53c1c197b32d295e14b169e3cfeaa8dc82b529f947fba6bcf5",
+    "name": "profiling",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.0.18",
+    "yanked": false
+  },
+  {
+    "index_checksum": "d55d956fa96f5ec02be2e13af0e20391a5aa83d6a074e3ad368959d0fab299ea",
+    "locked_checksum": "d55d956fa96f5ec02be2e13af0e20391a5aa83d6a074e3ad368959d0fab299ea",
+    "name": "pxfm",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.1.30",
+    "yanked": false
+  },
+  {
+    "index_checksum": "a993555f31e5a609f617c12db6250dedcac1b0a85076912c436e6fc9b2c8e6a3",
+    "locked_checksum": "a993555f31e5a609f617c12db6250dedcac1b0a85076912c436e6fc9b2c8e6a3",
+    "name": "quick-error",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "2.0.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "1fbf4db142a473a8d80c26bbf18454ed458bf8d26c8219c331daecfdbd079001",
+    "locked_checksum": "1fbf4db142a473a8d80c26bbf18454ed458bf8d26c8219c331daecfdbd079001",
+    "name": "quote",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "1.0.47",
+    "yanked": false
+  },
+  {
+    "index_checksum": "ca45419789ae5a7899559e9512e58ca889e41f04f1f2445e9f4b290ceccd1d08",
+    "locked_checksum": "ca45419789ae5a7899559e9512e58ca889e41f04f1f2445e9f4b290ceccd1d08",
+    "name": "range-alloc",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.1.5",
+    "yanked": false
+  },
+  {
+    "index_checksum": "20675572f6f24e9e76ef639bc5552774ed45f1c30e2951e1e99c59888861c539",
+    "locked_checksum": "20675572f6f24e9e76ef639bc5552774ed45f1c30e2951e1e99c59888861c539",
+    "name": "raw-window-handle",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.6.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "19b30a45b0cd0bcca8037f3d0dc3421eaf95327a17cad11964fb8179b4fc4832",
+    "locked_checksum": "19b30a45b0cd0bcca8037f3d0dc3421eaf95327a17cad11964fb8179b4fc4832",
+    "name": "renderdoc-sys",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.1.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "08d43f7aa6b08d49f382cde6a7982047c3426db949b1424bc4b7ec9ae12c6ce2",
+    "locked_checksum": "08d43f7aa6b08d49f382cde6a7982047c3426db949b1424bc4b7ec9ae12c6ce2",
+    "name": "rustc-hash",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.1.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "6b1e7f9a428571be2dc5bc0505c13fb6bf936822b894ec87abf8a08a4e51742d",
+    "locked_checksum": "6b1e7f9a428571be2dc5bc0505c13fb6bf936822b894ec87abf8a08a4e51742d",
+    "name": "rustc-hash",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "2.1.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "94143f37725109f92c262ed2cf5e59bce7498c01bcc1502d7b9afe439a4e9f49",
+    "locked_checksum": "94143f37725109f92c262ed2cf5e59bce7498c01bcc1502d7b9afe439a4e9f49",
+    "name": "scopeguard",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.2.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "4148590afebada386688f18773da617792bf2ef03ffc1e4cbd2b1d45b023e0ba",
+    "locked_checksum": "4148590afebada386688f18773da617792bf2ef03ffc1e4cbd2b1d45b023e0ba",
+    "name": "serde",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.0.229",
+    "yanked": false
+  },
+  {
+    "index_checksum": "67dca2c9c51e58a4791a4b1ed58308b39c64224d349a935ab5039aa360942a48",
+    "locked_checksum": "67dca2c9c51e58a4791a4b1ed58308b39c64224d349a935ab5039aa360942a48",
+    "name": "serde_core",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.0.229",
+    "yanked": false
+  },
+  {
+    "index_checksum": "e7a5d71263a5a7d47b41f6b3f06ba276f10cc18b0931f1799f710578e2309348",
+    "locked_checksum": "e7a5d71263a5a7d47b41f6b3f06ba276f10cc18b0931f1799f710578e2309348",
+    "name": "serde_derive",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "1.0.229",
+    "yanked": false
+  },
+  {
+    "index_checksum": "e7e9cc8b1b85264074fbcc02a88680c4096b1e47df8f739dceb03bf482f04bd6",
+    "locked_checksum": "e7e9cc8b1b85264074fbcc02a88680c4096b1e47df8f739dceb03bf482f04bd6",
+    "name": "serde_json",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.0.154",
+    "yanked": false
+  },
+  {
+    "index_checksum": "3a219298ac11a56ea9a6d2120044824d6f01aeb034955e7af7bc16858527deea",
+    "locked_checksum": "3a219298ac11a56ea9a6d2120044824d6f01aeb034955e7af7bc16858527deea",
+    "name": "simd-adler32",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.3.10",
+    "yanked": false
+  },
+  {
+    "index_checksum": "d0d5d4b1981b8bbbb7aed204cae5726d683d5d6ac7e74ec54122ea28f315e7c8",
+    "locked_checksum": "d0d5d4b1981b8bbbb7aed204cae5726d683d5d6ac7e74ec54122ea28f315e7c8",
+    "name": "smallvec",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.16.4",
+    "yanked": false
+  },
+  {
+    "index_checksum": "dd538fb6910ac1099850255cf94a94df6551fbdd602454387d0adb2d1ca6dead",
+    "locked_checksum": "dd538fb6910ac1099850255cf94a94df6551fbdd602454387d0adb2d1ca6dead",
+    "name": "smol_str",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "6ce2be8dc25455e1f91df71bfa12ad37d7af1092ae736f3a6cd0e37bc7810596",
+    "locked_checksum": "6ce2be8dc25455e1f91df71bfa12ad37d7af1092ae736f3a6cd0e37bc7810596",
+    "name": "stable_deref_trait",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.2.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "a2eb9349b6444b326872e140eb1cf5e7c522154d69e7a0ffb0fb81c06b37543f",
+    "locked_checksum": "a2eb9349b6444b326872e140eb1cf5e7c522154d69e7a0ffb0fb81c06b37543f",
+    "name": "static_assertions",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.1.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "872831b642d1a07999a962a351ed35b955ea2cfc8f3862091e2a240a84f17297",
+    "locked_checksum": "872831b642d1a07999a962a351ed35b955ea2cfc8f3862091e2a240a84f17297",
+    "name": "syn",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "2.0.119",
+    "yanked": false
+  },
+  {
+    "index_checksum": "d78c8dee4c7bf0e14673097256fed6142ce9d3b85a408189d07482442145823b",
+    "locked_checksum": "d78c8dee4c7bf0e14673097256fed6142ce9d3b85a408189d07482442145823b",
+    "name": "syn",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "3.0.9",
+    "yanked": false
+  },
+  {
+    "index_checksum": "901704edd0dfe137f1987838ee4f259e4e063c31371bdb423f7ae38ec6f77f02",
+    "locked_checksum": "901704edd0dfe137f1987838ee4f259e4e063c31371bdb423f7ae38ec6f77f02",
+    "name": "synstructure",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.14.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "b6aaf5339b578ea85b50e080feb250a3e8ae8cfcdff9a461c9ec2904bc923f52",
+    "locked_checksum": "b6aaf5339b578ea85b50e080feb250a3e8ae8cfcdff9a461c9ec2904bc923f52",
+    "name": "thiserror",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.0.69",
+    "yanked": false
+  },
+  {
+    "index_checksum": "09e52cb86a36cede5cb101bf8908837b3e4c6e5e59fe7fd85c23fb56200d189e",
+    "locked_checksum": "09e52cb86a36cede5cb101bf8908837b3e4c6e5e59fe7fd85c23fb56200d189e",
+    "name": "thiserror",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "2.0.21",
+    "yanked": false
+  },
+  {
+    "index_checksum": "4fee6c4efc90059e10f81e6d42c60a18f76588c3d74cb83a0b242a2b6c7504c1",
+    "locked_checksum": "4fee6c4efc90059e10f81e6d42c60a18f76588c3d74cb83a0b242a2b6c7504c1",
+    "name": "thiserror-impl",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "1.0.69",
+    "yanked": false
+  },
+  {
+    "index_checksum": "fe5197923287db20a58125f0bc85c062f7f2c892de97b18c356f9efb14b28524",
+    "locked_checksum": "fe5197923287db20a58125f0bc85c062f7f2c892de97b18c356f9efb14b28524",
+    "name": "thiserror-impl",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "2.0.21",
+    "yanked": false
+  },
+  {
+    "index_checksum": "b63feaf3343d35b6ca4d50483f94843803b0f51634937cc2ec519fc32232bc52",
+    "locked_checksum": "b63feaf3343d35b6ca4d50483f94843803b0f51634937cc2ec519fc32232bc52",
+    "name": "tiff",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.11.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "abc840c238154d58f9e86b2792261edfde565a17696e1cda1a449de27979801a",
+    "locked_checksum": "abc840c238154d58f9e86b2792261edfde565a17696e1cda1a449de27979801a",
+    "name": "tinystr",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.8.5",
+    "yanked": false
+  },
+  {
+    "index_checksum": "63e71662fa4b2a2c3a26f570f037eb95bb1f85397f3cd8076caed2f026a6d100",
+    "locked_checksum": "63e71662fa4b2a2c3a26f570f037eb95bb1f85397f3cd8076caed2f026a6d100",
+    "name": "tracing",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.1.44",
+    "yanked": false
+  },
+  {
+    "index_checksum": "db97caf9d906fbde555dd62fa95ddba9eecfd14cb388e4f491a66d74cd5fb79a",
+    "locked_checksum": "db97caf9d906fbde555dd62fa95ddba9eecfd14cb388e4f491a66d74cd5fb79a",
+    "name": "tracing-core",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.1.36",
+    "yanked": false
+  },
+  {
+    "index_checksum": "d2df906b07856748fa3f6e0ad0cbaa047052d4a7dd609e231c4f72cee8c36f31",
+    "locked_checksum": "d2df906b07856748fa3f6e0ad0cbaa047052d4a7dd609e231c4f72cee8c36f31",
+    "name": "ttf-parser",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.25.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "cb30dbbd9036155e74adad6812e9898d03ec374946234fbcebd5dfc7b9187b90",
+    "locked_checksum": "cb30dbbd9036155e74adad6812e9898d03ec374946234fbcebd5dfc7b9187b90",
+    "name": "type-map",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.5.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "a2c754d6c33795a1c324727428e5a7dedb5b06195f9890bdbcba760d3e246563",
+    "locked_checksum": "a2c754d6c33795a1c324727428e5a7dedb5b06195f9890bdbcba760d3e246563",
+    "name": "unicode-ident",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.0.27",
+    "yanked": false
+  },
+  {
+    "index_checksum": "c6f5d3c3b1bf09027a88a6bc961fc00497d651009560b5463668dc81b0fa87a8",
+    "locked_checksum": "c6f5d3c3b1bf09027a88a6bc961fc00497d651009560b5463668dc81b0fa87a8",
+    "name": "unicode-segmentation",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.13.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "b4ac048d71ede7ee76d585517add45da530660ef4390e49b098733c6e897f254",
+    "locked_checksum": "b4ac048d71ede7ee76d585517add45da530660ef4390e49b098733c6e897f254",
+    "name": "unicode-width",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "ff67a8a4397373c3ef660812acab3268222035010ab8680ec4215f38ba3d0eed",
+    "locked_checksum": "ff67a8a4397373c3ef660812acab3268222035010ab8680ec4215f38ba3d0eed",
+    "name": "url",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "2.5.8",
+    "yanked": false
+  },
+  {
+    "index_checksum": "b6c140620e7ffbb22c2dee59cafe6084a59b5ffc27a8859a5f0d494b5d52b6be",
+    "locked_checksum": "b6c140620e7ffbb22c2dee59cafe6084a59b5ffc27a8859a5f0d494b5d52b6be",
+    "name": "utf8_iter",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.0.4",
+    "yanked": false
+  },
+  {
+    "index_checksum": "4a0e2d11620c50695fe12bbbfde96b3477fe606e7284c22d505c12ce51214514",
+    "locked_checksum": "4a0e2d11620c50695fe12bbbfde96b3477fe606e7284c22d505c12ce51214514",
+    "name": "uuid",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.29.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "0b928f33d975fc6ad9f86c8f283853ad26bdd5b10b7f1542aa2fa15e2289105a",
+    "locked_checksum": "0b928f33d975fc6ad9f86c8f283853ad26bdd5b10b7f1542aa2fa15e2289105a",
+    "name": "version_check",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.9.5",
+    "yanked": false
+  },
+  {
+    "index_checksum": "5a6580f308b1fad9207618087a65c04e7a10bc77e02c8e84e9b00dd4b12fa0bb",
+    "locked_checksum": "5a6580f308b1fad9207618087a65c04e7a10bc77e02c8e84e9b00dd4b12fa0bb",
+    "name": "web-time",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.1.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "d2c8ddfbbf66e501434657400268cefe51b95140a0266236415cda7627732df7",
+    "locked_checksum": "d2c8ddfbbf66e501434657400268cefe51b95140a0266236415cda7627732df7",
+    "name": "webbrowser",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.2.5",
+    "yanked": false
+  },
+  {
+    "index_checksum": "a28ac98ddc8b9274cb41bb4d9d4d5c425b6020c50c46f25559911905610b4a88",
+    "locked_checksum": "a28ac98ddc8b9274cb41bb4d9d4d5c425b6020c50c46f25559911905610b4a88",
+    "name": "weezl",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.1.12",
+    "yanked": false
+  },
+  {
+    "index_checksum": "bfe68bac7cde125de7a731c3400723cadaaf1703795ad3f4805f187459cd7a77",
+    "locked_checksum": "bfe68bac7cde125de7a731c3400723cadaaf1703795ad3f4805f187459cd7a77",
+    "name": "wgpu",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "27.0.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "27a75de515543b1897b26119f93731b385a19aea165a1ec5f0e3acecc229cae7",
+    "locked_checksum": "27a75de515543b1897b26119f93731b385a19aea165a1ec5f0e3acecc229cae7",
+    "name": "wgpu-core",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "27.0.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "0772ae958e9be0c729561d5e3fd9a19679bcdfb945b8b1a1969d9bfe8056d233",
+    "locked_checksum": "0772ae958e9be0c729561d5e3fd9a19679bcdfb945b8b1a1969d9bfe8056d233",
+    "name": "wgpu-core-deps-apple",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "27.0.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "71197027d61a71748e4120f05a9242b2ad142e3c01f8c1b47707945a879a03c3",
+    "locked_checksum": "71197027d61a71748e4120f05a9242b2ad142e3c01f8c1b47707945a879a03c3",
+    "name": "wgpu-core-deps-windows-linux-android",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "27.0.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "5b21cb61c57ee198bc4aff71aeadff4cbb80b927beb912506af9c780d64313ce",
+    "locked_checksum": "5b21cb61c57ee198bc4aff71aeadff4cbb80b927beb912506af9c780d64313ce",
+    "name": "wgpu-hal",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "27.0.4",
+    "yanked": false
+  },
+  {
+    "index_checksum": "afdcf84c395990db737f2dd91628706cb31e86d72e53482320d368e52b5da5eb",
+    "locked_checksum": "afdcf84c395990db737f2dd91628706cb31e86d72e53482320d368e52b5da5eb",
+    "name": "wgpu-types",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "27.0.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "dd04d41d93c4992d421894c18c8b43496aa748dd4c081bac0dc93eb0489272b6",
+    "locked_checksum": "dd04d41d93c4992d421894c18c8b43496aa748dd4c081bac0dc93eb0489272b6",
+    "name": "windows",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.58.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "9babd3a767a4c1aef6900409f85f5d53ce2544ccdfaa86dad48c91782c6d6893",
+    "locked_checksum": "9babd3a767a4c1aef6900409f85f5d53ce2544ccdfaa86dad48c91782c6d6893",
+    "name": "windows",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.61.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "527fadee13e0c05939a6a05d5bd6eec6cd2e3dbd648b9f8e447c6518133d8580",
+    "locked_checksum": "527fadee13e0c05939a6a05d5bd6eec6cd2e3dbd648b9f8e447c6518133d8580",
+    "name": "windows",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.62.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "3beeceb5e5cfd9eb1d76b381630e82c4241ccd0d27f1a39ed41b2760b255c5e8",
+    "locked_checksum": "3beeceb5e5cfd9eb1d76b381630e82c4241ccd0d27f1a39ed41b2760b255c5e8",
+    "name": "windows-collections",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "23b2d95af1a8a14a3c7367e1ed4fc9c20e0a26e79551b1454d72583c97cc6610",
+    "locked_checksum": "23b2d95af1a8a14a3c7367e1ed4fc9c20e0a26e79551b1454d72583c97cc6610",
+    "name": "windows-collections",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.3.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "6ba6d44ec8c2591c134257ce647b7ea6b20335bf6379a27dac5f1641fcf59f99",
+    "locked_checksum": "6ba6d44ec8c2591c134257ce647b7ea6b20335bf6379a27dac5f1641fcf59f99",
+    "name": "windows-core",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.58.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "c0fdd3ddb90610c7638aa2b3a3ab2904fb9e5cdbecc643ddb3647212781c4ae3",
+    "locked_checksum": "c0fdd3ddb90610c7638aa2b3a3ab2904fb9e5cdbecc643ddb3647212781c4ae3",
+    "name": "windows-core",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.61.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "b8e83a14d34d0623b51dce9581199302a221863196a1dde71a7663a4c2be9deb",
+    "locked_checksum": "b8e83a14d34d0623b51dce9581199302a221863196a1dde71a7663a4c2be9deb",
+    "name": "windows-core",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.62.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "fc6a41e98427b19fe4b73c550f060b59fa592d7d686537eebf9385621bfbad8e",
+    "locked_checksum": "fc6a41e98427b19fe4b73c550f060b59fa592d7d686537eebf9385621bfbad8e",
+    "name": "windows-future",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "e1d6f90251fe18a279739e78025bd6ddc52a7e22f921070ccdc67dde84c605cb",
+    "locked_checksum": "e1d6f90251fe18a279739e78025bd6ddc52a7e22f921070ccdc67dde84c605cb",
+    "name": "windows-future",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.3.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "2bbd5b46c938e506ecbce286b6628a02171d56153ba733b6c741fc627ec9579b",
+    "locked_checksum": "2bbd5b46c938e506ecbce286b6628a02171d56153ba733b6c741fc627ec9579b",
+    "name": "windows-implement",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.58.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "053e2e040ab57b9dc951b72c264860db7eb3b0200ba345b4e4c3b14f67855ddf",
+    "locked_checksum": "053e2e040ab57b9dc951b72c264860db7eb3b0200ba345b4e4c3b14f67855ddf",
+    "name": "windows-implement",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.60.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "053c4c462dc91d3b1504c6fe5a726dd15e216ba718e84a0e46a88fbe5ded3515",
+    "locked_checksum": "053c4c462dc91d3b1504c6fe5a726dd15e216ba718e84a0e46a88fbe5ded3515",
+    "name": "windows-interface",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.58.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "3f316c4a2570ba26bbec722032c4099d8c8bc095efccdc15688708623367e358",
+    "locked_checksum": "3f316c4a2570ba26bbec722032c4099d8c8bc095efccdc15688708623367e358",
+    "name": "windows-interface",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.59.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "5e6ad25900d524eaabdbbb96d20b4311e1e7ae1699af4fb28c17ae66c80d798a",
+    "locked_checksum": "5e6ad25900d524eaabdbbb96d20b4311e1e7ae1699af4fb28c17ae66c80d798a",
+    "name": "windows-link",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.1.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "f0805222e57f7521d6a62e36fa9163bc891acd422f971defe97d64e70d0a4fe5",
+    "locked_checksum": "f0805222e57f7521d6a62e36fa9163bc891acd422f971defe97d64e70d0a4fe5",
+    "name": "windows-link",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "9150af68066c4c5c07ddc0ce30421554771e528bde427614c61038bc2c92c2b1",
+    "locked_checksum": "9150af68066c4c5c07ddc0ce30421554771e528bde427614c61038bc2c92c2b1",
+    "name": "windows-numerics",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "6e2e40844ac143cdb44aead537bbf727de9b044e107a0f1220392177d15b0f26",
+    "locked_checksum": "6e2e40844ac143cdb44aead537bbf727de9b044e107a0f1220392177d15b0f26",
+    "name": "windows-numerics",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.3.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "1d1043d8214f791817bab27572aaa8af63732e11bf84aa21a45a78d6c317ae0e",
+    "locked_checksum": "1d1043d8214f791817bab27572aaa8af63732e11bf84aa21a45a78d6c317ae0e",
+    "name": "windows-result",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "56f42bd332cc6c8eac5af113fc0c1fd6a8fd2aa08a0119358686e5160d0586c6",
+    "locked_checksum": "56f42bd332cc6c8eac5af113fc0c1fd6a8fd2aa08a0119358686e5160d0586c6",
+    "name": "windows-result",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.3.4",
+    "yanked": false
+  },
+  {
+    "index_checksum": "7781fa89eaf60850ac3d2da7af8e5242a5ea78d1a11c49bf2910bb5a73853eb5",
+    "locked_checksum": "7781fa89eaf60850ac3d2da7af8e5242a5ea78d1a11c49bf2910bb5a73853eb5",
+    "name": "windows-result",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.4.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "4cd9b125c486025df0eabcb585e62173c6c9eddcec5d117d3b6e8c30e2ee4d10",
+    "locked_checksum": "4cd9b125c486025df0eabcb585e62173c6c9eddcec5d117d3b6e8c30e2ee4d10",
+    "name": "windows-strings",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.1.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "56e6c93f3a0c3b36176cb1327a4958a0353d5d166c2a35cb268ace15e91d3b57",
+    "locked_checksum": "56e6c93f3a0c3b36176cb1327a4958a0353d5d166c2a35cb268ace15e91d3b57",
+    "name": "windows-strings",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.4.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "7837d08f69c77cf6b07689544538e017c1bfcf57e34b4c0ff58e6c2cd3b37091",
+    "locked_checksum": "7837d08f69c77cf6b07689544538e017c1bfcf57e34b4c0ff58e6c2cd3b37091",
+    "name": "windows-strings",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.5.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "282be5f36a8ce781fad8c8ae18fa3f9beff57ec1b52cb3de0789201425d9a33d",
+    "locked_checksum": "282be5f36a8ce781fad8c8ae18fa3f9beff57ec1b52cb3de0789201425d9a33d",
+    "name": "windows-sys",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.52.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "ae137229bcbd6cdf0f7b80a31df61766145077ddf49416a728b02cb3921ff3fc",
+    "locked_checksum": "ae137229bcbd6cdf0f7b80a31df61766145077ddf49416a728b02cb3921ff3fc",
+    "name": "windows-sys",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.61.2",
+    "yanked": false
+  },
+  {
+    "index_checksum": "9b724f72796e036ab90c1021d4780d4d3d648aca59e491e6b98e725b84e99973",
+    "locked_checksum": "9b724f72796e036ab90c1021d4780d4d3d648aca59e491e6b98e725b84e99973",
+    "name": "windows-targets",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.52.6",
+    "yanked": false
+  },
+  {
+    "index_checksum": "b66463ad2e0ea3bbf808b7f1d371311c80e115c0b71d60efc142cafbcfb057a6",
+    "locked_checksum": "b66463ad2e0ea3bbf808b7f1d371311c80e115c0b71d60efc142cafbcfb057a6",
+    "name": "windows-threading",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.1.0",
+    "yanked": false
+  },
+  {
+    "index_checksum": "3949bd5b99cafdf1c7ca86b43ca564028dfe27d66958f2470940f73d86d75b37",
+    "locked_checksum": "3949bd5b99cafdf1c7ca86b43ca564028dfe27d66958f2470940f73d86d75b37",
+    "name": "windows-threading",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.1",
+    "yanked": false
+  },
+  {
+    "index_checksum": "589f6da84c646204747d1270a2a5661ea66ed1cced2631d546fdfb155959f9ec",
+    "locked_checksum": "589f6da84c646204747d1270a2a5661ea66ed1cced2631d546fdfb155959f9ec",
+    "name": "windows_x86_64_msvc",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.52.6",
+    "yanked": false
+  },
+  {
+    "index_checksum": "a6755fa58a9f8350bd1e472d4c3fcc25f824ec358933bba33306d0b63df5978d",
+    "locked_checksum": "a6755fa58a9f8350bd1e472d4c3fcc25f824ec358933bba33306d0b63df5978d",
+    "name": "winit",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.30.13",
+    "yanked": false
+  },
+  {
+    "index_checksum": "3ad82d2a33cdc9674dc7465672f271e096168fcdbe0f799d9e6db8c5892679dc",
+    "locked_checksum": "3ad82d2a33cdc9674dc7465672f271e096168fcdbe0f799d9e6db8c5892679dc",
+    "name": "writeable",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.6.4",
+    "yanked": false
+  },
+  {
+    "index_checksum": "417ef3fcf6c300b7dbd25c85531a746931c02ad536f3cf4786ed1e88223340b3",
+    "locked_checksum": "417ef3fcf6c300b7dbd25c85531a746931c02ad536f3cf4786ed1e88223340b3",
+    "name": "yoke",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.8.4",
+    "yanked": false
+  },
+  {
+    "index_checksum": "ec8ebde2db3681e8c9980cc27822030e68752690ddfa9473e739aeb4dbde6d71",
+    "locked_checksum": "ec8ebde2db3681e8c9980cc27822030e68752690ddfa9473e739aeb4dbde6d71",
+    "name": "yoke-derive",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.8.4",
+    "yanked": false
+  },
+  {
+    "index_checksum": "e5fe1f8f1b06191a00962174c61aa5005e0bb391a6d80d07e24d115c01a92ed8",
+    "locked_checksum": "e5fe1f8f1b06191a00962174c61aa5005e0bb391a6d80d07e24d115c01a92ed8",
+    "name": "zerocopy",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.8.63",
+    "yanked": false
+  },
+  {
+    "index_checksum": "863ad3ac83293fb4d740aedbfdc9240dd8d1a50c1099acd76ce80ce7c7230c7f",
+    "locked_checksum": "863ad3ac83293fb4d740aedbfdc9240dd8d1a50c1099acd76ce80ce7c7230c7f",
+    "name": "zerocopy-derive",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.8.63",
+    "yanked": false
+  },
+  {
+    "index_checksum": "0ec05a11813ea801ff6d75110ad09cd0824ddba17dfe17128ea0d5f68e6c5272",
+    "locked_checksum": "0ec05a11813ea801ff6d75110ad09cd0824ddba17dfe17128ea0d5f68e6c5272",
+    "name": "zerofrom",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.1.8",
+    "yanked": false
+  },
+  {
+    "index_checksum": "f75b4683f6c7f45248d4d64056a24298c6281e0993356d7d1b4a1a962ef10d4a",
+    "locked_checksum": "f75b4683f6c7f45248d4d64056a24298c6281e0993356d7d1b4a1a962ef10d4a",
+    "name": "zerofrom-derive",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.1.8",
+    "yanked": false
+  },
+  {
+    "index_checksum": "4ea269c3bd32f0a32c321907a2ae912ba6f4649bb0fc764a15627e99a7095a3f",
+    "locked_checksum": "4ea269c3bd32f0a32c321907a2ae912ba6f4649bb0fc764a15627e99a7095a3f",
+    "name": "zerotrie",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.2.5",
+    "yanked": false
+  },
+  {
+    "index_checksum": "f58a2799cfe9a1670c7ea8edbd52ef8edb93cb37a7f83bf31ba9e35d9dae6a40",
+    "locked_checksum": "f58a2799cfe9a1670c7ea8edbd52ef8edb93cb37a7f83bf31ba9e35d9dae6a40",
+    "name": "zerovec",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "0.11.9",
+    "yanked": false
+  },
+  {
+    "index_checksum": "c3743ddbf47738d929cd1ae2e199d40d0162979dfe31aef8ae646d2bf00bf97a",
+    "locked_checksum": "c3743ddbf47738d929cd1ae2e199d40d0162979dfe31aef8ae646d2bf00bf97a",
+    "name": "zerovec-derive",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.11.7",
+    "yanked": false
+  },
+  {
+    "index_checksum": "29666d0abbfad1e3dc4dcf6144730dd3a3ab225bbbdac83319345b1b44ccfc1b",
+    "locked_checksum": "29666d0abbfad1e3dc4dcf6144730dd3a3ab225bbbdac83319345b1b44ccfc1b",
+    "name": "zmij",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      }
+    },
+    "version": "1.0.23",
+    "yanked": false
+  },
+  {
+    "index_checksum": "d56377fd46368984a170bc5aac5567e52ca5da874caa60bea39fcbca78fb658b",
+    "locked_checksum": "d56377fd46368984a170bc5aac5567e52ca5da874caa60bea39fcbca78fb658b",
+    "name": "zune-core",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.5.3",
+    "yanked": false
+  },
+  {
+    "index_checksum": "27bc9d5b815bc103f142aa054f561d9187d191692ec7c2d1e2b4737f8dbd7296",
+    "locked_checksum": "27bc9d5b815bc103f142aa054f561d9187d191692ec7c2d1e2b4737f8dbd7296",
+    "name": "zune-jpeg",
+    "status": "not_yanked",
+    "targets": {
+      "aarch64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-apple-darwin": {
+        "app-all": true,
+        "app-runtime": true,
+        "hal-all": false
+      },
+      "x86_64-pc-windows-msvc": {
+        "app-all": false,
+        "app-runtime": false,
+        "hal-all": false
+      }
+    },
+    "version": "0.5.15",
+    "yanked": false
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "Cargo.lock.snapshot": "547f5fce785f43efad75d697e8a68212fcd161215c2787b30d4823080588aa6b",
+  "input.json": "f83294aab3b61c4f12bc8972d7758de2b16a4ec6c86ef44bed5cb6d674a7f3aa",
+  "requests.json": "11533f217482e5ff4f723bb70a1b0455b1eb2d7d274a69bc0cc06e43757eed07",
+  "responses/libc.jsonl.gz": "d0730161e7e452214c656a684fb2d43bf803158e2fd33fa7424b39c30cd5f6c8",
+  "responses/libc.metadata.json": "6ff82005dab8df29b24e600852b70ea4d6597afac8a3c66816bec92b55048030",
+  "responses/registry-config.jsonl.gz": "ed4bab812335c26dd25dd58214691c11c4c8d52aee19a63026466b4946a7c903",
+  "responses/registry-config.metadata.json": "298fa56be02e986c41f12c6560cff41bd3037d5d2e9c2fd7911661c1f88cb897",
+  "results.json": "d8a5b06384cc7afcedaab96908afd1a45e66dcee61d0a28ba39d69313aaff865",
+  "summary.json": "23b436abcff2dcca71da274b04758d7cee73fd2b665d7039ee5e0c7fecc16d70"
+}

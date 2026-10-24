@@ -1,0 +1,24 @@
+{
+  "body_bytes": 194436,
+  "body_complete": true,
+  "body_file": "responses/naga.jsonl.gz",
+  "body_sha256": "825be67beb90be1b29b6fd3ce8bac7e5366cc89e248d822d91e488078f9ebeec",
+  "ended_at_utc": "2026-10-24T00:03:12.048140+00:00",
+  "headers": {
+    "age": "440",
+    "cache-control": "public,max-age=600",
+    "content-length": "194436",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:11 GMT",
+    "etag": "\"b6450d34603b010d0c616ec4523aa1d1\"",
+    "last-modified": "Sat, 22 Aug 2026 02:53:28 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "naga",
+  "started_at_utc": "2026-10-24T00:03:05.812892+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/na/ga/naga"
+}

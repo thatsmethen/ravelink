@@ -1,0 +1,24 @@
+{
+  "body_bytes": 91296,
+  "body_complete": true,
+  "body_file": "responses/webbrowser.jsonl.gz",
+  "body_sha256": "a81b82bfd058858d68986babed9d84c1935be7252c9226b8d35ec9c2ec4827c3",
+  "ended_at_utc": "2026-10-24T00:04:20.882466+00:00",
+  "headers": {
+    "age": "0",
+    "cache-control": "public,max-age=600",
+    "content-length": "91296",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:20 GMT",
+    "etag": "\"a8ce156a5ce6c0d075e0e241d99820d4\"",
+    "last-modified": "Thu, 22 Oct 2026 11:28:21 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "webbrowser",
+  "started_at_utc": "2026-10-24T00:04:19.172351+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/we/bb/webbrowser"
+}

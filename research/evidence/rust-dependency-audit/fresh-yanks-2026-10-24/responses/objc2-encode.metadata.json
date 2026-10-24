@@ -1,0 +1,24 @@
+{
+  "body_bytes": 5255,
+  "body_complete": true,
+  "body_file": "responses/objc2-encode.jsonl.gz",
+  "body_sha256": "2abe5f8bd5b7d0860709bbacf58f7181391c017c5fd8529aa8cf49c2154e3ee5",
+  "ended_at_utc": "2026-10-24T00:03:25.716090+00:00",
+  "headers": {
+    "age": "570",
+    "cache-control": "public,max-age=600",
+    "content-length": "5255",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:25 GMT",
+    "etag": "\"664700ad98a77259e2bb9d1831a7fe2f\"",
+    "last-modified": "Sun, 01 Feb 2026 12:31:17 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "objc2-encode",
+  "started_at_utc": "2026-10-24T00:03:19.385829+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ob/jc/objc2-encode"
+}

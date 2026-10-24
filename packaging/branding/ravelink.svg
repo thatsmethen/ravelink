@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+<title>RaveLink mixer mark</title>
+<rect x="48" y="48" width="928" height="928" rx="216" fill="#171e29"/>
+<rect x="296" y="240" width="48" height="544" rx="24" fill="#70dec7"/>
+<rect x="240" y="356" width="160" height="88" rx="24" fill="#e4fff9"/>
+<rect x="488" y="240" width="48" height="544" rx="24" fill="#70dec7"/>
+<rect x="432" y="564" width="160" height="88" rx="24" fill="#e4fff9"/>
+<rect x="680" y="240" width="48" height="544" rx="24" fill="#70dec7"/>
+<rect x="624" y="276" width="160" height="88" rx="24" fill="#e4fff9"/>
+</svg>

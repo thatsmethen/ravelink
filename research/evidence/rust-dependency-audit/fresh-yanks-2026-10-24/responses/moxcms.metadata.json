@@ -1,0 +1,24 @@
+{
+  "body_bytes": 24480,
+  "body_complete": true,
+  "body_file": "responses/moxcms.jsonl.gz",
+  "body_sha256": "d74902d02baef32f8aa11b88908a94219de586221611b70d3540488b8598d92d",
+  "ended_at_utc": "2026-10-24T00:03:11.955032+00:00",
+  "headers": {
+    "age": "558",
+    "cache-control": "public,max-age=600",
+    "content-length": "24480",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:11 GMT",
+    "etag": "\"a9392c68afee46355fabbc198244e155\"",
+    "last-modified": "Tue, 15 Sep 2026 11:14:32 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "moxcms",
+  "started_at_utc": "2026-10-24T00:03:04.661106+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/mo/xc/moxcms"
+}

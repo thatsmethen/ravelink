@@ -1,0 +1,24 @@
+{
+  "body_bytes": 9557,
+  "body_complete": true,
+  "body_file": "responses/pxfm.jsonl.gz",
+  "body_sha256": "2be7100bf535496e9fc4a7fac7ca83e0387a590925afbd34fc3d36d31bb6b923",
+  "ended_at_utc": "2026-10-24T00:03:39.987518+00:00",
+  "headers": {
+    "age": "585",
+    "cache-control": "public,max-age=600",
+    "content-length": "9557",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:39 GMT",
+    "etag": "\"0af9fbfcc1659cc6d87bb1209aeb5bbc\"",
+    "last-modified": "Mon, 06 Jul 2026 06:43:57 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "pxfm",
+  "started_at_utc": "2026-10-24T00:03:38.990244+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/px/fm/pxfm"
+}

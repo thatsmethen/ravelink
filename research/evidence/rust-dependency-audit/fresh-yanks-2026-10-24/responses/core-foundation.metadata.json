@@ -1,0 +1,24 @@
+{
+  "body_bytes": 21157,
+  "body_complete": true,
+  "body_file": "responses/core-foundation.jsonl.gz",
+  "body_sha256": "0aab7cd541215b36f19718dc798475ef39d3056804a1140140803efe6240f6ec",
+  "ended_at_utc": "2026-10-24T00:02:07.739644+00:00",
+  "headers": {
+    "age": "77",
+    "cache-control": "public,max-age=600",
+    "content-length": "21157",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:07 GMT",
+    "etag": "\"2fd6d712055e48a019bc328863fef86b\"",
+    "last-modified": "Sun, 01 Feb 2026 11:36:53 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "core-foundation",
+  "started_at_utc": "2026-10-24T00:01:55.106290+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/co/re/core-foundation"
+}

@@ -1,0 +1,24 @@
+{
+  "body_bytes": 56422,
+  "body_complete": true,
+  "body_file": "responses/objc2-foundation.jsonl.gz",
+  "body_sha256": "969d69b2d0b802d9dc9c74cf48de44286ba5e32c2f5428b0b9fd4d0857074077",
+  "ended_at_utc": "2026-10-24T00:03:21.578132+00:00",
+  "headers": {
+    "age": "116",
+    "cache-control": "public,max-age=600",
+    "content-length": "56422",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:21 GMT",
+    "etag": "\"e4c3b15dd8bc27fb2707620f6bdbbcb2\"",
+    "last-modified": "Sun, 01 Feb 2026 12:31:18 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "objc2-foundation",
+  "started_at_utc": "2026-10-24T00:03:20.629009+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ob/jc/objc2-foundation"
+}

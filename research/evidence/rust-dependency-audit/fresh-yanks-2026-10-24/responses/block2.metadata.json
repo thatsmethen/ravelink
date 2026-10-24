@@ -1,0 +1,24 @@
+{
+  "body_bytes": 13816,
+  "body_complete": true,
+  "body_file": "responses/block2.jsonl.gz",
+  "body_sha256": "cf64fba2ccad69dda3c152298520c143ff857e5767289eb7d189ea6bad25b2b7",
+  "ended_at_utc": "2026-10-24T00:01:47.805254+00:00",
+  "headers": {
+    "age": "365",
+    "cache-control": "public,max-age=600",
+    "content-length": "13816",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:01:47 GMT",
+    "etag": "\"219d12892a308e5428aced92bf9ad555\"",
+    "last-modified": "Sun, 01 Feb 2026 11:28:55 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "2"
+  },
+  "http_status": 200,
+  "name": "block2",
+  "started_at_utc": "2026-10-24T00:01:46.680157+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/bl/oc/block2"
+}

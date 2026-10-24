@@ -1,0 +1,24 @@
+{
+  "body_bytes": 41282,
+  "body_complete": true,
+  "body_file": "responses/tinystr.jsonl.gz",
+  "body_sha256": "fec07172dfa6696a015990c5f451497dbb4900a1b8a34b5ae2ba1c112c6f3667",
+  "ended_at_utc": "2026-10-24T00:04:08.585037+00:00",
+  "headers": {
+    "age": "73",
+    "cache-control": "public,max-age=600",
+    "content-length": "41282",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:08 GMT",
+    "etag": "\"83e9eb81a886d432ebee0613fa3e338e\"",
+    "last-modified": "Thu, 22 Oct 2026 08:51:50 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "tinystr",
+  "started_at_utc": "2026-10-24T00:04:07.894104+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ti/ny/tinystr"
+}

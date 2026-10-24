@@ -1,0 +1,24 @@
+{
+  "body_bytes": 4597,
+  "body_complete": true,
+  "body_file": "responses/epaint_default_fonts.jsonl.gz",
+  "body_sha256": "399872d1aeef1d9a8724f53199cf901a59a26c851b31c299ae41efa760ae816b",
+  "ended_at_utc": "2026-10-24T00:02:30.833429+00:00",
+  "headers": {
+    "age": "361",
+    "cache-control": "public,max-age=600",
+    "content-length": "4597",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:30 GMT",
+    "etag": "\"3cdea9999731316a82baffbf14335c62\"",
+    "last-modified": "Thu, 15 Oct 2026 14:48:57 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "epaint_default_fonts",
+  "started_at_utc": "2026-10-24T00:02:19.427899+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ep/ai/epaint_default_fonts"
+}

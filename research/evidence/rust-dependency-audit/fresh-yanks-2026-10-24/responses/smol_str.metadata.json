@@ -1,0 +1,24 @@
+{
+  "body_bytes": 27588,
+  "body_complete": true,
+  "body_file": "responses/smol_str.jsonl.gz",
+  "body_sha256": "b9c98f5baafb22deafdb05c63d5c00fb4a42e36b203003d24b2dd61001e5f3e0",
+  "ended_at_utc": "2026-10-24T00:03:56.037290+00:00",
+  "headers": {
+    "age": "485",
+    "cache-control": "public,max-age=600",
+    "content-length": "27588",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:55 GMT",
+    "etag": "\"e02a3725d65ed49e8ac54d1b057f8b97\"",
+    "last-modified": "Tue, 20 Oct 2026 14:31:53 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "smol_str",
+  "started_at_utc": "2026-10-24T00:03:53.851084+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/sm/ol/smol_str"
+}

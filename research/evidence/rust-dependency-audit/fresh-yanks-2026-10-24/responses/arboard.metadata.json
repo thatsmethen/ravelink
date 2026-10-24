@@ -1,0 +1,24 @@
+{
+  "body_bytes": 78518,
+  "body_complete": true,
+  "body_file": "responses/arboard.jsonl.gz",
+  "body_sha256": "cd4cfd07f2ce5c9bc160023218f3c9a62809a7ef9923302877cbf5c7b9de3ecf",
+  "ended_at_utc": "2026-10-24T00:01:44.258403+00:00",
+  "headers": {
+    "age": "0",
+    "cache-control": "public,max-age=600",
+    "content-length": "78518",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:01:44 GMT",
+    "etag": "\"d80294e792c3d54e805db65975ec9f88\"",
+    "last-modified": "Thu, 15 Oct 2026 11:58:56 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "arboard",
+  "started_at_utc": "2026-10-24T00:01:41.333528+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ar/bo/arboard"
+}

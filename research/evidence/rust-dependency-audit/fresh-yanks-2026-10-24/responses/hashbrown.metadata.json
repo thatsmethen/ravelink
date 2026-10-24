@@ -1,0 +1,24 @@
+{
+  "body_bytes": 105114,
+  "body_complete": true,
+  "body_file": "responses/hashbrown.jsonl.gz",
+  "body_sha256": "a713c43dbc6c92bbcec527544196023ca4271afed3dd5abbe766e70c67f512c6",
+  "ended_at_utc": "2026-10-24T00:02:43.229503+00:00",
+  "headers": {
+    "age": "164",
+    "cache-control": "public,max-age=600",
+    "content-length": "105114",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:42 GMT",
+    "etag": "\"d84d9c7b755fbddc8892e7c85ce010c4\"",
+    "last-modified": "Sat, 09 May 2026 04:35:06 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "4"
+  },
+  "http_status": 200,
+  "name": "hashbrown",
+  "started_at_utc": "2026-10-24T00:02:38.545962+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ha/sh/hashbrown"
+}

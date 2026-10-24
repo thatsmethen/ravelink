@@ -1,0 +1,24 @@
+{
+  "body_bytes": 306362,
+  "body_complete": true,
+  "body_file": "responses/eframe.jsonl.gz",
+  "body_sha256": "bce4b76df7f75cef9a2db53e088f24d63d29ececde1b723743fd3393a7fc4155",
+  "ended_at_utc": "2026-10-24T00:02:15.467773+00:00",
+  "headers": {
+    "age": "347",
+    "cache-control": "public,max-age=600",
+    "content-length": "306362",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:15 GMT",
+    "etag": "\"a769628a3f522c8f0de00ea2850f3ae5\"",
+    "last-modified": "Thu, 15 Oct 2026 15:28:55 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "eframe",
+  "started_at_utc": "2026-10-24T00:02:13.164522+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ef/ra/eframe"
+}

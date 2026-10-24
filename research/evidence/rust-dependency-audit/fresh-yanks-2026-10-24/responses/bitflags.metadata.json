@@ -1,0 +1,24 @@
+{
+  "body_bytes": 63713,
+  "body_complete": true,
+  "body_file": "responses/bitflags.jsonl.gz",
+  "body_sha256": "d3aa8cbad37c9526e2cf25544efcb8ba215649143476a2dd732e413e570cd017",
+  "ended_at_utc": "2026-10-24T00:01:49.870019+00:00",
+  "headers": {
+    "age": "60",
+    "cache-control": "public,max-age=600",
+    "content-length": "63713",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:01:49 GMT",
+    "etag": "\"2f227433c3a80beec62d23c34bbed0ae\"",
+    "last-modified": "Thu, 10 Sep 2026 01:11:40 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "bitflags",
+  "started_at_utc": "2026-10-24T00:01:45.260265+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/bi/tf/bitflags"
+}

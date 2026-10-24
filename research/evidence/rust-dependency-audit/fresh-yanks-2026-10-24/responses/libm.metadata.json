@@ -1,0 +1,24 @@
+{
+  "body_bytes": 9260,
+  "body_complete": true,
+  "body_file": "responses/libm.jsonl.gz",
+  "body_sha256": "16d3903238abf2b92dc66c4a026132d491d21abe77678eeb465f005038b9517a",
+  "ended_at_utc": "2026-10-24T00:02:55.502267+00:00",
+  "headers": {
+    "age": "38",
+    "cache-control": "public,max-age=600",
+    "content-length": "9260",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:55 GMT",
+    "etag": "\"ce9a3e90cb04e0d7988bde42b1db5e49\"",
+    "last-modified": "Sat, 24 Jan 2026 03:14:23 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "libm",
+  "started_at_utc": "2026-10-24T00:02:54.683275+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/li/bm/libm"
+}

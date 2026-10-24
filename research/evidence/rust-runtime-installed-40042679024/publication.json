@@ -1,0 +1,40 @@
+{
+  "assets": [
+    {
+      "apiUrl": "https://api.github.com/repos/thatsmethen/ravelink/releases/assets/670798302",
+      "contentType": "application/zip",
+      "createdAt": "2026-10-24T00:17:44Z",
+      "digest": "sha256:e4f2b23eead23d3e1846efab083f1c3305aa317bfbe9353b07e0157aaa0b7b52",
+      "downloadCount": 0,
+      "id": "RA_kwDOVUvrfc4n-5He",
+      "label": "",
+      "name": "original-hal.zip",
+      "size": 10302395,
+      "state": "uploaded",
+      "updatedAt": "2026-10-24T00:18:21Z",
+      "url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-rust-runtime-40042679024/original-hal.zip"
+    },
+    {
+      "apiUrl": "https://api.github.com/repos/thatsmethen/ravelink/releases/assets/670798304",
+      "contentType": "application/zip",
+      "createdAt": "2026-10-24T00:17:44Z",
+      "digest": "sha256:cafd890813f3b676f22631526273427994add1a69a22629be1e6f866c956fc11",
+      "downloadCount": 0,
+      "id": "RA_kwDOVUvrfc4n-5Hg",
+      "label": "",
+      "name": "original-runtime.zip",
+      "size": 6597920,
+      "state": "uploaded",
+      "updatedAt": "2026-10-24T00:18:15Z",
+      "url": "https://github.com/thatsmethen/ravelink/releases/download/evidence-rust-runtime-40042679024/original-runtime.zip"
+    }
+  ],
+  "isDraft": false,
+  "isPrerelease": true,
+  "url": "https://github.com/thatsmethen/ravelink/releases/tag/evidence-rust-runtime-40042679024",
+  "download_verification": {
+    "at": "2026-10-24T00:22:12.393095+00:00",
+    "all_archives_and_members_verified": true,
+    "command": "python3 research/evidence/rust-runtime-installed-40042679024/verify.py --archives build/runtime-release-verification"
+  }
+}

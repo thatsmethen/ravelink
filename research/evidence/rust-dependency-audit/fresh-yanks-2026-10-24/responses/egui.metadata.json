@@ -1,0 +1,24 @@
+{
+  "body_bytes": 112437,
+  "body_complete": true,
+  "body_file": "responses/egui.jsonl.gz",
+  "body_sha256": "12937f3daa6d337b48fdd2829d01b6f0c126c95e7bfb248cf3dfee3719d1f46a",
+  "ended_at_utc": "2026-10-24T00:02:18.507484+00:00",
+  "headers": {
+    "age": "350",
+    "cache-control": "public,max-age=600",
+    "content-length": "112437",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:18 GMT",
+    "etag": "\"13a4a5a7916279730d27e1ae36ae971c\"",
+    "last-modified": "Thu, 15 Oct 2026 14:49:18 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "egui",
+  "started_at_utc": "2026-10-24T00:02:14.820812+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/eg/ui/egui"
+}

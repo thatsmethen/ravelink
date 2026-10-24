@@ -1,0 +1,24 @@
+{
+  "body_bytes": 2261,
+  "body_complete": true,
+  "body_file": "responses/scopeguard.jsonl.gz",
+  "body_sha256": "c713b0531b312c2906973e4fc9530b17ff1591f563449eb63d179343dd1b7df7",
+  "ended_at_utc": "2026-10-24T00:03:48.382387+00:00",
+  "headers": {
+    "age": "33",
+    "cache-control": "public,max-age=600",
+    "content-length": "2261",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:48 GMT",
+    "etag": "\"daa938084f25f8a693ae8f14a8fad0d3\"",
+    "last-modified": "Sun, 01 Feb 2026 12:54:59 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "scopeguard",
+  "started_at_utc": "2026-10-24T00:03:46.290149+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/sc/op/scopeguard"
+}

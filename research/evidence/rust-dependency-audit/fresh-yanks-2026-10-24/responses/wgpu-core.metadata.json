@@ -1,0 +1,24 @@
+{
+  "body_bytes": 302558,
+  "body_complete": true,
+  "body_file": "responses/wgpu-core.jsonl.gz",
+  "body_sha256": "f1f3ee7e637678c3a4234a23089771291efaf7642b23fa4e37f4c6b99bd84856",
+  "ended_at_utc": "2026-10-24T00:04:25.580459+00:00",
+  "headers": {
+    "age": "128",
+    "cache-control": "public,max-age=600",
+    "content-length": "302558",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:25 GMT",
+    "etag": "\"5cd156211746653e74b7dffeba48d526\"",
+    "last-modified": "Sat, 22 Aug 2026 02:53:37 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "wgpu-core",
+  "started_at_utc": "2026-10-24T00:04:22.816008+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/wg/pu/wgpu-core"
+}

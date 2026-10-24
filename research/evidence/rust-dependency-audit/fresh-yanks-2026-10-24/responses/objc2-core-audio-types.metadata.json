@@ -1,0 +1,24 @@
+{
+  "body_bytes": 2325,
+  "body_complete": true,
+  "body_file": "responses/objc2-core-audio-types.jsonl.gz",
+  "body_sha256": "26f4a5147c2c9d99a88bc9bd104b0ce36c6f97723623e14fa54aeafe537fa4b2",
+  "ended_at_utc": "2026-10-24T00:03:19.385217+00:00",
+  "headers": {
+    "age": "112",
+    "cache-control": "public,max-age=600",
+    "content-length": "2325",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:19 GMT",
+    "etag": "\"9f2b5264137843dc4d1110c55afd4cdd\"",
+    "last-modified": "Sun, 01 Feb 2026 12:31:16 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "objc2-core-audio-types",
+  "started_at_utc": "2026-10-24T00:03:16.254623+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ob/jc/objc2-core-audio-types"
+}

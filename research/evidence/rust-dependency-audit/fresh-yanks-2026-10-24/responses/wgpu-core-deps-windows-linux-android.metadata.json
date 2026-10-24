@@ -1,0 +1,24 @@
+{
+  "body_bytes": 5680,
+  "body_complete": true,
+  "body_file": "responses/wgpu-core-deps-windows-linux-android.jsonl.gz",
+  "body_sha256": "701fc24c1728333e4cf2b20a8b40f3ef6c1ef69f8cf0505f0c1ec93c26106360",
+  "ended_at_utc": "2026-10-24T00:04:45.406213+00:00",
+  "headers": {
+    "age": "147",
+    "cache-control": "public,max-age=600",
+    "content-length": "5680",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:44 GMT",
+    "etag": "\"045f0cb51938c5fca617d76657dc5264\"",
+    "last-modified": "Sat, 22 Aug 2026 02:53:35 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "wgpu-core-deps-windows-linux-android",
+  "started_at_utc": "2026-10-24T00:04:24.305845+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/wg/pu/wgpu-core-deps-windows-linux-android"
+}

@@ -1,0 +1,24 @@
+{
+  "body_bytes": 3606,
+  "body_complete": true,
+  "body_file": "responses/zerofrom.jsonl.gz",
+  "body_sha256": "89d06031266631b413be40e6768950acba7dc0b0f8c8c49f3ed1773598c5bf5b",
+  "ended_at_utc": "2026-10-24T00:04:55.020244+00:00",
+  "headers": {
+    "age": "120",
+    "cache-control": "public,max-age=600",
+    "content-length": "3606",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:54 GMT",
+    "etag": "\"f4aaf808c0a82dc61db108d6c335682f\"",
+    "last-modified": "Tue, 12 May 2026 09:08:20 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "zerofrom",
+  "started_at_utc": "2026-10-24T00:04:51.054537+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ze/ro/zerofrom"
+}

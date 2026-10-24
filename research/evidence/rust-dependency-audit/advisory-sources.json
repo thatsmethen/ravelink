@@ -1,0 +1,27 @@
+[
+  {
+    "advisory": "RUSTSEC-2024-0436",
+    "license": "CC0-1.0",
+    "source": "https://github.com/RustSec/advisory-db/blob/84d943a6deeb8cc6c6f632531aaf4f1c62275239/crates/paste/RUSTSEC-2024-0436.md"
+  },
+  {
+    "advisory": "RUSTSEC-2026-0192",
+    "license": "CC0-1.0",
+    "source": "https://github.com/RustSec/advisory-db/blob/84d943a6deeb8cc6c6f632531aaf4f1c62275239/crates/ttf-parser/RUSTSEC-2026-0192.md"
+  },
+  {
+    "advisory": "RUSTSEC-2026-0371",
+    "license": "CC0-1.0",
+    "source": "https://github.com/RustSec/advisory-db/blob/84d943a6deeb8cc6c6f632531aaf4f1c62275239/crates/zbus_names/RUSTSEC-2026-0371.md"
+  },
+  {
+    "advisory": "RUSTSEC-2026-0370",
+    "license": "CC0-1.0",
+    "source": "https://github.com/RustSec/advisory-db/blob/84d943a6deeb8cc6c6f632531aaf4f1c62275239/crates/zvariant/RUSTSEC-2026-0370.md"
+  },
+  {
+    "advisory": "RUSTSEC-2026-0372",
+    "license": "CC0-1.0",
+    "source": "https://github.com/RustSec/advisory-db/blob/84d943a6deeb8cc6c6f632531aaf4f1c62275239/crates/zvariant_derive/RUSTSEC-2026-0372.md"
+  }
+]

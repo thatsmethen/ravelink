@@ -1,0 +1,24 @@
+{
+  "body_bytes": 211805,
+  "body_complete": true,
+  "body_file": "responses/cpal.jsonl.gz",
+  "body_sha256": "93b242b56760c28678586862f8805fed0c35ea7bbe6e6a31db3854e4d5f70125",
+  "ended_at_utc": "2026-10-24T00:02:08.064219+00:00",
+  "headers": {
+    "age": "457",
+    "cache-control": "public,max-age=600",
+    "content-length": "211805",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:07 GMT",
+    "etag": "\"daf8b31a050a5148717a0f83cec9b993\"",
+    "last-modified": "Sun, 16 Aug 2026 18:02:04 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "cpal",
+  "started_at_utc": "2026-10-24T00:02:00.452078+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/cp/al/cpal"
+}

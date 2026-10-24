@@ -1,0 +1,24 @@
+{
+  "body_bytes": 2097,
+  "body_complete": true,
+  "body_file": "responses/malloc_buf.jsonl.gz",
+  "body_sha256": "f5d215597025a1aa53966b0a5b06c3b527377a4203ea91d5ef676f1c819e80f9",
+  "ended_at_utc": "2026-10-24T00:03:03.610108+00:00",
+  "headers": {
+    "age": "499",
+    "cache-control": "public,max-age=600",
+    "content-length": "2097",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:03 GMT",
+    "etag": "\"5f713ed1fda33211bb2b8b3c8e556a09\"",
+    "last-modified": "Sun, 01 Feb 2026 12:19:41 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "malloc_buf",
+  "started_at_utc": "2026-10-24T00:03:00.425020+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ma/ll/malloc_buf"
+}

@@ -1,0 +1,24 @@
+{
+  "body_bytes": 177113,
+  "body_complete": true,
+  "body_file": "responses/zerocopy-derive.jsonl.gz",
+  "body_sha256": "4517137f6f4432c09ce68e2e6b66175f662d8fe917e17fb51ef61e94172c2daa",
+  "ended_at_utc": "2026-10-24T00:04:51.049989+00:00",
+  "headers": {
+    "age": "566",
+    "cache-control": "public,max-age=600",
+    "content-length": "177113",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:50 GMT",
+    "etag": "\"dc0dd49972f1a9f1d8dbee19a2baff4b\"",
+    "last-modified": "Tue, 13 Oct 2026 20:02:00 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "zerocopy-derive",
+  "started_at_utc": "2026-10-24T00:04:50.660996+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ze/ro/zerocopy-derive"
+}

@@ -1,0 +1,24 @@
+{
+  "body_bytes": 9815,
+  "body_complete": true,
+  "body_file": "responses/unicode-segmentation.jsonl.gz",
+  "body_sha256": "63387c40c689a9c12aa47b67e2909021190deada525e17b76194cc0e669f1bc2",
+  "ended_at_utc": "2026-10-24T00:04:14.851036+00:00",
+  "headers": {
+    "age": "508",
+    "cache-control": "public,max-age=600",
+    "content-length": "9815",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:14 GMT",
+    "etag": "\"4ec155951ea4c5431bfa20655b5236fa\"",
+    "last-modified": "Mon, 01 Jun 2026 15:58:45 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "unicode-segmentation",
+  "started_at_utc": "2026-10-24T00:04:11.690845+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/un/ic/unicode-segmentation"
+}

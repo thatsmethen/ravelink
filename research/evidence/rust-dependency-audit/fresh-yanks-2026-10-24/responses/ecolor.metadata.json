@@ -1,0 +1,24 @@
+{
+  "body_bytes": 34778,
+  "body_complete": true,
+  "body_file": "responses/ecolor.jsonl.gz",
+  "body_sha256": "73e192c970463fc0d10b2ce4afd39ad5f4138f8e916f50638787f19191aaf1d1",
+  "ended_at_utc": "2026-10-24T00:02:13.160219+00:00",
+  "headers": {
+    "age": "343",
+    "cache-control": "public,max-age=600",
+    "content-length": "34778",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:13 GMT",
+    "etag": "\"91bfb75977a8181c5544352c2d4d40ff\"",
+    "last-modified": "Thu, 15 Oct 2026 14:48:54 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "ecolor",
+  "started_at_utc": "2026-10-24T00:02:12.065240+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ec/ol/ecolor"
+}

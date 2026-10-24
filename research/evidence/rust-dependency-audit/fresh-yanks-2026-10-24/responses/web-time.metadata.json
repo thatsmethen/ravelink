@@ -1,0 +1,24 @@
+{
+  "body_bytes": 18433,
+  "body_complete": true,
+  "body_file": "responses/web-time.jsonl.gz",
+  "body_sha256": "89e1daf2d776c2b470f53f64171a1b72697bcd6261c5476c9405fc1f56065751",
+  "ended_at_utc": "2026-10-24T00:04:24.304696+00:00",
+  "headers": {
+    "age": "213",
+    "cache-control": "public,max-age=600",
+    "content-length": "18433",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:24 GMT",
+    "etag": "\"230d1bac1d83bde63418ab7bffcc71a1\"",
+    "last-modified": "Sun, 01 Feb 2026 13:13:55 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "web-time",
+  "started_at_utc": "2026-10-24T00:04:18.217568+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/we/b-/web-time"
+}

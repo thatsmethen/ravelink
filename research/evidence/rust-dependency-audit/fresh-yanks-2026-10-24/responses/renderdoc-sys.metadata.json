@@ -1,0 +1,24 @@
+{
+  "body_bytes": 1309,
+  "body_complete": true,
+  "body_file": "responses/renderdoc-sys.jsonl.gz",
+  "body_sha256": "5587b786ef6bce24e6713d3a35d5ea5d60a43226a55299f3d48f2283da62c10a",
+  "ended_at_utc": "2026-10-24T00:03:46.289298+00:00",
+  "headers": {
+    "age": "88",
+    "cache-control": "public,max-age=600",
+    "content-length": "1309",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:46 GMT",
+    "etag": "\"c73a465aa2372131ffecad89318c8214\"",
+    "last-modified": "Sun, 01 Feb 2026 12:44:55 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "renderdoc-sys",
+  "started_at_utc": "2026-10-24T00:03:44.264082+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/re/nd/renderdoc-sys"
+}

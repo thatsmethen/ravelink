@@ -1,0 +1,24 @@
+{
+  "body_bytes": 28423,
+  "body_complete": true,
+  "body_file": "responses/memchr.jsonl.gz",
+  "body_sha256": "577209be17cbaaf1a862c0e01a84d515d91bcc229476fd34e67ffd44a5a84f27",
+  "ended_at_utc": "2026-10-24T00:03:04.656135+00:00",
+  "headers": {
+    "age": "86",
+    "cache-control": "public,max-age=600",
+    "content-length": "28423",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:04 GMT",
+    "etag": "\"b80703e5b81110869d945dc7d919a9c1\"",
+    "last-modified": "Wed, 08 Jul 2026 00:49:56 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "53023"
+  },
+  "http_status": 200,
+  "name": "memchr",
+  "started_at_utc": "2026-10-24T00:03:01.516861+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/me/mc/memchr"
+}

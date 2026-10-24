@@ -1,0 +1,24 @@
+{
+  "body_bytes": 4871,
+  "body_complete": true,
+  "body_file": "responses/windows-result.jsonl.gz",
+  "body_sha256": "85f0e881b74d8b55584d54bcdfa7127cbc4c7886c7c4368066bc42c8dd2bfd18",
+  "ended_at_utc": "2026-10-24T00:04:45.406073+00:00",
+  "headers": {
+    "age": "234",
+    "cache-control": "public,max-age=600",
+    "content-length": "4871",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:44 GMT",
+    "etag": "\"29ac1e84c9b387ad7667093c3a518bdc\"",
+    "last-modified": "Thu, 03 Sep 2026 16:41:26 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "windows-result",
+  "started_at_utc": "2026-10-24T00:04:35.869687+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/wi/nd/windows-result"
+}

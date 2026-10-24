@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "run_id": 40042679024,
+  "source_revision": "4fad7fca69415bc86aae17caa5cab2641576a26e",
+  "records": [
+    {
+      "artifact_id": 12538999935,
+      "archive": "original-runtime.zip",
+      "sha256": "cafd890813f3b676f22631526273427994add1a69a22629be1e6f866c956fc11",
+      "bytes": 6597920,
+      "verified_files": 51,
+      "zip_members": 52,
+      "github_digest_matches": true,
+      "manifest_members_exact": true
+    },
+    {
+      "artifact_id": 12540440377,
+      "archive": "original-hal.zip",
+      "sha256": "e4f2b23eead23d3e1846efab083f1c3305aa317bfbe9353b07e0157aaa0b7b52",
+      "bytes": 10302395,
+      "verified_files": 57,
+      "zip_members": 58,
+      "github_digest_matches": true,
+      "manifest_members_exact": true
+    }
+  ],
+  "note": "Original ZIPs match GitHub metadata and every retained file matches its runner manifest. No observation changed."
+}

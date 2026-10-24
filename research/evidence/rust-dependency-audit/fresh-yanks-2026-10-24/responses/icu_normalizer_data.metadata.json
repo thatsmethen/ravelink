@@ -1,0 +1,24 @@
+{
+  "body_bytes": 3296,
+  "body_complete": true,
+  "body_file": "responses/icu_normalizer_data.jsonl.gz",
+  "body_sha256": "2ea8ef2766a60089a77abbb690d77a668088caacc4cbe073d8dd07e9321ed37e",
+  "ended_at_utc": "2026-10-24T00:02:46.529519+00:00",
+  "headers": {
+    "age": "0",
+    "cache-control": "public,max-age=600",
+    "content-length": "3296",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:46 GMT",
+    "etag": "\"523c67e6d565fe89210c9458e1370593\"",
+    "last-modified": "Thu, 22 Oct 2026 08:56:38 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "icu_normalizer_data",
+  "started_at_utc": "2026-10-24T00:02:43.231453+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ic/u_/icu_normalizer_data"
+}

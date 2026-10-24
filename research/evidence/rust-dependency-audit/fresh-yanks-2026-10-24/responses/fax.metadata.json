@@ -1,0 +1,24 @@
+{
+  "body_bytes": 3527,
+  "body_complete": true,
+  "body_file": "responses/fax.jsonl.gz",
+  "body_sha256": "18a3d22ae1627396177243a8dafd91a364f3e4b8d3386995abec8d3d643bb885",
+  "ended_at_utc": "2026-10-24T00:02:30.825099+00:00",
+  "headers": {
+    "age": "394",
+    "cache-control": "public,max-age=600",
+    "content-length": "3527",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:30 GMT",
+    "etag": "\"241b8eb6ede06577d2a5d1d9c6b38b61\"",
+    "last-modified": "Mon, 13 Jul 2026 16:45:07 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "fax",
+  "started_at_utc": "2026-10-24T00:02:24.746139+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/3/f/fax"
+}

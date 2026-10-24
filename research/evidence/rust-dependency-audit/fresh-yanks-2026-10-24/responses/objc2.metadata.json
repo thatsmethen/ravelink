@@ -1,0 +1,24 @@
+{
+  "body_bytes": 49562,
+  "body_complete": true,
+  "body_file": "responses/objc2.jsonl.gz",
+  "body_sha256": "fcff133b08cdff9fee35976d1e99b04d25800a8024be59c1aa960a912605d9f1",
+  "ended_at_utc": "2026-10-24T00:03:20.623191+00:00",
+  "headers": {
+    "age": "567",
+    "cache-control": "public,max-age=600",
+    "content-length": "49562",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:20 GMT",
+    "etag": "\"f30a0eb665f5400ee9e87a6531ad93c2\"",
+    "last-modified": "Mon, 05 Oct 2026 18:26:55 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "objc2",
+  "started_at_utc": "2026-10-24T00:03:12.603992+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ob/jc/objc2"
+}

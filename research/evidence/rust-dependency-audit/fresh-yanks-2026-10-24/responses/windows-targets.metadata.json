@@ -1,0 +1,24 @@
+{
+  "body_bytes": 38792,
+  "body_complete": true,
+  "body_file": "responses/windows-targets.jsonl.gz",
+  "body_sha256": "3452f88b45a81f84b4efc353fb54d389900835d13c994786444a4556578a1887",
+  "ended_at_utc": "2026-10-24T00:04:46.230084+00:00",
+  "headers": {
+    "age": "236",
+    "cache-control": "public,max-age=600",
+    "content-length": "38792",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:46 GMT",
+    "etag": "\"04a4f217db8821e758a02318b35808dc\"",
+    "last-modified": "Sun, 01 Feb 2026 13:14:56 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "windows-targets",
+  "started_at_utc": "2026-10-24T00:04:45.411099+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/wi/nd/windows-targets"
+}

@@ -1,0 +1,477 @@
+[
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "aarch64-apple-darwin",
+      "--edges",
+      "normal,build",
+      "--prefix",
+      "none",
+      "--format",
+      "{p}"
+    ],
+    "stdout": "aarch64-apple-darwin-app-all.txt",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "aarch64-apple-darwin",
+      "--edges",
+      "normal,no-proc-macro",
+      "--prefix",
+      "none",
+      "--format",
+      "{p}"
+    ],
+    "stdout": "aarch64-apple-darwin-app-runtime.txt",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-hal",
+      "--target",
+      "aarch64-apple-darwin",
+      "--edges",
+      "normal,build",
+      "--prefix",
+      "none",
+      "--format",
+      "{p}"
+    ],
+    "stdout": "aarch64-apple-darwin-hal-all.txt",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "aarch64-apple-darwin",
+      "--edges",
+      "normal,build",
+      "--invert",
+      "paste@1.0.15",
+      "--charset",
+      "ascii"
+    ],
+    "stdout": "aarch64-apple-darwin-inverse-paste.txt",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "aarch64-apple-darwin",
+      "--edges",
+      "normal,build",
+      "--invert",
+      "ttf-parser@0.25.1",
+      "--charset",
+      "ascii"
+    ],
+    "stdout": "aarch64-apple-darwin-inverse-ttf-parser.txt",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "aarch64-apple-darwin",
+      "--edges",
+      "normal,build",
+      "--invert",
+      "zbus_names@4.3.5",
+      "--charset",
+      "ascii"
+    ],
+    "stdout": "aarch64-apple-darwin-inverse-zbus_names.txt",
+    "stderr": "warning: nothing to print.\n\nTo find dependencies that require specific target platforms, try to use option `--target all` first, and then narrow your search scope accordingly.\n"
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "aarch64-apple-darwin",
+      "--edges",
+      "normal,build",
+      "--invert",
+      "zvariant@5.15.1",
+      "--charset",
+      "ascii"
+    ],
+    "stdout": "aarch64-apple-darwin-inverse-zvariant.txt",
+    "stderr": "warning: nothing to print.\n\nTo find dependencies that require specific target platforms, try to use option `--target all` first, and then narrow your search scope accordingly.\n"
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "aarch64-apple-darwin",
+      "--edges",
+      "normal,build",
+      "--invert",
+      "zvariant_derive@5.15.1",
+      "--charset",
+      "ascii"
+    ],
+    "stdout": "aarch64-apple-darwin-inverse-zvariant_derive.txt",
+    "stderr": "warning: nothing to print.\n\nTo find dependencies that require specific target platforms, try to use option `--target all` first, and then narrow your search scope accordingly.\n"
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "x86_64-apple-darwin",
+      "--edges",
+      "normal,build",
+      "--prefix",
+      "none",
+      "--format",
+      "{p}"
+    ],
+    "stdout": "x86_64-apple-darwin-app-all.txt",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "x86_64-apple-darwin",
+      "--edges",
+      "normal,no-proc-macro",
+      "--prefix",
+      "none",
+      "--format",
+      "{p}"
+    ],
+    "stdout": "x86_64-apple-darwin-app-runtime.txt",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-hal",
+      "--target",
+      "x86_64-apple-darwin",
+      "--edges",
+      "normal,build",
+      "--prefix",
+      "none",
+      "--format",
+      "{p}"
+    ],
+    "stdout": "x86_64-apple-darwin-hal-all.txt",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "x86_64-apple-darwin",
+      "--edges",
+      "normal,build",
+      "--invert",
+      "paste@1.0.15",
+      "--charset",
+      "ascii"
+    ],
+    "stdout": "x86_64-apple-darwin-inverse-paste.txt",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "x86_64-apple-darwin",
+      "--edges",
+      "normal,build",
+      "--invert",
+      "ttf-parser@0.25.1",
+      "--charset",
+      "ascii"
+    ],
+    "stdout": "x86_64-apple-darwin-inverse-ttf-parser.txt",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "x86_64-apple-darwin",
+      "--edges",
+      "normal,build",
+      "--invert",
+      "zbus_names@4.3.5",
+      "--charset",
+      "ascii"
+    ],
+    "stdout": "x86_64-apple-darwin-inverse-zbus_names.txt",
+    "stderr": "warning: nothing to print.\n\nTo find dependencies that require specific target platforms, try to use option `--target all` first, and then narrow your search scope accordingly.\n"
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "x86_64-apple-darwin",
+      "--edges",
+      "normal,build",
+      "--invert",
+      "zvariant@5.15.1",
+      "--charset",
+      "ascii"
+    ],
+    "stdout": "x86_64-apple-darwin-inverse-zvariant.txt",
+    "stderr": "warning: nothing to print.\n\nTo find dependencies that require specific target platforms, try to use option `--target all` first, and then narrow your search scope accordingly.\n"
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "x86_64-apple-darwin",
+      "--edges",
+      "normal,build",
+      "--invert",
+      "zvariant_derive@5.15.1",
+      "--charset",
+      "ascii"
+    ],
+    "stdout": "x86_64-apple-darwin-inverse-zvariant_derive.txt",
+    "stderr": "warning: nothing to print.\n\nTo find dependencies that require specific target platforms, try to use option `--target all` first, and then narrow your search scope accordingly.\n"
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "x86_64-pc-windows-msvc",
+      "--edges",
+      "normal,build",
+      "--prefix",
+      "none",
+      "--format",
+      "{p}"
+    ],
+    "stdout": "x86_64-pc-windows-msvc-app-all.txt",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "x86_64-pc-windows-msvc",
+      "--edges",
+      "normal,no-proc-macro",
+      "--prefix",
+      "none",
+      "--format",
+      "{p}"
+    ],
+    "stdout": "x86_64-pc-windows-msvc-app-runtime.txt",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-hal",
+      "--target",
+      "x86_64-pc-windows-msvc",
+      "--edges",
+      "normal,build",
+      "--prefix",
+      "none",
+      "--format",
+      "{p}"
+    ],
+    "stdout": "x86_64-pc-windows-msvc-hal-all.txt",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "x86_64-pc-windows-msvc",
+      "--edges",
+      "normal,build",
+      "--invert",
+      "paste@1.0.15",
+      "--charset",
+      "ascii"
+    ],
+    "stdout": "x86_64-pc-windows-msvc-inverse-paste.txt",
+    "stderr": "warning: nothing to print.\n\nTo find dependencies that require specific target platforms, try to use option `--target all` first, and then narrow your search scope accordingly.\n"
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "x86_64-pc-windows-msvc",
+      "--edges",
+      "normal,build",
+      "--invert",
+      "ttf-parser@0.25.1",
+      "--charset",
+      "ascii"
+    ],
+    "stdout": "x86_64-pc-windows-msvc-inverse-ttf-parser.txt",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "x86_64-pc-windows-msvc",
+      "--edges",
+      "normal,build",
+      "--invert",
+      "zbus_names@4.3.5",
+      "--charset",
+      "ascii"
+    ],
+    "stdout": "x86_64-pc-windows-msvc-inverse-zbus_names.txt",
+    "stderr": "warning: nothing to print.\n\nTo find dependencies that require specific target platforms, try to use option `--target all` first, and then narrow your search scope accordingly.\n"
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "x86_64-pc-windows-msvc",
+      "--edges",
+      "normal,build",
+      "--invert",
+      "zvariant@5.15.1",
+      "--charset",
+      "ascii"
+    ],
+    "stdout": "x86_64-pc-windows-msvc-inverse-zvariant.txt",
+    "stderr": "warning: nothing to print.\n\nTo find dependencies that require specific target platforms, try to use option `--target all` first, and then narrow your search scope accordingly.\n"
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "x86_64-pc-windows-msvc",
+      "--edges",
+      "normal,build",
+      "--invert",
+      "zvariant_derive@5.15.1",
+      "--charset",
+      "ascii"
+    ],
+    "stdout": "x86_64-pc-windows-msvc-inverse-zvariant_derive.txt",
+    "stderr": "warning: nothing to print.\n\nTo find dependencies that require specific target platforms, try to use option `--target all` first, and then narrow your search scope accordingly.\n"
+  },
+  {
+    "command": [
+      "cargo",
+      "tree",
+      "--locked",
+      "-p",
+      "ravelink-app",
+      "--target",
+      "all",
+      "--edges",
+      "normal,build",
+      "--invert",
+      "zvariant@5.15.1",
+      "--charset",
+      "ascii"
+    ],
+    "stdout": "all-targets-inverse-zvariant.txt",
+    "stderr": " Downloading crates ...\n  Downloaded accesskit_unix v0.17.2\n  Downloaded accesskit_atspi_common v0.14.2\n  Downloaded as-raw-xcb-connection v1.0.1\n  Downloaded android-properties v0.2.2\n  Downloaded atomic-waker v1.1.2\n  Downloaded calloop-wayland-source v0.3.0\n  Downloaded downcast-rs v1.2.1\n  Downloaded async-signal v0.2.14\n  Downloaded errno v0.3.14\n  Downloaded gethostname v1.1.0\n  Downloaded futures-io v0.3.34\n  Downloaded event-listener-strategy v0.5.4\n  Downloaded futures-macro v0.3.34\n  Downloaded objc2-user-notifications v0.2.2\n  Downloaded jni-sys v0.4.1\n  Downloaded objc2-link-presentation v0.2.2\n  Downloaded jni-sys-macros v0.4.1\n  Downloaded objc2-uniform-type-identifiers v0.2.2\n  Downloaded objc2-symbols v0.2.2\n  Downloaded num-derive v0.4.2\n  Downloaded memoffset v0.9.1\n  Downloaded objc2-core-location v0.2.2\n  Downloaded calloop-wayland-source v0.4.1\n  Downloaded endi v1.1.1\n  Downloaded dlib v0.5.3\n  Downloaded crunchy v0.2.4\n  Downloaded enumflags2_derive v0.7.12\n  Downloaded ndk-context v0.1.1\n  Downloaded jni-sys v0.3.1\n  Downloaded async-executor v1.14.0\n  Downloaded async-recursion v1.2.0\n  Downloaded async-process v2.5.0\n  Downloaded plain v0.2.3\n  Downloaded proc-macro-crate v3.5.0\n  Downloaded scoped-tls v1.0.1\n  Downloaded atspi-connection v0.9.0\n  Downloaded async-task v4.7.1\n  Downloaded blocking v1.7.0\n  Downloaded atspi-proxies v0.9.0\n  Downloaded concurrent-queue v2.5.0\n  Downloaded libredox v0.1.25\n  Downloaded enumflags2 v0.7.12\n  Downloaded parking v2.2.1\n  Downloaded hermit-abi v0.5.3\n  Downloaded num_enum_derive v0.7.6\n  Downloaded async-channel v2.5.0\n  Downloaded async-broadcast v0.7.2\n  Downloaded async-trait v0.1.92\n  Downloaded find-msvc-tools v0.1.15\n  Downloaded num_enum v0.7.6\n  Downloaded objc2-cloud-kit v0.2.2\n  Downloaded objc2-contacts v0.2.2\n  Downloaded jobserver v0.1.35\n  Downloaded ordered-stream v0.2.0\n  Downloaded piper v0.2.5\n  Downloaded alsa-sys v0.4.0\n  Downloaded atspi v0.25.0\n  Downloaded simdutf8 v0.1.5\n  Downloaded toml_datetime v1.1.2+spec-1.1.0\n  Downloaded redox_syscall v0.4.1\n  Downloaded smithay-clipboard v0.7.3\n  Downloaded crossbeam-utils v0.8.23\n  Downloaded redox_syscall v0.5.18\n  Downloaded memmap2 v0.9.12\n  Downloaded async-lock v3.4.2\n  Downloaded event-listener v5.4.2\n  Downloaded pin-project-internal v1.1.13\n  Downloaded tempfile v3.27.0\n  Downloaded signal-hook-registry v1.4.8\n  Downloaded redox_syscall v0.9.5\n  Downloaded futures-lite v2.6.1\n  Downloaded jni-macros v0.22.4\n  Downloaded pin-project v1.1.13\n  Downloaded r-efi v6.0.0\n  Downloaded async-io v2.6.0\n  Downloaded portable-atomic-util v0.2.8\n  Downloaded alsa v0.11.0\n  Downloaded calloop v0.13.0\n  Downloaded calloop v0.14.5\n  Downloaded r-efi v5.3.0\n  Downloaded polling v3.11.0\n  Downloaded ndk v0.9.0\n  Downloaded atspi-common v0.9.0\n  Downloaded combine v4.6.9\n  Downloaded js-sys v0.3.106\n  Downloaded smithay-client-toolkit v0.19.2\n  Downloaded smithay-client-toolkit v0.20.0\n  Downloaded cc v1.10.0\n  Downloaded xkbcommon-dl v0.4.2\n  Downloaded jni v0.22.4\n  Downloaded portable-atomic v1.15.0\n  Downloaded objc2-ui-kit v0.2.2\n  Downloaded android-activity v0.6.1\n  Downloaded simd_cesu8 v1.2.0\n  Downloaded ndk-sys v0.6.0+11769913\n  Downloaded rustix v0.38.44\n  Downloaded rustix v1.1.5\n  Downloaded tokio v1.54.1\n  Downloaded orbclient v0.3.55\n  Downloaded linux-raw-sys v0.4.15\n  Downloaded linux-raw-sys v0.12.1\n  Downloaded xcursor v0.3.11\n  Downloaded zbus-lockstep v0.5.2\n  Downloaded zcheapstr v1.1.0\n  Downloaded wasm-bindgen-futures v0.4.79\n  Downloaded wasm-bindgen-macro v0.2.129\n  Downloaded uds_windows v1.2.1\n  Downloaded toml_parser v1.1.5+spec-1.1.0\n  Downloaded wasm-bindgen-shared v0.2.129\n  Downloaded wayland-protocols-misc v0.3.12\n  Downloaded wayland-cursor v0.31.14\n  Downloaded winapi-util v0.1.11\n  Downloaded wayland-sys v0.31.11\n  Downloaded wayland-csd-frame v0.3.0\n  Downloaded zbus-lockstep-macros v0.5.2\n  Downloaded zbus_names v4.3.5\n  Downloaded zvariant_utils v4.2.0\n  Downloaded zvariant_derive v5.15.1\n  Downloaded wayland-protocols-experimental v20250721.0.1\n  Downloaded wayland-protocols-wlr v0.3.12\n  Downloaded zbus_macros v5.19.0\n  Downloaded wayland-scanner v0.31.11\n  Downloaded zbus_xml v5.2.1\n  Downloaded wayland-protocols-plasma v0.3.12\n  Downloaded wit-bindgen v0.57.1\n  Downloaded wasm-bindgen v0.2.129\n  Downloaded toml_edit v0.25.17+spec-1.1.0\n  Downloaded wayland-backend v0.3.17\n  Downloaded wayland-client v0.31.15\n  Downloaded x11-dl v2.21.0\n  Downloaded zvariant v5.15.1\n  Downloaded wasm-bindgen-macro-support v0.2.129\n  Downloaded xkeysym v0.2.1\n  Downloaded wayland-protocols v0.32.13\n  Downloaded wasip2 v1.0.4+wasi-0.2.12\n  Downloaded zbus v5.19.0\n  Downloaded x11rb v0.13.2\n  Downloaded windows_aarch64_gnullvm v0.52.6\n  Downloaded windows_x86_64_gnullvm v0.52.6\n  Downloaded windows_i686_gnullvm v0.52.6\n  Downloaded x11rb-protocol v0.13.2\n  Downloaded web-sys v0.3.106\n  Downloaded windows_aarch64_msvc v0.52.6\n  Downloaded windows_x86_64_gnu v0.52.6\n  Downloaded windows_i686_gnu v0.52.6\n  Downloaded windows_i686_msvc v0.52.6\n  Downloaded windows-sys v0.59.0\n"
+  }
+]

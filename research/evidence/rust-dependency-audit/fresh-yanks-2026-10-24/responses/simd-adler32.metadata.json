@@ -1,0 +1,24 @@
+{
+  "body_bytes": 8553,
+  "body_complete": true,
+  "body_file": "responses/simd-adler32.jsonl.gz",
+  "body_sha256": "b0698c516078dab130ebb2f805d4a66a84da31520067f92151658cf87f46f062",
+  "ended_at_utc": "2026-10-24T00:03:52.625048+00:00",
+  "headers": {
+    "age": "95",
+    "cache-control": "public,max-age=600",
+    "content-length": "8553",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:52 GMT",
+    "etag": "\"97db2dd27fbd4cd037f5228dd7018674\"",
+    "last-modified": "Tue, 14 Jul 2026 17:42:46 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "simd-adler32",
+  "started_at_utc": "2026-10-24T00:03:51.566718+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/si/md/simd-adler32"
+}

@@ -1,0 +1,24 @@
+{
+  "body_bytes": 1148,
+  "body_complete": true,
+  "body_file": "responses/stable_deref_trait.jsonl.gz",
+  "body_sha256": "8b37c6dcd76afb95e8e43168908698a5ed6c2e76a84e808c4aea9a29e61856a3",
+  "ended_at_utc": "2026-10-24T00:04:04.171308+00:00",
+  "headers": {
+    "age": "380",
+    "cache-control": "public,max-age=600",
+    "content-length": "1148",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:03 GMT",
+    "etag": "\"cc446e44ac599c92746e96f75ae18b81\"",
+    "last-modified": "Sun, 01 Feb 2026 13:00:59 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "stable_deref_trait",
+  "started_at_utc": "2026-10-24T00:03:54.848663+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/st/ab/stable_deref_trait"
+}

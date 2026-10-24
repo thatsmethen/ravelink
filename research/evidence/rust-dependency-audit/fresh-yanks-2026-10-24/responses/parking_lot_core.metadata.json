@@ -1,0 +1,24 @@
+{
+  "body_bytes": 68098,
+  "body_complete": true,
+  "body_file": "responses/parking_lot_core.jsonl.gz",
+  "body_sha256": "f12aca8a889c421b3480b30f1fe802c34b7a8e8f58f38e1d644ed7a6c3278028",
+  "ended_at_utc": "2026-10-24T00:03:35.800596+00:00",
+  "headers": {
+    "age": "182",
+    "cache-control": "public,max-age=600",
+    "content-length": "68098",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:35 GMT",
+    "etag": "\"7a96646fdbefe1f302e008a7f5f2f08d\"",
+    "last-modified": "Wed, 21 Oct 2026 10:30:43 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "parking_lot_core",
+  "started_at_utc": "2026-10-24T00:03:25.716945+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/pa/rk/parking_lot_core"
+}

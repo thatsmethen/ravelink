@@ -1,0 +1,24 @@
+{
+  "body_bytes": 6923,
+  "body_complete": true,
+  "body_file": "responses/zune-core.jsonl.gz",
+  "body_sha256": "e139ddaa3beea1a63cd05c28b4930758243defacf3c4ff01aee2f36f33a845ef",
+  "ended_at_utc": "2026-10-24T00:05:02.547505+00:00",
+  "headers": {
+    "age": "37",
+    "cache-control": "public,max-age=600",
+    "content-length": "6923",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:05:02 GMT",
+    "etag": "\"4cd50b9eadcc3809989001d8d6b5561c\"",
+    "last-modified": "Fri, 07 Aug 2026 20:56:33 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "zune-core",
+  "started_at_utc": "2026-10-24T00:04:57.137736+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/zu/ne/zune-core"
+}

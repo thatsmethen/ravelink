@@ -1,0 +1,24 @@
+{
+  "body_bytes": 35215,
+  "body_complete": true,
+  "body_file": "responses/zmij.jsonl.gz",
+  "body_sha256": "bf81df6dbb5da354e0b03658806f2ab9e549f8ad331cf567de3ad7b06e048b0e",
+  "ended_at_utc": "2026-10-24T00:04:58.239253+00:00",
+  "headers": {
+    "age": "279",
+    "cache-control": "public,max-age=600",
+    "content-length": "35215",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:58 GMT",
+    "etag": "\"0f5848725eb0fd28678f4a7c5c93c833\"",
+    "last-modified": "Mon, 13 Jul 2026 12:58:55 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "2"
+  },
+  "http_status": 200,
+  "name": "zmij",
+  "started_at_utc": "2026-10-24T00:04:56.129726+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/zm/ij/zmij"
+}

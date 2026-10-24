@@ -1,0 +1,24 @@
+{
+  "body_bytes": 6480,
+  "body_complete": true,
+  "body_file": "responses/serde_core.jsonl.gz",
+  "body_sha256": "58280b0772569b5900e04a8672d3541e2340b31a54c348a269b1beee3552811a",
+  "ended_at_utc": "2026-10-24T00:03:50.500989+00:00",
+  "headers": {
+    "age": "509",
+    "cache-control": "public,max-age=600",
+    "content-length": "6480",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:03:50 GMT",
+    "etag": "\"0677ae846370eef57d00db4af7ab39fc\"",
+    "last-modified": "Sat, 18 Jul 2026 23:05:12 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "serde_core",
+  "started_at_utc": "2026-10-24T00:03:48.383361+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/se/rd/serde_core"
+}

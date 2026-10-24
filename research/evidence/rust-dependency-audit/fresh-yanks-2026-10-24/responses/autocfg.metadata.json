@@ -1,0 +1,24 @@
+{
+  "body_bytes": 3480,
+  "body_complete": true,
+  "body_file": "responses/autocfg.jsonl.gz",
+  "body_sha256": "60e52e9e0cf800ffcb1b365fc5e4ec9d35bbacea049fb8cff46453961e2f07f3",
+  "ended_at_utc": "2026-10-24T00:01:42.453137+00:00",
+  "headers": {
+    "age": "379",
+    "cache-control": "public,max-age=600",
+    "content-length": "3480",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:01:42 GMT",
+    "etag": "\"969de01c8e79621ba01d87545090fc22\"",
+    "last-modified": "Fri, 22 May 2026 11:03:06 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "2"
+  },
+  "http_status": 200,
+  "name": "autocfg",
+  "started_at_utc": "2026-10-24T00:01:41.569234+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/au/to/autocfg"
+}

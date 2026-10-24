@@ -1,0 +1,24 @@
+{
+  "body_bytes": 5784,
+  "body_complete": true,
+  "body_file": "responses/windows-future.jsonl.gz",
+  "body_sha256": "e39eb0578b36044293e00d149e22a4689c29aa71a0cd3d2ad3b9cdbf546d6f22",
+  "ended_at_utc": "2026-10-24T00:04:36.968961+00:00",
+  "headers": {
+    "age": "525",
+    "cache-control": "public,max-age=600",
+    "content-length": "5784",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:36 GMT",
+    "etag": "\"0080beda5d4bab84fa20516e049e856a\"",
+    "last-modified": "Thu, 03 Sep 2026 16:44:05 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "windows-future",
+  "started_at_utc": "2026-10-24T00:04:31.752737+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/wi/nd/windows-future"
+}

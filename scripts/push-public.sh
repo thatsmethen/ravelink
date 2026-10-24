@@ -1,6 +1,17 @@
 #!/bin/sh
 set -eu
 repo=thatsmethen/ravelink
+# Project-level identity is intentional; never inherit a personal global email.
+if [ "$(git config --local user.name)" != 'RaveLink Contributors' ] ||
+   [ "$(git config --local user.email)" != 'contributors@ravelink.invalid' ]; then
+    echo 'Refusing to push: configure the documented RaveLink contributor identity.' >&2
+    exit 1
+fi
+if git log --format='%an <%ae>|%cn <%ce>' HEAD |
+   LC_ALL=C grep -vFx 'RaveLink Contributors <contributors@ravelink.invalid>|RaveLink Contributors <contributors@ravelink.invalid>' >/dev/null; then
+    echo 'Refusing to push: personal contributor metadata remains in the current history.' >&2
+    exit 1
+fi
 if [ "$(gh repo view "$repo" --json visibility --jq .visibility)" != PUBLIC ]; then
     echo 'Refusing to push: GitHub repository is not public as requested.' >&2
     exit 1

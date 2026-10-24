@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/tmp/ravelink-cargo-audit-0.22.2/cargo-audit-aarch64-apple-darwin-v0.22.2/cargo-audit",
+    "audit",
+    "--file",
+    "/Users/textual/projects/notify/ravelink/research/evidence/rust-dependency-audit/Cargo.lock.snapshot",
+    "--db",
+    "/tmp/ravelink-rustsec-84d943a6",
+    "--no-fetch",
+    "--deny",
+    "warnings",
+    "--json"
+  ],
+  "working_directory": "isolated temporary directory with explicit empty .cargo/audit.toml",
+  "exit_code": 1
+}

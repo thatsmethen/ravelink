@@ -1,0 +1,24 @@
+{
+  "body_bytes": 122797,
+  "body_complete": true,
+  "body_file": "responses/accesskit_winit.jsonl.gz",
+  "body_sha256": "6fc47b105ab264e038c9026a31afd6a98c89fe58aa040cedad366d954326145f",
+  "ended_at_utc": "2026-10-24T00:01:41.567142+00:00",
+  "headers": {
+    "age": "0",
+    "cache-control": "public,max-age=600",
+    "content-length": "122797",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:01:40 GMT",
+    "etag": "\"af639f1a243b99f03685fe5aa855c5e4\"",
+    "last-modified": "Fri, 25 Sep 2026 19:41:08 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "0"
+  },
+  "http_status": 200,
+  "name": "accesskit_winit",
+  "started_at_utc": "2026-10-24T00:01:40.226671+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ac/ce/accesskit_winit"
+}

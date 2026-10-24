@@ -1,0 +1,24 @@
+{
+  "body_bytes": 16556,
+  "body_complete": true,
+  "body_file": "responses/displaydoc.jsonl.gz",
+  "body_sha256": "5b870968434348789c48263b41524586592ee0923b5efbaaf443db8ec66a3211",
+  "ended_at_utc": "2026-10-24T00:02:14.820138+00:00",
+  "headers": {
+    "age": "0",
+    "cache-control": "public,max-age=600",
+    "content-length": "16556",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:02:14 GMT",
+    "etag": "\"884b0d6dc007486ebd5eaa77b756f9bc\"",
+    "last-modified": "Tue, 28 Jul 2026 13:58:22 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "displaydoc",
+  "started_at_utc": "2026-10-24T00:02:09.012095+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/di/sp/displaydoc"
+}

@@ -1,0 +1,24 @@
+{
+  "body_bytes": 3959,
+  "body_complete": true,
+  "body_file": "responses/windows-strings.jsonl.gz",
+  "body_sha256": "460eb1b778d5bb430a097377d1d7e60ef35713bdd0de797fbccdb9eb50eefb90",
+  "ended_at_utc": "2026-10-24T00:04:45.497948+00:00",
+  "headers": {
+    "age": "561",
+    "cache-control": "public,max-age=600",
+    "content-length": "3959",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:44 GMT",
+    "etag": "\"6b531a18d918f4588fff7106a58797ac\"",
+    "last-modified": "Thu, 03 Sep 2026 16:41:45 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "3"
+  },
+  "http_status": 200,
+  "name": "windows-strings",
+  "started_at_utc": "2026-10-24T00:04:36.969728+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/wi/nd/windows-strings"
+}

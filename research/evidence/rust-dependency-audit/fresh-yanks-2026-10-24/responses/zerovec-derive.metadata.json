@@ -1,0 +1,24 @@
+{
+  "body_bytes": 22656,
+  "body_complete": true,
+  "body_file": "responses/zerovec-derive.jsonl.gz",
+  "body_sha256": "67a782262e578ec99b3b31b7844dbde46512f89c0b2165984df66b8f6065d0ed",
+  "ended_at_utc": "2026-10-24T00:04:56.128921+00:00",
+  "headers": {
+    "age": "121",
+    "cache-control": "public,max-age=600",
+    "content-length": "22656",
+    "content-type": "text/plain",
+    "date": "Sat, 24 Oct 2026 00:04:56 GMT",
+    "etag": "\"e2caeb3025a0ccd93586ca948cce5fe6\"",
+    "last-modified": "Thu, 22 Oct 2026 08:51:40 GMT",
+    "via": "1.1 varnish",
+    "x-cache": "HIT",
+    "x-cache-hits": "1"
+  },
+  "http_status": 200,
+  "name": "zerovec-derive",
+  "started_at_utc": "2026-10-24T00:04:55.020917+00:00",
+  "status": "observed",
+  "url": "https://index.crates.io/ze/ro/zerovec-derive"
+}

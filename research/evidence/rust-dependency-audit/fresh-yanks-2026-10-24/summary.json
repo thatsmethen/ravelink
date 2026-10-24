@@ -1,0 +1,26 @@
+{
+  "advisory_exit_code": 1,
+  "attempted_requests": 186,
+  "combined_exit_code": 2,
+  "counts": {
+    "checksum_mismatch": 0,
+    "not_yanked": 215,
+    "unavailable": 1,
+    "yanked": 0
+  },
+  "ended_at_utc": "2026-10-24T00:05:02.548716+00:00",
+  "limitations": [
+    "Fresh network observations of the official sparse index; CDN/proxy headers are retained. No local Cargo index was used.",
+    "Crate observations span an interval, not an atomic registry snapshot; yank state may change later.",
+    "Scope is the frozen macOS/Windows app/HAL normal+build graphs, including host build dependencies, not every root lockfile package.",
+    "Socket/read budgets do not control operating-system DNS resolution time. A CI process timeout should additionally bound wall time."
+  ],
+  "lockfile_sha256": "547f5fce785f43efad75d697e8a68212fcd161215c2787b30d4823080588aa6b",
+  "received_body_bytes": 11687115,
+  "registry_versions": 216,
+  "server_backoff_or_budget_stop": null,
+  "started_at_utc": "2026-10-24T00:01:31.650642+00:00",
+  "status": "unavailable",
+  "unique_crates": 185,
+  "yank_exit_code": 2
+}
